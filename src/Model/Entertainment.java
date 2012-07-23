@@ -22,6 +22,9 @@ METHODS LIST			:	Entertainment()
 package Model;
 
 import java.sql.ResultSet;
+import java.util.Collection;
+import java.util.HashSet;
+
 import javax.swing.table.DefaultTableModel;
 import Controller.MySQLController;
 
@@ -44,7 +47,8 @@ public class Entertainment {
 	private double entertainmentPrice=0.00;					//The price per hour
 	private double entertainmentFinalPrice=0.00;			//The total final price per hour after discount,etc
 	private int entertainmentHits=0;						//Number of times this entertainment has been used
-	private boolean isRecord=false;							//true if is a ourchase record
+	private boolean isRecord=false;							//true if is a purchase record
+	private HashSet<EntertainmentMenu> entertainmenOptions = new HashSet<EntertainmentMenu>();
 
 	
 	/********************************************************
@@ -404,5 +408,19 @@ public class Entertainment {
 	}
 	public void setRecord(boolean isRecord) {
 		this.isRecord = isRecord;
+	}
+	
+	public HashSet<EntertainmentMenu> getEntertainmenOptions()
+	{
+		return entertainmenOptions;
+	}
+	public void setEntertainmenOptions(Collection<EntertainmentMenu> entertainmenOptions)
+	{
+		this.entertainmenOptions.addAll(entertainmenOptions);
+	}
+	
+	public void addEntertainmentOption(EntertainmentMenu entertainmenOption)
+	{
+		this.entertainmenOptions.add(entertainmenOption);
 	}
 }

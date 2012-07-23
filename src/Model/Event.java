@@ -16,10 +16,12 @@ METHODS LIST			:	Event()
 package Model;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import Controller.MyCalendar;
 import Controller.MySQLController;
+import Controller.RIM.Utils.DateHelper;
 import Model.Membership.Account;
 import Model.RIM.TableNames;
 
@@ -33,6 +35,7 @@ public class Event {
 	private Ballroom data;								//stores data from the controler;
 	private ResultSet rs;								//result set to ertrive items directly from database
 	private static MySQLController DB = new MySQLController();
+	private DateHelper dateHelper = new DateHelper();
 	
 	private String eventID;
 	private String packageID;
@@ -53,6 +56,10 @@ public class Event {
 	 *******************************************************/
 	
 	public Event(){}
+	public Event(int eventID)
+	{
+		this.setID(eventID);
+	}
 	public Event(String packageID, String userName, String eventStatus, String eventDate, String eventTime, String eventName){
 		this.packageID=packageID;
 		this.userName=userName;
@@ -216,21 +223,24 @@ public class Event {
 						eventBallroom.setBallroomDescription(rs.getString("ballroomDescription"));
 						eventBallroom.setBallroomName(rs.getString("ballroomName"));
 						eventBallroom.setBallroomSize(rs.getString("ballroomSize"));
-						eventBallroom.setFacilityAddress(rs.getString("facilityAddress"));
-						eventBallroom.setFacilityName(rs.getString("facilityName"));
-						eventBallroom.setFacilityDescription(rs.getString("facilityDescription"));
-						eventBallroom.setFacilityContact(rs.getString("facilityContact"));
-						eventBallroom.setFacilityParking(rs.getBoolean("facilityParking"));
-						eventBallroom.setFacilityWeekendExtraCost(rs.getFloat("facilityWeekendExtraCost"));
+							Facility eventFacility = new Facility();
+							eventFacility.setFacilityAddress(rs.getString("facilityAddress"));
+							eventFacility.setFacilityName(rs.getString("facilityName"));
+							eventFacility.setFacilityDescription(rs.getString("facilityDescription"));
+							eventFacility.setFacilityContact(rs.getString("facilityContact"));
+							eventFacility.setFacilityParking(rs.getBoolean("facilityParking"));
+							eventFacility.setFacilityWeekendExtraCost(rs.getFloat("facilityWeekendExtraCost"));
+						eventBallroom.setFacility(eventFacility);
+						
 						
 					eventPackage.setBallroom(eventBallroom);
 					
 						Entertainment eventEntertainment = new Entertainment();
-						eventEntertainment.setEntertainmentID(rs.getInt("entertainmentID"));
+						eventEntertainment.setID(rs.getInt("entertainmentID"));
 						eventEntertainment.setEntertainmentDescription(rs.getString("entertainmentDescription"));
 						eventEntertainment.setEntertainmentDescription(rs.getString("entertainmentTitle"));
 							
-							EventPackageEntertainmentOption entertainmentOption = new EventPackageEntertainmentOption();
+							EntertainmentMenu entertainmentOption = new EntertainmentMenu();
 							entertainmentOption.setEntertainmentMenuDescription(rs.getString("em.entertainmentMenuDescription"));
 							entertainmentOption.setEntertainmentMenuName(rs.getString("em.entertainmentMenuName"));
 							entertainmentOption.setEntertainmentMenuPrice(rs.getFloat("em.entertainmentMenuPrice"));
@@ -239,12 +249,12 @@ public class Event {
 						
 					eventPackage.setEntertainment(eventEntertainment);
 					
-						EventPackageMeal meal = new EventPackageMeal();
-							EventPackageMealItem item = new EventPackageMealItem();
+						Meal meal = new Meal();
+							MealMenu item = new MealMenu();
 							item.setMealMenuName(rs.getString("mealMenuName"));
 							item.setMealMenuDescription(rs.getString("mealMeuDescription"));
 							item.setMealMenuPrice(rs.getFloat("mealMenuPrice"));
-							item.setMealMenuVegeterian(rs.getBoolean("mealMenuVegetarian"));
+							item.setMealMenuVegetarian(rs.getBoolean("mealMenuVegetarian"));
 							item.setMealMenuHalal(rs.getBoolean("mealMenuHalal"));
 						meal.addMealItem(item);
 						meal.setMealAvailability(rs.getBoolean("mealAvailability"));
@@ -259,7 +269,7 @@ public class Event {
 				
 				event.setEventPackage(eventPackage);
 					
-					EventInvitation eventInvitation = new EventInvitation();
+					Invitation eventInvitation = new Invitation();
 					eventInvitation.setInvitationID(rs.getInt("invitationID"));
 					eventInvitation.setDateCreated(dateHelper.parseDate(rs.getString("i.dateCreated"), TableNames.DATE_FORMAT));
 					eventInvitation.setExpiryDate(dateHelper.parseDate(rs.getString("i.expiryDate"), TableNames.DATE_FORMAT));
@@ -273,19 +283,19 @@ public class Event {
 				//Take out the previously added Event
 				event = eventList.get(eventList.size()-1);
 				
-				EventPackageEntertainmentOption entertainmentOption = new EventPackageEntertainmentOption();
+				EntertainmentMenu entertainmentOption = new EntertainmentMenu();
 				entertainmentOption.setEntertainmentMenuDescription(rs.getString("em.entertainmentMenuDescription"));
 				entertainmentOption.setEntertainmentMenuName(rs.getString("em.entertainmentMenuName"));
 				entertainmentOption.setEntertainmentMenuPrice(rs.getFloat("em.entertainmentMenuPrice"));
 				
 				event.getEventPackage().getEntertainment().addEntertainmentOption(entertainmentOption);
 				
-				EventPackageMeal meal = new EventPackageMeal();
-					EventPackageMealItem item = new EventPackageMealItem();
+				Meal meal = new Meal();
+					MealMenu item = new MealMenu();
 					item.setMealMenuName(rs.getString("mealMenuName"));
 					item.setMealMenuDescription(rs.getString("mealMeuDescription"));
 					item.setMealMenuPrice(rs.getFloat("mealMenuPrice"));
-					item.setMealMenuVegeterian(rs.getBoolean("mealMenuVegetarian"));
+					item.setMealMenuVegetarian(rs.getBoolean("mealMenuVegetarian"));
 					item.setMealMenuHalal(rs.getBoolean("mealMenuHalal"));
 				meal.addMealItem(item);
 				meal.setMealAvailability(rs.getBoolean("mealAvailability"));
@@ -315,7 +325,7 @@ public class Event {
 		Event event = new Event();
 		try
 		{
-			ResultSet rs = db.readRequest(	"SELECT * FROM " + TableNames.EVENT_TABLE + " e" 
+			ResultSet rs = DB.readRequest(	"SELECT * FROM " + TableNames.EVENT_TABLE + " e" 
 											+" LEFT JOIN " + TableNames.INVITATION_TABLE + " i ON" + " e.eventID = i.eventID"
 											+" INNER JOIN " + TableNames.PACKAGE_TABLE + " p ON e.packageID = p.packageID"
 											+" INNER JOIN " + TableNames.BALLROOM_TABLE + " b ON p.ballroomID = b.ballroomID"
@@ -335,7 +345,7 @@ public class Event {
 				if(rs.getInt("eventID")!=prev){
 					prev = rs.getInt("eventID");
 					
-					event.setEventID(rs.getInt("eventID"));
+					event.setID(rs.getInt("eventID"));
 					event.setEventName(rs.getString("eventName"));
 					event.setEventDate(rs.getString("eventDate").trim() + " 00:00:00");
 					event.setEventTime(rs.getString("eventTime"));
@@ -343,32 +353,33 @@ public class Event {
 					event.setEventDescription(rs.getString("eventDescription"));
 					event.setEventInitiator(new Account(rs.getString("userName")));
 					
-						EventPackage eventPackage = new EventPackage();
-						eventPackage.setPackageID(rs.getInt("packageID"));
+						Package eventPackage = new Package();
+						eventPackage.setID(rs.getInt("packageID"));
 						eventPackage.setPackageTitle(rs.getString("packageTitle"));
 						eventPackage.setPackageDescription(rs.getString("packageDescription"));
 						eventPackage.setPackageType(rs.getString("packageType"));
 						
-							EventPackageBallroom eventBallroom = new EventPackageBallroom();
-							eventBallroom.setBallroomID(rs.getInt("ballroomID"));
+							Ballroom eventBallroom = new Ballroom();
+							eventBallroom.setID(rs.getInt("ballroomID"));
 							eventBallroom.setBallroomDescription(rs.getString("ballroomDescription"));
 							eventBallroom.setBallroomName(rs.getString("ballroomName"));
 							eventBallroom.setBallroomSize(rs.getString("ballroomSize"));
-							eventBallroom.setFacilityAddress(rs.getString("facilityAddress"));
-							eventBallroom.setFacilityName(rs.getString("facilityName"));
-							eventBallroom.setFacilityDescription(rs.getString("facilityDescription"));
-							eventBallroom.setFacilityContact(rs.getString("facilityContact"));
-							eventBallroom.setFacilityParking(rs.getBoolean("facilityParking"));
-							eventBallroom.setFacilityWeekendExtraCost(rs.getFloat("facilityWeekendExtraCost"));
-							
+								Facility eventFacility = new Facility();
+								eventFacility.setFacilityAddress(rs.getString("facilityAddress"));
+								eventFacility.setFacilityName(rs.getString("facilityName"));
+								eventFacility.setFacilityDescription(rs.getString("facilityDescription"));
+								eventFacility.setFacilityContact(rs.getString("facilityContact"));
+								eventFacility.setFacilityParking(rs.getBoolean("facilityParking"));
+								eventFacility.setFacilityWeekendExtraCost(rs.getFloat("facilityWeekendExtraCost"));
+							eventBallroom.setFacility(eventFacility);
 						eventPackage.setBallroom(eventBallroom);
 						
-							EventPackageEntertainment eventEntertainment = new EventPackageEntertainment();
-							eventEntertainment.setEntertainmentID(rs.getInt("entertainmentID"));
+							Entertainment eventEntertainment = new Entertainment();
+							eventEntertainment.setID(rs.getInt("entertainmentID"));
 							eventEntertainment.setEntertainmentDescription(rs.getString("entertainmentDescription"));
 							eventEntertainment.setEntertainmentDescription(rs.getString("entertainmentTitle"));
 								
-								EventPackageEntertainmentOption entertainmentOption = new EventPackageEntertainmentOption();
+								EntertainmentMenu entertainmentOption = new EntertainmentMenu();
 								entertainmentOption.setEntertainmentMenuDescription(rs.getString("em.entertainmentMenuDescription"));
 								entertainmentOption.setEntertainmentMenuName(rs.getString("em.entertainmentMenuName"));
 								entertainmentOption.setEntertainmentMenuPrice(rs.getFloat("em.entertainmentMenuPrice"));
@@ -377,12 +388,12 @@ public class Event {
 							
 						eventPackage.setEntertainment(eventEntertainment);
 						
-							EventPackageMeal meal = new EventPackageMeal();
-								EventPackageMealItem item = new EventPackageMealItem();
+							Meal meal = new Meal();
+								MealMenu item = new MealMenu();
 								item.setMealMenuName(rs.getString("mealMenuName"));
 								item.setMealMenuDescription(rs.getString("mealMeuDescription"));
 								item.setMealMenuPrice(rs.getFloat("mealMenuPrice"));
-								item.setMealMenuVegeterian(rs.getBoolean("mealMenuVegetarian"));
+								item.setMealMenuVegetarian(rs.getBoolean("mealMenuVegetarian"));
 								item.setMealMenuHalal(rs.getBoolean("mealMenuHalal"));
 							meal.addMealItem(item);
 							meal.setMealAvailability(rs.getBoolean("mealAvailability"));
@@ -408,19 +419,19 @@ public class Event {
 				else
 				{
 					
-					EventPackageEntertainmentOption entertainmentOption = new EventPackageEntertainmentOption();
+					EntertainmentMenu entertainmentOption = new EntertainmentMenu();
 					entertainmentOption.setEntertainmentMenuDescription(rs.getString("em.entertainmentMenuDescription"));
 					entertainmentOption.setEntertainmentMenuName(rs.getString("em.entertainmentMenuName"));
 					entertainmentOption.setEntertainmentMenuPrice(rs.getFloat("em.entertainmentMenuPrice"));
 					
 					event.getEventPackage().getEntertainment().addEntertainmentOption(entertainmentOption);
 					
-					EventPackageMeal meal = new EventPackageMeal();
-						EventPackageMealItem item = new EventPackageMealItem();
+					Meal meal = new Meal();
+						MealMenu item = new MealMenu();
 						item.setMealMenuName(rs.getString("mealMenuName"));
 						item.setMealMenuDescription(rs.getString("mealMeuDescription"));
 						item.setMealMenuPrice(rs.getFloat("mealMenuPrice"));
-						item.setMealMenuVegeterian(rs.getBoolean("mealMenuVegetarian"));
+						item.setMealMenuVegetarian(rs.getBoolean("mealMenuVegetarian"));
 						item.setMealMenuHalal(rs.getBoolean("mealMenuHalal"));
 					meal.addMealItem(item);
 					meal.setMealAvailability(rs.getBoolean("mealAvailability"));
@@ -522,5 +533,35 @@ public class Event {
 	}
 	public String getEventDescription() {
 		return eventDescription;
+	}
+	
+	public Package getEventPackage()
+	{
+		return eventPackage;
+	}
+
+	public void setEventPackage(Package eventPackage)
+	{
+		this.eventPackage = eventPackage;
+	}
+
+	public EventPhoto getPhoto()
+	{
+		return photo;
+	}
+
+	public void setPhoto(EventPhoto photo)
+	{
+		this.photo = photo;
+	}
+
+	public Invitation getEventInvitation()
+	{
+		return invitation;
+	}
+
+	public void setEventInvitation(Invitation invitation)
+	{
+		this.invitation = invitation;
 	}
 }

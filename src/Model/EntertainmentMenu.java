@@ -18,8 +18,12 @@ METHODS LIST			:	EntertainmentMenu()
 package Model;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import javax.swing.table.DefaultTableModel;
 import Controller.MySQLController;
+import Model.RIM.TableNames;
 
 public class EntertainmentMenu {
 
@@ -165,6 +169,37 @@ public class EntertainmentMenu {
 		return model;
 	}
 	
+	/********************************************************
+	  * Method Name 	: GET_ENTERTAINMENT_OPTIONS()
+	  * Input Parameter : int entertainmentID
+	  * Return 			: ArrayList<EntertainmentMenu>
+	  * Purpose 		: To retrieve an EntertainmentMenu record 
+	  * 				  By parameter
+	  *******************************************************/
+	public ArrayList<EntertainmentMenu> GET_ENTERTAINMENT_OPTIONS(int entertainmentID)
+	{
+		ArrayList<EntertainmentMenu> optionList = new ArrayList<EntertainmentMenu>();
+		
+		try
+		{
+			ResultSet rs = DB.readRequest("SELECT * FROM " + TableNames.ENTERTAINMENT_MENU_TABLE + " WHERE entertainmentID =" + entertainmentID);
+			
+			while(rs.next())
+			{
+				EntertainmentMenu option = new EntertainmentMenu();
+				option.setEntertainmentMenuDescription(rs.getString("entertainmentMenuDescription"));
+				option.setEntertainmentMenuName(rs.getString("entertainmentMenuName"));
+				option.setEntertainmentMenuPrice(rs.getFloat("entertainmentMenuPrice"));
+				optionList.add(option);
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
 	/********************************************************
 	 *				The Accessor Methods
 	 *******************************************************/

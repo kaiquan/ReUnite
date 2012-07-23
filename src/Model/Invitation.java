@@ -5,7 +5,7 @@ import java.util.*;
 import java.util.Date;
 
 import Controller.*;
-import Controller.Utils.DateHelper;
+import Controller.RIM.Utils.DateHelper;
 import Model.Membership.*;
 import Model.RIM.TableNames;
 
@@ -230,7 +230,7 @@ public class Invitation
 		return guestList;
 	}
 
-	public boolean CREATE_INVITATION(EventInvitation invitation)
+	public boolean CREATE_INVITATION(Invitation invitation)
 	{
 		int success = 0;
 		String dbQuery = "INSERT INTO " + TableNames.INVITATION_TABLE + "(`eventID`,`dateCreated`,`expiryDate`,`notificationID`)" + " VALUES ("

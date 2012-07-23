@@ -39,6 +39,7 @@ public class Ballroom {
 	
 	private String ballroomID=null;
 	private String facilityID=null;
+	private Facility facility = null;
 	private String ballroomName=null;
 	private String ballroomDescription=null;
 	private String ballroomSize=null;
@@ -447,5 +448,11 @@ public class Ballroom {
 	}
 	public boolean isBallroomAvailability() {
 		return ballroomAvailability;
+	}
+	public Facility getFacility() {
+		return facility;
+	}
+	public void setFacility(Facility facility) {
+		this.facility = facility;
 	}
 }

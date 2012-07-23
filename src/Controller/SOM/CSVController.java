@@ -67,17 +67,6 @@ public class CSVController {
 	
 	
 	
-	public static void main(String a[]) throws IOException{
-		CSVController csv= new CSVController();
-		ArrayList<String[]>data;
-		data=csv.readFile("this.csv");
-		for(int i=0; i<data.size();i++){
-			for(int x=0;x<data.get(i).length;x++){
-			System.out.print(" "+data.get(i)[x]);
-			}
-			System.out.println();
-		}
-		
-	}
+	
 }
 

@@ -33,6 +33,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 import javax.swing.BorderFactory;
@@ -840,21 +841,21 @@ public class AdministrateEntertainmentForm {
 				PDFlink=sc1.next();
 			}
 			downloadPDF(PDFlink+".pdf");
-			downloadTXT(PDFlink+".r");
+			downloadTXT(PDFlink+".csv");
 		}
 		else if(directory.substring(directory.length()-2).equals(".r")){
 			Scanner sc2= new Scanner(directory);
-			String d=".r";
+			String d=".csv";
 			sc2.useDelimiter(d);
 			while(sc2.hasNext()){
 				TXTlink=sc2.next();
 			}
 			downloadPDF(TXTlink+".pdf");
-			downloadTXT(TXTlink+".r");
+			downloadTXT(TXTlink+".csv");
 		}
 		else{
 			downloadPDF(directory+".pdf");
-			downloadTXT(directory+".r");
+			downloadTXT(directory+".csv");
 		}
 	}
 	/********************************************************
@@ -931,9 +932,48 @@ public class AdministrateEntertainmentForm {
 	 * Return 			: void
 	 * Purpose 			: To download the form details in
 	 * 					  the local computer
+	 * @throws IOException 
 	 *******************************************************/
-	public void downloadTXT(String path){
+	public void downloadTXT(String path) throws IOException{
 		CSVController controller= new CSVController();
+		ArrayList<String[]> data = new ArrayList<String[]>();
+		String[]entertainmentHeader=new String[6];
+		entertainmentHeader[0]="ID";
+		entertainmentHeader[1]="Title";
+		entertainmentHeader[2]="Description";
+		entertainmentHeader[3]="Availability";
+		entertainmentHeader[4]="Discount";
+		entertainmentHeader[5]="TotalPrice";
+		
+		String[]entertainmentData=new String[6];
+		entertainmentData[0]=getJTextField_entertaimentID().getText().toString();
+		entertainmentData[1]=getJTextField_entertainmentTitle().getText().toString();
+		entertainmentData[2]=getJTextArea_entertainmentDescription().getText().toString();
+		if(getJCheckBox_entertainmentAvailability().isSelected())
+			entertainmentData[3]="Yes";
+		else
+			entertainmentData[3]="No";
+		entertainmentData[4]=getJTextField_entertainmentDiscount().getText().toString();
+		entertainmentData[5]=getJTextField_entertainmentTotalPrice().getText().toString();
+		
+		String[]entertainmentMenuHeader= new String[3];
+		entertainmentMenuHeader[0]="Menu Name";
+		entertainmentMenuHeader[1]="Price";
+		entertainmentMenuHeader[2]="Description";
+		
+		data.add(entertainmentHeader);
+		data.add(entertainmentData);
+		data.add(entertainmentMenuHeader);
+		
+		for(int i=0;i<model.getRowCount();i++){
+			String[] entertainmentMenuData= new String[3];
+			entertainmentMenuData[0]=(model.getValueAt(i, 0).toString());
+			entertainmentMenuData[1]=(model.getValueAt(i, 1).toString());
+			entertainmentMenuData[2]=(model.getValueAt(i, 2).toString());
+			data.add(entertainmentMenuData);
+		}
+		controller.WriteFile(data, path);
+	
 	}
 	
 	

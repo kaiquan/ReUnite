@@ -1,4 +1,4 @@
-package rcm.view;
+package View.CGL;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -28,8 +28,8 @@ import javax.swing.JComboBox;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
-import rcm.controller.ConsolidateGuestListControl;
-import rcm.model.Event;
+import Controller.CGL.ConsolidateGuestListControl;
+import Model.CGL.Event;
 import javax.swing.JRadioButtonMenuItem;
 
 public class CollectPaymentForm {

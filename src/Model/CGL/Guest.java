@@ -1,9 +1,9 @@
-package rcm.model;
+package Model.CGL;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import rcm.controller.MySQLController;
+import Controller.MySQLController;
 
 
 

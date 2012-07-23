@@ -1,11 +1,11 @@
-package rcm.model;
+package Model.CGL;
 
 import java.sql.ResultSet;
 
-import rcm.controller.ConsolidateGuestListControl;
-import rcm.controller.MySQLController;
+import Controller.CGL.ConsolidateGuestListControl;
+import Controller.MySQLController;
 
-import rcm.controller.MyCalendar;
+import Controller.CGL.MyCalendar;
 
 public class Purchase_Payment {
 	private static MySQLController DB = new MySQLController();

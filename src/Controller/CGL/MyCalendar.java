@@ -1,4 +1,4 @@
-package rcm.controller;
+package Controller.CGL;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

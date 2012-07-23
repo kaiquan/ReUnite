@@ -1,15 +1,15 @@
-package rcm.model;
+package Model.CGL;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
 
-import rcm.controller.MyCalendar;
-import rcm.controller.MySQLController;
+import	Controller.CGL.MyCalendar;
+import Controller.MySQLController;
 
 public class Ballroom {
 	
-	private static MySQLController DB = new MySQLController();
+	private static Controller.MySQLController DB = new Controller.MySQLController();
 	
 public ArrayList<String> getBallroomDetails(String eventName){
 		

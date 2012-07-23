@@ -1,4 +1,4 @@
-package rcm.view;
+package View.CGL;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -43,8 +43,8 @@ import javax.swing.JTextArea;
 
 
 
-import rcm.controller.ConsolidateGuestListControl;
-import rcm.model.Event;
+import Controller.CGL.ConsolidateGuestListControl;
+import Model.CGL.Event;
 
 import java.util.Enumeration;
 import java.awt.event.ActionListener;

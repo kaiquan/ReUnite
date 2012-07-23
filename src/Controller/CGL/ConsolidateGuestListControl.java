@@ -1,15 +1,15 @@
-package rcm.controller;
+package Controller.CGL;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import rcm.model.Ballroom;
-import rcm.model.Entertainment;
-import rcm.model.Event;
-import rcm.model.Guest;
-import rcm.model.Meal;
-import rcm.model.Purchase_Payment;
-import rcm.model.Purchase_Summary;
+import Model.CGL.Ballroom;
+import Model.CGL.Entertainment;
+import Model.CGL.Event;
+import Model.CGL.Guest;
+import Model.CGL.Meal;
+import Model.CGL.Purchase_Payment;
+import Model.CGL.Purchase_Summary;
 
 public class ConsolidateGuestListControl {
 	

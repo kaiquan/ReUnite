@@ -18,7 +18,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import Controller.CreateRIController;
+import Controller.MM.*;
 
 
 public class CreateRIForm extends JFrame {

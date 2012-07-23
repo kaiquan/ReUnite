@@ -4,7 +4,8 @@ import javax.swing.*;
 import javax.swing.table.*;
 
 import Controller.MySQLController;
-import Model.RI;
+import Controller.MM.*;
+import Model.Membership.RI;
 
 import java.sql.*;
 import java.util.ArrayList;

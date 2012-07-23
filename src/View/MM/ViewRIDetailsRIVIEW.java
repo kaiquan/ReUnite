@@ -21,10 +21,9 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
 import Model.*;
+import Model.Membership.RI;
 import Controller.MySQLController;
-import Controller.ViewRIDetailsController;
-
-import Controller.CreateRIController;
+import Controller.MM.*;
 
 public class ViewRIDetailsRIVIEW {
 

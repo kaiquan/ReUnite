@@ -34,7 +34,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Model.*;
 import Controller.MySQLController;
-import Controller.ViewRIDetailsController;
+import Controller.MM.*;
 
 ;
 

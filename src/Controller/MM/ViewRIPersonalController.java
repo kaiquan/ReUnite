@@ -1,6 +1,6 @@
 package Controller.MM;
 
-import Model.RI;
+import Model.Membership.*;
 
 public class ViewRIPersonalController {
 	

@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
 
-import Model.RI;
-import Model.Account;
+import Model.Membership.*;
 
 public class ViewRIDetailsController {
 

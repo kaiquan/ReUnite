@@ -3,7 +3,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 
-import Model.RI;
+import Model.Membership.*;
 
 public class CreateRIController {
 

@@ -590,7 +590,7 @@ public class AdministrateEntertainmentForm {
 			jButton_download.setFocusable(false);
 			jButton_download.setFocusPainted(false);
 			jButton_download.setEnabled(false);
-			jButton_download.setIcon(new ImageIcon(getClass().getResource("/images/download.png")));
+			jButton_download.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/download.png")));
 			jButton_download.setText("Download");
 			jButton_download.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -622,7 +622,7 @@ public class AdministrateEntertainmentForm {
 			jButton_createEntertainment.setFocusable(false);
 			jButton_createEntertainment.setFocusPainted(false);
 			jButton_createEntertainment.setBounds(new Rectangle(570, 115, 160, 45));
-			jButton_createEntertainment.setIcon(new ImageIcon(getClass().getResource("/images/create.png")));
+			jButton_createEntertainment.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/create.png")));
 			jButton_createEntertainment.setText("Upload");
 			jButton_createEntertainment
 					.addActionListener(new java.awt.event.ActionListener() {
@@ -643,7 +643,7 @@ public class AdministrateEntertainmentForm {
 			jButton_Update.setFocusPainted(false);
 			jButton_Update.setBounds(new Rectangle(570, 170, 160, 45));
 			jButton_Update.setEnabled(false);
-			jButton_Update.setIcon(new ImageIcon(getClass().getResource("/images/update.png")));
+			jButton_Update.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/update.png")));
 			jButton_Update.setText("Update");
 			jButton_Update.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -661,7 +661,7 @@ public class AdministrateEntertainmentForm {
 			jButton_delete.setFont(new Font("Century Gothic", Font.BOLD, 12));
 			jButton_delete.setFocusable(false);
 			jButton_delete.setFocusPainted(false);
-			jButton_delete.setIcon(new ImageIcon(getClass().getResource("/images/delete.png")));
+			jButton_delete.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/delete.png")));
 			jButton_delete.setEnabled(false);
 			jButton_delete.setBounds(new Rectangle(400, 170, 160, 45));
 			jButton_delete.setText("Delete");
@@ -873,7 +873,7 @@ public class AdministrateEntertainmentForm {
 		 pdf.open ();
 		 //SETTING THE HEADER
 		 pdf.addCreator("Lee Kai Quan(114173S)");
-		 Image image = Image.getInstance("src\\images\\Reunite_Header.png");
+		 Image image = Image.getInstance("src\\images\\SOM\\Reunite_Header.png");
 		 image.scaleAbsolute(550, 100);
 		 pdf.add(image);
 		 pdf.add(new Paragraph("  "));

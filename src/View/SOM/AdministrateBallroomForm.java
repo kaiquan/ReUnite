@@ -502,7 +502,7 @@ public class AdministrateBallroomForm {
 			jButton_download.setFocusable(false);
 			jButton_download.setFocusPainted(false);
 			jButton_download.setBounds(new Rectangle(400, 115, 160, 45));
-			jButton_download.setIcon(new ImageIcon(getClass().getResource("/images/download.png")));
+			jButton_download.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/download.png")));
 			jButton_download.setText("Download");
 			jButton_download.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -530,7 +530,7 @@ public class AdministrateBallroomForm {
 			jButton_upload.setFocusable(false);
 			jButton_upload.setFocusPainted(false);
 			jButton_upload.setBounds(new Rectangle(570, 115, 160, 45));
-			jButton_upload.setIcon(new ImageIcon(getClass().getResource("/images/create.png")));
+			jButton_upload.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/create.png")));
 			jButton_upload.setText("Upload");
 			jButton_upload.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -551,7 +551,7 @@ public class AdministrateBallroomForm {
 			jButton_delete.setFocusPainted(false);
 			jButton_delete.setEnabled(false);
 			jButton_delete.setBounds(new Rectangle(400, 170, 160, 45));
-			jButton_delete.setIcon(new ImageIcon(getClass().getResource("/images/delete.png")));
+			jButton_delete.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/delete.png")));
 			jButton_delete.setText("Delete");
 			jButton_delete.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -578,7 +578,7 @@ public class AdministrateBallroomForm {
 			jButton_update.setFocusPainted(false);
 			jButton_update.setEnabled(false);
 			jButton_update.setBounds(new Rectangle(570, 170, 160, 45));
-			jButton_update.setIcon(new ImageIcon(getClass().getResource("/images/update.png")));
+			jButton_update.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/update.png")));
 			jButton_update.setText("Update");
 			jButton_update.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -788,7 +788,7 @@ public class AdministrateBallroomForm {
 		 pdf.open ();
 		 //SETTING THE HEADER
 		 pdf.addCreator("Lee Kai Quan(114173S)");
-		 Image image = Image.getInstance("src\\images\\Reunite_Header.png");
+		 Image image = Image.getInstance("src\\images\\SOM\\Reunite_Header.png");
 		 image.scaleAbsolute(550, 100);
 		 pdf.add(image);
 		 pdf.add(new Paragraph("  "));

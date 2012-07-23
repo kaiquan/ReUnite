@@ -705,7 +705,7 @@ public class CreateCustomPackageForm {
 			jButton_createEvent.setFocusable(false);
 			jButton_createEvent.setFocusPainted(false);
 			jButton_createEvent.setOpaque(false);
-			jButton_createEvent.setIcon(new ImageIcon(getClass().getResource("/images/Select.png")));
+			jButton_createEvent.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/Select.png")));
 			jButton_createEvent.setText("Proceed To Creating Event");
 			jButton_createEvent.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -745,7 +745,7 @@ public class CreateCustomPackageForm {
 			jFrame_Ballroom.setLocation(323, 66);
 			jFrame_Ballroom.setTitle("Select Ballroom");
 			jFrame_Ballroom.setContentPane(getJScrollPaneBallroom());
-			jFrame_Ballroom.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/facility.png")));
+			jFrame_Ballroom.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Images/SOM/facility.png")));
 		}
 		return jFrame_Ballroom;
 	}
@@ -922,7 +922,7 @@ public class CreateCustomPackageForm {
 			jButton_ballroomPrevious.setEnabled(false);
 			jButton_ballroomPrevious.setVisible(false);
 			jButton_ballroomPrevious.setComponentOrientation(ComponentOrientation.UNKNOWN);
-			jButton_ballroomPrevious.setIcon(new ImageIcon(getClass().getResource("/images/previous_button.png")));
+			jButton_ballroomPrevious.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/previous_button.png")));
 			jButton_ballroomPrevious.setHorizontalTextPosition(SwingConstants.RIGHT);
 			jButton_ballroomPrevious.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -957,7 +957,7 @@ public class CreateCustomPackageForm {
 			jButton_ballroomNext.setFocusPainted(false);
 			jButton_ballroomNext.setEnabled(false);
 			jButton_ballroomNext.setVisible(false);
-			jButton_ballroomNext.setIcon(new ImageIcon(getClass().getResource("/images/next_button.png")));
+			jButton_ballroomNext.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/next_button.png")));
 			jButton_ballroomNext.setHorizontalTextPosition(SwingConstants.LEFT);
 			jButton_ballroomNext.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -1116,7 +1116,7 @@ public class CreateCustomPackageForm {
 			jButton_selectBallroom.setFont(new Font("Century Gothic", Font.BOLD, 12));
 			jButton_selectBallroom.setFocusable(false);
 			jButton_selectBallroom.setFocusPainted(false);
-			jButton_selectBallroom.setIcon(new ImageIcon(getClass().getResource("/images/Select.png")));
+			jButton_selectBallroom.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/Select.png")));
 			jButton_selectBallroom.setText("Select Ballroom");
 			jButton_selectBallroom.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -1181,7 +1181,7 @@ public class CreateCustomPackageForm {
 			jFrameEntertainment.setSize(new Dimension(820, 768));
 			jFrameEntertainment.setLocation(323, 66);
 			jFrameEntertainment.setResizable(false);
-			jFrameEntertainment.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/entertainment.png")));
+			jFrameEntertainment.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Images/SOM/entertainment.png")));
 			jFrameEntertainment.setContentPane(getJScrollPaneEntertainment());
 			jFrameEntertainment.setTitle("Select Entertainment");
 		}
@@ -1347,7 +1347,7 @@ public class CreateCustomPackageForm {
 			jButton_entertainmentPrevious.setFocusable(false);
 			jButton_entertainmentPrevious.setFocusPainted(false);
 			jButton_entertainmentPrevious.setOpaque(false);
-			jButton_entertainmentPrevious.setIcon(new ImageIcon(getClass().getResource("/images/previous_button.png")));
+			jButton_entertainmentPrevious.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/previous_button.png")));
 			jButton_entertainmentPrevious.setText("");
 			jButton_entertainmentPrevious
 					.addActionListener(new java.awt.event.ActionListener() {
@@ -1383,7 +1383,7 @@ public class CreateCustomPackageForm {
 			jButton_entertainmentNext.setOpaque(false);
 			jButton_entertainmentNext.setFocusPainted(false);
 			jButton_entertainmentNext.setText("");
-			jButton_entertainmentNext.setIcon(new ImageIcon(getClass().getResource("/images/next_button.png")));
+			jButton_entertainmentNext.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/next_button.png")));
 			jButton_entertainmentNext
 					.addActionListener(new java.awt.event.ActionListener() {
 						public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -1495,7 +1495,7 @@ public class CreateCustomPackageForm {
 			jButton_selectEntertainment.setFocusable(false);
 			jButton_selectEntertainment.setFocusPainted(false);
 			jButton_selectEntertainment.setText("Select Entertainment");
-			jButton_selectEntertainment.setIcon(new ImageIcon(getClass().getResource("/images/Select.png")));
+			jButton_selectEntertainment.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/Select.png")));
 			jButton_selectEntertainment
 					.addActionListener(new java.awt.event.ActionListener() {
 						public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -1555,7 +1555,7 @@ public class CreateCustomPackageForm {
 			jFrameMeal.setLocation(323, 66);
 			jFrameMeal.setTitle("Select Meal");
 			jFrameMeal.setContentPane(getJScrollPaneMeal());
-			jFrameMeal.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/meal.png")));
+			jFrameMeal.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Images/SOM/meal.png")));
 		}
 		return jFrameMeal;
 	}	
@@ -1724,7 +1724,7 @@ public class CreateCustomPackageForm {
 			jButton_mealPrevious = new JButton();
 			jButton_mealPrevious.setFocusable(false);
 			jButton_mealPrevious.setFocusPainted(false);
-			jButton_mealPrevious.setIcon(new ImageIcon(getClass().getResource("/images/previous_button.png")));
+			jButton_mealPrevious.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/previous_button.png")));
 			jButton_mealPrevious.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					int row = getJTable_mealLIst().getSelectedRow();
@@ -1754,7 +1754,7 @@ public class CreateCustomPackageForm {
 			jButton_mealNext = new JButton();
 			jButton_mealNext.setFocusable(false);
 			jButton_mealNext.setFocusPainted(false);
-			jButton_mealNext.setIcon(new ImageIcon(getClass().getResource("/images/next_button.png")));
+			jButton_mealNext.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/next_button.png")));
 			jButton_mealNext.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					int row = getJTable_mealLIst().getSelectedRow();
@@ -1877,7 +1877,7 @@ public class CreateCustomPackageForm {
 			jButton_selectMeal.setFocusable(false);
 			jButton_selectMeal.setFocusPainted(false);
 			jButton_selectMeal.setText("Select Meal");
-			jButton_selectMeal.setIcon(new ImageIcon(getClass().getResource("/images/Select.png")));
+			jButton_selectMeal.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/Select.png")));
 			jButton_selectMeal.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					if(getJFrameMeal().getName().equals("1")){

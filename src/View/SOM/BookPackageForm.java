@@ -261,7 +261,7 @@ public class BookPackageForm {
 			jButton_selectDate.setFocusPainted(false);
 			jButton_selectDate.setEnabled(true);
 			jButton_selectDate.setBounds(new Rectangle(395, 180, 40, 30));
-			jButton_selectDate.setIcon(new ImageIcon(getClass().getResource("/images/30_calendar_icon.png")));
+			jButton_selectDate.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/30_calendar_icon.png")));
 			jButton_selectDate.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					if(cPackageTitle!=null){
@@ -499,7 +499,7 @@ public class BookPackageForm {
 			jButton_previous = new JButton();
 			jButton_previous.setFocusable(false);
 			jButton_previous.setFocusPainted(false);
-			jButton_previous.setIcon(new ImageIcon(getClass().getResource("/images/previous_button.png")));
+			jButton_previous.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/previous_button.png")));
 			jButton_previous.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					int row = getJTable_search().getSelectedRow();
@@ -532,7 +532,7 @@ public class BookPackageForm {
 			jButton_next = new JButton();
 			jButton_next.setFocusable(false);
 			jButton_next.setFocusPainted(false);
-			jButton_next.setIcon(new ImageIcon(getClass().getResource("/images/next_button.png")));
+			jButton_next.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/next_button.png")));
 			jButton_next.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					int row = getJTable_search().getSelectedRow();
@@ -1113,7 +1113,7 @@ public class BookPackageForm {
 		if (jButton_standardPackage == null) {
 			jButton_standardPackage = new JButton();
 			jButton_standardPackage.setText("Select This Package");
-			jButton_standardPackage.setIcon(new ImageIcon(getClass().getResource("/images/Select.png")));
+			jButton_standardPackage.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/Select.png")));
 			jButton_standardPackage.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					getJTextField_seectedPackageTitle().setText(getJTextField_packageTitle().getText());

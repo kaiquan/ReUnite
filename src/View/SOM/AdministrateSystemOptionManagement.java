@@ -103,7 +103,7 @@ public class AdministrateSystemOptionManagement {
 			jFrame.setLocation(206, 49);	// set the starting window location(set it to center)
 			jFrame.setResizable(false);	//disallow user to resize the frame
 			jFrame.setTitle("Welcome...");	//set the title to the user name of current user after logging in
-			jFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/purchase.png")));
+			jFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Images/SOM/purchase.png")));
 			jFrame.setJMenuBar(getJJMenuBar());
 			jFrame.setContentPane(getJContentPane());
 		}
@@ -177,7 +177,7 @@ public class AdministrateSystemOptionManagement {
 			jButton_NewTab.setToolTipText("Opens a new Tab Options");
 			jButton_NewTab.setFocusPainted(false);;
 			jButton_NewTab.setPreferredSize(new Dimension(30,35));
-			jButton_NewTab.setIcon(new ImageIcon(getClass().getResource("/images/new.png")));
+			jButton_NewTab.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/new.png")));
 			jButton_NewTab.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					newTab();
@@ -192,7 +192,7 @@ public class AdministrateSystemOptionManagement {
 			jButton_open.setToolTipText("Loads information from a .R file");
 			jButton_open.setFocusPainted(false);
 			jButton_open.setPreferredSize(new Dimension(30,35));
-			jButton_open.setIcon(new ImageIcon(getClass().getResource("/images/open.png")));
+			jButton_open.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/open.png")));
 			jButton_open.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					fc.showOpenDialog(fc);
@@ -209,7 +209,7 @@ public class AdministrateSystemOptionManagement {
 			jButton_save = new JButton();
 			jButton_save.setFocusPainted(false);
 			jButton_save.setToolTipText("Does Nothing...");
-			jButton_save.setIcon(new ImageIcon(getClass().getResource("/images/save.png")));
+			jButton_save.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/save.png")));
 			jButton_save.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					//save temp file
@@ -223,7 +223,7 @@ public class AdministrateSystemOptionManagement {
 			jToggleButton_search = new JToggleButton();
 			jToggleButton_search.setToolTipText("Toggles the search pannel");
 			jToggleButton_search.setFocusPainted(false);
-			jToggleButton_search.setIcon(new ImageIcon(getClass().getResource("/images/search.png")));
+			jToggleButton_search.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/search.png")));
 			jToggleButton_search.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					if(getJSplitPane_Divider().getDividerLocation()==0){
@@ -248,7 +248,7 @@ public class AdministrateSystemOptionManagement {
 			jButton_undo.setToolTipText("Does Nothing...");
 			jButton_undo.setFocusPainted(false);
 			jButton_undo.setMnemonic(KeyEvent.VK_UNDEFINED);
-			jButton_undo.setIcon(new ImageIcon(getClass().getResource("/images/undo.png")));
+			jButton_undo.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/undo.png")));
 		}
 		return jButton_undo;
 	}
@@ -258,7 +258,7 @@ public class AdministrateSystemOptionManagement {
 			jButton_redo = new JButton();
 			jButton_redo.setToolTipText("Does Nothing...");
 			jButton_redo.setFocusPainted(false);
-			jButton_redo.setIcon(new ImageIcon(getClass().getResource("/images/redo.png")));
+			jButton_redo.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/redo.png")));
 		}
 		return jButton_redo;
 	}
@@ -267,7 +267,7 @@ public class AdministrateSystemOptionManagement {
 			jButton_logout = new JButton();
 			jButton_logout.setToolTipText("Logs out of the system");
 			jButton_logout.setFocusPainted(false);
-			jButton_logout.setIcon(new ImageIcon(getClass().getResource("/images/logout.png")));
+			jButton_logout.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/logout.png")));
 			jButton_logout.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					//exit
@@ -670,7 +670,7 @@ public class AdministrateSystemOptionManagement {
 		jButton_Package.setText("New Package Record");
 		jButton_Package.setOpaque(false);
 		jButton_Package.setFocusable(false);
-		jButton_Package.setIcon(new ImageIcon(getClass().getResource("/images/package.png")));
+		jButton_Package.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/package.png")));
 		jButton_Package.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				newPackageTab();	//Creats a new Package Tab
@@ -689,7 +689,7 @@ public class AdministrateSystemOptionManagement {
 		jButton_Entertainment.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		jButton_Entertainment.setFocusable(false);
 		jButton_Entertainment.setOpaque(false);
-		jButton_Entertainment.setIcon(new ImageIcon(getClass().getResource("/images/entertainment.png")));
+		jButton_Entertainment.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/entertainment.png")));
 		jButton_Entertainment.setText("New Entertainment Record");
 		jButton_Entertainment.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -706,7 +706,7 @@ public class AdministrateSystemOptionManagement {
 		JButton jButton_Meal = new JButton();
 		jButton_Meal.setOpaque(false);
 		jButton_Meal.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		jButton_Meal.setIcon(new ImageIcon(getClass().getResource("/images/meal.png")));
+		jButton_Meal.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/meal.png")));
 		jButton_Meal.setText("New Meal Record");
 		jButton_Meal.setFocusable(false);
 		jButton_Meal.addActionListener(new java.awt.event.ActionListener() {
@@ -726,7 +726,7 @@ public class AdministrateSystemOptionManagement {
 		jButton_Facility.setText("Regisister Facility");
 		jButton_Facility.setFocusable(false);
 		jButton_Facility.setOpaque(false);
-		jButton_Facility.setIcon(new ImageIcon(getClass().getResource("/images/facility.png")));
+		jButton_Facility.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/facility.png")));
 		jButton_Facility.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				newFacilityTab();	//Creats a new facility Tab
@@ -744,7 +744,7 @@ public class AdministrateSystemOptionManagement {
 		jButton_ballroom.setText("New Ballroom Record");
 		jButton_ballroom.setFocusable(false);
 		jButton_ballroom.setOpaque(false);
-		jButton_ballroom.setIcon(new ImageIcon(getClass().getResource("/images/ballroom.png")));
+		jButton_ballroom.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/ballroom.png")));
 		jButton_ballroom.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				newBallroomTab();	//Creats a new ballroom Tab

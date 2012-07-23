@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import Controller.MyCalendar;
 import Controller.MySQLController;
+import Model.Membership.Account;
+import Model.RIM.TableNames;
 
 
 public class Event {
@@ -35,6 +37,10 @@ public class Event {
 	private String eventID;
 	private String packageID;
 	private String userName;
+	private Package eventPackage;
+	private Invitation invitation;
+	private EventPhoto photo;
+	private Account initiator;
 	private String eventStatus;
 	private String eventDate;
 	private String eventTime;
@@ -163,10 +169,291 @@ public class Event {
 		return Timelist;
 	}
 	
+	public ArrayList<Event> GET_ALL_EVENTS()
+	{
+		ArrayList<Event> eventList = new ArrayList<Event>();
+		
+		try
+		{
+			ResultSet rs = DB.readRequest(	"SELECT * FROM " + TableNames.EVENT_TABLE + " e" 
+											+" LEFT JOIN " + TableNames.INVITATION_TABLE + " i ON" + " e.eventID = i.eventID"
+											+" INNER JOIN " + TableNames.PACKAGE_TABLE + " p ON e.packageID = p.packageID"
+											+" INNER JOIN " + TableNames.BALLROOM_TABLE + " b ON p.ballroomID = b.ballroomID"
+											+" INNER JOIN " + TableNames.FACILITY_TABLE + " f ON b.facilityID = f.facilityID" 
+											+" INNER JOIN " + TableNames.ENTERTAINMENT_TABLE + " ent on p.entertainmentID = ent.entertainmentID"
+											+" INNER JOIN " + TableNames.ENTERTAINMENT_MENU_TABLE + " em ON ent.entertainmentID = em.entertainmentID" 
+											+" INNER JOIN " + TableNames.MEAL_OPTIONS_TABLE + " mo ON p.packageID = mo.packageID"
+											+" INNER JOIN " + TableNames.MEAL_TABLE + " m ON mo.mealID = m.mealID" 
+											+" INNER JOIN " + TableNames.MEAL_MENU_TABLE + " mm ON m.mealID = mm.mealID"
+											+" ORDER BY e.eventID"
+										);
+			
+		int prev = 0;
+		while (rs.next())
+		{
+			Event event;
+			if(rs.getInt("eventID")!=prev){
+				prev = rs.getInt("eventID");
+				
+				event = new Event();
+
+				event.setID(rs.getInt("eventID"));
+				event.setEventName(rs.getString("eventName"));
+				event.setEventDate(rs.getString("eventDate").trim() + " 00:00:00");
+				event.setEventTime(rs.getString("eventTime"));
+				event.setEventStatus(rs.getString("eventStatus"));
+				event.setEventDescription(rs.getString("eventDescription"));
+				event.setEventInitiator(new Account(rs.getString("userName")));
+				
+					Package eventPackage = new Package();
+					eventPackage.setID(rs.getInt("packageID"));
+					eventPackage.setPackageTitle(rs.getString("packageTitle"));
+					eventPackage.setPackageDescription(rs.getString("packageDescription"));
+					eventPackage.setPackageType(rs.getString("packageType"));
+					
+						Ballroom eventBallroom = new Ballroom();
+						eventBallroom.setID(rs.getInt("ballroomID"));
+						eventBallroom.setBallroomDescription(rs.getString("ballroomDescription"));
+						eventBallroom.setBallroomName(rs.getString("ballroomName"));
+						eventBallroom.setBallroomSize(rs.getString("ballroomSize"));
+						eventBallroom.setFacilityAddress(rs.getString("facilityAddress"));
+						eventBallroom.setFacilityName(rs.getString("facilityName"));
+						eventBallroom.setFacilityDescription(rs.getString("facilityDescription"));
+						eventBallroom.setFacilityContact(rs.getString("facilityContact"));
+						eventBallroom.setFacilityParking(rs.getBoolean("facilityParking"));
+						eventBallroom.setFacilityWeekendExtraCost(rs.getFloat("facilityWeekendExtraCost"));
+						
+					eventPackage.setBallroom(eventBallroom);
+					
+						Entertainment eventEntertainment = new Entertainment();
+						eventEntertainment.setEntertainmentID(rs.getInt("entertainmentID"));
+						eventEntertainment.setEntertainmentDescription(rs.getString("entertainmentDescription"));
+						eventEntertainment.setEntertainmentDescription(rs.getString("entertainmentTitle"));
+							
+							EventPackageEntertainmentOption entertainmentOption = new EventPackageEntertainmentOption();
+							entertainmentOption.setEntertainmentMenuDescription(rs.getString("em.entertainmentMenuDescription"));
+							entertainmentOption.setEntertainmentMenuName(rs.getString("em.entertainmentMenuName"));
+							entertainmentOption.setEntertainmentMenuPrice(rs.getFloat("em.entertainmentMenuPrice"));
+							
+						eventEntertainment.addEntertainmentOption(entertainmentOption);
+						
+					eventPackage.setEntertainment(eventEntertainment);
+					
+						EventPackageMeal meal = new EventPackageMeal();
+							EventPackageMealItem item = new EventPackageMealItem();
+							item.setMealMenuName(rs.getString("mealMenuName"));
+							item.setMealMenuDescription(rs.getString("mealMeuDescription"));
+							item.setMealMenuPrice(rs.getFloat("mealMenuPrice"));
+							item.setMealMenuVegeterian(rs.getBoolean("mealMenuVegetarian"));
+							item.setMealMenuHalal(rs.getBoolean("mealMenuHalal"));
+						meal.addMealItem(item);
+						meal.setMealAvailability(rs.getBoolean("mealAvailability"));
+						meal.setMealDescription(rs.getString("mealDescription"));
+						meal.setMealDiscount(rs.getFloat("mealDiscount"));
+						meal.setMealFinalPrice(rs.getFloat("mealFinalPrice"));
+						meal.setMealPricePerHead(rs.getFloat("mealPricePerHead"));
+						meal.setMealType(rs.getString("mealType"));
+						meal.setMealTitle(rs.getString("mealTitle"));
+					
+					eventPackage.addMeal(meal);
+				
+				event.setEventPackage(eventPackage);
+					
+					EventInvitation eventInvitation = new EventInvitation();
+					eventInvitation.setInvitationID(rs.getInt("invitationID"));
+					eventInvitation.setDateCreated(dateHelper.parseDate(rs.getString("i.dateCreated"), TableNames.DATE_FORMAT));
+					eventInvitation.setExpiryDate(dateHelper.parseDate(rs.getString("i.expiryDate"), TableNames.DATE_FORMAT));
+				
+				event.setEventInvitation(eventInvitation);
+				
+				eventList.add(event);
+			}
+			else
+			{
+				//Take out the previously added Event
+				event = eventList.get(eventList.size()-1);
+				
+				EventPackageEntertainmentOption entertainmentOption = new EventPackageEntertainmentOption();
+				entertainmentOption.setEntertainmentMenuDescription(rs.getString("em.entertainmentMenuDescription"));
+				entertainmentOption.setEntertainmentMenuName(rs.getString("em.entertainmentMenuName"));
+				entertainmentOption.setEntertainmentMenuPrice(rs.getFloat("em.entertainmentMenuPrice"));
+				
+				event.getEventPackage().getEntertainment().addEntertainmentOption(entertainmentOption);
+				
+				EventPackageMeal meal = new EventPackageMeal();
+					EventPackageMealItem item = new EventPackageMealItem();
+					item.setMealMenuName(rs.getString("mealMenuName"));
+					item.setMealMenuDescription(rs.getString("mealMeuDescription"));
+					item.setMealMenuPrice(rs.getFloat("mealMenuPrice"));
+					item.setMealMenuVegeterian(rs.getBoolean("mealMenuVegetarian"));
+					item.setMealMenuHalal(rs.getBoolean("mealMenuHalal"));
+				meal.addMealItem(item);
+				meal.setMealAvailability(rs.getBoolean("mealAvailability"));
+				meal.setMealDescription(rs.getString("mealDescription"));
+				meal.setMealDiscount(rs.getFloat("mealDiscount"));
+				meal.setMealFinalPrice(rs.getFloat("mealFinalPrice"));
+				meal.setMealPricePerHead(rs.getFloat("mealPricePerHead"));
+				meal.setMealType(rs.getString("mealType"));
+				meal.setMealTitle(rs.getString("mealTitle"));
+				
+				event.getEventPackage().addMeal(meal);
+			}
+		}
+		
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return eventList;
+	}
+	
+
+	public Event GET_EVENT_BY_ID(int eventID)
+	{
+		Event event = new Event();
+		try
+		{
+			ResultSet rs = db.readRequest(	"SELECT * FROM " + TableNames.EVENT_TABLE + " e" 
+											+" LEFT JOIN " + TableNames.INVITATION_TABLE + " i ON" + " e.eventID = i.eventID"
+											+" INNER JOIN " + TableNames.PACKAGE_TABLE + " p ON e.packageID = p.packageID"
+											+" INNER JOIN " + TableNames.BALLROOM_TABLE + " b ON p.ballroomID = b.ballroomID"
+											+" INNER JOIN " + TableNames.FACILITY_TABLE + " f ON b.facilityID = f.facilityID" 
+											+" INNER JOIN " + TableNames.ENTERTAINMENT_TABLE + " ent on p.entertainmentID = ent.entertainmentID"
+											+" INNER JOIN " + TableNames.ENTERTAINMENT_MENU_TABLE + " em ON ent.entertainmentID = em.entertainmentID" 
+											+" INNER JOIN " + TableNames.MEAL_OPTIONS_TABLE + " mo ON p.packageID = mo.packageID"
+											+" INNER JOIN " + TableNames.MEAL_TABLE + " m ON mo.mealID = m.mealID" 
+											+" INNER JOIN " + TableNames.MEAL_MENU_TABLE + " mm ON m.mealID = mm.mealID"
+											+" WHERE e.eventID = " + eventID
+											+" ORDER BY e.eventID "
+				);
+			
+			int prev = 0;
+			while (rs.next())
+			{
+				if(rs.getInt("eventID")!=prev){
+					prev = rs.getInt("eventID");
+					
+					event.setEventID(rs.getInt("eventID"));
+					event.setEventName(rs.getString("eventName"));
+					event.setEventDate(rs.getString("eventDate").trim() + " 00:00:00");
+					event.setEventTime(rs.getString("eventTime"));
+					event.setEventStatus(rs.getString("eventStatus"));
+					event.setEventDescription(rs.getString("eventDescription"));
+					event.setEventInitiator(new Account(rs.getString("userName")));
+					
+						EventPackage eventPackage = new EventPackage();
+						eventPackage.setPackageID(rs.getInt("packageID"));
+						eventPackage.setPackageTitle(rs.getString("packageTitle"));
+						eventPackage.setPackageDescription(rs.getString("packageDescription"));
+						eventPackage.setPackageType(rs.getString("packageType"));
+						
+							EventPackageBallroom eventBallroom = new EventPackageBallroom();
+							eventBallroom.setBallroomID(rs.getInt("ballroomID"));
+							eventBallroom.setBallroomDescription(rs.getString("ballroomDescription"));
+							eventBallroom.setBallroomName(rs.getString("ballroomName"));
+							eventBallroom.setBallroomSize(rs.getString("ballroomSize"));
+							eventBallroom.setFacilityAddress(rs.getString("facilityAddress"));
+							eventBallroom.setFacilityName(rs.getString("facilityName"));
+							eventBallroom.setFacilityDescription(rs.getString("facilityDescription"));
+							eventBallroom.setFacilityContact(rs.getString("facilityContact"));
+							eventBallroom.setFacilityParking(rs.getBoolean("facilityParking"));
+							eventBallroom.setFacilityWeekendExtraCost(rs.getFloat("facilityWeekendExtraCost"));
+							
+						eventPackage.setBallroom(eventBallroom);
+						
+							EventPackageEntertainment eventEntertainment = new EventPackageEntertainment();
+							eventEntertainment.setEntertainmentID(rs.getInt("entertainmentID"));
+							eventEntertainment.setEntertainmentDescription(rs.getString("entertainmentDescription"));
+							eventEntertainment.setEntertainmentDescription(rs.getString("entertainmentTitle"));
+								
+								EventPackageEntertainmentOption entertainmentOption = new EventPackageEntertainmentOption();
+								entertainmentOption.setEntertainmentMenuDescription(rs.getString("em.entertainmentMenuDescription"));
+								entertainmentOption.setEntertainmentMenuName(rs.getString("em.entertainmentMenuName"));
+								entertainmentOption.setEntertainmentMenuPrice(rs.getFloat("em.entertainmentMenuPrice"));
+								
+							eventEntertainment.addEntertainmentOption(entertainmentOption);
+							
+						eventPackage.setEntertainment(eventEntertainment);
+						
+							EventPackageMeal meal = new EventPackageMeal();
+								EventPackageMealItem item = new EventPackageMealItem();
+								item.setMealMenuName(rs.getString("mealMenuName"));
+								item.setMealMenuDescription(rs.getString("mealMeuDescription"));
+								item.setMealMenuPrice(rs.getFloat("mealMenuPrice"));
+								item.setMealMenuVegeterian(rs.getBoolean("mealMenuVegetarian"));
+								item.setMealMenuHalal(rs.getBoolean("mealMenuHalal"));
+							meal.addMealItem(item);
+							meal.setMealAvailability(rs.getBoolean("mealAvailability"));
+							meal.setMealDescription(rs.getString("mealDescription"));
+							meal.setMealDiscount(rs.getFloat("mealDiscount"));
+							meal.setMealFinalPrice(rs.getFloat("mealFinalPrice"));
+							meal.setMealPricePerHead(rs.getFloat("mealPricePerHead"));
+							meal.setMealType(rs.getString("mealType"));
+							meal.setMealTitle(rs.getString("mealTitle"));
+						
+						eventPackage.addMeal(meal);
+					
+					event.setEventPackage(eventPackage);
+						
+						Invitation eventInvitation = new Invitation();
+						eventInvitation.setInvitationID(rs.getInt("invitationID"));
+						eventInvitation.setDateCreated(dateHelper.parseDate(rs.getString("i.dateCreated"), TableNames.DATE_FORMAT));
+						eventInvitation.setExpiryDate(dateHelper.parseDate(rs.getString("i.expiryDate"), TableNames.DATE_FORMAT));
+					
+					event.setEventInvitation(eventInvitation);
+				
+				}
+				else
+				{
+					
+					EventPackageEntertainmentOption entertainmentOption = new EventPackageEntertainmentOption();
+					entertainmentOption.setEntertainmentMenuDescription(rs.getString("em.entertainmentMenuDescription"));
+					entertainmentOption.setEntertainmentMenuName(rs.getString("em.entertainmentMenuName"));
+					entertainmentOption.setEntertainmentMenuPrice(rs.getFloat("em.entertainmentMenuPrice"));
+					
+					event.getEventPackage().getEntertainment().addEntertainmentOption(entertainmentOption);
+					
+					EventPackageMeal meal = new EventPackageMeal();
+						EventPackageMealItem item = new EventPackageMealItem();
+						item.setMealMenuName(rs.getString("mealMenuName"));
+						item.setMealMenuDescription(rs.getString("mealMeuDescription"));
+						item.setMealMenuPrice(rs.getFloat("mealMenuPrice"));
+						item.setMealMenuVegeterian(rs.getBoolean("mealMenuVegetarian"));
+						item.setMealMenuHalal(rs.getBoolean("mealMenuHalal"));
+					meal.addMealItem(item);
+					meal.setMealAvailability(rs.getBoolean("mealAvailability"));
+					meal.setMealDescription(rs.getString("mealDescription"));
+					meal.setMealDiscount(rs.getFloat("mealDiscount"));
+					meal.setMealFinalPrice(rs.getFloat("mealFinalPrice"));
+					meal.setMealPricePerHead(rs.getFloat("mealPricePerHead"));
+					meal.setMealType(rs.getString("mealType"));
+					meal.setMealTitle(rs.getString("mealTitle"));
+					
+					event.getEventPackage().addMeal(meal);
+				}
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return event;
+	}
+	
 	
 	/********************************************************
 	 *				The Accessor Methods
 	 *******************************************************/
+	public int getID()
+	{
+		return Integer.parseInt(eventID);
+	}
+	public void setID(int eventID)
+	{
+		this.eventID = Integer.toString(eventID);
+	}
 	public Ballroom getData() {
 		return data;
 	}
@@ -190,6 +477,15 @@ public class Event {
 	}
 	public void setPackageID(String packageID) {
 		this.packageID = packageID;
+	}
+	public Account getEventInitiator()
+	{
+		return initiator;
+	}
+
+	public void setEventInitiator(Account initiator)
+	{
+		this.initiator = initiator;
 	}
 	public String getUserName() {
 		return userName;

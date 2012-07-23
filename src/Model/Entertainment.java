@@ -343,6 +343,14 @@ public class Entertainment {
 	public void setRs(ResultSet rs) {
 		this.rs = rs;
 	}
+	public int getID()
+	{
+		return Integer.parseInt(entertainmentID);
+	}
+	public void setID(int entertainmentID)
+	{
+		this.entertainmentID = Integer.toString(entertainmentID);
+	}
 	public String getEntertainmentID() {
 		return entertainmentID;
 	}

@@ -22,6 +22,9 @@ METHODS LIST			:	Meal()
 package Model;
 
 import java.sql.ResultSet;
+import java.util.Collection;
+import java.util.HashSet;
+
 import javax.swing.table.DefaultTableModel;
 import Controller.MySQLController;
 
@@ -45,6 +48,7 @@ public class Meal {
 	private boolean mealAvailability=false;
 	private int mealHits=0;
 	private boolean isRecord=false;
+	HashSet<MealMenu> mealItems = new HashSet<MealMenu>();
 	
 	/********************************************************
 	 *				The Constructor(s)
@@ -412,6 +416,22 @@ public class Meal {
 	}
 	public boolean isRecord() {
 		return isRecord;
+	}
+	
+	public HashSet<MealMenu> getMealItems()
+	{
+		return mealItems;
+	}
+
+	public void setMealItems(Collection<MealMenu> mealItems)
+	{
+		this.mealItems.addAll(mealItems);
+	}
+	
+	
+	public void addMealItem(MealMenu mealItem)
+	{
+		this.mealItems.add(mealItem);
 	}
 	
 }

@@ -380,6 +380,14 @@ public class Ballroom {
 	public void setRs(ResultSet rs) {
 		this.rs = rs;
 	}
+	public int getID()
+	{
+		return Integer.parseInt(ballroomID);
+	}
+	public void setID(int ballroomID)
+	{
+		this.ballroomID = Integer.toString(ballroomID);
+	}
 	public String getBallroomID() {
 		return ballroomID;
 	}

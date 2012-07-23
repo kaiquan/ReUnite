@@ -2,7 +2,7 @@ package Model.Membership;
 
 import java.util.Date;
 
-public abstract class Account implements Comparable<Account>
+public class Account implements Comparable<Account>
 {
 	private String userName;
 	private String password;
@@ -26,6 +26,11 @@ public abstract class Account implements Comparable<Account>
 	private String closureReason;
 
 	public Account(){}
+	
+	public Account(String userName)
+	{
+		this.userName = userName;
+	}
 	
 	public int compareTo(Account o)
 	{
@@ -231,5 +236,15 @@ public abstract class Account implements Comparable<Account>
 	public void setClosureReason(String closureReason)
 	{
 		this.closureReason = closureReason;
+	}
+	
+	@Override
+	public String toString()
+	{
+		return "Account [userName=" + userName + ", password=" + password + ", type=" + type + ", creationDate=" + creationDate + ", status="
+				+ status + ", confirmed=" + confirmed + ", firstName=" + firstName + ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth
+				+ ", nric=" + nric + ", school=" + school + ", email=" + email + ", address=" + address + ", telephoneNo=" + telephoneNo
+				+ ", handphoneNo=" + handphoneNo + ", secretQuestion=" + secretQuestion + ", secretAnswer=" + secretAnswer + ", closureRequestDate="
+				+ closureRequestDate + ", closureDate=" + closureDate + ", closureReason=" + closureReason + "]";
 	}
 }

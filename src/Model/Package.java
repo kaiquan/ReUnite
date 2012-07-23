@@ -21,6 +21,8 @@ METHODS LIST			:	Pacakge()
 package Model;
 
 import java.sql.ResultSet;
+import java.util.Collection;
+import java.util.HashSet;
 
 import javax.swing.table.DefaultTableModel;
 import Controller.MySQLController;
@@ -38,6 +40,8 @@ public class Package {
 	private String packageID;
 	private String EntertainmentID=null;
 	private String BallroomID;
+	private Ballroom ballroom;
+	private Entertainment entertainment;
 	private String packageType;
 	private String packageTitle;
 	private String packageDescription;
@@ -45,7 +49,7 @@ public class Package {
 	private int packageHits;
 	private double packageDiscount;
 	private boolean isRecord;							//use when customer purchase a package
-	
+	private HashSet<Meal> meals = new HashSet<Meal>();
 	
 	/********************************************************
 	 *				The Constructor(s)
@@ -325,6 +329,14 @@ public class Package {
 	public void setRs(ResultSet rs) {
 		this.rs = rs;
 	}
+	public int getID()
+	{
+		return Integer.parseInt(packageID);
+	}
+	public void setID(int packageID)
+	{
+		this.packageID = Integer.toString(packageID);
+	}
 	public String getPackageID() {
 		return packageID;
 	}
@@ -342,6 +354,22 @@ public class Package {
 	}
 	public void setBallroomID(String ballroomID) {
 		BallroomID = ballroomID;
+	}
+	public Ballroom getBallroom()
+	{
+		return ballroom;
+	}
+	public void setBallroom(Ballroom ballroom)
+	{
+		this.ballroom = ballroom;
+	}
+	public Entertainment getEntertainment()
+	{
+		return entertainment;
+	}
+	public void setEntertainment(Entertainment entertainment)
+	{
+		this.entertainment = entertainment;
 	}
 	public String getPackageType() {
 		return packageType;
@@ -384,5 +412,15 @@ public class Package {
 	}
 	public boolean isRecord() {
 		return isRecord;
+	}
+	
+	public void setMeals(Collection<Meal> meals)
+	{
+		this.meals.addAll(meals);
+	}
+	
+	public void addMeal(Meal meal)
+	{
+		this.meals.add(meal);
 	}
 }

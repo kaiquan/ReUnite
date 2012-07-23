@@ -248,4 +248,63 @@ public class EntertainmentMenu {
 	public void setEntertainmentMenuDescription(String entertainmentMenuDescription) {
 		EntertainmentMenuDescription = entertainmentMenuDescription;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((EntertainmentID == null) ? 0 : EntertainmentID.hashCode());
+		result = prime
+				* result
+				+ ((EntertainmentMenuDescription == null) ? 0
+						: EntertainmentMenuDescription.hashCode());
+		result = prime
+				* result
+				+ ((EntertainmentMenuID == null) ? 0 : EntertainmentMenuID
+						.hashCode());
+		result = prime
+				* result
+				+ ((EntertainmentMenuName == null) ? 0 : EntertainmentMenuName
+						.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(EntertainmentMenuPrice);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		EntertainmentMenu other = (EntertainmentMenu) obj;
+		if (EntertainmentID == null) {
+			if (other.EntertainmentID != null)
+				return false;
+		} else if (!EntertainmentID.equals(other.EntertainmentID))
+			return false;
+		if (EntertainmentMenuDescription == null) {
+			if (other.EntertainmentMenuDescription != null)
+				return false;
+		} else if (!EntertainmentMenuDescription
+				.equals(other.EntertainmentMenuDescription))
+			return false;
+		if (EntertainmentMenuID == null) {
+			if (other.EntertainmentMenuID != null)
+				return false;
+		} else if (!EntertainmentMenuID.equals(other.EntertainmentMenuID))
+			return false;
+		if (EntertainmentMenuName == null) {
+			if (other.EntertainmentMenuName != null)
+				return false;
+		} else if (!EntertainmentMenuName.equals(other.EntertainmentMenuName))
+			return false;
+		if (Double.doubleToLongBits(EntertainmentMenuPrice) != Double
+				.doubleToLongBits(other.EntertainmentMenuPrice))
+			return false;
+		return true;
+	}
+	
 }

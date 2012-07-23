@@ -54,6 +54,10 @@ public class Meal {
 	 *				The Constructor(s)
 	 *******************************************************/
 	public Meal(){}
+	public Meal(int mealID)
+	{
+		setID(mealID);
+	}
 	public Meal(String ID, String Title, String Description, String Type, double PricePerHead, double Discount, double FinalPrice ,boolean Availability, int Hits, boolean isRecord){
 		this.mealID=ID;
 		this.mealTitle=Title;
@@ -357,6 +361,14 @@ public class Meal {
 	public void setRs(ResultSet rs) {
 		this.rs = rs;
 	}
+	public int getID()
+	{
+		return Integer.parseInt(mealID);
+	}
+	public void setID(int mealID)
+	{
+		this.mealID = Integer.toString(mealID);
+	}
 	public String getMealID() {
 		return mealID;
 	}
@@ -433,5 +445,70 @@ public class Meal {
 	{
 		this.mealItems.add(mealItem);
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (mealAvailability ? 1231 : 1237);
+		result = prime * result
+				+ ((mealDescription == null) ? 0 : mealDescription.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(mealDiscount);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(mealFinalPrice);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((mealID == null) ? 0 : mealID.hashCode());
+		temp = Double.doubleToLongBits(mealPricePerHead);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result
+				+ ((mealTitle == null) ? 0 : mealTitle.hashCode());
+		result = prime * result
+				+ ((mealType == null) ? 0 : mealType.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Meal other = (Meal) obj;
+		if (mealAvailability != other.mealAvailability)
+			return false;
+		if (mealDescription == null) {
+			if (other.mealDescription != null)
+				return false;
+		} else if (!mealDescription.equals(other.mealDescription))
+			return false;
+		if (Double.doubleToLongBits(mealDiscount) != Double
+				.doubleToLongBits(other.mealDiscount))
+			return false;
+		if (Double.doubleToLongBits(mealFinalPrice) != Double
+				.doubleToLongBits(other.mealFinalPrice))
+			return false;
+		if (mealID == null) {
+			if (other.mealID != null)
+				return false;
+		} else if (!mealID.equals(other.mealID))
+			return false;
+		if (Double.doubleToLongBits(mealPricePerHead) != Double
+				.doubleToLongBits(other.mealPricePerHead))
+			return false;
+		if (mealTitle == null) {
+			if (other.mealTitle != null)
+				return false;
+		} else if (!mealTitle.equals(other.mealTitle))
+			return false;
+		if (mealType == null) {
+			if (other.mealType != null)
+				return false;
+		} else if (!mealType.equals(other.mealType))
+			return false;
+		return true;
+	}
+	
+	
 	
 }

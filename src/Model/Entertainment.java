@@ -423,4 +423,69 @@ public class Entertainment {
 	{
 		this.entertainmenOptions.add(entertainmenOption);
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (entertainmentAvailability ? 1231 : 1237);
+		result = prime
+				* result
+				+ ((entertainmentDescription == null) ? 0
+						: entertainmentDescription.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(entertainmentDiscount);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(entertainmentFinalPrice);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + entertainmentHits;
+		result = prime * result
+				+ ((entertainmentID == null) ? 0 : entertainmentID.hashCode());
+		temp = Double.doubleToLongBits(entertainmentPrice);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime
+				* result
+				+ ((entertainmentTitle == null) ? 0 : entertainmentTitle
+						.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Entertainment other = (Entertainment) obj;
+		if (entertainmentAvailability != other.entertainmentAvailability)
+			return false;
+		if (entertainmentDescription == null) {
+			if (other.entertainmentDescription != null)
+				return false;
+		} else if (!entertainmentDescription
+				.equals(other.entertainmentDescription))
+			return false;
+		if (Double.doubleToLongBits(entertainmentDiscount) != Double
+				.doubleToLongBits(other.entertainmentDiscount))
+			return false;
+		if (Double.doubleToLongBits(entertainmentFinalPrice) != Double
+				.doubleToLongBits(other.entertainmentFinalPrice))
+			return false;
+		if (entertainmentHits != other.entertainmentHits)
+			return false;
+		if (entertainmentID == null) {
+			if (other.entertainmentID != null)
+				return false;
+		} else if (!entertainmentID.equals(other.entertainmentID))
+			return false;
+		if (Double.doubleToLongBits(entertainmentPrice) != Double
+				.doubleToLongBits(other.entertainmentPrice))
+			return false;
+		if (entertainmentTitle == null) {
+			if (other.entertainmentTitle != null)
+				return false;
+		} else if (!entertainmentTitle.equals(other.entertainmentTitle))
+			return false;
+		return true;
+	}
 }

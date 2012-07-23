@@ -2,12 +2,12 @@ package View.RIM.Components.Chat;
 
 import java.util.ArrayList;
 
-import Model.EventInvitation;
-import Model.Membership.Guest;
+import Model.*;
+import Model.Membership.*;
 
 public class GuestCollection
 {
-	private EventInvitation invitationModel = new EventInvitation();
+	private Invitation invitationModel = new Invitation();
 	
 	private ArrayList<Guest> guests;
 

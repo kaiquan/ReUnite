@@ -13,12 +13,11 @@ import javax.swing.table.TableColumnModel;
 import Controller.RIM.LookAndFeelController;
 import Controller.RIM.Utils.DateHelper;
 import Model.Event;
-import Model.Membership.Account;
 import Model.RIM.TableModels.InvitationTableModel;
-import View.Components.Table.AutoResizeTableColumns;
-import View.Components.Table.ProgressBarCellRenderer;
-import View.Components.Table.TableSorter;
-import View.Components.Table.TableSorterIcons;
+import View.RIM.Components.Table.AutoResizeTableColumns;
+import View.RIM.Components.Table.ProgressBarCellRenderer;
+import View.RIM.Components.Table.TableSorter;
+import View.RIM.Components.Table.TableSorterIcons;
 
 @SuppressWarnings("serial")
 public class InvitationReportTable extends JFrame

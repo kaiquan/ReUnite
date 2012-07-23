@@ -264,9 +264,8 @@ public class Facility {
 	  * Return 			: DefaultComboBoxModel 
 	  * Purpose 		: To retrieve all facility record names
 	  *******************************************************/
-	@SuppressWarnings("unchecked")
-	public DefaultComboBoxModel retrieveFacilityNames(){
-		DefaultComboBoxModel  cModel = new DefaultComboBoxModel();
+	public DefaultComboBoxModel<String> retrieveFacilityNames(){
+		DefaultComboBoxModel<String>  cModel = new DefaultComboBoxModel<String>();
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM saharp5_adeel_school.Facility";
 		cModel.addElement("Select a Facility");
@@ -370,6 +369,7 @@ public class Facility {
 	public double getFacilityWeekendExtraCost() {
 		return facilityWeekendExtraCost;
 	}
+
 	public void setFacilityWeekendExtraCost(double facilityWeekendExtraCost) {
 		this.facilityWeekendExtraCost = facilityWeekendExtraCost;
 	}

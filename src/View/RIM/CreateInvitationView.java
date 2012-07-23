@@ -4,10 +4,10 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
-import View.Components.NavigationFooter;
-import View.Components.Chat.GuestCollection;
-import View.Components.Chat.GuestListModel;
-import View.Components.JListGuestImportRenderer;
+import View.RIM.Components.NavigationFooter;
+import View.RIM.Components.Chat.GuestCollection;
+import View.RIM.Components.Chat.GuestListModel;
+import View.RIM.Components.JListGuestImportRenderer;
 
 import net.miginfocom.swing.MigLayout;
 import Controller.RIM.ContactImporter;
@@ -97,7 +97,7 @@ public class CreateInvitationView extends JFrame
 		buttonPanel.setLayout(new MigLayout("", "[119px]", "[33px]"));
 
 		JButton plusButton = new JButton("");
-		plusButton.setIcon(new ImageIcon(CreateInvitationView.class.getResource("/Images/plus.png")));
+		plusButton.setIcon(new ImageIcon(ImageHelper.class.getResource("plus.png")));
 		buttonPanel.add(plusButton, "flowx,cell 0 0,alignx center,aligny top");
 
 		contactListPanel.add(buttonPanel, "cell 0 11,alignx center");
@@ -112,7 +112,7 @@ public class CreateInvitationView extends JFrame
 		});
 
 		JButton minusButton = new JButton("");
-		minusButton.setIcon(new ImageIcon(CreateInvitationView.class.getResource("/Images/minus.png")));
+		minusButton.setIcon(new ImageIcon(ImageHelper.class.getResource("minus.png")));
 		buttonPanel.add(minusButton, "cell 0 0,alignx center,aligny top");
 
 		JLabel lblOrImportFrom = new JLabel("   or import from:   ");
@@ -183,7 +183,7 @@ public class CreateInvitationView extends JFrame
 		textArea.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(ImageHelper.class.getResource("/Images/cutShadowBottom.png")));
+		lblNewLabel.setIcon(new ImageIcon(ImageHelper.class.getResource("cutShadowBottom.png")));
 		step2.add(lblNewLabel, "cell 1 2 2 2");
 
 		step2.add(new NavigationFooter() {

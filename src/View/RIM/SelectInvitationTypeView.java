@@ -33,7 +33,7 @@ public class SelectInvitationTypeView extends JFrame
 
 		// Background icon
 		JLabel invtationBackground = new JLabel("");
-		invtationBackground.setIcon(new ImageIcon(SelectInvitationTypeView.class.getResource("/Images/invitationIcon.png")));
+		invtationBackground.setIcon(new ImageIcon(ImageHelper.class.getResource("invitationIcon.png")));
 		panel.add(invtationBackground, "cell 3 1 3 1,alignx right");
 
 		// 'Email' button

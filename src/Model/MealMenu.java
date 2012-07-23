@@ -225,4 +225,62 @@ public class MealMenu {
 	public void setMealMenuVegetarian(boolean mealMenuVegetarian) {
 		MealMenuVegetarian = mealMenuVegetarian;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (MealMenuVegetarian ? 1231 : 1237);
+		result = prime * result + ((mealID == null) ? 0 : mealID.hashCode());
+		result = prime
+				* result
+				+ ((mealMenuDescription == null) ? 0 : mealMenuDescription
+						.hashCode());
+		result = prime * result + (mealMenuHalal ? 1231 : 1237);
+		result = prime * result
+				+ ((mealMenuID == null) ? 0 : mealMenuID.hashCode());
+		result = prime * result
+				+ ((mealMenuName == null) ? 0 : mealMenuName.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(mealMenuPrice);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MealMenu other = (MealMenu) obj;
+		if (MealMenuVegetarian != other.MealMenuVegetarian)
+			return false;
+		if (mealID == null) {
+			if (other.mealID != null)
+				return false;
+		} else if (!mealID.equals(other.mealID))
+			return false;
+		if (mealMenuDescription == null) {
+			if (other.mealMenuDescription != null)
+				return false;
+		} else if (!mealMenuDescription.equals(other.mealMenuDescription))
+			return false;
+		if (mealMenuHalal != other.mealMenuHalal)
+			return false;
+		if (mealMenuID == null) {
+			if (other.mealMenuID != null)
+				return false;
+		} else if (!mealMenuID.equals(other.mealMenuID))
+			return false;
+		if (mealMenuName == null) {
+			if (other.mealMenuName != null)
+				return false;
+		} else if (!mealMenuName.equals(other.mealMenuName))
+			return false;
+		if (Double.doubleToLongBits(mealMenuPrice) != Double
+				.doubleToLongBits(other.mealMenuPrice))
+			return false;
+		return true;
+	}
 }

@@ -33,7 +33,7 @@ import org.scribe.oauth.OAuthService;
 
 import Controller.RIM.Utils.ValidationHelper;
 import Model.Membership.Guest;
-import View.ServiceLoginWindow;
+import View.RIM.ServiceLoginWindow;
 
 public class ContactImporter
 {
@@ -187,15 +187,15 @@ public class ContactImporter
 		return response;
 	}
 
-	private String parseXMLResposne(String resource)
-	{
-		return resource;
-	}
-
-	public static void main(String args[])
-	{
-		ContactImporter importer = new ContactImporter("Hotmail");
-		importer.getContacts();
-	}
+//	private String parseXMLResposne(String resource)
+//	{
+//		return resource;
+//	}
+//
+//	public static void main(String args[])
+//	{
+//		ContactImporter importer = new ContactImporter("Hotmail");
+//		importer.getContacts();
+//	}
 	
 }

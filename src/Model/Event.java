@@ -564,4 +564,71 @@ public class Event {
 	{
 		this.invitation = invitation;
 	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((eventDate == null) ? 0 : eventDate.hashCode());
+		result = prime
+				* result
+				+ ((eventDescription == null) ? 0 : eventDescription.hashCode());
+		result = prime * result + ((eventID == null) ? 0 : eventID.hashCode());
+		result = prime * result
+				+ ((eventName == null) ? 0 : eventName.hashCode());
+		result = prime * result
+				+ ((eventStatus == null) ? 0 : eventStatus.hashCode());
+		result = prime * result
+				+ ((eventTime == null) ? 0 : eventTime.hashCode());
+		result = prime * result
+				+ ((packageID == null) ? 0 : packageID.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Event other = (Event) obj;
+		if (eventDate == null) {
+			if (other.eventDate != null)
+				return false;
+		} else if (!eventDate.equals(other.eventDate))
+			return false;
+		if (eventDescription == null) {
+			if (other.eventDescription != null)
+				return false;
+		} else if (!eventDescription.equals(other.eventDescription))
+			return false;
+		if (eventID == null) {
+			if (other.eventID != null)
+				return false;
+		} else if (!eventID.equals(other.eventID))
+			return false;
+		if (eventName == null) {
+			if (other.eventName != null)
+				return false;
+		} else if (!eventName.equals(other.eventName))
+			return false;
+		if (eventStatus == null) {
+			if (other.eventStatus != null)
+				return false;
+		} else if (!eventStatus.equals(other.eventStatus))
+			return false;
+		if (eventTime == null) {
+			if (other.eventTime != null)
+				return false;
+		} else if (!eventTime.equals(other.eventTime))
+			return false;
+		if (packageID == null) {
+			if (other.packageID != null)
+				return false;
+		} else if (!packageID.equals(other.packageID))
+			return false;
+		return true;
+	}
 }

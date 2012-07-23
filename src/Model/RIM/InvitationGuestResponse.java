@@ -64,7 +64,7 @@ public class InvitationGuestResponse extends Guest
 			rs = db.readRequest(dbQuery);
 			if (rs.next())
 			{
-				response = new InvitationGuestResponse(rs.getString("userName"), new EventPackageMeal(rs.getInt("mealOptionID")), new Invitation(rs.getInt(invitationID)));
+				response = new InvitationGuestResponse(rs.getString("userName"), new Meal(rs.getInt("mealOptionID")), new Invitation(rs.getInt(invitationID)));
 			}
 		}
 		catch (Exception e)

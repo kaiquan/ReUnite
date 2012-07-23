@@ -4,6 +4,8 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
+import Images.RIM.ImageHelper;
+
 
 import java.awt.event.*;
 
@@ -31,7 +33,7 @@ public abstract class NavigationFooter extends JPanel
 		JLabel lblOf = new JLabel("(1 of 5)");
 		lblOf.setFont(new Font("Tahoma", Font.BOLD, 11));
 		add(lblOf, "flowx,cell 0 0,alignx right");
-		label.setIcon(new ImageIcon(NavigationFooter.class.getResource("/Images/nextIcon.png")));
+		label.setIcon(new ImageIcon(ImageHelper.class.getResource("nextIcon.png")));
 		add(label, "cell 1 0,alignx center");
 
 		JLabel lblNewLabel = new JLabel("Next");

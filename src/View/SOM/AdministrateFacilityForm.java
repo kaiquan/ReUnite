@@ -73,7 +73,7 @@ public class AdministrateFacilityForm {
 	 *					The Attributes
 	 *******************************************************/
 	private JScrollPane jScrollPane = null;  //  @jve:decl-index=0:visual-constraint="250,12"
-	private JPanel jPanel = null;
+	private JPanel jPanel = null;  //  @jve:decl-index=0:visual-constraint="265,317"
 	private JPanel jPanel_header = null;
 	private JLabel jLabel_facilityName = null;
 	private JLabel jLabel_facilityID = null;
@@ -121,7 +121,6 @@ public class AdministrateFacilityForm {
 		if (jScrollPane == null) {
 			jScrollPane = new JScrollPane();
 			jScrollPane.setSize(new Dimension(1021, 303));
-			jScrollPane.setViewportView(getJPanel());
 		}
 		return jScrollPane;
 	}
@@ -1052,12 +1051,35 @@ public class AdministrateFacilityForm {
 	 * Return 			: void
 	 * Purpose 			: To download the form details in
 	 * 					  the local computer
+	 * @throws IOException 
 	 *******************************************************/
-	public void downloadTXT(String path){
+	public void downloadTXT(String path) throws IOException{
 		CSVController controller= new CSVController();
 		ArrayList<String[]> data = new ArrayList<String[]>();
-		String[]facilityHeader=new String[6];
+		String[]facilityHeader=new String[7];
 		facilityHeader[0]="FACILITY_ID";
+		facilityHeader[1]="FACILITY_NAME";
+		facilityHeader[2]="FACILITY_CONTACT";
+		facilityHeader[3]="FACILITY_ADDRESS";
+		facilityHeader[4]="FACILITY_DESCRIPTION";
+		facilityHeader[5]="FACILITY_PARKING";
+		facilityHeader[6]="FACILITY_WEEKEND_SURCHARGE";
+		
+		String[] facilityData= new String[7];
+		//facilityData[0]=;
+		
+		String[] ballroomHeader= new String[5];
+		
+		
+		String[] ballroomData=new String[5];
+		
+		
+		data.add(facilityHeader);
+		data.add(facilityData);
+		data.add(ballroomHeader);
+		data.add(ballroomData);
+		
+		controller.WriteFile(data, path);
 		
 		
 	}

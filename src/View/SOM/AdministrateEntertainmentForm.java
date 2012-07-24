@@ -145,21 +145,21 @@ public class AdministrateEntertainmentForm {
 	private JPanel getJPanel_header() {
 		if (jPanel_header == null) {
 			jLabel_entertainmentAvailability = new JLabel();
-			jLabel_entertainmentAvailability.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_entertainmentAvailability.setFont(new Font("Segoe UI", Font.BOLD, 12));
 			jLabel_entertainmentAvailability.setBounds(new Rectangle(450, 40, 150, 30));
 			jLabel_entertainmentAvailability.setText("Availability :");
 			jLabel_entertainmentDescription = new JLabel();
-			jLabel_entertainmentDescription.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_entertainmentDescription.setFont(new Font("Segoe UI", Font.BOLD, 12));
 			jLabel_entertainmentDescription.setBounds(new Rectangle(50, 120, 81, 30));
 			jLabel_entertainmentDescription.setText("Description : ");
 			jLabel_entertainmentTitle = new JLabel();
-			jLabel_entertainmentTitle.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_entertainmentTitle.setFont(new Font("Segoe UI", Font.BOLD, 12));
 			jLabel_entertainmentTitle.setBounds(new Rectangle(50, 80, 81, 30));
 			jLabel_entertainmentTitle.setText("Title :");
 			jLabel_entertainmentID = new JLabel();
-			jLabel_entertainmentID.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_entertainmentID.setFont(new Font("Segoe UI", Font.BOLD, 12));
 			jLabel_entertainmentID.setBounds(new Rectangle(50, 40, 80, 30));
-			jLabel_entertainmentID.setFont(new Font("Levenim MT", Font.BOLD, 12));
+			jLabel_entertainmentID.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_entertainmentID.setText("ID : ");
 			jPanel_header = new JPanel();
 			jPanel_header.setLayout(null);

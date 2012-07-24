@@ -1463,13 +1463,21 @@ public class AdministrateSystemOptionManagement {
 				}
 				//set the form fields accordingly
 				form.getJTextField_entertainmentTitle().setText(data.get(1)[1]);
-				//etc..
-				
+				form.getJTextArea_entertainmentDescription().setText(data.get(1)[2]);
+				if(data.get(1)[3].equals("YES"))
+					form.getJCheckBox_entertainmentAvailability().setSelected(true);
+				if(data.get(1)[3].equals("NO"))
+						form.getJCheckBox_entertainmentAvailability().setSelected(false);
+				form.getJSlider_entertainmentDiscount().setValue(Integer.parseInt(data.get(1)[4]));
+				form.getJTextField_entertainmentTotalPrice().setText(data.get(1)[5]);
+				/
 				//set the entertainment menu
+				DefaultTableModel model= new DefaultTableModel();
+				model.setColumnIdentifiers(new String[]{"dsa","dsad"});
 				for(int i=3;i<data.size();i++){
 					String[] temp= new String[4];
-					//temp[0]=
-					//form.table.add(temp);
+					model.addColumn(data.get(i)[0]);
+					
 				}
 			
 				

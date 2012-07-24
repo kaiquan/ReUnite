@@ -937,14 +937,13 @@ public class AdministrateEntertainmentForm {
 	public void downloadTXT(String path) throws IOException{
 		CSVController controller= new CSVController();
 		ArrayList<String[]> data = new ArrayList<String[]>();
-		String[]entertainmentHeader=new String[7];
+		String[]entertainmentHeader=new String[6];
 		entertainmentHeader[0]="ENTERTAINMENT_ID";
 		entertainmentHeader[1]="ENTERTAINMENR_TITLE";
 		entertainmentHeader[2]="ENTERTAINMENT_DESCRIPTION";
 		entertainmentHeader[3]="ENTERTAINMENT_AVAILABILITY";
 		entertainmentHeader[4]="ENTERTAINMENT_DISCOUNT";
-		entertainmentHeader[5]="ENTERTAINMENT_PRICE";
-		entertainmentHeader[6]="ENTERTAINMENT_FINALPRICE";
+		entertainmentHeader[5]="ENTERTAINMENT_FINALPRICE";
 		
 		String[]entertainmentData=new String[7];
 		entertainmentData[0]=getJTextField_entertaimentID().getText().toString();
@@ -955,8 +954,7 @@ public class AdministrateEntertainmentForm {
 		else
 			entertainmentData[3]="NO";
 		entertainmentData[4]=""+getJSlider_entertainmentDiscount().getValue();
-		entertainmentData[5]=getJTextField_entertainmentPrice().getText().toString();
-		entertainmentData[6]=getJTextField_entertainmentTotalPrice().getText().toString();
+		entertainmentData[5]=getJTextField_entertainmentTotalPrice().getText().toString();
 		
 		String[]entertainmentMenuHeader= new String[3];
 		entertainmentMenuHeader[0]="ENTERTAINMENT_MENU_NAME";

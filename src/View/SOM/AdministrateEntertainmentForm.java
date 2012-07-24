@@ -937,7 +937,7 @@ public class AdministrateEntertainmentForm {
 	public void downloadTXT(String path) throws IOException{
 		CSVController controller= new CSVController();
 		ArrayList<String[]> data = new ArrayList<String[]>();
-		String[]entertainmentHeader=new String[6];
+		String[]entertainmentHeader=new String[7];
 		entertainmentHeader[0]="ENTERTAINMENT_ID";
 		entertainmentHeader[1]="ENTERTAINMENR_TITLE";
 		entertainmentHeader[2]="ENTERTAINMENT_DESCRIPTION";

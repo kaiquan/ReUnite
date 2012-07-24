@@ -43,17 +43,21 @@ import javax.swing.JTabbedPane;
 import javax.swing.JProgressBar;
 import java.awt.ComponentOrientation;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+
 import javax.swing.JPopupMenu;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.SwingConstants;
 import java.awt.Toolkit;
+import java.io.IOException;
 
 import Controller.SOM.AdministrateBallroomControl;
 import Controller.SOM.AdministrateEntertainmentControl;
 import Controller.SOM.AdministrateFacilityControl;
 import Controller.SOM.AdministrateMealControl;
 import Controller.SOM.AdministratePackageControl;
+import Controller.SOM.CSVController;
 
 
 public class AdministrateSystemOptionManagement {
@@ -196,8 +200,9 @@ public class AdministrateSystemOptionManagement {
 			jButton_open.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					fc.showOpenDialog(fc);
-					System.out.println(fc.getSelectedFile());
-					
+					String path=fc.getSelectedFile().toString();
+					try {loadCSV(path);}
+					catch (IOException e1) {}
 				}
 			});
 		}
@@ -1397,7 +1402,106 @@ public class AdministrateSystemOptionManagement {
 				jTabbedPane.setSelectedIndex(jTabbedPane.getSelectedIndex()+1);
 				}
 			}
+	}
+	/********************************************************
+	  * Method Name 	: loadCSV()
+	  * Input Parameter : String 
+	  * Return 			: void
+	  * Purpose 		: To load a csv file data into the form
+	 * @throws IOException 
+	  *******************************************************/
+	public int loadCSV(String path) throws IOException{
+		int result=0;
+		String tabTitle="";
+		//-1 means empty file
+		//0 means wrong format file
+		//1 means all good close the thread
+		CSVController reader= new CSVController();
+		ArrayList<String[]> data= reader.readFile(path);
+		//check the file if its a correct kind of file
+		for(int i=0; i<data.size();i++){
+			for(int x=0;x<data.get(i).length;x++){
+				if(data.get(i)[x]==null)
+					return -1;
+				//means this file is empty
+			}
+		}
 		
+		//check the file type and allocate accordingly
+
+		if(data.get(0)[0].equals("ENTERTAINMENT_ID")){
+			//check for the correct header format
+			if(!(data.get(0)[0].equals("ENTERTAINMENT_ID")))return 0;
+			if((!data.get(0)[1].equals("ENTERTAINMENT_TITLE"))) return 0;
+			if((!data.get(0)[2].equals("ENTERTAINMENT_DESCRIPTION"))) return 0;
+			if((!data.get(0)[3].equals("ENTERTAINMENT_AVAILABILITY"))) return 0;
+			if((!data.get(0)[4].equals("ENTERTAINMENT_DISCOUNT"))) return 0;
+			if((!data.get(0)[5].equals("ENTERTAINMENT_PRICE"))) return 0;
+			if((!data.get(0)[6].equals("ENTERTAINMENT_FINALPRICE"))) return 0;
+			if((!data.get(2)[0].equals("ENTERTAINMENT_MENU_NAME"))) return 0;
+			if((!data.get(2)[1].equals("ENTERTAINMENT_MENU_PRICE"))) return 0;
+			if((!data.get(2)[2].equals("ENTERTAINMENT_MENU_DESCRIPTION"))) return 0;
+			else{
+				//load the data
+				//call the entertainment form
+				AdministrateEntertainmentForm form= new AdministrateEntertainmentForm();
+				//check the data base for this id
+				AdministrateEntertainmentControl control= new AdministrateEntertainmentControl();
+				if(control.processRetrieveEntertainmentByID(data.get(1)[0]).getData()==null){
+					System.out.println("entertainment record does not exists in database yet");
+					//prompt user this entertainment does not exist in the database anyore
+					tabTitle="New Entertainment Form";
+				}
+				else{
+					form.getJTextField_entertaimentID().setText(data.get(1)[0]);
+					//set the button
+					form.getJButton_createEntertainment().setEnabled(false);
+					form.getJButton_delete().setEnabled(true);
+					form.getJButton_download().setEnabled(true);
+					form.getJButton_Update().setEnabled(true);
+					tabTitle="Entertainment";
+				}
+				//set the form fields accordingly
+				form.getJTextField_entertainmentTitle().setText(data.get(1)[1]);
+				//etc..
+				
+				//set the entertainment menu
+				for(int i=3;i<data.size();i++){
+					String[] temp= new String[4];
+					//temp[0]=
+					//form.table.add(temp);
+				}
+			
+				
+				//add the tab 
+				if(jTabbedPane.getTabCount()==0){
+					jTabbedPane.insertTab(tabTitle+" "+data.get(1)[0],null , form.getJScrollPane(),null , 0); 
+					createTabHeader(0);	
+					jTabbedPane.setSelectedIndex(0);
+				}
+				else{
+					jTabbedPane.insertTab(tabTitle+" "+data.get(1)[0],null , form.getJScrollPane(),null , jTabbedPane.getSelectedIndex());
+					createTabHeader(jTabbedPane.getSelectedIndex()-1);	
+					if(!(jTabbedPane.getSelectedIndex()==jTabbedPane.getTabCount())){
+						jTabbedPane.setSelectedIndex(jTabbedPane.getSelectedIndex()+1);
+						}
+					}
+			}
+			result=1;
+		}
+		else if(data.get(0)[0].equals("FACILITY_ID")){
+			
+		}
+		else if(data.get(0)[0].equals("BALLROOM_ID")){
+			
+		}
+		else if(data.get(0)[0].equals("MEAL_ID")){
+			
+		}
+		else if(data.get(0)[0].equals("PACKAGE_ID")){
+			
+		}
+		return result;
 	}
 }
 

@@ -38,6 +38,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
@@ -68,6 +69,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import Controller.SOM.AdministrateMealControl;
+import Controller.SOM.CSVController;
 import Controller.MyCalendar;
 /********************************************************
  *					Start of Class
@@ -905,21 +907,21 @@ public class AdministrateMealForm {
 				PDFlink=sc1.next();
 			}
 			downloadPDF(PDFlink+".pdf");
-			downloadTXT(PDFlink+".r");
+			downloadTXT(PDFlink+".csv");
 		}
-		else if(directory.substring(directory.length()-2).equals(".r")){
+		else if(directory.substring(directory.length()-2).equals(".csv")){
 			Scanner sc2= new Scanner(directory);
-			String d=".r";
+			String d=".csv";
 			sc2.useDelimiter(d);
 			while(sc2.hasNext()){
 				TXTlink=sc2.next();
 			}
 			downloadPDF(TXTlink+".pdf");
-			downloadTXT(TXTlink+".r");
+			downloadTXT(TXTlink+".csv");
 		}
 		else{
 			downloadPDF(directory+".pdf");
-			downloadTXT(directory+".r");
+			downloadTXT(directory+".csv");
 		}
 	}
 	
@@ -1016,10 +1018,26 @@ public class AdministrateMealForm {
 	 * Return 			: void
 	 * Purpose 			: To download the details of the form 
 	 * 					  into the local computer in TXT
+	 * @throws IOException 
 	 *******************************************************/
-	public void downloadTXT(String path){
-		//onr line for set with;
-		//multi line for menu with;
+	public void downloadTXT(String path) throws IOException{
+		CSVController controller= new CSVController();
+		ArrayList<String[]> data = new ArrayList<String[]>();
+		
+		String[]mealHeader=new String[7];
+		
+		String[] mealData= new String[7];
+		
+		String[] mealMenuHeader= new String[7];
+		
+		String[] mealMenuData= new String[7];
+		
+		data.add(mealHeader);
+		data.add(mealData);
+		data.add(mealMenuHeader);
+		data.add(mealMenuData);
+		
+		controller.WriteFile(data, path);
 	}
 	
 	/********************************************************

@@ -192,10 +192,10 @@ public class ContactImporter
 //		return resource;
 //	}
 //
-//	public static void main(String args[])
-//	{
-//		ContactImporter importer = new ContactImporter("Hotmail");
-//		importer.getContacts();
-//	}
+	public static void main(String args[])
+	{
+		ContactImporter importer = new ContactImporter("Hotmail");
+		importer.getContacts();
+	}
 	
 }

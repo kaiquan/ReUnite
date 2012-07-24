@@ -162,7 +162,7 @@ public class BookPackageForm {
 	private JPanel getJPanel() {
 		if (jPanel == null) {
 			jLabel_step3 = new JLabel();
-			jLabel_step3.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_step3.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_step3.setBounds(new Rectangle(15, 260, 365, 30));
 			jLabel_step3.setText("Step 3 - Give your event a name and description");
 			jLabel_step2 = new JLabel();

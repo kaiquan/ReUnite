@@ -9,7 +9,7 @@ public class SystemApp {
 
 	public static void main(String args[]) throws IOException{
 		 try {
-	        UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
+	        UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
 	    } 
 	    catch (UnsupportedLookAndFeelException e) {
 	       // handle exception

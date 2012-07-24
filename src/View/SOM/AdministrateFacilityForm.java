@@ -73,7 +73,7 @@ public class AdministrateFacilityForm {
 	 *					The Attributes
 	 *******************************************************/
 	private JScrollPane jScrollPane = null;  //  @jve:decl-index=0:visual-constraint="250,12"
-	private JPanel jPanel = null;  //  @jve:decl-index=0:visual-constraint="265,317"
+	private JPanel jPanel = null;
 	private JPanel jPanel_header = null;
 	private JLabel jLabel_facilityName = null;
 	private JLabel jLabel_facilityID = null;
@@ -121,6 +121,7 @@ public class AdministrateFacilityForm {
 		if (jScrollPane == null) {
 			jScrollPane = new JScrollPane();
 			jScrollPane.setSize(new Dimension(1021, 303));
+			jScrollPane.setViewportView(getJPanel());
 		}
 		return jScrollPane;
 	}
@@ -1077,20 +1078,26 @@ public class AdministrateFacilityForm {
 			facilityData[5]="NO";
 		facilityData[6]=getJTextField_facilityWeekendCost().getText().toString();
 		
-		String[] ballroomHeader= new String[5];
-		
-		
-		String[] ballroomData=new String[5];
-		
-		
+		String[] ballroomHeader= new String[4];
+		ballroomHeader[0]="BALLROOM_NAME";
+		ballroomHeader[1]="BALLROOM_PRICE";
+		ballroomHeader[2]="BALLROOM_SIZE";
+		ballroomHeader[3]="BALLROOM_DESCRIPTION";
+
 		data.add(facilityHeader);
 		data.add(facilityData);
 		data.add(ballroomHeader);
-		data.add(ballroomData);
 		
+		String[] ballroomData=new String[4];
+		for(int i=0; i<model.getRowCount();i++){
+			ballroomData= new String[4];
+			ballroomData[0]=(model.getValueAt(i, 0).toString());
+			ballroomData[1]=(model.getValueAt(i, 1).toString());
+			ballroomData[2]=(model.getValueAt(i, 3).toString());
+			ballroomData[3]=(model.getValueAt(i, 4).toString());
+			data.add(ballroomData);
+		}
 		controller.WriteFile(data, path);
-		
-		
 	}
 	
 	/********************************************************

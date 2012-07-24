@@ -864,10 +864,10 @@ public class AdministrateBallroomForm {
 			ballroomData[4]="NO";
 		ballroomData[5]=getJTextField_ballroomTitle().getText().toString();
 		ballroomData[6]=getJComboBox_ballroomSize().getSelectedItem().toString();
-		ballroomData[7]="$"+getJTextField_ballroomPrice().getText().toString();
+		ballroomData[7]=getJTextField_ballroomPrice().getText().toString();
 		ballroomData[8]=getJTextArea_ballroomDescription().getText().toString();
-		ballroomData[9]=getJTextField_ballroomDiscount().getText().toString()+"%";
-		ballroomData[10]="$"+getJTextField_ballroomFinalPrice().getText().toString();
+		ballroomData[9]=getJSlider_ballroomDiscount().getValue()+"";
+		ballroomData[10]=getJTextField_ballroomFinalPrice().getText().toString();
 		
 		data.add(ballroomHeader);
 		data.add(ballroomData);

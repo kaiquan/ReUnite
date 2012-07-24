@@ -954,7 +954,7 @@ public class AdministrateEntertainmentForm {
 			entertainmentData[3]="YES";
 		else
 			entertainmentData[3]="NO";
-		entertainmentData[4]=getJTextField_entertainmentDiscount().getText().toString();
+		entertainmentData[4]=""+getJSlider_entertainmentDiscount().getValue();
 		entertainmentData[5]=getJTextField_entertainmentPrice().getText().toString();
 		entertainmentData[6]=getJTextField_entertainmentTotalPrice().getText().toString();
 		

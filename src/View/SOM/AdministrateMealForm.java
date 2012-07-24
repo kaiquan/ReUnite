@@ -1025,18 +1025,58 @@ public class AdministrateMealForm {
 		ArrayList<String[]> data = new ArrayList<String[]>();
 		
 		String[]mealHeader=new String[7];
+		mealHeader[0]="MEAL_ID";
+		mealHeader[1]="MEAL_TITLE";
+		mealHeader[2]="MEAL_AVAILABILITY";
+		mealHeader[3]="MEAL_DESCRIPTION";
+		mealHeader[4]="MEAL_TYPE";
+		mealHeader[5]="MEAL_DISCOUNT";
+		mealHeader[6]="MEAL_FINAL_PRICE";
 		
 		String[] mealData= new String[7];
+		mealData[0]=getJTextField_mealID().getText().toString();
+		mealData[1]=getJTextField_mealTitle().getText().toString();
+		if(getJCheckBox_mealAvailability().isSelected())
+			mealData[2]="YES";
+		else
+			mealData[2]="NO";
+		mealData[3]=getJTextArea_mealDescription().getText().toString();
+		mealData[4]=getJComboBox_mealType().getSelectedItem().toString();
+		mealData[5]=getJSlider_mealDiscount().getValue()+"";
+		mealData[6]=getJTextField_mealTotalPricePerHead().getText().toString();
 		
-		String[] mealMenuHeader= new String[7];
-		
-		String[] mealMenuData= new String[7];
+		String[] mealMenuHeader= new String[5];
+		mealMenuHeader[0]="MEAL_MENU_NAME";
+		mealMenuHeader[1]="MEAL_MENU_PRICE";
+		mealMenuHeader[2]="MEAL_MENU_IS_HALA";
+		mealMenuHeader[3]="MEAL_MENU_IS_VEGETARIAN";
+		mealMenuHeader[4]="MEAL_MENU_DESCRIPTION";
 		
 		data.add(mealHeader);
 		data.add(mealData);
 		data.add(mealMenuHeader);
-		data.add(mealMenuData);
 		
+		String[] mealMenuData= new String[5];
+		for(int i=0;i<model.getRowCount();i++){
+			mealMenuData= new String[5];
+			mealMenuData[0]=(model.getValueAt(i, 0).toString());
+			mealMenuData[1]=(model.getValueAt(i, 1).toString());
+			if(model.getValueAt(i, 2).equals("true")||model.getValueAt(i, 2).equals("1")){
+				mealMenuData[2]="YES";
+			}
+			if(model.getValueAt(i, 2).equals("fasle")||model.getValueAt(i, 2).equals("0")){
+				mealMenuData[2]="NO";
+			}
+			if(model.getValueAt(i, 3).equals("true")||model.getValueAt(i, 2).equals("1")){
+				mealMenuData[3]="YES";
+			}
+			if(model.getValueAt(i, 3).equals("false")||model.getValueAt(i, 2).equals("0")){
+				mealMenuData[3]="NO";;
+			}
+			mealMenuData[4]=(model.getValueAt(i, 4).toString());
+			data.add(mealMenuData);
+		}
+
 		controller.WriteFile(data, path);
 	}
 	

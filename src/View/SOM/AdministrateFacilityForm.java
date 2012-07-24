@@ -1066,7 +1066,16 @@ public class AdministrateFacilityForm {
 		facilityHeader[6]="FACILITY_WEEKEND_SURCHARGE";
 		
 		String[] facilityData= new String[7];
-		//facilityData[0]=;
+		facilityData[0]=getJTextField_facilityID().getText().toString();
+		facilityData[1]=getJTextField_facilityName().getText().toString();
+		facilityData[2]=getJTextField_facilityContact().getText().toString();
+		facilityData[3]=getJTextField_facilityAddress().getText().toString();
+		facilityData[4]=getJTextArea_facilityDescription().getText().toString();
+		if(getJCheckBox_facilityParking().isSelected())
+			facilityData[5]="YES";
+		else
+			facilityData[5]="NO";
+		facilityData[6]=getJTextField_facilityWeekendCost().getText().toString();
 		
 		String[] ballroomHeader= new String[5];
 		

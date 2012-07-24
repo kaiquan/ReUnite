@@ -281,7 +281,7 @@ public class AdministrateEntertainmentForm {
 			jLabel_$.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 			jLabel_$.setText("$");
 			jLabel_entertainmentMenu = new JLabel();
-			jLabel_entertainmentMenu.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_entertainmentMenu.setFont(new Font("Segoe UI", Font.BOLD, 12));
 			jLabel_entertainmentMenu.setBounds(new Rectangle(50, 40, 150, 30));
 			jLabel_entertainmentMenu.setText("Entertainment List : ");
 			jPanel_Menu = new JPanel();
@@ -402,7 +402,7 @@ public class AdministrateEntertainmentForm {
 		if (jButton_Add == null) {
 			jButton_Add = new JButton();
 			jButton_Add.setEnabled(true);
-			jButton_Add.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_Add.setFont(new Font("Segoe UI", Font.BOLD, 12));
 			jButton_Add.setFocusable(false);
 			jButton_Add.setFocusPainted(false);
 			jButton_Add.setBounds(new Rectangle(600, 240, 150, 30));
@@ -504,11 +504,11 @@ public class AdministrateEntertainmentForm {
 	private JPanel getJPanel_summary() {
 		if (jPanel_summary == null) {
 			jLabel_entertainmentTotalPrice = new JLabel();
-			jLabel_entertainmentTotalPrice.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_entertainmentTotalPrice.setFont(new Font("Segoe UI", Font.BOLD, 12));
 			jLabel_entertainmentTotalPrice.setBounds(new Rectangle(50, 40, 150, 30));
 			jLabel_entertainmentTotalPrice.setText("Total Price Per Hour :    $");
 			jLabel_entertainmentDiscount = new JLabel();
-			jLabel_entertainmentDiscount.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_entertainmentDiscount.setFont(new Font("Segoe UI", Font.BOLD, 12));
 			jLabel_entertainmentDiscount.setText("Entitled Discount :");
 			jLabel_entertainmentDiscount.setBounds(new Rectangle(400, 40, 150, 30));
 			jPanel_summary = new JPanel();
@@ -586,7 +586,7 @@ public class AdministrateEntertainmentForm {
 	protected JButton getJButton_download() {
 		if (jButton_download == null) {
 			jButton_download = new JButton();
-			jButton_download.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_download.setFont(new Font("Segoe UI", Font.BOLD, 12));
 			jButton_download.setBounds(new Rectangle(400, 115, 160, 45));
 			jButton_download.setFocusable(false);
 			jButton_download.setFocusPainted(false);
@@ -619,7 +619,7 @@ public class AdministrateEntertainmentForm {
 	protected JButton getJButton_createEntertainment() {
 		if (jButton_createEntertainment == null) {
 			jButton_createEntertainment = new JButton();
-			jButton_createEntertainment.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_createEntertainment.setFont(new Font("Segoe UI", Font.BOLD, 12));
 			jButton_createEntertainment.setFocusable(false);
 			jButton_createEntertainment.setFocusPainted(false);
 			jButton_createEntertainment.setBounds(new Rectangle(570, 115, 160, 45));
@@ -639,7 +639,7 @@ public class AdministrateEntertainmentForm {
 	protected JButton getJButton_Update() {
 		if (jButton_Update == null) {
 			jButton_Update = new JButton();
-			jButton_Update.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_Update.setFont(new Font("Segoe UI", Font.BOLD, 12));
 			jButton_Update.setFocusable(false);
 			jButton_Update.setFocusPainted(false);
 			jButton_Update.setBounds(new Rectangle(570, 170, 160, 45));
@@ -659,7 +659,7 @@ public class AdministrateEntertainmentForm {
 	protected JButton getJButton_delete() {
 		if (jButton_delete == null) {
 			jButton_delete = new JButton();
-			jButton_delete.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_delete.setFont(new Font("Segoe UI", Font.BOLD, 12));
 			jButton_delete.setFocusable(false);
 			jButton_delete.setFocusPainted(false);
 			jButton_delete.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/delete.png")));

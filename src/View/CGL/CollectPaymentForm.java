@@ -28,7 +28,8 @@ import javax.swing.JComboBox;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
-import Controller.CGL.ConsolidateGuestListControl;
+import Controller.CGL.CollectPaymentControl;
+
 import Model.CGL.Event;
 import javax.swing.JRadioButtonMenuItem;
 
@@ -124,11 +125,11 @@ public class CollectPaymentForm {
                     {
                     	jTextField.setText(node.getUserObject().toString());
                     	
-                    	ConsolidateGuestListControl c1 = new ConsolidateGuestListControl();         
+                    	CollectPaymentControl c2 = new CollectPaymentControl();     
                     	String eventName=node.getUserObject().toString();
-                    	c1.requestSelectedEventDetails((eventName)).get(0);
+                    	c2.requestSelectedEventDetails((eventName)).get(0);
                     	
-                    	Scanner sc = new Scanner(c1.requestSelectedEventDetails((eventName)).get(0));
+                    	Scanner sc = new Scanner(c2.requestSelectedEventDetails((eventName)).get(0));
                     	sc.useDelimiter(",");
                     	String ballroomName=sc.next();
                     	String eventTime=sc.next();
@@ -149,12 +150,14 @@ public class CollectPaymentForm {
                     	jTextField5.setText(ballroomName);
                     	jTextField6.setText(totalPrice);
                     	
+                    	
+                    	
                     	if(eventStatus.equals("Awaiting Payment")){
                     		jRadioButton.setSelected(true);
                     		jRadioButton1.setEnabled(false);
                     		jLabel12.setEnabled(false);
                     		
-                    		Scanner sc1 = new Scanner(c1.processPaymentDetails(jTextField.getText()).get(0));
+                    		Scanner sc1 = new Scanner(c2.processPaymentDetails(jTextField.getText()).get(0));
                         	sc1.useDelimiter(",");
                         	String totalCost=sc1.next();
                         	String amountPending=sc1.next();
@@ -168,7 +171,7 @@ public class CollectPaymentForm {
                     		jRadioButton1.setSelected(true);
                     		jRadioButton.setEnabled(false);
                     		jLabel11.setEnabled(false);
-                    		Scanner sc1 = new Scanner(c1.processPaymentDetails(jTextField.getText()).get(0));
+                    		Scanner sc1 = new Scanner(c2.processPaymentDetails(jTextField.getText()).get(0));
                         	sc1.useDelimiter(",");
                         	String totalCost=sc1.next();
                         	String amountPending=sc1.next();
@@ -252,8 +255,9 @@ public class CollectPaymentForm {
 	
 	private void generateEvents(DefaultMutableTreeNode tn)
 	{
-			ConsolidateGuestListControl c1 = new ConsolidateGuestListControl();
-			ArrayList<Event> eventList = c1.processSelection();
+			
+			CollectPaymentControl c2 = new CollectPaymentControl();
+			ArrayList<Event> eventList = c2.processSelection();
 			DefaultMutableTreeNode[] nodes = new DefaultMutableTreeNode[eventList.size()];
 				
 	Outer:
@@ -542,6 +546,7 @@ public class CollectPaymentForm {
 
 				private void submitDetails() {
 					// TODO Auto-generated method stub
+					CollectPaymentControl c2 = new CollectPaymentControl();
 					
 					if(jTextField3.getText().equals("")){
 						JOptionPane.showMessageDialog(null, "Please Select an event");
@@ -558,8 +563,8 @@ public class CollectPaymentForm {
 					
 					else {
 						JOptionPane.showMessageDialog(null, "Update the purchase payment");
-						ConsolidateGuestListControl c1 = new ConsolidateGuestListControl();
-						if(c1.processUpdatePurchasePayment(jTextField8.getText(), jComboBox.getSelectedItem().toString(), jTextField6.getText(),jTextField.getText())){
+						
+						if(c2.processUpdatePurchasePayment(jTextField8.getText(), jComboBox.getSelectedItem().toString(), jTextField6.getText(),jTextField.getText())){
 							JOptionPane.showMessageDialog(null, "Successfully Updated Purchase Summary");
 						}
 						else{
@@ -570,7 +575,7 @@ public class CollectPaymentForm {
 						
 						//update eventStatus
 						String eventStatus="Confirmed";
-						if(c1.processUpdateEventStatus(jTextField.getText(), eventStatus)==true){
+						if(c2.processUpdateEventStatus(jTextField.getText(), eventStatus)==true){
 							JOptionPane.showMessageDialog(null,"Successfully Changed Status");
 							
 						}

@@ -13,7 +13,7 @@ import Model.CGL.Purchase_Summary;
 
 public class ConsolidateGuestListControl {
 	
-	public ArrayList<Event> processExpiredInvitation(){
+public ArrayList<Event> processExpiredInvitation(){
 				
 		Event e1 = new Event();
 		return e1.retrieveEventRecords();
@@ -97,23 +97,6 @@ public boolean processUpdateEventStatus(String eventName,String eventStatus){
 	return e1.updateEventStatus(eventName,eventStatus);
 }
 
-public ArrayList<Event> processSelection(){
-	
-	Event e1 = new Event();
-	return e1.getEventRecordsDueForPayment();
-}
-
-public ArrayList<String> processPaymentDetails(String eventName){
-	Purchase_Summary p1 = new Purchase_Summary();
-	
-	return p1.retrievePaymentDetails(eventName);
-}
-
-public boolean processUpdatePurchasePayment(String amount,String paymentMethod,String totalCost,String eventName){
-	Purchase_Payment p1 = new Purchase_Payment();
-	
-	return p1.updatesPurchasePayment(amount, paymentMethod, totalCost,eventName);
-}
 
 
 	

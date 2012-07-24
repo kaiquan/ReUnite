@@ -49,7 +49,7 @@ public class MealOptions {
 	 * Purpose 			: To create a new MealOption record
 	 * Return 			: boolean
 	 *******************************************************/
-	public boolean createMealOption(String packageID, String mealID){
+	public boolean CREATE_MEAL_OPTION(String packageID, String mealID){
 		boolean success=false;
 		String sqlQuery;
 		
@@ -77,7 +77,7 @@ public class MealOptions {
 	 * Purpose 			: To create a new MealOption record
 	 * Return 			: boolean
 	 *******************************************************/
-	public boolean deleteMealOptions(String ID){
+	public boolean DELETE_MEAL_OPTION(String ID){
 		boolean success=false;
 		String sqlQuery;
 		
@@ -103,7 +103,7 @@ public class MealOptions {
 	  * Purpose 		: To retrieve all mealoption record by packageID
 	  * Return 			: ArrayList<String>
 	  *******************************************************/
-	public ArrayList<String> retrieveMealOptions(String ID){
+	public ArrayList<String> RETRIEVE_MEAL_OPTIONS(String ID){
 		ArrayList<String> mealID = new ArrayList<String>();
 		String sqlQuery;
 		

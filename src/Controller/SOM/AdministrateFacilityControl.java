@@ -68,7 +68,7 @@ public class AdministrateFacilityControl {
 	 *******************************************************/
 	public String processCreateFacility(){
 		String ID;
-		ID= this.facility.createFacility();
+		ID= this.facility.CREATE_FACILITY();
 		if(ID.equals(null)){
 			return null;
 		}
@@ -76,7 +76,7 @@ public class AdministrateFacilityControl {
 			//FOR LOOP TO CREATE THE BALLROOM
 			for(int i=0;i<model.getRowCount();i++){
 				ballroom=new Ballroom(ID,model.getValueAt(i, 0).toString(),model.getValueAt(i, 4).toString(),model.getValueAt(i, 3).toString(),Double.parseDouble(model.getValueAt(i, 2).toString()),Double.parseDouble(model.getValueAt(i, 1).toString()),processCalculateFinalPrice(i),0,true);
-				ballroom.createBallroom();
+				ballroom.CREATE_BALLROOM();
 			}
 		}
 		return ID;
@@ -92,9 +92,9 @@ public class AdministrateFacilityControl {
 	public boolean processDeleteFacility(String ID){
 		boolean success=true;
 		Facility facility= new Facility();
-		success=facility.deleteFacility(ID);
+		success=facility.DELETE_FACILITY(ID);
 		Ballroom ballroom=new Ballroom();
-		success=ballroom.deleteBallroomByFID(ID);
+		success=ballroom.DELETE_BALLROOM_BY_FID(ID);
 		return success;
 	}
 	
@@ -107,15 +107,15 @@ public class AdministrateFacilityControl {
 	public boolean processUpdateFacility(String ID){
 		boolean success=true;
 		//	UPDATE THE FACILITY
-		success=this.facility.updateFacility(ID);
+		success=this.facility.UPDATE_FACILITY(ID);
 		if(success){
 			//DELETE THE BALLROOM LIST
 			Ballroom ballroom=new Ballroom();
-			ballroom.deleteBallroomByFID(ID);
+			ballroom.DELETE_BALLROOM_BY_FID(ID);
 			//RE-CREATE THE BALLROOM LIST
 			for(int i=0;i<model.getRowCount();i++){
 				ballroom=new Ballroom(ID,model.getValueAt(i, 0).toString(),model.getValueAt(i, 4).toString(),model.getValueAt(i, 3).toString(),Double.parseDouble(model.getValueAt(i, 2).toString()),Double.parseDouble(model.getValueAt(i, 1).toString()),processCalculateFinalPrice(i),0,true);
-				ballroom.createBallroom();
+				ballroom.CREATE_BALLROOM();
 			}
 		}
 		else{
@@ -133,7 +133,7 @@ public class AdministrateFacilityControl {
 	  *******************************************************/
 	public DefaultTableModel processRetrieveFacility(){
 		Facility facility= new Facility();
-		return facility.retrieveFacility();
+		return facility.RETRIEVE_FACILITY();
 	}
 	
 	/********************************************************
@@ -145,7 +145,7 @@ public class AdministrateFacilityControl {
 	  *******************************************************/
 	public DefaultTableModel processRetrieveFacility(String parameter){
 		Facility facility= new Facility();
-		return facility.retrieveFacility(parameter);
+		return facility.RETRIEVE_FACILITY(parameter);
 	}
 	
 	/********************************************************
@@ -157,7 +157,7 @@ public class AdministrateFacilityControl {
 	@SuppressWarnings("unchecked")
 	public DefaultComboBoxModel  processRetrieveFacilityNames(){
 		Facility facility= new Facility();
-		return facility.retrieveFacilityNames();
+		return facility.RETRIEVE_FACILITY_NAMES();
 	}
 	
 	/********************************************************
@@ -169,7 +169,7 @@ public class AdministrateFacilityControl {
 	  *******************************************************/
 	public Facility processRetrieveFacilityByName(String name){
 		Facility facility= new Facility();
-		this.facility=facility.retrieveFacilityByName(name);
+		this.facility=facility.RETRIEVE_FACILITY_BY_NAME(name);
 		return this.facility;
 	}
 	
@@ -181,9 +181,9 @@ public class AdministrateFacilityControl {
 	  *******************************************************/
 	public Facility processRetrieveFacilityByID(String ID){
 		Facility facility= new Facility();
-		this.facility=facility.retrieveFacilityByID(ID);
+		this.facility=facility.RETRIEVE_FACILITY_BY_ID(ID);
 		Ballroom ballroom= new Ballroom();
-		this.model=ballroom.retrieveBallroomModel(ID);
+		this.model=ballroom.RETRIEVE_BALLROOM_MODEL(ID);
 		return this.facility;
 	}
 	

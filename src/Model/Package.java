@@ -78,7 +78,7 @@ public class Package {
 	 * Purpose 			: To create a new Package record
 	 * Return 			: String
 	 *******************************************************/
-	public String createPackage(String mealID1, String mealID2, String mealID3){
+	public String CREATE_PACKAGE(String mealID1, String mealID2, String mealID3){
 		String sqlQuery;
 		String packageID=null;
 
@@ -118,15 +118,15 @@ public class Package {
 		//create the meal option
 		if(!(mealID1.equals("null"))){
 			MealOptions meal= new MealOptions();
-			meal.createMealOption(packageID, mealID1);
+			meal.CREATE_MEAL_OPTION(packageID, mealID1);
 		}
 		if(!(mealID2.equals("null"))){
 			MealOptions meal= new MealOptions();
-			meal.createMealOption(packageID, mealID2);
+			meal.CREATE_MEAL_OPTION(packageID, mealID2);
 		}
 		if(!(mealID3.equals("null"))){
 			MealOptions meal= new MealOptions();
-			meal.createMealOption(packageID, mealID3);
+			meal.CREATE_MEAL_OPTION(packageID, mealID3);
 		}
 		return packageID;
 	}
@@ -138,7 +138,7 @@ public class Package {
 	  * Purpose 		: To delete an package record
 	  * Return 			: boolean
 	  *******************************************************/
-	public boolean deletePackage(String ID){
+	public boolean DELETE_PACKAGE(String ID){
 		boolean success=false;
 		String sqlQuery;
 		
@@ -159,7 +159,7 @@ public class Package {
 		
 		//DELETE THE MEAL OPTIONS
 		MealOptions meal= new MealOptions();
-		meal.deleteMealOptions(ID);
+		meal.DELETE_MEAL_OPTION(ID);
 	
 		return success;
 	}
@@ -170,7 +170,7 @@ public class Package {
 	  * Purpose			: To update an package record
 	  * Return 			: boolean
 	  *******************************************************/
-	public boolean updatePackage(String mealID1, String mealID2, String mealID3){
+	public boolean UPDATE_PACKAGE(String mealID1, String mealID2, String mealID3){
 		boolean success=false;
 		String sqlQuery;
 		if(this.EntertainmentID.equals(null)||this.EntertainmentID.equals("")){
@@ -197,17 +197,17 @@ public class Package {
 		//	DELETE THE MEAL OPTIONS
 		
 		MealOptions meal= new MealOptions();
-		meal.deleteMealOptions(this.packageID);
+		meal.DELETE_MEAL_OPTION(this.packageID);
 		
 		//	RECREATE THE MEAL OPTIONS
 		if(mealID1!=check){
-			meal.createMealOption(packageID, mealID1);
+			meal.CREATE_MEAL_OPTION(packageID, mealID1);
 		}
 		if(mealID2!=check){
-			meal.createMealOption(packageID, mealID2);
+			meal.CREATE_MEAL_OPTION(packageID, mealID2);
 		}
 		if(mealID3!=check){
-			meal.createMealOption(packageID, mealID3);
+			meal.CREATE_MEAL_OPTION(packageID, mealID3);
 		}
 		
 		return success;
@@ -220,7 +220,7 @@ public class Package {
 						  where isRecord =0
 	  * Return 			: DefaultTableModel
 	  *******************************************************/
-	public  DefaultTableModel retrievePackage(){
+	public  DefaultTableModel RETRIEVE_PACKAGE(){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
 		
@@ -249,7 +249,7 @@ public class Package {
 						  where isRecord =0 and like parameter
 	  * Return 			: DaultTableModel
 	  *******************************************************/
-	public DefaultTableModel retrievePackage(String parameter){
+	public DefaultTableModel RETRIEVE_PACKAGE(String parameter){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
 		
@@ -285,7 +285,7 @@ public class Package {
 	  * Purpose 		: To retrieve all Package record by IDr
 	  * Return 			: Package
 	  *******************************************************/
-	public Package retrievePackageByID(String ID){
+	public Package RETRIEVE_PACKAGE_BY_ID(String ID){
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM saharp5_adeel_school.Package WHERE `packageID`='"+ID+"'";
 		data= new Package();

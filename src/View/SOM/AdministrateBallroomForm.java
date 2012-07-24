@@ -32,6 +32,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 import javax.swing.BorderFactory;
@@ -55,6 +56,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import Controller.SOM.AdministrateBallroomControl;
 import Controller.SOM.AdministrateFacilityControl;
+import Controller.SOM.CSVController;
 import Controller.MyCalendar;
 
 public class AdministrateBallroomForm {
@@ -734,7 +736,7 @@ public class AdministrateBallroomForm {
 	 * Input Parameter 	: void 
 	 * Return 			: void
 	 * Purpose 			: To download the form details in
-	 * 					  the local computer in PDF & TXT
+	 * 					  the local computer in PDF & CSV
 	 *******************************************************/
 	public void download() throws MalformedURLException, DocumentException, IOException{
 		//setting the file and path name
@@ -755,7 +757,7 @@ public class AdministrateBallroomForm {
 				PDFlink=sc1.next();
 			}
 			downloadPDF(PDFlink+".pdf");
-			downloadTXT(PDFlink+".r");
+			downloadTXT(PDFlink+".CSV");
 		}
 		else if(directory.substring(directory.length()-2).equals(".r")){
 			Scanner sc2= new Scanner(directory);
@@ -765,11 +767,11 @@ public class AdministrateBallroomForm {
 				TXTlink=sc2.next();
 			}
 			downloadPDF(TXTlink+".pdf");
-			downloadTXT(TXTlink+".r");
+			downloadTXT(TXTlink+".CSV");
 		}
 		else{
 			downloadPDF(directory+".pdf");
-			downloadTXT(directory+".r");
+			downloadTXT(directory+".CSV");
 		}
 	}
 	/********************************************************
@@ -777,7 +779,7 @@ public class AdministrateBallroomForm {
 	 * Input Parameter 	: String 
 	 * Return 			: void
 	 * Purpose 			: To download the form details in
-	 * 					  the local computer in PDF
+	 * 					  the local computer in CSV
 	 *******************************************************/
 	public void downloadPDF(String path) throws MalformedURLException, IOException, DocumentException{
 		String directory=path;
@@ -802,7 +804,7 @@ public class AdministrateBallroomForm {
 		 pdf.add(new Paragraph("ID                  : "+getJTextField_ballroomID().getText().toString()));
 		 pdf.add(new Paragraph("Facility Name       : "+getJComboBox_facilityName().getSelectedItem().toString()));
 		 pdf.add(new Paragraph("Contact             : "+getJTextField_facilityContact().getText().toString()));
-		 pdf.add(new Paragraph("Address             : $"+getJTextArea_facilityAddress().getText().toString()));
+		 pdf.add(new Paragraph("Address             : "+getJTextArea_facilityAddress().getText().toString()));
 		 pdf.add(new Paragraph("Title               : "+getJTextField_ballroomTitle().getText().toString()));
 		 pdf.add(new Paragraph("Size                : "+getJComboBox_ballroomSize().getSelectedItem().toString()));
 		 pdf.add(new Paragraph("Price               : $"+getJTextField_ballroomPrice().getText().toString()));
@@ -833,12 +835,46 @@ public class AdministrateBallroomForm {
 	 * Return 			: void
 	 * Purpose 			: To download the form details in
 	 * 					  the local computer
+	 * @throws IOException 
 	 *******************************************************/
-	public void downloadTXT(String path){
-		//one line for set information wit';'
-		//multiple line for menu with';'
+	public void downloadTXT(String path) throws IOException{
+		CSVController controller= new CSVController();
+		ArrayList<String[]> data = new ArrayList<String[]>();
+		String[]ballroomHeader=new String[11];
+		ballroomHeader[0]="FACILITY_ID";
+		ballroomHeader[1]="FACILITY_NAME";
+		ballroomHeader[2]="FACILITY_CONTACT";
+		ballroomHeader[3]="FACILITY_ADDRESS";
+		ballroomHeader[4]="BALLROOM_AVAILABILITY";
+		ballroomHeader[5]="BALLROOM_NAME";
+		ballroomHeader[6]="BALLROOM_SIZE";
+		ballroomHeader[7]="BALLROOM_PRICE";
+		ballroomHeader[8]="BALLROOM_DESCRIPTION";
+		ballroomHeader[9]="BALLROOM_DISCOUNT";
+		ballroomHeader[10]="BALLROOM_FINAL_PRICE";
+		
+		String[]ballroomData= new String[12];
+		ballroomData[0]=getJTextField_ballroomID().getText().toString();
+		ballroomData[1]=getJComboBox_facilityName().getSelectedItem().toString();
+		ballroomData[2]=getJTextField_facilityContact().getText().toString();
+		ballroomData[3]=getJTextArea_facilityAddress().getText().toString();
+		if(getJCheckBox_ballroomAvailability().isSelected())
+			ballroomData[4]="YES";
+		else
+			ballroomData[4]="NO";
+		ballroomData[5]=getJTextField_ballroomTitle().getText().toString();
+		ballroomData[6]=getJComboBox_ballroomSize().getSelectedItem().toString();
+		ballroomData[7]="$"+getJTextField_ballroomPrice().getText().toString();
+		ballroomData[8]=getJTextArea_ballroomDescription().getText().toString();
+		ballroomData[9]=getJTextField_ballroomDiscount().getText().toString()+"%";
+		ballroomData[10]="$"+getJTextField_ballroomFinalPrice().getText().toString();
+		
+		data.add(ballroomHeader);
+		data.add(ballroomData);
+		
+		controller.WriteFile(data, path);
+		
 	}
-	
 	/********************************************************
 	 * Method Name : createTabHeader
 	 * Input Parameter : nil

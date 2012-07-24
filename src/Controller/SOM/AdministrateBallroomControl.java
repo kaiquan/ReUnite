@@ -72,7 +72,7 @@ public class AdministrateBallroomControl {
 	 * Return			: String
 	 *******************************************************/	
 	public String processCreateBallroom(){
-		return this.ballroom.createBallroom();
+		return this.ballroom.CREATE_BALLROOM();
 	}
 	
 	/********************************************************
@@ -85,11 +85,11 @@ public class AdministrateBallroomControl {
 	public boolean processDeleteBallroom(String ID){
 		boolean success=false;
 		Ballroom ballroom = new Ballroom();
-		if(ballroom.checkRelationship(ID)){
+		if(ballroom.CHECK_RELATIONSHIP(ID)){
 			return false;
 		}
 		else{
-			success= ballroom.deleteBallroom(ID);
+			success= ballroom.DELETE_BALLROOM(ID);
 		}
 		return success;
 	}
@@ -101,7 +101,7 @@ public class AdministrateBallroomControl {
 	 * Purpose 			: To update an Ballroom record
 	  *******************************************************/
 	public boolean processUpdateBallroom(String ID){
-		return this.ballroom.updateBallroom(ID);
+		return this.ballroom.UPDATE_BALLROOM(ID);
 	}
 	
 	/********************************************************
@@ -113,7 +113,7 @@ public class AdministrateBallroomControl {
 	 *******************************************************/
 	public DefaultTableModel processRetrieveBallroom(){
 		Ballroom ballroom= new Ballroom();
-		return ballroom.retrieveBallroom();
+		return ballroom.RETRIEVE_BALLROOM();
 	}
 	
 	/********************************************************
@@ -126,7 +126,7 @@ public class AdministrateBallroomControl {
 	 *******************************************************/
 	public DefaultTableModel processRetrieveBallroom(String parameter){
 		Ballroom ballroom= new Ballroom();
-		return ballroom.retrieveBallroom(parameter);
+		return ballroom.RETRIEVE_BALLROOM(parameter);
 	}
 	
 	/********************************************************
@@ -138,7 +138,7 @@ public class AdministrateBallroomControl {
 	 *******************************************************/
 	public Ballroom processRetrieveBallroomByID(String ID){
 		Ballroom ballroom= new Ballroom();
-		this.ballroom=ballroom.retrieveBallroomByID(ID);
+		this.ballroom=ballroom.RETRIEVE_BALLROOM_BY_ID(ID);
 		return this.ballroom;
 	}
 	
@@ -151,7 +151,7 @@ public class AdministrateBallroomControl {
 	 *******************************************************/
 	public DefaultTableModel processRetrieveBallroomModel(String ID){
 		Ballroom ballroom= new Ballroom();
-		return ballroom.retrieveBallroomModel(ID);
+		return ballroom.RETRIEVE_BALLROOM_MODEL(ID);
 	}
 	
 	/********************************************************
@@ -163,7 +163,7 @@ public class AdministrateBallroomControl {
 	 *******************************************************/
 	public DefaultTableModel processRetrieveBallroomByFacility(String ID){
 		Ballroom ballroom= new Ballroom();
-		return ballroom.retrieveBallroomByFacility(ID);
+		return ballroom.RETRIEVE_BALLROOM_BY_FACILITY(ID);
 	}
 	
 	

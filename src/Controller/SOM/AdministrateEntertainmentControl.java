@@ -68,7 +68,7 @@ public class AdministrateEntertainmentControl {
 	 *******************************************************/
 	public String processCreateEntertainment(){
 		String ID=null;
-		ID=this.entertainment.createEntertainment();
+		ID=this.entertainment.CREATE_ENTERTAINMENT();
 		
 		if(ID.equals(null)){
 			return null;
@@ -78,7 +78,7 @@ public class AdministrateEntertainmentControl {
 			boolean success=false;
 			for(int i=0;i<model.getRowCount();i++){
 				entertainmentMenu=new EntertainmentMenu(ID,model.getValueAt(i, 2).toString(),model.getValueAt(i, 0).toString(),Double.parseDouble((String) model.getValueAt(i, 1)));
-				success=entertainmentMenu.createEntertainmentMenu();
+				success=entertainmentMenu.CREATE_ENTERTAINMENT_MENU();
 			}
 			if(!success){
 				processDeleteEntertainment(ID);
@@ -97,13 +97,13 @@ public class AdministrateEntertainmentControl {
 	public boolean processDeleteEntertainment(String ID){
 		boolean success=false;
 		Entertainment entertainment=new Entertainment();
-		if(entertainment.checkRelationship(ID)){
+		if(entertainment.CHECK_RELATIONSHIP(ID)){
 			return false;
 		}
 		else{
-			success=entertainment.deleteEntertainment(ID);
+			success=entertainment.DELETE_ENTERTAINMENT(ID);
 			EntertainmentMenu entertainmentMenu=new EntertainmentMenu();
-			success=entertainmentMenu.deleteEntertainmentMenu(ID);
+			success=entertainmentMenu.DELETE_ENTERTAINMENT_MENU(ID);
 		}
 		
 		return success;
@@ -118,18 +118,18 @@ public class AdministrateEntertainmentControl {
 	public boolean processUpdateEntertainment(String ID){
 		boolean success=true;
 		//UPDATES THE ENTERTAINMENT RECORD
-		success=this.entertainment.updateEntertainment(ID);
+		success=this.entertainment.UPDATE_ENTERTAINMENT(ID);
 		
 		if(success){
 			//DELETES THE ENTERTAINMENT MENU
 			EntertainmentMenu menu= new EntertainmentMenu();
-			success=menu.deleteEntertainmentMenu(ID);
+			success=menu.DELETE_ENTERTAINMENT_MENU(ID);
 			if(success){
 				//RECREATES THE ENTERTAINMENT MENU
 				success=false;
 				for(int i=0;i<model.getRowCount();i++){
 					entertainmentMenu=new EntertainmentMenu(ID,model.getValueAt(i, 2).toString(),model.getValueAt(i, 0).toString(),Double.parseDouble((String) model.getValueAt(i, 1)));
-					success=entertainmentMenu.createEntertainmentMenu();
+					success=entertainmentMenu.CREATE_ENTERTAINMENT_MENU();
 				}
 				if(!success){
 					System.out.println("Failed to re-Create EntertainmentMenu Record");
@@ -157,7 +157,7 @@ public class AdministrateEntertainmentControl {
 	  *******************************************************/
 	public DefaultTableModel processRetrieveEntertainment(){
 		Entertainment entertainment= new Entertainment();
-		return entertainment.retrieveEntertainment();
+		return entertainment.RETRIEVE_ENTERTAINMENT();
 	}
 	
 	/********************************************************
@@ -170,7 +170,7 @@ public class AdministrateEntertainmentControl {
 	  *******************************************************/
 	public DefaultTableModel processRetrieveEntertainment(String parameter){
 		Entertainment entertainment= new Entertainment();
-		return entertainment.retrieveEntertainment(parameter);
+		return entertainment.RETRIEVE_ENTERTAINMENT(parameter);
 	}
 	
 	/********************************************************
@@ -182,9 +182,9 @@ public class AdministrateEntertainmentControl {
 	  *******************************************************/
 	public Entertainment processRetrieveEntertainmentByID(String ID){
 		Entertainment entertainment= new Entertainment();
-		this.entertainment=entertainment.retrieveEntertainmentByID(ID);
+		this.entertainment=entertainment.RETRIEVE_ENTERTAINMENT_BY_ID(ID);
 		EntertainmentMenu menu= new EntertainmentMenu();
-		this.model=menu.retrieveEntertainmentMenuByID(ID);
+		this.model=menu.RETRIEVE_ENTERTAINMENT_MENU_BY_ID(ID);
 		return this.entertainment;
 	}
 	
@@ -198,7 +198,7 @@ public class AdministrateEntertainmentControl {
 	  *******************************************************/
 	public DefaultTableModel processRetrieveEntertainmentMenu(String parameter){
 		EntertainmentMenu menu= new EntertainmentMenu();
-		return menu.retrieveEntertainmentMenu(parameter);
+		return menu.RETRIEVE_ENTERTAINMENT_MENU(parameter);
 	}
 	
 	//BUSINESS LOGICS BELOW

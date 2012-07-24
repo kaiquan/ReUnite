@@ -76,7 +76,7 @@ public class Ballroom {
 	 * Purpose 			: To create a new Ballroom record
 	 * 					  Returns the Created BallroomID
 	 *******************************************************/
-	public String createBallroom(){
+	public String CREATE_BALLROOM(){
 		String ballroomID="";
 		String sqlQuery;
 
@@ -114,7 +114,7 @@ public class Ballroom {
 	 * Return 			: boolean
 	 * Purpose 			: To delete an Ballroom record
 	 *******************************************************/
-	public boolean deleteBallroom(String ID){
+	public boolean DELETE_BALLROOM(String ID){
 		boolean success=true;
 		String sqlQuery;
 		
@@ -142,7 +142,7 @@ public class Ballroom {
 	 * Purpose 			: To delete an Ballroom record 
 	 * 					  by facility ID
 	 *******************************************************/
-	public boolean deleteBallroomByFID(String ID){
+	public boolean DELETE_BALLROOM_BY_FID(String ID){
 		boolean success=true;
 		String sqlQuery;
 		
@@ -169,7 +169,7 @@ public class Ballroom {
 	 * Return 			: boolean
 	 * Purpose 			: To update an Ballroom record
 	 *******************************************************/
-	public boolean updateBallroom(String ID){
+	public boolean UPDATE_BALLROOM(String ID){
 		boolean success=false;
 		String sqlQuery;
 
@@ -197,7 +197,7 @@ public class Ballroom {
 	 * Purpose 			: To retrieve all Ballroom record
 	 * 					  where is not purchase record
 	 *******************************************************/
-	public DefaultTableModel retrieveBallroom(){
+	public DefaultTableModel RETRIEVE_BALLROOM(){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM saharp5_adeel_school.Ballroom";
@@ -225,7 +225,7 @@ public class Ballroom {
 	 * 					  where is not purchase record
 	 * 					  & by input paramater
 	 *******************************************************/
-	public DefaultTableModel retrieveBallroom(String parameter){
+	public DefaultTableModel RETRIEVE_BALLROOM(String parameter){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM saharp5_adeel_school.Ballroom WHERE (facilityID LIKE '"+parameter+"%'";
@@ -258,7 +258,7 @@ public class Ballroom {
 	 * Purpose 			: To retrieve a Ballroom record
 	 * 					  by ballroomID
 	 *******************************************************/
-	public Ballroom retrieveBallroomByID(String ID){
+	public Ballroom RETRIEVE_BALLROOM_BY_ID(String ID){
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM saharp5_adeel_school.Ballroom WHERE `ballroomID`='"+ID+"'";
 		data= new Ballroom();
@@ -292,7 +292,7 @@ public class Ballroom {
 	 * Purpose 			: To retrieve a Ballroom record
 	 * 					  by ballroomID
 	 *******************************************************/
-	public DefaultTableModel retrieveBallroomModel(String ID){
+	public DefaultTableModel RETRIEVE_BALLROOM_MODEL(String ID){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM saharp5_adeel_school.Ballroom WHERE `facilityID`='"+ID+"'";
@@ -319,7 +319,7 @@ public class Ballroom {
 	 * Purpose 			: To retrieve a Ballroom record
 	 * 					  by ballroomID
 	 *******************************************************/
-	public DefaultTableModel retrieveBallroomByFacility(String ID){
+	public DefaultTableModel RETRIEVE_BALLROOM_BY_FACILITY(String ID){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM saharp5_adeel_school.Ballroom WHERE `facilityID`='"+ID+"'";
@@ -346,7 +346,7 @@ public class Ballroom {
 	  * Purpose 		: To check if the ballroom is 
 	  * 				  tied to a package
 	  *******************************************************/
-	public boolean checkRelationship(String ID){
+	public boolean CHECK_RELATIONSHIP(String ID){
 		boolean ties=false;
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM saharp5_adeel_school.Package WHERE `ballroomID`='"+ID+"'";

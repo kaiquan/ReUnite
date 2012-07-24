@@ -74,7 +74,7 @@ public class InitiateEventControl {
 	 * Purpose 			: To create a new Event record
 	 *******************************************************/
 	public boolean processInitiateEvent(){
-		return this.event.InitiateEvent();
+		return this.event.INITIATE_EVENT();
 	}
 	
 	/********************************************************
@@ -87,7 +87,7 @@ public class InitiateEventControl {
 	 *******************************************************/
 	public ArrayList<String> processRetrieveTimings(String ballroomID, String Date){
 		Event event= new Event();
-		return event.retrieveTimings(ballroomID, Date);
+		return event.RETRIEVE_TIMINGS(ballroomID, Date);
 	}
 	
 	/********************************************************

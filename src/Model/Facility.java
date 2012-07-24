@@ -70,7 +70,7 @@ public class Facility {
 	 * Purpose 			: To create a Facility record
 	 * Return 			: String
 	 *******************************************************/
-	public String createFacility(){
+	public String CREATE_FACILITY(){
 		String sqlQuery;
 		String facilityID=null;
 
@@ -107,7 +107,7 @@ public class Facility {
 	  * Return 			: boolean
 	  * Purpose 		: To delete an Facility record
 	  *******************************************************/
-	public boolean deleteFacility(String ID){
+	public boolean DELETE_FACILITY(String ID){
 		boolean success=true;
 		String sqlQuery;
 		
@@ -134,7 +134,7 @@ public class Facility {
 	  * Return 			: boolean
 	  * Purpose 		: To update an Facility record
 	  *******************************************************/
-	public boolean updateFacility(String ID){
+	public boolean UPDATE_FACILITY(String ID){
 		boolean success=false;
 		String sqlQuery;
 
@@ -161,7 +161,7 @@ public class Facility {
 	  * Return 			: DefaultTableModel
 	  * Purpose 		: To retrieve all Facility record
 	  *******************************************************/
-	public DefaultTableModel retrieveFacility(){
+	public DefaultTableModel RETRIEVE_FACILITY(){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM saharp5_adeel_school.Facility";
@@ -195,7 +195,7 @@ public class Facility {
 	  * Purpose 		: To retrieve all facility record 
 	  * 				  like parameter
 	  *******************************************************/
-	public DefaultTableModel retrieveFacility(String parameter){
+	public DefaultTableModel RETRIEVE_FACILITY(String parameter){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM saharp5_adeel_school.Facility WHERE (facilityID LIKE '"+parameter+"%'";
@@ -234,7 +234,7 @@ public class Facility {
 	  * Return 			: Meal
 	  * Purpose 		: To retrieve a facility record by ID
 	  *******************************************************/
-	public Facility retrieveFacilityByID(String ID){
+	public Facility RETRIEVE_FACILITY_BY_ID(String ID){
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM saharp5_adeel_school.Facility WHERE `facilityID`='"+ID+"'";
 		data= new Facility();
@@ -264,7 +264,7 @@ public class Facility {
 	  * Return 			: DefaultComboBoxModel 
 	  * Purpose 		: To retrieve all facility record names
 	  *******************************************************/
-	public DefaultComboBoxModel<String> retrieveFacilityNames(){
+	public DefaultComboBoxModel<String> RETRIEVE_FACILITY_NAMES(){
 		DefaultComboBoxModel<String>  cModel = new DefaultComboBoxModel<String>();
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM saharp5_adeel_school.Facility";
@@ -289,7 +289,7 @@ public class Facility {
 	  * Return 			: Facility 
 	  * Purpose 		: To retrieve all facility record by name
 	  *******************************************************/
-	public Facility retrieveFacilityByName(String name){
+	public Facility RETRIEVE_FACILITY_BY_NAME(String name){
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM saharp5_adeel_school.Facility WHERE `facilityName`='"+name+"'";
 		data= new Facility();

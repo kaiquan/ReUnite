@@ -82,7 +82,7 @@ public class AdministratePackageControl {
 	 * Return 			: String
 	 *******************************************************/	
 	public String processCreatePackage(String mealID1, String mealID2, String mealID3){
-		return this.pack.createPackage(mealID1, mealID2, mealID3);
+		return this.pack.CREATE_PACKAGE(mealID1, mealID2, mealID3);
 	}
 	
 	/********************************************************
@@ -93,7 +93,7 @@ public class AdministratePackageControl {
 	  *******************************************************/
 	public boolean processDeletePackage(String ID){
 		Package pack= new Package();
-		return pack.deletePackage(ID);
+		return pack.DELETE_PACKAGE(ID);
 	}
 	
 
@@ -104,7 +104,7 @@ public class AdministratePackageControl {
 	  * Return 			: boolean
 	  *******************************************************/
 	public boolean processUpdatePackage(String mealID1, String mealID2, String mealID3){
-		return this.pack.updatePackage(mealID1, mealID2, mealID3);
+		return this.pack.UPDATE_PACKAGE(mealID1, mealID2, mealID3);
 	}
 	
 	 /********************************************************
@@ -116,7 +116,7 @@ public class AdministratePackageControl {
 	  *******************************************************/
 	public DefaultTableModel processRetrievePackage(){
 		Package pack= new Package();
-		return pack.retrievePackage();
+		return pack.RETRIEVE_PACKAGE();
 	}
 	 /********************************************************
 	  * Method Name 	: processRetrievePackage
@@ -127,7 +127,7 @@ public class AdministratePackageControl {
 	  *******************************************************/
 	public DefaultTableModel processRetrievePackage(String parameter){
 		Package pack= new Package();
-		return pack.retrievePackage(parameter);
+		return pack.RETRIEVE_PACKAGE(parameter);
 	}
 	 /********************************************************
 	  * Method Name 	: processRetrievePackageByID
@@ -137,20 +137,20 @@ public class AdministratePackageControl {
 	  *******************************************************/
 	public Package processRetrievePackageByID(String ID){
 		Package pack= new Package();
-		this.pack=pack.retrievePackageByID(ID);
+		this.pack=pack.RETRIEVE_PACKAGE_BY_ID(ID);
 		Ballroom ballroom= new Ballroom();
-		this.ballroom=ballroom.retrieveBallroomByID(this.pack.getBallroomID());
+		this.ballroom=ballroom.RETRIEVE_BALLROOM_BY_ID(this.pack.getBallroomID());
 		Facility facility= new Facility();
-		this.facility=facility.retrieveFacilityByID(this.ballroom.getFacilityID());
+		this.facility=facility.RETRIEVE_FACILITY_BY_ID(this.ballroom.getFacilityID());
 		Entertainment entertainment= new Entertainment();
-		this.entertainment=entertainment.retrieveEntertainmentByID(this.pack.getEntertainmentID());
+		this.entertainment=entertainment.RETRIEVE_ENTERTAINMENT_BY_ID(this.pack.getEntertainmentID());
 		this.mealIDs= new ArrayList<String>();
 		MealOptions meal= new MealOptions();
-		mealIDs=meal.retrieveMealOptions(ID);
+		mealIDs=meal.RETRIEVE_MEAL_OPTIONS(ID);
 		Meal m= new Meal();
 		this.meals= new ArrayList<Meal>();
 		for(int i=0;i<mealIDs.size();i++){
-			meals.add(m.retrieveMealByID(mealIDs.get(i)));
+			meals.add(m.RETRIEVE_MEAL_BY_ID(mealIDs.get(i)));
 		}
 		return this.pack;
 	}
@@ -165,11 +165,11 @@ public class AdministratePackageControl {
 	public ArrayList<Meal> processRetrieveMealOptions(String ID){
 		this.mealIDs= new ArrayList<String>();
 		MealOptions meal= new MealOptions();
-		mealIDs=meal.retrieveMealOptions(ID);
+		mealIDs=meal.RETRIEVE_MEAL_OPTIONS(ID);
 		Meal m= new Meal();
 		this.meals= new ArrayList<Meal>();
 		for(int i=0;i<mealIDs.size();i++){
-			meals.add(m.retrieveMealByID(mealIDs.get(i)));
+			meals.add(m.RETRIEVE_MEAL_BY_ID(mealIDs.get(i)));
 		}
 		return this.meals;
 	}

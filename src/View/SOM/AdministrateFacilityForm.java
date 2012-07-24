@@ -34,6 +34,7 @@ import java.awt.event.MouseEvent;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
@@ -63,6 +64,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import Controller.SOM.AdministrateFacilityControl;
+import Controller.SOM.CSVController;
 import Controller.MyCalendar;
 
 public class AdministrateFacilityForm {
@@ -955,9 +957,9 @@ public class AdministrateFacilityForm {
 				PDFlink=sc1.next();
 			}
 			downloadPDF(PDFlink+".pdf");
-			downloadTXT(PDFlink+".r");
+			downloadTXT(PDFlink+".CSV");
 		}
-		else if(directory.substring(directory.length()-2).equals(".r")){
+		else if(directory.substring(directory.length()-2).equals(".CSV")){
 			Scanner sc2= new Scanner(directory);
 			String d=".r";
 			sc2.useDelimiter(d);
@@ -965,11 +967,11 @@ public class AdministrateFacilityForm {
 				TXTlink=sc2.next();
 			}
 			downloadPDF(TXTlink+".pdf");
-			downloadTXT(TXTlink+".r");
+			downloadTXT(TXTlink+".CSV");
 		}
 		else{
 			downloadPDF(directory+".pdf");
-			downloadTXT(directory+".r");
+			downloadTXT(directory+".CSV");
 		}
 	}
 	/********************************************************
@@ -1052,8 +1054,12 @@ public class AdministrateFacilityForm {
 	 * 					  the local computer
 	 *******************************************************/
 	public void downloadTXT(String path){
-		//one line for set information wit';'
-		//multiple line for menu with';'
+		CSVController controller= new CSVController();
+		ArrayList<String[]> data = new ArrayList<String[]>();
+		String[]facilityHeader=new String[6];
+		facilityHeader[0]="FACILITY_ID";
+		
+		
 	}
 	
 	/********************************************************

@@ -62,7 +62,7 @@ public class MealMenu {
 	 * Return 			: Boolean
 	 * Purpose 			: To create a new MealMenu record
 	 *******************************************************/
-	public boolean createMealMenu(){
+	public boolean CREATE_MEAL_MENU(){
 		boolean success=false;
 		String sqlQuery;
 		
@@ -88,7 +88,7 @@ public class MealMenu {
 	  * Return 			: boolean
 	  * Purpose 		: To delete an MealMenu record
 	  *******************************************************/
-	public boolean deleteMealMenu(String ID){
+	public boolean DELETE_MEAL_MENU(String ID){
 		boolean success=true;
 		String sqlQuery;
 		
@@ -115,7 +115,7 @@ public class MealMenu {
 	  * Purpose 		: To retrieve EntertainmentMenu record 
 	  * Return 			: DefaultTableModel
 	  *******************************************************/
-	public DefaultTableModel retrieveMealMenuByID(String ID){
+	public DefaultTableModel RETRIEVE_MEAL_MENU_BY_ID(String ID){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM saharp5_adeel_school.Meal_Menu WHERE`mealID`='"+ID+"'";
@@ -141,7 +141,7 @@ public class MealMenu {
 	  * Purpose 		: To retrieve EntertainmentMenu record 
 	  * Return 			: DefaultTableModel
 	  *******************************************************/
-	public DefaultTableModel retrieveMealMenu(String parameter){
+	public DefaultTableModel RETRIEVE_MEAL_MENU(String parameter){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM saharp5_adeel_school.Meal_Menu WHERE ( mealMenuID LIKE '"+parameter+"%'";

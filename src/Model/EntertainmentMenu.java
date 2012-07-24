@@ -63,7 +63,7 @@ public class EntertainmentMenu {
 	 * Return 			: boolean
 	 * Purpose 			: To create a new EntertainmentMenu record
 	 *******************************************************/
-	public boolean createEntertainmentMenu(){
+	public boolean CREATE_ENTERTAINMENT_MENU(){
 		boolean success=false;
 		String sqlQuery;
 		
@@ -88,7 +88,7 @@ public class EntertainmentMenu {
 	  * Return 			: boolean
 	  * Purpose 		: To delete an EntertainmentMenu record
 	  *******************************************************/
-	public boolean deleteEntertainmentMenu(String ID){
+	public boolean DELETE_ENTERTAINMENT_MENU(String ID){
 		boolean success=true;
 		String sqlQuery;
 		
@@ -116,7 +116,7 @@ public class EntertainmentMenu {
 	  * Purpose 		: To retrieve EntertainmentMenu record(s)
 	  * 				  By entertainmentID
 	  *******************************************************/
-	public DefaultTableModel retrieveEntertainmentMenuByID(String ID){
+	public DefaultTableModel RETRIEVE_ENTERTAINMENT_MENU_BY_ID(String ID){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM saharp5_adeel_school.Entertainment_Menu WHERE`entertainmentID`='"+ID+"'";
@@ -144,7 +144,7 @@ public class EntertainmentMenu {
 	  * Purpose 		: To retrieve an EntertainmentMenu record 
 	  * 				  By parameter
 	  *******************************************************/
-	public DefaultTableModel retrieveEntertainmentMenu(String parameter){
+	public DefaultTableModel RETRIEVE_ENTERTAINMENT_MENU(String parameter){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM saharp5_adeel_school.Entertainment_Menu WHERE (";

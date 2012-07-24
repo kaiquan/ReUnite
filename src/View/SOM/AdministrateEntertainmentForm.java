@@ -820,7 +820,7 @@ public class AdministrateEntertainmentForm {
 	 * Input Parameter 	: void 
 	 * Return 			: void
 	 * Purpose 			: To download the form details in
-	 * 					  the local computer in PDF & TXT
+	 * 					  the local computer in PDF & CSV
 	 *******************************************************/
 	public void download() throws MalformedURLException, DocumentException, IOException{
 		//setting the file and path name
@@ -938,28 +938,30 @@ public class AdministrateEntertainmentForm {
 		CSVController controller= new CSVController();
 		ArrayList<String[]> data = new ArrayList<String[]>();
 		String[]entertainmentHeader=new String[6];
-		entertainmentHeader[0]="ID";
-		entertainmentHeader[1]="Title";
-		entertainmentHeader[2]="Description";
-		entertainmentHeader[3]="Availability";
-		entertainmentHeader[4]="Discount";
-		entertainmentHeader[5]="TotalPrice";
+		entertainmentHeader[0]="ENTERTAINMENT_ID";
+		entertainmentHeader[1]="ENTERTAINMENR_TITLE";
+		entertainmentHeader[2]="ENTERTAINMENT_DESCRIPTION";
+		entertainmentHeader[3]="ENTERTAINMENT_AVAILABILITY";
+		entertainmentHeader[4]="ENTERTAINMENT_DISCOUNT";
+		entertainmentHeader[5]="ENTERTAINMENT_PRICE";
+		entertainmentHeader[6]="ENTERTAINMENT_FINALPRICE";
 		
-		String[]entertainmentData=new String[6];
+		String[]entertainmentData=new String[7];
 		entertainmentData[0]=getJTextField_entertaimentID().getText().toString();
 		entertainmentData[1]=getJTextField_entertainmentTitle().getText().toString();
 		entertainmentData[2]=getJTextArea_entertainmentDescription().getText().toString();
 		if(getJCheckBox_entertainmentAvailability().isSelected())
-			entertainmentData[3]="Yes";
+			entertainmentData[3]="YES";
 		else
-			entertainmentData[3]="No";
+			entertainmentData[3]="NO";
 		entertainmentData[4]=getJTextField_entertainmentDiscount().getText().toString();
-		entertainmentData[5]=getJTextField_entertainmentTotalPrice().getText().toString();
+		entertainmentData[5]=getJTextField_entertainmentPrice().getText().toString();
+		entertainmentData[6]=getJTextField_entertainmentTotalPrice().getText().toString();
 		
 		String[]entertainmentMenuHeader= new String[3];
-		entertainmentMenuHeader[0]="Menu Name";
-		entertainmentMenuHeader[1]="Price";
-		entertainmentMenuHeader[2]="Description";
+		entertainmentMenuHeader[0]="ENTERTAINMENT_MENU_NAME";
+		entertainmentMenuHeader[1]="ENTERTAINMENT_MENU_PRICE";
+		entertainmentMenuHeader[2]="ENTERTAINMENT_MENU_DESCRIPTION";
 		
 		data.add(entertainmentHeader);
 		data.add(entertainmentData);

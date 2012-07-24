@@ -82,7 +82,7 @@ public class Event {
 	 * Purpose 			: To create a new event and purchase 
 	 * 					  record
 	 *******************************************************/
-	public boolean InitiateEvent(){
+	public boolean INITIATE_EVENT(){
 		boolean success=false;
 		String sqlQuery;
 
@@ -138,7 +138,7 @@ public class Event {
 	 * Purpose 			: To retrieve the timings by 
 	 * 					  ballroom and date
 	 *******************************************************/
-	public ArrayList<String> retrieveTimings(String ballroomID, String Date){
+	public ArrayList<String> RETRIEVE_TIMINGS(String ballroomID, String Date){
 		ArrayList<String> packagelist= new ArrayList<String>();
 		String sqlQuery;
 		

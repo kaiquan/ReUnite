@@ -81,7 +81,7 @@ public class Meal {
 	 * Return 			: String
 	 * Purpose 			: To create a new Meal record
 	 *******************************************************/
-	public String createMeal(){
+	public String CREATE_MEAL(){
 		String sqlQuery;
 		String MealID=null;
 
@@ -119,7 +119,7 @@ public class Meal {
 	  * Return 			: boolean
 	  * Purpose 		: To delete an Meal record
 	  *******************************************************/
-	public boolean deleteMeal(String ID){
+	public boolean DELETE_MEAL(String ID){
 		boolean success=false;
 		String sqlQuery;
 
@@ -145,7 +145,7 @@ public class Meal {
 	  * Return 			: boolean
 	  * Purpose 		: To update an Meal record
 	  *******************************************************/
-	public boolean updateMeal(String ID){
+	public boolean UPDATE_MEAL(String ID){
 		boolean success=false;
 		String sqlQuery;
 
@@ -173,7 +173,7 @@ public class Meal {
 	  * Purpose 		: To retrieve all meal record where
 	  * 				  is not a purchase record
 	  *******************************************************/
-	public DefaultTableModel retrieveMeal(){
+	public DefaultTableModel RETRIEVE_MEAL(){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM saharp5_adeel_school.Meal WHERE `isRecord`=false";
@@ -201,7 +201,7 @@ public class Meal {
 	  * 				  is not a purchase record & like 
 	  * 				  input parameter
 	  *******************************************************/
-	public DefaultTableModel retrieveMeal(String parameter){
+	public DefaultTableModel RETRIEVE_MEAL(String parameter){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM saharp5_adeel_school.Meal WHERE (mealID LIKE '"+parameter+"%'";
@@ -235,7 +235,7 @@ public class Meal {
 	  * Return 			: Meal
 	  * Purpose 		: To retrieve a Meal record by ID
 	  *******************************************************/
-	public Meal retrieveMealByID(String ID){
+	public Meal RETRIEVE_MEAL_BY_ID(String ID){
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM saharp5_adeel_school.Meal WHERE `mealID`='"+ID+"'";
 		data= new Meal();
@@ -266,7 +266,7 @@ public class Meal {
 	  * Return 			: boolean
 	  * Purpose 		: To update meal record hits
 	  *******************************************************/
-	public boolean updateHits(String ID){
+	public boolean UPDATE_HITS(String ID){
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM saharp5_adeel_school.Meal WHERE `mealID`='"+ID+"'";
 		int hits=0;
@@ -310,7 +310,7 @@ public class Meal {
 	  * Purpose 		: To check if the meal is tied to a 
 	  * 				  package
 	  *******************************************************/
-	public boolean checkRelationship(String ID){
+	public boolean CHECK_RELATIONSHIP(String ID){
 		boolean ties=false;
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM saharp5_adeel_school.Meal_Options WHERE `mealID`='"+ID+"'";

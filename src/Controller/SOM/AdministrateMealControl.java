@@ -69,7 +69,7 @@ public class AdministrateMealControl {
 	 *******************************************************/
 	public String processCreateMeal(){
 		String ID="";
-		ID=this.meal.createMeal();
+		ID=this.meal.CREATE_MEAL();
 		
 		//CHECKS IF CREATTION WAS SUCCESSFULL
 		if(ID.equals(null)){
@@ -90,10 +90,10 @@ public class AdministrateMealControl {
 					if(model.getValueAt(i, 3).equals(false))
 						Vegetarian=false;
 				mealMenu = new MealMenu(ID,model.getValueAt(i, 0).toString(),model.getValueAt(i, 4).toString(),Double.parseDouble((String) model.getValueAt(i, 1)),halal,Vegetarian);
-				success=mealMenu.createMealMenu();
+				success=mealMenu.CREATE_MEAL_MENU();
 			}
 			if(!success){
-				this.meal.deleteMeal(ID);
+				this.meal.DELETE_MEAL(ID);
 				ID=null;
 			}
 		}
@@ -109,13 +109,13 @@ public class AdministrateMealControl {
 	public boolean processDeleteMeal(String ID){
 		boolean success=true;
 		Meal meal= new Meal();
-		if(meal.checkRelationship(ID)){
+		if(meal.CHECK_RELATIONSHIP(ID)){
 			return false;
 		}
 		else{
-			success=meal.deleteMeal(ID);
+			success=meal.DELETE_MEAL(ID);
 			MealMenu mealMenu=new MealMenu();
-			success=mealMenu.deleteMealMenu(ID);
+			success=mealMenu.DELETE_MEAL_MENU(ID);
 		}
 		return success;
 	}
@@ -129,12 +129,12 @@ public class AdministrateMealControl {
 	public boolean processUpdateMeal(String ID){
 		boolean success=true;
 		//UPDATES THE MEAL RECORD
-		success=this.meal.updateMeal(ID);
+		success=this.meal.UPDATE_MEAL(ID);
 		
 		if(success){
 			//DELETES THE MEAL MENU RECORD
 			MealMenu menu=new MealMenu();
-			success=menu.deleteMealMenu(ID);
+			success=menu.DELETE_MEAL_MENU(ID);
 			if(success){
 				//RE-CREATE THE MEAL MENU RECORD
 				success=false;
@@ -151,7 +151,7 @@ public class AdministrateMealControl {
 						if(model.getValueAt(i, 3).equals(false))
 							Vegetarian=false;
 					mealMenu = new MealMenu(ID,model.getValueAt(i, 0).toString(),model.getValueAt(i, 4).toString(),Double.parseDouble((String) model.getValueAt(i, 1)),halal,Vegetarian);
-					success=mealMenu.createMealMenu();
+					success=mealMenu.CREATE_MEAL_MENU();
 					}
 					if(!success){
 						System.out.println("Fails to re-create the meal menu record");
@@ -178,7 +178,7 @@ public class AdministrateMealControl {
 	  *******************************************************/
 	public DefaultTableModel processRetrieveMeal(){
 		Meal meal= new Meal();
-		return meal.retrieveMeal();
+		return meal.RETRIEVE_MEAL();
 	}
 	
 	/********************************************************
@@ -191,7 +191,7 @@ public class AdministrateMealControl {
 	  *******************************************************/
 	public DefaultTableModel processRetrieveMeal(String parameter){
 		Meal meal= new Meal();
-		return meal.retrieveMeal(parameter);
+		return meal.RETRIEVE_MEAL(parameter);
 	}
 	
 	/********************************************************
@@ -202,9 +202,9 @@ public class AdministrateMealControl {
 	  *******************************************************/
 	public Meal procesRetrieveMealByID(String ID){
 		Meal meal= new Meal();
-		this.meal=meal.retrieveMealByID(ID);
+		this.meal=meal.RETRIEVE_MEAL_BY_ID(ID);
 		MealMenu menu= new MealMenu();
-		this.model=menu.retrieveMealMenuByID(ID);
+		this.model=menu.RETRIEVE_MEAL_MENU_BY_ID(ID);
 		return this.meal;
 	}
 	
@@ -216,7 +216,7 @@ public class AdministrateMealControl {
 	  *******************************************************/
 	public DefaultTableModel processRetrieveMealMenu(String parameter){
 		MealMenu menu= new MealMenu();
-		return menu.retrieveMealMenu(parameter);
+		return menu.RETRIEVE_MEAL_MENU(parameter);
 	}
 
 	/********************************************************
@@ -227,7 +227,7 @@ public class AdministrateMealControl {
 	  *******************************************************/
 	public DefaultTableModel processRetrieveMealMenuByID(String ID){
 		MealMenu menu= new MealMenu();
-		return menu.retrieveMealMenuByID(ID);
+		return menu.RETRIEVE_MEAL_MENU_BY_ID(ID);
 	}
 	
 	//BUSINESS LOGICS BELOW

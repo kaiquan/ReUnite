@@ -78,7 +78,7 @@ public class Entertainment {
 	 * Return 			: String
 	 * Purpose 			: To create a new Entertainment record
 	 ********************************************************/
-	public String createEntertainment(){
+	public String CREATE_ENTERTAINMENT(){
 		String sqlQuery;
 		String entertainmentID=null;
 
@@ -115,7 +115,7 @@ public class Entertainment {
 	  * Return 			: boolean
 	  * Purpose 		: To delete an Entertainment record
 	  *******************************************************/
-	public boolean deleteEntertainment(String ID){
+	public boolean DELETE_ENTERTAINMENT(String ID){
 		boolean success=false;
 		String sqlQuery;
 		
@@ -142,7 +142,7 @@ public class Entertainment {
 	  * Return 			: boolean
 	  * Purpose 		: To update an Entertainment record
 	  *******************************************************/
-	public boolean updateEntertainment(String ID){
+	public boolean UPDATE_ENTERTAINMENT(String ID){
 		boolean success=false;
 		String sqlQuery;
 		
@@ -170,7 +170,7 @@ public class Entertainment {
 	  * Purpose 		: To retrieve all Entertainment record
 	  * 				  where is not a purchase Record
 	  *******************************************************/
-	public DefaultTableModel retrieveEntertainment(){
+	public DefaultTableModel RETRIEVE_ENTERTAINMENT(){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
 		
@@ -201,7 +201,7 @@ public class Entertainment {
 	  * 				  where is not a purchase Record & by
 	  * 				  input parameter
 	  *******************************************************/
-	public DefaultTableModel retrieveEntertainment(String parameter){
+	public DefaultTableModel RETRIEVE_ENTERTAINMENT(String parameter){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM saharp5_adeel_school.Entertainment WHERE (entertainmentID LIKE '"+parameter+"%'";
@@ -236,7 +236,7 @@ public class Entertainment {
 	  * Purpose 		: To retrieve a Entertainment record 
 	  * 				  By entertainmentID
 	  *******************************************************/
-	public Entertainment retrieveEntertainmentByID(String ID){
+	public Entertainment RETRIEVE_ENTERTAINMENT_BY_ID(String ID){
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM saharp5_adeel_school.Entertainment WHERE `entertainmentID`='"+ID+"'";
 		data= new Entertainment();
@@ -268,7 +268,7 @@ public class Entertainment {
 	  * Return 			: boolean
 	  * Purpose 		: To update Entertainment record hits
 	  *******************************************************/
-	public boolean updateHits(String ID){
+	public boolean UPDATE_HITS(String ID){
 		//RETRIEVE THE RECORD TO UPDATE
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM saharp5_adeel_school.Entertainment WHERE `entertainmentID`='"+ID+"'";
@@ -312,7 +312,7 @@ public class Entertainment {
 	  * Purpose 		: To check if the entertainment is 
 	  * 				  tied to a package
 	  *******************************************************/
-	public boolean checkRelationship(String ID){
+	public boolean CHECK_RELATIONSHIP(String ID){
 		boolean ties=false;
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM saharp5_adeel_school.Package WHERE `entertainmentID`='"+ID+"'";

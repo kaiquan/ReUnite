@@ -1,11 +1,4 @@
-/*
- * SortedListModel.java
- *
- * Copyright 2006 Sun Microsystems, Inc. ALL RIGHTS RESERVED Use of 
- * this software is authorized pursuant to the terms of the license 
- * found at http://developers.sun.com/berkeley_license.html .
- *
- */
+
 package View.RIM.Components;
 
 import java.text.Collator;
@@ -28,7 +21,6 @@ import java.text.Collator;
  * already have. Place the SortedListModel into a JList, for example, to provide
  * a sorted view of your underlying model.
  *
- * @author John O'Conner
  */
 public class SortedListModel extends AbstractListModel {
     

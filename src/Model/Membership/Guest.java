@@ -18,6 +18,7 @@ public class Guest extends Account
 	{
 		super.setFirstName(name);
 		setOnlineStatus(onlineStatus);
+		setLastName("Ateeque");
 		setProfilePicture(profilePicture);
 	}
 
@@ -47,7 +48,6 @@ public class Guest extends Account
 	public String toString()
 	{
 		return getFirstName() +" "+ getLastName() +" "+ getEmail() +" "+ getTelephoneNo() +" "+ getHandphoneNo();
-//		return (super.getFirstName() + " (" + getOnlineStatus() + ").");
 	}
 
 }

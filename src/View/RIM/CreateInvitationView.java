@@ -3,6 +3,8 @@ package View.RIM;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import View.RIM.Components.NavigationFooter;
 import View.RIM.Components.Chat.GuestCollection;
@@ -22,15 +24,13 @@ import java.util.ArrayList;
 @SuppressWarnings("serial")
 public class CreateInvitationView extends JFrame
 {
-	String invitationType;
 
 	// The panel that holds the cards
 	private JPanel mainPanel;
 
-	public CreateInvitationView(String invitationType)
+	public CreateInvitationView()
 	{
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ImageHelper.class.getResource("emailIcon.png")));
-		this.invitationType = invitationType;
 		initialize();
 	}
 
@@ -40,7 +40,6 @@ public class CreateInvitationView extends JFrame
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(new Dimension(750, 600));
 		setContentPane(getContentPane());
-		LookAndFeelController.getWindowsLookAndFeel();
 		setVisible(true);
 	}
 
@@ -87,10 +86,22 @@ public class CreateInvitationView extends JFrame
 		ListModel<Guest> listModel = new GuestListModel(collection);
 		final JList<Guest> list = new JList<Guest>(listModel);
 		list.setCellRenderer(new JListGuestImportRenderer());
+		list.addListSelectionListener(new ListSelectionListener()
+		{
+
+			@Override
+			public void valueChanged(ListSelectionEvent arg0) {
+				System.out.println("wanko");
+				
+			}
+			
+		});
 		list.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(list);
 		contactListPanel.add(scrollPane, "cell 0 0 1 11,grow");
+		
+		
 
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setBackground(Color.ORANGE);
@@ -209,6 +220,7 @@ public class CreateInvitationView extends JFrame
 
 	public static void main(String args[])
 	{
-		new CreateInvitationView("Default");
+		LookAndFeelController.setGlobalLookAndFeel();
+		new CreateInvitationView();
 	}
 }

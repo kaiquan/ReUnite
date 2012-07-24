@@ -6,7 +6,7 @@ import java.util.Random;
 
 import Controller.RIM.LookAndFeelController;
 import Images.RIM.ImageHelper;
-import View.RIM.SelectInvitationTypeView;
+import View.RIM.InvitationWelcomeView;
 
 public class SplashPanel
 {
@@ -20,7 +20,7 @@ public class SplashPanel
 
 	private void initComponents()
 	{
-		new SelectInvitationTypeView();
+		new InvitationWelcomeView();
 	}
 
 	/**

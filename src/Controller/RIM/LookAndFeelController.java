@@ -3,12 +3,13 @@ package Controller.RIM;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+
 public class LookAndFeelController {
 	public static void setGlobalLookAndFeel()
 	{
 		try 
 		{
-            UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
+            UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
             System.out.println("Setting Graphite Look and Feel");
 		}
             catch (UnsupportedLookAndFeelException ex) 

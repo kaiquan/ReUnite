@@ -28,7 +28,7 @@ public class JListGuestImportRenderer extends JPanel implements ListCellRenderer
 
 	@Override
 	public Component getListCellRendererComponent(JList<? extends Guest> list, Guest value, int index, boolean isSelected, boolean hasFocus) {
-		JPanel panel = new JPanel(new MigLayout("", "[][][][][][][][][][][][][][][][][]", "[][][]"));
+		JPanel panel = new JPanel(new MigLayout("", "[][][][][][][][][][][][][][][][][]", "[][][][][][][]"));
 		panel.setBorder(BorderFactory.createEtchedBorder());
 		
 		if(isSelected)
@@ -61,7 +61,7 @@ public class JListGuestImportRenderer extends JPanel implements ListCellRenderer
 		panel.add(lblEmail, "cell 8 0");
 		
 		JLabel lblAddress = new JLabel("Adress");
-		panel.add(lblEmail, "cell 12 0");
+		panel.add(lblAddress, "cell 12 0");
 		
 		ImageButton editButton = new ImageButton(ImageHelper.loadImageIcon("pencilIcon.png", "edit", -1, 24, 5));
 

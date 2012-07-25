@@ -327,8 +327,22 @@ public class CreateRIForm extends JFrame {
 					public void actionPerformed(java.awt.event.ActionEvent e) {
 
 						try {
-							submitRegistration(e);
+							if (userNameTextBox.equals("")
+									|| passwordTextBox.equals("")
+									|| firstNameTextBox.equals("")								
+									|| lastNameTextBox.equals("")
+										|| nricTextBox.equals("")
+								|| schoolTextBox.equals("")
+										|| emailTextBox.equals("")) {
+
+									JOptionPane.showMessageDialog(null,"Please Complete The Form To Proceed");
+									
+									}
+							
 						} catch (Exception e1) {
+							
+							
+							
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}}
@@ -338,20 +352,8 @@ public class CreateRIForm extends JFrame {
 					}
 
 					private void submitRegistration(ActionEvent e)throws Exception {
-
-//						if (userNameTextBox.equals("")
-//								|| passwordTextBox.equals("")
-//								|| firstNameTextBox.equals("")
-//								|| lastNameTextBox.equals("")
-//								|| nricTextBox.equals("")
-//								|| schoolTextBox.equals("")
-//								|| emailTextBox.equals("")) {
-//
-//							JOptionPane.showMessageDialog(null,"Please Complete The Form To Proceed");
 						
-						
-						
-			CreateRIController registerController = new CreateRIController();
+						CreateRIController registerController = new CreateRIController();
 			registerController.createRegistration
 				(userNameTextBox.getText(),
 					passwordTextBox.getText(),
@@ -366,7 +368,7 @@ public class CreateRIForm extends JFrame {
 					handphoneNoTextBox.getText(), //secretQuestion(),
 					secretAnswerTextBox.getText());
 					
-					
+		
 					}
 
 			

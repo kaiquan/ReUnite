@@ -201,7 +201,8 @@ public class RI extends Account {
 	public boolean updateRIAccount(RI account) {
 		boolean success = false;
 		MySQLController db = new MySQLController();
-		String sql = "UPDATE Account SET userName, password, firstName,lastName,dateOfBirth, nric, school, email, address, telephoneNo, handphoneNo, secretQuestion, secretAnswer = '"
+		String sql = "UPDATE Account SET userName, password, firstName,lastName," +
+				"dateOfBirth, nric, school, email, address, telephoneNo, handphoneNo, secretQuestion, secretAnswer = '"
 
 				+ "' "
 				+ getUserName()

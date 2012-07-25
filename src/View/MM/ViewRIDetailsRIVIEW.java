@@ -111,7 +111,7 @@ public class ViewRIDetailsRIVIEW {
 
 		panel.add(submitButton);
 
-		panel.add(getTable());
+//		panel.add(getTable());
 		
 		panel.add(getUpdateAccountButton()) ;
 			

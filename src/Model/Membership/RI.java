@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.sql.Date;
 
-import View.MM.ViewRIDetails;
+
 
 import Controller.MySQLController;
 
@@ -198,22 +198,20 @@ public class RI extends Account {
 	// _____________________________________________________________________Update
 	// RI Account ____________________________________________________________
 
-	public boolean updateRIAccount(RI account) {
+	public boolean updateRIAccount(Account account) {
 		boolean success = false;
 		MySQLController db = new MySQLController();
-		String sql = "UPDATE Account SET userName, password, firstName,lastName," +
-				"dateOfBirth, nric, school, email, address, telephoneNo, handphoneNo, secretQuestion, secretAnswer = '"
+		String sql = "UPDATE Account SET userName, firstName, lastName, nric, school, email, address, telephoneNo, handphoneNo,  secretAnswer = '"
 
 				+ "' "
 				+ getUserName()
-				+ " ''"
-				+ getPassword()
+				
 				+ "','"
 				+ getFirstName()
 				+ "','"
 				+ getLastName()
-				+ "','"
-				+ getDateOfBirth()
+			//	+ "','"
+			//	+ getDateOfBirth()
 				+ "','"
 				+ getNric()
 				+ "', '"
@@ -226,12 +224,12 @@ public class RI extends Account {
 				+ getTelephoneNo()
 				+ "','"
 				+ getHandphoneNo()
-				+ "','"
-				+ getSecretQuestion()
+//				+ "','"
+//				+ getSecretQuestion()
 				+ "','"
 				+ getSecretAnswer()
 				+ "''"
-				+ " WHERE userName = '" + getUserName() + "'";
+				+ " WHERE userName ='shahrikinalias@gmail.com'";
 		if (db.updateRequest(sql) == 1)
 			success = true;
 		db.terminate();
@@ -242,18 +240,14 @@ public class RI extends Account {
 
 		RI riModel = new RI();
 		
-		riModel.setFirstName("shahrik");
+	riModel.setFirstName("shahrik");
+	riModel.setLastName("alias");
+	riModel.setUserName("kino");
 
-		 riModel.createRIAccount(riModel);
+	 riModel.updateRIAccount(riModel);
+		
 
-//		ArrayList<RI> riList = riModel.retrieveUser();
-//
-//		for (int i = 0; i < riList.size(); i++) {
-//			System.out.println(riList.get(i).getFirstName());
-//			System.out.println(riList.get(i).getLastName());
-//		}
-//
-//		riList = riModel.retrieveSingleUser();
+		
 
 	}
 
@@ -263,7 +257,8 @@ public class RI extends Account {
 
 		try {
 	
-			String dbQuery = "Select userName, type, status, firstName, lastName, dateOfBirth, nric, school, email, address, telephoneNo, handphoneNo FROM Account";
+			String dbQuery = "Select userName, type, status, firstName, lastName, dateOfBirth, nric, school, email, address, telephoneNo, handphoneNo FROM Account " +
+					"where userName = 'shahrikinalias@gmail.com'";
 			rs = db.readRequest(dbQuery);
 
 			while (rs.next()) {

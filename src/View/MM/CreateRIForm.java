@@ -26,6 +26,8 @@ public class CreateRIForm extends JFrame {
 	private JFrame jFrame ;  
 	private JPanel panel;
 	private JButton submitRegistrationButton;
+	private JButton cancelButton;
+	
 	private  JComboBox monthCombo;
 	private JComboBox dayCombo;
 	private JComboBox yearCombo;
@@ -51,6 +53,7 @@ public class CreateRIForm extends JFrame {
 	
 	private JTextField userNameTextBox;
 	private JPasswordField passwordTextBox;
+	private JPasswordField cPasswordTextBox;
 	private JTextField firstNameTextBox;
 	private JTextField lastNameTextBox;
 	private JTextField nricTextBox;
@@ -82,28 +85,63 @@ public class CreateRIForm extends JFrame {
 		
 		//Button
 		
+		cancelButton = new JButton();
+		cancelButton.setBounds(new Rectangle(850, 600, 81, 31));
+		cancelButton.setText("Cancel");
+		cancelButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				
+				jFrame.setVisible(false);
+				
+			}
+		});
+		
+		
 		submitRegistrationButton = new JButton();
 		submitRegistrationButton.setBounds(new Rectangle(750, 600, 81, 31));
 		submitRegistrationButton.setText("Submit");
 		submitRegistrationButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 
-				if (userNameTextBox.getText().equals("")
-						|| passwordTextBox.getText().equals("")
-						|| firstNameTextBox.getText().equals("")								
-						|| lastNameTextBox.getText().equals("")
-							|| nricTextBox.getText().equals("")
-					|| schoolTextBox.getText().equals("")
-							|| emailTextBox.getText().equals("")) {
-
-				JOptionPane.showConfirmDialog(null,"Please Fill up all Field",
-							   "Empty Field", JOptionPane.CLOSED_OPTION);
-				
-			//if(){}	
-			
-
+						if (userNameTextBox.getText().equals("")
+								|| passwordTextBox.getText().equals("")
+								|| firstNameTextBox.getText().equals("")
+								|| lastNameTextBox.getText().equals("")
+								|| nricTextBox.getText().equals("")
+								|| schoolTextBox.getText().equals("")
+								|| emailTextBox.getText().equals("")) {
+							System.out.println("Empty field");
+							JOptionPane.showConfirmDialog(null,
+									"Please Fill up all Field", "Empty Field",
+									JOptionPane.CLOSED_OPTION);
+						}
+							String number = "[\\p{Digit}&&[123456789]]+";
+							if (!telephoneNoTextBox.getText().matches(number)) {
+								JOptionPane.showMessageDialog(null,
+										"Only Numerical Digits allowed");
+								System.out.println("Number");
+								
+								if(!(passwordTextBox.getText().equals(cPasswordTextBox.getText()))){
+									
+									JOptionPane.showMessageDialog(null,
+									"Password Does not Match!");
+							System.out.println("password");
+									
+								}
+							}
+//							String string = nricTextBox.getText();
+//							String substringNirc = string.substring(0, 1);
+//							String substringNirc1 = string.substring(8, 9);
+//
+//							if (!(substringNirc.matches(number)
+//									&& substringNirc1.matches(number))) {
+//								JOptionPane.showMessageDialog(null,
+//							
+//								"Invalid IC Number");
+//								System.out.println("bwrb");
+//							}
 					
-			}
+			
 			}});
 		
 		//combo box
@@ -201,6 +239,9 @@ public class CreateRIForm extends JFrame {
 		passwordTextBox = new JPasswordField();
 		passwordTextBox.setBounds(new Rectangle(550, 200, 140, 20));
 		
+		cPasswordTextBox = new JPasswordField();
+		cPasswordTextBox.setBounds(new Rectangle(650, 200, 140, 20));
+		
 		nricTextBox = new JTextField();
 		nricTextBox.setBounds(new Rectangle(200, 300, 140, 20));
 		
@@ -228,6 +269,7 @@ public class CreateRIForm extends JFrame {
 		//button
 		panel.add(submitRegistrationButton);
 		//panel.add(getSubmitRegistrationButton());
+		panel.add(cancelButton);
 		
 		
 		//comboBox
@@ -266,6 +308,7 @@ public class CreateRIForm extends JFrame {
 		panel.add(secretAnswerTextBox);
 		panel.add(telephoneNoTextBox);
 		panel.add(handphoneNoTextBox);
+		panel.add(cPasswordTextBox);
 		
 		
 		

@@ -180,7 +180,7 @@ public class ViewRIDetailsRIVIEW {
 				// Type your database query or controller here
 			}
 		});
-		RI riModel1 = new RI();
+		
 		table = new JTable();
 	
 		table.setBackground(Color.white);

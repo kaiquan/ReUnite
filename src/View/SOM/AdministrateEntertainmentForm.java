@@ -939,11 +939,11 @@ public class AdministrateEntertainmentForm {
 		ArrayList<String[]> data = new ArrayList<String[]>();
 		String[]entertainmentHeader=new String[6];
 		entertainmentHeader[0]="ENTERTAINMENT_ID";
-		entertainmentHeader[1]="ENTERTAINMENR_TITLE";
+		entertainmentHeader[1]="ENTERTAINMENT_TITLE";
 		entertainmentHeader[2]="ENTERTAINMENT_DESCRIPTION";
 		entertainmentHeader[3]="ENTERTAINMENT_AVAILABILITY";
 		entertainmentHeader[4]="ENTERTAINMENT_DISCOUNT";
-		entertainmentHeader[5]="ENTERTAINMENT_FINALPRICE";
+		entertainmentHeader[5]="ENTERTAINMENT_FINAL_PRICE";
 		
 		String[]entertainmentData=new String[7];
 		entertainmentData[0]=getJTextField_entertaimentID().getText().toString();

@@ -256,6 +256,7 @@ public class Entertainment {
 		}
 		catch (Exception e) {
 			System.out.println("Failed to retrieve data");
+			return null;
 		}
 		finally{
 		}

@@ -201,7 +201,7 @@ public class AdministrateSystemOptionManagement {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					fc.showOpenDialog(fc);
 					String path=fc.getSelectedFile().toString();
-					try {loadCSV(path);}
+					try {System.out.println(loadCSV(path));}
 					catch (IOException e1) {}
 				}
 			});
@@ -1432,63 +1432,70 @@ public class AdministrateSystemOptionManagement {
 		if(data.get(0)[0].equals("ENTERTAINMENT_ID")){
 			//check for the correct header format
 			if(!(data.get(0)[0].equals("ENTERTAINMENT_ID")))return 0;
-			if((!data.get(0)[1].equals("ENTERTAINMENT_TITLE"))) return 0;
-			if((!data.get(0)[2].equals("ENTERTAINMENT_DESCRIPTION"))) return 0;
-			if((!data.get(0)[3].equals("ENTERTAINMENT_AVAILABILITY"))) return 0;
-			if((!data.get(0)[4].equals("ENTERTAINMENT_DISCOUNT"))) return 0;
-			if((!data.get(0)[5].equals("ENTERTAINMENT_PRICE"))) return 0;
-			if((!data.get(0)[6].equals("ENTERTAINMENT_FINALPRICE"))) return 0;
-			if((!data.get(2)[0].equals("ENTERTAINMENT_MENU_NAME"))) return 0;
-			if((!data.get(2)[1].equals("ENTERTAINMENT_MENU_PRICE"))) return 0;
-			if((!data.get(2)[2].equals("ENTERTAINMENT_MENU_DESCRIPTION"))) return 0;
+			if(!(data.get(0)[1].equals("ENTERTAINMENT_TITLE"))) return 0;
+			if(!(data.get(0)[2].equals("ENTERTAINMENT_DESCRIPTION"))) return 0;
+			if(!(data.get(0)[3].equals("ENTERTAINMENT_AVAILABILITY"))) return 0;
+			if(!(data.get(0)[4].equals("ENTERTAINMENT_DISCOUNT"))) return 0;
+			if(!(data.get(0)[5].equals("ENTERTAINMENT_FINAL_PRICE"))) return 0;
+			if(!(data.get(2)[0].equals("ENTERTAINMENT_MENU_NAME"))) return 0;
+			if(!(data.get(2)[1].equals("ENTERTAINMENT_MENU_PRICE"))) return 0;
+			if(!(data.get(2)[2].equals("ENTERTAINMENT_MENU_DESCRIPTION"))) return 0;
 			else{
 				//load the data
 				//call the entertainment form
 				AdministrateEntertainmentForm form= new AdministrateEntertainmentForm();
 				//check the data base for this id
 				AdministrateEntertainmentControl control= new AdministrateEntertainmentControl();
-				if(control.processRetrieveEntertainmentByID(data.get(1)[0]).getData()==null){
+				control.processRetrieveEntertainmentByID(data.get(1)[0]);
+				System.out.println(control.getEntertainment().getEntertainmentDescription());
+				if(!control.getEntertainment().getEntertainmentID().equals(data.get(1)[0])||control.getEntertainment().getEntertainmentID().equals(null)){
 					System.out.println("entertainment record does not exists in database yet");
 					//prompt user this entertainment does not exist in the database anyore
 					tabTitle="New Entertainment Form";
+					//System.out.println(control.processRetrieveEntertainmentByID(data.get(1)[0]).getData());
 				}
 				else{
+					
 					form.getJTextField_entertaimentID().setText(data.get(1)[0]);
 					//set the button
 					form.getJButton_createEntertainment().setEnabled(false);
 					form.getJButton_delete().setEnabled(true);
 					form.getJButton_download().setEnabled(true);
 					form.getJButton_Update().setEnabled(true);
-					tabTitle="Entertainment";
+					tabTitle="Entertainment "+data.get(1)[0];
 				}
 				//set the form fields accordingly
 				form.getJTextField_entertainmentTitle().setText(data.get(1)[1]);
+				form.getJTextField_entertainmentTitle().setForeground(SystemColor.black);
 				form.getJTextArea_entertainmentDescription().setText(data.get(1)[2]);
+				form.getJTextArea_entertainmentDescription().setForeground(SystemColor.black);
 				if(data.get(1)[3].equals("YES"))
 					form.getJCheckBox_entertainmentAvailability().setSelected(true);
 				if(data.get(1)[3].equals("NO"))
 						form.getJCheckBox_entertainmentAvailability().setSelected(false);
 				form.getJSlider_entertainmentDiscount().setValue(Integer.parseInt(data.get(1)[4]));
 				form.getJTextField_entertainmentTotalPrice().setText(data.get(1)[5]);
-				/
+				
 				//set the entertainment menu
 				DefaultTableModel model= new DefaultTableModel();
-				model.setColumnIdentifiers(new String[]{"dsa","dsad"});
+				model.setColumnIdentifiers(new String[]{"Entertainment Name","Price/hr","Description"});
 				for(int i=3;i<data.size();i++){
-					String[] temp= new String[4];
-					model.addColumn(data.get(i)[0]);
-					
+					model.addRow(data.get(i));
 				}
-			
-				
+				form.getJTable_entertainmentMenu().setModel(model);
+				form.model=model;
+				form.getJTable_entertainmentMenu().getColumnModel().getColumn(0).setPreferredWidth(565);
+				form.getJTable_entertainmentMenu().getColumnModel().getColumn(1).setPreferredWidth(135);
+				form.getJTable_entertainmentMenu().getColumnModel().getColumn(2).setPreferredWidth(698);
+				form.displaySummary();
 				//add the tab 
 				if(jTabbedPane.getTabCount()==0){
-					jTabbedPane.insertTab(tabTitle+" "+data.get(1)[0],null , form.getJScrollPane(),null , 0); 
+					jTabbedPane.insertTab(tabTitle,null , form.getJScrollPane(),null , 0); 
 					createTabHeader(0);	
 					jTabbedPane.setSelectedIndex(0);
 				}
 				else{
-					jTabbedPane.insertTab(tabTitle+" "+data.get(1)[0],null , form.getJScrollPane(),null , jTabbedPane.getSelectedIndex());
+					jTabbedPane.insertTab(tabTitle,null , form.getJScrollPane(),null , jTabbedPane.getSelectedIndex());
 					createTabHeader(jTabbedPane.getSelectedIndex()-1);	
 					if(!(jTabbedPane.getSelectedIndex()==jTabbedPane.getTabCount())){
 						jTabbedPane.setSelectedIndex(jTabbedPane.getSelectedIndex()+1);

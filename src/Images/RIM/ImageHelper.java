@@ -53,4 +53,20 @@ public class ImageHelper {
             return (new ImageIcon(imageURL, description)).getImage();
         }
     }
+    
+    public static ImageIcon getScaledImageIcon(ImageIcon imageIcon, int width, int height, int scale)
+    {
+    	ImageIcon image = null;
+		try
+		{      
+	        if (imageIcon != null) {
+	            Image img = imageIcon.getImage().getScaledInstance(width, height, scale);
+	            if (img != null)
+	                image = new ImageIcon(img);
+	        }
+		}
+        catch (Throwable ex)
+        { System.out.println("Could not scale ImageIcon");}
+        return image;
+    }
 }

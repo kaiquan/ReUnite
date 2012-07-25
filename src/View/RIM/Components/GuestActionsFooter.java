@@ -17,7 +17,7 @@ public class GuestActionsFooter extends JPanel
 	{	super();
 		setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		setBackground(new Color(255, 204, 51));
-		setLayout(new MigLayout("", "[3.00,grow][225.00][103.00][-54.00][105.00]", "[64px]"));
+		setLayout(new MigLayout("", "[3.00][86.00,grow][103.00][-34.00][105.00]", "[64px]"));
 		
 		
 		JLabel label = new JLabel("");
@@ -29,6 +29,11 @@ public class GuestActionsFooter extends JPanel
 		});
 		label.setIcon(new ImageIcon(ImageHelper.loadImage("profileIcon.png", "Testing").getScaledInstance(-1, 75, 5)));
 		add(label, "flowy,cell 0 0,alignx left,aligny center");
+		
+		JLabel lblSettings = new JLabel("Your profile");
+		lblSettings.setHorizontalAlignment(SwingConstants.LEFT);
+		lblSettings.setFont(new Font("Segoe UI", Font.BOLD, 18));
+		add(lblSettings, "cell 1 0,alignx left,aligny center");
 		
 		JLabel label_2 = new JLabel("");
 		label_2.setIcon(new ImageIcon(ImageHelper.loadImage("invitationIcon.png", "Testing").getScaledInstance(-1, 75, 5)));

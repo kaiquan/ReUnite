@@ -1418,19 +1418,17 @@ public class AdministrateSystemOptionManagement {
 		//1 means all good close the thread
 		CSVController reader= new CSVController();
 		ArrayList<String[]> data= reader.readFile(path);
-		//check the file if its a correct kind of file
+		//CHECK IF THE FILE IS EMPTY
 		for(int i=0; i<data.size();i++){
 			for(int x=0;x<data.get(i).length;x++){
 				if(data.get(i)[x]==null)
 					return -1;
-				//means this file is empty
 			}
 		}
 		
-		//check the file type and allocate accordingly
-
+		//CHECK THE DATA TYPE IS WAT (PACKAGE, BALLROOM, FACILITY, MEAL, OR ENTERTAINMENT)
 		if(data.get(0)[0].equals("ENTERTAINMENT_ID")){
-			//check for the correct header format
+			//CHECK FOR THE CORRECT HEADER FORMAT
 			if(!(data.get(0)[0].equals("ENTERTAINMENT_ID")))return 0;
 			if(!(data.get(0)[1].equals("ENTERTAINMENT_TITLE"))) return 0;
 			if(!(data.get(0)[2].equals("ENTERTAINMENT_DESCRIPTION"))) return 0;
@@ -1441,10 +1439,10 @@ public class AdministrateSystemOptionManagement {
 			if(!(data.get(2)[1].equals("ENTERTAINMENT_MENU_PRICE"))) return 0;
 			if(!(data.get(2)[2].equals("ENTERTAINMENT_MENU_DESCRIPTION"))) return 0;
 			else{
-				//load the data
-				//call the entertainment form
+				//LOADS THE DATA
+				//CALLS THE ENTERTAINMENT FORM
 				AdministrateEntertainmentForm form= new AdministrateEntertainmentForm();
-				//check the data base for this id
+				//CHECKS THE DATABASE FOR AN ID PROJECTED ON THE CSV FILE
 				AdministrateEntertainmentControl control= new AdministrateEntertainmentControl();
 				control.processRetrieveEntertainmentByID(data.get(1)[0]);
 				System.out.println(control.getEntertainment().getEntertainmentDescription());
@@ -1455,16 +1453,15 @@ public class AdministrateSystemOptionManagement {
 					//System.out.println(control.processRetrieveEntertainmentByID(data.get(1)[0]).getData());
 				}
 				else{
-					
+					//SET THE FORM CONTROLLS AS ACCODINGLY
 					form.getJTextField_entertaimentID().setText(data.get(1)[0]);
-					//set the button
 					form.getJButton_createEntertainment().setEnabled(false);
 					form.getJButton_delete().setEnabled(true);
 					form.getJButton_download().setEnabled(true);
 					form.getJButton_Update().setEnabled(true);
 					tabTitle="Entertainment "+data.get(1)[0];
 				}
-				//set the form fields accordingly
+				//SETTING THE FORM FIELDS ACCORDINGLY
 				form.getJTextField_entertainmentTitle().setText(data.get(1)[1]);
 				form.getJTextField_entertainmentTitle().setForeground(SystemColor.black);
 				form.getJTextArea_entertainmentDescription().setText(data.get(1)[2]);
@@ -1476,7 +1473,7 @@ public class AdministrateSystemOptionManagement {
 				form.getJSlider_entertainmentDiscount().setValue(Integer.parseInt(data.get(1)[4]));
 				form.getJTextField_entertainmentTotalPrice().setText(data.get(1)[5]);
 				
-				//set the entertainment menu
+				//SETTING THE JTABLE IN THE FORM (ENTERTAINMENT MENU TABLE)
 				DefaultTableModel model= new DefaultTableModel();
 				model.setColumnIdentifiers(new String[]{"Entertainment Name","Price/hr","Description"});
 				for(int i=3;i<data.size();i++){
@@ -1488,7 +1485,8 @@ public class AdministrateSystemOptionManagement {
 				form.getJTable_entertainmentMenu().getColumnModel().getColumn(1).setPreferredWidth(135);
 				form.getJTable_entertainmentMenu().getColumnModel().getColumn(2).setPreferredWidth(698);
 				form.displaySummary();
-				//add the tab 
+				
+				//ADDING THE FORM INTO THE TAB
 				if(jTabbedPane.getTabCount()==0){
 					jTabbedPane.insertTab(tabTitle,null , form.getJScrollPane(),null , 0); 
 					createTabHeader(0);	
@@ -1504,7 +1502,67 @@ public class AdministrateSystemOptionManagement {
 			}
 			result=1;
 		}
+		
+		
+		
 		else if(data.get(0)[0].equals("FACILITY_ID")){
+			tabTitle="";
+			//CHECK FOR THE CORRECT HEADER FORMAT
+			if(data.get(0)[0].equals("FACILITY_ID"))return 0;
+			if(data.get(0)[1].equals("FACILITY_NAME"))return 0;
+			if(data.get(0)[2].equals("FACILITY_CONTACT"))return 0;
+			if(data.get(0)[3].equals("FACILITY_ADDRESS"))return 0;
+			if(data.get(0)[4].equals("FACILITY_DESCRIPTION"))return 0;
+			if(data.get(0)[5].equals("FACILITY_PARKING"))return 0;
+			if(data.get(0)[6].equals("FACILITY_WEEKEND_SURCHARGE"))return 0;
+			if(data.get(2)[0].equals("BALLROOM_NAME"))return 0;
+			if(data.get(2)[1].equals("BALLROOM_PRICE"))return 0;
+			if(data.get(2)[2].equals("BALLROOM_SIZE"))return 0;
+			if(data.get(2)[3].equals("BALLROOM_DESCRIPTION"))return 0;
+			
+			else{
+				//LOADS THE DATA
+				//CHECKS THE DATABASE FOR AN ID PROJECTED ON THE CSV FILE
+				AdministrateFacilityControl control= new AdministrateFacilityControl();
+				control.processRetrieveFacilityByID(data.get(1)[0]);
+				AdministrateFacilityForm form= new AdministrateFacilityForm();
+				if(control.getFacility()==null){
+					System.out.println("entertainment record does not exists in database yet");
+					//prompt user this entertainment does not exist in the database anyore
+					tabTitle="New Facility Form";
+					//System.out.println(control.processRetrieveEntertainmentByID(data.get(1)[0]).getData());
+				}
+				else{
+					//SETS THE FORM CONTROLL ACCORDINGLY
+					form.getJTextField_facilityID().setText(data.get(1)[0]);
+					form.getJButton_upload().setEnabled(false);
+					form.getJButton_delete().setEnabled(true);
+					form.getJButton_download().setEnabled(true);
+					form.getJButton_update().setEnabled(true);
+					tabTitle="Facility "+data.get(1)[0];
+				}
+				//SETTING THE FORM FIELDS ACCORDLIGLY 
+				form.getJTextField_facilityName().setText(data.get(1)[1]);
+				form.getJTextField_facilityAddress();
+				form.getJTextField_facilityContact();
+				form.getJTextArea_facilityDescription();
+				
+				//ADDING THE FORM INTO THE TAB
+				if(jTabbedPane.getTabCount()==0){
+					jTabbedPane.insertTab(tabTitle,null , form.getJScrollPane(),null , 0); 
+					createTabHeader(0);	
+					jTabbedPane.setSelectedIndex(0);
+				}
+				else{
+					jTabbedPane.insertTab(tabTitle,null , form.getJScrollPane(),null , jTabbedPane.getSelectedIndex());
+					createTabHeader(jTabbedPane.getSelectedIndex()-1);	
+					if(!(jTabbedPane.getSelectedIndex()==jTabbedPane.getTabCount())){
+						jTabbedPane.setSelectedIndex(jTabbedPane.getSelectedIndex()+1);
+						}
+					}
+			}
+			result=1;
+				
 			
 		}
 		else if(data.get(0)[0].equals("BALLROOM_ID")){

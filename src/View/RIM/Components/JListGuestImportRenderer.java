@@ -60,7 +60,7 @@ public class JListGuestImportRenderer extends JPanel implements ListCellRenderer
 		JLabel lblEmail = new JLabel("Email");
 		panel.add(lblEmail, "cell 8 0");
 		
-		JLabel lblAddress = new JLabel("Adress");
+		JLabel lblAddress = new JLabel("Address");
 		panel.add(lblAddress, "cell 12 0");
 		
 		ImageButton editButton = new ImageButton(ImageHelper.loadImageIcon("pencilIcon.png", "edit", -1, 24, 5));

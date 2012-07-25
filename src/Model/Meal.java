@@ -1,12 +1,12 @@
 /********************************************************************************************************************************************************
 Program Name			:	Meal.java
 Description				:	A Meal Model class that is the Model for Meal record(s)
-Done by					:	Lee Kai Quan
-Admin No				:	114173S
+Done by					:	Lee Kai Quan,A Ameenudeen
+Admin No				:	114173S,111942S
 Module Group			:	IT2297-08
 Last Edited				:	6-30-2012
 =========================================================================================================================================================
-USERS USING THIS CLASS	:	Lee Kai Quan (114173S)
+USERS USING THIS CLASS	:	Lee Kai Quan (114173S),A Ameenudeen(111942S)
 METHODS LIST			:	Meal()
 						:	Meal(String, String, String, String, double, double, double, boolean, int, boolean)
 						:	createMeal() : String
@@ -17,6 +17,7 @@ METHODS LIST			:	Meal()
 						:	retrieveMealByID(String) : Meal
 						:	updateHits(String) : Boolean
 						:	checkRelationship(String) : Boolean
+						:	GET_MEAL_PRICE(String) : ArrayList<String>
 						:	Accessor Methods...
 ********************************************************************************************************************************************************/
 package Model;
@@ -339,10 +340,14 @@ public class Meal {
 	
 	
 	
-	
-	
-	//ameen method
-public ArrayList<String> getMealPrice(String eventName){
+	/********************************************************
+	  * Method Name 	: GET_MEAL_PRICE
+	  * Input Parameter : String
+	  * Return 			: ArrayList<String>
+	  * Purpose 		: TO GET THE MEAL PRICE
+	  *******************************************************/
+
+public ArrayList<String> GET_MEAL_PRICE(String eventName){
 		
 		ArrayList<String> e1 = new ArrayList<String>();
 		ResultSet rs = null;
@@ -374,6 +379,39 @@ public ArrayList<String> getMealPrice(String eventName){
 			
 			return e1;
 	}
+
+public ArrayList<String> getNumberOfGuests(String eventName){
+	
+	ArrayList<String> e1 = new ArrayList<String>();
+	ResultSet rs = null;
+	
+	String dbQuery;
+	
+	
+	dbQuery = "SELECT COUNT(*) FROM Invitation i INNER JOIN Event e On e.eventID=i.eventID INNER JOIN Guest g On i.invitationID=g.invitationID WHERE e.eventName="+"'"+eventName+"'" +"AND g.response='Attending'";
+	try{
+		
+		rs=DB.readRequest(dbQuery);
+		while(rs.next()){
+			
+		e1.add(rs.getString("Count(*)"));
+		
+		for(int i=0;i<e1.size();i++){
+			System.out.println(e1.get(i));
+		}
+		
+		
+		}
+		
+		
+	}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		
+		return e1;
+}
 	
 	
 	

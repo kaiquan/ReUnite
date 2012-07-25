@@ -1,16 +1,20 @@
 /********************************************************************************************************************************************************
 Program Name			:	Package.java
 Description				:	A Package Model class that is the Model for Package record(s)
-Done by					:	Lee Kai Quan
-Admin No				:	114173S
+Done by					:	Lee Kai Quan,A Ameenudeen
+Admin No				:	114173S,111942S
 Module Group			:	IT2297-08
 Last Edited				:	6-8-2012
 =========================================================================================================================================================
-USERS USING THIS CLASS	:	Lee Kai Quan (114173S)
+USERS USING THIS CLASS	:	Lee Kai Quan (114173S),A Ameenudeen(111942S)
 METHODS LIST			:	Event()
 						: 	Event(String, String, String, String, String, String)
 						:	InitiateEvent() : Boolean
 						:	retrieveTimings(String, String) : ArrayList<String>
+						:	RETRIEVE_EVENT_RECORDS (): ArrayList<String>	
+						:	GET_EVENT_RECORDS_DUE_FOR_PAYMENT ():ArrayList<String>
+						:	GET_EVENT_DETAILS(String) : ArrayList<String>
+						:	UPDATE_EVENT_STATUS(String,String) : Boolean
 						:	Accessor Methods...
 ********************************************************************************************************************************************************/
 package Model;
@@ -457,8 +461,14 @@ public class Event {
 		}
 		return event;
 	}
-	//ameen method
-public ArrayList<Event> retrieveEventRecords(){
+	
+	/********************************************************
+	 * Method Name 		: RETRIEVE_EVENT_RECORDS
+	 * Input Parameter 	: void
+	 * Return 			: ArrayList<String>
+	 * Purpose 			: TO RETRIEVE EVENT RECORDS
+	 *******************************************************/
+public ArrayList<Event> RETRIEVE_EVENT_RECORDS(){
 		
 		MyCalendar m1 = new MyCalendar();
 		ArrayList<Event> e1 = new ArrayList<Event>();
@@ -487,7 +497,14 @@ public ArrayList<Event> retrieveEventRecords(){
 			return e1;
 	}
 
-public ArrayList<Event> getEventRecordsDueForPayment(){
+/********************************************************
+ * Method Name 		: GET_EVENT_RECORS_DUE_FOR_PAYMENT
+ * Input Parameter 	: void
+ * Return 			: ArrayList<String>
+ * Purpose 			: TO GET EVENT RECORDS DUE FOR PAYMENT
+ *******************************************************/
+
+public ArrayList<Event> GET_EVENT_RECORDS_DUE_FOR_PAYMENT(){
 	
 	ArrayList<Event> e1 = new ArrayList<Event>();
 	ResultSet rs = null;
@@ -515,7 +532,14 @@ public ArrayList<Event> getEventRecordsDueForPayment(){
 		return e1;
 }
 
-public ArrayList<String> getEventDetails(String eventName){
+/********************************************************
+ * Method Name 		: GET_EVENT_DETAILS
+ * Input Parameter 	: STRING
+ * Return 			: ArrayList<String>
+ * Purpose 			: TO GET EVENT DETAILS BASED ON EVENT RECORD
+ *******************************************************/
+
+public ArrayList<String> GET_EVENT_DETAILS(String eventName){
 
 	ArrayList<String> e1 = new ArrayList<String>();
 	ResultSet rs = null;
@@ -547,8 +571,16 @@ public ArrayList<String> getEventDetails(String eventName){
 			
 			return e1;
 	}
+
+/********************************************************
+ * Method Name 		: UPDATE_EVENT_STATUS
+ * Input Parameter 	: String eventName,String eventStatus
+ * Return 			: BOOLEAN
+ * Purpose 			: TO UPDATE THE EVENT STATUS BASED
+ * 					  ON THE EVENT RECORD
+ *******************************************************/
 		
-		public boolean updateEventStatus(String eventName,String eventStatus){
+		public boolean UPDATE_EVENT_STATUS(String eventName,String eventStatus){
 			
 			boolean status=false;
 			String dbQuery;

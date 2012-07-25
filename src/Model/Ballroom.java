@@ -1,12 +1,12 @@
 /********************************************************************************************************************************************************
 Program Name			:	Ballroom.java
 Description				:	A Ballroom Model class that is the Model for Ballroom record(s)
-Done by					:	Lee Kai Quan
+Done by					:	Lee Kai Quan,A AMEENUDEEN (111942S)
 Admin No				:	114173S
 Module Group			:	IT2297-08
 Last Edited				:	6-13-2012
 =========================================================================================================================================================
-USERS USING THIS CLASS 	: 	Lee Kai Quan (114173S)
+USERS USING THIS CLASS 	: 	Lee Kai Quan (114173S),A Ameenudeen (111942S)
 METHODS LIST 			: 	Ballroom();
 						: 	Ballroom(String, String, String, String, double, double, double, int, boolean);
 						: 	createBallroom() : String
@@ -19,6 +19,7 @@ METHODS LIST 			: 	Ballroom();
 						: 	retrieveBallroomModel(String ID) : DefaultTableModel
 						: 	retrieveBallroomByFacility(String) : DefaultTableModel
 						: 	checkRelationship(String) : Boolean
+						:	GET_BALLROOM_DETAILS(String):	ArrayList<String>
 						: 	Accessor Methods()...
 ********************************************************************************************************************************************************/
 package Model;
@@ -367,8 +368,15 @@ public class Ballroom {
 		return ties;
 	}
 	
-	//ameen method
-	public ArrayList<String> getBallroomDetails(String eventName){
+	
+	/********************************************************
+	 * Author			: A Ameenudeen(111942S)
+	 * Method Name		: GET_BALLROOM_DETAILS
+	 * Input Parameter 	: String eventName
+	 * Return 			: ArrayList<String>
+	 * Purpose 			: To get the ballroom details
+	 *******************************************************/
+	public ArrayList<String> GET_BALLROOM_DETAILS(String eventName){
 		
 		
 		ArrayList<String> e1 = new ArrayList<String>();
@@ -383,11 +391,12 @@ public class Ballroom {
 			rs=DB.readRequest(dbQuery);
 			while(rs.next()){
 				e1.add(rs.getString("ballroomName")+","+ rs.getString("ballroomFinalPrice"));
-		}
-		}
-			catch(Exception e){
-				e.printStackTrace();
 			}
+		}
+		
+		catch(Exception e){
+			e.printStackTrace();
+		}
 			
 			for (int i=0; i<e1.size(); i++)
 			{
@@ -395,7 +404,7 @@ public class Ballroom {
 			}
 			
 			return e1;
-	}
+		}
 	
 	
 	/********************************************************

@@ -1,4 +1,17 @@
+/********************************************************************************************************************************************************
+Program Name			:	Purchase_Payment.java
+Description				:	A Purchase_Payment class
+Done by					:	A AMEENUDEEN (111942S)
+Admin No				:	111942S
+Module Group			:	IT2297-08
+Last Edited				:	6-13-2012
+=========================================================================================================================================================
+USERS USING THIS CLASS 	: 	A Ameenudeen (111942S)
+METHODS LIST 			: 	UPDATES_PURCHASE_PAYMENT(String,String,String,String) : boolean
+																		
+********************************************************************************************************************************************************/
 package Model.CGL;
+
 
 import java.sql.ResultSet;
 
@@ -10,7 +23,14 @@ import Controller.MyCalendar;
 public class Purchase_Payment {
 	private static MySQLController DB = new MySQLController();
 	
-	public boolean updatesPurchasePayment(String amount,String paymentMethod,String totalCost,String eventName){
+	/********************************************************
+	  * Method Name 	: UPDATES_PURCHASE_PAYMENT
+	  * Input Parameter : String,String,String,String
+	  * Return 			: boolean
+	  * Purpose 		: To Update the purchase Payment
+	  *******************************************************/
+	
+	public boolean UPDATES_PURCHASE_PAYMENT(String amount,String paymentMethod,String totalCost,String eventName){
 		boolean status=false;
 		ConsolidateGuestListControl c1 = new ConsolidateGuestListControl();
 		MyCalendar m1 = new MyCalendar();

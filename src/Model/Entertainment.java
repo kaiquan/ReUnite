@@ -1,12 +1,12 @@
 /*******************************************************************************************************************************************************
 Program Name			:	Entertainment.java
 Description				:	A Entertainment Model class that is the Model for Entertainment record(s)
-Done by					:	Lee Kai Quan
+Done by					:	Lee Kai Quan,Ameenudeen (111942S)
 Admin No				:	114173S
 Module Group			:	IT2297-08
 Last Edited				:	6-13-2012
 ========================================================================================================================================================
-USERS USING THIS CLASS	:	Lee Kai Quan (114173S)
+USERS USING THIS CLASS	:	Lee Kai Quan (114173S),A Ameenudeen(111942S)
 METHODS LIST			:	Entertainment()
 						: 	Entertainment(String, boolean, String, String, double, double, double, int, boolean)
 						:	createEntertainment() : String
@@ -17,6 +17,7 @@ METHODS LIST			:	Entertainment()
 						: 	retrieveEntertainmentByID(String) : Entertainment
 						: 	updateHits(String) : Boolean
 						: 	checkRelationship(String) : Boolean
+						:	GET_ENTERTAINMENT_PRICE(String) : ArrayList<String>
 						:	Accessor Methods..
 *******************************************************************************************************************************************************/
 package Model;
@@ -333,8 +334,13 @@ public class Entertainment {
 		return ties;
 	}
 
-	//ameen methid
-public ArrayList<String> getEntertainmentPrice(String eventName){
+	/********************************************************
+	  * Method Name 	: GET_ENTERTAINMENT_PRICE
+	  * Input Parameter : String eventName
+	  * Return 			: ArrayList<String>
+	  * Purpose 		: To get the final entertainment price
+	  *******************************************************/
+public ArrayList<String> GET_ENTERTAINMENT_PRICE(String eventName){
 		
 		
 		ArrayList<String> e1 = new ArrayList<String>();

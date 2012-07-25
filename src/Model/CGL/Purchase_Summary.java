@@ -1,4 +1,19 @@
 package Model.CGL;
+/********************************************************************************************************************************************************
+Program Name			:	Purchase_Summary.java
+Description				:	A Purchase_Summary class
+Done by					:	A AMEENUDEEN (111942S)
+Admin No				:	111942S
+Module Group			:	IT2297-08
+Last Edited				:	6-13-2012
+=========================================================================================================================================================
+USERS USING THIS CLASS 	: 	A Ameenudeen (111942S)
+METHODS LIST 			: 	UPDATES_TOTAL_PAYABLE_AMOUNT(String,String) : Boolean
+						:	RETREIVE_PAYMENT_DETAILS(String) : ArrayList<String>
+																		
+********************************************************************************************************************************************************/
+
+
 
 import java.sql.ResultSet;
 
@@ -13,7 +28,15 @@ public class Purchase_Summary {
 	
 	private static MySQLController DB = new MySQLController();
 	
-public boolean updatesTotalPayableAmount(String amount,String eventName){
+	
+	/********************************************************
+	  * Method Name 	: UPDATES_TOTAL_PAYABLE_AMOUNT
+	  * Input Parameter : String,String
+	  * Return 			: booleaN
+	  * Purpose 		: To Update the TOTAL Payable Amount
+	  *******************************************************/
+	
+public boolean UPDATES_TOTAL_PAYABLE_AMOUNT(String amount,String eventName){
 		boolean status=false;
 		ConsolidateGuestListControl c1 = new ConsolidateGuestListControl();
 		
@@ -47,7 +70,15 @@ public boolean updatesTotalPayableAmount(String amount,String eventName){
 			
 	}
 
-public ArrayList<String> retrievePaymentDetails(String eventName){
+
+/********************************************************
+  * Method Name 	: RETREIVE_PAYMENT_DETAILS
+  * Input Parameter : String
+  * Return 			: ArrayList<String>
+  * Purpose 		: To RETRIEVE THE PAYMENT DETAILS
+  *******************************************************/
+
+public ArrayList<String> RETRIEVE_PAYMENT_DETAILS(String eventName){
 	
 	
 	ArrayList<String> e1 = new ArrayList<String>();

@@ -15,21 +15,21 @@ public class ConsolidateGuestListControl {
 public ArrayList<Event> processExpiredInvitation(){
 				
 		Event e1 = new Event();
-		return e1.retrieveEventRecords();
+		return e1.RETRIEVE_EVENT_RECORDS();
 	}
 	
 public ArrayList<String> requestSelectedEventDetails(String eventName){
 	Ballroom b1 = new Ballroom();
 	ArrayList<String> ballroom= new ArrayList<String>();
-	ballroom=b1.getBallroomDetails(eventName);
+	ballroom=b1.GET_BALLROOM_DETAILS(eventName);
 	
 	ArrayList<String> entertainment = new ArrayList<String>();
 	Entertainment e1 = new Entertainment();
-	entertainment=e1.getEntertainmentPrice(eventName);
+	entertainment=e1.GET_ENTERTAINMENT_PRICE(eventName);
 	
 	ArrayList<String> event = new ArrayList<String>();
 	Event ev1 = new Event();
-	event=ev1.getEventDetails(eventName);
+	event=ev1.GET_EVENT_DETAILS(eventName);
 	
 	ArrayList<String> guest = new ArrayList<String>();
 	Guest g1= new Guest();
@@ -37,7 +37,7 @@ public ArrayList<String> requestSelectedEventDetails(String eventName){
 	
 	ArrayList<String> meal = new ArrayList<String>();
 	Meal m1 = new Meal();
-	meal=m1.getMealPrice(eventName);
+	meal=m1.GET_MEAL_PRICE(eventName);
 	
 	
 	ArrayList<String> combined = new ArrayList<String>();
@@ -88,12 +88,12 @@ public boolean updateTotalPayableAmount(String amount,String eventName){
 	Purchase_Summary p1 = new Purchase_Summary();
 	
 	
-	return p1.updatesTotalPayableAmount(amount,eventName);
+	return p1.UPDATES_TOTAL_PAYABLE_AMOUNT(amount, eventName);
 }
 
 public boolean processUpdateEventStatus(String eventName,String eventStatus){
 	Event e1 = new Event();
-	return e1.updateEventStatus(eventName,eventStatus);
+	return e1.UPDATE_EVENT_STATUS(eventName, eventStatus);
 }
 
 

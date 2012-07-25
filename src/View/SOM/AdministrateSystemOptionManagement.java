@@ -1447,10 +1447,9 @@ public class AdministrateSystemOptionManagement {
 				control.processRetrieveEntertainmentByID(data.get(1)[0]);
 				System.out.println(control.getEntertainment().getEntertainmentDescription());
 				if(!control.getEntertainment().getEntertainmentID().equals(data.get(1)[0])||control.getEntertainment().getEntertainmentID().equals(null)){
-					System.out.println("entertainment record does not exists in database yet");
-					//prompt user this entertainment does not exist in the database anyore
+					//INFORMS THE USER THAT THE LOADED DATA DOES NOT REFLECT IN THE CURENT DATABASE
+					JOptionPane.showMessageDialog(null, "This Data does ot exist anyware in the database.", "System Message", JOptionPane.INFORMATION_MESSAGE);
 					tabTitle="New Entertainment Form";
-					//System.out.println(control.processRetrieveEntertainmentByID(data.get(1)[0]).getData());
 				}
 				else{
 					//SET THE FORM CONTROLLS AS ACCODINGLY
@@ -1527,10 +1526,9 @@ public class AdministrateSystemOptionManagement {
 				control.processRetrieveFacilityByID(data.get(1)[0]);
 				AdministrateFacilityForm form= new AdministrateFacilityForm();
 				if(control.getFacility()==null){
-					System.out.println("entertainment record does not exists in database yet");
-					//prompt user this entertainment does not exist in the database anyore
+					//INFORMS THE USER THAT THE LOADED DATA DOES NOT REFLECT IN THE CURENT DATABASE
+					JOptionPane.showMessageDialog(null, "This Data does ot exist anyware in the database.", "System Message", JOptionPane.INFORMATION_MESSAGE);
 					tabTitle="New Facility Form";
-					//System.out.println(control.processRetrieveEntertainmentByID(data.get(1)[0]).getData());
 				}
 				else{
 					//SETS THE FORM CONTROLL ACCORDINGLY
@@ -1543,9 +1541,29 @@ public class AdministrateSystemOptionManagement {
 				}
 				//SETTING THE FORM FIELDS ACCORDLIGLY 
 				form.getJTextField_facilityName().setText(data.get(1)[1]);
-				form.getJTextField_facilityAddress();
-				form.getJTextField_facilityContact();
-				form.getJTextArea_facilityDescription();
+				form.getJTextField_facilityAddress().setText(data.get(1)[3]);
+				form.getJTextField_facilityContact().setText(data.get(1)[2]);
+				form.getJTextArea_facilityDescription().setText(data.get(1)[4]);
+				if(data.get(1)[5].equals("YES"))
+					form.getJCheckBox_facilityParking().setSelected(true);
+				if(data.get(1)[5].equals("NO"))
+					form.getJCheckBox_facilityParking().setSelected(false);
+				form.getJTextField_facilityWeekendCost().setText(data.get(1)[6]);
+				
+				//SETTING THE JTABLE IN THE FORM (BALLROOM LIST)
+				DefaultTableModel model= new DefaultTableModel();
+				model.setColumnIdentifiers(new String[]{"Ballroom Name","Price","Entitled Discount","Size","Description"});
+				for(int i=3;i<data.size();i++){
+					model.addRow(data.get(i));
+				}
+				form.getJTable_ballroomList().setModel(model);
+				form.model=model;
+				form.getJTable_ballroomList().getColumnModel().getColumn(0).setPreferredWidth(440);
+				form.getJTable_ballroomList().getColumnModel().getColumn(1).setPreferredWidth(135);
+				form.getJTable_ballroomList().getColumnModel().getColumn(2).setPreferredWidth(135);
+				form.getJTable_ballroomList().getColumnModel().getColumn(3).setPreferredWidth(135);
+				form.getJTable_ballroomList().getColumnModel().getColumn(4).setPreferredWidth(563);
+				form.displaySummary();
 				
 				//ADDING THE FORM INTO THE TAB
 				if(jTabbedPane.getTabCount()==0){
@@ -1566,7 +1584,17 @@ public class AdministrateSystemOptionManagement {
 			
 		}
 		else if(data.get(0)[0].equals("BALLROOM_ID")){
+			//CHECK THE HEADER FORMAT
+			if(data.get(0)[0].equals("BALLROOM_ID"))return 0;
 			
+			
+			else{
+				//LOAD THE DATA
+				//CHECK IF THE DATA REFLECTS ON THE DATABASE
+				AdministrateBallroomControl control= new AdministrateBallroomControl();
+				control.processRetrieveBallroomByID(data.get(1)[0]);
+				
+			}
 		}
 		else if(data.get(0)[0].equals("MEAL_ID")){
 			

@@ -580,6 +580,4 @@ public ArrayList<String> getNumberOfGuests(String eventName){
 		return true;
 	}
 	
-	
-	
 }

@@ -100,5 +100,7 @@ public class CollectPaymentControl {
 		Event e1 = new Event();
 		return e1.UPDATE_EVENT_STATUS(eventName, eventStatus);
 	}
+	
+	
 
 }

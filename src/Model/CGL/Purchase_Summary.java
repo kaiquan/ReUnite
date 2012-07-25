@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import Controller.CGL.ConsolidateGuestListControl;
 import Controller.MySQLController;
 
-import Controller.CGL.MyCalendar;
+import Controller.MyCalendar;
 
 public class Purchase_Summary {
 	

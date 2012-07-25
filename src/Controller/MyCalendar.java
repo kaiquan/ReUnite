@@ -6,6 +6,8 @@ Admin No:		114173S
 Module Group:	IT2297-08
 *******************************************************************************/
 package Controller;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class MyCalendar {
@@ -46,8 +48,22 @@ public class MyCalendar {
 		System.out.println("Second Date = " + MyCalendar.formatDate(d2));
 		long days = MyCalendar.getDifference(d1, d2);
 		System.out.println("Difference in Days = " + days);
-
-		
 	}
+	public String currentDate(){
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar cal = Calendar.getInstance();
+		
+	 return dateFormat.format(cal.getTime());
+	}
+	
+	public String currentDateWithTime(){
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:MM:ss");
+		Calendar cal = Calendar.getInstance();
+		
+	 return dateFormat.format(cal.getTime());
+	}
+	
 }
 

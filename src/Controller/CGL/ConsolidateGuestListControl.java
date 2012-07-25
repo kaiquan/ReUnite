@@ -3,12 +3,11 @@ package Controller.CGL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Model.CGL.Ballroom;
-import Model.CGL.Entertainment;
-import Model.CGL.Event;
-import Model.CGL.Guest;
-import Model.CGL.Meal;
-import Model.CGL.Purchase_Payment;
+import Model.Ballroom;
+import Model.Entertainment;
+import Model.Event;
+import Model.Membership.Guest;
+import Model.Meal;
 import Model.CGL.Purchase_Summary;
 
 public class ConsolidateGuestListControl {

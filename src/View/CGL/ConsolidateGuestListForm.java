@@ -44,7 +44,7 @@ import javax.swing.JTextArea;
 
 
 import Controller.CGL.ConsolidateGuestListControl;
-import Model.CGL.Event;
+import Model.Event;
 
 import java.util.Enumeration;
 import java.awt.event.ActionListener;
@@ -274,13 +274,13 @@ public class ConsolidateGuestListForm {
 				if (eventList.get(i).getEventDate().toString().equals(tn.getRoot().getChildAt(j).toString()))
 				{
 					
-					((DefaultMutableTreeNode)tn.getRoot().getChildAt(j)).add(new DefaultMutableTreeNode(eventList.get(i).getEventTitle()));
+					((DefaultMutableTreeNode)tn.getRoot().getChildAt(j)).add(new DefaultMutableTreeNode(eventList.get(i).getEventName()));
 					continue Outer;
 				}
 			}
 			
 			nodes[i] = new DefaultMutableTreeNode(eventList.get(i).getEventDate());
-			nodes[i].add(new DefaultMutableTreeNode(eventList.get(i).getEventTitle()));
+			nodes[i].add(new DefaultMutableTreeNode(eventList.get(i).getEventName()));
 			tn.add(nodes[i]);
 			
 		}

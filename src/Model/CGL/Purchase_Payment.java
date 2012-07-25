@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import Controller.CGL.ConsolidateGuestListControl;
 import Controller.MySQLController;
 
-import Controller.CGL.MyCalendar;
+import Controller.MyCalendar;
 
 public class Purchase_Payment {
 	private static MySQLController DB = new MySQLController();

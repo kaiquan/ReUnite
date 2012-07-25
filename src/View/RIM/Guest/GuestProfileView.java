@@ -9,7 +9,6 @@ import javax.swing.border.*;
 import Images.RIM.ImageHelper;
 import Model.Membership.Guest;
 import View.RIM.Components.GuestActionsFooter;
-import View.RIM.CreateInvitationView;
 
 
 import net.miginfocom.swing.MigLayout;
@@ -74,7 +73,7 @@ public class GuestProfileView extends JFrame
 		panel.setLayout(new MigLayout("", "[grow]", "[grow][]"));
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(CreateInvitationView.class.getResource("/Images/userIcon.png")));
+		label.setIcon(ImageHelper.loadImageIcon("userIcon.png", "", 100, -1, 5));
 		panel.add(label, "cell 0 0");
 		
 		JLabel lblNewLabel = new JLabel("");

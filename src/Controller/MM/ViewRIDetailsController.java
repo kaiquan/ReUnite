@@ -1,6 +1,6 @@
 package Controller.MM;
 
-import java.util.ArrayList;
+
 
 import javax.swing.table.DefaultTableModel;
 
@@ -10,8 +10,7 @@ public class ViewRIDetailsController {
 
 	RI riModel = new RI();
 	
-	public ViewRIDetailsController() {
-	}
+	public ViewRIDetailsController() {}
 
 	public void retrieveRiDetails(String userName, String password,
 			String type, String status,

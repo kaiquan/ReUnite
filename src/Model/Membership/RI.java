@@ -258,40 +258,72 @@ public class RI extends Account {
 	}
 
 	public ArrayList<RI> retrieveSingleUser() {
-		ArrayList<RI> riList = new ArrayList<RI>();
+		ArrayList<RI> riList1 = new ArrayList<RI>();
 		ResultSet rs = null;
-		MySQLController db = new MySQLController();
 
 		try {
-			db.getConnection();
-			String dbQuery = "Select userName, type, firstName, lastName, dateOfBirth, nric, school, email, address, telephoneNo, handphoneNo FROM Account";
+	
+			String dbQuery = "Select userName, type, status, firstName, lastName, dateOfBirth, nric, school, email, address, telephoneNo, handphoneNo FROM Account";
 			rs = db.readRequest(dbQuery);
 
 			while (rs.next()) {
-				RI tempRI = new RI();
-
-				tempRI.setUserName(rs.getString("userName"));
-				tempRI.setType(rs.getString("type"));
-				
-				tempRI.setFirstName(rs.getString("firstName"));
-				tempRI.setLastName(rs.getString("lastName"));
-				tempRI.setDateOfBirth(rs.getDate("dateOfBirth"));
-				tempRI.setNric(rs.getString("nric"));
-				tempRI.setSchool(rs.getString("school"));
-				tempRI.setEmail(rs.getString("email"));
-				tempRI.setAddress(rs.getString("address"));
-				tempRI.setTelephoneNo(rs.getString("telephoneNo"));
-				tempRI.setHandphoneNo(rs.getString("handphoneNo"));
-				// tempRI.setSecretQuestion(rs.getString("secretQuestion"));
-				// tempRI.setSecretAnswer(rs.getString("secretAnswer"));
-				riList.add(tempRI);
+				RI tempRI1 = new RI();
+			
+				tempRI1.setUserName(rs.getString("userName"));
+				tempRI1.setType(rs.getString("type"));
+				tempRI1.setStatus(rs.getString("status"));
+				tempRI1.setFirstName(rs.getString("firstName"));
+				tempRI1.setLastName(rs.getString("lastName"));
+				tempRI1.setDateOfBirth(rs.getDate("dateOfBirth"));
+				tempRI1.setNric(rs.getString("nric"));
+				tempRI1.setSchool(rs.getString("school"));
+				tempRI1.setEmail(rs.getString("email"));
+				tempRI1.setAddress(rs.getString("address"));
+				tempRI1.setTelephoneNo(rs.getString("telephoneNo"));
+				tempRI1.setHandphoneNo(rs.getString("handphoneNo"));
+				// tempRI1.setSecretQuestion(rs.getString("secretQuestion"));
+				// tempRI1.setSecretAnswer(rs.getString("secretAnswer"));
+				riList1.add(tempRI1);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			db.terminate();
 		}
-		return riList;
+		return riList1;
 
 	}
+	
+	public String[][] getRITableModel1() {
+		RI riModel1 = new RI();
+
+		String data[][] = new String[13][13];
+
+		try {
+
+			ArrayList<RI> tempList = riModel1.retrieveSingleUser();
+			
+			for (int i = 0; i < tempList.size(); i++) {
+				data[i][0] = tempList.get(i).getUserName();
+				data[i][1] = tempList.get(i).getType();
+				data[i][2] = tempList.get(i).getStatus();
+				//data[i][1] = tempList.get(i).getPassword();
+				data[i][3] = tempList.get(i).getFirstName();
+				data[i][4] = tempList.get(i).getLastName();
+				//data[i][4] = tempList.get(i).getDateOfBirth();
+				data[i][5] = tempList.get(i).getNric();
+				data[i][6] = tempList.get(i).getSchool();
+				data[i][7] = tempList.get(i).getEmail();
+				data[i][8] = tempList.get(i).getTelephoneNo();
+				data[i][9] = tempList.get(i).getHandphoneNo();
+				
+			}
+		} catch (Exception e) {
+		}
+
+		return data;
+
+	}
+
+	
+	
 }

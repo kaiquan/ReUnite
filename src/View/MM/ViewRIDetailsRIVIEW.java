@@ -1,5 +1,6 @@
 package View.MM;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -8,14 +9,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
@@ -26,10 +33,13 @@ import Controller.MySQLController;
 import Controller.MM.*;
 
 public class ViewRIDetailsRIVIEW {
+	
+	ViewRIPersonalController viewRIPersonalController = new	ViewRIPersonalController();
 
 	private JTable table;
 	private JFrame jframe;
 	private JPanel panel;
+	
 	
 	
 	//Labels
@@ -38,10 +48,19 @@ public class ViewRIDetailsRIVIEW {
 	
 	
 	//TextBoxes
+	JButton userNameTextBox;
+	JButton firstNameTextBox;
+	JButton lastNameTextBox;
+	JButton nricTextBox;
+	JButton schoolTextBox;
+	JButton emailTextBox;
+	JButton telephoneTextBox;
+	JButton handphoneTextBox;
+	
 
 	//Buttons
 	private JButton  updateAccountButton;
-
+	private JButton requestDeleteButton;
 	private JButton submitButton;
  	
 	
@@ -86,14 +105,46 @@ public class ViewRIDetailsRIVIEW {
 	//Buttons
 	
 	updateAccountButton = new JButton();
-	updateAccountButton.setBounds(500,400,150,30);
+	updateAccountButton.setBounds(500,30,150,30);
 	updateAccountButton.setText("Update Account");
+	updateAccountButton.addActionListener(new java.awt.event.ActionListener() {
+		public void actionPerformed(java.awt.event.ActionEvent e) {
+			Object[] options = { "OK", "CANCEL" };
+			int confirmUpdateOption = JOptionPane.showOptionDialog(null, "Are You Sure You Want to UPDATE RI DATA?", "Please Confirm",
+			JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+			null, options, options[0]);
+			if (confirmUpdateOption==0){
+				UpdateRIController updateController = new UpdateRIController();
+			
+				updateController.updateRIAccount
+				
+		(userNameTextBox.getText(),
+			
+			firstNameTextBox.getText(),
+			lastNameTextBox.getText(),
+			//parseDate(date()), 
+			nricTextBox.getText(),
+			schoolTextBox.getText(),
+			emailTextBox.getText(),
+			telephoneTextBox.getText(),
+			handphoneTextBox.getText()); //secretQuestion(),
+//				updateAccountButton.setVisible(true);
+//				confirmUpdateButton.setVisible(false);
+
+				
+			}
+		}
+	});
+	
+	requestDeleteButton = new JButton();
+	requestDeleteButton.setBounds(500,400,150,30);
+	requestDeleteButton.setText("Request Delete");
 	
 	
 	
 	
 	submitButton = new JButton("Submit");
-	submitButton.setBounds(300, 400,150,30);
+	submitButton.setBounds(300, 30,150,30);
 
 	
 	// Content Pane
@@ -106,15 +157,17 @@ public class ViewRIDetailsRIVIEW {
 //..............................add.......................................
 	
 		panel.add(title);
-
+		
+		panel.add(requestDeleteButton);
+		
 		panel.add(updateAccountButton);
 
 		panel.add(submitButton);
 
-//		panel.add(getTable());
-		
-		panel.add(getUpdateAccountButton()) ;
-			
+		panel.add(getTable());
+
+	
+
 		return panel;
 	}
 	
@@ -127,82 +180,41 @@ public class ViewRIDetailsRIVIEW {
 				// Type your database query or controller here
 			}
 		});
-
-		MySQLController db = new MySQLController();
-		RI riModel = new RI();
-
-		String col[] = null;
-		String data[][] = new String[11][11];
- 
-		try {
-			db.getConnection();
-
-			col = riModel.getRITableColumnNames();
-
-			ArrayList<RI> tempList = riModel.retrieveUser();
-
-			for (int i = 0; i < tempList.size(); i++) {
-				data[i][0] = tempList.get(i).getUserName();
-				data[i][1] = tempList.get(i).getPassword();
-				data[i][2] = tempList.get(i).getFirstName();
-				data[i][3] = tempList.get(i).getLastName();
-				//data[i][4] = tempList.get(i).getDateOfBirth();
-				data[i][5] = tempList.get(i).getNric();
-				data[i][6] = tempList.get(i).getSchool();
-				data[i][7] = tempList.get(i).getEmail();
-				data[i][8] = tempList.get(i).getTelephoneNo();
-				data[i][9] = tempList.get(i).getTelephoneNo();
-			}
-		} catch (Exception e) {
-		}
-
-
+		RI riModel1 = new RI();
 		table = new JTable();
-		table.setBounds(50,200,600,200);
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+	
+		table.setBackground(Color.white);
+		table.setBorder(null);
+		table.setModel(viewRIPersonalController.getRITableModel1());
+		table.setColumnSelectionAllowed(false);
+		table.setCellSelectionEnabled(false);
+		table.setRowSelectionAllowed(true);
 		
-		DefaultTableModel model = new DefaultTableModel(data, col);
-		table.setModel(model);
-
+		DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
+		headerRenderer.setBackground(Color.GRAY);
+		
+		
+		table.getTableHeader().setDefaultRenderer(headerRenderer);
+		
+		DefaultTableCellRenderer usernameRenderer = new DefaultTableCellRenderer();
+		usernameRenderer.setFont(new Font("Dialog", Font.BOLD, 50));
+		
+		
+	
 		
 		
 		
 		return table;
 
 	}
-
 	
-	public Object GetData(JTable table, int row_index, int col_index) {
-		return table.getModel().getValueAt(row_index, col_index);
-	}
+	
 // .......................................JTable.........................	
 	
 
 	// update Button
 
-	private JButton getUpdateAccountButton() {
-		
-		updateAccountButton.addActionListener(new java.awt.event.ActionListener()
-		{
-			public void actionPerformed(java.awt.event.ActionEvent e) 
-			{
-				try {
-					updateAccountButton(e);
-				} catch (Exception e1) {
-					
-					e1.printStackTrace();
-				} 
-			}
-
-			private void updateAccountButton(ActionEvent e) {
-			
-				new CreateRIForm();
-			}
-		});
-
-	return updateAccountButton;
-}
-	public static void main(String a[]){
+		public static void main(String a[]){
 		
 	
 		

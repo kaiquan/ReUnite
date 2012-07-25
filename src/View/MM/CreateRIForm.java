@@ -62,7 +62,7 @@ public class CreateRIForm extends JFrame {
 	private JTextField secretAnswerTextBox;
 	
 	
-	private JFrame getJFrame(){
+	JFrame getJFrame(){
 		jFrame = new JFrame();
 		jFrame.setSize(1000,1000);
 		jFrame.setVisible(true);
@@ -85,6 +85,26 @@ public class CreateRIForm extends JFrame {
 		submitRegistrationButton = new JButton();
 		submitRegistrationButton.setBounds(new Rectangle(750, 600, 81, 31));
 		submitRegistrationButton.setText("Submit");
+		submitRegistrationButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+
+				if (userNameTextBox.getText().equals("")
+						|| passwordTextBox.getText().equals("")
+						|| firstNameTextBox.getText().equals("")								
+						|| lastNameTextBox.getText().equals("")
+							|| nricTextBox.getText().equals("")
+					|| schoolTextBox.getText().equals("")
+							|| emailTextBox.getText().equals("")) {
+
+				JOptionPane.showConfirmDialog(null,"Please Fill up all Field",
+							   "Empty Field", JOptionPane.CLOSED_OPTION);
+				
+			//if(){}	
+			
+
+					
+			}
+			}});
 		
 		//combo box
 		monthCombo = new JComboBox(monthArray());
@@ -119,6 +139,7 @@ public class CreateRIForm extends JFrame {
 		firstNameLabel = new JLabel();
 		firstNameLabel.setBounds(new Rectangle(120, 100, 140, 20));
 		firstNameLabel.setText("First Name");
+		
 		
 		lastNameLabel = new JLabel();
 		lastNameLabel.setBounds(new Rectangle(450, 100, 140, 20));
@@ -206,7 +227,7 @@ public class CreateRIForm extends JFrame {
 		
 		//button
 		panel.add(submitRegistrationButton);
-		panel.add(getSubmitRegistrationButton());
+		//panel.add(getSubmitRegistrationButton());
 		
 		
 		//comboBox
@@ -281,6 +302,8 @@ public class CreateRIForm extends JFrame {
 	}
 	
 	
+	
+	
 	public String [] yearArray(){
 		String [] yearArray = new String[41];
 		yearArray[0] ="Year";yearArray[1] ="1961";yearArray[2] ="1962";yearArray[3] ="1963";yearArray[4] ="1964";yearArray[5] ="1965";yearArray[6] ="1966";yearArray[7] ="1967";yearArray[8] ="1968";
@@ -321,35 +344,27 @@ public class CreateRIForm extends JFrame {
 	
 	//Button Action Listener and Button Method
 
-	private JButton getSubmitRegistrationButton() {
-
-		submitRegistrationButton.addActionListener(new java.awt.event.ActionListener() {
-					public void actionPerformed(java.awt.event.ActionEvent e) {
-
-						try {
-							if (userNameTextBox.equals("")
-									|| passwordTextBox.equals("")
-									|| firstNameTextBox.equals("")								
-									|| lastNameTextBox.equals("")
-										|| nricTextBox.equals("")
-								|| schoolTextBox.equals("")
-										|| emailTextBox.equals("")) {
-
-									JOptionPane.showMessageDialog(null,"Please Complete The Form To Proceed");
-									
-									}
-							
-						} catch (Exception e1) {
-							
-							
-							
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}}
-				});
-						
-						return submitRegistrationButton;
-					}
+//	private JButton getSubmitRegistrationButton() {
+//
+//		submitRegistrationButton.addActionListener(new java.awt.event.ActionListener() {
+//					public void actionPerformed(java.awt.event.ActionEvent e) {
+//
+//						try {
+//						
+//									
+//									}
+//							
+//						} catch (Exception e1) {
+//							
+//							
+//							
+//							// TODO Auto-generated catch block
+//							e1.printStackTrace();
+//						}}
+//				});
+//						
+//						return submitRegistrationButton;
+//					}
 
 					private void submitRegistration(ActionEvent e)throws Exception {
 						

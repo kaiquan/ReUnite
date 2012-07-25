@@ -1,10 +1,14 @@
 package Controller.MM;
 
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 import Model.Membership.*;
 
 public class ViewRIPersonalController {
+	RI riModel1 = new RI();
 	
-	ViewRIPersonalController(){}
+	public ViewRIPersonalController(){}
 	
 	
 
@@ -26,6 +30,15 @@ public class ViewRIPersonalController {
 		
 		singleRetrieve.retrieveSingleUser();
 
+	}
+
+
+
+
+
+	public TableModel getRITableModel1() {
+		DefaultTableModel model = new DefaultTableModel(riModel1.getRITableModel(), riModel1.getRITableColumnNames());
+		return model;
 	}
 
 }

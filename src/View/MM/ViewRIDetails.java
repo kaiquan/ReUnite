@@ -33,6 +33,7 @@ import javax.swing.table.DefaultTableModel;
 
 
 import Model.*;
+import Model.Membership.RI;
 import Controller.MySQLController;
 import Controller.MM.*;
 
@@ -40,7 +41,7 @@ import Controller.MM.*;
 
 public class ViewRIDetails {
 
-	ViewRIDetailsController viewRIDetailsController = new ViewRIDetailsController();
+	ViewRIDetailsController viewRIDetailsController = new ViewRIDetailsController();  //  @jve:decl-index=0:
 	
 	public JTable table;
 	private JFrame jframe;
@@ -93,6 +94,7 @@ public class ViewRIDetails {
 	private JButton  updateAccountButton;
 	private JButton  disableAccountButton;
 	private JButton  createAccountButton;
+	private JButton confirmUpdateButton;
  	
 	
 	// ***********************JFrame Method****************
@@ -194,39 +196,51 @@ public class ViewRIDetails {
 	//TextBox
 	userNameTextBox =new JTextField();
 	userNameTextBox.setBounds(new Rectangle(200, 350, 150, 25));
+	userNameTextBox.setEditable(false);
 	
 	
 	firstNameTextBox=new JTextField();
 	firstNameTextBox.setBounds(new Rectangle(200, 400, 150, 25));
-	
-	
+	firstNameTextBox.setEditable(false);
+
+
 	lastNameTextBox=new JTextField();
 	lastNameTextBox.setBounds(new Rectangle(200, 450, 150, 25));
+	lastNameTextBox.setEditable(false);
+	
 	
 	dateOfBirthTextBox=new JTextField();
 	dateOfBirthTextBox.setBounds(new Rectangle(200, 500, 150, 25));
+	dateOfBirthTextBox.setEditable(false);
 	
 	nricTextBox=new JTextField();
 	nricTextBox.setBounds(new Rectangle(200, 550, 150, 25));
+	nricTextBox.setEditable(false);
 	
 	schoolTextBox=new JTextField();
 	schoolTextBox.setBounds(new Rectangle(600, 350, 150, 25));
+	schoolTextBox.setEditable(false);
 	
 	emailTextBox=new JTextField();
 	emailTextBox.setBounds(new Rectangle(600, 400, 150, 25));
+	emailTextBox.setEditable(false);
 	
 	telephoneTextBox=new JTextField();
 	telephoneTextBox.setBounds(new Rectangle(600, 450, 150, 25));
+	telephoneTextBox.setEditable(false);
 	
 	handphoneTextBox=new JTextField();
 	handphoneTextBox.setBounds(new Rectangle(600, 500, 150, 25));
+	handphoneTextBox.setEditable(false);
 	
 	typeTextBox=new JTextField();
 	typeTextBox.setBounds(new Rectangle(600, 550, 150, 25));
+	typeTextBox.setEditable(false);
 	
 	statusTextBox=new JTextField();
 	statusTextBox.setBounds(new Rectangle(600, 600, 150, 25));
 	statusTextBox.setEditable(false);
+	
 	
 	
 	
@@ -238,8 +252,90 @@ public class ViewRIDetails {
 	deleteAccountButton.setText("Delete Account");
 	
 	updateAccountButton = new JButton();
-	updateAccountButton.setBounds(800,450,150,30);
+	updateAccountButton.setBounds(800, 450, 150, 30);
 	updateAccountButton.setText("Update Account");
+	updateAccountButton.addActionListener(new java.awt.event.ActionListener() {
+		public void actionPerformed(java.awt.event.ActionEvent e) {
+			updateAccount();
+		}
+
+		private void updateAccount() {
+			Object[] options = { "OK", "CANCEL" };
+			int confirmUpdateOption = JOptionPane.showOptionDialog(null, "Are You Sure You Want to UPDATE RI DATA?", "Please Confirm",
+			JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+			null, options, options[0]);
+			if (confirmUpdateOption == 0){
+				
+				userNameTextBox.setEditable(true);
+				firstNameTextBox.setEditable(true);
+				lastNameTextBox.setEditable(true);
+				dateOfBirthTextBox.setEditable(true);
+				emailTextBox.setEditable(true);
+				nricTextBox.setEditable(true);
+				schoolTextBox.setEditable(true);
+				telephoneTextBox.setEditable(true);
+				handphoneTextBox.setEditable(true);
+//				typeTextBox.setEditable(true);
+//				statusTextBox.setEditable(true);
+				
+				updateAccountButton.setVisible(false);
+				confirmUpdateButton.setVisible(true);
+		
+
+
+				
+			}
+			
+			
+			
+		}
+	});
+	
+	confirmUpdateButton = new JButton();
+	confirmUpdateButton.setBounds(800,450,150,30);
+	confirmUpdateButton.setVisible(false);
+	confirmUpdateButton.setText("ConFirm Update!");
+	confirmUpdateButton.addActionListener(new java.awt.event.ActionListener() {
+		public void actionPerformed(java.awt.event.ActionEvent e) {
+			
+			Object[] options = { "OK", "CANCEL" };
+			int confirmUpdateOption = JOptionPane.showOptionDialog(null, "Are You Sure You Want to UPDATE RI DATA?", "Please Confirm",
+			JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+			null, options, options[0]);
+			if (confirmUpdateOption == 0){
+				
+				if(userNameTextBox.getText().equals("")
+						
+						|| firstNameTextBox.getText().equals("")								
+						|| lastNameTextBox.getText().equals("")
+							|| nricTextBox.getText().equals("")
+					|| schoolTextBox.getText().equals("")
+							|| emailTextBox.getText().equals("")) {
+
+				JOptionPane.showConfirmDialog(null,"Please Fill up all Field",
+							   "Empty Field", JOptionPane.CLOSED_OPTION);
+				}
+				else{
+					UpdateRIController updateController = new UpdateRIController();
+					updateController.updateRIAccount
+					
+			(userNameTextBox.getText(),
+				
+				firstNameTextBox.getText(),
+				lastNameTextBox.getText(),
+				//parseDate(date()), 
+				nricTextBox.getText(),
+				schoolTextBox.getText(),
+				emailTextBox.getText(),
+				telephoneTextBox.getText(),
+				handphoneTextBox.getText()); //secretQuestion(),
+					updateAccountButton.setVisible(true);
+					confirmUpdateButton.setVisible(false);
+			}}
+			
+	
+		}
+	});
 	
 	disableAccountButton = new JButton();
 	disableAccountButton.setBounds(800,550,150,30);
@@ -248,6 +344,12 @@ public class ViewRIDetails {
 	createAccountButton = new JButton();
 	createAccountButton.setBounds(800,70,150,30);
 	createAccountButton.setText("Create Account");
+	createAccountButton.addActionListener(new java.awt.event.ActionListener() {
+		public void actionPerformed(java.awt.event.ActionEvent e) {
+			CreateRIForm createRiForm = new CreateRIForm();
+			createRiForm.getJFrame().setVisible(true);
+		}
+	});
 	
 	submitButton  = new JButton();
 	submitButton.setBounds(700, 110,700,30);
@@ -298,7 +400,7 @@ public class ViewRIDetails {
 	panel.add(updateAccountButton);
 	panel.add(disableAccountButton);
 	panel.add(createAccountButton);
-	
+	panel.add(confirmUpdateButton);
 	
 	
 	JScrollPane tableScrollPane = new JScrollPane(getTable());
@@ -328,6 +430,7 @@ public class ViewRIDetails {
 				// Type your database query or controller here
 			}
 		});
+		RI riModel = new RI();
 		table = new JTable();
 	
 		table.setBackground(Color.white);

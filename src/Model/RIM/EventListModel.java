@@ -1,7 +1,5 @@
 package Model.RIM;
 
-import java.util.ArrayList;
-
 import javax.swing.ListModel;
 import javax.swing.event.ListDataListener;
 
@@ -9,11 +7,21 @@ import Model.Event;
 
 public class EventListModel implements ListModel<Event>
 {
-	private ArrayList<Event> events;
+	private EventCollection events;
 	
-	public EventListModel(ArrayList<Event> events)
+	public EventListModel(EventCollection events)
 	{
 		this.events = events;
+	}
+
+	@Override
+	public Event getElementAt(int index) {
+		return (events.getEvents().get(index));
+	}
+
+	@Override
+	public int getSize() {
+		return (events.getEvents().size());
 	}
 
 	@Override
@@ -21,23 +29,11 @@ public class EventListModel implements ListModel<Event>
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public Event getElementAt(int index) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int getSize() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
+	
 	@Override
 	public void removeListDataListener(ListDataListener l) {
-		// TODO Auto-generated method stub
 		
 	}
+	
 }
 

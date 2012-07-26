@@ -16,6 +16,7 @@ package Controller;
  * I received help from no one in designing, coding and debugging my program.
  *******************************************************************************************/
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -36,6 +37,15 @@ public class MySQLController
 	{
 		if (connectionPool == null)
 		{
+			try 
+			{
+				DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
+			} 
+			catch (SQLException e1) 
+			{
+				e1.printStackTrace();
+			}
+			
 			BoneCPConfig config = new BoneCPConfig();
 			config.setJdbcUrl("jdbc:mysql://205.134.253.65/saharp5_adeel_school");
 			config.setUsername("saharp5_guest");

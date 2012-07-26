@@ -10,7 +10,7 @@ public class InvitationTableModel extends DefaultTableModel
 {
 	private static final long serialVersionUID = 1L;
 	private int rowCount, colCount;
-	private String[] columnNames = { "ID", "Name", "Initiator", "Date", "Status", "Facility", "Location" };
+	private String[] columnNames = { "ID", "Name", "Initiator", "Date", "Status", "Facility", "Response" };
 	private Object[][] data;
 
 	public InvitationTableModel(ArrayList<Event> eventList)
@@ -27,7 +27,7 @@ public class InvitationTableModel extends DefaultTableModel
 			data[i][3] = event.getEventDate() + " at " + event.getEventTime();
 			data[i][4] = event.getEventStatus();
 			data[i][5] = event.getEventPackage().getBallroom().getFacility().getFacilityName();
-			data[i][6] = event.getEventPackage().getBallroom().getFacility().getFacilityAddress();
+			data[i][6] = 40;
 
 			setDataVector(data, columnNames);
 		}

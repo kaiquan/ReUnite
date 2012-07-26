@@ -1,32 +1,32 @@
 package View.RIM.Guest;
 
-import javax.swing.JFrame;
-import javax.swing.JList;
-import javax.swing.ListModel;
-import javax.swing.event.ListDataListener;
-
-import Model.Event;
-import Model.Membership.Guest;
-import Model.RIM.EventListModel;
-import Model.RIM.GuestListModel;
-import View.RIM.Components.JListGuestImportRenderer;
-
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JScrollPane;
+import javax.swing.ListModel;
+
+import Model.Event;
+import Model.RIM.EventCollection;
+import Model.RIM.EventListModel;
+import View.RIM.Components.JEventListRenderer;
+
+@SuppressWarnings("serial")
 public class ViewInvitationsView extends JFrame
 {
 	public ViewInvitationsView() {
 		ArrayList<Event> events = new Event().GET_ALL_EVENTS();
-		ListModel<Event> listModel = new EventListModel(events);
-		
+		EventCollection collection = new EventCollection(events);
+		ListModel<Event> listModel = new EventListModel(collection);
 		final JList<Event> list = new JList<Event>(listModel);
+		list.setCellRenderer(new JEventListRenderer());
 
-		getContentPane().add(list, BorderLayout.CENTER);
-		
-		
-		
-		
+
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setViewportView(list);
+		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		
 		setVisible(true);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);

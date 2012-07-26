@@ -30,6 +30,7 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.TableCellRenderer;
 
+@SuppressWarnings("serial")
 public final class ProgressBarCellRenderer extends JProgressBar
     implements TableCellRenderer {
 

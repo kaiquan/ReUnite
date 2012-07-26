@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import java.awt.Rectangle;
 import javax.swing.BorderFactory;
 import javax.swing.border.EtchedBorder;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -41,19 +42,38 @@ import javax.swing.JComboBox;
 import javax.swing.JTable;
 import java.awt.Toolkit;
 import javax.swing.SwingConstants;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+
 import java.awt.ComponentOrientation;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 
+import Controller.MyCalendar;
 import Controller.SOM.AdministrateBallroomControl;
 import Controller.SOM.AdministrateEntertainmentControl;
 import Controller.SOM.AdministrateFacilityControl;
 import Controller.SOM.AdministrateMealControl;
 import Controller.SOM.AdministratePackageControl;
+import Controller.SOM.CSVController;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.Scanner;
 
+@SuppressWarnings("unused")
 public class AdministratePackageForm {
 	
 	/********************************************************
@@ -188,6 +208,7 @@ public class AdministratePackageForm {
 	private JTextArea jTextArea_mealDescription = null;
 	private JLabel jLabel_parking = null;
 	private JLabel jLabel_ballroomSize = null;
+	final JFileChooser fc = new JFileChooser();
 	/********************************************************
 	 *					Start of UI
 	 *******************************************************/
@@ -768,7 +789,17 @@ public class AdministratePackageForm {
 			jButton_download.setText("Download");
 			jButton_download.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					download();
+					if(validatePackageDetails()){
+						try {
+							download();
+						} catch (MalformedURLException e1) {
+							e1.printStackTrace();
+						} catch (DocumentException e1) {
+							e1.printStackTrace();
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+					}
 				}
 			});
 		}
@@ -785,7 +816,7 @@ public class AdministratePackageForm {
 			jButton_upload.setText("Upload");
 			jButton_upload.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					if(validate()){
+					if(validatePackageDetails()){
 						createPackage();
 					}
 				}
@@ -826,7 +857,7 @@ public class AdministratePackageForm {
 			jButton_update.setText("Update");
 			jButton_update.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					if(validate()){
+					if(validatePackageDetails()){
 						updatePackage();
 					}
 				}
@@ -2472,7 +2503,7 @@ public class AdministratePackageForm {
 	  * Purpose : To validate before basic CRUD
 	  * Return :boolean
 	  *******************************************************/
-	public boolean validate(){
+	public boolean validatePackageDetails(){
 		boolean success=true;
 		if(getJTextField_packageTitle().getText().equals("")||getJTextField_packageTitle().getText().equals("                                                   Enter Package Name Here")){
 			JOptionPane.showMessageDialog(null, "Please enter a Package title", "Warnning", JOptionPane.WARNING_MESSAGE);
@@ -2519,11 +2550,226 @@ public class AdministratePackageForm {
 	 * Purpose 			: To display the summary of the form
 	 *******************************************************/
 	public void displaySummary(){
+		String header="====================================\n";
+		header+="            Package Summary List\n";
+		header+="====================================\n\n";
+		
+		String content="";
+		content+="Package Name : "+getJTextField_packageTitle().getText().toString()+"\n";
+		content+="Ballroom Name : "+getJTextField_ballroomName().getText().toString()+"\n";
+		if(getJCheckBox_entertainment().isSelected())
+			content+="Entertainment Name : "+getJTextField_entertainment().getText().toString()+"\n";
+		
+		 int mealoptions=0;
+			if(getJCheckBox_mealOption1().isSelected())mealoptions++;
+			if(getJCheckBox_mealOption2().isSelected())mealoptions++;
+			if(getJCheckBox_mealOption3().isSelected())mealoptions++;
+			if(mealoptions!=0){
+				if(mealoptions==1){
+					content+=("Meal option 1 Name : "+getJTextField_mealOption1().getText().toString()+"\n");
+				}
+				else if(mealoptions==2){
+					content+=("Meal option 1 Name : "+getJTextField_mealOption1().getText().toString()+"\n");
+					content+=("Meal option 2 Name : "+getJTextField_mealOption2().getText().toString()+"\n");
+				}
+				else if(mealoptions==3){
+					content+=("Meal option 1 Name : "+getJTextField_mealOption1().getText().toString()+"\n");
+					content+=("Meal option 2 Name : "+getJTextField_mealOption2().getText().toString()+"\n");
+					content+=("Meal option 3 Name : "+getJTextField_mealOption3().getText().toString()+"\n");
+				}
+				
+			}
+		
+		content+="________________\n";
+		content+="Discount :"+getJTextField_discount().getText()+"%\n";
+		
+		
+		getJTextArea_summary().setText(header+content);
+	}
+	
+	/********************************************************
+	 * Method Name 		: download()
+	 * Input Parameter 	: void 
+	 * Return 			: void
+	 * Purpose 			: To download the details of the form 
+	 * 					  into the local computer
+	 *******************************************************/
+	public void download()throws MalformedURLException, DocumentException, IOException{
+			//setting the file and path name
+			fc.setAcceptAllFileFilterUsed(false);
+			fc.setFocusable(false);
+			fc.setAcceptAllFileFilterUsed(false);
+			fc.showSaveDialog(fc);
+
+			String directory=null;
+			directory=fc.getSelectedFile().toString();
+			String PDFlink="";
+			String TXTlink="";
+			if(directory.substring(directory.length()-4).equals(".pdf")){
+				Scanner sc1= new Scanner(directory);
+				String d=".pdf";
+				sc1.useDelimiter(d);
+				while(sc1.hasNext()){
+					PDFlink=sc1.next();
+				}
+				downloadPDF(PDFlink+".pdf");
+				downloadTXT(PDFlink+".csv");
+			}
+			else if(directory.substring(directory.length()-2).equals(".csv")){
+				Scanner sc2= new Scanner(directory);
+				String d=".csv";
+				sc2.useDelimiter(d);
+				while(sc2.hasNext()){
+					TXTlink=sc2.next();
+				}
+				downloadPDF(TXTlink+".pdf");
+				downloadTXT(TXTlink+".csv");
+			}
+			else{
+				downloadPDF(directory+".pdf");
+				downloadTXT(directory+".csv");
+			}
+	}
+	
+	/********************************************************
+	 * Method Name 		: downloadPDF()
+	 * Input Parameter 	: void 
+	 * Return 			: void
+	 * Purpose 			: To download the details of the form 
+	 * 					  into the local computer in PDF
+	 *******************************************************/
+	public void downloadPDF(String path) throws DocumentException, MalformedURLException, IOException{
+		String directory=path;
+		
+		//writting the pdf
+		 Document pdf = new Document (PageSize.A4);
+		 PdfWriter.getInstance(pdf, new FileOutputStream(directory));
+		 pdf.open ();
+		 //SETTING THE HEADER
+		 pdf.addCreator("Lee Kai Quan(114173S)");
+		 Image image = Image.getInstance("src\\images\\SOM\\Reunite_Header.png");
+		 image.scaleAbsolute(550, 100);
+		 pdf.add(image);
+		 pdf.add(new Paragraph("  "));
+		 pdf.add(new Paragraph("  "));
+		 //WRITTING THE CONTENT HERE
+		 GregorianCalendar g= new GregorianCalendar();
+		 pdf.add(new Paragraph("Package Record"));
+		 pdf.add(new Paragraph("Recorded on :"+MyCalendar.formatDate(g)));
+		 pdf.add(new Paragraph("   "));
+		 pdf.add(new Paragraph("   "));
+		 pdf.add(new Paragraph("ID          : "+getJTextField_packageID().getText().toString()));
+		 pdf.add(new Paragraph("Title       : "+getJTextField_packageTitle().getText().toString()));
+		 pdf.add(new Paragraph("Description : "+getJTextArea_packageDescription().getText().toString()));
+		//etc
+		
+		 
+		 pdf.add(new Paragraph("   "));
+		 pdf.add(new Paragraph("   "));
+		 pdf.add(new Paragraph("Selected Ballroom ID : "+getJTextField_Ballroom().getName().toString()));
+		 pdf.add(new Paragraph("Selected Ballroom Name : "+getJTextField_Ballroom().getText().toString()));
+		 pdf.add(new Paragraph("   "));
+		 pdf.add(new Paragraph("   "));
+		 if(getJCheckBox_entertainment().isSelected()){
+			 pdf.add(new Paragraph("Selected Entertainment ID : "+getJTextField_entertainment().getName().toString()));
+			 pdf.add(new Paragraph("Selected Entertainment Name : "+getJTextField_entertainment().getText().toString()));
+		 }
+		 //do the same for meal
+		 int mealoptions=0;
+		if(getJCheckBox_mealOption1().isSelected())mealoptions++;
+		if(getJCheckBox_mealOption2().isSelected())mealoptions++;
+		if(getJCheckBox_mealOption3().isSelected())mealoptions++;
+		if(mealoptions!=0){
+			if(mealoptions==1){
+				pdf.add(new Paragraph("Meal option 1 ID : "+getJTextField_mealOption1().getName().toString()));
+				pdf.add(new Paragraph("Meal option 1 Name : "+getJTextField_mealOption1().getText().toString()));
+			}
+			else if(mealoptions==2){
+				pdf.add(new Paragraph("Meal option 1 ID : "+getJTextField_mealOption1().getName().toString()));
+				pdf.add(new Paragraph("Meal option 1 Name : "+getJTextField_mealOption1().getText().toString()));
+				pdf.add(new Paragraph("Meal option 2 ID : "+getJTextField_mealOption2().getName().toString()));
+				pdf.add(new Paragraph("Meal option 2 Name : "+getJTextField_mealOption2().getText().toString()));
+			}
+			else if(mealoptions==3){
+				pdf.add(new Paragraph("Meal option 1 ID : "+getJTextField_mealOption1().getName().toString()));
+				pdf.add(new Paragraph("Meal option 1 Name : "+getJTextField_mealOption1().getText().toString()));
+				pdf.add(new Paragraph("Meal option 2 ID : "+getJTextField_mealOption2().getName().toString()));
+				pdf.add(new Paragraph("Meal option 2 Name : "+getJTextField_mealOption2().getText().toString()));
+				pdf.add(new Paragraph("Meal option 3 ID : "+getJTextField_mealOption3().getName().toString()));
+				pdf.add(new Paragraph("Meal option 3 Name : "+getJTextField_mealOption3().getText().toString()));
+			}
+			
+		}
+		 pdf.add(new Paragraph("Entitled Discount \t: "+getJTextField_discount().getText().toString()));
+		 pdf.add(new Paragraph("   "));
+		 pdf.add(new Paragraph("   "));
+		 pdf.add(new Paragraph("   "));
+		 pdf.add(new Paragraph("****************************************************************************************************************"));
+		 pdf.add(new Paragraph("                                                                         End                                               "));
+		 pdf.add(new Paragraph("****************************************************************************************************************"));
+		 pdf.add(new Paragraph());
+		 pdf.add(new Paragraph());
+		 
+		 pdf.close();
+		
+		//prompt success
+		 JOptionPane.showMessageDialog(null, "File Downloaded Successfully at "+path, "Downloads", JOptionPane.INFORMATION_MESSAGE);
 		
 	}
-	public void download(){
+	
+	/********************************************************
+	 * Method Name 		: downloadTXT()
+	 * Input Parameter 	: void 
+	 * Return 			: void
+	 * Purpose 			: To download the details of the form 
+	 * 					  into the local computer in TXT
+	 * @throws IOException 
+	 *******************************************************/
+	public void downloadTXT(String path) throws IOException{
+		CSVController controller= new CSVController();
+		ArrayList<String[]> data = new ArrayList<String[]>();
 		
+		String[]packageHeader=new String[15];
+		packageHeader[0]="PACKAGE_ID";
+		packageHeader[1]="PACKAGE_TITLE";
+		packageHeader[2]="PACKAGE_AVAILABILITY";
+		packageHeader[3]="PACKAGE_DESCRIPTION";
+		packageHeader[4]="BALLROOM_ID";
+		packageHeader[5]="BALLROOM_NAME";
+		packageHeader[6]="ENTERTAINMENT_ID";
+		packageHeader[7]="ENTERTAINMENT_NAME";
+		packageHeader[8]="MEAL_OPTION1_ID";
+		packageHeader[9]="MEAL_OPTION1_NAME";
+		packageHeader[10]="MEAL_OPTION2_ID";
+		packageHeader[11]="MEAL_OPTION2_NAME";
+		packageHeader[12]="MEAL_OPTION3_ID";
+		packageHeader[13]="MEAL_OPTION3_NAEM";
+		packageHeader[14]="PACKAGE_DISCOUNT";
+		
+		String[] packageData= new String[15];
+		packageData[0]=getJTextField_packageID().getText().toString();
+		packageData[1]=getJTextField_packageTitle().getText().toString();
+		if(getJCheckBox_packageAvailability().isSelected())
+			packageData[2]="YES";
+		if(!getJCheckBox_packageAvailability().isSelected())
+			packageData[2]="NO";
+		packageData[3]=getJTextArea_packageDescription().toString();
+		packageData[4]=getJTextField_ballroomName().getName().toString();
+		packageData[5]=getJTextField_ballroomName().getText().toString();
+		packageData[6]=getJTextField_entertainmentName().getName().toString();
+		packageData[7]=getJTextField_entertainmentName().getText().toString();
+		packageData[8]=getJTextField_mealOption1().getName().toString();
+		packageData[9]=getJTextField_mealOption1().getText().toString();
+		packageData[10]=getJTextField_mealOption2().getName().toString();
+		packageData[12]=getJTextField_mealOption2().getText().toString();
+		packageData[13]=getJTextField_mealOption3().getName().toString();
+		packageData[14]=getJTextField_mealOption3().getText().toString();
+		
+		data.add(packageHeader);
+		data.add(packageData);
+		controller.WriteFile(data, path);
 	}
+	
 	
 	/********************************************************
 	 * Method Name : createTabHeader

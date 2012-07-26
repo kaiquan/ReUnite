@@ -759,7 +759,7 @@ public class AdministrateBallroomForm {
 			downloadPDF(PDFlink+".pdf");
 			downloadTXT(PDFlink+".CSV");
 		}
-		else if(directory.substring(directory.length()-2).equals(".r")){
+		else if(directory.substring(directory.length()-2).equals(".csv")){
 			Scanner sc2= new Scanner(directory);
 			String d=".r";
 			sc2.useDelimiter(d);

@@ -542,11 +542,10 @@ public ArrayList<String> GET_MEAL_PRICE(String eventName){
 		} else if (!mealType.equals(other.mealType))
 			return false;
 		return true;
+	
+	
+	
 	}
-<<<<<<< HEAD
-=======
 	
-
-	
->>>>>>> Updates
 }
+

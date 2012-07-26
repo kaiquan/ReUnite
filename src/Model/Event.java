@@ -547,13 +547,13 @@ public ArrayList<String> GET_EVENT_DETAILS(String eventName){
 	String dbQuery;
 
 
-	dbQuery = "SELECT e.eventTime,e.eventDate,e.eventStatus FROM Event e WHERE e.eventName="+"'"+eventName+"'";
+	dbQuery = "SELECT e.eventTime,e.eventDate,e.eventStatus,e.eventDescription FROM Event e WHERE e.eventName="+"'"+eventName+"'";
 	try{
 		
 		rs=DB.readRequest(dbQuery);
 		while(rs.next()){
 			
-		e1.add(rs.getString("eventTime")+","+rs.getString("eventDate")+","+rs.getString("eventStatus"));
+		e1.add(rs.getString("eventTime")+","+rs.getString("eventDate")+","+rs.getString("eventStatus")+","+rs.getString("eventDescription"));
 			
 			for(int i=0;i<e1.size();i++){
 				System.out.println(e1.get(i));

@@ -22,6 +22,8 @@ METHODS LIST			:	Facility()
 package Model;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import Controller.MySQLController;
@@ -314,6 +316,37 @@ public class Facility {
 	}
 	
 	
+	public ArrayList<String> GET_FACILITY(String eventName){
+		
+		
+		ArrayList<String> e1 = new ArrayList<String>();
+		ResultSet rs = null;
+		
+		String dbQuery;
+		
+		
+		dbQuery = "SELECT f.facilityName FROM Event e INNER JOIN Package p On e.packageID=p.packageID INNER JOIN Ballroom b On p.ballroomID=b.ballroomID INNER JOIN Facility f ON f.facilityID=b.facilityID WHERE e.eventName='"+eventName+"'";
+		try{
+			
+			rs=DB.readRequest(dbQuery);
+			while(rs.next()){
+				e1.add(rs.getString("f.facilityName"));
+			}
+		}
+		
+		catch(Exception e){
+			e.printStackTrace();
+		}
+			
+			for (int i=0; i<e1.size(); i++)
+			{
+				System.out.println(e1.get(i));
+			}
+			
+			return e1;
+		}
+	
+	
 
 	/********************************************************
 	 *				The Accessor Methods
@@ -372,5 +405,10 @@ public class Facility {
 
 	public void setFacilityWeekendExtraCost(double facilityWeekendExtraCost) {
 		this.facilityWeekendExtraCost = facilityWeekendExtraCost;
+	}
+	
+	public static void main(String args[]){
+		Facility f1 = new Facility();
+		f1.GET_FACILITY("FAJC REUNION");
 	}
 }

@@ -135,20 +135,25 @@ public class CollectPaymentForm {
                     	String eventTime=sc.next();
                     	String eventDate=sc.next();
                     	String eventStatus=sc.next();
+                    	String eventDescription=sc.next();
                     	String guestCountr=sc.next();
                     	String totalPrice=sc.next();
                     	ballroomPrice=sc.next();
                     	entertainmentPrice=sc.next();
                     	mealPrice=sc.next();
+                    	String facilty=sc.next();
                     	
                     	
-                    	//set the textField with the delimitered items
+                    	
                     	
                     	jTextField1.setText(eventDate);
                     	jTextField3.setText(guestCountr);
                     	jTextField4.setText(eventTime);
                     	jTextField5.setText(ballroomName);
                     	jTextField6.setText(totalPrice);
+                    	jTextArea1.setText(eventDescription);
+                    	jTextField2.setText(facilty);
+                    	
                     	
                     	
                     	

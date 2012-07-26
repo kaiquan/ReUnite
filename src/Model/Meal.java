@@ -355,13 +355,13 @@ public ArrayList<String> GET_MEAL_PRICE(String eventName){
 		String dbQuery;
 		
 		
-		dbQuery = "SELECT m.mealFinalPrice FROM Meal m INNER JOIN Meal_Options mo On mo.mealID=m.mealID INNER JOIN Package p On p.packageID=mo.packageID INNER JOIN Event e ON e.packageID=p.packageID WHERE e.eventName="+"'"+eventName+"'" ;
+		dbQuery = "SELECT e.eventID, ROUND (SUM(m.mealFinalPrice), 2) AS sum FROM Event e INNER JOIN Invitation i On i.eventID=e.eventID INNER JOIN Guest g On i.invitationID INNER JOIN Meal_Options mo On g.mealOptionID=mo.mealOptionID INNER JOIN Meal m On mo.mealID=m.mealID WHERE e.eventID =(SELECT eventID FROM Event WHERE eventName='"+eventName+"')"+" AND g.response='Attending' AND g.invitationID=i.invitationID";
 		try{
 			
 			rs=DB.readRequest(dbQuery);
 			while(rs.next()){
 				
-			e1.add(rs.getString("mealFinalPrice"));
+			e1.add(rs.getString("sum"));
 			
 			for(int i=0;i<e1.size();i++){
 				System.out.println(e1.get(i));
@@ -380,43 +380,7 @@ public ArrayList<String> GET_MEAL_PRICE(String eventName){
 			return e1;
 	}
 
-public ArrayList<String> getNumberOfGuests(String eventName){
-	
-	ArrayList<String> e1 = new ArrayList<String>();
-	ResultSet rs = null;
-	
-	String dbQuery;
-	
-	
-	dbQuery = "SELECT COUNT(*) FROM Invitation i INNER JOIN Event e On e.eventID=i.eventID INNER JOIN Guest g On i.invitationID=g.invitationID WHERE e.eventName="+"'"+eventName+"'" +"AND g.response='Attending'";
-	try{
-		
-		rs=DB.readRequest(dbQuery);
-		while(rs.next()){
-			
-		e1.add(rs.getString("Count(*)"));
-		
-		for(int i=0;i<e1.size();i++){
-			System.out.println(e1.get(i));
-		}
-		
-		
-		}
-		
-		
-	}
-		catch(Exception e){
-			e.printStackTrace();
-		}
-		
-		
-		return e1;
-}
-	
-	
-	
-	
-	
+
 	/********************************************************
 	 *				The Accessor Methods
 	 *******************************************************/
@@ -579,4 +543,10 @@ public ArrayList<String> getNumberOfGuests(String eventName){
 			return false;
 		return true;
 	}
+<<<<<<< HEAD
+=======
+	
+
+	
+>>>>>>> Updates
 }

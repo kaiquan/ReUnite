@@ -140,11 +140,13 @@ public class ConsolidateGuestListForm {
                     	String eventTime=sc.next();
                     	String eventDate=sc.next();
                     	String eventStatus=sc.next();
+                    	String eventDescription=sc.next();
                     	String guestCountr=sc.next();
                     	String totalPrice=sc.next();
                     	ballroomPrice=sc.next();
                     	entertainmentPrice=sc.next();
                     	mealPrice=sc.next();
+                    	String facilty=sc.next();
                     	
                     	
                     	
@@ -154,6 +156,8 @@ public class ConsolidateGuestListForm {
                     	textField_3.setText(eventTime);
                     	textField_5.setText(ballroomName);
                     	textField_4.setText(totalPrice);
+                    	jTextArea.setText(eventDescription);
+                    	jTextField.setText(facilty);
                     	
                     	
                     }
@@ -343,6 +347,7 @@ public class ConsolidateGuestListForm {
 						JOptionPane.showMessageDialog(null, "Event Status Changed to Awaiting Payment");
 						
 						textField.setText("");
+						jTextField.setText("");
 						textField_1.setText("");
 						textField_2.setText("");
 						textField_3.setText("");
@@ -351,7 +356,7 @@ public class ConsolidateGuestListForm {
 						textField_5.setText("");
 						jTextArea.setText("");
 						jContentPane.remove(tree);
-						//jContentPane.add(tree);
+						jContentPane.add(tree);
 						DefaultMutableTreeNode events = new DefaultMutableTreeNode("Events");
 						generateEvents(events);
 						DefaultTreeModel model = new DefaultTreeModel(events);
@@ -376,20 +381,25 @@ public class ConsolidateGuestListForm {
 			                    	String ballroomName=sc.next();
 			                    	String eventTime=sc.next();
 			                    	String eventDate=sc.next();
+			                    	String eventStatus=sc.next();
+			                    	String eventDescription=sc.next();
 			                    	String guestCountr=sc.next();
 			                    	String totalPrice=sc.next();
 			                    	ballroomPrice=sc.next();
 			                    	entertainmentPrice=sc.next();
 			                    	mealPrice=sc.next();
+			                    	String facility=sc.next();
 			                    	
 			                    	
 			                    	
 			                    	
 			                    	textField_1.setText(eventDate);
+			                    	jTextField.setText(facility);
 			                    	textField_2.setText(guestCountr);
 			                    	textField_3.setText(eventTime);
 			                    	textField_5.setText(ballroomName);
 			                    	textField_4.setText(totalPrice);
+			                    	jTextArea.setText(eventDescription);
 			                    	
 			                    	
 			                    }

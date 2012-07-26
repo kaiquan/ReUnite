@@ -94,6 +94,10 @@ public ArrayList<String> RETRIEVE_PAYMENT_DETAILS(String eventName){
 		while(rs.next()){
 			e1.add(rs.getString("totalCost")+","+rs.getString("amountPending"));
 	}
+		
+		for(int i=0;i<e1.size();i++){
+			System.out.println(e1.get(i));
+		}
 	}
 		catch(Exception e){
 			e.printStackTrace();
@@ -103,5 +107,6 @@ public ArrayList<String> RETRIEVE_PAYMENT_DETAILS(String eventName){
 		return e1;
 	
 }
+
 
 }

@@ -6,6 +6,7 @@ import java.util.Scanner;
 import Model.Ballroom;
 import Model.Entertainment;
 import Model.Event;
+import Model.Facility;
 import Model.Membership.Guest;
 import Model.Meal;
 import Model.CGL.Purchase_Payment;
@@ -68,6 +69,7 @@ public class CollectPaymentControl {
 		String eventTime=sc2.next();
 		String eventDate=sc2.next();
 		String eventStatus=sc2.next();
+		String eventDescription=sc2.next();
 		
 		Scanner sc3 = new Scanner(guest.get(0));
 		
@@ -77,6 +79,10 @@ public class CollectPaymentControl {
 		sc4.useDelimiter(",");
 		double mealPrice =sc4.nextDouble();
 		
+		Facility f1 = new Facility();
+		String facility=f1.GET_FACILITY(eventName).get(0);
+		
+		
 		double totalPrice=ballroomFinalPrice+entertainmentPrice+mealPrice;
 		
 		
@@ -84,13 +90,13 @@ public class CollectPaymentControl {
 		
 		
 		for(int i=0;i<meal.size();i++){
-			String combine=ballroomName+","+eventTime+","+eventDate+","+eventStatus+","+guestCount+","+totalPrice+","+ballroomFinalPrice+","+entertainmentPrice+","+mealPrice;
+			String combine=ballroomName+","+eventTime+","+eventDate+","+eventStatus+","+eventDescription+","+guestCount+","+totalPrice+","+ballroomFinalPrice+","+entertainmentPrice+","+mealPrice+","+facility;
 			combined.add(combine);
 		}
 		
 		
 		
-		System.out.println(totalPrice);
+		System.out.println(combined.get(0));
 		
 		
 		return combined;

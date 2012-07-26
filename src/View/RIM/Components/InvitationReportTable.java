@@ -51,6 +51,7 @@ public class InvitationReportTable extends JFrame
 		initComponents();
 
 		m_table.setModel(m_tableModel);
+		
 		m_table.getTableHeader().setReorderingAllowed(false);
 		m_table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		// m_table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -91,6 +92,9 @@ public class InvitationReportTable extends JFrame
 		// TABLE RESIZING CONFIGURATION
 		// resize but don't lock the columns
 		AutoResizeTableColumns resizer = new AutoResizeTableColumns(m_table, m_tableModel, 32, true, true, new boolean[m_table.getColumnCount()]);
+		m_table.getModel().addTableModelListener(resizer);
+		m_table.getColumnModel().getColumn(0).setResizable(false);
+		m_table.getColumnModel().getColumn(0).setMaxWidth(30);
 		// uncomment for debuging
 		// resizer.setDebugMode( true );
 		// -----

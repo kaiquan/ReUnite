@@ -364,9 +364,14 @@ public class ViewRIDetails {
 					telephoneTextBox.setEditable(false);
 					handphoneTextBox.setEditable(false);
 					
-					
 					updateAccountButton.setVisible(true);
 					confirmUpdateButton.setVisible(false);
+					
+					tableModel = viewRIDetailsController.getRITableModel();
+					table.setModel(tableModel);
+					table.updateUI();
+					
+					
 			}}
 			
 	
@@ -630,7 +635,7 @@ public class ViewRIDetails {
 	 */
 	private JButton getRefresh() {
 		if (refresh == null) {
-			refresh = new JButton("I AM A WANKO AND I KNOW IT!");
+			refresh = new JButton("Refresh");
 			refresh.setBounds(new Rectangle(712, 77, 262, 18));
 			refresh.addActionListener(new ActionListener()
 			{

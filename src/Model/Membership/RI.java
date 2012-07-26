@@ -199,7 +199,7 @@ public class RI extends Account {
 		
 		String sql = "UPDATE Account SET userName = '"+account.getUserName()+"', firstName= '"+account.getFirstName()+"', lastName= '"+account.getLastName()+"'," +
 				" nric= '"+account.getNric()+"', school= '"+account.getSchool()+"', email='"+ account.getEmail()+"', telephoneNo='"+account.getTelephoneNo()+"'," +
-				" handphoneNo='"+account.getHandphoneNo()+"',  secretAnswer ='"+ account.getSecretAnswer()+"'"+
+				" handphoneNo='"+account.getHandphoneNo()+"'"+
 				 " WHERE userName ='"+account.getUserName()+"'";
 		if (db.updateRequest(sql) == 1)
 			success = true;
@@ -282,7 +282,7 @@ public class RI extends Account {
 	public String[][] getRITableModel1() {
 		RI riModel1 = new RI();
 
-		String data[][] = new String[13][13];
+		String data[][] = new String[1][13];
 
 		try {
 

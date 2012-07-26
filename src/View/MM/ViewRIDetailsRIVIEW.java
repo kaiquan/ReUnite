@@ -37,7 +37,7 @@ public class ViewRIDetailsRIVIEW {
 	ViewRIPersonalController viewRIPersonalController = new	ViewRIPersonalController();
 
 	private JTable table;
-	private JFrame jframe;
+	private JFrame jframe;  //  @jve:decl-index=0:visual-constraint="10,54"
 	private JPanel panel;
 	
 	
@@ -48,27 +48,29 @@ public class ViewRIDetailsRIVIEW {
 	
 	
 	//TextBoxes
-	JButton userNameTextBox;
-	JButton firstNameTextBox;
-	JButton lastNameTextBox;
-	JButton nricTextBox;
-	JButton schoolTextBox;
-	JButton emailTextBox;
-	JButton telephoneTextBox;
-	JButton handphoneTextBox;
+	JTextField userNameTextBox;
+	JTextField firstNameTextBox;
+	JTextField lastNameTextBox;
+	JTextField dateOfBirthTextBox;
+	JTextField nricTextBox;
+	JTextField schoolTextBox;
+	JTextField emailTextBox;
+	JTextField telephoneTextBox;
+	JTextField handphoneTextBox;
 	
 
 	//Buttons
 	private JButton  updateAccountButton;
 	private JButton requestDeleteButton;
 	private JButton submitButton;
+	
  	
 	
 	// ***********************JFrame Method****************
 	
 	private JFrame getJFrame(){
 		jframe = new JFrame();
-		jframe.setSize(700,500);
+		jframe.setSize(782, 586);
 		jframe.setVisible(true);
 		jframe.setTitle("View");
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -90,24 +92,88 @@ public class ViewRIDetailsRIVIEW {
 	//Labels
 	
 	title = new JLabel();
-	title.setBounds(new Rectangle(10, 30, 300, 100));
+	title.setBounds(new Rectangle(10, 10, 300, 100));
 	title.setFont(new Font("Dialog", Font.BOLD, 30));
-	title.setText("RI ACCOUNTS");
+	
 	
 	
 	
 	
 	
 	//TextBox
+	userNameTextBox =new JTextField();
+	userNameTextBox.setBounds(new Rectangle(130, 250, 150, 25));
+	userNameTextBox.setVisible(false);
+	
+	
+	firstNameTextBox=new JTextField();
+	firstNameTextBox.setBounds(new Rectangle(130, 300, 150, 25));
+	firstNameTextBox.setVisible(false);
+
+
+	lastNameTextBox=new JTextField();
+	lastNameTextBox.setBounds(new Rectangle(130, 350, 150, 25));
+	lastNameTextBox.setVisible(false);
+	
+	
+	dateOfBirthTextBox=new JTextField();
+	dateOfBirthTextBox.setBounds(new Rectangle(130, 400, 150, 25));
+	dateOfBirthTextBox.setVisible(false);
+	
+	nricTextBox=new JTextField();
+	nricTextBox.setBounds(new Rectangle(130, 450, 150, 25));
+	nricTextBox.setVisible(false);
+	
+	schoolTextBox=new JTextField();
+	schoolTextBox.setBounds(new Rectangle(510, 250, 150, 25));
+	schoolTextBox.setVisible(false);
+	
+	emailTextBox=new JTextField();
+	emailTextBox.setBounds(new Rectangle(510, 300, 150, 25));
+	emailTextBox.setVisible(false);
+	
+	telephoneTextBox=new JTextField();
+	telephoneTextBox.setBounds(new Rectangle(510, 350, 150, 25));
+	telephoneTextBox.setVisible(false);
+	
+	handphoneTextBox=new JTextField();
+	handphoneTextBox.setBounds(new Rectangle(510, 400, 150, 25));
+	handphoneTextBox.setVisible(false);
 	
 	
 	
 	//Buttons
 	
 	updateAccountButton = new JButton();
-	updateAccountButton.setBounds(500,30,150,30);
+	updateAccountButton.setBounds(500, 50,150,30);
 	updateAccountButton.setText("Update Account");
 	updateAccountButton.addActionListener(new java.awt.event.ActionListener() {
+		public void actionPerformed(java.awt.event.ActionEvent e) {
+			
+			updateAccountButton.setVisible(false);
+			submitButton.setVisible(true);
+		
+			userNameTextBox.setVisible(true);
+			firstNameTextBox.setVisible(true);
+			lastNameTextBox.setVisible(true);
+			dateOfBirthTextBox.setVisible(true);
+			nricTextBox.setVisible(true);
+			schoolTextBox.setVisible(true);
+			emailTextBox.setVisible(true);
+			telephoneTextBox.setVisible(true);
+			handphoneTextBox.setVisible(true);
+			
+			
+			
+		}
+	});
+	
+
+	submitButton = new JButton("Submit");
+	submitButton.setBounds(500, 50,150,30);
+	submitButton.setVisible(false);
+	submitButton.addActionListener(new java.awt.event.ActionListener() {
+		
 		public void actionPerformed(java.awt.event.ActionEvent e) {
 			Object[] options = { "OK", "CANCEL" };
 			int confirmUpdateOption = JOptionPane.showOptionDialog(null, "Are You Sure You Want to UPDATE RI DATA?", "Please Confirm",
@@ -127,9 +193,21 @@ public class ViewRIDetailsRIVIEW {
 			schoolTextBox.getText(),
 			emailTextBox.getText(),
 			telephoneTextBox.getText(),
-			handphoneTextBox.getText()); //secretQuestion(),
-//				updateAccountButton.setVisible(true);
-//				confirmUpdateButton.setVisible(false);
+			handphoneTextBox.getText()); 
+				
+				
+				updateAccountButton.setVisible(true);
+				submitButton.setVisible(false);
+			
+				userNameTextBox.setVisible(false);
+				firstNameTextBox.setVisible(false);
+				lastNameTextBox.setVisible(false);
+				dateOfBirthTextBox.setVisible(false);
+				nricTextBox.setVisible(false);
+				schoolTextBox.setVisible(false);
+				emailTextBox.setVisible(false);
+				telephoneTextBox.setVisible(false);
+				handphoneTextBox.setVisible(false);
 
 				
 			}
@@ -137,15 +215,12 @@ public class ViewRIDetailsRIVIEW {
 	});
 	
 	requestDeleteButton = new JButton();
-	requestDeleteButton.setBounds(500,400,150,30);
+	requestDeleteButton.setBounds(515, 463, 150, 30);
 	requestDeleteButton.setText("Request Delete");
 	
 	
 	
 	
-	submitButton = new JButton("Submit");
-	submitButton.setBounds(300, 30,150,30);
-
 	
 	// Content Pane
 	
@@ -156,6 +231,18 @@ public class ViewRIDetailsRIVIEW {
 	
 //..............................add.......................................
 	
+	panel.add(userNameTextBox);
+	panel.add(firstNameTextBox);
+	panel.add(lastNameTextBox);
+	panel.add(dateOfBirthTextBox);
+	panel.add(nricTextBox);
+	panel.add(schoolTextBox);
+	panel.add(emailTextBox);
+	panel.add(telephoneTextBox);
+	panel.add(handphoneTextBox);
+	
+	
+	
 		panel.add(title);
 		
 		panel.add(requestDeleteButton);
@@ -164,8 +251,9 @@ public class ViewRIDetailsRIVIEW {
 
 		panel.add(submitButton);
 
-		panel.add(getTable());
-
+		JScrollPane tableScrollPane = new JScrollPane(getTable());
+		tableScrollPane.setBounds(0, 100, 600, 100);
+		panel.add(tableScrollPane);
 	
 
 		return panel;
@@ -189,6 +277,7 @@ public class ViewRIDetailsRIVIEW {
 		table.setColumnSelectionAllowed(false);
 		table.setCellSelectionEnabled(false);
 		table.setRowSelectionAllowed(true);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		
 		DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
 		headerRenderer.setBackground(Color.GRAY);
@@ -207,6 +296,25 @@ public class ViewRIDetailsRIVIEW {
 		return table;
 
 	}
+	
+	
+	public void shiftData(int row) {
+		//add Date of birth here		
+JTextField[] textBoxes = {userNameTextBox,  firstNameTextBox, lastNameTextBox,  nricTextBox, schoolTextBox, emailTextBox, telephoneTextBox, handphoneTextBox};
+int columns = table.getColumnCount();  
+
+
+
+for(int col = 0; col < columns; col++)  
+{  
+textBoxes[col].setText(table.getValueAt(row, col).toString());
+if(col == 0)
+{
+	//title.setText("Welcome+ "+userNameTextBox.UserName(col==0).toString()+"");
+}
+}
+
+}  
 	
 	
 // .......................................JTable.........................	

@@ -58,7 +58,7 @@ import Controller.SOM.AdministrateFacilityControl;
 import Controller.SOM.AdministrateMealControl;
 import Controller.SOM.AdministratePackageControl;
 import Controller.SOM.CSVController;
-
+import Controller.SOM.ProgressController;
 
 public class AdministrateSystemOptionManagement {
 	
@@ -464,7 +464,7 @@ public class AdministrateSystemOptionManagement {
 		}
 		return jPanel_tab_header;
 	}
-	protected static JProgressBar getJProgressBar() {
+	public static JProgressBar getJProgressBar() {
 		if (jProgressBar == null) {
 			jProgressBar = new JProgressBar();
 			jProgressBar.setValue(0);
@@ -678,7 +678,38 @@ public class AdministrateSystemOptionManagement {
 		jButton_Package.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/package.png")));
 		jButton_Package.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-				newPackageTab();	//Creats a new Package Tab
+				 Thread main = new Thread () {
+					  public void run () {
+						  newPackageTab();	//Creats a new Package Tab
+					  }
+				  };
+				  Thread progress= new Thread(){
+					  public void run(){
+						  ProgressController control= new ProgressController();
+						  control.updateProgress(3);
+					  }
+				  };
+				  Thread end= new Thread(){
+					  public void run(){
+						  ProgressController control= new ProgressController();
+						  control.update(100);
+					  }
+				  };
+				  progress.start();
+				  main.start(); 
+				  
+				 
+				  
+				  
+				  progress.interrupt();
+				  progress.stop();
+				  while(!main.isAlive()){
+				  progress.yield();
+				  System.out.println(" main has ended....");
+				  AdministrateSystemOptionManagement.getJProgressBar().setValue(100);}
+				  
+				  
+				  
 			}
 		});
 		
@@ -764,7 +795,6 @@ public class AdministrateSystemOptionManagement {
 		
 		JPanel jPanel = new JPanel();
 		jPanel = new JPanel();
-		jPanel.setBackground(SystemColor.control);
 		jPanel.setLayout(null);
 		jPanel.setSize(new Dimension(1000,300));
 		jPanel.setPreferredSize(new Dimension(1000,300));

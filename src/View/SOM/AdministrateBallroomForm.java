@@ -540,6 +540,7 @@ public class AdministrateBallroomForm {
 						createBallroom();
 						displaySummary();
 					}
+					
 				}
 			});
 		}

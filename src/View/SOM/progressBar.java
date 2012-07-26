@@ -50,7 +50,7 @@ JProgressBar pbar;
     }
   }
 
-  public void updateBar(int newValue) {
+public void updateBar(int newValue) {
     pbar.setValue(newValue);
   }
 
@@ -62,6 +62,10 @@ public static void main(String args[]) {
 			  new progressBar();
 		  }
 		};
+		
+		
+		
+		
 	  Thread thread1 = new Thread () {
 		  public void run () {
 			  int i=0;
@@ -77,4 +81,4 @@ public static void main(String args[]) {
 		thread1.start();
 		thread2.start();
   }
-}
+}  //  @jve:decl-index=0:visual-constraint="10,10"

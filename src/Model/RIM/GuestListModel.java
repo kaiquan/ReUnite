@@ -1,4 +1,4 @@
-package View.RIM.Components.Chat;
+package Model.RIM;
 
 import javax.swing.*;
 import javax.swing.event.*;

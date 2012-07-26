@@ -579,5 +579,4 @@ public ArrayList<String> getNumberOfGuests(String eventName){
 			return false;
 		return true;
 	}
-	
 }

@@ -7,8 +7,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import View.RIM.Components.NavigationFooter;
-import View.RIM.Components.Chat.GuestCollection;
-import View.RIM.Components.Chat.GuestListModel;
 import View.RIM.Components.JListGuestImportRenderer;
 
 import net.miginfocom.swing.MigLayout;
@@ -16,6 +14,8 @@ import Controller.RIM.ContactImporter;
 import Controller.RIM.LookAndFeelController;
 import Images.RIM.ImageHelper;
 import Model.Membership.Guest;
+import Model.RIM.GuestCollection;
+import Model.RIM.GuestListModel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

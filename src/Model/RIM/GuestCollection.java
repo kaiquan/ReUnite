@@ -1,4 +1,4 @@
-package View.RIM.Components.Chat;
+package Model.RIM;
 
 import java.util.ArrayList;
 

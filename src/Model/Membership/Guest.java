@@ -9,14 +9,16 @@ public class Guest extends Account
 {
 	String onlineStatus;
 	String profilePicture;
-	private static MySQLController DB = new MySQLController();
+	
+	private MySQLController DB = new MySQLController();
+	
 	public Guest()
 	{
 	}
 	
 	public Guest(String userName)
 	{
-		super(userName);
+		setUserName(userName);
 	}
 	
 	public Guest(String name, String onlineStatus, String profilePicture)

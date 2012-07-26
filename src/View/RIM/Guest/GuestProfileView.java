@@ -17,8 +17,6 @@ import View.RIM.Components.GuestActionsFooter;
 
 
 import net.miginfocom.swing.MigLayout;
-import Controller.RIM.LookAndFeelController;
-
 @SuppressWarnings("serial")
 public class GuestProfileView extends JFrame
 {
@@ -211,8 +209,6 @@ public class GuestProfileView extends JFrame
 		setTitle( "Profile of " + guest.getUserName());
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);	
 		setSize(new Dimension(677, 600));
-		
-		LookAndFeelController.getWindowsLookAndFeel();
 		setVisible(true);
 	}
 	

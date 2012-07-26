@@ -7,6 +7,8 @@ import java.awt.event.MouseListener;
 import javax.swing.*;
 
 import Model.Membership.Guest;
+import Model.RIM.GuestCollection;
+import Model.RIM.GuestListModel;
 
 import com.explodingpixels.macwidgets.HudWidgetFactory;
 import com.explodingpixels.macwidgets.HudWindow;

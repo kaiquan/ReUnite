@@ -1,14 +1,9 @@
 package Model.Membership;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.sql.Date;
-
-
+import java.sql.ResultSet;
+import java.text.ParseException;
+import java.util.ArrayList;
 
 import Controller.MySQLController;
 

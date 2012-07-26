@@ -180,12 +180,10 @@ public class RI extends Account {
 
 	public boolean deleteRIAccount(RI account) {
 		boolean success = false;
-		MySQLController db = new MySQLController();
 		String sql = "DELETE FROM Account  where UserName = '" + getUserName()
 				+ "'";
 		if (db.updateRequest(sql) == 1)
 			success = true;
-		db.terminate();
 		return success;
 
 	}
@@ -194,42 +192,33 @@ public class RI extends Account {
 	// RI Account ____________________________________________________________
 
 	public boolean updateRIAccount(Account account) {
+	
+		RI updateRi = new RI();
+		
 		boolean success = false;
-		MySQLController db = new MySQLController();
-		String sql = "UPDATE Account SET userName, firstName, lastName, nric, school, email, address, telephoneNo, handphoneNo,  secretAnswer = '"
-
-				+ "' "
-				+ getUserName()
-				
-				+ "','"
-				+ getFirstName()
-				+ "','"
-				+ getLastName()
-			//	+ "','"
-			//	+ getDateOfBirth()
-				+ "','"
-				+ getNric()
-				+ "', '"
-				+ getSchool()
-				+ "','"
-				+ getEmail()
-				+ "','"
-				+ getAddress()
-				+ "', "
-				+ getTelephoneNo()
-				+ "','"
-				+ getHandphoneNo()
-//				+ "','"
-//				+ getSecretQuestion()
-				+ "','"
-				+ getSecretAnswer()
-				+ "''"
-				+ " WHERE userName ='shahrikinalias@gmail.com'";
+		
+		String sql = "UPDATE Account SET userName = '"+account.getUserName()+"', firstName= '"+account.getFirstName()+"', lastName= '"+account.getLastName()+"'," +
+				" nric= '"+account.getNric()+"', school= '"+account.getSchool()+"', email='"+ account.getEmail()+"', telephoneNo='"+account.getTelephoneNo()+"'," +
+				" handphoneNo='"+account.getHandphoneNo()+"',  secretAnswer ='"+ account.getSecretAnswer()+"'"+
+				 " WHERE userName ='"+account.getUserName()+"'";
 		if (db.updateRequest(sql) == 1)
 			success = true;
-		db.terminate();
 		return success;
 	}
+	
+	
+	
+	public boolean disableRIAccount(Account account){
+		boolean success = false;
+		
+		String sql ="UPDATE Account SET status='"+account.getStatus()+"'"+
+		" WHERE userName='"+account.getUserName()+"'";
+		if (db.updateRequest(sql) == 1)
+			success = true;
+		return success;
+
+	}
+	
 
 	public static void main(String args[]) throws ParseException {
 
@@ -237,7 +226,14 @@ public class RI extends Account {
 		
 	riModel.setFirstName("shahrik");
 	riModel.setLastName("alias");
-	riModel.setUserName("kino");
+	riModel.setNric("S8851748B");
+	riModel.setSchool("NYP");
+	riModel.setAddress("CCK");
+	riModel.setTelephoneNo("12345678");
+	riModel.setHandphoneNo("87654321");
+	riModel.setUserName("shahrikinalias@gmail.com");
+	riModel.setEmail("Email@email.com");
+	riModel.setSecretAnswer("HARAM");
 
 	 riModel.updateRIAccount(riModel);
 		
@@ -313,6 +309,7 @@ public class RI extends Account {
 		return data;
 
 	}
+	
 
 	
 	

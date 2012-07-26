@@ -23,9 +23,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.UIManager;
 
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -36,6 +38,7 @@ import Model.*;
 import Model.Membership.RI;
 import Controller.MySQLController;
 import Controller.MM.*;
+import java.awt.GridBagLayout;
 
 ;
 
@@ -47,7 +50,10 @@ public class ViewRIDetails {
 	private JFrame jframe;
 	private JPanel panel;
 	private JPanel panel2;
+	private JPanel wankingPanel ;
+	private JPanel infoPanel;
 	
+	private DefaultTableModel tableModel = viewRIDetailsController.getRITableModel();
 	
 	//TextBoxes
 	private JTextField userNameTextBox;
@@ -95,6 +101,10 @@ public class ViewRIDetails {
 	private JButton  disableAccountButton;
 	private JButton  createAccountButton;
 	private JButton confirmUpdateButton;
+
+	private JButton refresh = null;
+
+	
  	
 	
 	// ***********************JFrame Method****************
@@ -248,11 +258,11 @@ public class ViewRIDetails {
 	//Buttons
 	
 	deleteAccountButton = new JButton();
-	deleteAccountButton.setBounds(800,350,150,30);
+	deleteAccountButton.setBounds(0, 102, 150, 30);
 	deleteAccountButton.setText("Delete Account");
 	
 	updateAccountButton = new JButton();
-	updateAccountButton.setBounds(800, 450, 150, 30);
+	updateAccountButton.setBounds(0, 29, 150, 30);
 	updateAccountButton.setText("Update Account");
 	updateAccountButton.addActionListener(new java.awt.event.ActionListener() {
 		public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -261,7 +271,7 @@ public class ViewRIDetails {
 
 		private void updateAccount() {
 			Object[] options = { "OK", "CANCEL" };
-			int confirmUpdateOption = JOptionPane.showOptionDialog(null, "Are You Sure You Want to UPDATE RI DATA?", "Please Confirm",
+			int confirmUpdateOption = JOptionPane.showOptionDialog(null, "Are You Sure You Want to UPDATE  " +userNameTextBox.getText() +"", "Please Confirm",
 			JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 			null, options, options[0]);
 			if (confirmUpdateOption == 0){
@@ -299,7 +309,7 @@ public class ViewRIDetails {
 		public void actionPerformed(java.awt.event.ActionEvent e) {
 			
 			Object[] options = { "OK", "CANCEL" };
-			int confirmUpdateOption = JOptionPane.showOptionDialog(null, "Are You Sure You Want to UPDATE RI DATA?", "Please Confirm",
+			int confirmUpdateOption = JOptionPane.showOptionDialog(null, "" +userNameTextBox.getText() +" is successfully updated! ", "Account Updated!",
 			JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 			null, options, options[0]);
 			if (confirmUpdateOption == 0){
@@ -329,6 +339,32 @@ public class ViewRIDetails {
 				emailTextBox.getText(),
 				telephoneTextBox.getText(),
 				handphoneTextBox.getText()); //secretQuestion(),
+					
+					userNameTextBox.setText("");
+					firstNameTextBox.setText("");
+					lastNameTextBox.setText("");
+					//parseDate(date()), 
+					dateOfBirthTextBox.setText("");
+					nricTextBox.setText("");
+					schoolTextBox.setText("");
+					emailTextBox.setText("");
+					telephoneTextBox.setText("");
+					handphoneTextBox.setText("");
+					statusTextBox.setText("");
+					typeTextBox.setText("");
+					//secretQuestion(),
+					
+					userNameTextBox.setEditable(false);
+					firstNameTextBox.setEditable(false);
+					lastNameTextBox.setEditable(false);
+					dateOfBirthTextBox.setEditable(false);
+					emailTextBox.setEditable(false);
+					nricTextBox.setEditable(false);
+					schoolTextBox.setEditable(false);
+					telephoneTextBox.setEditable(false);
+					handphoneTextBox.setEditable(false);
+					
+					
 					updateAccountButton.setVisible(true);
 					confirmUpdateButton.setVisible(false);
 			}}
@@ -338,11 +374,80 @@ public class ViewRIDetails {
 	});
 	
 	disableAccountButton = new JButton();
-	disableAccountButton.setBounds(800,550,150,30);
+	disableAccountButton.setBounds(1, 190, 150, 30);
 	disableAccountButton.setText("Disable Account");
+	disableAccountButton.addActionListener(new java.awt.event.ActionListener() {
+		public void actionPerformed(java.awt.event.ActionEvent e) {
+			
+			
+			if(disableAccountButton.getText()=="Disable Account"){
+			
+			Object[] options = { "OK", "CANCEL" };
+			int confirmUpdateOption = JOptionPane.showOptionDialog(null, "Are You want to disable  "+userNameTextBox.getText()+"?", "Please Confirm",
+			JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+			null, options, options[0]);
+			if (confirmUpdateOption == 0){
+			
+			statusTextBox.setText("Disable");
+			UpdateRIController disableAccount = new UpdateRIController();
+			disableAccount.disableRIAccount(userNameTextBox.getText(), statusTextBox.getText());
+			}
+			
+			JOptionPane.showConfirmDialog(null,""+userNameTextBox.getText()+" Has Been Successfully disabled!",
+					   "Disable Confirmed!", JOptionPane.CLOSED_OPTION);
+			}
+			if(disableAccountButton.getText()=="Enable Account"){
+				Object[] options = { "OK", "CANCEL" };
+				int confirmUpdateOption = JOptionPane.showOptionDialog(null, "Are You want to Enable  "+userNameTextBox.getText()+"?", "Please Confirm",
+				JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+				null, options, options[0]);
+				if (confirmUpdateOption == 0){
+				
+				statusTextBox.setText("Active");
+				UpdateRIController disableAccount = new UpdateRIController();
+				disableAccount.disableRIAccount(userNameTextBox.getText(), statusTextBox.getText());
+				}
+				
+				JOptionPane.showConfirmDialog(null,""+userNameTextBox.getText()+" Has Been Successfully Activated!",
+						   "Disable Confirmed!", JOptionPane.CLOSED_OPTION);
+				
+			}
+			
+			
+			
+			tableModel = viewRIDetailsController.getRITableModel();
+			table.setModel(tableModel);
+			table.updateUI();
+			
+			userNameTextBox.setText("");
+			firstNameTextBox.setText("");
+			lastNameTextBox.setText("");
+			//parseDate(date()), 
+			dateOfBirthTextBox.setText("");
+			nricTextBox.setText("");
+			schoolTextBox.setText("");
+			emailTextBox.setText("");
+			telephoneTextBox.setText("");
+			handphoneTextBox.setText("");
+			statusTextBox.setText("");
+			typeTextBox.setText("");
+			//secretQuestion(),
+			
+			userNameTextBox.setEditable(false);
+			firstNameTextBox.setEditable(false);
+			lastNameTextBox.setEditable(false);
+			dateOfBirthTextBox.setEditable(false);
+			emailTextBox.setEditable(false);
+			nricTextBox.setEditable(false);
+			schoolTextBox.setEditable(false);
+			telephoneTextBox.setEditable(false);
+			handphoneTextBox.setEditable(false);
+			
+		}
+	});
 	
 	createAccountButton = new JButton();
-	createAccountButton.setBounds(800,70,150,30);
+	createAccountButton.setBounds(810, 46, 150, 30);
 	createAccountButton.setText("Create Account");
 	createAccountButton.addActionListener(new java.awt.event.ActionListener() {
 		public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -404,10 +509,10 @@ public class ViewRIDetails {
 	
 	
 	JScrollPane tableScrollPane = new JScrollPane(getTable());
-	tableScrollPane.setBounds(0,100,975,200);
+	tableScrollPane.setBounds(-8, 97, 975, 200);
 	panel.add(tableScrollPane);
-	
-	
+	panel.add(getWankingPanel(), null);
+	panel.add(getRefresh(), null);
 		return panel;
 	}
 	
@@ -431,14 +536,14 @@ public class ViewRIDetails {
 			}
 		});
 		RI riModel = new RI();
-		table = new JTable();
-	
+		table = new JTable();	
 		table.setBackground(Color.white);
 		table.setBorder(null);
-		table.setModel(viewRIDetailsController.getRITableModel());
+		table.setModel(tableModel);
 		table.setColumnSelectionAllowed(false);
 		table.setCellSelectionEnabled(false);
 		table.setRowSelectionAllowed(true);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
 		headerRenderer.setBackground(Color.GRAY);
@@ -483,15 +588,65 @@ public class ViewRIDetails {
 																					//add Date of birth here		
 			JTextField[] textBoxes = {userNameTextBox, typeTextBox, statusTextBox, firstNameTextBox, lastNameTextBox,  nricTextBox, schoolTextBox, emailTextBox, telephoneTextBox, handphoneTextBox};
 	        int columns = table.getColumnCount();  
+	       
+	    
+	      
 	        for(int col = 0; col < columns; col++)  
 	        {  
 	            textBoxes[col].setText(table.getValueAt(row, col).toString());
+	            if(col == 2)
+	            {
+	            	if(table.getValueAt(row, col).toString().equals("Disable"))
+	            	{
+	            		disableAccountButton.setText("Enable Account");
+	            	}
+	            	else
+	            	{
+	            		disableAccountButton.setText("Disable Account");
+	            	}
+	            }
 	        }  
+	
 	     
 	  }  
-	
-	
-	
+
+	private JPanel getWankingPanel() {
+		if (wankingPanel == null) {
+			wankingPanel = new JPanel();
+			wankingPanel.setLayout(null);
+			wankingPanel.setBounds(new Rectangle(783, 328, 178, 298));
+			wankingPanel.add(updateAccountButton);
+			wankingPanel.add(deleteAccountButton);
+			wankingPanel.add(disableAccountButton);
+			wankingPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Actions", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		}
+		return wankingPanel;
+	}
+
+	/**
+	 * This method initializes refresh	
+	 * 	
+	 * @return javax.swing.JButton	
+	 */
+	private JButton getRefresh() {
+		if (refresh == null) {
+			refresh = new JButton("I AM A WANKO AND I KNOW IT!");
+			refresh.setBounds(new Rectangle(712, 77, 262, 18));
+			refresh.addActionListener(new ActionListener()
+			{
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					tableModel = viewRIDetailsController.getRITableModel();
+					table.setModel(tableModel);
+					table.updateUI();
+				}
+				
+			});
+		}
+		return refresh;
+	}
+
 	public static void main(String a[]){
 		
 		

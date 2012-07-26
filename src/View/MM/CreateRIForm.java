@@ -70,7 +70,7 @@ public class CreateRIForm extends JFrame {
 		jFrame.setSize(1000,1000);
 		jFrame.setVisible(true);
 		jFrame.setTitle("Registration");
-		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		jFrame.setContentPane(getPanel());
 		
 		return jFrame;

@@ -28,6 +28,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
 import javax.swing.JToggleButton;
+import javax.swing.SwingUtilities;
+
 import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.Dimension;
@@ -681,32 +683,55 @@ public class AdministrateSystemOptionManagement {
 				 Thread main = new Thread () {
 					  public void run () {
 						  newPackageTab();	//Creats a new Package Tab
+						  System.out.println("ended main");
 					  }
 				  };
+				  final Thread a=main;
 				  Thread progress= new Thread(){
 					  public void run(){
-						  ProgressController control= new ProgressController();
-						  control.updateProgress(3);
+						  int increment=3;
+							 for (int i =  0; i <= 100; i+=increment) {
+								 System.out.println("before : "+  AdministrateSystemOptionManagement.getJProgressBar().getValue());
+							      final int percent = i;
+							      try {
+							        SwingUtilities.invokeLater(new Runnable() {
+							         public void run() {
+							        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+							        	 System.out.println(percent+"%");
+							        	 System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
+							          }
+							        });
+							        Thread.sleep(100);
+							        if(!a.isAlive()){
+							        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+							        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
+							        	break;
+									 }
+							        
+							       
+							      } catch (InterruptedException e) {
+							    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+							      }
+							    } 
+							 AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+							 System.out.println("Ended with : "+ AdministrateSystemOptionManagement.getJProgressBar().getValue());
+							 this.stop();
+							 this.interrupt();
+							 while(this.isAlive()){
+								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 System.out.println("..");
+							 }
+							 
+							 
 					  }
 				  };
-				  Thread end= new Thread(){
-					  public void run(){
-						  ProgressController control= new ProgressController();
-						  control.update(100);
-					  }
-				  };
+				  
+				  
+				  
 				  progress.start();
 				  main.start(); 
 				  
-				 
-				  
-				  
-				  progress.interrupt();
-				  progress.stop();
-				  while(!main.isAlive()){
-				  progress.yield();
-				  System.out.println(" main has ended....");
-				  AdministrateSystemOptionManagement.getJProgressBar().setValue(100);}
+				
 				  
 				  
 				  

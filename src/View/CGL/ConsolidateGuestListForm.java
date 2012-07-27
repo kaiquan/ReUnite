@@ -1,45 +1,37 @@
 package View.CGL;
 
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTree;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.UIManager;
-
-import java.awt.Font;
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
-import javax.swing.JToggleButton;
 
 
-
-import java.awt.Rectangle;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
+import java.util.Date;
 import java.util.Scanner;
-import java.util.TreeMap;
 
-import javax.swing.JButton;
-import javax.swing.border.Border;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.MutableTreeNode;
-import javax.swing.tree.TreeNode;
-import javax.swing.JTextArea;
+import Controller.EmailController;
+import Controller.MyCalendar;
+
+import com.itextpdf.text.Anchor;
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chapter;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.List;
+import com.itextpdf.text.ListItem;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Section;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+
 
 
 
@@ -47,9 +39,27 @@ import Controller.CGL.ConsolidateGuestListControl;
 import Model.Event;
 
 import java.util.Enumeration;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Rectangle;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-public class ConsolidateGuestListForm {
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JTree;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+public class ConsolidateGuestListForm extends Fonts{
 
 	final JTree tree = new JTree();
 	private JFrame jFrame = null;  //  @jve:decl-index=0:visual-constraint="167,6"
@@ -72,6 +82,8 @@ public class ConsolidateGuestListForm {
 	private String entertainmentPrice;
 	private String mealPrice;
 	private String packageDiscount;
+	private static String FILE = null;
+
 	/**
 	 * This method initializes jFrame	
 	 * 	
@@ -345,12 +357,38 @@ public class ConsolidateGuestListForm {
 			jButton1 = new JButton();
 			jButton1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					if(jTextField.getText().equals("")){
+						JOptionPane.showMessageDialog(null, "Please Select an event");
+					}
+					
+					else{
 					
 					String eventStatus="Awaiting Payment";
 					
 					ConsolidateGuestListControl c1 = new ConsolidateGuestListControl();
 					if((c1.updateTotalPayableAmount((textField_4.getText()),textField.getText())==true)){
 						JOptionPane.showMessageDialog(null, "Payment Amount Updated");
+						
+						
+
+                    	FILE=textField.getText()+".pdf";
+                    	
+                    	ConsolidateGuestListForm g1 = new ConsolidateGuestListForm();
+                    	g1.pdfCreator(FILE,textField.getText(),textField_1.getText(),textField_2.getText(),textField_3.getText(),jTextField.getText(),textField_5.getText(),textField_4.getText(),getJTextArea().getText(),ballroomPrice,entertainmentPrice,mealPrice,packageDiscount);
+                    	
+                    	JOptionPane.showMessageDialog(null, "PDF CREATED SUCCESSFULLY");
+                    	
+                    	EmailController email = new EmailController();
+                    	
+                    	File f = new File(FILE);
+                    	String[] test={"anniyan123456789@hotmail.com"};
+                    	
+                    	try {
+							email.sendEmail("TEXT", test, "TEST EMAIL", "TESTING EMAIL", f, 3, "Payment");
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 					
 					if((c1.processUpdateEventStatus(textField.getText(),eventStatus)==true)){
@@ -367,6 +405,12 @@ public class ConsolidateGuestListForm {
 						jTextArea.setText("");
 						jContentPane.remove(tree);
 						jContentPane.add(tree);
+						
+						//creating pdf
+						
+						
+						
+						
 						DefaultMutableTreeNode events = new DefaultMutableTreeNode("Events");
 						generateEvents(events);
 						DefaultTreeModel model = new DefaultTreeModel(events);
@@ -422,7 +466,7 @@ public class ConsolidateGuestListForm {
 						});
 						jContentPane.add(tree);
 						
-						
+					}
 					}
 					
 					
@@ -483,9 +527,122 @@ public class ConsolidateGuestListForm {
 
 	/**
 	 * This method initializes jButton	
+	 * @param packageDiscount 
+	 * @param mealPrice 
+	 * @param entertainmentPrice 
+	 * @param ballroomPrice 
+	 * @param eventDesc 
+	 * @param totalPrice 
+	 * @param ballroom 
+	 * @param location 
+	 * @param eventTime 
+	 * @param noOfGuests 
+	 * @param eventDate 
+	 * @param eventName 
+	 * @param packageDiscount2 
+	 * @param File 
+	 * @param packageDiscount2 
+	 * @param mealPrice2 
+	 * @param entertainmentPrice2 
+	 * @param ballroomPrice2 
+	 * @param string7 
+	 * @param string6 
+	 * @param string5 
+	 * @param string4 
+	 * @param string3 
+	 * @param string2 
+	 * @param string 
+	 * @param packageDiscount3 
 	 * 	
 	 * @return javax.swing.JButton	
 	 */
+	
+	
+	public void pdfCreator(String file,String eventName, String eventDate, String noOfGuests, String eventTime, String location, String ballroom, String totalPrice, String eventDesc, String ballroomPrice, String entertainmentPrice, String mealPrice, String packageDiscount) {
+		try {
+			Document document = new Document();
+			PdfWriter.getInstance(document, new FileOutputStream(eventName+".pdf"));
+			document.open();
+			addMetaData(document,eventName,eventDate,noOfGuests,eventTime,location,ballroom,totalPrice,eventDesc,ballroomPrice,entertainmentPrice,mealPrice,packageDiscount);
+			addTitlePage(document,eventName,eventDate,noOfGuests,eventTime,location,ballroom,totalPrice,eventDesc,ballroomPrice,entertainmentPrice,mealPrice,packageDiscount);
+			
+			
+			document.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+	}
+	
+	private static void addMetaData(Document document, String eventName, String eventDate, String noOfGuests, String eventTime, String location, String ballroom, String totalPrice, String eventDesc, String ballroomPrice2, String entertainmentPrice2, String mealPrice2, String packageDiscount2) {
+		document.addTitle(eventName);
+		document.addSubject("Payment Notification");
+		document.addKeywords("Payment,GR Administrator");
+		document.addAuthor("GR Administrator");
+		document.addCreator("GR Administrator");
+	}
+
+	private static void addTitlePage(Document document, String eventName, String eventDate, String noOfGuests, String eventTime, String location, String ballroom, String totalPrice, String eventDesc, String ballroomPrice2, String entertainmentPrice2, String mealPrice2, String packageDiscount2)
+			throws DocumentException, MalformedURLException, IOException {
+		
+		Image image = Image.getInstance("src\\images\\CGL\\Reunion.jpg");
+		image.setAbsolutePosition(80f, 700f);
+		image.scaleAbsolute(400f, 150f);
+		document.add(image);
+		Paragraph preface = new Paragraph();
+		// We add 6 empty line
+		addEmptyLine(preface, 6);
+		// Lets write a big header
+		Paragraph paragraph = new Paragraph("Payment Notification",Garamond);
+		paragraph.setIndentationLeft(150f);
+		preface.add(paragraph);
+		addEmptyLine(preface, 1);
+		preface.add(new Chunk("Event Name:                         "+eventName));
+        preface.add(new Chunk("No Of Guests: "+noOfGuests));
+        addEmptyLine(preface, 1);
+        preface.add(new Chunk("Event Date:                         "+eventDate));
+        preface.add(new Chunk("Event Time: "+eventTime));
+        addEmptyLine(preface, 1);
+        preface.add(new Chunk("Location:                         "+location));
+        preface.add(new Chunk("Ballroom: "+ballroom));
+        addEmptyLine(preface, 1);
+        preface.add(new Paragraph("Event Description: "+eventDesc));
+ 		addEmptyLine(preface,1);
+        addEmptyLine(preface, 1);
+		preface.add(new Paragraph("****************************************************************************************************************"));
+		Paragraph paragraph1 = new Paragraph("Payment Details",Garamond);
+		paragraph1.setIndentationLeft(170f);
+		preface.add(paragraph1);
+		addEmptyLine(preface, 1);
+		preface.add(new Paragraph("Total Ballroom Price : $"+ballroomPrice2));
+		addEmptyLine(preface,1);
+		preface.add(new Paragraph("Total Entertainment Price : $"+entertainmentPrice2));
+		addEmptyLine(preface,1);
+		preface.add(new Paragraph("Total Meal Price : $"+mealPrice2));
+		addEmptyLine(preface,1);
+		preface.add(new Paragraph("Package Discount: $"+packageDiscount2));
+		addEmptyLine(preface,1);
+		preface.add(new Paragraph("Total Price :$"+totalPrice));
+		addEmptyLine(preface, 2);
+		preface.add(new Paragraph("Please make your first payment(50% of total Price) Of $"+(Double.parseDouble(totalPrice)/2)+" as soon as possible :",smallBold));
+		addEmptyLine(preface,1);
+		preface.add(new Paragraph("****************************************************************************************************************"));
+	 	// Will create: Report generated by: _name, _date
+		preface.add(new Paragraph("Payment Notification generated by: " + System.getProperty("user.name") + ", " + new Date(), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		smallBold));
+		addEmptyLine(preface, 1);
+		preface.add(new Paragraph("Terms & Conditions: Once payment is made,there will be no refund .",
+		redFont));
+		document.add(preface);
+		// Start a new page
+		document.newPage();
+	}
+
+	private static void addEmptyLine(Paragraph paragraph, int number) {
+		for (int i = 0; i < number; i++) {
+			paragraph.add(new Paragraph(" "));
+		}
+	}
 	
 
 	public static void main(String args[]){

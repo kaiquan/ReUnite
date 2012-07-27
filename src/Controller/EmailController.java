@@ -19,6 +19,7 @@ package Controller;
  * I received help from no one in designing, coding and debugging my program.
  *******************************************************************************************/
 import java.io.File;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -107,13 +108,14 @@ public class EmailController
 		}
 		finally
 		{
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String currentDate = sdf.format(Calendar.getInstance());
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:MM:ss");
+			Calendar cal = Calendar.getInstance();
+			String date=dateFormat.format(cal.getTime());
 
 			for (int i = 0; i < recipient.length; i++)
 			{
-				db.updateRequest("INSERT INTO Notification (sender, type, dateSent, recipient, message) VALUES (" + from + ", " + notificationType + ", "
-						+ currentDate + ", " + recipient[i] + ", " + content + ")");
+				db.updateRequest("INSERT INTO Notification (sender, type, dateSent, recipient, message) VALUES ("+"'" + from +"'"+ ", " +"'"+ notificationType + "'"+", "
+						+"'"+ date + "'"+", " +"'"+ recipient[i] + "'"+", " +"'"+ content + "'"+")");
 				System.out.println(recipient[i]);
 			}
 		}

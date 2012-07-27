@@ -28,7 +28,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 
 public class FirstPdf {
-	private static String FILE = "c:/temp/FirstPdf.pdf";
+	private static String FILE = "FirstPdf.pdf";
 	
 	private static Font Garamond = new Font(Font.FontFamily.HELVETICA, 18,
 			Font.BOLD ,BaseColor.GRAY);

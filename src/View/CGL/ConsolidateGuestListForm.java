@@ -423,7 +423,7 @@ public class ConsolidateGuestListForm {
 		}
 		return jButton1;
 	}
-
+	
 
 
 	/**

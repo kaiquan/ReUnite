@@ -11,7 +11,7 @@ public class ViewRIPersonalController {
 	public ViewRIPersonalController(){}
 	
 	
-
+	
 	
 
 	public void retrieveRiDetails(String userName , String password,String firstName, String lastName, String nric, String postalAddress,  String school, String email){

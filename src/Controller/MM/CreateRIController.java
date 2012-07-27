@@ -28,11 +28,11 @@ public class CreateRIController {
 
 		newRI.setUserName(userName);
 		newRI.setPassword(password);
-		// newRI.setType("RI");
-		// newRI.setCreationDate(new
+		 //newRI.setType("RI");
+		 //newRI.setCreationDate(new
 		// SimpleDateFormat("YYYY-MM-DD hh:mm:ss").parse("1993-10-07 11:34:33"));
 		// newRI.setStatus("ACTIVE");
-		// newRI.setConfirmed(true);
+//		 newRI.setConfirmed(true);
 		newRI.setFirstName(firstName);
 		newRI.setLastName(lastName);
 //		newRI.setDateOfBirth(new

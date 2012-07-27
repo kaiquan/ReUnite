@@ -1,5 +1,6 @@
 package Model.Membership;
 
+import Model.Event;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.text.ParseException;
@@ -7,9 +8,14 @@ import java.util.ArrayList;
 
 import Controller.MySQLController;
 
-public class RI extends Account {
+
+public class RI extends Account   {
+
 
 	private static MySQLController db = new MySQLController();
+	
+	
+
 
 	public RI(String userName, String password, String type, String status,String firstName,
 			String lastName, Date dateOfBirth, String nric, String address,
@@ -31,13 +37,16 @@ public class RI extends Account {
 		super.setHandphoneNo(handphoneNo);
 		super.setSecretQuestion(secretQuestion);
 		super.setSecretAnswer(secretAnswer);
-
+		
+		
 	}
 
-	public RI() {
-		// TODO Auto-generated constructor stub
-	}
 
+	public RI(){}
+	
+	
+	
+	
 	
 
 	// ___________________________________________________________________Create
@@ -49,33 +58,14 @@ public class RI extends Account {
 		boolean success = false;
 
 		String sql = "INSERT INTO Account (userName, password, firstName, lastName, nric, school, email, address, telephoneNo, handphoneNo, secretAnswer)"+ 
-		"VALUES " + "('"
-				+ account.getUserName()
-				+ "', '"
-				+ account.getPassword()
-				+ "', '"
-				+ account.getFirstName()
-				+ "', '"
-				+ account.getLastName()
-				+ "', '"
-			//	+ account.getDateOfBirth()
-			//	+ "','"
-				+ account.getNric()
-				+ "', '"
-				+ account.getSchool()
-				+ "', '"
-				+ account.getEmail()
-				+ "', '"
-				+ account.getAddress()
-				+ "''"
-				+ account.getTelephoneNo()
-				+ "','"
-				+ account.getHandphoneNo()
-				+ "','"
+		"VALUES " + "('"+ account.getUserName()+ "', '"+ account.getPassword()+"', '"+ account.getFirstName()+ "', '"+ account.getLastName()+ "', '"
+			//	+ account.getDateOfBirth()//	+ "','"
+		+ account.getNric()+ "', '"+ account.getSchool()+ "', '"+ account.getEmail()+ "', '"+ account.getAddress()+ "''"+ account.getTelephoneNo()
+				+ "','"+ account.getHandphoneNo()
+				+ "','"+ account.getSecretAnswer()+"')";
+
 			//	+ account.getSecretQuestion()
 			//	+ "','"
-				+ account.getSecretAnswer()+"')";
-
 		try {
 		
 	
@@ -96,6 +86,31 @@ public class RI extends Account {
 	// All RI Account (GR
 	// View)___________________________________________________
 
+	
+
+//	
+//	public boolean getEvents() {
+//		ResultSet rs = null;
+//	
+//			String dbQuery = "Select eventStatus, eventName FROM Event where eventID= 1";
+//			rs = db.readRequest(dbQuery);
+//			boolean success = false;
+//			
+//		
+//				Event tempEvent = new Event();
+//			
+//				tempEvent.setEventStatus(("eventStatus"));
+//				tempEvent.setEventName(("eventName"));
+//				
+//				
+//					success = true;
+//				return success;
+//			}
+//
+//		
+
+
+	
 	public ArrayList<RI> retrieveUser() {
 		ArrayList<RI> riList = new ArrayList<RI>();
 		ResultSet rs = null;
@@ -208,6 +223,9 @@ public class RI extends Account {
 	
 	
 	
+	
+	
+	
 	public boolean disableRIAccount(Account account){
 		boolean success = false;
 		
@@ -222,22 +240,22 @@ public class RI extends Account {
 
 	public static void main(String args[]) throws ParseException {
 
-		RI riModel = new RI();
+		RI create = new RI();
 		
-	riModel.setFirstName("shahrik");
-	riModel.setLastName("alias");
-	riModel.setNric("S8851748B");
-	riModel.setSchool("NYP");
-	riModel.setAddress("CCK");
-	riModel.setTelephoneNo("12345678");
-	riModel.setHandphoneNo("87654321");
-	riModel.setUserName("shahrikinalias@gmail.com");
-	riModel.setEmail("Email@email.com");
-	riModel.setSecretAnswer("HARAM");
-
-	 riModel.updateRIAccount(riModel);
+		create.setUserName("shahrikin");
+		create.setPassword("Shahrikin");
+		create.setFirstName("shahrikin");
+		create.setLastName("shahrikin");
+		create.setNric("shahrikin");
+		create.setSchool("shahrikin");
+		create.setEmail("shahrikin");
+		create.setAddress("shahrikin");
+		create.setTelephoneNo("shahrikin");
+		create.setHandphoneNo("shahrikin");
+		create.setSecretAnswer("shahrikin");
 		
-
+		
+		create.createRIAccount(create);
 		
 
 	}

@@ -57,11 +57,13 @@ public class ViewRIDetailsRIVIEW {
 	JTextField emailTextBox;
 	JTextField telephoneTextBox;
 	JTextField handphoneTextBox;
+	private  JTextField typeTextBox;
+	private  JTextField statusTextBox;
 	
 
 	//Buttons
 	private JButton  updateAccountButton;
-	private JButton requestDeleteButton;
+	private JButton requestCloseAccountButton;
 	private JButton submitButton;
 	
  	
@@ -90,10 +92,13 @@ public class ViewRIDetailsRIVIEW {
 	
 	
 	//Labels
-	
+	 
 	title = new JLabel();
 	title.setBounds(new Rectangle(10, 10, 300, 100));
 	title.setFont(new Font("Dialog", Font.BOLD, 30));
+	title.setText("Welcome");
+	
+//	title.setText("Welcome"+viewRIPersonalController.userName.getText()+"");
 	
 	
 	
@@ -139,6 +144,16 @@ public class ViewRIDetailsRIVIEW {
 	handphoneTextBox=new JTextField();
 	handphoneTextBox.setBounds(new Rectangle(510, 400, 150, 25));
 	handphoneTextBox.setVisible(false);
+	
+	typeTextBox=new JTextField();
+	typeTextBox.setBounds(new Rectangle(600, 550, 150, 25));
+	typeTextBox.setEditable(false);
+	typeTextBox.setVisible(false);
+	
+	statusTextBox=new JTextField();
+	statusTextBox.setBounds(new Rectangle(600, 600, 150, 25));
+	statusTextBox.setEditable(false);
+	statusTextBox.setVisible(false);
 	
 	
 	
@@ -214,9 +229,25 @@ public class ViewRIDetailsRIVIEW {
 		}
 	});
 	
-	requestDeleteButton = new JButton();
-	requestDeleteButton.setBounds(515, 463, 150, 30);
-	requestDeleteButton.setText("Request Delete");
+	requestCloseAccountButton = new JButton();
+	requestCloseAccountButton.setBounds(515, 463, 150, 30);
+	requestCloseAccountButton.setText("Request Account Closure");
+	requestCloseAccountButton
+			.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					Object[] options = { "OK", "CANCEL" };
+					int confirmUpdateOption = JOptionPane.showOptionDialog(null, "Are You Sure you want to delete your account?", "Request Account Closure",
+					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+					null, options, options[0]);
+					if (confirmUpdateOption==0){
+						
+
+						JOptionPane.showConfirmDialog(null,"Your request will be sent for verification",
+								   "Request Sent", JOptionPane.CLOSED_OPTION);
+						
+					}
+				}
+			});
 	
 	
 	
@@ -240,12 +271,14 @@ public class ViewRIDetailsRIVIEW {
 	panel.add(emailTextBox);
 	panel.add(telephoneTextBox);
 	panel.add(handphoneTextBox);
+	panel.add(typeTextBox);
+	panel.add(statusTextBox);
 	
 	
 	
 		panel.add(title);
 		
-		panel.add(requestDeleteButton);
+		panel.add(requestCloseAccountButton);
 		
 		panel.add(updateAccountButton);
 
@@ -288,7 +321,26 @@ public class ViewRIDetailsRIVIEW {
 		DefaultTableCellRenderer usernameRenderer = new DefaultTableCellRenderer();
 		usernameRenderer.setFont(new Font("Dialog", Font.BOLD, 50));
 		
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener()
+		{
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if (e.getSource() == table.getSelectionModel()
+			              && table.getRowSelectionAllowed()) {
+			            // Column selection changed
+					ListSelectionModel model = table.getSelectionModel();  
+		            int lead = model.getLeadSelectionIndex();  
+		            shiftData(lead);  
+
+			        }
+
+			        if (e.getValueIsAdjusting()) {
+			            // The mouse button has not yet been released
+			        }
+			}
+		});
 		
+
 	
 		
 		
@@ -296,22 +348,18 @@ public class ViewRIDetailsRIVIEW {
 		return table;
 
 	}
-	
-	
+		
+
 	public void shiftData(int row) {
 		//add Date of birth here		
-JTextField[] textBoxes = {userNameTextBox,  firstNameTextBox, lastNameTextBox,  nricTextBox, schoolTextBox, emailTextBox, telephoneTextBox, handphoneTextBox};
+JTextField[] textBoxes = {userNameTextBox,  typeTextBox, statusTextBox,firstNameTextBox, lastNameTextBox,  nricTextBox, schoolTextBox, emailTextBox, telephoneTextBox, handphoneTextBox};
 int columns = table.getColumnCount();  
 
 
 
 for(int col = 0; col < columns; col++)  
-{  
-textBoxes[col].setText(table.getValueAt(row, col).toString());
-if(col == 0)
-{
-	//title.setText("Welcome+ "+userNameTextBox.UserName(col==0).toString()+"");
-}
+{   textBoxes[col].setText(table.getValueAt(row, col).toString());
+
 }
 
 }  

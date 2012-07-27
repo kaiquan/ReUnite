@@ -32,6 +32,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 
 import Model.*;
@@ -550,8 +551,13 @@ public class ViewRIDetails {
 		table.setRowSelectionAllowed(true);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
+
+
+		
+		
 		DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
 		headerRenderer.setBackground(Color.GRAY);
+		
 		
 		
 		table.getTableHeader().setDefaultRenderer(headerRenderer);
@@ -587,14 +593,19 @@ public class ViewRIDetails {
 		return table;
 
 	}
+
+
 	
+
+	
+
 
 	public void shiftData(int row) {
 																					//add Date of birth here		
 			JTextField[] textBoxes = {userNameTextBox, typeTextBox, statusTextBox, firstNameTextBox, lastNameTextBox,  nricTextBox, schoolTextBox, emailTextBox, telephoneTextBox, handphoneTextBox};
 	        int columns = table.getColumnCount();  
 	       
-	    
+	        
 	      
 	        for(int col = 0; col < columns; col++)  
 	        {  
@@ -603,11 +614,15 @@ public class ViewRIDetails {
 	            {
 	            	if(table.getValueAt(row, col).toString().equals("Disable"))
 	            	{
+	            		
 	            		disableAccountButton.setText("Enable Account");
 	            	}
 	            	else
 	            	{
 	            		disableAccountButton.setText("Disable Account");
+	            		
+	            		 
+
 	            	}
 	            }
 	        }  

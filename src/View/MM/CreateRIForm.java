@@ -100,48 +100,57 @@ public class CreateRIForm extends JFrame {
 		submitRegistrationButton = new JButton();
 		submitRegistrationButton.setBounds(new Rectangle(750, 600, 81, 31));
 		submitRegistrationButton.setText("Submit");
-		submitRegistrationButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent e) {
-
-						if (userNameTextBox.getText().equals("")
-								|| passwordTextBox.getText().equals("")
-								|| firstNameTextBox.getText().equals("")
-								|| lastNameTextBox.getText().equals("")
-								|| nricTextBox.getText().equals("")
-								|| schoolTextBox.getText().equals("")
-								|| emailTextBox.getText().equals("")) {
-							System.out.println("Empty field");
-							JOptionPane.showConfirmDialog(null,
-									"Please Fill up all Field", "Empty Field",
-									JOptionPane.CLOSED_OPTION);
+		submitRegistrationButton
+				.addActionListener(new java.awt.event.ActionListener() {
+					public void actionPerformed(java.awt.event.ActionEvent e) {
+						
+				boolean success = false;
+						validateEmptyField();
+						System.out.println("hello1");
+						success=false;
+						
+				if (success==true)	
+					{	
+					validateNumber();
+					System.out.println("hello2");
+					success=true;	
+					}
+				
+				
+				else if(success == false){
+						validatePassword();
+						
+						success = true;
 						}
-							String number = "[\\p{Digit}&&[123456789]]+";
-							if (!telephoneNoTextBox.getText().matches(number)) {
-								JOptionPane.showMessageDialog(null,
-										"Only Numerical Digits allowed");
-								System.out.println("Number");
-								
-								if(!(passwordTextBox.getText().equals(cPasswordTextBox.getText()))){
-									
-									JOptionPane.showMessageDialog(null,
-									"Password Does not Match!");
-							System.out.println("password");
-									
-								}
-							}
-//							String string = nricTextBox.getText();
-//							String substringNirc = string.substring(0, 1);
-//							String substringNirc1 = string.substring(8, 9);
-//
-//							if (!(substringNirc.matches(number)
-//									&& substringNirc1.matches(number))) {
-//								JOptionPane.showMessageDialog(null,
-//							
-//								"Invalid IC Number");
-//								System.out.println("bwrb");
-//							}
+				else if(success==true){
 					
-			
+					System.out.println("hello");
+				}
+		
+				else if(success == false) {
+		CreateRIController registerController = new CreateRIController();
+					try {
+						registerController.createRegistration(
+											userNameTextBox.getText(),
+											passwordTextBox.getText(),
+											firstNameTextBox.getText(),
+											lastNameTextBox.getText(),
+											// parseDate(date()),
+											nricTextBox.getText(),
+											schoolTextBox.getText(),
+											emailTextBox.getText(),
+											addressTextBox.getText(),
+											telephoneNoTextBox.getText(),
+											handphoneNoTextBox.getText(), // secretQuestion(),
+											secretAnswerTextBox.getText());
+								} catch (Exception e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+
+							
+						
+				}
 			}});
 		
 		//combo box
@@ -384,55 +393,60 @@ public class CreateRIForm extends JFrame {
 	}
 	
 	
-	
-	//Button Action Listener and Button Method
-
-//	private JButton getSubmitRegistrationButton() {
-//
-//		submitRegistrationButton.addActionListener(new java.awt.event.ActionListener() {
-//					public void actionPerformed(java.awt.event.ActionEvent e) {
-//
-//						try {
-//						
-//									
-//									}
-//							
-//						} catch (Exception e1) {
-//							
-//							
-//							
-//							// TODO Auto-generated catch block
-//							e1.printStackTrace();
-//						}}
-//				});
-//						
-//						return submitRegistrationButton;
-//					}
-
-					private void submitRegistration(ActionEvent e)throws Exception {
-						
-						CreateRIController registerController = new CreateRIController();
-			registerController.createRegistration
-				(userNameTextBox.getText(),
-					passwordTextBox.getText(),
-					firstNameTextBox.getText(),
-					lastNameTextBox.getText(),
-					//parseDate(date()), 
-					nricTextBox.getText(),
-					schoolTextBox.getText(),
-					emailTextBox.getText(),
-					addressTextBox.getText(),
-					telephoneNoTextBox.getText(),
-					handphoneNoTextBox.getText(), //secretQuestion(),
-					secretAnswerTextBox.getText());
-					
-		
-					}
-
+	public boolean validateEmptyField(){
+		boolean success = false;
+	if(
+		userNameTextBox.getText().equals("")
+		|| passwordTextBox.getText().equals("")
+		|| firstNameTextBox.getText().equals("")
+		|| lastNameTextBox.getText().equals("")
+		|| nricTextBox.getText().equals("")
+		|| schoolTextBox.getText().equals("")
+		|| emailTextBox.getText().equals("")
+	   )
 			
+	{
+				System.out.println("Empty field");
+				JOptionPane.showConfirmDialog(null,
+						"Please Fill up all Field", "Empty Field",
+						JOptionPane.CLOSED_OPTION);
+	}	
+			success= true;
+		
+		return success;
+		
+	}
 	
+	public boolean validateNumber(){
+		boolean success = false;
 	
-	
+		
+		String number = "[\\p{Digit}&&[123456789]]+";
+		if (!telephoneNoTextBox.getText().matches(number)) 
+		{
+			JOptionPane.showMessageDialog(null,
+					"Only Numerical Digits allowed");
+			System.out.println("Number");
+		}
+			success= true;
+			
+			return success;
+		}
+	public boolean validatePassword(){
+		boolean success = false;
+		if (!(passwordTextBox.getText()
+			.equals(cPasswordTextBox.getText()))) 
+		{
+
+		JOptionPane.showMessageDialog(null,
+				"Password Does not Match!");
+		System.out.println("password");
+		}
+		
+		success= true;
+		
+		return success;
+	}
 	
 	public static void main(String a[]){
 		

@@ -21,6 +21,7 @@ METHODS LIST			:	Pacakge()
 package Model;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 
@@ -312,6 +313,40 @@ public class Package {
 		return data;
 	}
 	
+	
+	public ArrayList<String> GET_PACKAGE_DISCOUNT(String eventName){
+
+		ArrayList<String> e1 = new ArrayList<String>();
+		ResultSet rs = null;
+
+		String dbQuery;
+
+
+		dbQuery = "SELECT p.packageDiscount FROM Event e INNER JOIN Package p ON e.packageID=p.packageID WHERE e.eventName="+"'"+eventName+"'";
+		try{
+			
+			rs=DB.readRequest(dbQuery);
+			while(rs.next()){
+				
+			e1.add(rs.getString("p.packageDiscount"));
+				
+				for(int i=0;i<e1.size();i++){
+					System.out.println(e1.get(i));
+				}
+				
+				
+				}
+				
+				
+			}
+				catch(Exception e){
+					e.printStackTrace();
+				}
+				
+				
+				return e1;
+		}
+	
 
 	
 	/********************************************************
@@ -423,4 +458,5 @@ public class Package {
 	{
 		this.meals.add(meal);
 	}
+		
 }

@@ -10,6 +10,7 @@ import Model.Facility;
 import Model.Membership.Guest;
 import Model.Meal;
 import Model.CGL.Purchase_Summary;
+import Model.Package;
 
 public class ConsolidateGuestListControl {
 	
@@ -38,7 +39,15 @@ public ArrayList<String> requestSelectedEventDetails(String eventName){
 	
 	ArrayList<String> meal = new ArrayList<String>();
 	Meal m1 = new Meal();
+	try{
 	meal=m1.GET_MEAL_PRICE(eventName);
+	}
+	
+	catch(Exception ex){
+		meal.add("0");
+	}
+	
+	
 	
 	
 	ArrayList<String> combined = new ArrayList<String>();
@@ -48,8 +57,17 @@ public ArrayList<String> requestSelectedEventDetails(String eventName){
 	String ballroomName=sc.next();
 	double ballroomFinalPrice=sc.nextDouble();
 	
+	double entertainmentPrice;
+	
+	try{
 	Scanner sc1 = new Scanner(entertainment.get(0));
-	double entertainmentPrice=sc1.nextDouble();
+	entertainmentPrice=sc1.nextDouble();
+	
+	}
+	
+	catch(Exception ex){
+		 entertainmentPrice=0;
+	}
 	
 	Scanner sc2 = new Scanner(event.get(0));
 	sc2.useDelimiter(",");
@@ -62,22 +80,35 @@ public ArrayList<String> requestSelectedEventDetails(String eventName){
 	
 	String guestCount=sc3.next();
 	
+	double mealPrice;
+	try{
 	Scanner sc4 = new Scanner(meal.get(0));
 	sc4.useDelimiter(",");
-	double mealPrice =sc4.nextDouble();
+	mealPrice =sc4.nextDouble();
+	}
+	
+	catch(Exception ex){
+		mealPrice=0;
+	}
 	
 	Facility f1 = new Facility();
 	String facility=f1.GET_FACILITY(eventName).get(0);
 	
 	
-	double totalPrice=ballroomFinalPrice+entertainmentPrice+mealPrice;
+	Package p = new Package();
+	String pkgDiscount=p.GET_PACKAGE_DISCOUNT(eventName).get(0);
+	double packageDiscount=Double.parseDouble(pkgDiscount);
+	
+	double totalPrice=ballroomFinalPrice+entertainmentPrice+mealPrice-packageDiscount;
+	
+
 	
 	
 	
 	
 	
 	for(int i=0;i<meal.size();i++){
-		String combine=ballroomName+","+eventTime+","+eventDate+","+eventStatus+","+eventDescription+","+guestCount+","+totalPrice+","+ballroomFinalPrice+","+entertainmentPrice+","+mealPrice+","+facility;
+		String combine=ballroomName+","+eventTime+","+eventDate+","+eventStatus+","+eventDescription+","+guestCount+","+totalPrice+","+ballroomFinalPrice+","+entertainmentPrice+","+mealPrice+","+facility+","+pkgDiscount;
 		combined.add(combine);
 	}
 	

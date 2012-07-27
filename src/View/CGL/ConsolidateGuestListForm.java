@@ -71,6 +71,7 @@ public class ConsolidateGuestListForm {
 	private String ballroomPrice;
 	private String entertainmentPrice;
 	private String mealPrice;
+	private String packageDiscount;
 	/**
 	 * This method initializes jFrame	
 	 * 	
@@ -104,7 +105,7 @@ public class ConsolidateGuestListForm {
 					
 					
 					
-					JOptionPane.showMessageDialog(null, "Ballroom Price is " +ballroomPrice+"\n"+"Entertainment Price: "+entertainmentPrice+"\n"+"Meal Price: "+mealPrice);
+					JOptionPane.showMessageDialog(null, "Ballroom Price is " +ballroomPrice+"\n"+"Entertainment Price: "+entertainmentPrice+"\n"+"Meal Price: "+mealPrice +"\n"+"Package Discount: "+packageDiscount);
 				
 				}
 			});
@@ -147,6 +148,7 @@ public class ConsolidateGuestListForm {
                     	entertainmentPrice=sc.next();
                     	mealPrice=sc.next();
                     	String facilty=sc.next();
+                    	packageDiscount=sc.next();
                     	
                     	
                     	
@@ -269,6 +271,12 @@ public class ConsolidateGuestListForm {
 		
 		DefaultMutableTreeNode[] nodes = new DefaultMutableTreeNode[eventList.size()];
 		
+		if(eventList.size()==0){
+			JOptionPane.showMessageDialog(null, "No events to display");
+		}
+		
+		else{
+		
 		
 	Outer:
 		for (int i=0; i<eventList.size(); i++) {
@@ -287,6 +295,8 @@ public class ConsolidateGuestListForm {
 			nodes[i].add(new DefaultMutableTreeNode(eventList.get(i).getEventName()));
 			tn.add(nodes[i]);
 			
+		}
+		
 		}
 		
 //		for (int i = 0; i<eventList.size(); i++)
@@ -389,6 +399,7 @@ public class ConsolidateGuestListForm {
 			                    	entertainmentPrice=sc.next();
 			                    	mealPrice=sc.next();
 			                    	String facility=sc.next();
+			                    	packageDiscount=sc.next();
 			                    	
 			                    	
 			                    	

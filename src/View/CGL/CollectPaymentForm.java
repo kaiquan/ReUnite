@@ -77,6 +77,7 @@ public class CollectPaymentForm {
 	private String ballroomPrice;
 	private String entertainmentPrice;
 	private String mealPrice;
+	private String packageDiscount;
 	/**
 	 * This method initializes jFrame	
 	 * 	
@@ -142,6 +143,8 @@ public class CollectPaymentForm {
                     	entertainmentPrice=sc.next();
                     	mealPrice=sc.next();
                     	String facilty=sc.next();
+                    	packageDiscount=sc.next();
+                    	
                     	
                     	
                     	

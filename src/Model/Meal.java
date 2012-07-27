@@ -350,6 +350,8 @@ public class Meal {
 public ArrayList<String> GET_MEAL_PRICE(String eventName){
 		
 		ArrayList<String> e1 = new ArrayList<String>();
+		ArrayList<String> e2 = new ArrayList<String>();
+		
 		ResultSet rs = null;
 		
 		String dbQuery;
@@ -363,9 +365,6 @@ public ArrayList<String> GET_MEAL_PRICE(String eventName){
 				
 			e1.add(rs.getString("sum"));
 			
-			for(int i=0;i<e1.size();i++){
-				System.out.println(e1.get(i));
-			}
 			
 			
 			}
@@ -374,8 +373,11 @@ public ArrayList<String> GET_MEAL_PRICE(String eventName){
 		}
 			catch(Exception e){
 				e.printStackTrace();
+								
 			}
 			
+			
+				
 			
 			return e1;
 	}

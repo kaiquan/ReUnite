@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Hashtable;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
@@ -51,7 +53,26 @@ public class InvitationReportTable extends JFrame
 		initComponents();
 
 		m_table.setModel(m_tableModel);
-		
+		m_table.getSelectionModel().addListSelectionListener(new ListSelectionListener()
+		{
+
+			@Override
+			public void valueChanged(ListSelectionEvent e) 
+			{
+				 if (e.getSource() == m_table.getSelectionModel()&& m_table.getRowSelectionAllowed())
+				 {
+			            // Column selection changed
+			            int first = e.getFirstIndex();
+			            int last = e.getLastIndex();
+			     }
+				 else if (e.getSource() == m_table.getColumnModel().getSelectionModel()&& m_table.getColumnSelectionAllowed())
+				 {
+//			            // Row selection changed
+//			            int first = m_table.getModel().getValueAt(rowIndex, columnIndex)m_table.getSelectedRow();
+//			            int last = e.getLastIndex();
+			     }
+			}
+		});
 		m_table.getTableHeader().setReorderingAllowed(false);
 		m_table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		// m_table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);

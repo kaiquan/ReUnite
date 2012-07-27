@@ -1,6 +1,9 @@
 package View.RIM.Components;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.text.SimpleDateFormat;
 import java.util.Hashtable;
@@ -8,11 +11,15 @@ import java.util.Hashtable;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
+import com.itextpdf.text.Image;
+
 import Controller.RIM.LookAndFeelController;
 import Controller.RIM.Utils.DateHelper;
+import Images.RIM.ImageHelper;
 import Model.Event;
 import Model.RIM.TableModels.InvitationTableModel;
 import View.RIM.Components.Table.AutoResizeTableColumns;
@@ -21,10 +28,9 @@ import View.RIM.Components.Table.TableSorter;
 import View.RIM.Components.Table.TableSorterIcons;
 
 @SuppressWarnings("serial")
-public class InvitationReportTable extends JFrame
-{
+public class InvitationReportTable extends JFrame {
 	private static DateHelper dateHelper = new DateHelper();
-	
+
 	private JButton button;
 	private JCheckBox checkBox;
 	private JTextField dateTextField;
@@ -48,31 +54,31 @@ public class InvitationReportTable extends JFrame
 	// The model used for sorting
 	private TableSorter m_tableSorter = new TableSorter(m_tableModel);
 
-	public InvitationReportTable()
-	{
+	public InvitationReportTable() {
 		initComponents();
 
 		m_table.setModel(m_tableModel);
-		m_table.getSelectionModel().addListSelectionListener(new ListSelectionListener()
-		{
+		m_table.getSelectionModel().addListSelectionListener(
+				new ListSelectionListener() {
 
-			@Override
-			public void valueChanged(ListSelectionEvent e) 
-			{
-				 if (e.getSource() == m_table.getSelectionModel()&& m_table.getRowSelectionAllowed())
-				 {
-			            // Column selection changed
-			            int first = e.getFirstIndex();
-			            int last = e.getLastIndex();
-			     }
-				 else if (e.getSource() == m_table.getColumnModel().getSelectionModel()&& m_table.getColumnSelectionAllowed())
-				 {
-//			            // Row selection changed
-//			            int first = m_table.getModel().getValueAt(rowIndex, columnIndex)m_table.getSelectedRow();
-//			            int last = e.getLastIndex();
-			     }
-			}
-		});
+					@Override
+					public void valueChanged(ListSelectionEvent e) {
+						if (e.getSource() == m_table.getSelectionModel()
+								&& m_table.getRowSelectionAllowed()) {
+							// Column selection changed
+							int first = e.getFirstIndex();
+							int last = e.getLastIndex();
+						} else if (e.getSource() == m_table.getColumnModel()
+								.getSelectionModel()
+								&& m_table.getColumnSelectionAllowed()) {
+							// // Row selection changed
+							// int first =
+							// m_table.getModel().getValueAt(rowIndex,
+							// columnIndex)m_table.getSelectedRow();
+							// int last = e.getLastIndex();
+						}
+					}
+				});
 		m_table.getTableHeader().setReorderingAllowed(false);
 		m_table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		// m_table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -89,21 +95,15 @@ public class InvitationReportTable extends JFrame
 		//
 		Icon ups[] = new Icon[] {
 				TableSorterIcons.UP5_ICON, // this one will be dispayed first
-				TableSorterIcons.UP7_ICON, 
-				TableSorterIcons.UP6_ICON, 
-				TableSorterIcons.UP4_ICON, 
-				TableSorterIcons.UP3_ICON,
-				TableSorterIcons.UP2_ICON, 
-				TableSorterIcons.UP1_ICON };
-		
+				TableSorterIcons.UP7_ICON, TableSorterIcons.UP6_ICON,
+				TableSorterIcons.UP4_ICON, TableSorterIcons.UP3_ICON,
+				TableSorterIcons.UP2_ICON, TableSorterIcons.UP1_ICON };
+
 		Icon downs[] = new Icon[] {
 				TableSorterIcons.DOWN5_ICON, // this one will be dispayed first
-				TableSorterIcons.DOWN7_ICON, 
-				TableSorterIcons.DOWN6_ICON, 
-				TableSorterIcons.DOWN4_ICON, 
-				TableSorterIcons.DOWN3_ICON,
-				TableSorterIcons.DOWN2_ICON, 
-				TableSorterIcons.DOWN1_ICON };
+				TableSorterIcons.DOWN7_ICON, TableSorterIcons.DOWN6_ICON,
+				TableSorterIcons.DOWN4_ICON, TableSorterIcons.DOWN3_ICON,
+				TableSorterIcons.DOWN2_ICON, TableSorterIcons.DOWN1_ICON };
 
 		m_tableSorter.setCustomIcons(ups, downs);
 		m_tableSorter.setTableHeader(m_table.getTableHeader());
@@ -112,23 +112,33 @@ public class InvitationReportTable extends JFrame
 
 		// TABLE RESIZING CONFIGURATION
 		// resize but don't lock the columns
-		AutoResizeTableColumns resizer = new AutoResizeTableColumns(m_table, m_tableModel, 32, true, true, new boolean[m_table.getColumnCount()]);
+		AutoResizeTableColumns resizer = new AutoResizeTableColumns(m_table,
+				m_tableModel, 32, true, true,
+				new boolean[m_table.getColumnCount()]);
 		m_table.getModel().addTableModelListener(resizer);
 		m_table.getColumnModel().getColumn(0).setResizable(false);
 		m_table.getColumnModel().getColumn(0).setMaxWidth(30);
+		
 		// uncomment for debuging
 		// resizer.setDebugMode( true );
 		// -----
 
 		// TABLE ACTUAL DATA
-		try
-		{
+		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			Object[][] values = new Object[][] {
-					{ sdf.parse("29/11/2004"), new Integer(999), "Some event", "Adeel", new Float(999.99F), Boolean.FALSE, new Integer(90) },
-					{ sdf.parse("14/06/2003"), new Integer(888), "Some other event", "Shahrikin", new Float(888.88F), Boolean.TRUE, new Integer(80) },
-					{ sdf.parse("20/07/2001"), new Integer(9), "Very weird event", "Kai Quan", new Float(109.30F), Boolean.TRUE, new Integer(25) },
-					{ sdf.parse("30/10/1999"), new Integer(190), "Cheesy event ", "Ameenudeen", new Float(23.27F), Boolean.FALSE, new Integer(50) }, };
+					{ sdf.parse("29/11/2004"), new Integer(999), "Some event",
+							"Adeel", new Float(999.99F), Boolean.FALSE,
+							new Integer(90) },
+					{ sdf.parse("14/06/2003"), new Integer(888),
+							"Some other event", "Shahrikin",
+							new Float(888.88F), Boolean.TRUE, new Integer(80) },
+					{ sdf.parse("20/07/2001"), new Integer(9),
+							"Very weird event", "Kai Quan", new Float(109.30F),
+							Boolean.TRUE, new Integer(25) },
+					{ sdf.parse("30/10/1999"), new Integer(190),
+							"Cheesy event ", "Ameenudeen", new Float(23.27F),
+							Boolean.FALSE, new Integer(50) }, };
 
 			/* instead of addRow()... */
 			/*
@@ -140,9 +150,7 @@ public class InvitationReportTable extends JFrame
 
 			/* ...use setDataVector() for performance! */
 			// -----
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -154,16 +162,16 @@ public class InvitationReportTable extends JFrame
 		limitColors.put(new Integer(80), Color.green);
 		// COLUMN 6 contains progress bar!
 		TableColumnModel model = m_table.getColumnModel();
-		model.getColumn(6).setCellRenderer(new ProgressBarCellRenderer(true, false, 0, 100, limitColors, m_table.getBackground()));
+		model.getColumn(6).setCellRenderer(
+				new ProgressBarCellRenderer(true, false, 0, 100, limitColors,
+						m_table.getBackground()));
 		// -----
 	}
 
-
-	private void add_row()
-	{
-		try
-		{
-			java.util.Date d = dateHelper.parseDate(dateTextField.getText().trim(), "dd/MM/yyyy");
+	private void add_row() {
+		try {
+			java.util.Date d = dateHelper.parseDate(dateTextField.getText()
+					.trim(), "dd/MM/yyyy");
 			Integer i = new Integer(intTextField.getText().trim());
 			String firstname = firstnameTextField.getText().trim();
 			String lastname = lastnameTextField.getText().trim();
@@ -171,19 +179,37 @@ public class InvitationReportTable extends JFrame
 			Boolean b = new Boolean(checkBox.isSelected());
 			Integer percent = (Integer) percentSpinner.getValue();
 
-			m_tableModel.addRow(new Object[] { d, i, firstname, lastname, f, b, percent });
-		}
-		catch (Exception e)
-		{
+			m_tableModel.addRow(new Object[] { d, i, firstname, lastname, f, b,
+					percent });
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void initComponents()
-	{
+	private void initComponents() {
 
 		JScrollPane jScrollPane1 = new JScrollPane();
-		m_table = new JTable();
+		m_table = new JTable() {
+			  public boolean getScrollableTracksViewportHeight() 
+			  {
+				    if(getParent() instanceof JViewport)
+				      return(((JViewport)getParent()).getHeight() > getPreferredSize().height);
+
+				    return super.getScrollableTracksViewportHeight();
+			  }
+
+				  protected void paintComponent(Graphics g) {
+				    super.paintComponent(g);
+				    if(getRowCount() == 0) {
+				      Graphics2D g2d = (Graphics2D) g;
+				      g2d.setColor(Color.BLACK);
+				      java.awt.Image image = ImageHelper.loadImage("noRecordsFound.jpg", "");
+				      g2d.drawImage(image, this.getWidth()-image.getWidth(null),this.getHeight()-image.getHeight(null) , null);
+				      g2d.drawString("Sorry, no events found...", 0, 0);
+				    }
+				  }
+				  
+				};
 		jPanel1 = new JPanel();
 		jLabel1 = new JLabel();
 		dateTextField = new JTextField();
@@ -205,7 +231,8 @@ public class InvitationReportTable extends JFrame
 
 		m_table.setModel(new DefaultTableModel(new Object[][] {
 
-		}, new String[] { "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7" }));
+		}, new String[] { "Title 1", "Title 2", "Title 3", "Title 4",
+				"Title 5", "Title 6", "Title 7" }));
 		m_table.setToolTipText("Press down and hold CTRL or SHIFT while selecting multiple columns' headers for sorting.");
 		jScrollPane1.setViewportView(m_table);
 
@@ -261,8 +288,7 @@ public class InvitationReportTable extends JFrame
 
 		button.setText("Search");
 		button.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt)
-			{
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				buttonActionPerformed(evt);
 			}
 		});
@@ -274,28 +300,38 @@ public class InvitationReportTable extends JFrame
 		pack();
 	}
 
-	private void buttonActionPerformed(ActionEvent evt)
-	{
+	private void buttonActionPerformed(ActionEvent evt) {
 		add_row();
 	}
-	
-	public static void main(String args[])
-	{
-		try
-		{
+
+	public static void main(String args[]) {
+		try {
 			LookAndFeelController.setGlobalLookAndFeel();
 			java.awt.EventQueue.invokeLater(new Runnable() {
-				public void run()
-				{
+				public void run() {
 					new InvitationReportTable().setVisible(true);
 				}
 			});
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+}
 
+@SuppressWarnings("serial")
+class TableCellIconRenderer extends DefaultTableCellRenderer 
+{
+	public Component getTableCellRendererComponent(JTable table, Object value,
+			boolean isSelected, boolean hasFocus, int row, int column)
+	{
+		JLabel label = (JLabel) super.getTableCellRendererComponent(table,value, isSelected, hasFocus, row, column);
+		
+		if (value instanceof ImageIcon) 
+		{
+			label.setText(null);
+			label.setIcon((ImageIcon) value);
+		}
+		
+		return label;
+	}
 }

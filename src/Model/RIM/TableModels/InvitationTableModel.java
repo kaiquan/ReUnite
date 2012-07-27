@@ -1,5 +1,6 @@
 package Model.RIM.TableModels;
 
+import Images.RIM.ImageHelper;
 import Model.Event;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class InvitationTableModel extends DefaultTableModel
 		for (int i = 0; i < rowCount; i++)
 		{
 			Event event = eventList.get(i);
-			data[i][0] = event.getEventID();
+			data[i][0] = event.getID();
 			data[i][1] = event.getEventName();
 			data[i][2] = event.getEventInitiator().getUserName();
 			data[i][3] = event.getEventDate() + " at " + event.getEventTime();

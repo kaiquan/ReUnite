@@ -99,6 +99,7 @@ public class AdministrateSystemOptionManagement {
 	protected DefaultTableModel model= new DefaultTableModel();//for the jTable
 	private JPopupMenu jPopupMenu = null;  //  @jve:decl-index=0:visual-constraint="209,861"
 	private JMenuItem jMenuItem_retrive = null;
+	private AdministratePackageForm meal=null;
 	/********************************************************
 	 *					Start of UI
 	 *******************************************************/
@@ -691,14 +692,13 @@ public class AdministrateSystemOptionManagement {
 					  public void run(){
 						  int increment=3;
 							 for (int i =  0; i <= 100; i+=increment) {
-								 System.out.println("before : "+  AdministrateSystemOptionManagement.getJProgressBar().getValue());
+								 System.out.println("still in the loop with : "+  AdministrateSystemOptionManagement.getJProgressBar().getValue());
 							      final int percent = i;
 							      try {
 							        SwingUtilities.invokeLater(new Runnable() {
 							         public void run() {
 							        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
 							        	 System.out.println(percent+"%");
-							        	 System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
 							          }
 							        });
 							        Thread.sleep(100);
@@ -713,28 +713,14 @@ public class AdministrateSystemOptionManagement {
 							    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
 							      }
 							    } 
-							 AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
-							 System.out.println("Ended with : "+ AdministrateSystemOptionManagement.getJProgressBar().getValue());
+							 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+							 System.out.println("out of the loop ... with :"+ AdministrateSystemOptionManagement.getJProgressBar().getValue());
 							 this.stop();
 							 this.interrupt();
-							 while(this.isAlive()){
-								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-								 System.out.println("..");
-							 }
-							 
-							 
 					  }
 				  };
-				  
-				  
-				  
 				  progress.start();
 				  main.start(); 
-				  
-				
-				  
-				  
-				  
 			}
 		});
 		
@@ -942,7 +928,7 @@ public class AdministrateSystemOptionManagement {
 	 * Return : nil
 	 *******************************************************/
 	public void newPackageTab(){	
-		AdministratePackageForm meal=new AdministratePackageForm();
+		meal=new AdministratePackageForm();
 		if(jTabbedPane.getTabCount()==1){
 			jTabbedPane.insertTab("New Package",null , meal.getJScrollPane(),null , 1); // sets the content
 			createTabHeader(1);	//sets the custom tab header

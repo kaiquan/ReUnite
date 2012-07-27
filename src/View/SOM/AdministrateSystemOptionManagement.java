@@ -60,7 +60,6 @@ import Controller.SOM.AdministrateFacilityControl;
 import Controller.SOM.AdministrateMealControl;
 import Controller.SOM.AdministratePackageControl;
 import Controller.SOM.CSVController;
-import Controller.SOM.ProgressController;
 
 public class AdministrateSystemOptionManagement {
 	
@@ -187,7 +186,41 @@ public class AdministrateSystemOptionManagement {
 			jButton_NewTab.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/new.png")));
 			jButton_NewTab.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					newTab();
+					Thread main = new Thread () {
+						  public void run () {
+							  newTab();
+						  }
+					  };
+					  final Thread a=main;
+					Thread progress= new Thread(){
+						  public void run(){
+							  double increment=1;
+								 for (int i =  0; i <= 100; i+=increment) {
+								      final int percent = i;
+								      try {
+								        SwingUtilities.invokeLater(new Runnable() {
+								         public void run() {
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								          }
+								        });
+								        Thread.sleep(100);
+								        if(!a.isAlive()){
+								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
+								        	break;
+										 }
+								       
+								      } catch (InterruptedException e) {
+								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								      }
+								    } 
+								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 this.stop();
+								 this.interrupt();
+						  }
+					  };
+					  progress.start();
+					  main.start(); 
 				}
 			});
 		}
@@ -204,8 +237,9 @@ public class AdministrateSystemOptionManagement {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					fc.showOpenDialog(fc);
 					String path=fc.getSelectedFile().toString();
-					try {System.out.println(loadCSV(path));}
+					try {loadCSV(path);}
 					catch (IOException e1) {}
+					
 				}
 			});
 		}
@@ -368,23 +402,58 @@ public class AdministrateSystemOptionManagement {
 			jTable.addMouseListener(new MouseAdapter() {   
 				public void mouseClicked(java.awt.event.MouseEvent e) {    
 					if (e.getClickCount() == 2){
-						String ID=getJTable().getValueAt(getJTable().getSelectedRow(), 0).toString();
-						if(getJTable().getName().equals("entertainment")){
-							retrieveEntertainmentByID(ID);
-						}
-						else if(getJTable().getName().equals("meal")){
-							retrieveMealByID(ID);
-						}
-						else if(getJTable().getName().equals("facility")){
-							retrieveFacilityByID(ID);
-						}
-						else if(getJTable().getName().equals("ballroom")){
-							retrieveBallroomByID(ID);
-						}
-						else if(getJTable().getName().equals("package")){
-							retrievePackageByID(ID);
-						}
+						Thread main = new Thread () {
+							  public void run () {
+								  String ID=getJTable().getValueAt(getJTable().getSelectedRow(), 0).toString();
+									if(getJTable().getName().equals("entertainment")){
+										retrieveEntertainmentByID(ID);
+									}
+									else if(getJTable().getName().equals("meal")){
+										retrieveMealByID(ID);
+									}
+									else if(getJTable().getName().equals("facility")){
+										retrieveFacilityByID(ID);
+									}
+									else if(getJTable().getName().equals("ballroom")){
+										retrieveBallroomByID(ID);
+									}
+									else if(getJTable().getName().equals("package")){
+										retrievePackageByID(ID);
+									}
+							  }
+						  };
+						  final Thread a=main;
+						Thread progress= new Thread(){
+							  public void run(){
+								  double increment=1;
+									 for (int i =  0; i <= 100; i+=increment) {
+									      final int percent = i;
+									      try {
+									        SwingUtilities.invokeLater(new Runnable() {
+									         public void run() {
+									        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+									          }
+									        });
+									        Thread.sleep(100);
+									        if(!a.isAlive()){
+									        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+									        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
+									        	break;
+											 }
+									       
+									      } catch (InterruptedException e) {
+									    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+									      }
+									    } 
+									 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+									 this.stop();
+									 this.interrupt();
+							  }
+						  };
+						  progress.start();
+						  main.start(); 
 				    }
+					
 				}
 		        @Override
 		        public void mouseReleased(MouseEvent e) {
@@ -421,22 +490,56 @@ public class AdministrateSystemOptionManagement {
 			jMenuItem_retrive.setText("Show Details");
 			jMenuItem_retrive.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					String ID=getJTable().getValueAt(getJTable().getSelectedRow(), 0).toString();
-					if(getJTable().getName().equals("entertainment")){
-						retrieveEntertainmentByID(ID);
-					}
-					else if(getJTable().getName().equals("meal")){
-						retrieveMealByID(ID);
-					}
-					else if(getJTable().getName().equals("facility")){
-						retrieveFacilityByID(ID);
-					}
-					else if(getJTable().getName().equals("ballroom")){
-						retrieveBallroomByID(ID);
-					}
-					else if(getJTable().getName().equals("package")){
-						retrievePackageByID(ID);
-					}
+					Thread main = new Thread () {
+						  public void run () {
+							  String ID=getJTable().getValueAt(getJTable().getSelectedRow(), 0).toString();
+								if(getJTable().getName().equals("entertainment")){
+									retrieveEntertainmentByID(ID);
+								}
+								else if(getJTable().getName().equals("meal")){
+									retrieveMealByID(ID);
+								}
+								else if(getJTable().getName().equals("facility")){
+									retrieveFacilityByID(ID);
+								}
+								else if(getJTable().getName().equals("ballroom")){
+									retrieveBallroomByID(ID);
+								}
+								else if(getJTable().getName().equals("package")){
+									retrievePackageByID(ID);
+								}
+						  }
+					  };
+					  final Thread a=main;
+					Thread progress= new Thread(){
+						  public void run(){
+							  double increment=1;
+								 for (int i =  0; i <= 100; i+=increment) {
+								      final int percent = i;
+								      try {
+								        SwingUtilities.invokeLater(new Runnable() {
+								         public void run() {
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								          }
+								        });
+								        Thread.sleep(100);
+								        if(!a.isAlive()){
+								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
+								        	break;
+										 }
+								       
+								      } catch (InterruptedException e) {
+								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								      }
+								    } 
+								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 this.stop();
+								 this.interrupt();
+						  }
+					  };
+					  progress.start();
+					  main.start(); 
 				}
 			});
 		}
@@ -470,6 +573,8 @@ public class AdministrateSystemOptionManagement {
 	public static JProgressBar getJProgressBar() {
 		if (jProgressBar == null) {
 			jProgressBar = new JProgressBar();
+			jProgressBar.setStringPainted(true);
+			jProgressBar.setOpaque(true);
 			jProgressBar.setValue(0);
 			jProgressBar.setMaximum(100);
 			jProgressBar.setMinimum(0);
@@ -502,52 +607,86 @@ public class AdministrateSystemOptionManagement {
 			jButton_search.setText("Search");
 			jButton_search.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					//the search retreive function here
-					if(getJComboBox_search().getSelectedIndex()==0){
-						JOptionPane.showMessageDialog(null, "Please Select An Search Parameter", "Warnning", JOptionPane.WARNING_MESSAGE);
-						getJComboBox_search().requestFocus();
-					}
-					else if(getJComboBox_search().getSelectedIndex()==1){
-						if(getJTextField_search().getText().equals("")||getJTextField_search().getText().equals("   Enter Search Parameter")){
-							retrievePackage();
-						}
-						else{
-							retrievePackage(getJTextField_search().getText());
-						}
-						
-					}
-					else if(getJComboBox_search().getSelectedIndex()==2){
-						if(getJTextField_search().getText().equals("")||getJTextField_search().getText().equals("   Enter Search Parameter")){
-							retrieveFaciity();
-						}
-						else{
-							retrieveFacility(getJTextField_search().getText());
-						}
-					}
-					else if(getJComboBox_search().getSelectedIndex()==3){
-						if(getJTextField_search().getText().equals("")||getJTextField_search().getText().equals("   Enter Search Parameter")){
-							retrieveBallroom();
-						}
-						else{
-							retrieveBallroom(getJTextField_search().getText());
-						}
-					}
-					else if(getJComboBox_search().getSelectedIndex()==4){
-						if(getJTextField_search().getText().equals("")||getJTextField_search().getText().equals("   Enter Search Parameter")){
-							retrieveEntertainment();
-						}
-						else{
-							retrieveEntertainment(getJTextField_search().getText());
-						}
-					}
-					else if(getJComboBox_search().getSelectedIndex()==5){
-						if(getJTextField_search().getText().equals("")||getJTextField_search().getText().equals("   Enter Search Parameter")){
-							retrieveMeal();
-						}
-						else{
-							retrieveMeal(getJTextField_search().getText());
-						}
-					}
+					 Thread main = new Thread () {
+						  public void run () {
+							//the search retreive function here
+								if(getJComboBox_search().getSelectedIndex()==0){
+									JOptionPane.showMessageDialog(null, "Please Select An Search Parameter", "Warnning", JOptionPane.WARNING_MESSAGE);
+									getJComboBox_search().requestFocus();
+								}
+								else if(getJComboBox_search().getSelectedIndex()==1){
+									if(getJTextField_search().getText().equals("")||getJTextField_search().getText().equals("   Enter Search Parameter")){
+										retrievePackage();
+									}
+									else{
+										retrievePackage(getJTextField_search().getText());
+									}
+									
+								}
+								else if(getJComboBox_search().getSelectedIndex()==2){
+									if(getJTextField_search().getText().equals("")||getJTextField_search().getText().equals("   Enter Search Parameter")){
+										retrieveFaciity();
+									}
+									else{
+										retrieveFacility(getJTextField_search().getText());
+									}
+								}
+								else if(getJComboBox_search().getSelectedIndex()==3){
+									if(getJTextField_search().getText().equals("")||getJTextField_search().getText().equals("   Enter Search Parameter")){
+										retrieveBallroom();
+									}
+									else{
+										retrieveBallroom(getJTextField_search().getText());
+									}
+								}
+								else if(getJComboBox_search().getSelectedIndex()==4){
+									if(getJTextField_search().getText().equals("")||getJTextField_search().getText().equals("   Enter Search Parameter")){
+										retrieveEntertainment();
+									}
+									else{
+										retrieveEntertainment(getJTextField_search().getText());
+									}
+								}
+								else if(getJComboBox_search().getSelectedIndex()==5){
+									if(getJTextField_search().getText().equals("")||getJTextField_search().getText().equals("   Enter Search Parameter")){
+										retrieveMeal();
+									}
+									else{
+										retrieveMeal(getJTextField_search().getText());
+									}
+								}
+						  }
+					  };
+					  final Thread a=main;
+					 Thread progress= new Thread(){
+						  public void run(){
+							  double increment=1;
+								 for (int i =  0; i <= 100; i+=increment) {
+								      final int percent = i;
+								      try {
+								        SwingUtilities.invokeLater(new Runnable() {
+								         public void run() {
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								          }
+								        });
+								        Thread.sleep(100);
+								        if(!a.isAlive()){
+								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
+								        	break;
+										 }
+								       
+								      } catch (InterruptedException e) {
+								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								      }
+								    } 
+								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 this.stop();
+								 this.interrupt();
+						  }
+					  };
+					  progress.start();
+					  main.start(); 
 				}
 			});
 		}
@@ -690,15 +829,13 @@ public class AdministrateSystemOptionManagement {
 				  final Thread a=main;
 				  Thread progress= new Thread(){
 					  public void run(){
-						  int increment=3;
+						  double increment=1;
 							 for (int i =  0; i <= 100; i+=increment) {
-								 System.out.println("still in the loop with : "+  AdministrateSystemOptionManagement.getJProgressBar().getValue());
 							      final int percent = i;
 							      try {
 							        SwingUtilities.invokeLater(new Runnable() {
 							         public void run() {
 							        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
-							        	 System.out.println(percent+"%");
 							          }
 							        });
 							        Thread.sleep(100);
@@ -707,14 +844,12 @@ public class AdministrateSystemOptionManagement {
 							        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
 							        	break;
 									 }
-							        
 							       
 							      } catch (InterruptedException e) {
 							    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
 							      }
 							    } 
 							 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-							 System.out.println("out of the loop ... with :"+ AdministrateSystemOptionManagement.getJProgressBar().getValue());
 							 this.stop();
 							 this.interrupt();
 					  }
@@ -740,7 +875,42 @@ public class AdministrateSystemOptionManagement {
 		jButton_Entertainment.setText("New Entertainment Record");
 		jButton_Entertainment.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-				newEntertainmentTab();// creates a new entertainment tab
+				 Thread main = new Thread () {
+					  public void run () {
+						  newEntertainmentTab();// creates a new entertainment tab
+						  System.out.println("ended main");
+					  }
+				  };
+				  final Thread a=main;
+				  Thread progress= new Thread(){
+					  public void run(){
+						  double increment=1;
+							 for (int i =  0; i <= 100; i+=increment) {
+							      final int percent = i;
+							      try {
+							        SwingUtilities.invokeLater(new Runnable() {
+							         public void run() {
+							        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+							          }
+							        });
+							        Thread.sleep(100);
+							        if(!a.isAlive()){
+							        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+							        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
+							        	break;
+									 }
+							       
+							      } catch (InterruptedException e) {
+							    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+							      }
+							    } 
+							 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+							 this.stop();
+							 this.interrupt();
+					  }
+				  };
+				  progress.start();
+				  main.start(); 
 			}
 		});
 		
@@ -758,7 +928,42 @@ public class AdministrateSystemOptionManagement {
 		jButton_Meal.setFocusable(false);
 		jButton_Meal.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-				newMealTab(); // Creats a new Meal Tab
+				 Thread main = new Thread () {
+					  public void run () {
+						  newMealTab(); // Creats a new Meal Tab
+						  System.out.println("ended main");
+					  }
+				  };
+				  final Thread a=main;
+				  Thread progress= new Thread(){
+					  public void run(){
+						  double increment=1;
+							 for (int i =  0; i <= 100; i+=increment) {
+							      final int percent = i;
+							      try {
+							        SwingUtilities.invokeLater(new Runnable() {
+							         public void run() {
+							        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+							          }
+							        });
+							        Thread.sleep(100);
+							        if(!a.isAlive()){
+							        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+							        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
+							        	break;
+									 }
+							       
+							      } catch (InterruptedException e) {
+							    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+							      }
+							    } 
+							 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+							 this.stop();
+							 this.interrupt();
+					  }
+				  };
+				  progress.start();
+				  main.start(); 
 			}
 		});
 		
@@ -776,7 +981,42 @@ public class AdministrateSystemOptionManagement {
 		jButton_Facility.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/facility.png")));
 		jButton_Facility.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-				newFacilityTab();	//Creats a new facility Tab
+				 Thread main = new Thread () {
+					  public void run () {
+						  newFacilityTab();	//Creats a new facility Tab
+						  System.out.println("ended main");
+					  }
+				  };
+				  final Thread a=main;
+				  Thread progress= new Thread(){
+					  public void run(){
+						  double increment=1;
+							 for (int i =  0; i <= 100; i+=increment) {
+							      final int percent = i;
+							      try {
+							        SwingUtilities.invokeLater(new Runnable() {
+							         public void run() {
+							        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+							          }
+							        });
+							        Thread.sleep(100);
+							        if(!a.isAlive()){
+							        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+							        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
+							        	break;
+									 }
+							       
+							      } catch (InterruptedException e) {
+							    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+							      }
+							    } 
+							 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+							 this.stop();
+							 this.interrupt();
+					  }
+				  };
+				  progress.start();
+				  main.start(); 
 			}
 		});
 		
@@ -794,7 +1034,42 @@ public class AdministrateSystemOptionManagement {
 		jButton_ballroom.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/ballroom.png")));
 		jButton_ballroom.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-				newBallroomTab();	//Creats a new ballroom Tab
+				 Thread main = new Thread () {
+					  public void run () {
+						  newBallroomTab();	//Creats a new ballroom Tab
+						  System.out.println("ended main");
+					  }
+				  };
+				  final Thread a=main;
+				  Thread progress= new Thread(){
+					  public void run(){
+						  double increment=1;
+							 for (int i =  0; i <= 100; i+=increment) {
+							      final int percent = i;
+							      try {
+							        SwingUtilities.invokeLater(new Runnable() {
+							         public void run() {
+							        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+							          }
+							        });
+							        Thread.sleep(100);
+							        if(!a.isAlive()){
+							        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+							        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
+							        	break;
+									 }
+							       
+							      } catch (InterruptedException e) {
+							    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+							      }
+							    } 
+							 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+							 this.stop();
+							 this.interrupt();
+					  }
+				  };
+				  progress.start();
+				  main.start(); 
 			}
 		});
 		

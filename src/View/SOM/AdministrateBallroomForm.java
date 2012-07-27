@@ -47,6 +47,8 @@ import javax.swing.JSlider;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.SwingUtilities;
+
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
@@ -210,14 +212,47 @@ public class AdministrateBallroomForm {
 			jComboBox_facilityName.setBounds(new Rectangle(130, 80, 600, 30));
 			jComboBox_facilityName.addItemListener(new java.awt.event.ItemListener() {
 				public void itemStateChanged(java.awt.event.ItemEvent e) {
-					if(jComboBox_facilityName.getSelectedIndex()!=0){
-						retrieveFacilityByName();
-					}
-					else{
-						getJTextField_facilityContact().setText("");
-						getJTextArea_facilityAddress().setText("");
-					}
-				
+					Thread main = new Thread () {
+						  public void run () {
+							  if(jComboBox_facilityName.getSelectedIndex()!=0){
+									retrieveFacilityByName();
+								}
+								else{
+									getJTextField_facilityContact().setText("");
+									getJTextArea_facilityAddress().setText("");
+								};
+						  }
+					  };
+					  final Thread a=main;
+					Thread progress= new Thread(){
+						  public void run(){
+							  double increment=1;
+								 for (int i =  0; i <= 100; i+=increment) {
+								      final int percent = i;
+								      try {
+								        SwingUtilities.invokeLater(new Runnable() {
+								         public void run() {
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								          }
+								        });
+								        Thread.sleep(100);
+								        if(!a.isAlive()){
+								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
+								        	break;
+										 }
+								       
+								      } catch (InterruptedException e) {
+								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								      }
+								    } 
+								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 this.stop();
+								 this.interrupt();
+						  }
+					  };
+					  progress.start();
+					  main.start();
 				}
 			});
 		}
@@ -508,18 +543,52 @@ public class AdministrateBallroomForm {
 			jButton_download.setText("Download");
 			jButton_download.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					if(validateBallroomDetails()){
-						try {
-							download();
-						} catch (MalformedURLException e1) {
-							e1.printStackTrace();
-						} catch (DocumentException e1) {
-							e1.printStackTrace();
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
-						displaySummary();
-					}
+					Thread main = new Thread () {
+						  public void run () {
+							  if(validateBallroomDetails()){
+									try {
+										download();
+									} catch (MalformedURLException e1) {
+										e1.printStackTrace();
+									} catch (DocumentException e1) {
+										e1.printStackTrace();
+									} catch (IOException e1) {
+										e1.printStackTrace();
+									}
+									displaySummary();
+								}
+						  }
+					  };
+					  final Thread a=main;
+					Thread progress= new Thread(){
+						  public void run(){
+							  double increment=1;
+								 for (int i =  0; i <= 100; i+=increment) {
+								      final int percent = i;
+								      try {
+								        SwingUtilities.invokeLater(new Runnable() {
+								         public void run() {
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								          }
+								        });
+								        Thread.sleep(100);
+								        if(!a.isAlive()){
+								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
+								        	break;
+										 }
+								       
+								      } catch (InterruptedException e) {
+								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								      }
+								    } 
+								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 this.stop();
+								 this.interrupt();
+						  }
+					  };
+					  progress.start();
+					  main.start();
 				}
 			});
 		}
@@ -536,10 +605,44 @@ public class AdministrateBallroomForm {
 			jButton_upload.setText("Upload");
 			jButton_upload.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					if(validateBallroomDetails()){
-						createBallroom();
-						displaySummary();
-					}
+					Thread main = new Thread () {
+						  public void run () {
+							  if(validateBallroomDetails()){
+									createBallroom();
+									displaySummary();
+								}
+						  }
+					  };
+					  final Thread a=main;
+					Thread progress= new Thread(){
+						  public void run(){
+							  double increment=1;
+								 for (int i =  0; i <= 100; i+=increment) {
+								      final int percent = i;
+								      try {
+								        SwingUtilities.invokeLater(new Runnable() {
+								         public void run() {
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								          }
+								        });
+								        Thread.sleep(100);
+								        if(!a.isAlive()){
+								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
+								        	break;
+										 }
+								       
+								      } catch (InterruptedException e) {
+								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								      }
+								    } 
+								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 this.stop();
+								 this.interrupt();
+						  }
+					  };
+					  progress.start();
+					  main.start();
 					
 				}
 			});
@@ -558,16 +661,50 @@ public class AdministrateBallroomForm {
 			jButton_delete.setText("Delete");
 			jButton_delete.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					int i=JOptionPane.showConfirmDialog(null, "You are about to delete this record\n Are you sure?", "Delete Record", JOptionPane.YES_NO_OPTION);
-					if(i==0){
-						if(deleteBallroom()){
-							JOptionPane.showMessageDialog(null, "Record has been deleted successfully", "Success", JOptionPane.PLAIN_MESSAGE);
-							newBallroomTab();
-						}
-						else{
-							JOptionPane.showMessageDialog(null, "There was an unexpected error deleting the record/nTry restarting the application.", "Warning", JOptionPane.ERROR_MESSAGE);
-						}
-					}
+					Thread main = new Thread () {
+						  public void run () {
+							  int i=JOptionPane.showConfirmDialog(null, "You are about to delete this record\n Are you sure?", "Delete Record", JOptionPane.YES_NO_OPTION);
+								if(i==0){
+									if(deleteBallroom()){
+										JOptionPane.showMessageDialog(null, "Record has been deleted successfully", "Success", JOptionPane.PLAIN_MESSAGE);
+										newBallroomTab();
+									}
+									else{
+										JOptionPane.showMessageDialog(null, "There was an unexpected error deleting the record/nTry restarting the application.", "Warning", JOptionPane.ERROR_MESSAGE);
+									}
+								}
+						  }
+					  };
+					  final Thread a=main;
+					Thread progress= new Thread(){
+						  public void run(){
+							  double increment=1;
+								 for (int i =  0; i <= 100; i+=increment) {
+								      final int percent = i;
+								      try {
+								        SwingUtilities.invokeLater(new Runnable() {
+								         public void run() {
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								          }
+								        });
+								        Thread.sleep(100);
+								        if(!a.isAlive()){
+								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
+								        	break;
+										 }
+								       
+								      } catch (InterruptedException e) {
+								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								      }
+								    } 
+								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 this.stop();
+								 this.interrupt();
+						  }
+					  };
+					  progress.start();
+					  main.start();
 				}
 			});
 		}

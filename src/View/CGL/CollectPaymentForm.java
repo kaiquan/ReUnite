@@ -75,10 +75,10 @@ public class CollectPaymentForm {
 	private JComboBox jComboBox = null;
 	final JTree tree = new JTree();
 	private String ballroomPrice;
-	private String entertainmentPrice;
+	private String entertainmentPrice;  //  @jve:decl-index=0:
 	private String mealPrice;
 	private String packageDiscount;
-	public JScrollPane pne;
+	private JScrollPane pne,pne1;
 	/**
 	 * This method initializes jFrame	
 	 * 	
@@ -87,6 +87,7 @@ public class CollectPaymentForm {
 	private JFrame getJFrame() {
 		if (jFrame == null) {
 			tree.setBounds(new Rectangle(12, 14, 78, 72));
+			tree.setBounds(new Rectangle(4, 8, 132, 269));
 			jFrame = new JFrame();
 			jFrame.setResizable(true);
 			jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -109,10 +110,10 @@ public class CollectPaymentForm {
 			jContentPane.add(getSeparator(), getSeparator().getName());
 			jContentPane.add(getSeparator_1(), getSeparator_1().getName());
 			jContentPane.add(getJButton2(), null);
-			pne = new JScrollPane(getJPanel(),JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+			pne = new JScrollPane(getJPanel(),JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 			pne.setBounds(135, 8, 553, 268);
 			pne.setPreferredSize(new Dimension(553, 268));
-			jContentPane.add(pne);
+			jContentPane.add(pne);			
 			jContentPane.add(tree, null);
 			DefaultMutableTreeNode events = new DefaultMutableTreeNode("Events");
 			generateEvents(events);
@@ -195,6 +196,10 @@ public class CollectPaymentForm {
 				
 				}
 			});
+			pne1 = new JScrollPane(tree,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+			pne1.setVisible(true);
+			pne1.setBounds(10, 14, 119, 264);
+			jContentPane.add(pne1);
 			}
 		return jContentPane;
 	}
@@ -249,7 +254,7 @@ public class CollectPaymentForm {
 	}
 	
 	private void refresh(){	
-		jContentPane.remove(pne);
+		jContentPane.remove(pne1);
 		jTextField.setText("");
 		jTextField.setText("");
 		jTextField1.setText("");
@@ -267,15 +272,15 @@ public class CollectPaymentForm {
 		jRadioButton.setSelected(false);
 		jRadioButton1.setSelected(false);
 		
-		jTextArea.setText("");
+		//getJTextArea.setText("");
 		DefaultMutableTreeNode events = new DefaultMutableTreeNode("Events");				
 		generateEvents(events);		
 		DefaultTreeModel model = new DefaultTreeModel(events);
 		tree.setModel(model);		
-		pne.setViewportView(tree);		
-		jContentPane.add(pne);
+		pne1.setViewportView(tree);		
+		jContentPane.add(pne1);
 		
-		pne.updateUI();
+		pne1.updateUI();
 		
 	}
 

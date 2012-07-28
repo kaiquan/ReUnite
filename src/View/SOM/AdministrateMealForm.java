@@ -58,6 +58,7 @@ import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.JSlider;
+import javax.swing.SwingUtilities;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -123,6 +124,8 @@ public class AdministrateMealForm {
 	private JPopupMenu jPopupMenu = null;  //  @jve:decl-index=0:visual-constraint="209,861"
 	private JMenuItem jMenuItem_remove = null;
 	final JFileChooser fc = new JFileChooser();
+	private Thread main=null;
+	private Thread progress=null;
 	/********************************************************
 	 *					Start of UI
 	 *******************************************************/
@@ -667,17 +670,66 @@ public class AdministrateMealForm {
 			jButton_download.setText("Download");
 			jButton_download.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					if(validateMealDetails()){
-						try {
-							download();
-						} catch (MalformedURLException e1) {
-							e1.printStackTrace();
-						} catch (DocumentException e1) {
-							e1.printStackTrace();
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
-					}
+					//setting the file and path name
+					fc.setAcceptAllFileFilterUsed(false);
+					fc.setFocusable(false);
+					fc.setAcceptAllFileFilterUsed(false);
+					fc.showSaveDialog(fc);
+
+					final String directory=fc.getSelectedFile().toString();
+					 main = new Thread () {
+						  @SuppressWarnings("deprecation")
+						public void run () {
+							  if(validateMealDetails()){
+									try {
+										download(directory);
+									} catch (MalformedURLException e1) {
+										e1.printStackTrace();
+									} catch (DocumentException e1) {
+										e1.printStackTrace();
+									} catch (IOException e1) {
+										e1.printStackTrace();
+									}
+									displaySummary();
+								}
+							  else{
+									main.interrupt();
+									main.stop();
+									AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+							  }
+						  }
+					  };
+					progress= new Thread(){
+						  @SuppressWarnings("deprecation")
+						public void run(){
+							  double increment=1;
+								 for (int i =  0; i <= 100; i+=increment) {
+								      final int percent = i;
+								      try {
+								        SwingUtilities.invokeLater(new Runnable() {
+								         public void run() {
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								          }
+								        });
+								        Thread.sleep(100);
+								        if(!main.isAlive()){
+								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								        	break;
+										 }
+								       
+								      } catch (InterruptedException e) {
+								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								      }
+								    } 
+								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 this.stop();
+								 this.interrupt();
+						  }
+					  };
+					  progress.start();
+					  main.start();
 				}
 			});
 		}
@@ -694,9 +746,47 @@ public class AdministrateMealForm {
 			jButton_upload.setText("Upload");
 			jButton_upload.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					if(validateMealDetails()){
-						createMeal();
-					}
+					main = new Thread () {
+						  public void run () {
+							  if(validateMealDetails()){
+									createMeal();
+								}
+							  else{
+									main.interrupt();
+									AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+									AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+							  }
+						  }
+					  };
+					progress= new Thread(){
+						  public void run(){
+							  double increment=1;
+								 for (int i =  0; i <= 100; i+=increment) {
+								      final int percent = i;
+								      try {
+								        SwingUtilities.invokeLater(new Runnable() {
+								         public void run() {
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								          }
+								        });
+								        Thread.sleep(100);
+								        if(!main.isAlive()){
+								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								        	break;
+										 }
+								       
+								      } catch (InterruptedException e) {
+								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								      }
+								    } 
+								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 this.interrupt();
+						  }
+					  };
+					  progress.start();
+					  main.start();
 				}
 			});
 		}
@@ -714,10 +804,45 @@ public class AdministrateMealForm {
 			jButton_delete.setEnabled(false);
 			jButton_delete.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					int i=JOptionPane.showConfirmDialog(null, "You are about to delete this record\n Are you sure?", "Delete Record", JOptionPane.YES_NO_OPTION);
-					if(i==0){
-						deleteMeal();
-					}
+					final int i=JOptionPane.showConfirmDialog(null, "You are about to delete this record\n Are you sure?", "Delete Record", JOptionPane.YES_NO_OPTION);
+					main = new Thread () {
+						  public void run () {
+								if(i==0){
+									deleteMeal();
+								}
+						  }
+					  };
+					  final Thread a=main;
+					progress= new Thread(){
+						  public void run(){
+							  double increment=1;
+								 for (int i =  0; i <= 100; i+=increment) {
+								      final int percent = i;
+								      try {
+								        SwingUtilities.invokeLater(new Runnable() {
+								         public void run() {
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								          }
+								        });
+								        Thread.sleep(100);
+								        if(!a.isAlive()){
+								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	break;
+										 }
+								       
+								      } catch (InterruptedException e) {
+								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								      }
+								    } 
+								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								 this.interrupt();
+								 
+						  }
+					  };
+					  progress.start();
+					  main.start();
 				}
 			});
 		}
@@ -735,9 +860,49 @@ public class AdministrateMealForm {
 			jButton_update.setEnabled(false);
 			jButton_update.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					if(validateMealDetails()){
-						updateMeal();
-					}
+					main = new Thread () {
+						  public void run () {
+							  if(validateMealDetails()){
+									updateMeal();
+								}
+							  else{
+									main.interrupt();
+									AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+									AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+							  }
+						  }
+					  };
+					  final Thread a=main;
+					progress= new Thread(){
+						  public void run(){
+							  double increment=1;
+								 for (int i =  0; i <= 100; i+=increment) {
+								      final int percent = i;
+								      try {
+								        SwingUtilities.invokeLater(new Runnable() {
+								         public void run() {
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								          }
+								        });
+								        Thread.sleep(100);
+								        if(!a.isAlive()){
+								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	break;
+										 }
+								       
+								      } catch (InterruptedException e) {
+								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								      }
+								    } 
+								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								 this.interrupt();
+								 
+						  }
+					  };
+					  progress.start();
+					  main.start();
 				}
 			});
 		}
@@ -806,27 +971,49 @@ public class AdministrateMealForm {
 	 * Return 			: boolean
 	 * Purpose			: To validate the details before any CRUD
 	 * *******************************************************/
+	@SuppressWarnings("deprecation")
 	public boolean validateMealDetails(){
 		boolean success=true;
 		
 		if(getJTextField_mealTitle().getText().equals("")||getJTextField_mealTitle().getText().equals("                                                       Enter Meal TItle Here")){
+			success=false;
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Title Must Not Be Empty", "Missing Fields", JOptionPane.WARNING_MESSAGE);
 			getJTextField_mealTitle().requestFocus();
-			success=false;
+			main.interrupt();
 		}
 		else if(getJTextArea_mealDescription().getText().equals("")||getJTextArea_mealDescription().getText().equals("\n\n                                                      Enter a Description Here")){
+			success=false;
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Description Must Not Be Empty", "Missing Fields", JOptionPane.WARNING_MESSAGE);
 			getJTextArea_mealDescription().requestFocus();
-			success=false;
+			main.interrupt();
 		}
 		else if(getJComboBox_mealType().getSelectedIndex()==0){
+			success=false;
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please Select a Meal Type", "Missing Fields", JOptionPane.WARNING_MESSAGE);
 			getJComboBox_mealType().requestFocus();
-			success=false;
+			main.interrupt();
 		}
 		else if(model.getRowCount()==0){
+			success=false;
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "There Must Be Dish in the Meal Menu List", "Missing Fields", JOptionPane.WARNING_MESSAGE);
 			getJTextField_mealMenu().requestFocus();
+			main.interrupt();
 		}
 		
 		return success;
@@ -888,15 +1075,8 @@ public class AdministrateMealForm {
 	 * Purpose 			: To download the details of the form 
 	 * 					  into the local computer
 	 *******************************************************/
-	public void download() throws MalformedURLException, DocumentException, IOException{
-		//setting the file and path name
-		fc.setAcceptAllFileFilterUsed(false);
-		fc.setFocusable(false);
-		fc.setAcceptAllFileFilterUsed(false);
-		fc.showSaveDialog(fc);
-
-		String directory=null;
-		directory=fc.getSelectedFile().toString();
+	public void download(String directory) throws MalformedURLException, DocumentException, IOException{
+		
 		String PDFlink="";
 		String TXTlink="";
 		if(directory.substring(directory.length()-4).equals(".pdf")){
@@ -932,6 +1112,7 @@ public class AdministrateMealForm {
 	 * Purpose 			: To download the details of the form 
 	 * 					  into the local computer in PDF
 	 *******************************************************/
+	@SuppressWarnings("deprecation")
 	public void downloadPDF(String path) throws DocumentException, MalformedURLException, IOException{
 		String directory=path;
 		
@@ -1008,6 +1189,10 @@ public class AdministrateMealForm {
 		 pdf.close();
 		
 		//prompt success
+		 progress.interrupt();
+		 progress.stop();
+		 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+		 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 		 JOptionPane.showMessageDialog(null, "File Downloaded Successfully at "+path, "Downloads", JOptionPane.INFORMATION_MESSAGE);
 		
 	}
@@ -1125,6 +1310,7 @@ public class AdministrateMealForm {
 	 * Purpose 			: To create a new Meal 
 	 * 					  record in the database
 	 *******************************************************/
+	@SuppressWarnings("deprecation")
 	public void createMeal(){
 		//PREPARING THE OBJECT VARIABLES
 		String title=getJTextField_mealTitle().getText().toString();
@@ -1146,7 +1332,6 @@ public class AdministrateMealForm {
 
 			//CHECKS IF ALL MEAL MENU ARE CREATED SUCCESSFULLY
 			if(!mealID.equals(null)){
-				JOptionPane.showMessageDialog(null, "Record has been uploaded successfully", "Success", JOptionPane.PLAIN_MESSAGE);
 				getJTextField_mealID().setText(mealID);
 				getJTextField_mealID().setForeground(SystemColor.black);
 				//DISABLES THE UPLOAD BUTTON
@@ -1155,8 +1340,18 @@ public class AdministrateMealForm {
 				getJButton_update().setEnabled(true);
 				getJButton_delete().setEnabled(true);
 				getJButton_download().setEnabled(true);
+				progress.interrupt();
+				progress.stop();
+				AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+				AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+				JOptionPane.showMessageDialog(null, "Record has been uploaded successfully", "Success", JOptionPane.PLAIN_MESSAGE);
+				
 			}
 			else{
+				progress.interrupt();
+				progress.stop();
+				AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+				AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 				JOptionPane.showMessageDialog(null, "There was an unexpected uploading the Meal record(s)/n1)Try restarting the application.", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 	}
@@ -1168,16 +1363,25 @@ public class AdministrateMealForm {
 	 * Purpose 			: To delete a new Meal 
 	 * 					  record in the database 
 	 *******************************************************/
+	@SuppressWarnings("deprecation")
 	public void deleteMeal(){
 		String ID=getJTextField_mealID().getText().toString();
 		AdministrateMealControl meal=new AdministrateMealControl();
 		boolean success=meal.processDeleteMeal(ID);
 		if(success){
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Record has been deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
 			//RESETS THE TAB
 			newMealTab();
 		}
 		else{
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "An unexpected error occured\n1)Try restarting the application.\n2)This record might be tied to an existing package, tied records cannot be deleted.", "Warning", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -1189,6 +1393,7 @@ public class AdministrateMealForm {
 	 * Purpose 			: To update a meal record 
 	 * 					  in the database
 	 *******************************************************/
+	@SuppressWarnings("deprecation")
 	public void updateMeal(){
 		//PREPARING THE OBJECT VARIABLES
 		String title=getJTextField_mealTitle().getText().toString();
@@ -1212,9 +1417,17 @@ public class AdministrateMealForm {
 		
 		//CHECKS FOR UPDATE SUCCESS
 		if(success){
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Record has been Updated successfully", "Success", JOptionPane.PLAIN_MESSAGE);
 		}
 		else{
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "There was an unexpected uploading the entertainment record(s)/n1)Try restarting the application.", "Update Failure", JOptionPane.ERROR_MESSAGE);
 		}
 	}

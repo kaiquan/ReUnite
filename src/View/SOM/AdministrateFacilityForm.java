@@ -114,6 +114,8 @@ public class AdministrateFacilityForm {
 	private JPopupMenu jPopupMenu = null;  //  @jve:decl-index=0:visual-constraint="209,861"
 	private JMenuItem jMenuItem_remove = null;
 	final JFileChooser fc = new JFileChooser();
+	private Thread main=null;
+	private Thread progress=null;
 	/********************************************************
 	 *					Start of UI
 	 *******************************************************/

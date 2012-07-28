@@ -899,6 +899,7 @@ public class AdministrateEntertainmentForm {
 	 * Return 			: boolean
 	 * Purpose 			: To validate the form before any CRUD
 	 * *******************************************************/
+	@SuppressWarnings("deprecation")
 	public boolean validateEntertainmentDetails(){
 		boolean success=true;
 		if(getJTextField_entertainmentTitle().getText().equals("")||getJTextField_entertainmentTitle().getText().equals("                                                           Enter a Title Here...")){
@@ -1030,6 +1031,7 @@ public class AdministrateEntertainmentForm {
 	 * Purpose 			: To download the form details in
 	 * 					  the local computer in PDF
 	 *******************************************************/
+	@SuppressWarnings("deprecation")
 	public void downloadPDF(String path) throws MalformedURLException, IOException, DocumentException{
 		String directory=path;
 		
@@ -1189,6 +1191,7 @@ public class AdministrateEntertainmentForm {
 	 * Purpose 			: To create a new entertainment 
 	 * 					  record in the database
 	 *******************************************************/	
+	@SuppressWarnings("deprecation")
 	public void createEntertainment(){
 		//PREPARING THE OBJECT VARIABLES
 		boolean availability=getJCheckBox_entertainmentAvailability().isSelected();
@@ -1243,6 +1246,7 @@ public class AdministrateEntertainmentForm {
 	 * Purpose 			: To Delete a entertainment record 
 	 * 					  in the database
 	 *******************************************************/
+	@SuppressWarnings("deprecation")
 	public void deleteEntertainment(){
 		String ID=getJTextField_entertaimentID().getText().toString();
 		AdministrateEntertainmentControl entertainment=new AdministrateEntertainmentControl();
@@ -1272,6 +1276,7 @@ public class AdministrateEntertainmentForm {
 	 * Purpose 			: To update a entertainment record 
 	 * 					  in the database
 	 *******************************************************/
+	@SuppressWarnings("deprecation")
 	public void updateEntertainment(){		
 		//PREPARING THE OBJECT VARIABLES
 		boolean availability=getJCheckBox_entertainmentAvailability().isSelected();

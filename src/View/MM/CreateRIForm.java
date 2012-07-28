@@ -104,30 +104,21 @@ public class CreateRIForm extends JFrame {
 				.addActionListener(new java.awt.event.ActionListener() {
 					public void actionPerformed(java.awt.event.ActionEvent e) {
 						
-				boolean success = false;
-						validateEmptyField();
-						System.out.println("hello1");
-						success=false;
-						
-				if (success==true)	
-					{	
-					validateNumber();
-					System.out.println("hello2");
-					success=true;	
-					}
-				
-				
-				else if(success == false){
-						validatePassword();
-						
-						success = true;
-						}
-				else if(success==true){
-					
-					System.out.println("hello");
-				}
-		
-				else if(success == false) {
+			
+//						if(validateEmptyField()){
+//						System.out.println("hello1");
+//				
+//						}
+//						 if((validateEmptyField())!=true && (validatePassword()==false))
+//						{
+//						}
+//						
+//						 if((validatePassword())!=true &&(validateNumbers()==false)){
+//							
+//						}
+//						
+//							
+//						else{
 		CreateRIController registerController = new CreateRIController();
 					try {
 						registerController.createRegistration(
@@ -147,10 +138,10 @@ public class CreateRIForm extends JFrame {
 									// TODO Auto-generated catch block
 									e1.printStackTrace();
 								}
-
+					//	}
 							
 						
-				}
+				
 			}});
 		
 		//combo box
@@ -417,17 +408,18 @@ public class CreateRIForm extends JFrame {
 		
 	}
 	
-	public boolean validateNumber(){
+	public boolean validateNumbers(){
 		boolean success = false;
-	
-		
 		String number = "[\\p{Digit}&&[123456789]]+";
 		if (!telephoneNoTextBox.getText().matches(number)) 
-		{
-			JOptionPane.showMessageDialog(null,
-					"Only Numerical Digits allowed");
-			System.out.println("Number");
+		{JOptionPane.showMessageDialog(null,"Only Numerical values allowed for phone Numbers");
+			System.out.println("telephomeNumber");
 		}
+		if(!handphoneNoTextBox.getText().matches(number)){
+			JOptionPane.showMessageDialog(null,"Only Numerical values allowed for phone Numbers");
+			System.out.println("handphoneNumber");
+		}
+		
 			success= true;
 			
 			return success;

@@ -127,11 +127,10 @@ public class RI extends Account   {
 	public boolean createRIAccount(RI account) {
 
 		boolean success = false;
-
-		String sql = "INSERT INTO Account (userName, password, firstName, lastName, nric, school, email, address, telephoneNo, handphoneNo, secretAnswer)"+ 
-		"VALUES " + "('"+ account.getUserName()+ "', '"+ account.getPassword()+"', '"+ account.getFirstName()+ "', '"+ account.getLastName()+ "', '"
-			//	+ account.getDateOfBirth()//	+ "','"
-		+ account.getNric()+ "', '"+ account.getSchool()+ "', '"+ account.getEmail()+ "', '"+ account.getAddress()+ "''"+ account.getTelephoneNo()
+	
+		String sql = "INSERT INTO Account (userName, password, firstName, lastName, nric, school, email, address, telephoneNo, handphoneNo, secretAnswer)"; 
+		sql +="VALUES ('"+ account.getUserName()+ "', '"+ account.getPassword()+"', '"+ account.getFirstName()+ "', '"+ account.getLastName()+ "', '"
+		+ account.getNric()+ "', '"+ account.getSchool()+ "', '"+ account.getEmail()+ "', '"+ account.getAddress()+ "','"+ account.getTelephoneNo()
 				+ "','"+ account.getHandphoneNo()
 				+ "','"+ account.getSecretAnswer()+"')";
 

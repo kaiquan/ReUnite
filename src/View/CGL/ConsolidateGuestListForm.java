@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 import Controller.EmailController;
 import Controller.MyCalendar;
+import Controller.MySQLController;
 
 import com.itextpdf.text.Anchor;
 import com.itextpdf.text.BadElementException;
@@ -61,7 +62,8 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 public class ConsolidateGuestListForm extends Fonts{
 
-	final JTree tree = new JTree();
+	private JTree tree = new JTree();
+	JScrollPane pne;
 	private JFrame jFrame = null;  //  @jve:decl-index=0:visual-constraint="167,6"
 	private JPanel jContentPane = null;
 	private JTextField textField;
@@ -113,12 +115,9 @@ public class ConsolidateGuestListForm extends Fonts{
 			jLabel2.setFont(new Font("Dialog", Font.BOLD, 14));
 			jLabel2.setText("+");
 			jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+				//+ Label Message Dialog
 				public void mouseClicked(java.awt.event.MouseEvent e) {
-					
-					
-					
-					JOptionPane.showMessageDialog(null, "Ballroom Price is " +ballroomPrice+"\n"+"Entertainment Price: "+entertainmentPrice+"\n"+"Meal Price: "+mealPrice +"\n"+"Package Discount: "+packageDiscount);
-				
+				JOptionPane.showMessageDialog(null, "Ballroom Price is " +ballroomPrice+"\n"+"Entertainment Price: "+entertainmentPrice+"\n"+"Meal Price: "+mealPrice +"\n"+"Package Discount: "+packageDiscount);
 				}
 			});
 			jLabel1 = new JLabel();
@@ -126,27 +125,24 @@ public class ConsolidateGuestListForm extends Fonts{
 			jLabel1.setText("Event Description :");
 			jContentPane = new JPanel();
 			jContentPane.setLayout(null);
-			
-			//final JTree tree = new JTree();
 			DefaultMutableTreeNode events = new DefaultMutableTreeNode("Events");
 			generateEvents(events);
 			DefaultTreeModel model = new DefaultTreeModel(events);
-		
-			
 			tree.setModel(model);
 			tree.setBounds(10, 14, 119, 264);
 			tree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+				//Once the event is selected,It retreives the event details for that respective event from the database.
 				public void valueChanged(javax.swing.event.TreeSelectionEvent e) {
 					DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
                     if(node !=null ){
                     if (node.isLeaf() == true)
-                    {
+                    {	
+                    	//Set the event name into a text box and retreive the details from the controller and splits them up
+                    	//using the Scanner class
                     	textField.setText(node.getUserObject().toString());
-                    	
                     	ConsolidateGuestListControl c1 = new ConsolidateGuestListControl();         
                     	String eventName=node.getUserObject().toString();
                     	c1.requestSelectedEventDetails((eventName)).get(0);
-                    	
                     	Scanner sc = new Scanner(c1.requestSelectedEventDetails((eventName)).get(0));
                     	sc.useDelimiter(",");
                     	String ballroomName=sc.next();
@@ -162,9 +158,9 @@ public class ConsolidateGuestListForm extends Fonts{
                     	String facilty=sc.next();
                     	packageDiscount=sc.next();
                     	
-                    	
-                    	
-                    	
+                    	//Once the items are split using the scanner class it sets them to the
+                    	//respective textbox
+                 	        	
                     	textField_1.setText(eventDate);
                     	textField_2.setText(guestCountr);
                     	textField_3.setText(eventTime);
@@ -172,17 +168,15 @@ public class ConsolidateGuestListForm extends Fonts{
                     	textField_4.setText(totalPrice);
                     	jTextArea.setText(eventDescription);
                     	jTextField.setText(facilty);
-                    	
-                    	
+                    	                   	
                     }
 					 
-                    }
-
+                }
+                    
 				
-				}
+			}
 			});
-			//jContentPane.add(tree);
-			JScrollPane pne = new JScrollPane(tree,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+			pne = new JScrollPane(tree,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 			pne.setVisible(true);
 			pne.setBounds(10, 14, 119, 264);
 			jContentPane.add(pne);
@@ -294,7 +288,7 @@ public class ConsolidateGuestListForm extends Fonts{
 		for (int i=0; i<eventList.size(); i++) {
 			for (int j=0; j<tn.getRoot().getChildCount(); j++)
 			{
-				//System.out.println(tn.getRoot().getChildAt(j).toString() + eventList.get(i).getEventDate().toString());
+				
 				if (eventList.get(i).getEventDate().toString().equals(tn.getRoot().getChildAt(j).toString()))
 				{
 					
@@ -311,40 +305,7 @@ public class ConsolidateGuestListForm extends Fonts{
 		
 		}
 		
-//		for (int i = 0; i<eventList.size(); i++)
-//		{
-//				for (int k = 0; k < nodes.length; k++)
-//				{
-//					if(nodes[k]==null)
-//					{
-//						nodes[i] = new DefaultMutableTreeNode(eventList.get(i).getEventDate());
-//						
-//						for(int j = 0; j<eventList.size(); j++)
-//						{
-//							if(eventList.get(j).getEventDate().equals(eventList.get(i).getEventDate())){
-//								nodes[i].add(new DefaultMutableTreeNode(eventList.get(j).getEventTitle()));
-//							}
-//						}
-//					}
-//					else
-//					{
-//						if(!eventList.get(i).getEventDate().equals(nodes[k].getUserObject().toString()))
-//						{
-//							nodes[i] = new DefaultMutableTreeNode(eventList.get(i).getEventDate());
-//							
-//							for(int j = 0; j<eventList.size(); j++)
-//							{
-//								if(eventList.get(j).getEventDate().equals(eventList.get(i).getEventDate())){
-//									nodes[i].add(new DefaultMutableTreeNode(eventList.get(j).getEventTitle()));
-//								}
-//							}
-//						}
-//					}
-//				}
-//			if(nodes[i]!=null){tn.add(nodes[i]);}	
-//			
-//		}
-							
+									
 			
 		}
 		/**
@@ -359,9 +320,8 @@ public class ConsolidateGuestListForm extends Fonts{
 				public void actionPerformed(ActionEvent arg0) {
 					if(jTextField.getText().equals("")){
 						JOptionPane.showMessageDialog(null, "Please Select an event");
+						return;
 					}
-					
-					else{
 					
 					String eventStatus="Awaiting Payment";
 					
@@ -380,16 +340,16 @@ public class ConsolidateGuestListForm extends Fonts{
                     	
                     	EmailController email = new EmailController();
                     	
-                    	File f = new File(FILE);
+                    	File pdf = new File(FILE);
                     	String[] test={"anniyan123456789@hotmail.com"};
                     	
                     	try {
-							email.sendEmail("TEXT", test, "TEST EMAIL", "TESTING EMAIL", f, 3, "Payment");
+							email.sendEmail("TEXT", test, "TEST EMAIL", "TESTING EMAIL", pdf, 3, "Payment");
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-					}
+					
 					
 					if((c1.processUpdateEventStatus(textField.getText(),eventStatus)==true)){
 						JOptionPane.showMessageDialog(null, "Event Status Changed to Awaiting Payment");
@@ -406,7 +366,7 @@ public class ConsolidateGuestListForm extends Fonts{
 						jContentPane.remove(tree);
 						jContentPane.add(tree);
 						
-						//creating pdf
+					
 						
 						
 						
@@ -491,8 +451,25 @@ public class ConsolidateGuestListForm extends Fonts{
 			jButton2 = new JButton();
 			jButton2.setBounds(new Rectangle(26, 294, 86, 21));
 			jButton2.setText("Refresh");
+			jButton2.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					jButton2.setEnabled(false);
+					refresh();
+					jButton2.setEnabled(true);
+				}
+			});
 		}
 		return jButton2;
+	}
+	
+	private void refresh(){	
+		jContentPane.remove(pne);		
+		DefaultMutableTreeNode events = new DefaultMutableTreeNode("Events");
+		generateEvents(events);
+		DefaultTreeModel model = new DefaultTreeModel(events);
+		tree.setModel(model);
+		pne.setViewportView(tree);
+		jContentPane.add(pne);
 	}
 
 	/**

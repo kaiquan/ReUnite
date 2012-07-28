@@ -903,18 +903,35 @@ public class AdministrateEntertainmentForm {
 		boolean success=true;
 		if(getJTextField_entertainmentTitle().getText().equals("")||getJTextField_entertainmentTitle().getText().equals("                                                           Enter a Title Here...")){
 			success=false;
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please enter an entertainment title", "Missing Fields", JOptionPane.WARNING_MESSAGE);
 			getJTextField_entertainmentTitle().requestFocus();
+			main.interrupt();
 		}
 		else if(getJTextArea_entertainmentDescription().getText().equals("")||getJTextArea_entertainmentDescription().getText().equals("\n\n                                                       Enter a Description Here...")){
 			success=false;
+			success=false;
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please enter an entertainment description", "Missing Fields", JOptionPane.WARNING_MESSAGE);
 			getJTextArea_entertainmentDescription().requestFocus();
+			main.interrupt();
 		}
 		else if(model.getRowCount()==0){
 			success=false;
+			success=false;
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "There must be an entertainment in the entertainment list", "Missing Fields", JOptionPane.WARNING_MESSAGE);
 			getJTextField_entertainmentMenu().requestFocus();
+			main.interrupt();
 		}
 		return success;
 	}

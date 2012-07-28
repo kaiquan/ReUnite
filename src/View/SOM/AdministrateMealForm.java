@@ -1062,9 +1062,9 @@ public class AdministrateMealForm {
 	 * 					  current meal record
 	 *******************************************************/
 	public void displaySummary(){
-		String header="=====================================\n";
+		String header="====================================\n";
 		header+="                                Meal Summary List\n";
-		header+="=====================================\n\n";
+		header+="====================================\n\n";
 		
 		String content="";
 		for(int i=0;i<model.getRowCount();i++){

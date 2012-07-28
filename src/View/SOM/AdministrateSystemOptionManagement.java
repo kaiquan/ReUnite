@@ -1751,6 +1751,7 @@ public class AdministrateSystemOptionManagement {
 	  * Purpose 		: To load a csv file data into the form
 	 * @throws IOException 
 	  *******************************************************/
+	@SuppressWarnings("unchecked")
 	public int loadCSV(String path) throws IOException{
 		int result=0;
 		String tabTitle="";
@@ -1964,11 +1965,29 @@ public class AdministrateSystemOptionManagement {
 						form.getJButton_delete().setEnabled(true);
 						form.getJButton_download().setEnabled(true);
 						form.getJButton_update().setEnabled(true);
-						tabTitle="Facility "+data.get(1)[0];
+						tabTitle="Ballroom "+data.get(1)[0];
 					}
+				}
 					//set the rest of the fields
-					form.getJComboBox_facilityName().setSelectedItem(data.get(0)[1]);
-					
+					AdministrateFacilityControl Fcontrol= new AdministrateFacilityControl();
+					form.getJComboBox_facilityName().setModel(Fcontrol.processRetrieveFacilityNames());
+					form.getJComboBox_facilityName().setSelectedItem(data.get(1)[1]);
+					form.getJTextField_facilityContact().setText(data.get(1)[2]);
+					form.getJTextArea_facilityAddress().setText(data.get(1)[3]);
+					if(data.get(1)[4].equals("YES"))
+						form.getJCheckBox_ballroomAvailability().setSelected(true);
+					if(data.get(1)[4].equals("NO"))
+						form.getJCheckBox_ballroomAvailability().setSelected(false);
+					form.getJTextField_ballroomTitle().setText(data.get(1)[5]);
+					form.getJTextField_ballroomTitle().setForeground(SystemColor.black);
+					form.getJComboBox_ballroomSize().setSelectedItem(data.get(1)[6]);
+					form.getJTextField_ballroomPrice().setText(data.get(1)[7]);
+					form.getJTextField_ballroomPrice().setForeground(SystemColor.black);
+					form.getJTextArea_ballroomDescription().setText(data.get(1)[8]);
+					form.getJTextArea_ballroomDescription().setForeground(SystemColor.black);
+					form.getJSlider_ballroomDiscount().setValue(Integer.parseInt(data.get(1)[9]));
+					form.getJTextField_ballroomFinalPrice().setText(data.get(1)[10]);
+					form.displaySummary();
 					//ADDING THE FORM INTO THE TAB
 					if(jTabbedPane.getTabCount()==0){
 						jTabbedPane.insertTab(tabTitle,null , form.getJScrollPane(),null , 0); 
@@ -1982,15 +2001,180 @@ public class AdministrateSystemOptionManagement {
 							jTabbedPane.setSelectedIndex(jTabbedPane.getSelectedIndex()+1);
 							}
 						}
-				}
 			}
 			result=1;
 		}
 		else if(data.get(0)[0].equals("MEAL_ID")){
-			
+			//CHECK THE HEADER FORMAT
+			if(!data.get(0)[0].equals("MEAL_ID"))return 0;
+			if(!data.get(0)[1].equals("MEAL_TITLE"))return 0;
+			if(!data.get(0)[2].equals("MEAL_AVAILABILITY"))return 0;
+			if(!data.get(0)[3].equals("MEAL_DESCRIPTION"))return 0;
+			if(!data.get(0)[4].equals("MEAL_TYPE"))return 0;
+			if(!data.get(0)[5].equals("MEAL_DISCOUNT"))return 0;
+			if(!data.get(0)[6].equals("MEAL_FINAL_PRICE"))return 0;
+			if(!data.get(2)[0].equals("MEAL_MENU_NAME")) return 0;
+			if(!data.get(2)[1].equals("MEAL_MENU_PRICE")) return 0;
+			if(!data.get(2)[2].equals("MEAL_MENU_IS_HALA")) return 0;
+			if(!data.get(2)[3].equals("MEAL_MENU_IS_VEGETARIAN")) return 0;
+			if(!data.get(2)[4].equals("MEAL_MENU_DESCRIPTION")) return 0;
+
+			else{
+				tabTitle="New Meal Form";
+				//LOADS THE DATA
+				//CHECKS THE DATABASE FOR AN ID PROJECTED ON THE CSV FILE
+				AdministrateMealControl control= new AdministrateMealControl();
+				control.procesRetrieveMealByID(data.get(1)[0]);
+				//CALLS THE FORM
+				AdministrateMealForm form= new AdministrateMealForm();
+				if(control.getMeal().getMealID()!=null){
+					if(!control.getMeal().getMealID().equals(data.get(1)[0])||control.getMeal().getMealID().equals(null)){
+						//INFORMS THE USER THAT THE LOADED DATA DOES NOT REFLECT IN THE CURENT DATABASE
+						JOptionPane.showMessageDialog(null, "This Data does ot exist anyware in the database.", "System Message", JOptionPane.INFORMATION_MESSAGE);
+					}
+					else{
+						//SETS THE FORM CONTROLL ACCORDINGLY
+						form.getJTextField_mealID().setText(data.get(1)[0]);
+						form.getJButton_upload().setEnabled(false);
+						form.getJButton_delete().setEnabled(true);
+						form.getJButton_download().setEnabled(true);
+						form.getJButton_update().setEnabled(true);
+						tabTitle="Meal "+data.get(1)[0];
+					}
+				}
+				//set the fields
+				form.getJTextField_mealTitle().setText(data.get(1)[1]);
+				form.getJTextField_mealTitle().setForeground(SystemColor.black);
+				if(data.get(1)[2].equals("YES"))
+					form.getJCheckBox_mealAvailability().setSelected(true);
+				if(data.get(1)[2].equals("NO"))
+					form.getJCheckBox_mealAvailability().setSelected(false);
+				form.getJTextArea_mealDescription().setText(data.get(1)[3]);
+				form.getJTextArea_mealDescription().setForeground(SystemColor.black);
+				form.getJComboBox_mealType().setSelectedItem(data.get(1)[4]);
+				form.getJSlider_mealDiscount().setValue(Integer.parseInt(data.get(1)[5]));
+				
+				//SETTING THE JTABLE IN THE FORM (MEAL LIST)
+				DefaultTableModel model= new DefaultTableModel();
+				model.setColumnIdentifiers(new String[]{"Meal Name","Price/hr","Halal","Vegetarian","Description"});
+				for(int i=3;i<data.size();i++){
+					model.addRow(data.get(i));
+				}
+				form.getJTable_mealMenu().setModel(model);
+				form.model=model;
+				form.getJTable_mealMenu().getColumnModel().getColumn(0).setPreferredWidth(565);
+				form.getJTable_mealMenu().getColumnModel().getColumn(1).setPreferredWidth(135);
+				form.getJTable_mealMenu().getColumnModel().getColumn(2).setPreferredWidth(100);
+				form.getJTable_mealMenu().getColumnModel().getColumn(3).setPreferredWidth(100);
+				form.getJTable_mealMenu().getColumnModel().getColumn(4).setPreferredWidth(500);
+				form.displaySummary();
+				
+				//ADDING THE FORM INTO THE TAB
+				if(jTabbedPane.getTabCount()==0){
+					jTabbedPane.insertTab(tabTitle,null , form.getJScrollPane(),null , 0); 
+					createTabHeader(0);	
+					jTabbedPane.setSelectedIndex(0);
+				}
+				else{
+					jTabbedPane.insertTab(tabTitle,null , form.getJScrollPane(),null , jTabbedPane.getSelectedIndex());
+					createTabHeader(jTabbedPane.getSelectedIndex()-1);	
+					if(!(jTabbedPane.getSelectedIndex()==jTabbedPane.getTabCount())){
+						jTabbedPane.setSelectedIndex(jTabbedPane.getSelectedIndex()+1);
+						}
+					}
+		}
+		result=1;
 		}
 		else if(data.get(0)[0].equals("PACKAGE_ID")){
-			
+			//CHECK THE HEADER FORMAT
+			if(!data.get(0)[0].equals("PACKAGE_ID"))return 0;
+			if(!data.get(0)[1].equals("PACKAGE_TITLE"))return 0;
+			if(!data.get(0)[2].equals("PACKAGE_AVAILABILITY"))return 0;
+			if(!data.get(0)[3].equals("PACKAGE_DESCRIPTION"))return 0;
+			if(!data.get(0)[4].equals("BALLROOM_ID"))return 0;
+			if(!data.get(0)[5].equals("BALLROOM_NAME"))return 0;
+			if(!data.get(0)[6].equals("ENTERTAINMENT_ID"))return 0;
+			if(!data.get(0)[7].equals("ENTERTAINMENT_NAME"))return 0;
+			if(!data.get(0)[8].equals("MEAL_OPTION1_ID"))return 0;
+			if(!data.get(0)[9].equals("MEAL_OPTION1_NAME"))return 0;
+			if(!data.get(0)[10].equals("MEAL_OPTION2_ID"))return 0;
+			if(!data.get(0)[11].equals("MEAL_OPTION2_NAME"))return 0;
+			if(!data.get(0)[12].equals("MEAL_OPTION3_ID"))return 0;
+			if(!data.get(0)[13].equals("MEAL_OPTION3_NAME"))return 0;
+			if(!data.get(0)[14].equals("PACKAGE_DISCOUNT"))return 0;
+	
+			else{
+				tabTitle="New Package Form";
+				//LOADS THE DATA
+				//CHECKS THE DATABASE FOR AN ID PROJECTED ON THE CSV FILE
+				AdministratePackageControl control= new AdministratePackageControl();
+				control.processRetrievePackageByID(data.get(1)[0]);
+				//CALLS THE PACKAGE FORM
+				AdministratePackageForm form= new AdministratePackageForm();
+				if(control.getPack().getPackageID()!=null){
+					if(!control.getPack().getPackageID().equals(data.get(1)[0])||control.getPack().getPackageID().equals(null)){
+						//INFORMS THE USER THAT THE LOADED DATA DOES NOT REFLECT IN THE CURENT DATABASE
+						JOptionPane.showMessageDialog(null, "This Data does ot exist anyware in the database.", "System Message", JOptionPane.INFORMATION_MESSAGE);
+					}
+					else{
+						//SETS THE FORM CONTROLL ACCORDINGLY
+						form.getJTextField_packageID().setText(data.get(1)[0]);
+						form.getJButton_upload().setEnabled(false);
+						form.getJButton_delete().setEnabled(true);
+						form.getJButton_download().setEnabled(true);
+						form.getJButton_update().setEnabled(true);
+						tabTitle="Meal "+data.get(1)[0];
+					}
+				}
+				//set the fieelds
+				form.getJTextField_packageTitle().setText(data.get(1)[1]);
+				form.getJTextField_packageTitle().setForeground(SystemColor.black);
+				if(data.get(1)[2].equals("YES"))
+					form.getJCheckBox_packageAvailability().setSelected(true);
+				if(data.get(1)[2].equals("NO"))
+					form.getJCheckBox_packageAvailability().setSelected(false);
+				form.getJTextArea_packageDescription().setText(data.get(1)[3]);
+				form.getJTextArea_packageDescription().setForeground(SystemColor.black);
+				if(!data.get(1)[4].equals(null)||!data.get(1)[4].equals("")){
+					form.getJTextField_Ballroom().setName(data.get(1)[4]);
+					form.getJTextField_Ballroom().setText(data.get(1)[5]);
+				}
+				if(!data.get(1)[6].equals(null)||!data.get(1)[6].equals("")){
+					form.getJTextField_entertainment().setName(data.get(1)[6]);
+					form.getJTextField_entertainment().setText(data.get(1)[7]);
+					form.getJCheckBox_entertainment().setSelected(true);
+				}
+				if(!data.get(1)[8].equals(null)||!data.get(1)[8].equals("")){
+					form.getJTextField_mealOption1().setName(data.get(1)[8]);
+					form.getJTextField_mealOption1().setText(data.get(1)[9]);
+					form.getJCheckBox_mealOption1().setSelected(true);
+				}
+				if(!data.get(1)[10].equals(null)||!data.get(1)[8].equals("")){
+					form.getJTextField_mealOption2().setName(data.get(1)[10]);
+					form.getJTextField_mealOption2().setText(data.get(1)[11]);
+					form.getJCheckBox_mealOption2().setSelected(true);
+				}
+				if(!data.get(1)[12].equals(null)||!data.get(1)[8].equals("")){
+					form.getJTextField_mealOption3().setName(data.get(1)[12]);
+					form.getJTextField_mealOption3().setText(data.get(1)[13]);
+					form.getJCheckBox_mealOption3().setSelected(true);
+				}
+				form.getJSlider_discount().setValue(Integer.parseInt(data.get(1)[14]));
+				form.displaySummary();
+				//ADDING THE FORM INTO THE TAB
+				if(jTabbedPane.getTabCount()==0){
+					jTabbedPane.insertTab(tabTitle,null , form.getJScrollPane(),null , 0); 
+					createTabHeader(0);	
+					jTabbedPane.setSelectedIndex(0);
+				}
+				else{
+					jTabbedPane.insertTab(tabTitle,null , form.getJScrollPane(),null , jTabbedPane.getSelectedIndex());
+					createTabHeader(jTabbedPane.getSelectedIndex()-1);	
+					if(!(jTabbedPane.getSelectedIndex()==jTabbedPane.getTabCount())){
+						jTabbedPane.setSelectedIndex(jTabbedPane.getSelectedIndex()+1);
+						}
+					}
+			}
 		}
 		return result;
 	}

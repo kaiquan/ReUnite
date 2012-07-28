@@ -2885,7 +2885,6 @@ public class AdministratePackageForm {
 	@SuppressWarnings("deprecation")
 	public void downloadPDF(String path) throws DocumentException, MalformedURLException, IOException{
 		String directory=path;
-		
 		//writting the pdf
 		 Document pdf = new Document (PageSize.A4);
 		 PdfWriter.getInstance(pdf, new FileOutputStream(directory));
@@ -2977,7 +2976,7 @@ public class AdministratePackageForm {
 	public void downloadTXT(String path) throws IOException{
 		CSVController controller= new CSVController();
 		ArrayList<String[]> data = new ArrayList<String[]>();
-		
+		System.out.println("downloading csv...");
 		String[]packageHeader=new String[15];
 		packageHeader[0]="PACKAGE_ID";
 		packageHeader[1]="PACKAGE_TITLE";
@@ -2992,7 +2991,7 @@ public class AdministratePackageForm {
 		packageHeader[10]="MEAL_OPTION2_ID";
 		packageHeader[11]="MEAL_OPTION2_NAME";
 		packageHeader[12]="MEAL_OPTION3_ID";
-		packageHeader[13]="MEAL_OPTION3_NAEM";
+		packageHeader[13]="MEAL_OPTION3_NAME";
 		packageHeader[14]="PACKAGE_DISCOUNT";
 		
 		String[] packageData= new String[15];
@@ -3002,18 +3001,18 @@ public class AdministratePackageForm {
 			packageData[2]="YES";
 		if(!getJCheckBox_packageAvailability().isSelected())
 			packageData[2]="NO";
-		packageData[3]=getJTextArea_packageDescription().toString();
+		packageData[3]=getJTextArea_packageDescription().getText().toString();
 		packageData[4]=getJTextField_ballroomName().getName().toString();
 		packageData[5]=getJTextField_ballroomName().getText().toString();
-		packageData[6]=getJTextField_entertainmentName().getName().toString();
+		//packageData[6]=getJTextField_entertainmentName().getName().toString();
 		packageData[7]=getJTextField_entertainmentName().getText().toString();
-		packageData[8]=getJTextField_mealOption1().getName().toString();
+		//packageData[8]=getJTextField_mealOption1().getName().toString();
 		packageData[9]=getJTextField_mealOption1().getText().toString();
-		packageData[10]=getJTextField_mealOption2().getName().toString();
-		packageData[12]=getJTextField_mealOption2().getText().toString();
-		packageData[13]=getJTextField_mealOption3().getName().toString();
-		packageData[14]=getJTextField_mealOption3().getText().toString();
-		
+		//packageData[10]=getJTextField_mealOption2().getName().toString();
+		packageData[11]=getJTextField_mealOption2().getText().toString();
+		//packageData[12]=getJTextField_mealOption3().getName().toString();
+		packageData[13]=getJTextField_mealOption3().getText().toString();
+		packageData[14]=getJSlider_discount().getValue()+"";
 		data.add(packageHeader);
 		data.add(packageData);
 		controller.WriteFile(data, path);

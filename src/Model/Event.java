@@ -40,7 +40,7 @@ public class Event {
 	private Ballroom data;								//stores data from the controler;
 	private ResultSet rs;								//result set to ertrive items directly from database
 	private static MySQLController DB = new MySQLController();
-	private DateHelper dateHelper = new DateHelper();
+//	private DateHelper dateHelper = new DateHelper();
 	
 	private String eventID;
 	private String packageID;
@@ -280,8 +280,8 @@ public class Event {
 					
 					Invitation eventInvitation = new Invitation();
 					eventInvitation.setInvitationID(rs.getInt("invitationID"));
-					eventInvitation.setDateCreated(dateHelper.parseDate(rs.getString("i.dateCreated"), TableNames.DATE_FORMAT));
-					eventInvitation.setExpiryDate(dateHelper.parseDate(rs.getString("i.expiryDate"), TableNames.DATE_FORMAT));
+					//eventInvitation.setDateCreated(dateHelper.parseDate(rs.getString("i.dateCreated"), TableNames.DATE_FORMAT));
+					//eventInvitation.setExpiryDate(dateHelper.parseDate(rs.getString("i.expiryDate"), TableNames.DATE_FORMAT));
 				
 				event.setEventInvitation(eventInvitation);
 				
@@ -419,8 +419,8 @@ public class Event {
 						
 						Invitation eventInvitation = new Invitation();
 						eventInvitation.setInvitationID(rs.getInt("invitationID"));
-						eventInvitation.setDateCreated(dateHelper.parseDate(rs.getString("i.dateCreated"), TableNames.DATE_FORMAT));
-						eventInvitation.setExpiryDate(dateHelper.parseDate(rs.getString("i.expiryDate"), TableNames.DATE_FORMAT));
+					//	eventInvitation.setDateCreated(dateHelper.parseDate(rs.getString("i.dateCreated"), TableNames.DATE_FORMAT));
+					//	eventInvitation.setExpiryDate(dateHelper.parseDate(rs.getString("i.expiryDate"), TableNames.DATE_FORMAT));
 					
 					event.setEventInvitation(eventInvitation);
 				

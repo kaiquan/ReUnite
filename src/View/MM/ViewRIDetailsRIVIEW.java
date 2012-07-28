@@ -19,6 +19,7 @@ import javax.swing.JRootPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -32,16 +33,18 @@ import Model.Membership.RI;
 import Controller.MySQLController;
 import Controller.MM.*;
 
+import javax.swing.JList;
+
 public class ViewRIDetailsRIVIEW {
 	
 	ViewRIPersonalController viewRIPersonalController = new	ViewRIPersonalController();
 
 	private JTable table;
+	private JTable tableEvent;
+	private JTable tablePayment;
 	private JFrame jframe;  //  @jve:decl-index=0:visual-constraint="10,54"
 	private JPanel panel;
-	
-	
-	
+
 	//Labels
 
 	private JLabel title;
@@ -52,27 +55,24 @@ public class ViewRIDetailsRIVIEW {
 	JTextField firstNameTextBox;
 	JTextField lastNameTextBox;
 	JTextField dateOfBirthTextBox;
-	JTextField nricTextBox;
 	JTextField schoolTextBox;
 	JTextField emailTextBox;
 	JTextField telephoneTextBox;
 	JTextField handphoneTextBox;
+	JTextField nricTextBox;
 	private  JTextField typeTextBox;
 	private  JTextField statusTextBox;
-	
 
+	
 	//Buttons
+
 	private JButton  updateAccountButton;
 	private JButton requestCloseAccountButton;
 	private JButton submitButton;
-	
- 	
-	
-	// ***********************JFrame Method****************
-	
+
 	private JFrame getJFrame(){
 		jframe = new JFrame();
-		jframe.setSize(782, 586);
+		jframe.setSize(1070, 788);
 		jframe.setVisible(true);
 		jframe.setTitle("View");
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -100,67 +100,59 @@ public class ViewRIDetailsRIVIEW {
 	
 //	title.setText("Welcome"+viewRIPersonalController.userName.getText()+"");
 	
-	
-	
-	
-	
-	
 	//TextBox
 	userNameTextBox =new JTextField();
-	userNameTextBox.setBounds(new Rectangle(130, 250, 150, 25));
-	userNameTextBox.setVisible(false);
+	userNameTextBox.setBounds(new Rectangle(130, 450, 150, 25));
+	userNameTextBox.setVisible(true);
 	
 	
 	firstNameTextBox=new JTextField();
-	firstNameTextBox.setBounds(new Rectangle(130, 300, 150, 25));
-	firstNameTextBox.setVisible(false);
+	firstNameTextBox.setBounds(new Rectangle(130, 500, 150, 25));
+	firstNameTextBox.setVisible(true);
 
 
 	lastNameTextBox=new JTextField();
-	lastNameTextBox.setBounds(new Rectangle(130, 350, 150, 25));
-	lastNameTextBox.setVisible(false);
+	lastNameTextBox.setBounds(new Rectangle(130, 550, 150, 25));
+	lastNameTextBox.setVisible(true);
 	
 	
 	dateOfBirthTextBox=new JTextField();
-	dateOfBirthTextBox.setBounds(new Rectangle(130, 400, 150, 25));
-	dateOfBirthTextBox.setVisible(false);
+	dateOfBirthTextBox.setBounds(new Rectangle(130, 600, 150, 25));
+	dateOfBirthTextBox.setVisible(true);
 	
-	nricTextBox=new JTextField();
-	nricTextBox.setBounds(new Rectangle(130, 450, 150, 25));
-	nricTextBox.setVisible(false);
 	
 	schoolTextBox=new JTextField();
-	schoolTextBox.setBounds(new Rectangle(510, 250, 150, 25));
-	schoolTextBox.setVisible(false);
+	schoolTextBox.setBounds(new Rectangle(510, 400, 150, 25));
+	schoolTextBox.setVisible(true);
 	
 	emailTextBox=new JTextField();
-	emailTextBox.setBounds(new Rectangle(510, 300, 150, 25));
-	emailTextBox.setVisible(false);
+	emailTextBox.setBounds(new Rectangle(510, 450, 150, 25));
+	emailTextBox.setVisible(true);
 	
 	telephoneTextBox=new JTextField();
-	telephoneTextBox.setBounds(new Rectangle(510, 350, 150, 25));
-	telephoneTextBox.setVisible(false);
+	telephoneTextBox.setBounds(new Rectangle(510, 500, 150, 25));
+	telephoneTextBox.setVisible(true);
 	
 	handphoneTextBox=new JTextField();
-	handphoneTextBox.setBounds(new Rectangle(510, 400, 150, 25));
-	handphoneTextBox.setVisible(false);
+	handphoneTextBox.setBounds(new Rectangle(510, 550, 150, 25));
+	handphoneTextBox.setVisible(true);
 	
 	typeTextBox=new JTextField();
-	typeTextBox.setBounds(new Rectangle(600, 550, 150, 25));
+	typeTextBox.setBounds(new Rectangle(600, 600, 150, 25));
 	typeTextBox.setEditable(false);
-	typeTextBox.setVisible(false);
+	typeTextBox.setVisible(true);
 	
 	statusTextBox=new JTextField();
-	statusTextBox.setBounds(new Rectangle(600, 600, 150, 25));
+	statusTextBox.setBounds(new Rectangle(600, 650, 150, 25));
 	statusTextBox.setEditable(false);
-	statusTextBox.setVisible(false);
+	statusTextBox.setVisible(true);
 	
 	
 	
 	//Buttons
 	
 	updateAccountButton = new JButton();
-	updateAccountButton.setBounds(500, 50,150,30);
+	updateAccountButton.setBounds(344, 42, 150, 30);
 	updateAccountButton.setText("Update Account");
 	updateAccountButton.addActionListener(new java.awt.event.ActionListener() {
 		public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -178,6 +170,18 @@ public class ViewRIDetailsRIVIEW {
 			telephoneTextBox.setVisible(true);
 			handphoneTextBox.setVisible(true);
 			
+		
+			
+			int row = getTable().getSelectedRow();
+			
+				userNameTextBox.setText(((JTable) table.getSelectionModel()).getValueAt(1, 2).toString());
+				firstNameTextBox.setText(table.getValueAt(0, 2).toString());
+				lastNameTextBox.setText(table.getValueAt(0, 2).toString());
+				nricTextBox.setText(table.getValueAt(1, 2).toString());
+				emailTextBox.setText(table.getModel().getValueAt(row, 2).toString());
+				telephoneTextBox.setText(table.getModel().getValueAt(row, 2).toString());
+				schoolTextBox.setText(table.getModel().getValueAt(row, 3).toString());
+				
 			
 			
 		}
@@ -185,7 +189,7 @@ public class ViewRIDetailsRIVIEW {
 	
 
 	submitButton = new JButton("Submit");
-	submitButton.setBounds(500, 50,150,30);
+	submitButton.setBounds(344, 42, 150, 30);
 	submitButton.setVisible(false);
 	submitButton.addActionListener(new java.awt.event.ActionListener() {
 		
@@ -229,31 +233,25 @@ public class ViewRIDetailsRIVIEW {
 		}
 	});
 	
-	requestCloseAccountButton = new JButton();
-	requestCloseAccountButton.setBounds(515, 463, 150, 30);
-	requestCloseAccountButton.setText("Request Account Closure");
-	requestCloseAccountButton
-			.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
+				requestCloseAccountButton = new JButton();
+					requestCloseAccountButton.setBounds(509, 43, 293, 30);
+					requestCloseAccountButton.setText("Request Account Closure");
+					requestCloseAccountButton
+						.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
 					Object[] options = { "OK", "CANCEL" };
-					int confirmUpdateOption = JOptionPane.showOptionDialog(null, "Are You Sure you want to delete your account?", "Request Account Closure",
-					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-					null, options, options[0]);
-					if (confirmUpdateOption==0){
-						
-
+						int confirmUpdateOption = JOptionPane.showOptionDialog(null, "Are You Sure you want to delete your account?", "Request Account Closure",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,null, options, options[0]);
+					if (confirmUpdateOption==0)
+					{
 						JOptionPane.showConfirmDialog(null,"Your request will be sent for verification",
-								   "Request Sent", JOptionPane.CLOSED_OPTION);
-						
+												   "Request Sent", JOptionPane.CLOSED_OPTION);
 					}
-				}
-			});
-	
-	
-	
-	
-	
-	// Content Pane
+								
+			}
+							});
+					
+
 	
 	//Table
 	
@@ -261,35 +259,139 @@ public class ViewRIDetailsRIVIEW {
 	
 	
 //..............................add.......................................
-	
-	panel.add(userNameTextBox);
-	panel.add(firstNameTextBox);
-	panel.add(lastNameTextBox);
-	panel.add(dateOfBirthTextBox);
-	panel.add(nricTextBox);
-	panel.add(schoolTextBox);
-	panel.add(emailTextBox);
-	panel.add(telephoneTextBox);
-	panel.add(handphoneTextBox);
-	panel.add(typeTextBox);
-	panel.add(statusTextBox);
-	
-	
-	
-		panel.add(title);
+			
+			panel.add(userNameTextBox);
+			panel.add(firstNameTextBox);
+			panel.add(lastNameTextBox);
+			panel.add(dateOfBirthTextBox);
+			panel.add(schoolTextBox);
+			panel.add(emailTextBox);
+			panel.add(telephoneTextBox);
+			panel.add(handphoneTextBox);
+			panel.add(typeTextBox);
+			panel.add(statusTextBox);
+			panel.add(title);
+			panel.add(requestCloseAccountButton);
+			panel.add(updateAccountButton);
+			panel.add(submitButton);
 		
-		panel.add(requestCloseAccountButton);
-		
-		panel.add(updateAccountButton);
-
-		panel.add(submitButton);
-
-		JScrollPane tableScrollPane = new JScrollPane(getTable());
-		tableScrollPane.setBounds(0, 100, 600, 100);
-		panel.add(tableScrollPane);
-	
+			JScrollPane tableScrollPane = new JScrollPane(getTable());
+			tableScrollPane.setBounds(0, 100, 600, 100);
+			panel.add(tableScrollPane);
+				
+			JScrollPane tableScrollPaneEvent = new JScrollPane(getTableEvent());
+			tableScrollPaneEvent.setBounds(2, 226, 600, 100);
+			panel.add(tableScrollPaneEvent);
+				
+			JScrollPane tableScrollPanePayment = new JScrollPane(getTablePayment());
+			tableScrollPanePayment.setBounds(0, 360, 600, 100);
+			panel.add(tableScrollPanePayment);
+				
 
 		return panel;
+	}
+		
+
+	
+	public JTable getTablePayment() {
+
+		submitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				// Type your database query or controller here
+			}
+		});
+
+		tablePayment = new JTable();
+
+		tablePayment.setBackground(Color.white);
+		tablePayment.setBorder(null);
+		tablePayment
+				.setModel(viewRIPersonalController.getRITableModelPayment());
+		tablePayment.setColumnSelectionAllowed(false);
+		tablePayment.setCellSelectionEnabled(false);
+		tablePayment.setRowSelectionAllowed(true);
+		tablePayment.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+
+		DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
+		headerRenderer.setBackground(Color.GRAY);
+
+		tablePayment.getTableHeader().setDefaultRenderer(headerRenderer);
+
+		DefaultTableCellRenderer usernameRenderer = new DefaultTableCellRenderer();
+		usernameRenderer.setFont(new Font("Dialog", Font.BOLD, 50));
+
+		tablePayment.getSelectionModel().addListSelectionListener(
+				new ListSelectionListener() {
+					@Override
+					public void valueChanged(ListSelectionEvent e) {
+						if (e.getSource() == table.getSelectionModel()
+								&& table.getRowSelectionAllowed()) {
+							// Column selection changed
+							ListSelectionModel model = table
+									.getSelectionModel();
+							int lead = model.getLeadSelectionIndex();
+							shiftData(lead);
+
+						}
+
+						if (e.getValueIsAdjusting()) {
+							// The mouse button has not yet been released
+						}
+					}
+				});
+
+		return tablePayment;
+
+	}
+
+	public JTable getTableEvent() {
+
+		submitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				// Type your database query or controller here
+			}
+		});
+
+		tableEvent = new JTable();
+
+		tableEvent.setBackground(Color.white);
+		tableEvent.setBorder(null);
+		tableEvent.setModel(viewRIPersonalController.getRITableModelEvent());
+		tableEvent.setColumnSelectionAllowed(false);
+		tableEvent.setCellSelectionEnabled(false);
+		tableEvent.setRowSelectionAllowed(true);
+		tableEvent.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+
+		DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
+		headerRenderer.setBackground(Color.GRAY);
+
+		tableEvent.getTableHeader().setDefaultRenderer(headerRenderer);
+
+		DefaultTableCellRenderer usernameRenderer = new DefaultTableCellRenderer();
+		usernameRenderer.setFont(new Font("Dialog", Font.BOLD, 50));
+
+		tableEvent.getSelectionModel().addListSelectionListener(
+				new ListSelectionListener() {
+					@Override
+					public void valueChanged(ListSelectionEvent e) {
+						if (e.getSource() == table.getSelectionModel()
+								&& table.getRowSelectionAllowed()) {
+							// Column selection changed
+							ListSelectionModel model = table
+									.getSelectionModel();
+							int lead = model.getLeadSelectionIndex();
+							shiftData(lead);
+
+						}
+
+						if (e.getValueIsAdjusting()) {
+							// The mouse button has not yet been released
+						}
+					}
+				});
+
+		return tableEvent;
+
 	}
 	
 	
@@ -348,37 +450,24 @@ public class ViewRIDetailsRIVIEW {
 		return table;
 
 	}
-		
 
 	public void shiftData(int row) {
-		//add Date of birth here		
-JTextField[] textBoxes = {userNameTextBox,  typeTextBox, statusTextBox,firstNameTextBox, lastNameTextBox,  nricTextBox, schoolTextBox, emailTextBox, telephoneTextBox, handphoneTextBox};
-int columns = table.getColumnCount();  
+			
+			JTextField[] textBoxes = {userNameTextBox,  typeTextBox, statusTextBox,firstNameTextBox, lastNameTextBox,  nricTextBox, schoolTextBox, emailTextBox, telephoneTextBox, handphoneTextBox};
+					int columns = table.getColumnCount();  
 
 
 
-for(int col = 0; col < columns; col++)  
-{   textBoxes[col].setText(table.getValueAt(row, col).toString());
-
-}
-
-}  
-	
-	
-// .......................................JTable.........................	
-	
-
-	// update Button
-
+					for(int col = 0; col < columns; col++)  
+					{   	
+						textBoxes[col].setText(table.getValueAt(row, col).toString());
+					}
+	}  
 		public static void main(String a[]){
-		
 	
-		
 		ViewRIDetailsRIVIEW viewRiDetails = new ViewRIDetailsRIVIEW();
 		viewRiDetails.getJFrame().setVisible(true);
-		
-			
-		//new InsertJTableDatabase();
+	
 	
 	}
 

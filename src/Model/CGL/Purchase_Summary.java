@@ -109,4 +109,28 @@ public ArrayList<String> RETRIEVE_PAYMENT_DETAILS(String eventName){
 }
 
 
+public void setTotalCost(String string) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+public void setAmountPending(String string) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+public String getTotalCost() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+public String getAmountPending() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
 }

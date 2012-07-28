@@ -1,8 +1,11 @@
 package Model.Membership;
 
 import Model.Event;
+import Model.CGL.*;
+
 import java.sql.Date;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 
@@ -12,12 +15,78 @@ import Controller.MySQLController;
 public class RI extends Account   {
 
 
+
 	private static MySQLController db = new MySQLController();
 	
+	public String eventName;
+	public String eventID;
+	public String eventStatus;
+	public String totalCost;
+	public String amountPending;
+	
+
+	public String getTotalCost() {
+		return totalCost;
+	}
+
+
+	public void setTotalCost(String totalCost) {
+		this.totalCost = totalCost;
+	}
+	
+	
+	
+	public String getAmountPending() {
+		return amountPending;
+	}
+
+
+	public void setAmountPending(String amountPending) {
+		this.amountPending = amountPending;
+	}
+
+
+	public String getEventName() {
+		return eventName;
+	}
+
+
+	public void setEventName(String eventName) {
+		this.eventName = eventName;
+	}
+
+
+	public String getEventID() {
+		return eventID;
+	}
+
+
+	public void setEventID(String eventID) {
+		this.eventID = eventID;
+	}
+
+
+	public String getEventStatus() {
+		return eventStatus;
+	}
+
+
+	public void setEventStatus(String eventStatus) {
+		this.eventStatus = eventStatus;
+	}
+
+
+	
+	
+	
+	
 	
 
 
-	public RI(String userName, String password, String type, String status,String firstName,
+
+
+	public RI(String userName, String password
+			, String type, String status,String firstName,
 			String lastName, Date dateOfBirth, String nric, String address,
 			String school, String email, String telephoneNo,
 			String handphoneNo, String secretQuestion, String secretAnswer) {
@@ -37,6 +106,8 @@ public class RI extends Account   {
 		super.setHandphoneNo(handphoneNo);
 		super.setSecretQuestion(secretQuestion);
 		super.setSecretAnswer(secretAnswer);
+		
+		
 		
 		
 	}
@@ -87,28 +158,146 @@ public class RI extends Account   {
 	// View)___________________________________________________
 
 	
+	public ArrayList<Purchase_Summary> GET_Payment_FOR_RI() {
+		ResultSet rs = null;
+		ArrayList<Purchase_Summary> paymentList = new ArrayList<Purchase_Summary>();
+			String dbQuery = "Select purchaseID, totalCost, amountPending FROM Purchase_Summary WHERE eventID='2'";
+			rs = db.readRequest(dbQuery);
+		
+			try {
+				while(rs.next()){
 
-//	
-//	public boolean getEvents() {
-//		ResultSet rs = null;
-//	
-//			String dbQuery = "Select eventStatus, eventName FROM Event where eventID= 1";
-//			rs = db.readRequest(dbQuery);
-//			boolean success = false;
-//			
-//		
-//				Event tempEvent = new Event();
-//			
-//				tempEvent.setEventStatus(("eventStatus"));
-//				tempEvent.setEventName(("eventName"));
-//				
-//				
-//					success = true;
-//				return success;
-//			}
-//
-//		
+				
+					Purchase_Summary ps = new Purchase_Summary();
+				
+					ps.setTotalCost(rs.getString("totalCost"));
+					ps.setAmountPending(rs.getString("amountPending"));
+					
+			
+					
+					paymentList.add(ps);
+				}
+			} catch (SQLException e) {
+			
+				e.printStackTrace();
+			}	
+				
+			return paymentList;
+			}
 
+		
+//	ps.setTotalCost(rs.getString("totalCost"));
+//	ps.setAmountPending(rs.getString("amountPending"));
+
+
+	public String[][] getRITableModelPayment() {
+		RI riModelPayment= new RI();
+
+		String data[][] = new String[5][2];
+
+		try {
+
+			ArrayList<Purchase_Summary> tempList = riModelPayment.GET_Payment_FOR_RI();
+			
+			for (int i = 0; i < tempList.size(); i++) {
+				data[i][0]= tempList.get(i).getTotalCost();
+				data[i][1]= tempList.get(i).getAmountPending();
+				
+				
+				
+				
+				
+
+				
+			}
+		} catch (Exception e) {
+		}
+
+		return data;
+
+	}
+	
+	public String[] getRITableColumnNamesPayment() {
+		String col[] = {"Purchase ID", "Total Due", "Total Balance"};
+		return col;
+
+	}
+	
+	
+	
+	
+	
+	
+	public ArrayList<Event> GET_EVENTS_FOR_RI() {
+		ResultSet rs = null;
+		ArrayList<Event> eventList = new ArrayList<Event>();
+			String dbQuery = "Select eventID, eventStatus, eventName FROM Event WHERE userName='kaiquan88@gmail.com'";
+			rs = db.readRequest(dbQuery);
+		
+			try {
+				while(rs.next()){
+
+					Event tempEvent = new Event();
+					
+				
+					tempEvent.setEventStatus(rs.getString("eventStatus"));
+					tempEvent.setEventName(rs.getString("eventName"));
+					tempEvent.setEventID(rs.getString("eventID"));
+					
+			
+					
+					eventList.add(tempEvent);
+				}
+			} catch (SQLException e) {
+			
+				e.printStackTrace();
+			}	
+				
+			return eventList;
+			}
+
+		
+//	ps.setTotalCost(rs.getString("totalCost"));
+//	ps.setAmountPending(rs.getString("amountPending"));
+//	data[i][3]= tempList.get(i).getTotalCost();
+//	data[i][4]= tempList.get(i).getAmountPending();
+
+	
+	public String[][] getRITableModelEvent() {
+		RI riModelEvent = new RI();
+
+		String data[][] = new String[5][13];
+
+		try {
+
+			ArrayList<Event> tempList = riModelEvent.GET_EVENTS_FOR_RI();
+			
+			for (int i = 0; i < tempList.size(); i++) {
+				//data[i][0] = tempList.get(i).getUserName();
+				data[i][0] = tempList.get(i).getEventName();
+				data[i][1] = tempList.get(i).getEventID();
+				data[i][2] = tempList.get(i).getEventStatus();
+				
+				
+				
+				
+				
+
+				
+			}
+		} catch (Exception e) {
+		}
+
+		return data;
+
+	}
+	
+	public String[] getRITableColumnNamesEvent() {
+		String col[] = {"Event Name", "EventID", "Status"};
+		return col;
+
+	}
+	
 
 	
 	public ArrayList<RI> retrieveUser() {
@@ -146,6 +335,8 @@ public class RI extends Account   {
 		return riList;
 
 	}
+	
+
 
 
 
@@ -240,22 +431,13 @@ public class RI extends Account   {
 
 	public static void main(String args[]) throws ParseException {
 
-		RI create = new RI();
-		
-		create.setUserName("shahrikin");
-		create.setPassword("Shahrikin");
-		create.setFirstName("shahrikin");
-		create.setLastName("shahrikin");
-		create.setNric("shahrikin");
-		create.setSchool("shahrikin");
-		create.setEmail("shahrikin");
-		create.setAddress("shahrikin");
-		create.setTelephoneNo("shahrikin");
-		create.setHandphoneNo("shahrikin");
-		create.setSecretAnswer("shahrikin");
+		ArrayList<Event> list = new ArrayList();
 		
 		
-		create.createRIAccount(create);
+		
+		
+
+		
 		
 
 	}

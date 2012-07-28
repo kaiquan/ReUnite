@@ -40,4 +40,24 @@ public class ViewRIDetailsController {
 		return model;
 	}
 
+	public boolean ableToDelete(){
+	RI verifyDelete = new RI();
+		boolean	canDelete = false;
+		if(verifyDelete.getRITableModelEvent().equals("Confirmed")){
+			
+			canDelete = true;
+		}
+	
+		else{
+			canDelete =false;
+			}
+		
+	
+		
+		return canDelete;
+		
+	}
+	
+	
+	
 }

@@ -411,9 +411,25 @@ public class ViewRIDetails {
 			JOptionPane.showConfirmDialog(null,""+userNameTextBox.getText()+" Has Been Successfully disabled!",
 					   "Disable Confirmed!", JOptionPane.CLOSED_OPTION);
 			}
+			
+//			ViewRIDetailsController verifyDelete = new ViewRIDetailsController();
+//			
+//			if(verifyDelete.ableToDelete()==false){
+//			
+//			JOptionPane.showConfirmDialog(null,""+userNameTextBox.getText()+" You have an Outstanding Event",
+//					   "Disable Confirmed!", JOptionPane.CLOSED_OPTION);
+//			
+//		}
+//			
+//		else{
+//		
+//			JOptionPane.showConfirmDialog(null,""+userNameTextBox.getText()+" Has Been Successfully DiSa l!",
+//					   "Disable Confirmed!", JOptionPane.CLOSED_OPTION);
+//		}
+			
 			if(disableAccountButton.getText()=="Enable Account"){
 				Object[] options = { "OK", "CANCEL" };
-				int confirmUpdateOption = JOptionPane.showOptionDialog(null, "Are You want to Enable  "+userNameTextBox.getText()+"?", "Please Confirm",
+				int confirmUpdateOption = JOptionPane.showOptionDialog(null, "Are Sure You want to Enable  "+userNameTextBox.getText()+"?", "Please Confirm",
 				JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 				null, options, options[0]);
 				if (confirmUpdateOption == 0){
@@ -423,10 +439,7 @@ public class ViewRIDetails {
 				disableAccount.disableRIAccount(userNameTextBox.getText(), statusTextBox.getText());
 				}
 				
-				JOptionPane.showConfirmDialog(null,""+userNameTextBox.getText()+" Has Been Successfully Activated!",
-						   "Disable Confirmed!", JOptionPane.CLOSED_OPTION);
-				
-			}
+			
 			
 			
 			
@@ -457,7 +470,7 @@ public class ViewRIDetails {
 			schoolTextBox.setEditable(false);
 			telephoneTextBox.setEditable(false);
 			handphoneTextBox.setEditable(false);
-			
+			}
 		}
 	});
 	

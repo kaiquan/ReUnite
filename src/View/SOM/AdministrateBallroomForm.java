@@ -1237,6 +1237,7 @@ public class AdministrateBallroomForm {
 			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Record has been updated successfully", "Success", JOptionPane.PLAIN_MESSAGE);
+			displaySummary();
 		}
 		else{
 			progress.interrupt();
@@ -1244,6 +1245,7 @@ public class AdministrateBallroomForm {
 			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "There was an unexpected error deleting the record/nTry restarting the application.", "Warning", JOptionPane.ERROR_MESSAGE);
+			displaySummary();
 		}
 	}
 

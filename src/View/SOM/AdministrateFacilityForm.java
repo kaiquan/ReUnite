@@ -53,6 +53,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.SwingUtilities;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -714,17 +715,66 @@ public class AdministrateFacilityForm {
 			jButton_download.setBounds(new Rectangle(400, 100, 160, 45));
 			jButton_download.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					if(validateFacilityDetails()){
-						try {
-							download();
-						} catch (MalformedURLException e1) {
-							e1.printStackTrace();
-						} catch (DocumentException e1) {
-							e1.printStackTrace();
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
-					}
+					//setting the file and path name
+					fc.setAcceptAllFileFilterUsed(false);
+					fc.setFocusable(false);
+					fc.setAcceptAllFileFilterUsed(false);
+					fc.showSaveDialog(fc);
+
+					final String directory=fc.getSelectedFile().toString();
+					 main = new Thread () {
+						  @SuppressWarnings("deprecation")
+						public void run () {
+							  if(validateFacilityDetails()){
+									try {
+										download(directory);
+									} catch (MalformedURLException e1) {
+										e1.printStackTrace();
+									} catch (DocumentException e1) {
+										e1.printStackTrace();
+									} catch (IOException e1) {
+										e1.printStackTrace();
+									}
+									displaySummary();
+								}
+							  else{
+									main.interrupt();
+									main.stop();
+									AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+							  }
+						  }
+					  };
+					progress= new Thread(){
+						  @SuppressWarnings("deprecation")
+						public void run(){
+							  double increment=1;
+								 for (int i =  0; i <= 100; i+=increment) {
+								      final int percent = i;
+								      try {
+								        SwingUtilities.invokeLater(new Runnable() {
+								         public void run() {
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								          }
+								        });
+								        Thread.sleep(100);
+								        if(!main.isAlive()){
+								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								        	break;
+										 }
+								       
+								      } catch (InterruptedException e) {
+								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								      }
+								    } 
+								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 this.stop();
+								 this.interrupt();
+						  }
+					  };
+					  progress.start();
+					  main.start();
 				}
 			});
 		}
@@ -742,10 +792,49 @@ public class AdministrateFacilityForm {
 			jButton_update.setText("Update");
 			jButton_update.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					if(validateFacilityDetails()){
-						updateBallroom();
-						displaySummary();
-					}
+					main = new Thread () {
+						  public void run () {
+							  if(validateFacilityDetails()){
+									updateFacility();
+								}
+							  else{
+									main.interrupt();
+									AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+									AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+							  }
+						  }
+					  };
+					  final Thread a=main;
+					progress= new Thread(){
+						  public void run(){
+							  double increment=1;
+								 for (int i =  0; i <= 100; i+=increment) {
+								      final int percent = i;
+								      try {
+								        SwingUtilities.invokeLater(new Runnable() {
+								         public void run() {
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								          }
+								        });
+								        Thread.sleep(100);
+								        if(!a.isAlive()){
+								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	break;
+										 }
+								       
+								      } catch (InterruptedException e) {
+								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								      }
+								    } 
+								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								 this.interrupt();
+								 
+						  }
+					  };
+					  progress.start();
+					  main.start();
 				}
 			});
 		}
@@ -763,16 +852,45 @@ public class AdministrateFacilityForm {
 			jButton_delete.setText("Delete");
 			jButton_delete.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					int i=JOptionPane.showConfirmDialog(null, "You are about to delete this record\n Are you sure?", "Delete Record", JOptionPane.YES_NO_OPTION);
-					if(i==0){
-						if(deleteBallroom()){
-							JOptionPane.showMessageDialog(null, "Record has been deleted successfully", "Success", JOptionPane.PLAIN_MESSAGE);
-							newFacilityTab();
-						}
-						else{
-							JOptionPane.showMessageDialog(null, "There was an unexpected error deleting the recor\nnTry restarting the application.", "Error", JOptionPane.ERROR_MESSAGE);
-						}
-					}
+					final int i=JOptionPane.showConfirmDialog(null, "You are about to delete this record\n Are you sure?", "Delete Record", JOptionPane.YES_NO_OPTION);
+					main = new Thread () {
+						  public void run () {
+								if(i==0){
+									deleteFacility();
+								}
+						  }
+					  };
+					  final Thread a=main;
+					progress= new Thread(){
+						  public void run(){
+							  double increment=1;
+								 for (int i =  0; i <= 100; i+=increment) {
+								      final int percent = i;
+								      try {
+								        SwingUtilities.invokeLater(new Runnable() {
+								         public void run() {
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								          }
+								        });
+								        Thread.sleep(100);
+								        if(!a.isAlive()){
+								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	break;
+										 }
+								       
+								      } catch (InterruptedException e) {
+								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								      }
+								    } 
+								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								 this.interrupt();
+								 
+						  }
+					  };
+					  progress.start();
+					  main.start();
 				}
 			});
 		}
@@ -789,10 +907,47 @@ public class AdministrateFacilityForm {
 			jButton_upload.setText("Upload");
 			jButton_upload.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					if(validateFacilityDetails()){
-						createBallroom();
-						displaySummary();
-					}
+					main = new Thread () {
+						  public void run () {
+							  if(validateFacilityDetails()){
+									createFacility();
+								}
+							  else{
+									main.interrupt();
+									AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+									AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+							  }
+						  }
+					  };
+					progress= new Thread(){
+						  public void run(){
+							  double increment=1;
+								 for (int i =  0; i <= 100; i+=increment) {
+								      final int percent = i;
+								      try {
+								        SwingUtilities.invokeLater(new Runnable() {
+								         public void run() {
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								          }
+								        });
+								        Thread.sleep(100);
+								        if(!main.isAlive()){
+								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								        	break;
+										 }
+								       
+								      } catch (InterruptedException e) {
+								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								      }
+								    } 
+								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 this.interrupt();
+						  }
+					  };
+					  progress.start();
+					  main.start();
 				}
 			});
 		}
@@ -865,6 +1020,7 @@ public class AdministrateFacilityForm {
 	 * Return :boolean
 	 * Tested : 
 	 * *******************************************************/
+	@SuppressWarnings("deprecation")
 	public boolean validateFacilityDetails(){
 		boolean validate=true;
 		Scanner scan = new Scanner(jTextField_facilityWeekendCost.getText().toString());
@@ -874,33 +1030,63 @@ public class AdministrateFacilityForm {
 		} 
 		if(IsDigit){
 			validate=false;
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please enter a correct weekend cost value", "Warnning", JOptionPane.WARNING_MESSAGE);
 			getJTextField_facilityWeekendCost().requestFocus();
+			main.interrupt();
 		}
 		else if(getJTextField_facilityContact().getText().equals("")||getJTextField_facilityContact().getText().equals("          Enter Contact No")){
 			validate=false;
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Contact Number Must Not Be Empty", "Warning", JOptionPane.WARNING_MESSAGE);
 			getJTextField_facilityContact().requestFocus();
+			main.interrupt();
 		}
 		else if(getJTextField_facilityName().getText().equals("")||getJTextField_facilityName().getText().equals("                                                 Enter Facility Name Here")){
+			validate=false;
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Facility Name Must Not Be Empty", "Warning", JOptionPane.WARNING_MESSAGE);
 			getJTextField_facilityName().requestFocus();
-			validate=false;
+			main.interrupt();
 		}
 		else if(getJTextField_facilityAddress().getText().equals("")||getJTextField_facilityAddress().getText().equals("                                                Enter Facility Adress Here")){
+			validate=false;
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Facility Address Must Not Be Empty", "Warning", JOptionPane.WARNING_MESSAGE);
 			getJTextField_facilityAddress().requestFocus();
-			validate=false;
+			main.interrupt();
 		}
 		else if(getJTextArea_facilityDescription().getText().equals("")||getJTextArea_facilityDescription().getText().equals("\n\n                                                  Enter a Description Here")){
+			validate=false;
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Facility Description Must Not Be Empty", "Warning", JOptionPane.WARNING_MESSAGE);
 			getJTextArea_facilityDescription().requestFocus();
-			validate=false;
+			main.interrupt();
 		}
 		else if(model.getRowCount()==0){
+			validate=false;
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Facility's Ballroom Must Not Be Empty", "Warning", JOptionPane.WARNING_MESSAGE);
 			getJTextField_ballroomTitle().requestFocus();
-			validate=false;
+			main.interrupt();
 		}
 		return validate;
 	}
@@ -940,15 +1126,8 @@ public class AdministrateFacilityForm {
 	 * Purpose 			: To download the form details in
 	 * 					  the local computer in PDF & TXT
 	 *******************************************************/
-	public void download() throws MalformedURLException, DocumentException, IOException{
-		//setting the file and path name
-		fc.setAcceptAllFileFilterUsed(false);
-		fc.setFocusable(false);
-		fc.setAcceptAllFileFilterUsed(false);
-		fc.showSaveDialog(fc);
-
-		String directory=null;
-		directory=fc.getSelectedFile().toString();
+	public void download(String directory) throws MalformedURLException, DocumentException, IOException{
+		
 		String PDFlink="";
 		String TXTlink="";
 		if(directory.substring(directory.length()-4).equals(".pdf")){
@@ -983,6 +1162,7 @@ public class AdministrateFacilityForm {
 	 * Purpose 			: To download the form details in
 	 * 					  the local computer in PDF
 	 *******************************************************/
+	@SuppressWarnings("deprecation")
 	public void downloadPDF(String path) throws MalformedURLException, IOException, DocumentException{
 		String directory=path;
 		
@@ -1044,6 +1224,10 @@ public class AdministrateFacilityForm {
 		 pdf.close();
 		
 		//prompt success
+		 progress.interrupt();
+		 progress.stop();
+		 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+		 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 		 JOptionPane.showMessageDialog(null, "File Downloaded Successfully at "+path, "Downloads", JOptionPane.INFORMATION_MESSAGE);
 		
 	}
@@ -1143,13 +1327,14 @@ public class AdministrateFacilityForm {
 	}
 	
 	/********************************************************
-	 * Method Name : createBallroom
+	 * Method Name : createFacility
 	 * Input Parameter : NIL 
 	 * Purpose : To create a new Ballroom record in the database
 	 * Return :void
 	 * Tested : Success
 	 *******************************************************/
-	public void createBallroom(){
+	@SuppressWarnings("deprecation")
+	public void createFacility(){
 		//preparing the facility details
 		String contact=getJTextField_facilityContact().getText().toString();
 		String name=getJTextField_facilityName().getText().toString();
@@ -1168,7 +1353,6 @@ public class AdministrateFacilityForm {
 
 			//check if all ballroom are created successfully
 			if(!facilityID.equals(null)){
-				JOptionPane.showMessageDialog(null, "Record has been uploaded successfully", "Success", JOptionPane.PLAIN_MESSAGE);
 				getJTextField_facilityID().setText(facilityID);
 				getJTextField_facilityID().setForeground(SystemColor.black);
 				//disable the create button?
@@ -1177,8 +1361,18 @@ public class AdministrateFacilityForm {
 				getJButton_update().setEnabled(true);
 				getJButton_delete().setEnabled(true);
 				getJButton_download().setEnabled(true);
+				progress.interrupt();
+				progress.stop();
+				AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+				AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+				JOptionPane.showMessageDialog(null, "Record has been uploaded successfully", "Success", JOptionPane.PLAIN_MESSAGE);
+			
 			}
 			else{
+				progress.interrupt();
+				progress.stop();
+				AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+				AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 				JOptionPane.showMessageDialog(null, "There was an unexpected uploading the Ballroom record(s)/nTry restarting the application.", "Warning", JOptionPane.ERROR_MESSAGE);
 			}
 	}
@@ -1187,23 +1381,41 @@ public class AdministrateFacilityForm {
 	 * Method Name : deleteBallroom
 	 * Input Parameter : NIL 
 	 * Purpose : To Delete the ballroom record in the database
-	 * Return :boolean
+	 * Return :void
 	 * Tested : Success
 	 *******************************************************/
-	public boolean deleteBallroom(){
+	@SuppressWarnings("deprecation")
+	public void deleteFacility(){
 		String ID=getJTextField_facilityID().getText().toString();
 		AdministrateFacilityControl control=new AdministrateFacilityControl();
-		boolean success=control.processDeleteFacility(ID);
-		return success;
+		boolean result=control.processDeleteFacility(ID);
+		
+		if(result){
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			JOptionPane.showMessageDialog(null, "Record has been deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+			//RESETS THE TAB
+			newFacilityTab();
+		}
+		else{
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			JOptionPane.showMessageDialog(null, "An unexpected error occured\n1)Try restarting the application.\n2)This record might be tied to an existing package, tied records cannot be deleted.", "Warning", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 	/********************************************************
-	 * Method Name : updateBallroom
+	 * Method Name : updateFacility
 	 * Input Parameter : NIL 
 	 * Purpose : To update the ballroom record in the database
 	 * Return :void
 	 *******************************************************/
-	public void updateBallroom(){
+	@SuppressWarnings("deprecation")
+	public void updateFacility(){
 		//prepares the facility object to be pass into the controller
 		String name=getJTextField_facilityName().getText().toString();
 		String contact=getJTextField_facilityContact().getText().toString();
@@ -1222,10 +1434,20 @@ public class AdministrateFacilityForm {
 		
 		//check update success
 		if(success){
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Record has been Updated successfully", "Success", JOptionPane.PLAIN_MESSAGE);
+			displaySummary();
 		}
 		else{
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "There was an unexpected uploading the entertainment record(s)/nTry restarting the application.", "Update Failure", JOptionPane.ERROR_MESSAGE);
+			displaySummary();
 		}
 	}
 	

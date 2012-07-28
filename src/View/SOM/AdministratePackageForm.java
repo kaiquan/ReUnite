@@ -29,6 +29,7 @@ import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
+import javax.swing.SwingUtilities;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Font;
@@ -209,6 +210,8 @@ public class AdministratePackageForm {
 	private JLabel jLabel_parking = null;
 	private JLabel jLabel_ballroomSize = null;
 	final JFileChooser fc = new JFileChooser();
+	private Thread main=null;
+	private Thread progress=null;
 	/********************************************************
 	 *					Start of UI
 	 *******************************************************/
@@ -789,17 +792,66 @@ public class AdministratePackageForm {
 			jButton_download.setText("Download");
 			jButton_download.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					if(validatePackageDetails()){
-						try {
-							download();
-						} catch (MalformedURLException e1) {
-							e1.printStackTrace();
-						} catch (DocumentException e1) {
-							e1.printStackTrace();
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
-					}
+					//setting the file and path name
+					fc.setAcceptAllFileFilterUsed(false);
+					fc.setFocusable(false);
+					fc.setAcceptAllFileFilterUsed(false);
+					fc.showSaveDialog(fc);
+
+					final String directory=fc.getSelectedFile().toString();
+					 main = new Thread () {
+						  @SuppressWarnings("deprecation")
+						public void run () {
+							  if(validatePackageDetails()){
+									try {
+										download(directory);
+									} catch (MalformedURLException e1) {
+										e1.printStackTrace();
+									} catch (DocumentException e1) {
+										e1.printStackTrace();
+									} catch (IOException e1) {
+										e1.printStackTrace();
+									}
+									displaySummary();
+								}
+							  else{
+									main.interrupt();
+									main.stop();
+									AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+							  }
+						  }
+					  };
+					progress= new Thread(){
+						  @SuppressWarnings("deprecation")
+						public void run(){
+							  double increment=1;
+								 for (int i =  0; i <= 100; i+=increment) {
+								      final int percent = i;
+								      try {
+								        SwingUtilities.invokeLater(new Runnable() {
+								         public void run() {
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								          }
+								        });
+								        Thread.sleep(100);
+								        if(!main.isAlive()){
+								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								        	break;
+										 }
+								       
+								      } catch (InterruptedException e) {
+								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								      }
+								    } 
+								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 this.stop();
+								 this.interrupt();
+						  }
+					  };
+					  progress.start();
+					  main.start();
 				}
 			});
 		}
@@ -816,9 +868,47 @@ public class AdministratePackageForm {
 			jButton_upload.setText("Upload");
 			jButton_upload.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					if(validatePackageDetails()){
-						createPackage();
-					}
+					main = new Thread () {
+						  public void run () {
+							  if(validatePackageDetails()){
+									createPackage();
+								}
+							  else{
+									main.interrupt();
+									AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+									AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+							  }
+						  }
+					  };
+					progress= new Thread(){
+						  public void run(){
+							  double increment=1;
+								 for (int i =  0; i <= 100; i+=increment) {
+								      final int percent = i;
+								      try {
+								        SwingUtilities.invokeLater(new Runnable() {
+								         public void run() {
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								          }
+								        });
+								        Thread.sleep(100);
+								        if(!main.isAlive()){
+								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								        	break;
+										 }
+								       
+								      } catch (InterruptedException e) {
+								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								      }
+								    } 
+								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 this.interrupt();
+						  }
+					  };
+					  progress.start();
+					  main.start();
 				}
 			});
 		}
@@ -836,10 +926,45 @@ public class AdministratePackageForm {
 			jButton_delete.setText("Delete");
 			jButton_delete.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					int i=JOptionPane.showConfirmDialog(null, "You are about to delete this record\n Are you sure?", "Delete Record", JOptionPane.YES_NO_OPTION);
-					if(i==0){
-						deletePackage();
-					}
+					final int i=JOptionPane.showConfirmDialog(null, "You are about to delete this record\n Are you sure?", "Delete Record", JOptionPane.YES_NO_OPTION);
+					main = new Thread () {
+						  public void run () {
+								if(i==0){
+									deletePackage();
+								}
+						  }
+					  };
+					  final Thread a=main;
+					progress= new Thread(){
+						  public void run(){
+							  double increment=1;
+								 for (int i =  0; i <= 100; i+=increment) {
+								      final int percent = i;
+								      try {
+								        SwingUtilities.invokeLater(new Runnable() {
+								         public void run() {
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								          }
+								        });
+								        Thread.sleep(100);
+								        if(!a.isAlive()){
+								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	break;
+										 }
+								       
+								      } catch (InterruptedException e) {
+								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								      }
+								    } 
+								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								 this.interrupt();
+								 
+						  }
+					  };
+					  progress.start();
+					  main.start();
 				}
 			});
 		}
@@ -857,9 +982,49 @@ public class AdministratePackageForm {
 			jButton_update.setText("Update");
 			jButton_update.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					if(validatePackageDetails()){
-						updatePackage();
-					}
+					main = new Thread () {
+						  public void run () {
+							  if(validatePackageDetails()){
+									updatePackage();
+								}
+							  else{
+									main.interrupt();
+									AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+									AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+							  }
+						  }
+					  };
+					  final Thread a=main;
+					progress= new Thread(){
+						  public void run(){
+							  double increment=1;
+								 for (int i =  0; i <= 100; i+=increment) {
+								      final int percent = i;
+								      try {
+								        SwingUtilities.invokeLater(new Runnable() {
+								         public void run() {
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								          }
+								        });
+								        Thread.sleep(100);
+								        if(!a.isAlive()){
+								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	break;
+										 }
+								       
+								      } catch (InterruptedException e) {
+								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								      }
+								    } 
+								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								 this.interrupt();
+								 
+						  }
+					  };
+					  progress.start();
+					  main.start();
 				}
 			});
 		}
@@ -2503,42 +2668,78 @@ public class AdministratePackageForm {
 	  * Purpose : To validate before basic CRUD
 	  * Return :boolean
 	  *******************************************************/
+	@SuppressWarnings("deprecation")
 	public boolean validatePackageDetails(){
 		boolean success=true;
 		if(getJTextField_packageTitle().getText().equals("")||getJTextField_packageTitle().getText().equals("                                                   Enter Package Name Here")){
+			success=false;
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please enter a Package title", "Warnning", JOptionPane.WARNING_MESSAGE);
 			getJTextField_packageTitle().requestFocus();
-			success=false;
+			main.interrupt();
 		}
 		else if(getJTextArea_packageDescription().getText().equals("")||getJTextArea_packageDescription().getText().equals("\n\n                                                     Enter a Description Here")){
+			success=false;
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please enter a Package description", "Warnning", JOptionPane.WARNING_MESSAGE);
 			getJTextArea_packageDescription().requestFocus();
-			success=false;
+			main.interrupt();
 		}
 		else if(getJTextField_Ballroom().getText().equals("")){
+			success=false;
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please select a ballroom", "Warnning", JOptionPane.WARNING_MESSAGE);
 			getJButton_ballroom().requestFocus();
-			success=false;
+			main.interrupt();
 		}
 		else if(getJCheckBox_entertainment().isSelected() && getJTextField_entertainment().getText().equals("")){
+			success=false;
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please select a entertainment if you had choose to have one", "Warnning", JOptionPane.WARNING_MESSAGE);
 			getJButton_entertainment().requestFocus();
-			success=false;
+			main.interrupt();
 		}
 		else if(getJCheckBox_mealOption1().isSelected() && getJTextField_mealOption1().getText().equals("")){
+			success=false;
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please select a meal option if you had choose to have one", "Warnning", JOptionPane.WARNING_MESSAGE);
 			getJButton_mealOption1().requestFocus();
-			success=false;
+			main.interrupt();
 		}
 		else if(getJCheckBox_mealOption2().isSelected() && getJTextField_mealOption2().getText().equals("")){
+			success=false;
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please select a meal option if you had choose to have one", "Warnning", JOptionPane.WARNING_MESSAGE);
 			getJButton_mealOption2().requestFocus();
-			success=false;
+			main.interrupt();
 		}
 		else if(getJCheckBox_mealOption3().isSelected() && getJTextField_mealOption3().getText().equals("")){
+			success=false;
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please select a meal option if you had choose to have one", "Warnning", JOptionPane.WARNING_MESSAGE);
 			getJButton_mealOption3().requestFocus();
-			success=false;
+			main.interrupt();
 		}
 		return success;
 	}
@@ -2594,15 +2795,7 @@ public class AdministratePackageForm {
 	 * Purpose 			: To download the details of the form 
 	 * 					  into the local computer
 	 *******************************************************/
-	public void download()throws MalformedURLException, DocumentException, IOException{
-			//setting the file and path name
-			fc.setAcceptAllFileFilterUsed(false);
-			fc.setFocusable(false);
-			fc.setAcceptAllFileFilterUsed(false);
-			fc.showSaveDialog(fc);
-
-			String directory=null;
-			directory=fc.getSelectedFile().toString();
+	public void download(String directory)throws MalformedURLException, DocumentException, IOException{
 			String PDFlink="";
 			String TXTlink="";
 			if(directory.substring(directory.length()-4).equals(".pdf")){
@@ -2638,6 +2831,7 @@ public class AdministratePackageForm {
 	 * Purpose 			: To download the details of the form 
 	 * 					  into the local computer in PDF
 	 *******************************************************/
+	@SuppressWarnings("deprecation")
 	public void downloadPDF(String path) throws DocumentException, MalformedURLException, IOException{
 		String directory=path;
 		
@@ -2713,6 +2907,10 @@ public class AdministratePackageForm {
 		 pdf.close();
 		
 		//prompt success
+		 progress.interrupt();
+		 progress.stop();
+		 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+		 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 		 JOptionPane.showMessageDialog(null, "File Downloaded Successfully at "+path, "Downloads", JOptionPane.INFORMATION_MESSAGE);
 		
 	}
@@ -2814,6 +3012,7 @@ public class AdministratePackageForm {
 	 * Return 			: void
 	 * Purpose 			: To create a new Package record
 	 *******************************************************/
+	@SuppressWarnings("deprecation")
 	public void createPackage(){
 		//preparing the data
 		String ID=""; 
@@ -2850,15 +3049,23 @@ public class AdministratePackageForm {
 		ID=control.processCreatePackage(mealID1, mealID2, mealID3);
 		
 		if(ID.equals(null)){
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Failed to create package record", "Warnning", JOptionPane.ERROR_MESSAGE);
 		}
 		else{
-			JOptionPane.showMessageDialog(null, "Successfully created a package record", "Warnning", JOptionPane.INFORMATION_MESSAGE);
 			getJTextField_packageID().setText(ID);
 			getJButton_upload().setEnabled(false);
 			getJButton_delete().setEnabled(true);
 			getJButton_update().setEnabled(true);
 			getJButton_download().setEnabled(true);
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			JOptionPane.showMessageDialog(null, "Successfully created a package record", "Warnning", JOptionPane.INFORMATION_MESSAGE);
 			displaySummary();
 		}
 		
@@ -2870,14 +3077,23 @@ public class AdministratePackageForm {
 	 * Return 			: void
 	 * Purpose 			: To delete the existing  Package record
 	 *******************************************************/
+	@SuppressWarnings("deprecation")
 	public void deletePackage(){
 		String ID=getJTextField_packageID().getText().toString();
 		AdministratePackageControl control= new AdministratePackageControl();
 		if(control.processDeletePackage(ID)){
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Successfully deleted package record", "Success", JOptionPane.INFORMATION_MESSAGE);
 			newPackageTab();
 		}
 		else{
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Failed to delete package record", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -2889,6 +3105,7 @@ public class AdministratePackageForm {
 	  * Purpose : To update an package record
 	  * Return :boolean
 	  *******************************************************/
+	@SuppressWarnings("deprecation")
 	public void updatePackage(){
 		//preparing the data
 		String ID=getJTextField_packageID().getText().toString();
@@ -2923,10 +3140,20 @@ public class AdministratePackageForm {
 		
 		AdministratePackageControl control= new AdministratePackageControl(ID, EntertainmentID, BallroomID, Type, Title, Description,Availability, Hits,Discount, isRecord);
 		if(control.processUpdatePackage(mealID1, mealID2, mealID3)){
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Successfully updated package record", "Success", JOptionPane.INFORMATION_MESSAGE);
+			displaySummary();
 		}
 		else{
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Failed to update package record", "Error", JOptionPane.ERROR_MESSAGE);
+			displaySummary();
 		}
 		
 	}

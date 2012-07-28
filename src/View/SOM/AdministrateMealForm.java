@@ -1422,6 +1422,7 @@ public class AdministrateMealForm {
 			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Record has been Updated successfully", "Success", JOptionPane.PLAIN_MESSAGE);
+			displaySummary();
 		}
 		else{
 			progress.interrupt();
@@ -1429,6 +1430,7 @@ public class AdministrateMealForm {
 			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "There was an unexpected uploading the entertainment record(s)/n1)Try restarting the application.", "Update Failure", JOptionPane.ERROR_MESSAGE);
+			displaySummary();
 		}
 	}
 	

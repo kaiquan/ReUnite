@@ -93,6 +93,7 @@ public class Facility {
 			rs = DB.readRequest(sqlQuery);
 			while (rs.next()){
 				facilityID=rs.getString("facilityID");
+				System.out.println(facilityID);
 		   }
 		}
 		catch (Exception e) {

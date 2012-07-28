@@ -22,8 +22,8 @@ public class CreateRIController {
 	
 	//date and secret Question Not yet Included
 	public void createRegistration(String userName, String password,
-			String firstName, String lastName, String nric, String email, //missing secret Question
-			String school, String address, String telephoneNo, String handphoneNo, String secretAnswer) throws Exception {
+			String firstName, String lastName, String nric, String email, 
+			String school, String address, String telephoneNo, String handphoneNo,String secretQuestion, String secretAnswer) throws Exception {
 		RI newRI = new RI();
 
 		newRI.setUserName(userName);
@@ -43,7 +43,7 @@ public class CreateRIController {
 		newRI.setAddress(address);
 		newRI.setTelephoneNo(telephoneNo);
 		newRI.setHandphoneNo(handphoneNo);
-		// newRI.setSecretQuestion(secretQuestion());
+		newRI.setSecretQuestion(secretQuestion);
 		 newRI.setSecretAnswer(secretAnswer);
 		
 	

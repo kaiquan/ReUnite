@@ -105,20 +105,25 @@ public class CreateRIForm extends JFrame {
 					public void actionPerformed(java.awt.event.ActionEvent e) {
 						
 			
-//						if(validateEmptyField()){
-//						System.out.println("hello1");
-//				
-//						}
-//						 if((validateEmptyField())!=true && (validatePassword()==false))
-//						{
-//						}
-//						
-//						 if((validatePassword())!=true &&(validateNumbers()==false)){
-//							
-//						}
-//						
-//							
-//						else{
+						System.out.println(yearCombo.getSelectedIndex());
+						System.out.println(monthCombo.getSelectedItem());
+						System.out.println(dayCombo.getSelectedItem());
+						System.out.println(secretQuestionCombo.getSelectedItem());
+						
+						if(validateEmptyField()){
+							System.out.println("hello1");
+				
+						}
+						 if((validateEmptyField())!=true && (validatePassword()==false))
+					{
+						}
+						
+						 if((validatePassword())!=true &&(validateNumbers()==false)){
+							
+						}
+						
+							
+						else{
 		CreateRIController registerController = new CreateRIController();
 					try {
 						registerController.createRegistration(
@@ -133,12 +138,13 @@ public class CreateRIForm extends JFrame {
 											addressTextBox.getText(),
 											telephoneNoTextBox.getText(),
 											handphoneNoTextBox.getText(), // secretQuestion(),
-											secretAnswerTextBox.getText());
+											secretAnswerTextBox.getText(),
+											secretQuestionCombo.getSelectedItem().toString());
 								} catch (Exception e1) {
 									// TODO Auto-generated catch block
 									e1.printStackTrace();
 								}
-					//	}
+						}
 							
 						
 				
@@ -153,6 +159,9 @@ public class CreateRIForm extends JFrame {
 		
 		yearCombo = new JComboBox(yearArray());
 		yearCombo.setBounds(710, 300, 70, 20);
+	
+		
+		
 		
 		secretQuestionCombo = new JComboBox(secretQuestion());
 		secretQuestionCombo.setBounds(240,550,140,20);
@@ -359,7 +368,7 @@ public class CreateRIForm extends JFrame {
 	}
 	
 	public String date(){
-		return (yearCombo+"-"+monthCombo+"-"+dayCombo);
+		return (yearCombo.getSelectedItem()+"-"+monthCombo.getSelectedItem()+"-"+dayCombo.getSelectedItem());
 	}
 	
 	
@@ -445,6 +454,7 @@ public class CreateRIForm extends JFrame {
 		
 		CreateRIForm view = new CreateRIForm();
 		view.getJFrame().setVisible(true);
+		System.out.println(view.date());
 		
 	}
 }

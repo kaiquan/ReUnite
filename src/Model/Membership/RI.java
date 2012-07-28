@@ -128,14 +128,15 @@ public class RI extends Account   {
 
 		boolean success = false;
 	
-		String sql = "INSERT INTO Account (userName, password, firstName, lastName, nric, school, email, address, telephoneNo, handphoneNo, secretAnswer)"; 
+		String sql = "INSERT INTO Account (userName, password, firstName, lastName, nric, school, email, address, telephoneNo, handphoneNo,secretQuestion, secretAnswer)"; 
 		sql +="VALUES ('"+ account.getUserName()+ "', '"+ account.getPassword()+"', '"+ account.getFirstName()+ "', '"+ account.getLastName()+ "', '"
 		+ account.getNric()+ "', '"+ account.getSchool()+ "', '"+ account.getEmail()+ "', '"+ account.getAddress()+ "','"+ account.getTelephoneNo()
 				+ "','"+ account.getHandphoneNo()
-				+ "','"+ account.getSecretAnswer()+"')";
+						+ "','"
 
-			//	+ account.getSecretQuestion()
-			//	+ "','"
+				+ account.getSecretQuestion()
+	
+					+ "','"+ account.getSecretAnswer()+"')";
 		try {
 		
 	
@@ -160,7 +161,7 @@ public class RI extends Account   {
 	public ArrayList<Purchase_Summary> GET_Payment_FOR_RI() {
 		ResultSet rs = null;
 		ArrayList<Purchase_Summary> paymentList = new ArrayList<Purchase_Summary>();
-			String dbQuery = "Select purchaseID, totalCost, amountPending FROM Purchase_Summary WHERE eventID='2'";
+			String dbQuery = "Select totalCost, amountPending FROM Purchase_Summary WHERE purchaseID='2'";
 			rs = db.readRequest(dbQuery);
 		
 			try {
@@ -171,6 +172,7 @@ public class RI extends Account   {
 				
 					ps.setTotalCost(rs.getString("totalCost"));
 					ps.setAmountPending(rs.getString("amountPending"));
+				
 					
 			
 					
@@ -185,28 +187,21 @@ public class RI extends Account   {
 			}
 
 		
-//	ps.setTotalCost(rs.getString("totalCost"));
-//	ps.setAmountPending(rs.getString("amountPending"));
 
 
 	public String[][] getRITableModelPayment() {
 		RI riModelPayment= new RI();
 
-		String data[][] = new String[5][2];
+		String data[][] = new String[5][13];
 
 		try {
 
-			ArrayList<Purchase_Summary> tempList = riModelPayment.GET_Payment_FOR_RI();
+			ArrayList<Purchase_Summary> tempList1 = riModelPayment.GET_Payment_FOR_RI();
 			
-			for (int i = 0; i < tempList.size(); i++) {
-				data[i][0]= tempList.get(i).getTotalCost();
-				data[i][1]= tempList.get(i).getAmountPending();
-				
-				
-				
-				
-				
-
+			for (int i = 0; i < tempList1.size(); i++) {
+				data[i][0]= tempList1.get(i).getTotalCost();
+				data[i][1]= tempList1.get(i).getAmountPending();
+	
 				
 			}
 		} catch (Exception e) {
@@ -217,7 +212,7 @@ public class RI extends Account   {
 	}
 	
 	public String[] getRITableColumnNamesPayment() {
-		String col[] = {"Purchase ID", "Total Due", "Total Balance"};
+		String col[] = { "Total Due", "Total Balance"};
 		return col;
 
 	}
@@ -256,12 +251,7 @@ public class RI extends Account   {
 			}
 
 		
-//	ps.setTotalCost(rs.getString("totalCost"));
-//	ps.setAmountPending(rs.getString("amountPending"));
-//	data[i][3]= tempList.get(i).getTotalCost();
-//	data[i][4]= tempList.get(i).getAmountPending();
 
-	
 	public String[][] getRITableModelEvent() {
 		RI riModelEvent = new RI();
 
@@ -272,7 +262,7 @@ public class RI extends Account   {
 			ArrayList<Event> tempList = riModelEvent.GET_EVENTS_FOR_RI();
 			
 			for (int i = 0; i < tempList.size(); i++) {
-				//data[i][0] = tempList.get(i).getUserName();
+		
 				data[i][0] = tempList.get(i).getEventName();
 				data[i][1] = tempList.get(i).getEventID();
 				data[i][2] = tempList.get(i).getEventStatus();

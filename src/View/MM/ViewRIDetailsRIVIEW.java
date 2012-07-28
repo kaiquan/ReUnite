@@ -290,8 +290,7 @@ public class ViewRIDetailsRIVIEW {
 
 		tablePayment.setBackground(Color.white);
 		tablePayment.setBorder(null);
-		tablePayment
-				.setModel(viewRIPersonalController.getRITableModelPayment());
+		tablePayment.setModel(viewRIPersonalController.getRITableModelPayment());
 		tablePayment.setColumnSelectionAllowed(false);
 		tablePayment.setCellSelectionEnabled(false);
 		tablePayment.setRowSelectionAllowed(true);

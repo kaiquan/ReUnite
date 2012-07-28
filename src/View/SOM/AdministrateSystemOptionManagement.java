@@ -1132,13 +1132,13 @@ public class AdministrateSystemOptionManagement {
 	private void newEntertainmentTab(){
 		AdministrateEntertainmentForm en= new AdministrateEntertainmentForm();
 		if(jTabbedPane.getTabCount()==1){
-			jTabbedPane.insertTab("New Entertainment",null , en.getJScrollPane(),null , 1); // sets the content
+			jTabbedPane.insertTab("Create Entertainment Form",null , en.getJScrollPane(),null , 1); // sets the content
 			createTabHeader(1);	//sets the custom tab header
 			jTabbedPane.remove(0);
 			jTabbedPane.setSelectedIndex(0);
 		}
 		else{
-			jTabbedPane.insertTab("New Entertainment",null , en.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
+			jTabbedPane.insertTab("Create Entertainment Form",null , en.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
 			createTabHeader(jTabbedPane.getSelectedIndex()-1);	//sets the custom tab header
 			jTabbedPane.remove(jTabbedPane.getSelectedIndex());
 			if(!(jTabbedPane.getSelectedIndex()==jTabbedPane.getTabCount()-1)){
@@ -1156,13 +1156,13 @@ public class AdministrateSystemOptionManagement {
 	public void newMealTab(){
 		AdministrateMealForm meal=new AdministrateMealForm();
 		if(jTabbedPane.getTabCount()==1){
-			jTabbedPane.insertTab("New Meal",null , meal.getJScrollPane(),null , 1); // sets the content
+			jTabbedPane.insertTab("Create Meal Form",null , meal.getJScrollPane(),null , 1); // sets the content
 			createTabHeader(1);	//sets the custom tab header
 			jTabbedPane.remove(0);
 			jTabbedPane.setSelectedIndex(0);
 		}
 		else{
-			jTabbedPane.insertTab("New Meal",null , meal.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
+			jTabbedPane.insertTab("Create Meal Form",null , meal.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
 			createTabHeader(jTabbedPane.getSelectedIndex()-1);	//sets the custom tab header
 			if(!(jTabbedPane.getSelectedIndex()==jTabbedPane.getTabCount()-1)){
 				jTabbedPane.setSelectedIndex(jTabbedPane.getSelectedIndex()-1);
@@ -1179,13 +1179,13 @@ public class AdministrateSystemOptionManagement {
 	public void newFacilityTab(){	
 		AdministrateFacilityForm meal=new AdministrateFacilityForm();
 		if(jTabbedPane.getTabCount()==1){
-			jTabbedPane.insertTab("New Facility",null , meal.getJScrollPane(),null , 1); // sets the content
+			jTabbedPane.insertTab("Create Facility Form",null , meal.getJScrollPane(),null , 1); // sets the content
 			createTabHeader(1);	//sets the custom tab header
 			jTabbedPane.remove(0);
 			jTabbedPane.setSelectedIndex(0);
 		}
 		else{
-			jTabbedPane.insertTab("New Facility",null , meal.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
+			jTabbedPane.insertTab("Create Facility Form",null , meal.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
 			createTabHeader(jTabbedPane.getSelectedIndex()-1);	//sets the custom tab header
 			jTabbedPane.remove(jTabbedPane.getSelectedIndex());
 			if(!(jTabbedPane.getSelectedIndex()==jTabbedPane.getTabCount()-1)){
@@ -1206,13 +1206,13 @@ public class AdministrateSystemOptionManagement {
 		AdministrateFacilityControl control= new AdministrateFacilityControl();
 		form.getJComboBox_facilityName().setModel(control.processRetrieveFacilityNames());
 		if(jTabbedPane.getTabCount()==1){
-			jTabbedPane.insertTab("New Ballroom",null , form.getJScrollPane(),null , 1); // sets the content
+			jTabbedPane.insertTab("Create Ballroom Form",null , form.getJScrollPane(),null , 1); // sets the content
 			createTabHeader(1);	//sets the custom tab header
 			jTabbedPane.remove(0);
 			jTabbedPane.setSelectedIndex(0);
 		}
 		else{
-			jTabbedPane.insertTab("New Ballroom",null , form.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
+			jTabbedPane.insertTab("Create Ballroom Form",null , form.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
 			createTabHeader(jTabbedPane.getSelectedIndex()-1);	//sets the custom tab header
 			jTabbedPane.remove(jTabbedPane.getSelectedIndex());
 			if(!(jTabbedPane.getSelectedIndex()==jTabbedPane.getTabCount()-1)){
@@ -1230,13 +1230,13 @@ public class AdministrateSystemOptionManagement {
 	public void newPackageTab(){	
 		meal=new AdministratePackageForm();
 		if(jTabbedPane.getTabCount()==1){
-			jTabbedPane.insertTab("New Package",null , meal.getJScrollPane(),null , 1); // sets the content
+			jTabbedPane.insertTab("Create Package Form",null , meal.getJScrollPane(),null , 1); // sets the content
 			createTabHeader(1);	//sets the custom tab header
 			jTabbedPane.remove(0);
 			jTabbedPane.setSelectedIndex(0);
 		}
 		else{
-			jTabbedPane.insertTab("New Package",null , meal.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
+			jTabbedPane.insertTab("Create Package Form",null , meal.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
 			createTabHeader(jTabbedPane.getSelectedIndex()-1);	//sets the custom tab header
 			jTabbedPane.remove(jTabbedPane.getSelectedIndex());
 			if(!(jTabbedPane.getSelectedIndex()==jTabbedPane.getTabCount()-1)){
@@ -1780,6 +1780,7 @@ public class AdministrateSystemOptionManagement {
 			if(!(data.get(2)[1].equals("ENTERTAINMENT_MENU_PRICE"))) return 0;
 			if(!(data.get(2)[2].equals("ENTERTAINMENT_MENU_DESCRIPTION"))) return 0;
 			else{
+				tabTitle="New Entertainment Form";
 				//LOADS THE DATA
 				//CALLS THE ENTERTAINMENT FORM
 				AdministrateEntertainmentForm form= new AdministrateEntertainmentForm();
@@ -1787,19 +1788,21 @@ public class AdministrateSystemOptionManagement {
 				AdministrateEntertainmentControl control= new AdministrateEntertainmentControl();
 				control.processRetrieveEntertainmentByID(data.get(1)[0]);
 				System.out.println(control.getEntertainment().getEntertainmentDescription());
-				if(!control.getEntertainment().getEntertainmentID().equals(data.get(1)[0])||control.getEntertainment().getEntertainmentID().equals(null)){
+				if(control.getEntertainment().getEntertainmentID()!=null){
+					if(!control.getEntertainment().getEntertainmentID().equals(data.get(1)[0])||control.getEntertainment().getEntertainmentID().equals(null)){
 					//INFORMS THE USER THAT THE LOADED DATA DOES NOT REFLECT IN THE CURENT DATABASE
 					JOptionPane.showMessageDialog(null, "This Data does ot exist anyware in the database.", "System Message", JOptionPane.INFORMATION_MESSAGE);
-					tabTitle="New Entertainment Form";
-				}
-				else{
-					//SET THE FORM CONTROLLS AS ACCODINGLY
-					form.getJTextField_entertaimentID().setText(data.get(1)[0]);
-					form.getJButton_createEntertainment().setEnabled(false);
-					form.getJButton_delete().setEnabled(true);
-					form.getJButton_download().setEnabled(true);
-					form.getJButton_Update().setEnabled(true);
-					tabTitle="Entertainment "+data.get(1)[0];
+					
+					}
+					else{
+						//SET THE FORM CONTROLLS AS ACCODINGLY
+						form.getJTextField_entertaimentID().setText(data.get(1)[0]);
+						form.getJButton_createEntertainment().setEnabled(false);
+						form.getJButton_delete().setEnabled(true);
+						form.getJButton_download().setEnabled(true);
+						form.getJButton_Update().setEnabled(true);
+						tabTitle="Entertainment "+data.get(1)[0];
+					}
 				}
 				//SETTING THE FORM FIELDS ACCORDINGLY
 				form.getJTextField_entertainmentTitle().setText(data.get(1)[1]);
@@ -1848,37 +1851,40 @@ public class AdministrateSystemOptionManagement {
 		else if(data.get(0)[0].equals("FACILITY_ID")){
 			tabTitle="";
 			//CHECK FOR THE CORRECT HEADER FORMAT
-			if(data.get(0)[0].equals("FACILITY_ID"))return 0;
-			if(data.get(0)[1].equals("FACILITY_NAME"))return 0;
-			if(data.get(0)[2].equals("FACILITY_CONTACT"))return 0;
-			if(data.get(0)[3].equals("FACILITY_ADDRESS"))return 0;
-			if(data.get(0)[4].equals("FACILITY_DESCRIPTION"))return 0;
-			if(data.get(0)[5].equals("FACILITY_PARKING"))return 0;
-			if(data.get(0)[6].equals("FACILITY_WEEKEND_SURCHARGE"))return 0;
-			if(data.get(2)[0].equals("BALLROOM_NAME"))return 0;
-			if(data.get(2)[1].equals("BALLROOM_PRICE"))return 0;
-			if(data.get(2)[2].equals("BALLROOM_SIZE"))return 0;
-			if(data.get(2)[3].equals("BALLROOM_DESCRIPTION"))return 0;
+			if(!data.get(0)[0].equals("FACILITY_ID"))return 0;
+			if(!data.get(0)[1].equals("FACILITY_NAME"))return 0;
+			if(!data.get(0)[2].equals("FACILITY_CONTACT"))return 0;
+			if(!data.get(0)[3].equals("FACILITY_ADDRESS"))return 0;
+			if(!data.get(0)[4].equals("FACILITY_DESCRIPTION"))return 0;
+			if(!data.get(0)[5].equals("FACILITY_PARKING"))return 0;
+			if(!data.get(0)[6].equals("FACILITY_WEEKEND_SURCHARGE"))return 0;
+			if(!data.get(2)[0].equals("BALLROOM_NAME"))return 0;
+			if(!data.get(2)[1].equals("BALLROOM_PRICE"))return 0;
+			if(!data.get(2)[2].equals("BALLROOM_SIZE"))return 0;
+			if(!data.get(2)[3].equals("BALLROOM_DESCRIPTION"))return 0;
 			
 			else{
+				tabTitle="New Facility Form";
 				//LOADS THE DATA
 				//CHECKS THE DATABASE FOR AN ID PROJECTED ON THE CSV FILE
 				AdministrateFacilityControl control= new AdministrateFacilityControl();
 				control.processRetrieveFacilityByID(data.get(1)[0]);
 				AdministrateFacilityForm form= new AdministrateFacilityForm();
-				if(control.getFacility()==null){
+				if(control.getFacility().getFacilityID()!=null){
+					if(!control.getFacility().getFacilityID().equals(data.get(1)[0])||control.getFacility().getFacilityID().equals(null)){
 					//INFORMS THE USER THAT THE LOADED DATA DOES NOT REFLECT IN THE CURENT DATABASE
 					JOptionPane.showMessageDialog(null, "This Data does ot exist anyware in the database.", "System Message", JOptionPane.INFORMATION_MESSAGE);
-					tabTitle="New Facility Form";
-				}
-				else{
-					//SETS THE FORM CONTROLL ACCORDINGLY
-					form.getJTextField_facilityID().setText(data.get(1)[0]);
-					form.getJButton_upload().setEnabled(false);
-					form.getJButton_delete().setEnabled(true);
-					form.getJButton_download().setEnabled(true);
-					form.getJButton_update().setEnabled(true);
-					tabTitle="Facility "+data.get(1)[0];
+					
+					}
+					else{
+						//SETS THE FORM CONTROLL ACCORDINGLY
+						form.getJTextField_facilityID().setText(data.get(1)[0]);
+						form.getJButton_upload().setEnabled(false);
+						form.getJButton_delete().setEnabled(true);
+						form.getJButton_download().setEnabled(true);
+						form.getJButton_update().setEnabled(true);
+						tabTitle="Facility "+data.get(1)[0];
+					}
 				}
 				//SETTING THE FORM FIELDS ACCORDLIGLY 
 				form.getJTextField_facilityName().setText(data.get(1)[1]);
@@ -1926,16 +1932,59 @@ public class AdministrateSystemOptionManagement {
 		}
 		else if(data.get(0)[0].equals("BALLROOM_ID")){
 			//CHECK THE HEADER FORMAT
-			if(data.get(0)[0].equals("BALLROOM_ID"))return 0;
-			
+			if(!data.get(0)[0].equals("BALLROOM_ID"))return 0;
+			if(!data.get(0)[1].equals("FACILITY_NAME"))return 0;
+			if(!data.get(0)[2].equals("FACILITY_CONTACT"))return 0;
+			if(!data.get(0)[3].equals("FACILITY_ADDRESS"))return 0;
+			if(!data.get(0)[4].equals("BALLROOM_AVAILABILITY"))return 0;
+			if(!data.get(0)[5].equals("BALLROOM_NAME"))return 0;
+			if(!data.get(0)[6].equals("BALLROOM_SIZE"))return 0;
+			if(!data.get(0)[7].equals("BALLROOM_PRICE"))return 0;
+			if(!data.get(0)[8].equals("BALLROOM_DESCRIPTION"))return 0;
+			if(!data.get(0)[9].equals("BALLROOM_DISCOUNT"))return 0;
+			if(!data.get(0)[10].equals("BALLROOM_FINAL_PRICE"))return 0;
 			
 			else{
-				//LOAD THE DATA
-				//CHECK IF THE DATA REFLECTS ON THE DATABASE
+				tabTitle="New Ballroom Form";
+				//LOADS THE DATA
+				//CHECKS THE DATABASE FOR AN ID PROJECTED ON THE CSV FILE
 				AdministrateBallroomControl control= new AdministrateBallroomControl();
 				control.processRetrieveBallroomByID(data.get(1)[0]);
-				
+				//CALLS THE BALLROOM FORM
+				AdministrateBallroomForm form= new AdministrateBallroomForm();
+				if(control.getBallroom().getBallroomID()!=null){
+					if(!control.getBallroom().getBallroomID().equals(data.get(1)[0])||control.getBallroom().getBallroomID().equals(null)){
+						//INFORMS THE USER THAT THE LOADED DATA DOES NOT REFLECT IN THE CURENT DATABASE
+						JOptionPane.showMessageDialog(null, "This Data does ot exist anyware in the database.", "System Message", JOptionPane.INFORMATION_MESSAGE);
+					}
+					else{
+						//SETS THE FORM CONTROLL ACCORDINGLY
+						form.getJTextField_ballroomID().setText(data.get(1)[0]);
+						form.getJButton_upload().setEnabled(false);
+						form.getJButton_delete().setEnabled(true);
+						form.getJButton_download().setEnabled(true);
+						form.getJButton_update().setEnabled(true);
+						tabTitle="Facility "+data.get(1)[0];
+					}
+					//set the rest of the fields
+					form.getJComboBox_facilityName().setSelectedItem(data.get(0)[1]);
+					
+					//ADDING THE FORM INTO THE TAB
+					if(jTabbedPane.getTabCount()==0){
+						jTabbedPane.insertTab(tabTitle,null , form.getJScrollPane(),null , 0); 
+						createTabHeader(0);	
+						jTabbedPane.setSelectedIndex(0);
+					}
+					else{
+						jTabbedPane.insertTab(tabTitle,null , form.getJScrollPane(),null , jTabbedPane.getSelectedIndex());
+						createTabHeader(jTabbedPane.getSelectedIndex()-1);	
+						if(!(jTabbedPane.getSelectedIndex()==jTabbedPane.getTabCount())){
+							jTabbedPane.setSelectedIndex(jTabbedPane.getSelectedIndex()+1);
+							}
+						}
+				}
 			}
+			result=1;
 		}
 		else if(data.get(0)[0].equals("MEAL_ID")){
 			

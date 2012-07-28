@@ -1059,7 +1059,7 @@ public class AdministrateBallroomForm {
 		CSVController controller= new CSVController();
 		ArrayList<String[]> data = new ArrayList<String[]>();
 		String[]ballroomHeader=new String[11];
-		ballroomHeader[0]="FACILITY_ID";
+		ballroomHeader[0]="BALLROOM_ID";
 		ballroomHeader[1]="FACILITY_NAME";
 		ballroomHeader[2]="FACILITY_CONTACT";
 		ballroomHeader[3]="FACILITY_ADDRESS";

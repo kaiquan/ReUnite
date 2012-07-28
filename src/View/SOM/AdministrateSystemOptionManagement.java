@@ -573,7 +573,7 @@ public class AdministrateSystemOptionManagement {
 	public static JProgressBar getJProgressBar() {
 		if (jProgressBar == null) {
 			jProgressBar = new JProgressBar();
-			jProgressBar.setStringPainted(true);
+			//jProgressBar.setStringPainted(true);
 			jProgressBar.setOpaque(true);
 			jProgressBar.setValue(0);
 			jProgressBar.setMaximum(100);

@@ -555,7 +555,6 @@ public class AdministrateBallroomForm {
 						public void run () {
 							  if(validateBallroomDetails()){
 									try {
-										
 										download(directory);
 									} catch (MalformedURLException e1) {
 										e1.printStackTrace();
@@ -573,7 +572,7 @@ public class AdministrateBallroomForm {
 							  }
 						  }
 					  };
-					Thread progress= new Thread(){
+					progress= new Thread(){
 						  @SuppressWarnings("deprecation")
 						public void run(){
 							  double increment=1;
@@ -992,7 +991,6 @@ public class AdministrateBallroomForm {
 	 * Purpose 			: To download the form details in
 	 * 					  the local computer in CSV
 	 *******************************************************/
-	@SuppressWarnings("deprecation")
 	public void downloadPDF(String path) throws MalformedURLException, IOException, DocumentException{
 		String directory=path;
 		
@@ -1036,12 +1034,6 @@ public class AdministrateBallroomForm {
 		 
 		 pdf.close();
 		
-		//prompt success
-		 progress.interrupt();
-		 progress.stop();
-		 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-		 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
-		 JOptionPane.showMessageDialog(null, "File Downloaded Successfully at "+path, "Downloads", JOptionPane.INFORMATION_MESSAGE);
 		
 	}
 	
@@ -1053,6 +1045,7 @@ public class AdministrateBallroomForm {
 	 * 					  the local computer
 	 * @throws IOException 
 	 *******************************************************/
+	@SuppressWarnings("deprecation")
 	public void downloadTXT(String path) throws IOException{
 		CSVController controller= new CSVController();
 		ArrayList<String[]> data = new ArrayList<String[]>();
@@ -1089,7 +1082,14 @@ public class AdministrateBallroomForm {
 		data.add(ballroomData);
 		
 		controller.WriteFile(data, path);
-		
+		//prompt success
+	
+		 progress.interrupt();
+		 progress.stop();
+		 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+		 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+		 JOptionPane.showMessageDialog(null, "File Downloaded Successfully at "+path, "Downloads", JOptionPane.INFORMATION_MESSAGE);
+	
 	}
 	/********************************************************
 	 * Method Name : createTabHeader

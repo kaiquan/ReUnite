@@ -168,21 +168,7 @@ public class ViewRIDetailsRIVIEW {
 			schoolTextBox.setVisible(true);
 			emailTextBox.setVisible(true);
 			telephoneTextBox.setVisible(true);
-			handphoneTextBox.setVisible(true);
-			
-		
-			
-			int row = getTable().getSelectedRow();
-			
-				userNameTextBox.setText(((JTable) table.getSelectionModel()).getValueAt(1, 2).toString());
-				firstNameTextBox.setText(table.getValueAt(0, 2).toString());
-				lastNameTextBox.setText(table.getValueAt(0, 2).toString());
-				nricTextBox.setText(table.getValueAt(1, 2).toString());
-				emailTextBox.setText(table.getModel().getValueAt(row, 2).toString());
-				telephoneTextBox.setText(table.getModel().getValueAt(row, 2).toString());
-				schoolTextBox.setText(table.getModel().getValueAt(row, 3).toString());
-				
-			
+			handphoneTextBox.setVisible(true);	
 			
 		}
 	});
@@ -285,9 +271,8 @@ public class ViewRIDetailsRIVIEW {
 				
 			JScrollPane tableScrollPanePayment = new JScrollPane(getTablePayment());
 			tableScrollPanePayment.setBounds(0, 360, 600, 100);
-			panel.add(tableScrollPanePayment);
-				
-
+			panel.add(tableScrollPanePayment);	
+			
 		return panel;
 	}
 		
@@ -445,7 +430,12 @@ public class ViewRIDetailsRIVIEW {
 
 	
 		
-		
+		userNameTextBox.setText((table.getModel()).getValueAt(0, 1).toString());
+		firstNameTextBox.setText(table.getModel().getValueAt(0, 2).toString());
+		lastNameTextBox.setText(table.getModel().getValueAt(0, 3).toString());
+		emailTextBox.setText(table.getModel().getValueAt(0, 4).toString());
+		telephoneTextBox.setText(table.getModel().getValueAt(0, 5).toString());
+		schoolTextBox.setText(table.getModel().getValueAt(0, 6).toString());
 		
 		return table;
 

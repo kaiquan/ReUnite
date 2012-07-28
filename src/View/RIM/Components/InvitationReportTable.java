@@ -15,8 +15,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
-import com.itextpdf.text.Image;
-
 import Controller.RIM.LookAndFeelController;
 import Controller.RIM.Utils.DateHelper;
 import Images.RIM.ImageHelper;

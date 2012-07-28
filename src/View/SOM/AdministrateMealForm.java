@@ -703,6 +703,7 @@ public class AdministrateMealForm {
 						  @SuppressWarnings("deprecation")
 						public void run(){
 							  double increment=1;
+							  int sleep=300;
 								 for (int i =  0; i <= 100; i+=increment) {
 								      final int percent = i;
 								      try {
@@ -712,13 +713,13 @@ public class AdministrateMealForm {
 								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
-								        Thread.sleep(100);
+								        Thread.sleep(sleep);
 								        if(!main.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 								        	AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								        	break;
 										 }
-								       
+								        sleep+=100;
 								      } catch (InterruptedException e) {
 								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
@@ -761,6 +762,7 @@ public class AdministrateMealForm {
 					progress= new Thread(){
 						  public void run(){
 							  double increment=1;
+							  int sleep=300;
 								 for (int i =  0; i <= 100; i+=increment) {
 								      final int percent = i;
 								      try {
@@ -770,13 +772,13 @@ public class AdministrateMealForm {
 								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
-								        Thread.sleep(100);
+								        Thread.sleep(sleep);
 								        if(!main.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 								        	AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								        	break;
 										 }
-								       
+								        sleep+=100;
 								      } catch (InterruptedException e) {
 								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
@@ -816,6 +818,7 @@ public class AdministrateMealForm {
 					progress= new Thread(){
 						  public void run(){
 							  double increment=1;
+							  int sleep=300;
 								 for (int i =  0; i <= 100; i+=increment) {
 								      final int percent = i;
 								      try {
@@ -825,12 +828,12 @@ public class AdministrateMealForm {
 								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
-								        Thread.sleep(100);
+								        Thread.sleep(sleep);
 								        if(!a.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 								        	break;
 										 }
-								       
+								        sleep+=100;
 								      } catch (InterruptedException e) {
 								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
@@ -876,6 +879,7 @@ public class AdministrateMealForm {
 					progress= new Thread(){
 						  public void run(){
 							  double increment=1;
+							  int sleep=300;
 								 for (int i =  0; i <= 100; i+=increment) {
 								      final int percent = i;
 								      try {
@@ -885,12 +889,12 @@ public class AdministrateMealForm {
 								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
-								        Thread.sleep(100);
+								        Thread.sleep(sleep);
 								        if(!a.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 								        	break;
 										 }
-								       
+								        sleep+=100;
 								      } catch (InterruptedException e) {
 								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }

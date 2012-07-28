@@ -146,23 +146,23 @@ public class AdministrateFacilityForm {
 	private JPanel getJPanel_header() {
 		if (jPanel_header == null) {
 			jLabel_facilityContact = new JLabel();
-			jLabel_facilityContact.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_facilityContact.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_facilityContact.setBounds(new Rectangle(450, 40, 150, 30));
 			jLabel_facilityContact.setText("Contact No :");
 			jLabel_facilityAddress = new JLabel();
-			jLabel_facilityAddress.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_facilityAddress.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_facilityAddress.setBounds(new Rectangle(50, 120, 81, 30));
 			jLabel_facilityAddress.setText("Address :");
 			jLabel_facilityDescription = new JLabel();
-			jLabel_facilityDescription.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_facilityDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_facilityDescription.setBounds(new Rectangle(50, 160, 80, 30));
 			jLabel_facilityDescription.setText("Description :");
 			jLabel_facilityID = new JLabel();
-			jLabel_facilityID.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_facilityID.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_facilityID.setBounds(new Rectangle(50, 40, 80, 30));
 			jLabel_facilityID.setText("ID :");
 			jLabel_facilityName = new JLabel();
-			jLabel_facilityName.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_facilityName.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_facilityName.setBounds(new Rectangle(50, 80, 80, 30));
 			jLabel_facilityName.setText("Name :");
 			jPanel_header = new JPanel();
@@ -187,7 +187,7 @@ public class AdministrateFacilityForm {
 		if (jTextField_facilityID == null) {
 			jTextField_facilityID = new JTextField();
 			jTextField_facilityID.setHorizontalAlignment(JTextField.CENTER);
-			jTextField_facilityID.setFont(new Font("Dialog", Font.ITALIC, 14));
+			jTextField_facilityID.setFont(new Font("Segoe UI", Font.ITALIC, 14));
 			jTextField_facilityID.setEnabled(false);
 			jTextField_facilityID.setForeground(SystemColor.scrollbar);
 			jTextField_facilityID.setText("Generate After Creation");
@@ -212,7 +212,7 @@ public class AdministrateFacilityForm {
 	protected JTextField getJTextField_facilityName() {
 		if (jTextField_facilityName == null) {
 			jTextField_facilityName = new JTextField();
-			jTextField_facilityName.setFont(new Font("Dialog", Font.ITALIC, 14));
+			jTextField_facilityName.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_facilityName.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_facilityName.setForeground(SystemColor.scrollbar);
 			jTextField_facilityName.setText("Enter Facility Name Here");
@@ -238,7 +238,7 @@ public class AdministrateFacilityForm {
 		if (jTextField_facilityContact == null) {
 			jTextField_facilityContact = new JTextField();
 			jTextField_facilityContact.setHorizontalAlignment(JTextField.CENTER);
-			jTextField_facilityContact.setFont(new Font("Dialog", Font.ITALIC, 14));
+			jTextField_facilityContact.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_facilityContact.setForeground(SystemColor.scrollbar);
 			jTextField_facilityContact.setText("Enter Contact No");
 			jTextField_facilityContact.setBounds(new Rectangle(530, 40, 200, 30));
@@ -264,7 +264,7 @@ public class AdministrateFacilityForm {
 		if (jTextField_facilityAddress == null) {
 			jTextField_facilityAddress = new JTextField();
 			jTextField_facilityAddress.setHorizontalAlignment(JTextField.CENTER);
-			jTextField_facilityAddress.setFont(new Font("Dialog", Font.ITALIC, 14));
+			jTextField_facilityAddress.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_facilityAddress.setForeground(SystemColor.scrollbar);
 			jTextField_facilityAddress.setText("Enter Facility Adress Here");
 			jTextField_facilityAddress.setBounds(new Rectangle(130, 120, 600, 31));
@@ -297,7 +297,7 @@ public class AdministrateFacilityForm {
 		if (jTextArea_facilityDescription == null) {
 			jTextArea_facilityDescription = new JTextArea();
 			jTextArea_facilityDescription.setWrapStyleWord(true);
-			jTextArea_facilityDescription.setFont(new Font("Dialog", Font.ITALIC, 14));
+			jTextArea_facilityDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextArea_facilityDescription.setForeground(SystemColor.scrollbar);
 			jTextArea_facilityDescription.setText("\n\n                                                  Enter a Description Here");
 			jTextArea_facilityDescription.setAutoscrolls(true);
@@ -326,7 +326,7 @@ public class AdministrateFacilityForm {
 	private JPanel getJPanel_ballrooms() {
 		if (jPanel_ballrooms == null) {
 			jLabel_ballroomList = new JLabel();
-			jLabel_ballroomList.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_ballroomList.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_ballroomList.setBounds(new Rectangle(50, 40, 150, 30));
 			jLabel_ballroomList.setText("Ballrroom List :");
 			jPanel_ballrooms = new JPanel();
@@ -408,6 +408,7 @@ public class AdministrateFacilityForm {
 		if (jMenuItem_remove == null) {
 			jMenuItem_remove = new JMenuItem();
 			jMenuItem_remove.setOpaque(false);
+			jMenuItem_remove.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jMenuItem_remove.setText("Remove");
 			jMenuItem_remove.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -422,7 +423,7 @@ public class AdministrateFacilityForm {
 		if (jTextField_ballroomTitle == null) {
 			jTextField_ballroomTitle = new JTextField();
 			jTextField_ballroomTitle.setHorizontalAlignment(JTextField.CENTER);
-			jTextField_ballroomTitle.setFont(new Font("Dialog", Font.ITALIC, 14));
+			jTextField_ballroomTitle.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_ballroomTitle.setForeground(SystemColor.scrollbar);
 			jTextField_ballroomTitle.setText("Enter a Ballroom Name");
 			jTextField_ballroomTitle.setBounds(new Rectangle(50, 240, 500, 30));
@@ -447,7 +448,7 @@ public class AdministrateFacilityForm {
 	protected JComboBox getJComboBox_ballroomSize() {
 		if (jComboBox_ballroomSize == null) {
 			jComboBox_ballroomSize = new JComboBox();
-			jComboBox_ballroomSize.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jComboBox_ballroomSize.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jComboBox_ballroomSize.addItem("Select a Size");
 			jComboBox_ballroomSize.addItem("Small (10 - 25px)");
 			jComboBox_ballroomSize.addItem("Medium (26 - 50px)");
@@ -461,7 +462,7 @@ public class AdministrateFacilityForm {
 		if (jTextField_ballroomPrice == null) {
 			jTextField_ballroomPrice = new JTextField();
 			jTextField_ballroomPrice.setHorizontalAlignment(JTextField.CENTER);
-			jTextField_ballroomPrice.setFont(new Font("Dialog", Font.ITALIC, 14));
+			jTextField_ballroomPrice.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_ballroomPrice.setForeground(SystemColor.scrollbar);
 			jTextField_ballroomPrice.setText("Enter Price");
 			jTextField_ballroomPrice.setBounds(new Rectangle(563, 290, 187, 30));
@@ -495,7 +496,7 @@ public class AdministrateFacilityForm {
 			jTextArea_ballroomDescription = new JTextArea();
 			jTextArea_ballroomDescription.setLineWrap(true);
 			jTextArea_ballroomDescription.setWrapStyleWord(true);
-			jTextArea_ballroomDescription.setFont(new Font("Dialog", Font.ITALIC, 14));
+			jTextArea_ballroomDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextArea_ballroomDescription.setForeground(SystemColor.scrollbar);
 			jTextArea_ballroomDescription.setText("\n\n                          Enter a Short Description of the Ballroom");
 			jTextArea_ballroomDescription
@@ -520,7 +521,7 @@ public class AdministrateFacilityForm {
 		if (jTextField_ballroomDiscount == null) {
 			jTextField_ballroomDiscount = new JTextField();
 			jTextField_ballroomDiscount.setHorizontalAlignment(JTextField.CENTER);
-			jTextField_ballroomDiscount.setFont(new Font("Dialog", Font.ITALIC, 14));
+			jTextField_ballroomDiscount.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_ballroomDiscount.setForeground(SystemColor.scrollbar);
 			jTextField_ballroomDiscount.setText("Enter Entitled Discount");
 			jTextField_ballroomDiscount.setBounds(new Rectangle(563, 335, 187, 30));
@@ -544,7 +545,7 @@ public class AdministrateFacilityForm {
 	private JButton getJButton_add() {
 		if (jButton_add == null) {
 			jButton_add = new JButton();
-			jButton_add.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_add.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_add.setFocusable(false);
 			jButton_add.setFocusPainted(false);
 			jButton_add.setBounds(new Rectangle(563, 390, 187, 30));
@@ -604,11 +605,11 @@ public class AdministrateFacilityForm {
 	private JPanel getJPanel_ballroomSummary() {
 		if (jPanel_ballroomSummary == null) {
 			jLabel_facilityWeekendCost = new JLabel();
-			jLabel_facilityWeekendCost.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_facilityWeekendCost.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_facilityWeekendCost.setBounds(new Rectangle(400, 40, 150, 30));
 			jLabel_facilityWeekendCost.setText("Weekend Extra Cost :     $");
 			jLabel_facilityParking = new JLabel();
-			jLabel_facilityParking.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_facilityParking.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_facilityParking.setBounds(new Rectangle(50, 40, 79, 30));
 			jLabel_facilityParking.setText("Parking :");
 			jPanel_ballroomSummary = new JPanel();
@@ -630,6 +631,7 @@ public class AdministrateFacilityForm {
 	protected JCheckBox getJCheckBox_facilityParking() {
 		if (jCheckBox_facilityParking == null) {
 			jCheckBox_facilityParking = new JCheckBox();
+			jCheckBox_facilityParking.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jCheckBox_facilityParking.setBounds(new Rectangle(150, 40, 160, 30));
 			jCheckBox_facilityParking.setFocusable(false);
 			jCheckBox_facilityParking.setFocusPainted(false);
@@ -650,7 +652,7 @@ public class AdministrateFacilityForm {
 	protected JTextField getJTextField_facilityWeekendCost() {
 		if (jTextField_facilityWeekendCost == null) {
 			jTextField_facilityWeekendCost = new JTextField();
-			jTextField_facilityWeekendCost.setFont(new Font("Dialog", Font.ITALIC, 14));
+			jTextField_facilityWeekendCost.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_facilityWeekendCost.setForeground(SystemColor.scrollbar);
 			jTextField_facilityWeekendCost.setText("0.00");
 			jTextField_facilityWeekendCost.setBounds(new Rectangle(550, 40, 177, 30));
@@ -697,6 +699,7 @@ public class AdministrateFacilityForm {
 	protected JTextArea getJTextArea_facilitySummary() {
 		if (jTextArea_facilitySummary == null) {
 			jTextArea_facilitySummary = new JTextArea();
+			jTextArea_facilitySummary.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextArea_facilitySummary.setWrapStyleWord(true);
 			jTextArea_facilitySummary.setLineWrap(true);
 			jTextArea_facilitySummary.setEditable(false);
@@ -706,7 +709,7 @@ public class AdministrateFacilityForm {
 	protected JButton getJButton_download() {
 		if (jButton_download == null) {
 			jButton_download = new JButton();
-			jButton_download.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_download.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_download.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/download.png")));
 			jButton_download.setText("Download");
 			jButton_download.setEnabled(false);
@@ -748,6 +751,7 @@ public class AdministrateFacilityForm {
 						  @SuppressWarnings("deprecation")
 						public void run(){
 							  double increment=1;
+							  int sleep=300;
 								 for (int i =  0; i <= 100; i+=increment) {
 								      final int percent = i;
 								      try {
@@ -757,13 +761,13 @@ public class AdministrateFacilityForm {
 								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
-								        Thread.sleep(100);
+								        Thread.sleep(sleep);
 								        if(!main.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 								        	AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								        	break;
 										 }
-								       
+								        sleep+=100;
 								      } catch (InterruptedException e) {
 								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
@@ -783,7 +787,7 @@ public class AdministrateFacilityForm {
 	protected JButton getJButton_update() {
 		if (jButton_update == null) {
 			jButton_update = new JButton();
-			jButton_update.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_update.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_update.setBounds(new Rectangle(570, 170, 160, 45));
 			jButton_update.setEnabled(false);
 			jButton_update.setFocusable(false);
@@ -808,6 +812,7 @@ public class AdministrateFacilityForm {
 					progress= new Thread(){
 						  public void run(){
 							  double increment=1;
+							  int sleep=300;
 								 for (int i =  0; i <= 100; i+=increment) {
 								      final int percent = i;
 								      try {
@@ -817,12 +822,12 @@ public class AdministrateFacilityForm {
 								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
-								        Thread.sleep(100);
+								        Thread.sleep(sleep);
 								        if(!a.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 								        	break;
 										 }
-								       
+								        sleep+=100;
 								      } catch (InterruptedException e) {
 								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
@@ -843,7 +848,7 @@ public class AdministrateFacilityForm {
 	protected JButton getJButton_delete() {
 		if (jButton_delete == null) {
 			jButton_delete = new JButton();
-			jButton_delete.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_delete.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_delete.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/delete.png")));
 			jButton_delete.setFocusable(false);
 			jButton_delete.setFocusPainted(false);
@@ -864,6 +869,7 @@ public class AdministrateFacilityForm {
 					progress= new Thread(){
 						  public void run(){
 							  double increment=1;
+							  int sleep=300;
 								 for (int i =  0; i <= 100; i+=increment) {
 								      final int percent = i;
 								      try {
@@ -873,12 +879,12 @@ public class AdministrateFacilityForm {
 								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
-								        Thread.sleep(100);
+								        Thread.sleep(sleep);
 								        if(!a.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 								        	break;
 										 }
-								       
+								        sleep+=100;
 								      } catch (InterruptedException e) {
 								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
@@ -899,7 +905,7 @@ public class AdministrateFacilityForm {
 	protected JButton getJButton_upload() {
 		if (jButton_upload == null) {
 			jButton_upload = new JButton();
-			jButton_upload.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_upload.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_upload.setBounds(new Rectangle(570, 100, 160, 45));
 			jButton_upload.setFocusable(false);
 			jButton_upload.setFocusPainted(false);
@@ -922,6 +928,7 @@ public class AdministrateFacilityForm {
 					progress= new Thread(){
 						  public void run(){
 							  double increment=1;
+							  int sleep=300;
 								 for (int i =  0; i <= 100; i+=increment) {
 								      final int percent = i;
 								      try {
@@ -931,13 +938,13 @@ public class AdministrateFacilityForm {
 								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
-								        Thread.sleep(100);
+								        Thread.sleep(sleep);
 								        if(!main.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 								        	AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								        	break;
 										 }
-								       
+								        sleep+=100;
 								      } catch (InterruptedException e) {
 								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }

@@ -98,7 +98,10 @@ public class AdministrateSystemOptionManagement {
 	protected DefaultTableModel model= new DefaultTableModel();//for the jTable
 	private JPopupMenu jPopupMenu = null;  //  @jve:decl-index=0:visual-constraint="209,861"
 	private JMenuItem jMenuItem_retrive = null;
+	private Thread main=null;
+	private Thread progress=null;
 	private AdministratePackageForm meal=null;
+	
 	/********************************************************
 	 *					Start of UI
 	 *******************************************************/
@@ -186,15 +189,16 @@ public class AdministrateSystemOptionManagement {
 			jButton_NewTab.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/new.png")));
 			jButton_NewTab.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					Thread main = new Thread () {
+					main = new Thread () {
 						  public void run () {
 							  newTab();
 						  }
 					  };
-					  final Thread a=main;
-					Thread progress= new Thread(){
-						  public void run(){
+					progress= new Thread(){
+						  @SuppressWarnings("deprecation")
+						public void run(){
 							  double increment=1;
+							  int sleep=300;
 								 for (int i =  0; i <= 100; i+=increment) {
 								      final int percent = i;
 								      try {
@@ -203,12 +207,14 @@ public class AdministrateSystemOptionManagement {
 								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
 								          }
 								        });
-								        Thread.sleep(300);
-								        if(!a.isAlive()){
+								        Thread.sleep(sleep);
+								        if(!main.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 								        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
 								        	break;
 										 }
+								        sleep+=100;
+								        
 								       
 								      } catch (InterruptedException e) {
 								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
@@ -360,7 +366,7 @@ public class AdministrateSystemOptionManagement {
 		if (jPanel_search_header == null) {
 			jLabel = new JLabel();
 			jLabel.setText("");
-			jLabel.setFont(new Font("Century Gothic", Font.ITALIC, 12));
+			jLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel.setHorizontalTextPosition(SwingConstants.RIGHT);
 			jLabel.setBounds(new Rectangle(92, 0, 177, 27));
 			jPanel_search_header = new JPanel();
@@ -424,8 +430,10 @@ public class AdministrateSystemOptionManagement {
 						  };
 						  final Thread a=main;
 						Thread progress= new Thread(){
-							  public void run(){
+							  @SuppressWarnings("deprecation")
+							public void run(){
 								  double increment=1;
+								  int sleep=300;
 									 for (int i =  0; i <= 100; i+=increment) {
 									      final int percent = i;
 									      try {
@@ -434,13 +442,13 @@ public class AdministrateSystemOptionManagement {
 									        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
 									          }
 									        });
-									        Thread.sleep(300);
+									        Thread.sleep(sleep);
 									        if(!a.isAlive()){
 									        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 									        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
 									        	break;
 											 }
-									       
+									        sleep+=100;
 									      } catch (InterruptedException e) {
 									    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
 									      }
@@ -512,22 +520,25 @@ public class AdministrateSystemOptionManagement {
 					  };
 					  final Thread a=main;
 					Thread progress= new Thread(){
-						  public void run(){
+						  @SuppressWarnings("deprecation")
+						public void run(){
 							  double increment=1;
 								 for (int i =  0; i <= 100; i+=increment) {
 								      final int percent = i;
+								      int sleep=300;
 								      try {
 								        SwingUtilities.invokeLater(new Runnable() {
 								         public void run() {
 								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
 								          }
 								        });
-								        Thread.sleep(300);
+								        Thread.sleep(sleep);
 								        if(!a.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 								        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
 								        	break;
 										 }
+								        sleep+=100;
 								       
 								      } catch (InterruptedException e) {
 								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
@@ -600,7 +611,7 @@ public class AdministrateSystemOptionManagement {
 	private JButton getJButton_search() {
 		if (jButton_search == null) {
 			jButton_search = new JButton();
-			jButton_search.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_search.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_search.setBounds(new Rectangle(848, 3, 173, 25));
 			jButton_search.setFocusable(false);
 			jButton_search.setFocusPainted(false);
@@ -659,22 +670,25 @@ public class AdministrateSystemOptionManagement {
 					  };
 					  final Thread a=main;
 					 Thread progress= new Thread(){
-						  public void run(){
+						  @SuppressWarnings("deprecation")
+						public void run(){
 							  double increment=1;
 								 for (int i =  0; i <= 100; i+=increment) {
 								      final int percent = i;
+								     int sleep=500;
 								      try {
 								        SwingUtilities.invokeLater(new Runnable() {
 								         public void run() {
 								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
 								          }
 								        });
-								        Thread.sleep(300);
+								        Thread.sleep(sleep);
 								        if(!a.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 								        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
 								        	break;
 										 }
+								        sleep+=100;
 								       
 								      } catch (InterruptedException e) {
 								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
@@ -696,7 +710,7 @@ public class AdministrateSystemOptionManagement {
 	private JComboBox getJComboBox_search() {
 		if (jComboBox_search == null) {
 			jComboBox_search = new JComboBox();
-			jComboBox_search.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jComboBox_search.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jComboBox_search.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 			jComboBox_search.setFocusable(false);
 			jComboBox_search.addItem("Select A Search Parameter");
@@ -712,7 +726,7 @@ public class AdministrateSystemOptionManagement {
 	private JTextField getJTextField_search() {
 		if (jTextField_search == null) {
 			jTextField_search = new JTextField();
-			jTextField_search.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jTextField_search.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_search.setForeground(SystemColor.scrollbar);
 			jTextField_search.setText("   Enter Search Parameter");
 			jTextField_search.setHorizontalAlignment(JTextField.CENTER);
@@ -813,7 +827,7 @@ public class AdministrateSystemOptionManagement {
 		
 		
 		JButton jButton_Package = new JButton();
-		jButton_Package.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		jButton_Package.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		jButton_Package.setText("New Package Record");
 		jButton_Package.setOpaque(false);
 		jButton_Package.setFocusable(false);
@@ -828,22 +842,25 @@ public class AdministrateSystemOptionManagement {
 				  };
 				  final Thread a=main;
 				  Thread progress= new Thread(){
-					  public void run(){
+					  @SuppressWarnings("deprecation")
+					public void run(){
 						  double increment=1;
 							 for (int i =  0; i <= 100; i+=increment) {
 							      final int percent = i;
+							     int sleep=500;
 							      try {
 							        SwingUtilities.invokeLater(new Runnable() {
 							         public void run() {
 							        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
 							          }
 							        });
-							        Thread.sleep(300);
+							        Thread.sleep(sleep);
 							        if(!a.isAlive()){
 							        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 							        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
 							        	break;
 									 }
+							        sleep+=100;
 							       
 							      } catch (InterruptedException e) {
 							    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
@@ -868,7 +885,7 @@ public class AdministrateSystemOptionManagement {
 		
 		
 		JButton jButton_Entertainment = new JButton();
-		jButton_Entertainment.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		jButton_Entertainment.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		jButton_Entertainment.setFocusable(false);
 		jButton_Entertainment.setOpaque(false);
 		jButton_Entertainment.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/entertainment.png")));
@@ -883,8 +900,10 @@ public class AdministrateSystemOptionManagement {
 				  };
 				  final Thread a=main;
 				  Thread progress= new Thread(){
-					  public void run(){
+					  @SuppressWarnings("deprecation")
+					public void run(){
 						  double increment=1;
+						 int sleep=500;
 							 for (int i =  0; i <= 100; i+=increment) {
 							      final int percent = i;
 							      try {
@@ -893,13 +912,13 @@ public class AdministrateSystemOptionManagement {
 							        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
 							          }
 							        });
-							        Thread.sleep(300);
+							        Thread.sleep(sleep);
 							        if(!a.isAlive()){
 							        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 							        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
 							        	break;
 									 }
-							       
+							        sleep+=100;
 							      } catch (InterruptedException e) {
 							    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
 							      }
@@ -922,7 +941,7 @@ public class AdministrateSystemOptionManagement {
 		
 		JButton jButton_Meal = new JButton();
 		jButton_Meal.setOpaque(false);
-		jButton_Meal.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		jButton_Meal.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		jButton_Meal.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/meal.png")));
 		jButton_Meal.setText("New Meal Record");
 		jButton_Meal.setFocusable(false);
@@ -936,8 +955,10 @@ public class AdministrateSystemOptionManagement {
 				  };
 				  final Thread a=main;
 				  Thread progress= new Thread(){
-					  public void run(){
+					  @SuppressWarnings("deprecation")
+					public void run(){
 						  double increment=1;
+						 int sleep=500;
 							 for (int i =  0; i <= 100; i+=increment) {
 							      final int percent = i;
 							      try {
@@ -946,13 +967,13 @@ public class AdministrateSystemOptionManagement {
 							        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
 							          }
 							        });
-							        Thread.sleep(300);
+							        Thread.sleep(sleep);
 							        if(!a.isAlive()){
 							        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 							        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
 							        	break;
 									 }
-							       
+							        sleep+=100;
 							      } catch (InterruptedException e) {
 							    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
 							      }
@@ -974,7 +995,7 @@ public class AdministrateSystemOptionManagement {
 		jToolBar_Meal.add(jButton_Meal);
 		
 		JButton jButton_Facility = new JButton();
-		jButton_Facility.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		jButton_Facility.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		jButton_Facility.setText("Regisister Facility");
 		jButton_Facility.setFocusable(false);
 		jButton_Facility.setOpaque(false);
@@ -989,8 +1010,10 @@ public class AdministrateSystemOptionManagement {
 				  };
 				  final Thread a=main;
 				  Thread progress= new Thread(){
-					  public void run(){
+					  @SuppressWarnings("deprecation")
+					public void run(){
 						  double increment=1;
+						 int sleep=500;
 							 for (int i =  0; i <= 100; i+=increment) {
 							      final int percent = i;
 							      try {
@@ -999,13 +1022,13 @@ public class AdministrateSystemOptionManagement {
 							        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
 							          }
 							        });
-							        Thread.sleep(300);
+							        Thread.sleep(sleep);
 							        if(!a.isAlive()){
 							        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 							        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
 							        	break;
 									 }
-							       
+							        sleep+=100;
 							      } catch (InterruptedException e) {
 							    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
 							      }
@@ -1027,7 +1050,7 @@ public class AdministrateSystemOptionManagement {
 		jToolBar_Facility.add(jButton_Facility);
 		
 		JButton jButton_ballroom = new JButton();
-		jButton_ballroom.setFont(new Font("Century Gothic",Font.PLAIN, 14));
+		jButton_ballroom.setFont(new Font("Segoe UI",Font.PLAIN, 14));
 		jButton_ballroom.setText("New Ballroom Record");
 		jButton_ballroom.setFocusable(false);
 		jButton_ballroom.setOpaque(false);
@@ -1042,8 +1065,10 @@ public class AdministrateSystemOptionManagement {
 				  };
 				  final Thread a=main;
 				  Thread progress= new Thread(){
-					  public void run(){
+					  @SuppressWarnings("deprecation")
+					public void run(){
 						  double increment=1;
+						 int sleep=500;
 							 for (int i =  0; i <= 100; i+=increment) {
 							      final int percent = i;
 							      try {
@@ -1052,13 +1077,13 @@ public class AdministrateSystemOptionManagement {
 							        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
 							          }
 							        });
-							        Thread.sleep(300);
+							        Thread.sleep(sleep);
 							        if(!a.isAlive()){
 							        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 							        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
 							        	break;
 									 }
-							       
+							        sleep+=100;
 							      } catch (InterruptedException e) {
 							    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
 							      }

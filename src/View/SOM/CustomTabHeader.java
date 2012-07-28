@@ -43,7 +43,7 @@ public class CustomTabHeader extends JPanel {
         //add more space between the label and the button
         label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
         //setting the font and foreground
-        label.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        label.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         label.setForeground(Color.BLACK);
         //tab button
         JButton button = new TabButton();

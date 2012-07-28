@@ -136,23 +136,23 @@ public class AdministrateBallroomForm {
 	private JPanel getJPanel_header() {
 		if (jPanel_header == null) {
 			jLabel_facilityAddress = new JLabel();
-			jLabel_facilityAddress.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_facilityAddress.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_facilityAddress.setBounds(new Rectangle(50, 160, 81, 30));
 			jLabel_facilityAddress.setText("Address :");
 			jLabel_facilityContact = new JLabel();
-			jLabel_facilityContact.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_facilityContact.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_facilityContact.setBounds(new Rectangle(50, 120, 81, 30));
 			jLabel_facilityContact.setText("Contact :");
 			jLabel_Facaility = new JLabel();
-			jLabel_Facaility.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_Facaility.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_Facaility.setBounds(new Rectangle(50, 80, 81, 30));
 			jLabel_Facaility.setText("Facility");
 			jLabel_ballroomAvailability = new JLabel();
-			jLabel_ballroomAvailability.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_ballroomAvailability.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_ballroomAvailability.setBounds(new Rectangle(450, 40, 150, 30));
 			jLabel_ballroomAvailability.setText("Availability :");
 			jLabel_ballroomID = new JLabel();
-			jLabel_ballroomID.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_ballroomID.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_ballroomID.setBounds(new Rectangle(50, 40, 80, 30));
 			jLabel_ballroomID.setText("ID");
 			jPanel_header = new JPanel();
@@ -176,7 +176,7 @@ public class AdministrateBallroomForm {
 		if (jTextField_ballroomID == null) {
 			jTextField_ballroomID = new JTextField();
 			jTextField_ballroomID.setHorizontalAlignment(JTextField.CENTER);
-			jTextField_ballroomID.setFont(new Font("Dialog", Font.ITALIC, 14));
+			jTextField_ballroomID.setFont(new Font("Segoe UI", Font.ITALIC, 14));
 			jTextField_ballroomID.setEnabled(false);
 			jTextField_ballroomID.setForeground(SystemColor.scrollbar);
 			jTextField_ballroomID.setText("Generate After Creation");
@@ -209,7 +209,7 @@ public class AdministrateBallroomForm {
 	protected JComboBox getJComboBox_facilityName() {
 		if (jComboBox_facilityName == null) {
 			jComboBox_facilityName = new JComboBox();
-			jComboBox_facilityName.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jComboBox_facilityName.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jComboBox_facilityName.setFocusable(false);
 			jComboBox_facilityName.setBounds(new Rectangle(130, 80, 600, 30));
 			jComboBox_facilityName.addItemListener(new java.awt.event.ItemListener() {
@@ -231,18 +231,20 @@ public class AdministrateBallroomForm {
 							  double increment=1;
 								 for (int i =  0; i <= 100; i+=increment) {
 								      final int percent = i;
+								      int sleep=300;
 								      try {
 								        SwingUtilities.invokeLater(new Runnable() {
 								         public void run() {
 								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
 								          }
 								        });
-								        Thread.sleep(100);
+								        Thread.sleep(sleep);
 								        if(!a.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 								        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
 								        	break;
 										 }
+								        sleep+=100;
 								       
 								      } catch (InterruptedException e) {
 								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
@@ -264,7 +266,7 @@ public class AdministrateBallroomForm {
 			jTextField_facilityContact = new JTextField();
 			jTextField_facilityContact.setForeground(SystemColor.scrollbar);;
 			jTextField_facilityContact.setHorizontalAlignment(JTextField.CENTER);
-			jTextField_facilityContact.setFont(new Font("Dialog", Font.ITALIC, 14));
+			jTextField_facilityContact.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_facilityContact.setEnabled(false);
 			jTextField_facilityContact.setBounds(new Rectangle(130, 120, 600, 31));
 		}
@@ -282,7 +284,7 @@ public class AdministrateBallroomForm {
 		if (jTextArea_facilityAddress == null) {
 			jTextArea_facilityAddress = new JTextArea();
 			jTextArea_facilityAddress.setText("\n\n");
-			jTextArea_facilityAddress.setFont(new Font("Dialog", Font.ITALIC, 14));
+			jTextArea_facilityAddress.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextArea_facilityAddress.setLineWrap(true);
 			jTextArea_facilityAddress.setTabSize(10);
 			jTextArea_facilityAddress.setWrapStyleWord(true);
@@ -297,23 +299,23 @@ public class AdministrateBallroomForm {
 	private JPanel getJPanel_body() {
 		if (jPanel_body == null) {
 			jLabel = new JLabel();
-			jLabel.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel.setBounds(new Rectangle(49, 20, 164, 30));
 			jLabel.setText("Ballroom Details :");
 			jLabel_ballroomPrice = new JLabel();
-			jLabel_ballroomPrice.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_ballroomPrice.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_ballroomPrice.setBounds(new Rectangle(449, 100, 78, 30));
 			jLabel_ballroomPrice.setText("Price :");
 			jLabel_ballroomSize = new JLabel();
-			jLabel_ballroomSize.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_ballroomSize.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_ballroomSize.setBounds(new Rectangle(49, 100, 81, 30));
 			jLabel_ballroomSize.setText("Size :");
 			jLabel_ballroomDescription = new JLabel();
-			jLabel_ballroomDescription.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_ballroomDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_ballroomDescription.setBounds(new Rectangle(49, 140, 81, 30));
 			jLabel_ballroomDescription.setText("Description :");
 			jLabel_ballroomTitle = new JLabel();
-			jLabel_ballroomTitle.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_ballroomTitle.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_ballroomTitle.setBounds(new Rectangle(49, 60, 81, 30));
 			jLabel_ballroomTitle.setText("Name :");
 			jPanel_body = new JPanel();
@@ -335,22 +337,23 @@ public class AdministrateBallroomForm {
 	protected JTextField getJTextField_ballroomTitle() {
 		if (jTextField_ballroomTitle == null) {
 			jTextField_ballroomTitle = new JTextField();
-			jTextField_ballroomTitle.setFont(new Font("Dialog", Font.ITALIC, 14));
+			jTextField_ballroomTitle.setHorizontalAlignment(JTextField.CENTER);
+			jTextField_ballroomTitle.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_ballroomTitle.setForeground(SystemColor.scrollbar);
-			jTextField_ballroomTitle.setText("                                                      Enter a Ballroom Name");
+			jTextField_ballroomTitle.setText("Enter a Ballroom Name");
 			jTextField_ballroomTitle.setBounds(new Rectangle(129, 60, 600, 30));
 			jTextField_ballroomTitle.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					if(jTextField_ballroomTitle.getText().equals("")){
 						jTextField_ballroomTitle.setForeground(SystemColor.scrollbar);
-						jTextField_ballroomTitle.setText("                                                      Enter a Ballroom Name");
+						jTextField_ballroomTitle.setText("Enter a Ballroom Name");
 					}
 					else{
 						displaySummary();
 					}
 				}
 				public void focusGained(java.awt.event.FocusEvent e) {
-					if(jTextField_ballroomTitle.getText().equals("                                                      Enter a Ballroom Name")){
+					if(jTextField_ballroomTitle.getText().equals("Enter a Ballroom Name")){
 						jTextField_ballroomTitle.setForeground(SystemColor.black);
 						jTextField_ballroomTitle.setText("");
 					}
@@ -363,7 +366,7 @@ public class AdministrateBallroomForm {
 	protected JComboBox getJComboBox_ballroomSize() {
 		if (jComboBox_ballroomSize == null) {
 			jComboBox_ballroomSize = new JComboBox();
-			jComboBox_ballroomSize.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jComboBox_ballroomSize.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jComboBox_ballroomSize.setFocusable(false);
 			jComboBox_ballroomSize.addItem("Select a Size");
 			jComboBox_ballroomSize.addItem("Small (10 - 25px)");
@@ -383,7 +386,7 @@ public class AdministrateBallroomForm {
 	protected JTextField getJTextField_ballroomPrice() {
 		if (jTextField_ballroomPrice == null) {
 			jTextField_ballroomPrice = new JTextField();
-			jTextField_ballroomPrice.setFont(new Font("Dialog", Font.ITALIC, 14));
+			jTextField_ballroomPrice.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_ballroomPrice.setForeground(SystemColor.scrollbar);
 			jTextField_ballroomPrice.setText("0.00");
 			jTextField_ballroomPrice.setBounds(new Rectangle(527, 100, 202, 31));
@@ -420,23 +423,23 @@ public class AdministrateBallroomForm {
 	protected JTextArea getJTextArea_ballroomDescription() {
 		if (jTextArea_ballroomDescription == null) {
 			jTextArea_ballroomDescription = new JTextArea();
-			jTextArea_ballroomDescription.setFont(new Font("Dialog", Font.ITALIC, 14));
+			jTextArea_ballroomDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextArea_ballroomDescription.setLineWrap(true);
 			jTextArea_ballroomDescription.setWrapStyleWord(true);
 			jTextArea_ballroomDescription.setForeground(SystemColor.scrollbar);
-			jTextArea_ballroomDescription.setText("\n\n                                                    Enter a Ballroom Description");
+			jTextArea_ballroomDescription.setText("\n\n                                                                           Enter a Ballroom Description");
 			jTextArea_ballroomDescription.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					if(jTextArea_ballroomDescription.getText().equals("")){
 						jTextArea_ballroomDescription.setForeground(SystemColor.scrollbar);
-						jTextArea_ballroomDescription.setText("\n\n                                                    Enter a Ballroom Description");
+						jTextArea_ballroomDescription.setText("\n\n                                                                           Enter a Ballroom Description");
 					}
 					else{
 						displaySummary();
 					}
 				}
 						public void focusGained(java.awt.event.FocusEvent e) {
-							if(jTextArea_ballroomDescription.getText().equals("\n\n                                                    Enter a Ballroom Description")){
+							if(jTextArea_ballroomDescription.getText().equals("\n\n                                                                           Enter a Ballroom Description")){
 								jTextArea_ballroomDescription.setForeground(SystemColor.black);
 								jTextArea_ballroomDescription.setText("");
 							}
@@ -451,11 +454,11 @@ public class AdministrateBallroomForm {
 	private JPanel getJPanel_summary() {
 		if (jPanel_summary == null) {
 			jLabel_ballroomDiscount = new JLabel();
-			jLabel_ballroomDiscount.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_ballroomDiscount.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_ballroomDiscount.setBounds(new Rectangle(400, 40, 150, 30));
 			jLabel_ballroomDiscount.setText("Entitled Discount :");
 			jLabel_ballroomFinalPrice = new JLabel();
-			jLabel_ballroomFinalPrice.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_ballroomFinalPrice.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_ballroomFinalPrice.setBounds(new Rectangle(50, 40, 79, 30));
 			jLabel_ballroomFinalPrice.setText("Final Price :");
 			jPanel_summary = new JPanel();
@@ -478,6 +481,7 @@ public class AdministrateBallroomForm {
 	protected JTextField getJTextField_ballroomFinalPrice() {
 		if (jTextField_ballroomFinalPrice == null) {
 			jTextField_ballroomFinalPrice = new JTextField();
+			jTextField_ballroomFinalPrice.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_ballroomFinalPrice.setEditable(false);
 			jTextField_ballroomFinalPrice.setText("0.00");
 			jTextField_ballroomFinalPrice.setBounds(new Rectangle(130, 40, 230, 30));
@@ -524,6 +528,7 @@ public class AdministrateBallroomForm {
 	protected JTextArea getJTextArea_summary() {
 		if (jTextArea_summary == null) {
 			jTextArea_summary = new JTextArea();
+			jTextArea_summary.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextArea_summary.setWrapStyleWord(true);
 			jTextArea_summary.setLineWrap(true);
 			jTextArea_summary.setFocusable(false);
@@ -534,7 +539,7 @@ public class AdministrateBallroomForm {
 	protected JButton getJButton_download() {
 		if (jButton_download == null) {
 			jButton_download = new JButton();
-			jButton_download.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_download.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_download.setEnabled(false);
 			jButton_download.setFocusable(false);
 			jButton_download.setFocusPainted(false);
@@ -578,6 +583,7 @@ public class AdministrateBallroomForm {
 							  double increment=1;
 								 for (int i =  0; i <= 100; i+=increment) {
 								      final int percent = i;
+								      int sleep=300;
 								      try {
 								        SwingUtilities.invokeLater(new Runnable() {
 								         public void run() {
@@ -585,13 +591,13 @@ public class AdministrateBallroomForm {
 								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
-								        Thread.sleep(100);
+								        Thread.sleep(sleep);
 								        if(!main.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 								        	AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								        	break;
 										 }
-								       
+								        sleep+=100;
 								      } catch (InterruptedException e) {
 								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
@@ -611,7 +617,7 @@ public class AdministrateBallroomForm {
 	protected JButton getJButton_upload() {
 		if (jButton_upload == null) {
 			jButton_upload = new JButton();
-			jButton_upload.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_upload.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_upload.setFocusable(false);
 			jButton_upload.setFocusPainted(false);
 			jButton_upload.setBounds(new Rectangle(570, 115, 160, 45));
@@ -634,6 +640,7 @@ public class AdministrateBallroomForm {
 					progress= new Thread(){
 						  public void run(){
 							  double increment=1;
+							  int sleep=300;
 								 for (int i =  0; i <= 100; i+=increment) {
 								      final int percent = i;
 								      try {
@@ -643,13 +650,13 @@ public class AdministrateBallroomForm {
 								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
-								        Thread.sleep(100);
+								        Thread.sleep(sleep);
 								        if(!main.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 								        	AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								        	break;
 										 }
-								       
+								        sleep+=100;
 								      } catch (InterruptedException e) {
 								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
@@ -669,7 +676,7 @@ public class AdministrateBallroomForm {
 	protected JButton getJButton_delete() {
 		if (jButton_delete == null) {
 			jButton_delete = new JButton();
-			jButton_delete.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_delete.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_delete.setFocusable(false);
 			jButton_delete.setFocusPainted(false);
 			jButton_delete.setEnabled(false);
@@ -690,6 +697,7 @@ public class AdministrateBallroomForm {
 					progress= new Thread(){
 						  public void run(){
 							  double increment=1;
+							  int sleep=300;
 								 for (int i =  0; i <= 100; i+=increment) {
 								      final int percent = i;
 								      try {
@@ -699,12 +707,12 @@ public class AdministrateBallroomForm {
 								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
-								        Thread.sleep(100);
+								        Thread.sleep(sleep);
 								        if(!a.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 								        	break;
 										 }
-								       
+								        sleep+=100;
 								      } catch (InterruptedException e) {
 								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
@@ -725,7 +733,7 @@ public class AdministrateBallroomForm {
 	protected JButton getJButton_update() {
 		if (jButton_update == null) {
 			jButton_update = new JButton();
-			jButton_update.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_update.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_update.setFocusable(false);
 			jButton_update.setFocusPainted(false);
 			jButton_update.setEnabled(false);
@@ -750,6 +758,7 @@ public class AdministrateBallroomForm {
 					progress= new Thread(){
 						  public void run(){
 							  double increment=1;
+							  int sleep=300;
 								 for (int i =  0; i <= 100; i+=increment) {
 								      final int percent = i;
 								      try {
@@ -759,12 +768,12 @@ public class AdministrateBallroomForm {
 								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
-								        Thread.sleep(100);
+								        Thread.sleep(sleep);
 								        if(!a.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 								        	break;
 										 }
-								       
+								        sleep+=100;
 								      } catch (InterruptedException e) {
 								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
@@ -924,7 +933,7 @@ public class AdministrateBallroomForm {
 	 *******************************************************/
 	public void displaySummary(){
 		String header="====================================\n";
-		header+="            Ballroom Summary List\n";
+		header+="                    Ballroom Summary List\n";
 		header+="====================================\n\n";
 		
 		String content="";

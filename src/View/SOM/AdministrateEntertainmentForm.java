@@ -149,19 +149,19 @@ public class AdministrateEntertainmentForm {
 	private JPanel getJPanel_header() {
 		if (jPanel_header == null) {
 			jLabel_entertainmentAvailability = new JLabel();
-			jLabel_entertainmentAvailability.setFont(new Font("Segoe UI", Font.BOLD, 12));
+			jLabel_entertainmentAvailability.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_entertainmentAvailability.setBounds(new Rectangle(450, 40, 150, 30));
 			jLabel_entertainmentAvailability.setText("Availability :");
 			jLabel_entertainmentDescription = new JLabel();
-			jLabel_entertainmentDescription.setFont(new Font("Segoe UI", Font.BOLD, 12));
+			jLabel_entertainmentDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_entertainmentDescription.setBounds(new Rectangle(50, 120, 81, 30));
 			jLabel_entertainmentDescription.setText("Description : ");
 			jLabel_entertainmentTitle = new JLabel();
-			jLabel_entertainmentTitle.setFont(new Font("Segoe UI", Font.BOLD, 12));
+			jLabel_entertainmentTitle.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_entertainmentTitle.setBounds(new Rectangle(50, 80, 81, 30));
 			jLabel_entertainmentTitle.setText("Title :");
 			jLabel_entertainmentID = new JLabel();
-			jLabel_entertainmentID.setFont(new Font("Segoe UI", Font.BOLD, 12));
+			jLabel_entertainmentID.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_entertainmentID.setBounds(new Rectangle(50, 40, 80, 30));
 			jLabel_entertainmentID.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_entertainmentID.setText("ID : ");
@@ -189,7 +189,7 @@ public class AdministrateEntertainmentForm {
 			jTextField_entertaimentID.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_entertaimentID.setForeground(SystemColor.scrollbar);
 			jTextField_entertaimentID.setText("  Generated After Creation");
-			jTextField_entertaimentID.setFont(new Font("Dialog", Font.ITALIC, 14));
+			jTextField_entertaimentID.setFont(new Font("Segoe UI", Font.ITALIC, 14));
 			jTextField_entertaimentID.setBounds(new Rectangle(130, 40, 200, 30));
 		}
 		return jTextField_entertaimentID;
@@ -197,6 +197,7 @@ public class AdministrateEntertainmentForm {
 	protected JCheckBox getJCheckBox_entertainmentAvailability() {
 		if (jCheckBox_entertainmentAvailability == null) {
 			jCheckBox_entertainmentAvailability = new JCheckBox();
+			jCheckBox_entertainmentAvailability.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jCheckBox_entertainmentAvailability.setBounds(new Rectangle(550, 40, 200, 30));
 			jCheckBox_entertainmentAvailability.setFocusable(false);
 			jCheckBox_entertainmentAvailability.setFocusPainted(false);
@@ -219,7 +220,7 @@ public class AdministrateEntertainmentForm {
 			jTextField_entertainmentTitle.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_entertainmentTitle.setToolTipText("Enter a title for this entertainment set");
 			jTextField_entertainmentTitle.setText("Enter a Title Here...");
-			jTextField_entertainmentTitle.setFont(new Font("Dialog", Font.ITALIC, 14));
+			jTextField_entertainmentTitle.setFont(new Font("Segoe UI", Font.ITALIC, 14));
 			jTextField_entertainmentTitle.setForeground(SystemColor.scrollbar);
 			jTextField_entertainmentTitle.setBounds(new Rectangle(130, 80, 620, 30));
 			jTextField_entertainmentTitle
@@ -254,7 +255,7 @@ public class AdministrateEntertainmentForm {
 			jTextArea_entertainmentDescription.setWrapStyleWord(true);
 			jTextArea_entertainmentDescription.setLineWrap(true);
 			jTextArea_entertainmentDescription.setText("\n\n                                                       Enter a Description Here...");
-			jTextArea_entertainmentDescription.setFont(new Font("Dialog", Font.ITALIC, 14));
+			jTextArea_entertainmentDescription.setFont(new Font("Segoe UI", Font.ITALIC, 14));
 			jTextArea_entertainmentDescription.setForeground(SystemColor.scrollbar);
 			jTextArea_entertainmentDescription.setToolTipText("Enter a Description here");
 			jTextArea_entertainmentDescription
@@ -285,7 +286,7 @@ public class AdministrateEntertainmentForm {
 			jLabel_$.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 			jLabel_$.setText("$");
 			jLabel_entertainmentMenu = new JLabel();
-			jLabel_entertainmentMenu.setFont(new Font("Segoe UI", Font.BOLD, 12));
+			jLabel_entertainmentMenu.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 			jLabel_entertainmentMenu.setBounds(new Rectangle(50, 40, 150, 30));
 			jLabel_entertainmentMenu.setText("Entertainment List : ");
 			jPanel_Menu = new JPanel();
@@ -381,6 +382,7 @@ public class AdministrateEntertainmentForm {
 	private JTextField getJTextField_entertainmentPrice() {
 		if (jTextField_entertainmentPrice == null) {
 			jTextField_entertainmentPrice = new JTextField();
+			jTextField_entertainmentPrice.setFont(new Font("Segoe UI", Font.ITALIC, 14));
 			jTextField_entertainmentPrice.setText("0.00");
 			jTextField_entertainmentPrice.setForeground(SystemColor.scrollbar);
 			jTextField_entertainmentPrice.setBounds(new Rectangle(440, 240, 150, 30));
@@ -406,7 +408,7 @@ public class AdministrateEntertainmentForm {
 		if (jButton_Add == null) {
 			jButton_Add = new JButton();
 			jButton_Add.setEnabled(true);
-			jButton_Add.setFont(new Font("Segoe UI", Font.BOLD, 12));
+			jButton_Add.setFont(new Font("Segoe UI", Font.ITALIC, 14));
 			jButton_Add.setFocusable(false);
 			jButton_Add.setFocusPainted(false);
 			jButton_Add.setBounds(new Rectangle(600, 240, 150, 30));
@@ -457,6 +459,7 @@ public class AdministrateEntertainmentForm {
 	private JMenuItem getJMenuItem_remove() {
 		if (jMenuItem_remove == null) {
 			jMenuItem_remove = new JMenuItem();
+			jMenuItem_remove.setFont(new Font("Segoe UI", Font.ITALIC, 14));
 			jMenuItem_remove.setOpaque(false);
 			jMenuItem_remove.setText("Remove");
 			jMenuItem_remove.addActionListener(new java.awt.event.ActionListener() {
@@ -482,7 +485,7 @@ public class AdministrateEntertainmentForm {
 			jTextArea_entertainmentMenuDescription.setWrapStyleWord(true);
 			jTextArea_entertainmentMenuDescription.setLineWrap(true);
 			jTextArea_entertainmentMenuDescription.setForeground(SystemColor.scrollbar);
-			jTextArea_entertainmentMenuDescription.setFont(new Font("Dialog", Font.ITALIC, 14));
+			jTextArea_entertainmentMenuDescription.setFont(new Font("Segoe UI", Font.ITALIC, 14));
 			jTextArea_entertainmentMenuDescription.setText("\n\n                                                  Enter a short Description of the entertainment");
 			jTextArea_entertainmentMenuDescription
 					.addFocusListener(new java.awt.event.FocusAdapter() {   
@@ -508,11 +511,11 @@ public class AdministrateEntertainmentForm {
 	private JPanel getJPanel_summary() {
 		if (jPanel_summary == null) {
 			jLabel_entertainmentTotalPrice = new JLabel();
-			jLabel_entertainmentTotalPrice.setFont(new Font("Segoe UI", Font.BOLD, 12));
+			jLabel_entertainmentTotalPrice.setFont(new Font("Segoe UI", Font.ITALIC, 14));
 			jLabel_entertainmentTotalPrice.setBounds(new Rectangle(50, 40, 150, 30));
-			jLabel_entertainmentTotalPrice.setText("Total Price Per Hour :    $");
+			jLabel_entertainmentTotalPrice.setText("Total Price Per Hour :  $");
 			jLabel_entertainmentDiscount = new JLabel();
-			jLabel_entertainmentDiscount.setFont(new Font("Segoe UI", Font.BOLD, 12));
+			jLabel_entertainmentDiscount.setFont(new Font("Segoe UI", Font.ITALIC, 14));
 			jLabel_entertainmentDiscount.setText("Entitled Discount :");
 			jLabel_entertainmentDiscount.setBounds(new Rectangle(400, 40, 150, 30));
 			jPanel_summary = new JPanel();
@@ -555,6 +558,7 @@ public class AdministrateEntertainmentForm {
 	protected JTextField getJTextField_entertainmentTotalPrice() {
 		if (jTextField_entertainmentTotalPrice == null) {
 			jTextField_entertainmentTotalPrice = new JTextField();
+			jTextField_entertainmentTotalPrice.setFont(new Font("Segoe UI", Font.ITALIC, 14));
 			jTextField_entertainmentTotalPrice.setText("0");
 			jTextField_entertainmentTotalPrice.setEditable(false);
 			jTextField_entertainmentTotalPrice.setBounds(new Rectangle(200, 40, 160, 30));
@@ -564,6 +568,7 @@ public class AdministrateEntertainmentForm {
 	protected JTextField getJTextField_entertainmentDiscount() {
 		if (jTextField_entertainmentDiscount == null) {
 			jTextField_entertainmentDiscount = new JTextField();
+			jTextField_entertainmentDiscount.setFont(new Font("Segoe UI", Font.ITALIC, 14));
 			jTextField_entertainmentDiscount.setEditable(false);
 			jTextField_entertainmentDiscount.setText("0%");
 			jTextField_entertainmentDiscount.setBounds(new Rectangle(550, 40, 177, 30));
@@ -581,6 +586,7 @@ public class AdministrateEntertainmentForm {
 	protected JTextArea getJTextArea_formula() {
 		if (jTextArea_formula == null) {
 			jTextArea_formula = new JTextArea();
+			jTextArea_formula.setFont(new Font("Segoe UI", Font.ITALIC, 12));
 			jTextArea_formula.setLineWrap(true);
 			jTextArea_formula.setWrapStyleWord(true);
 			jTextArea_formula.setEditable(false);
@@ -590,7 +596,7 @@ public class AdministrateEntertainmentForm {
 	protected JButton getJButton_download() {
 		if (jButton_download == null) {
 			jButton_download = new JButton();
-			jButton_download.setFont(new Font("Segoe UI", Font.BOLD, 12));
+			jButton_download.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_download.setBounds(new Rectangle(400, 115, 160, 45));
 			jButton_download.setFocusable(false);
 			jButton_download.setFocusPainted(false);
@@ -632,6 +638,7 @@ public class AdministrateEntertainmentForm {
 						  @SuppressWarnings("deprecation")
 						public void run(){
 							  double increment=1;
+							  int sleep=300;
 								 for (int i =  0; i <= 100; i+=increment) {
 								      final int percent = i;
 								      try {
@@ -641,13 +648,13 @@ public class AdministrateEntertainmentForm {
 								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
-								        Thread.sleep(100);
+								        Thread.sleep(sleep);
 								        if(!main.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 								        	AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								        	break;
 										 }
-								       
+								        sleep+=100;
 								      } catch (InterruptedException e) {
 								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
@@ -667,7 +674,7 @@ public class AdministrateEntertainmentForm {
 	protected JButton getJButton_createEntertainment() {
 		if (jButton_createEntertainment == null) {
 			jButton_createEntertainment = new JButton();
-			jButton_createEntertainment.setFont(new Font("Segoe UI", Font.BOLD, 12));
+			jButton_createEntertainment.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_createEntertainment.setFocusable(false);
 			jButton_createEntertainment.setFocusPainted(false);
 			jButton_createEntertainment.setBounds(new Rectangle(570, 115, 160, 45));
@@ -691,6 +698,7 @@ public class AdministrateEntertainmentForm {
 							progress= new Thread(){
 								  public void run(){
 									  double increment=1;
+									  int sleep=300;
 										 for (int i =  0; i <= 100; i+=increment) {
 										      final int percent = i;
 										      try {
@@ -700,13 +708,13 @@ public class AdministrateEntertainmentForm {
 										        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 										          }
 										        });
-										        Thread.sleep(100);
+										        Thread.sleep(sleep);
 										        if(!main.isAlive()){
 										        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 										        	AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 										        	break;
 												 }
-										       
+										        sleep+=100;
 										      } catch (InterruptedException e) {
 										    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
 										      }
@@ -725,7 +733,7 @@ public class AdministrateEntertainmentForm {
 	protected JButton getJButton_Update() {
 		if (jButton_Update == null) {
 			jButton_Update = new JButton();
-			jButton_Update.setFont(new Font("Segoe UI", Font.BOLD, 12));
+			jButton_Update.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_Update.setFocusable(false);
 			jButton_Update.setFocusPainted(false);
 			jButton_Update.setBounds(new Rectangle(570, 170, 160, 45));
@@ -750,6 +758,7 @@ public class AdministrateEntertainmentForm {
 					progress= new Thread(){
 						  public void run(){
 							  double increment=1;
+							  int sleep=300;
 								 for (int i =  0; i <= 100; i+=increment) {
 								      final int percent = i;
 								      try {
@@ -759,12 +768,12 @@ public class AdministrateEntertainmentForm {
 								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
-								        Thread.sleep(100);
+								        Thread.sleep(sleep);
 								        if(!a.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 								        	break;
 										 }
-								       
+								        sleep+=100;
 								      } catch (InterruptedException e) {
 								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
@@ -785,7 +794,7 @@ public class AdministrateEntertainmentForm {
 	protected JButton getJButton_delete() {
 		if (jButton_delete == null) {
 			jButton_delete = new JButton();
-			jButton_delete.setFont(new Font("Segoe UI", Font.BOLD, 12));
+			jButton_delete.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_delete.setFocusable(false);
 			jButton_delete.setFocusPainted(false);
 			jButton_delete.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/delete.png")));
@@ -806,6 +815,7 @@ public class AdministrateEntertainmentForm {
 					progress= new Thread(){
 						  public void run(){
 							  double increment=1;
+							  int sleep=300;
 								 for (int i =  0; i <= 100; i+=increment) {
 								      final int percent = i;
 								      try {
@@ -815,12 +825,12 @@ public class AdministrateEntertainmentForm {
 								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
-								        Thread.sleep(100);
+								        Thread.sleep(sleep);
 								        if(!a.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 								        	break;
 										 }
-								       
+								        sleep+=100;
 								      } catch (InterruptedException e) {
 								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
@@ -969,7 +979,7 @@ public class AdministrateEntertainmentForm {
 	 *******************************************************/
 	public void displaySummary(){
 		String header="====================================\n";
-		header+="            Entertainment Summary List\n";
+		header+="                    Entertainment Summary List\n";
 		header+="====================================\n\n";
 		
 		String content="";

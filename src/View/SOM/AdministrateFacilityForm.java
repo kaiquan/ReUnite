@@ -299,7 +299,7 @@ public class AdministrateFacilityForm {
 			jTextArea_facilityDescription.setWrapStyleWord(true);
 			jTextArea_facilityDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextArea_facilityDescription.setForeground(SystemColor.scrollbar);
-			jTextArea_facilityDescription.setText("\n\n                                                  Enter a Description Here");
+			jTextArea_facilityDescription.setText("\n\n                                                                             Enter a Description Here");
 			jTextArea_facilityDescription.setAutoscrolls(true);
 			jTextArea_facilityDescription.setLineWrap(true);
 			jTextArea_facilityDescription
@@ -307,11 +307,11 @@ public class AdministrateFacilityForm {
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					if(jTextArea_facilityDescription.getText().equals("")){
 						jTextArea_facilityDescription.setForeground(SystemColor.scrollbar);
-						jTextArea_facilityDescription.setText("\n\n                                                  Enter a Description Here");
+						jTextArea_facilityDescription.setText("\n\n                                                                             Enter a Description Here");
 					}
 				}
 						public void focusGained(java.awt.event.FocusEvent e) {
-							if(jTextArea_facilityDescription.getText().equals("\n\n                                                  Enter a Description Here")){
+							if(jTextArea_facilityDescription.getText().equals("\n\n                                                                             Enter a Description Here")){
 								jTextArea_facilityDescription.setText("");
 								jTextArea_facilityDescription.setForeground(SystemColor.black);
 							}
@@ -498,17 +498,17 @@ public class AdministrateFacilityForm {
 			jTextArea_ballroomDescription.setWrapStyleWord(true);
 			jTextArea_ballroomDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextArea_ballroomDescription.setForeground(SystemColor.scrollbar);
-			jTextArea_ballroomDescription.setText("\n\n                          Enter a Short Description of the Ballroom");
+			jTextArea_ballroomDescription.setText("\n\n                                              Enter a Short Description of the Ballroom");
 			jTextArea_ballroomDescription
 					.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					if(jTextArea_ballroomDescription.getText().equals("")){
 						jTextArea_ballroomDescription.setForeground(SystemColor.scrollbar);
-						jTextArea_ballroomDescription.setText("\n\n                          Enter a Short Description of the Ballroom");
+						jTextArea_ballroomDescription.setText("\n\n                                              Enter a Short Description of the Ballroom");
 					}
 				}
 						public void focusGained(java.awt.event.FocusEvent e) {
-							if(jTextArea_ballroomDescription.getText().equals("\n\n                          Enter a Short Description of the Ballroom")){
+							if(jTextArea_ballroomDescription.getText().equals("\n\n                                              Enter a Short Description of the Ballroom")){
 								jTextArea_ballroomDescription.setForeground(SystemColor.black);
 								jTextArea_ballroomDescription.setText("");
 							}
@@ -1106,7 +1106,7 @@ public class AdministrateFacilityForm {
 	 *******************************************************/
 	public void displaySummary(){
 		String header="====================================\n";
-		header+="            Ballroom Summary List\n";
+		header+="                            Ballroom Summary List\n";
 		header+="====================================\n\n";
 		
 		String content="";

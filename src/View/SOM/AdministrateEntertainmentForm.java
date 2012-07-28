@@ -220,7 +220,7 @@ public class AdministrateEntertainmentForm {
 			jTextField_entertainmentTitle.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_entertainmentTitle.setToolTipText("Enter a title for this entertainment set");
 			jTextField_entertainmentTitle.setText("Enter a Title Here...");
-			jTextField_entertainmentTitle.setFont(new Font("Segoe UI", Font.ITALIC, 14));
+			jTextField_entertainmentTitle.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_entertainmentTitle.setForeground(SystemColor.scrollbar);
 			jTextField_entertainmentTitle.setBounds(new Rectangle(130, 80, 620, 30));
 			jTextField_entertainmentTitle
@@ -254,20 +254,20 @@ public class AdministrateEntertainmentForm {
 			jTextArea_entertainmentDescription = new JTextArea();
 			jTextArea_entertainmentDescription.setWrapStyleWord(true);
 			jTextArea_entertainmentDescription.setLineWrap(true);
-			jTextArea_entertainmentDescription.setText("\n\n                                                       Enter a Description Here...");
-			jTextArea_entertainmentDescription.setFont(new Font("Segoe UI", Font.ITALIC, 14));
+			jTextArea_entertainmentDescription.setText("\n\n                                                                                Enter a Description Here...");
+			jTextArea_entertainmentDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextArea_entertainmentDescription.setForeground(SystemColor.scrollbar);
 			jTextArea_entertainmentDescription.setToolTipText("Enter a Description here");
 			jTextArea_entertainmentDescription
 					.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					if(jTextArea_entertainmentDescription.getText().equals("")){
-						jTextArea_entertainmentDescription.setText("\n\n                                                       Enter a Description Here...");
+						jTextArea_entertainmentDescription.setText("\n\n                                                                                Enter a Description Here...");
 						jTextArea_entertainmentDescription.setForeground(SystemColor.scrollbar);
 					}
 				}
 						public void focusGained(java.awt.event.FocusEvent e) {
-							if(jTextArea_entertainmentDescription.getText().equals("\n\n                                                       Enter a Description Here...")){
+							if(jTextArea_entertainmentDescription.getText().equals("\n\n                                                                                Enter a Description Here...")){
 								jTextArea_entertainmentDescription.setText("");
 								jTextArea_entertainmentDescription.setForeground(SystemColor.black);
 							}
@@ -286,7 +286,7 @@ public class AdministrateEntertainmentForm {
 			jLabel_$.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 			jLabel_$.setText("$");
 			jLabel_entertainmentMenu = new JLabel();
-			jLabel_entertainmentMenu.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+			jLabel_entertainmentMenu.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_entertainmentMenu.setBounds(new Rectangle(50, 40, 150, 30));
 			jLabel_entertainmentMenu.setText("Entertainment List : ");
 			jPanel_Menu = new JPanel();
@@ -357,6 +357,7 @@ public class AdministrateEntertainmentForm {
 	private JTextField getJTextField_entertainmentMenu() {
 		if (jTextField_entertainmentMenu == null) {
 			jTextField_entertainmentMenu = new JTextField();
+			jTextField_entertainmentMenu.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_entertainmentMenu.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_entertainmentMenu.setBounds(new Rectangle(50, 240, 370, 30));
 			jTextField_entertainmentMenu.setForeground(SystemColor.scrollbar);
@@ -382,7 +383,7 @@ public class AdministrateEntertainmentForm {
 	private JTextField getJTextField_entertainmentPrice() {
 		if (jTextField_entertainmentPrice == null) {
 			jTextField_entertainmentPrice = new JTextField();
-			jTextField_entertainmentPrice.setFont(new Font("Segoe UI", Font.ITALIC, 14));
+			jTextField_entertainmentPrice.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_entertainmentPrice.setText("0.00");
 			jTextField_entertainmentPrice.setForeground(SystemColor.scrollbar);
 			jTextField_entertainmentPrice.setBounds(new Rectangle(440, 240, 150, 30));
@@ -408,7 +409,7 @@ public class AdministrateEntertainmentForm {
 		if (jButton_Add == null) {
 			jButton_Add = new JButton();
 			jButton_Add.setEnabled(true);
-			jButton_Add.setFont(new Font("Segoe UI", Font.ITALIC, 14));
+			jButton_Add.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_Add.setFocusable(false);
 			jButton_Add.setFocusPainted(false);
 			jButton_Add.setBounds(new Rectangle(600, 240, 150, 30));
@@ -459,7 +460,7 @@ public class AdministrateEntertainmentForm {
 	private JMenuItem getJMenuItem_remove() {
 		if (jMenuItem_remove == null) {
 			jMenuItem_remove = new JMenuItem();
-			jMenuItem_remove.setFont(new Font("Segoe UI", Font.ITALIC, 14));
+			jMenuItem_remove.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jMenuItem_remove.setOpaque(false);
 			jMenuItem_remove.setText("Remove");
 			jMenuItem_remove.addActionListener(new java.awt.event.ActionListener() {
@@ -485,18 +486,18 @@ public class AdministrateEntertainmentForm {
 			jTextArea_entertainmentMenuDescription.setWrapStyleWord(true);
 			jTextArea_entertainmentMenuDescription.setLineWrap(true);
 			jTextArea_entertainmentMenuDescription.setForeground(SystemColor.scrollbar);
-			jTextArea_entertainmentMenuDescription.setFont(new Font("Segoe UI", Font.ITALIC, 14));
-			jTextArea_entertainmentMenuDescription.setText("\n\n                                                  Enter a short Description of the entertainment");
+			jTextArea_entertainmentMenuDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+			jTextArea_entertainmentMenuDescription.setText("\n\n                                                                                Enter a short Description of the entertainment");
 			jTextArea_entertainmentMenuDescription
 					.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					if(jTextArea_entertainmentMenuDescription.getText().equals("")){
-						jTextArea_entertainmentMenuDescription.setText("\n\n                                                  Enter a short Description of the entertainment");
+						jTextArea_entertainmentMenuDescription.setText("\n\n                                                                                Enter a short Description of the entertainment");
 						jTextArea_entertainmentMenuDescription.setForeground(SystemColor.scrollbar);
 					}
 				}
 						public void focusGained(java.awt.event.FocusEvent e) {
-							if(jTextArea_entertainmentMenuDescription.getText().equals("\n\n                                                  Enter a short Description of the entertainment")){
+							if(jTextArea_entertainmentMenuDescription.getText().equals("\n\n                                                                                Enter a short Description of the entertainment")){
 								jTextArea_entertainmentMenuDescription.setText("");
 								jTextArea_entertainmentMenuDescription.setForeground(SystemColor.black);
 							}
@@ -511,11 +512,11 @@ public class AdministrateEntertainmentForm {
 	private JPanel getJPanel_summary() {
 		if (jPanel_summary == null) {
 			jLabel_entertainmentTotalPrice = new JLabel();
-			jLabel_entertainmentTotalPrice.setFont(new Font("Segoe UI", Font.ITALIC, 14));
+			jLabel_entertainmentTotalPrice.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_entertainmentTotalPrice.setBounds(new Rectangle(50, 40, 150, 30));
 			jLabel_entertainmentTotalPrice.setText("Total Price Per Hour :  $");
 			jLabel_entertainmentDiscount = new JLabel();
-			jLabel_entertainmentDiscount.setFont(new Font("Segoe UI", Font.ITALIC, 14));
+			jLabel_entertainmentDiscount.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_entertainmentDiscount.setText("Entitled Discount :");
 			jLabel_entertainmentDiscount.setBounds(new Rectangle(400, 40, 150, 30));
 			jPanel_summary = new JPanel();
@@ -558,7 +559,7 @@ public class AdministrateEntertainmentForm {
 	protected JTextField getJTextField_entertainmentTotalPrice() {
 		if (jTextField_entertainmentTotalPrice == null) {
 			jTextField_entertainmentTotalPrice = new JTextField();
-			jTextField_entertainmentTotalPrice.setFont(new Font("Segoe UI", Font.ITALIC, 14));
+			jTextField_entertainmentTotalPrice.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_entertainmentTotalPrice.setText("0");
 			jTextField_entertainmentTotalPrice.setEditable(false);
 			jTextField_entertainmentTotalPrice.setBounds(new Rectangle(200, 40, 160, 30));
@@ -568,7 +569,7 @@ public class AdministrateEntertainmentForm {
 	protected JTextField getJTextField_entertainmentDiscount() {
 		if (jTextField_entertainmentDiscount == null) {
 			jTextField_entertainmentDiscount = new JTextField();
-			jTextField_entertainmentDiscount.setFont(new Font("Segoe UI", Font.ITALIC, 14));
+			jTextField_entertainmentDiscount.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_entertainmentDiscount.setEditable(false);
 			jTextField_entertainmentDiscount.setText("0%");
 			jTextField_entertainmentDiscount.setBounds(new Rectangle(550, 40, 177, 30));
@@ -586,7 +587,7 @@ public class AdministrateEntertainmentForm {
 	protected JTextArea getJTextArea_formula() {
 		if (jTextArea_formula == null) {
 			jTextArea_formula = new JTextArea();
-			jTextArea_formula.setFont(new Font("Segoe UI", Font.ITALIC, 12));
+			jTextArea_formula.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextArea_formula.setLineWrap(true);
 			jTextArea_formula.setWrapStyleWord(true);
 			jTextArea_formula.setEditable(false);
@@ -979,7 +980,7 @@ public class AdministrateEntertainmentForm {
 	 *******************************************************/
 	public void displaySummary(){
 		String header="====================================\n";
-		header+="                    Entertainment Summary List\n";
+		header+="                       Entertainment Summary List\n";
 		header+="====================================\n\n";
 		
 		String content="";

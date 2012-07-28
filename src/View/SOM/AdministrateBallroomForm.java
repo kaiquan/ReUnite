@@ -933,7 +933,7 @@ public class AdministrateBallroomForm {
 	 *******************************************************/
 	public void displaySummary(){
 		String header="====================================\n";
-		header+="                    Ballroom Summary List\n";
+		header+="                         Ballroom Summary List\n";
 		header+="====================================\n\n";
 		
 		String content="";

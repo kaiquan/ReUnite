@@ -156,19 +156,19 @@ public class AdministrateMealForm {
 	private JPanel getJPanel_header() {
 		if (jPanel_header == null) {
 			jLabel_mealDescription = new JLabel();
-			jLabel_mealDescription.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_mealDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_mealDescription.setBounds(new Rectangle(50, 120, 81, 30));
 			jLabel_mealDescription.setText("Description :");
 			jLabel_mealTitle = new JLabel();
-			jLabel_mealTitle.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_mealTitle.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_mealTitle.setBounds(new Rectangle(50, 80, 81, 30));
 			jLabel_mealTitle.setText("Title :");
 			jLabel_MealAvailability = new JLabel();
-			jLabel_MealAvailability.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_MealAvailability.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_MealAvailability.setBounds(new Rectangle(450, 40, 150, 30));
 			jLabel_MealAvailability.setText("Availability :");
 			jLabel_mealID = new JLabel();
-			jLabel_mealID.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_mealID.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_mealID.setBounds(new Rectangle(50, 40, 80, 30));
 			jLabel_mealID.setText("ID :");
 			jPanel_header = new JPanel();
@@ -193,7 +193,7 @@ public class AdministrateMealForm {
 			jTextField_mealID.setEnabled(false);
 			jTextField_mealID.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_mealID.setText("  Generated After Creation");
-			jTextField_mealID.setFont(new Font("Dialog", Font.ITALIC, 14));
+			jTextField_mealID.setFont(new Font("Segoe UI", Font.ITALIC, 14));
 			jTextField_mealID.setBounds(new Rectangle(130, 40, 200, 30));
 		}
 		return jTextField_mealID;
@@ -201,6 +201,7 @@ public class AdministrateMealForm {
 	protected JCheckBox getJCheckBox_mealAvailability() {
 		if (jCheckBox_mealAvailability == null) {
 			jCheckBox_mealAvailability = new JCheckBox();
+			jCheckBox_mealAvailability.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jCheckBox_mealAvailability.setText("Not Available");
 			jCheckBox_mealAvailability.setFocusable(false);
 			jCheckBox_mealAvailability.setFocusPainted(false);
@@ -223,7 +224,7 @@ public class AdministrateMealForm {
 			jTextField_mealTitle = new JTextField();
 			jTextField_mealTitle.setBounds(new Rectangle(130, 80, 620, 30));
 			jTextField_mealTitle.setHorizontalAlignment(JTextField.CENTER);
-			jTextField_mealTitle.setFont(new Font("Dialog", Font.ITALIC, 14));
+			jTextField_mealTitle.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_mealTitle.setText("Enter Meal TItle Here");
 			jTextField_mealTitle.setForeground(SystemColor.scrollbar);
 			jTextField_mealTitle.addFocusListener(new java.awt.event.FocusAdapter() {   
@@ -256,18 +257,18 @@ public class AdministrateMealForm {
 			jTextArea_mealDescription = new JTextArea();
 			jTextArea_mealDescription.setLineWrap(true);
 			jTextArea_mealDescription.setWrapStyleWord(true);
-			jTextArea_mealDescription.setFont(new Font("Dialog", Font.ITALIC, 14));
-			jTextArea_mealDescription.setText("\n\n                                                      Enter a Description Here");
+			jTextArea_mealDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+			jTextArea_mealDescription.setText("\n\n                                                                                Enter a Description Here");
 			jTextArea_mealDescription.setForeground(SystemColor.scrollbar);
 			jTextArea_mealDescription.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					if(jTextArea_mealDescription.getText().equals("")){
-						jTextArea_mealDescription.setText("\n\n                                                      Enter a Description Here");
+						jTextArea_mealDescription.setText("\n\n                                                                                Enter a Description Here");
 						jTextArea_mealDescription.setForeground(SystemColor.scrollbar);
 					}
 				}
 				public void focusGained(java.awt.event.FocusEvent e) {
-					if(jTextArea_mealDescription.getText().equals("\n\n                                                      Enter a Description Here")){
+					if(jTextArea_mealDescription.getText().equals("\n\n                                                                                Enter a Description Here")){
 						jTextArea_mealDescription.setForeground(SystemColor.black);
 						jTextArea_mealDescription.setText("");
 					}
@@ -282,15 +283,15 @@ public class AdministrateMealForm {
 	private JPanel getJPanel_mealMenu() {
 		if (jPanel_mealMenu == null) {
 			jLabel_mealPrice = new JLabel();
-			jLabel_mealPrice.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_mealPrice.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_mealPrice.setBounds(new Rectangle(590, 280, 15, 30));
 			jLabel_mealPrice.setText("$");
 			jLabel_mealMenu = new JLabel();
-			jLabel_mealMenu.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_mealMenu.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_mealMenu.setBounds(new Rectangle(50, 40, 150, 30));
 			jLabel_mealMenu.setText("Meal List :");
 			jLabel_mealType = new JLabel();
-			jLabel_mealType.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_mealType.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_mealType.setBounds(new Rectangle(50, 80, 150, 30));
 			jLabel_mealType.setText("Type :");
 			jPanel_mealMenu = new JPanel();
@@ -316,7 +317,7 @@ public class AdministrateMealForm {
 	protected JComboBox getJComboBox_mealType() {
 		if (jComboBox_mealType == null) {
 			jComboBox_mealType = new JComboBox();
-			jComboBox_mealType.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jComboBox_mealType.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			//meal info @http://wiki.answers.com/Q/What_are_the_types_of_meal_services
 			jComboBox_mealType.setFocusable(false);
 			jComboBox_mealType.addItem("Select a Meal Genre");
@@ -386,7 +387,7 @@ public class AdministrateMealForm {
 	protected JTextField getJTextField_mealMenu() {
 		if (jTextField_mealMenu == null) {
 			jTextField_mealMenu = new JTextField();
-			jTextField_mealMenu.setFont(new Font("Dialog", Font.ITALIC, 14));
+			jTextField_mealMenu.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_mealMenu.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_mealMenu.setText("Enter a Meal Name");
 			jTextField_mealMenu.setForeground(SystemColor.scrollbar);
@@ -411,7 +412,7 @@ public class AdministrateMealForm {
 	protected JTextField getJTextField_mealPrice() {
 		if (jTextField_mealPrice == null) {
 			jTextField_mealPrice = new JTextField();
-			jTextField_mealPrice.setFont(new Font("Dialog", Font.ITALIC, 14));
+			jTextField_mealPrice.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_mealPrice.setText("0.00");
 			jTextField_mealPrice.setForeground(SystemColor.scrollbar);
 			jTextField_mealPrice.setBounds(new Rectangle(600, 280, 150, 30));
@@ -435,7 +436,7 @@ public class AdministrateMealForm {
 	private JButton getJButton_add() {
 		if (jButton_add == null) {
 			jButton_add = new JButton();
-			jButton_add.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_add.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_add.setFocusable(false);
 			jButton_add.setFocusPainted(false);
 			jButton_add.setBounds(new Rectangle(596, 425, 150, 30));
@@ -477,6 +478,7 @@ public class AdministrateMealForm {
 	private JCheckBox getJCheckBox_mealHalal() {
 		if (jCheckBox_mealHalal == null) {
 			jCheckBox_mealHalal = new JCheckBox();
+			jCheckBox_mealHalal.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jCheckBox_mealHalal.setBounds(new Rectangle(597, 370, 150, 30));
 			jCheckBox_mealHalal.setFocusable(false);
 			jCheckBox_mealHalal.setFocusPainted(false);
@@ -497,6 +499,7 @@ public class AdministrateMealForm {
 	private JCheckBox getJCheckBox_mealVegetarian() {
 		if (jCheckBox_mealVegetarian == null) {
 			jCheckBox_mealVegetarian = new JCheckBox();
+			jCheckBox_mealVegetarian.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jCheckBox_mealVegetarian.setFocusable(false);
 			jCheckBox_mealVegetarian.setFocusPainted(false);
 			jCheckBox_mealVegetarian.setBounds(new Rectangle(598, 330, 150, 30));
@@ -527,19 +530,19 @@ public class AdministrateMealForm {
 			jTextArea_mealMenuDescription = new JTextArea();
 			jTextArea_mealMenuDescription.setWrapStyleWord(true);
 			jTextArea_mealMenuDescription.setLineWrap(true);
-			jTextArea_mealMenuDescription.setFont(new Font("Dialog", Font.ITALIC, 14));
-			jTextArea_mealMenuDescription.setText("\n\n\n                                        Enter a Short Description of the Meal");
+			jTextArea_mealMenuDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+			jTextArea_mealMenuDescription.setText("\n\n\n                                                         Enter a Short Description of the Meal");
 			jTextArea_mealMenuDescription.setForeground(SystemColor.scrollbar);
 			jTextArea_mealMenuDescription
 					.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					if(jTextArea_mealMenuDescription.getText().equals("")){
-						jTextArea_mealMenuDescription.setText("\n\n\n                                        Enter a Short Description of the Meal");
+						jTextArea_mealMenuDescription.setText("\n\n\n                                                         Enter a Short Description of the Meal");
 						jTextArea_mealMenuDescription.setForeground(SystemColor.scrollbar);
 					}
 				}
 						public void focusGained(java.awt.event.FocusEvent e) {
-							if(jTextArea_mealMenuDescription.getText().equals("\n\n\n                                        Enter a Short Description of the Meal")){
+							if(jTextArea_mealMenuDescription.getText().equals("\n\n\n                                                         Enter a Short Description of the Meal")){
 								jTextArea_mealMenuDescription.setText("");
 								jTextArea_mealMenuDescription.setForeground(SystemColor.black);
 							}
@@ -561,6 +564,7 @@ public class AdministrateMealForm {
 	private JMenuItem getJMenuItem_remove() {
 		if (jMenuItem_remove == null) {
 			jMenuItem_remove = new JMenuItem();
+			jMenuItem_remove.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jMenuItem_remove.setOpaque(false);
 			jMenuItem_remove.setText("Remove");
 			jMenuItem_remove.addActionListener(new java.awt.event.ActionListener() {
@@ -580,11 +584,11 @@ public class AdministrateMealForm {
 	private JPanel getJPanel_mealSummary() {
 		if (jPanel_mealSummary == null) {
 			jLabel_mealDiscount = new JLabel();
-			jLabel_mealDiscount.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_mealDiscount.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_mealDiscount.setBounds(new Rectangle(400, 40, 150, 30));
 			jLabel_mealDiscount.setText("Entitled Discount :");
 			jLabel_mealTotalPricePerHead = new JLabel();
-			jLabel_mealTotalPricePerHead.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_mealTotalPricePerHead.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_mealTotalPricePerHead.setBounds(new Rectangle(50, 40, 150, 30));
 			jLabel_mealTotalPricePerHead.setText("Total Price Per Head :");
 			jPanel_mealSummary = new JPanel();
@@ -607,6 +611,7 @@ public class AdministrateMealForm {
 	protected JTextField getJTextField_mealTotalPricePerHead() {
 		if (jTextField_mealTotalPricePerHead == null) {
 			jTextField_mealTotalPricePerHead = new JTextField();
+			jTextField_mealTotalPricePerHead.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_mealTotalPricePerHead.setText("0.00");
 			jTextField_mealTotalPricePerHead.setEditable(false);
 			jTextField_mealTotalPricePerHead.setBounds(new Rectangle(200, 40, 160, 30));
@@ -616,6 +621,7 @@ public class AdministrateMealForm {
 	protected JTextField getJTextField_mealDiscount() {
 		if (jTextField_mealDiscount == null) {
 			jTextField_mealDiscount = new JTextField();
+			jTextField_mealDiscount.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_mealDiscount.setText("0%");
 			jTextField_mealDiscount.setEditable(false);
 			jTextField_mealDiscount.setBounds(new Rectangle(550, 40, 177, 30));
@@ -652,6 +658,7 @@ public class AdministrateMealForm {
 	private JTextArea getJTextArea_mealSummary() {
 		if (jTextArea_mealSummary == null) {
 			jTextArea_mealSummary = new JTextArea();
+			jTextArea_mealSummary.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextArea_mealSummary.setEditable(false);
 			jTextArea_mealSummary.setWrapStyleWord(true);
 			jTextArea_mealSummary.setLineWrap(true);
@@ -661,7 +668,7 @@ public class AdministrateMealForm {
 	protected JButton getJButton_download() {
 		if (jButton_download == null) {
 			jButton_download = new JButton();
-			jButton_download.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_download.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_download.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/download.png")));
 			jButton_download.setBounds(new Rectangle(400, 115, 160, 45));
 			jButton_download.setFocusable(false);
@@ -739,7 +746,7 @@ public class AdministrateMealForm {
 	protected JButton getJButton_upload() {
 		if (jButton_upload == null) {
 			jButton_upload = new JButton();
-			jButton_upload.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_upload.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_upload.setFocusable(false);
 			jButton_upload.setFocusPainted(false);
 			jButton_upload.setBounds(new Rectangle(570, 115, 160, 45));
@@ -797,7 +804,7 @@ public class AdministrateMealForm {
 	protected JButton getJButton_delete() {
 		if (jButton_delete == null) {
 			jButton_delete = new JButton();
-			jButton_delete.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_delete.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_delete.setFocusable(false);
 			jButton_delete.setFocusPainted(false);
 			jButton_delete.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/delete.png")));
@@ -854,7 +861,7 @@ public class AdministrateMealForm {
 	protected JButton getJButton_update() {
 		if (jButton_update == null) {
 			jButton_update = new JButton();
-			jButton_update.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_update.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_update.setFocusable(false);
 			jButton_update.setFocusPainted(false);
 			jButton_update.setBounds(new Rectangle(570, 170, 160, 45));
@@ -1055,9 +1062,9 @@ public class AdministrateMealForm {
 	 * 					  current meal record
 	 *******************************************************/
 	public void displaySummary(){
-		String header="====================================\n";
-		header+="                    Meal Summary List\n";
-		header+="====================================\n\n";
+		String header="=====================================\n";
+		header+="                                Meal Summary List\n";
+		header+="=====================================\n\n";
 		
 		String content="";
 		for(int i=0;i<model.getRowCount();i++){

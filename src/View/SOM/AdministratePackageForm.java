@@ -241,19 +241,19 @@ public class AdministratePackageForm {
 	private JPanel getJPanel_header() {
 		if (jPanel_header == null) {
 			jLabel_packageDescription = new JLabel();
-			jLabel_packageDescription.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_packageDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_packageDescription.setBounds(new Rectangle(50, 120, 81, 30));
 			jLabel_packageDescription.setText("Description :");
 			jLabel_packageTitle = new JLabel();
-			jLabel_packageTitle.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_packageTitle.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_packageTitle.setBounds(new Rectangle(50, 80, 80, 30));
 			jLabel_packageTitle.setText("Title :");
 			jLabel_packageAvailability = new JLabel();
-			jLabel_packageAvailability.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_packageAvailability.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_packageAvailability.setBounds(new Rectangle(450, 40, 150, 30));
 			jLabel_packageAvailability.setText("Availability :");
 			jLabel_packageID = new JLabel();
-			jLabel_packageID.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_packageID.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_packageID.setBounds(new Rectangle(50, 40, 80, 30));
 			jLabel_packageID.setText("ID :");
 			jPanel_header = new JPanel();
@@ -276,7 +276,7 @@ public class AdministratePackageForm {
 			jTextField_packageID = new JTextField();
 			jTextField_packageID.setForeground(SystemColor.scrollbar);
 			jTextField_packageID.setText("  Generated After Creation");
-			jTextField_packageID.setFont(new Font("Dialog", Font.ITALIC, 14));
+			jTextField_packageID.setFont(new Font("Segoe UI", Font.ITALIC, 14));
 			jTextField_packageID.setEditable(false);
 			jTextField_packageID.setBounds(new Rectangle(130, 40, 200, 30));
 		}
@@ -285,6 +285,7 @@ public class AdministratePackageForm {
 	protected JCheckBox getJCheckBox_packageAvailability() {
 		if (jCheckBox_packageAvailability == null) {
 			jCheckBox_packageAvailability = new JCheckBox();
+			jCheckBox_packageAvailability.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jCheckBox_packageAvailability.setFocusable(false);
 			jCheckBox_packageAvailability.setFocusPainted(false);
 			jCheckBox_packageAvailability.setBounds(new Rectangle(550, 40, 200, 30));
@@ -306,19 +307,20 @@ public class AdministratePackageForm {
 	protected JTextField getJTextField_packageTitle() {
 		if (jTextField_packageTitle == null) {
 			jTextField_packageTitle = new JTextField();
-			jTextField_packageTitle.setText("                                                   Enter Package Name Here");
-			jTextField_packageTitle.setFont(new Font("Dialog", Font.ITALIC, 14));
+			jTextField_packageTitle.setHorizontalAlignment(JTextField.CENTER);
+			jTextField_packageTitle.setText("Enter Package Name Here");
+			jTextField_packageTitle.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_packageTitle.setForeground(SystemColor.scrollbar);
 			jTextField_packageTitle.setBounds(new Rectangle(130, 80, 620, 30));
 			jTextField_packageTitle.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					if(jTextField_packageTitle.getText().equals("")){
-						jTextField_packageTitle.setText("                                                   Enter Package Name Here");
+						jTextField_packageTitle.setText("Enter Package Name Here");
 						jTextField_packageTitle.setForeground(SystemColor.scrollbar);
 					}
 				}
 				public void focusGained(java.awt.event.FocusEvent e) {
-					if(jTextField_packageTitle.getText().equals("                                                   Enter Package Name Here")){
+					if(jTextField_packageTitle.getText().equals("Enter Package Name Here")){
 						jTextField_packageTitle.setText("");
 						jTextField_packageTitle.setForeground(SystemColor.black);
 					}
@@ -338,18 +340,18 @@ public class AdministratePackageForm {
 	protected JTextArea getJTextArea_packageDescription() {
 		if (jTextArea_packageDescription == null) {
 			jTextArea_packageDescription = new JTextArea();
-			jTextArea_packageDescription.setFont(new Font("Dialog", Font.ITALIC, 14));
+			jTextArea_packageDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextArea_packageDescription.setForeground(SystemColor.scrollbar);
-			jTextArea_packageDescription.setText("\n\n                                                     Enter a Description Here");
+			jTextArea_packageDescription.setText("\n\n                                                                                 Enter a Description Here");
 			jTextArea_packageDescription.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					if(jTextArea_packageDescription.getText().equals("")){
 						jTextArea_packageDescription.setForeground(SystemColor.scrollbar);
-						jTextArea_packageDescription.setText("\n\n                                                     Enter a Description Here");
+						jTextArea_packageDescription.setText("\n\n                                                                                 Enter a Description Here");
 					}
 				}
 						public void focusGained(java.awt.event.FocusEvent e) {
-							if(jTextArea_packageDescription.getText().equals("\n\n                                                     Enter a Description Here")){
+							if(jTextArea_packageDescription.getText().equals("\n\n                                                                                 Enter a Description Here")){
 								jTextArea_packageDescription.setForeground(SystemColor.black);
 								jTextArea_packageDescription.setText("");
 							}
@@ -364,7 +366,7 @@ public class AdministratePackageForm {
 	private JPanel getJPanel_body() {
 		if (jPanel_body == null) {
 			jLabel_selectComponents = new JLabel();
-			jLabel_selectComponents.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_selectComponents.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_selectComponents.setBounds(new Rectangle(30, 40, 250, 30));
 			jLabel_selectComponents.setText("Select Package Components :");
 			jPanel_body = new JPanel();
@@ -383,7 +385,7 @@ public class AdministratePackageForm {
 			jPanel_ballroom = new JPanel();
 			jPanel_ballroom.setLayout(null);
 			jPanel_ballroom.setBounds(new Rectangle(30, 90, 750, 100));
-			jPanel_ballroom.setBorder(BorderFactory.createTitledBorder(null, "1) Select a Ballroom", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Century Gothic", Font.BOLD, 12), Color.black));
+			jPanel_ballroom.setBorder(BorderFactory.createTitledBorder(null, "1) Select a Ballroom", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Segoe UI", Font.BOLD, 12), Color.black));
 			jPanel_ballroom.add(getJCheckBox_Ballroom(), null);
 			jPanel_ballroom.add(getJTextField_Ballroom(), null);
 			jPanel_ballroom.add(getJButton_ballroom(), null);
@@ -405,6 +407,7 @@ public class AdministratePackageForm {
 	protected JTextField getJTextField_Ballroom() {
 		if (jTextField_Ballroom == null) {
 			jTextField_Ballroom = new JTextField();
+			jTextField_Ballroom.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_Ballroom.setEditable(false);
 			jTextField_Ballroom.setBounds(new Rectangle(57, 32, 504, 30));
 		}
@@ -413,7 +416,7 @@ public class AdministratePackageForm {
 	private JButton getJButton_ballroom() {
 		if (jButton_ballroom == null) {
 			jButton_ballroom = new JButton();
-			jButton_ballroom.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_ballroom.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_ballroom.setFocusable(false);
 			jButton_ballroom.setFocusPainted(false);
 			jButton_ballroom.setEnabled(true);
@@ -457,7 +460,7 @@ public class AdministratePackageForm {
 			jPanel_entertainment = new JPanel();
 			jPanel_entertainment.setLayout(null);
 			jPanel_entertainment.setBounds(new Rectangle(28, 220, 750, 100));
-			jPanel_entertainment.setBorder(BorderFactory.createTitledBorder(null, "2) Select a Entertainment (Optional)", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION,new Font("Century Gothic", Font.BOLD, 12), Color.black));
+			jPanel_entertainment.setBorder(BorderFactory.createTitledBorder(null, "2) Select a Entertainment (Optional)", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION,new Font("Segoe UI", Font.BOLD, 12), Color.black));
 			jPanel_entertainment.add(getJCheckBox_entertainment(), null);
 			jPanel_entertainment.add(getJTextField_entertainment(), null);
 			jPanel_entertainment.add(getJButton_entertainment(), null);
@@ -488,6 +491,7 @@ public class AdministratePackageForm {
 	protected JTextField getJTextField_entertainment() {
 		if (jTextField_entertainment == null) {
 			jTextField_entertainment = new JTextField();
+			jTextField_entertainment.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_entertainment.setEditable(false);
 			jTextField_entertainment.setBounds(new Rectangle(57, 30, 504, 30));
 		}
@@ -496,7 +500,7 @@ public class AdministratePackageForm {
 	protected JButton getJButton_entertainment() {
 		if (jButton_entertainment == null) {
 			jButton_entertainment = new JButton();
-			jButton_entertainment.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_entertainment.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_entertainment.setFocusable(false);
 			jButton_entertainment.setFocusPainted(false);
 			jButton_entertainment.setEnabled(false);
@@ -529,7 +533,7 @@ public class AdministratePackageForm {
 	private JPanel getJPanel_meal() {
 		if (jPanel_meal == null) {
 			jPanel_meal = new JPanel();
-			jPanel_meal.setBorder(BorderFactory.createTitledBorder(null, "3) Select 1 - 3 Meal Option(s) (Optional)", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Century Gothic", Font.BOLD, 12), Color.black));
+			jPanel_meal.setBorder(BorderFactory.createTitledBorder(null, "3) Select 1 - 3 Meal Option(s) (Optional)", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Segoe UI", Font.BOLD, 12), Color.black));
 			jPanel_meal.setLayout(null);
 			jPanel_meal.setBounds(new Rectangle(27, 380, 750, 200));
 			jPanel_meal.add(getJTextField_mealOption1(), null);
@@ -607,6 +611,7 @@ public class AdministratePackageForm {
 	protected JTextField getJTextField_mealOption1() {
 		if (jTextField_mealOption1 == null) {
 			jTextField_mealOption1 = new JTextField();
+			jTextField_mealOption1.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_mealOption1.setEditable(false);
 			jTextField_mealOption1.setBounds(new Rectangle(57, 30, 504, 30));
 		}
@@ -615,7 +620,7 @@ public class AdministratePackageForm {
 	protected JButton getJButton_mealOption1() {
 		if (jButton_mealOption1 == null) {
 			jButton_mealOption1 = new JButton();
-			jButton_mealOption1.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_mealOption1.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_mealOption1.setFocusable(false);
 			jButton_mealOption1.setFocusPainted(false);
 			jButton_mealOption1.setEnabled(false);
@@ -649,6 +654,7 @@ public class AdministratePackageForm {
 	protected JTextField getJTextField_mealOption2() {
 		if (jTextField_mealOption2 == null) {
 			jTextField_mealOption2 = new JTextField();
+			jTextField_mealOption2.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_mealOption2.setEditable(false);
 			jTextField_mealOption2.setBounds(new Rectangle(57, 80, 504, 30));
 		}
@@ -657,7 +663,7 @@ public class AdministratePackageForm {
 	protected JButton getJButton_mealOption2() {
 		if (jButton_mealOption2 == null) {
 			jButton_mealOption2 = new JButton();
-			jButton_mealOption2.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_mealOption2.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_mealOption2.setFocusable(false);
 			jButton_mealOption2.setFocusPainted(false);
 			jButton_mealOption2.setEnabled(false);
@@ -690,6 +696,7 @@ public class AdministratePackageForm {
 	protected JTextField getJTextField_mealOption3() {
 		if (jTextField_mealOption3 == null) {
 			jTextField_mealOption3 = new JTextField();
+			jTextField_mealOption3.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_mealOption3.setEditable(false);
 			jTextField_mealOption3.setBounds(new Rectangle(57, 130, 504, 30));
 		}
@@ -698,7 +705,7 @@ public class AdministratePackageForm {
 	protected JButton getJButton_mealOption3() {
 		if (jButton_mealOption3 == null) {
 			jButton_mealOption3 = new JButton();
-			jButton_mealOption3.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_mealOption3.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_mealOption3.setFocusable(false);
 			jButton_mealOption3.setFocusPainted(false);
 			jButton_mealOption3.setEnabled(false);
@@ -735,7 +742,7 @@ public class AdministratePackageForm {
 	private JPanel getJPanel_summary() {
 		if (jPanel_summary == null) {
 			jLabel_discount = new JLabel();
-			jLabel_discount.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_discount.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_discount.setBounds(new Rectangle(400, 40, 150, 30));
 			jLabel_discount.setText("Entitled Discount :");
 			jPanel_summary = new JPanel();
@@ -757,6 +764,7 @@ public class AdministratePackageForm {
 	protected JTextField getJTextField_discount() {
 		if (jTextField_discount == null) {
 			jTextField_discount = new JTextField();
+			jTextField_discount.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_discount.setEditable(false);
 			jTextField_discount.setText("0%");
 			jTextField_discount.setBounds(new Rectangle(550, 40, 177, 30));
@@ -783,7 +791,7 @@ public class AdministratePackageForm {
 	protected JButton getJButton_download() {
 		if (jButton_download == null) {
 			jButton_download = new JButton();
-			jButton_download.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_download.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_download.setFocusable(false);
 			jButton_download.setEnabled(false);
 			jButton_download.setFocusPainted(false);
@@ -861,7 +869,7 @@ public class AdministratePackageForm {
 	protected JButton getJButton_upload() {
 		if (jButton_upload == null) {
 			jButton_upload = new JButton();
-			jButton_upload.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_upload.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_upload.setFocusable(false);
 			jButton_upload.setFocusPainted(false);
 			jButton_upload.setBounds(new Rectangle(570, 115, 160, 45));
@@ -919,7 +927,7 @@ public class AdministratePackageForm {
 	protected JButton getJButton_delete() {
 		if (jButton_delete == null) {
 			jButton_delete = new JButton();
-			jButton_delete.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_delete.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_delete.setFocusable(false);
 			jButton_delete.setFocusPainted(false);
 			jButton_delete.setEnabled(false);
@@ -976,7 +984,7 @@ public class AdministratePackageForm {
 	protected JButton getJButton_update() {
 		if (jButton_update == null) {
 			jButton_update = new JButton();
-			jButton_update.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_update.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_update.setFocusable(false);
 			jButton_update.setFocusPainted(false);
 			jButton_update.setEnabled(false);
@@ -1045,6 +1053,9 @@ public class AdministratePackageForm {
 	private JTextArea getJTextArea_summary() {
 		if (jTextArea_summary == null) {
 			jTextArea_summary = new JTextArea();
+			jTextArea_summary.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+			jTextArea_summary.setWrapStyleWord(true);
+			jTextArea_summary.setLineWrap(true);
 		}
 		return jTextArea_summary;
 	}
@@ -1109,7 +1120,6 @@ public class AdministratePackageForm {
 	private JPanel getJContentPaneBallroom() {
 		if (jContentPaneBallroom == null) {
 			jContentPaneBallroom = new JPanel();
-			
 			jContentPaneBallroom.setLayout(null);
 			jContentPaneBallroom.setPreferredSize(new Dimension(770, 240));
 			jContentPaneBallroom.setBackground(SystemColor.control);
@@ -1127,7 +1137,7 @@ public class AdministratePackageForm {
 	private JComboBox getJComboBox_ballroomSearch() {
 		if (jComboBox_ballroomSearch == null) {
 			jComboBox_ballroomSearch = new JComboBox();
-			jComboBox_ballroomSearch.setFont(new Font("Cambria Math", Font.BOLD, 12));
+			jComboBox_ballroomSearch.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jComboBox_ballroomSearch.addItem("Search By Facility");
 			jComboBox_ballroomSearch.addItem("Search By Ballroom");
 			jComboBox_ballroomSearch.setFocusable(false);
@@ -1138,6 +1148,8 @@ public class AdministratePackageForm {
 	private JTextField getJTextField_ballroomSearch() {
 		if (jTextField_ballroomSearch == null) {
 			jTextField_ballroomSearch = new JTextField();
+			jTextField_ballroomSearch.setHorizontalAlignment(JTextField.CENTER);
+			jTextField_ballroomSearch.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_ballroomSearch.setText("");
 			jTextField_ballroomSearch.setBounds(new Rectangle(277, 40, 317, 30));
 
@@ -1147,7 +1159,7 @@ public class AdministratePackageForm {
 	private JButton getJButton_ballroomSearch() {
 		if (jButton_ballroomSearch == null) {
 			jButton_ballroomSearch = new JButton();
-			jButton_ballroomSearch.setFont(new Font("Cambria Math", Font.BOLD, 12));
+			jButton_ballroomSearch.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_ballroomSearch.setFocusable(false);
 			jButton_ballroomSearch.setFocusPainted(false);
 			jButton_ballroomSearch.setBounds(new Rectangle(600, 40, 150, 30));
@@ -1243,6 +1255,7 @@ public class AdministratePackageForm {
 	private JMenuItem getJMenuItem_retrive_ballroom() {
 		if (jMenuItem_retrive_ballroom == null) {
 			jMenuItem_retrive_ballroom = new JMenuItem();
+			jMenuItem_retrive_ballroom.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jMenuItem_retrive_ballroom.setText("Show Details");
 			jMenuItem_retrive_ballroom.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -1327,37 +1340,37 @@ public class AdministratePackageForm {
 	private JPanel getJPanel_ballroomBody() {
 		if (jPanel_ballroomBody == null) {
 			jLabel_ballroomSize = new JLabel();
-			jLabel_ballroomSize.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_ballroomSize.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_ballroomSize.setBounds(new Rectangle(50, 120, 100, 30));
 			jLabel_ballroomSize.setText("Ballroom Size :");
 			jLabel_parking = new JLabel();
-			jLabel_parking.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_parking.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_parking.setBounds(new Rectangle(50, 160, 100, 30));
 			jLabel_parking.setText("Parking :");
 			jLabel_facilityAddress = new JLabel();
-			jLabel_facilityAddress.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_facilityAddress.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_facilityAddress.setBounds(new Rectangle(50, 280, 150, 30));
 			jLabel_facilityAddress.setText("Address :");
 			jLabel_facilityName = new JLabel();
-			jLabel_facilityName.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_facilityName.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_facilityName.setBounds(new Rectangle(50, 200, 200, 30));
 			jLabel_facilityName.setText("Facility Name :");
 			jLabel_facilityWeekendPrice = new JLabel();
-			jLabel_facilityWeekendPrice.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_facilityWeekendPrice.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_facilityWeekendPrice.setBounds(new Rectangle(360, 160, 130, 30));
 			jLabel_facilityWeekendPrice.setText("Weekend Surcharge :");
 			jLabel_ballroomFinalPrice = new JLabel();
-			jLabel_ballroomFinalPrice.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_ballroomFinalPrice.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_ballroomFinalPrice.setBounds(new Rectangle(360, 120, 130, 30));
 			jLabel_ballroomFinalPrice.setText("Ballroom Rate :");
 			jLabel_ballroomName = new JLabel();
 			jLabel_ballroomName.setBounds(new Rectangle(50, 50, 150, 30));
-			jLabel_ballroomName.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_ballroomName.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_ballroomName.setText("Ballroom Name :");
 			jPanel_ballroomBody = new JPanel();
 			jPanel_ballroomBody.setLayout(null);
 			jPanel_ballroomBody.setPreferredSize(new Dimension(700, 445));
-			jPanel_ballroomBody.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jPanel_ballroomBody.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jPanel_ballroomBody.setBounds(new Rectangle(50, 260, 700, 472));
 			jPanel_ballroomBody.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 			jPanel_ballroomBody.add(jLabel_ballroomName, null);
@@ -1381,6 +1394,8 @@ public class AdministratePackageForm {
 	private JTextField getJTextField_ballroomName() {
 		if (jTextField_ballroomName == null) {
 			jTextField_ballroomName = new JTextField();
+			jTextField_ballroomName.setHorizontalAlignment(JTextField.CENTER);
+			jTextField_ballroomName.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_ballroomName.setOpaque(false);
 			jTextField_ballroomName.setBounds(new Rectangle(50, 80, 600, 30));
 			jTextField_ballroomName.setEditable(false);
@@ -1390,6 +1405,8 @@ public class AdministratePackageForm {
 	private JTextField getJTextField_ballroomSize() {
 		if (jTextField_ballroomSize == null) {
 			jTextField_ballroomSize = new JTextField();
+			jTextField_ballroomSize.setHorizontalAlignment(JTextField.CENTER);
+			jTextField_ballroomSize.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_ballroomSize.setOpaque(false);
 			jTextField_ballroomSize.setEditable(false);
 			jTextField_ballroomSize.setBounds(new Rectangle(150, 120, 150, 30));
@@ -1399,6 +1416,8 @@ public class AdministratePackageForm {
 	private JTextField getJTextField_ballroomFinalPrice() {
 		if (jTextField_ballroomFinalPrice == null) {
 			jTextField_ballroomFinalPrice = new JTextField();
+			jTextField_ballroomFinalPrice.setHorizontalAlignment(JTextField.CENTER);
+			jTextField_ballroomFinalPrice.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_ballroomFinalPrice.setOpaque(false);
 			jTextField_ballroomFinalPrice.setEditable(false);
 			jTextField_ballroomFinalPrice.setBounds(new Rectangle(490, 120, 160, 30));
@@ -1408,6 +1427,8 @@ public class AdministratePackageForm {
 	private JTextField getJTextField_facilityParking() {
 		if (jTextField_facilityParking == null) {
 			jTextField_facilityParking = new JTextField();
+			jTextField_facilityParking.setHorizontalAlignment(JTextField.CENTER);
+			jTextField_facilityParking.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_facilityParking.setOpaque(false);
 			jTextField_facilityParking.setEditable(false);
 			jTextField_facilityParking.setBounds(new Rectangle(150, 160, 150, 30));
@@ -1417,6 +1438,8 @@ public class AdministratePackageForm {
 	private JTextField getJTextField_facilityWeekendCost() {
 		if (jTextField_facilityWeekendCost == null) {
 			jTextField_facilityWeekendCost = new JTextField();
+			jTextField_facilityWeekendCost.setHorizontalAlignment(JTextField.CENTER);
+			jTextField_facilityWeekendCost.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_facilityWeekendCost.setOpaque(false);
 			jTextField_facilityWeekendCost.setEditable(false);
 			jTextField_facilityWeekendCost.setBounds(new Rectangle(490, 160, 160, 30));
@@ -1426,6 +1449,8 @@ public class AdministratePackageForm {
 	private JTextField getJTextField_facilityName() {
 		if (jTextField_facilityName == null) {
 			jTextField_facilityName = new JTextField();
+			jTextField_facilityName.setHorizontalAlignment(JTextField.CENTER);
+			jTextField_facilityName.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_facilityName.setOpaque(false);
 			jTextField_facilityName.setEditable(false);
 			jTextField_facilityName.setBounds(new Rectangle(49, 230, 600, 30));
@@ -1443,6 +1468,7 @@ public class AdministratePackageForm {
 	private JTextArea getJTextArea_facilityAddress() {
 		if (jTextArea_facilityAddress == null) {
 			jTextArea_facilityAddress = new JTextArea();
+			jTextArea_facilityAddress.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextArea_facilityAddress.setEditable(false);
 			jTextArea_facilityAddress.setOpaque(false);
 			jTextArea_facilityAddress.setWrapStyleWord(true);
@@ -1463,7 +1489,7 @@ public class AdministratePackageForm {
 	private JButton getJButton_selectBallroom() {
 		if (jButton_selectBallroom == null) {
 			jButton_selectBallroom = new JButton();
-			jButton_selectBallroom.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_selectBallroom.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_selectBallroom.setFocusable(false);
 			jButton_selectBallroom.setFocusPainted(false);
 			jButton_selectBallroom.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/Select.png")));
@@ -1473,7 +1499,7 @@ public class AdministratePackageForm {
 					getJTextField_Ballroom().setText(getJTextField_ballroomName().getText().toString());
 					getJTextField_Ballroom().setName(getJTextField_ballroomName().getName().toString());
 					getJFrame_Ballroom().setVisible(false);
-					//summary
+					displaySummary();
 				}
 			});
 		}
@@ -1565,6 +1591,7 @@ public class AdministratePackageForm {
 	private JComboBox getJComboBox_entertainmentSearch() {
 		if (jComboBox_entertainmentSearch == null) {
 			jComboBox_entertainmentSearch = new JComboBox();
+			jComboBox_entertainmentSearch.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jComboBox_entertainmentSearch.addItem("Search By Entertainment Set");
 			jComboBox_entertainmentSearch.addItem("Search By Programmes");
 			jComboBox_entertainmentSearch.setFocusable(false);
@@ -1575,6 +1602,8 @@ public class AdministratePackageForm {
 	private JTextField getJTextField_entertainmentSearch() {
 		if (jTextField_entertainmentSearch == null) {
 			jTextField_entertainmentSearch = new JTextField();
+			jTextField_entertainmentSearch.setHorizontalAlignment(JTextField.CENTER);
+			jTextField_entertainmentSearch.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_entertainmentSearch.setBounds(new Rectangle(277, 40, 317, 30));
 		}
 		return jTextField_entertainmentSearch;
@@ -1582,6 +1611,7 @@ public class AdministratePackageForm {
 	private JButton getJButton_entertainmentSearch() {
 		if (jButton_entertainmentSearch == null) {
 			jButton_entertainmentSearch = new JButton();
+			jButton_entertainmentSearch.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_entertainmentSearch.setFocusable(false);
 			jButton_entertainmentSearch.setFocusPainted(false);
 			jButton_entertainmentSearch.setBounds(new Rectangle(600, 40, 150, 30));
@@ -1670,6 +1700,7 @@ public class AdministratePackageForm {
 	private JMenuItem getJMenuItem_retrive_entertainment() {
 		if (jMenuItem_retrive_entertainment == null) {
 			jMenuItem_retrive_entertainment = new JMenuItem();
+			jMenuItem_retrive_entertainment.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jMenuItem_retrive_entertainment.setText("Show Details");
 			jMenuItem_retrive_entertainment.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -1774,6 +1805,8 @@ public class AdministratePackageForm {
 	private JTextField getJTextField_entertainmentName() {
 		if (jTextField_entertainmentName == null) {
 			jTextField_entertainmentName = new JTextField();
+			jTextField_entertainmentName.setHorizontalAlignment(JTextField.CENTER);
+			jTextField_entertainmentName.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_entertainmentName.setEditable(false);
 			jTextField_entertainmentName.setOpaque(false);
 			jTextField_entertainmentName.setBounds(new Rectangle(50, 80, 600, 30));
@@ -1804,6 +1837,8 @@ public class AdministratePackageForm {
 	private JTextField getJTextField_entertainmentPrice() {
 		if (jTextField_entertainmentPrice == null) {
 			jTextField_entertainmentPrice = new JTextField();
+			jTextField_entertainmentPrice.setHorizontalAlignment(JTextField.CENTER);
+			jTextField_entertainmentPrice.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_entertainmentPrice.setEditable(false);
 			jTextField_entertainmentPrice.setOpaque(false);
 			jTextField_entertainmentPrice.setBounds(new Rectangle(200, 240, 250, 30));
@@ -1821,6 +1856,7 @@ public class AdministratePackageForm {
 	private JTextArea getJTextArea_entertainmentDescription() {
 		if (jTextArea_entertainmentDescription == null) {
 			jTextArea_entertainmentDescription = new JTextArea();
+			jTextArea_entertainmentDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextArea_entertainmentDescription.setEditable(false);
 			jTextArea_entertainmentDescription.setOpaque(false);
 			jTextArea_entertainmentDescription.setWrapStyleWord(true);
@@ -1841,6 +1877,7 @@ public class AdministratePackageForm {
 	private JButton getJButton_selectEntertainment() {
 		if (jButton_selectEntertainment == null) {
 			jButton_selectEntertainment = new JButton();
+			jButton_selectEntertainment.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_selectEntertainment.setOpaque(false);
 			jButton_selectEntertainment.setFocusable(false);
 			jButton_selectEntertainment.setFocusPainted(false);
@@ -1852,7 +1889,7 @@ public class AdministratePackageForm {
 							getJTextField_entertainment().setText(getJTextField_entertainmentName().getText());
 							getJTextField_entertainment().setName(getJTextField_entertainmentName().getName());
 							getJFrameEntertainment().setVisible(false);
-							//summary
+							displaySummary();
 						}
 					});
 		}
@@ -1936,7 +1973,7 @@ public class AdministratePackageForm {
 	private JComboBox getJComboBox_mealSearch() {
 		if (jComboBox_mealSearch == null) {
 			jComboBox_mealSearch = new JComboBox();
-			jComboBox_mealSearch.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jComboBox_mealSearch.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jComboBox_mealSearch.setFocusable(false);
 			jComboBox_mealSearch.addItem("Search By Meal Set");
 			jComboBox_mealSearch.addItem("Search By Meal Dish");
@@ -1947,6 +1984,8 @@ public class AdministratePackageForm {
 	private JTextField getJTextField_mealSearch() {
 		if (jTextField_mealSearch == null) {
 			jTextField_mealSearch = new JTextField();
+			jTextField_mealSearch.setHorizontalAlignment(JTextField.CENTER);
+			jTextField_mealSearch.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_mealSearch.setBounds(new Rectangle(277, 40, 317, 30));
 		}
 		return jTextField_mealSearch;
@@ -1954,7 +1993,7 @@ public class AdministratePackageForm {
 	private JButton getJButton_mealSearch() {
 		if (jButton_mealSearch == null) {
 			jButton_mealSearch = new JButton();
-			jButton_mealSearch.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_mealSearch.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_mealSearch.setFocusable(false);
 			jButton_mealSearch.setFocusPainted(false);
 			jButton_mealSearch.setBounds(new Rectangle(600, 40, 150, 30));
@@ -2048,6 +2087,7 @@ public class AdministratePackageForm {
 	private JMenuItem getJMenuItem_retrive_meal() {
 		if (jMenuItem_retrive_meal == null) {
 			jMenuItem_retrive_meal = new JMenuItem();
+			jMenuItem_retrive_meal.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jMenuItem_retrive_meal.setText("Show Details");
 			jMenuItem_retrive_meal.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -2122,15 +2162,15 @@ public class AdministratePackageForm {
 	private JPanel getJPanel_mealBody() {
 		if (jPanel_mealBody == null) {
 			jLabel_mealPrice = new JLabel();
-			jLabel_mealPrice.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_mealPrice.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_mealPrice.setBounds(new Rectangle(350, 120, 150, 30));
 			jLabel_mealPrice.setText("Price/head");
 			jLabel_mealType = new JLabel();
-			jLabel_mealType.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_mealType.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_mealType.setBounds(new Rectangle(50, 120, 150, 30));
 			jLabel_mealType.setText("Type :");
 			jLabel_mealName = new JLabel();
-			jLabel_mealName.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_mealName.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_mealName.setBounds(new Rectangle(50, 50, 150, 30));
 			jLabel_mealName.setText("Meal Set Title :");
 			jPanel_mealBody = new JPanel();
@@ -2152,6 +2192,8 @@ public class AdministratePackageForm {
 	private JTextField getJTextField_mealName() {
 		if (jTextField_mealName == null) {
 			jTextField_mealName = new JTextField();
+			jTextField_mealName.setHorizontalAlignment(JTextField.CENTER);
+			jTextField_mealName.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_mealName.setOpaque(false);
 			jTextField_mealName.setEditable(false);
 			jTextField_mealName.setBounds(new Rectangle(50, 80, 600, 30));
@@ -2162,6 +2204,8 @@ public class AdministratePackageForm {
 		if (jTextField_mealType == null) {
 			jTextField_mealType = new JTextField();
 			jTextField_mealType.setFocusable(false);
+			jTextField_mealType.setHorizontalAlignment(JTextField.CENTER);
+			jTextField_mealType.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_mealType.setOpaque(false);
 			jTextField_mealType.setEditable(false);
 			jTextField_mealType.setBounds(new Rectangle(200, 120, 150, 30));
@@ -2171,6 +2215,8 @@ public class AdministratePackageForm {
 	private JTextField getJTextField_mealPrice() {
 		if (jTextField_mealPrice == null) {
 			jTextField_mealPrice = new JTextField();
+			jTextField_mealPrice.setHorizontalAlignment(JTextField.CENTER);
+			jTextField_mealPrice.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_mealPrice.setEditable(false);
 			jTextField_mealPrice.setOpaque(false);
 			jTextField_mealPrice.setBounds(new Rectangle(500, 120, 150, 30));
@@ -2223,7 +2269,7 @@ public class AdministratePackageForm {
 	private JButton getJButton_selectMeal() {
 		if (jButton_selectMeal == null) {
 			jButton_selectMeal = new JButton();
-			jButton_selectMeal.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jButton_selectMeal.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_selectMeal.setFocusable(false);
 			jButton_selectMeal.setFocusPainted(false);
 			jButton_selectMeal.setText("Select Meal");
@@ -2243,7 +2289,7 @@ public class AdministratePackageForm {
 						getJTextField_mealOption3().setName(getJTextField_mealName().getName().toString());
 					}
 					getJFrameMeal().setVisible(false);
-					//summary
+					displaySummary();
 				}
 			});
 		}
@@ -2252,6 +2298,7 @@ public class AdministratePackageForm {
 	private JTextArea getJTextArea_mealDescription() {
 		if (jTextArea_mealDescription == null) {
 			jTextArea_mealDescription = new JTextArea();
+			jTextArea_mealDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextArea_mealDescription.setOpaque(false);
 			jTextArea_mealDescription.setEditable(false);
 			jTextArea_mealDescription.setLineWrap(true);
@@ -2535,7 +2582,7 @@ public class AdministratePackageForm {
 		getJTable_entertainmentMenu().setAutoResizeMode(jTable_ballroomList.AUTO_RESIZE_OFF);
 		getJTable_entertainmentMenu().getColumnModel().getColumn(0).setPreferredWidth(450);
 		getJTable_entertainmentMenu().getColumnModel().getColumn(1).setPreferredWidth(150);
-		getJTable_entertainmentMenu().getColumnModel().getColumn(2).setPreferredWidth(700);
+		getJTable_entertainmentMenu().getColumnModel().getColumn(2).setPreferredWidth(610);
 		
 		getJButton_entertainmentPrevious().setVisible(true);
 		getJButton_entertainmentNext().setVisible(true);
@@ -2755,9 +2802,9 @@ public class AdministratePackageForm {
 	 * Purpose 			: To display the summary of the form
 	 *******************************************************/
 	public void displaySummary(){
-		String header="====================================\n";
-		header+="            Package Summary List\n";
-		header+="====================================\n\n";
+		String header="=======================================\n";
+		header+="                                Package Summary List\n";
+		header+="=======================================\n\n";
 		
 		String content="";
 		content+="Package Name : "+getJTextField_packageTitle().getText().toString()+"\n";

@@ -203,7 +203,7 @@ public class AdministrateSystemOptionManagement {
 								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
 								          }
 								        });
-								        Thread.sleep(100);
+								        Thread.sleep(300);
 								        if(!a.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 								        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
@@ -434,7 +434,7 @@ public class AdministrateSystemOptionManagement {
 									        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
 									          }
 									        });
-									        Thread.sleep(100);
+									        Thread.sleep(300);
 									        if(!a.isAlive()){
 									        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 									        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
@@ -522,7 +522,7 @@ public class AdministrateSystemOptionManagement {
 								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
 								          }
 								        });
-								        Thread.sleep(100);
+								        Thread.sleep(300);
 								        if(!a.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 								        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
@@ -669,7 +669,7 @@ public class AdministrateSystemOptionManagement {
 								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
 								          }
 								        });
-								        Thread.sleep(100);
+								        Thread.sleep(300);
 								        if(!a.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 								        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
@@ -838,7 +838,7 @@ public class AdministrateSystemOptionManagement {
 							        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
 							          }
 							        });
-							        Thread.sleep(100);
+							        Thread.sleep(300);
 							        if(!a.isAlive()){
 							        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 							        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
@@ -893,7 +893,7 @@ public class AdministrateSystemOptionManagement {
 							        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
 							          }
 							        });
-							        Thread.sleep(100);
+							        Thread.sleep(300);
 							        if(!a.isAlive()){
 							        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 							        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
@@ -946,7 +946,7 @@ public class AdministrateSystemOptionManagement {
 							        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
 							          }
 							        });
-							        Thread.sleep(100);
+							        Thread.sleep(300);
 							        if(!a.isAlive()){
 							        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 							        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
@@ -999,7 +999,7 @@ public class AdministrateSystemOptionManagement {
 							        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
 							          }
 							        });
-							        Thread.sleep(100);
+							        Thread.sleep(300);
 							        if(!a.isAlive()){
 							        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 							        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
@@ -1052,7 +1052,7 @@ public class AdministrateSystemOptionManagement {
 							        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
 							          }
 							        });
-							        Thread.sleep(100);
+							        Thread.sleep(300);
 							        if(!a.isAlive()){
 							        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 							        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());

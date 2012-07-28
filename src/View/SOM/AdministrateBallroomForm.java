@@ -105,6 +105,8 @@ public class AdministrateBallroomForm {
 	private JScrollPane jScrollPane_ballroomDescription = null;
 	private JTextArea jTextArea_ballroomDescription = null;
 	final JFileChooser fc = new JFileChooser();
+	private Thread main=null;
+	private Thread progress=null;
 	/********************************************************
 	 *					Start of UI
 	 *******************************************************/
@@ -247,7 +249,6 @@ public class AdministrateBallroomForm {
 								      }
 								    } 
 								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-								 this.stop();
 								 this.interrupt();
 						  }
 					  };
@@ -261,8 +262,7 @@ public class AdministrateBallroomForm {
 	protected JTextField getJTextField_facilityContact() {
 		if (jTextField_facilityContact == null) {
 			jTextField_facilityContact = new JTextField();
-			jTextField_facilityContact.setForeground(SystemColor.scrollbar);
-			jTextField_facilityContact.setText("Enter a Contact No or Email");
+			jTextField_facilityContact.setForeground(SystemColor.scrollbar);;
 			jTextField_facilityContact.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_facilityContact.setFont(new Font("Dialog", Font.ITALIC, 14));
 			jTextField_facilityContact.setEnabled(false);
@@ -543,11 +543,20 @@ public class AdministrateBallroomForm {
 			jButton_download.setText("Download");
 			jButton_download.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					Thread main = new Thread () {
-						  public void run () {
+					//setting the file and path name
+					fc.setAcceptAllFileFilterUsed(false);
+					fc.setFocusable(false);
+					fc.setAcceptAllFileFilterUsed(false);
+					fc.showSaveDialog(fc);
+
+					final String directory=fc.getSelectedFile().toString();
+					 main = new Thread () {
+						  @SuppressWarnings("deprecation")
+						public void run () {
 							  if(validateBallroomDetails()){
 									try {
-										download();
+										
+										download(directory);
 									} catch (MalformedURLException e1) {
 										e1.printStackTrace();
 									} catch (DocumentException e1) {
@@ -557,11 +566,16 @@ public class AdministrateBallroomForm {
 									}
 									displaySummary();
 								}
+							  else{
+									main.interrupt();
+									main.stop();
+									AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+							  }
 						  }
 					  };
-					  final Thread a=main;
 					Thread progress= new Thread(){
-						  public void run(){
+						  @SuppressWarnings("deprecation")
+						public void run(){
 							  double increment=1;
 								 for (int i =  0; i <= 100; i+=increment) {
 								      final int percent = i;
@@ -569,12 +583,13 @@ public class AdministrateBallroomForm {
 								        SwingUtilities.invokeLater(new Runnable() {
 								         public void run() {
 								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
 								        Thread.sleep(100);
-								        if(!a.isAlive()){
+								        if(!main.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-								        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
+								        	AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								        	break;
 										 }
 								       
@@ -605,16 +620,19 @@ public class AdministrateBallroomForm {
 			jButton_upload.setText("Upload");
 			jButton_upload.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					Thread main = new Thread () {
+					main = new Thread () {
 						  public void run () {
 							  if(validateBallroomDetails()){
 									createBallroom();
-									displaySummary();
 								}
+							  else{
+									main.interrupt();
+									AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+									AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+							  }
 						  }
 					  };
-					  final Thread a=main;
-					Thread progress= new Thread(){
+					progress= new Thread(){
 						  public void run(){
 							  double increment=1;
 								 for (int i =  0; i <= 100; i+=increment) {
@@ -623,12 +641,13 @@ public class AdministrateBallroomForm {
 								        SwingUtilities.invokeLater(new Runnable() {
 								         public void run() {
 								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
 								        Thread.sleep(100);
-								        if(!a.isAlive()){
+								        if(!main.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-								        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
+								        	AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								        	break;
 										 }
 								       
@@ -637,7 +656,6 @@ public class AdministrateBallroomForm {
 								      }
 								    } 
 								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-								 this.stop();
 								 this.interrupt();
 						  }
 					  };
@@ -661,22 +679,16 @@ public class AdministrateBallroomForm {
 			jButton_delete.setText("Delete");
 			jButton_delete.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					Thread main = new Thread () {
+					final int i=JOptionPane.showConfirmDialog(null, "You are about to delete this record\n Are you sure?", "Delete Record", JOptionPane.YES_NO_OPTION);
+					main = new Thread () {
 						  public void run () {
-							  int i=JOptionPane.showConfirmDialog(null, "You are about to delete this record\n Are you sure?", "Delete Record", JOptionPane.YES_NO_OPTION);
 								if(i==0){
-									if(deleteBallroom()){
-										JOptionPane.showMessageDialog(null, "Record has been deleted successfully", "Success", JOptionPane.PLAIN_MESSAGE);
-										newBallroomTab();
-									}
-									else{
-										JOptionPane.showMessageDialog(null, "There was an unexpected error deleting the record/nTry restarting the application.", "Warning", JOptionPane.ERROR_MESSAGE);
-									}
+									deleteBallroom();
 								}
 						  }
 					  };
 					  final Thread a=main;
-					Thread progress= new Thread(){
+					progress= new Thread(){
 						  public void run(){
 							  double increment=1;
 								 for (int i =  0; i <= 100; i+=increment) {
@@ -685,12 +697,12 @@ public class AdministrateBallroomForm {
 								        SwingUtilities.invokeLater(new Runnable() {
 								         public void run() {
 								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
 								        Thread.sleep(100);
 								        if(!a.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-								        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
 								        	break;
 										 }
 								       
@@ -699,8 +711,9 @@ public class AdministrateBallroomForm {
 								      }
 								    } 
 								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-								 this.stop();
+								 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 								 this.interrupt();
+								 
 						  }
 					  };
 					  progress.start();
@@ -722,14 +735,49 @@ public class AdministrateBallroomForm {
 			jButton_update.setText("Update");
 			jButton_update.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					if(validateBallroomDetails()){
-						if(updateBallroom()){
-							JOptionPane.showMessageDialog(null, "Record has been updated successfully", "Success", JOptionPane.PLAIN_MESSAGE);
-						}
-						else{
-							JOptionPane.showMessageDialog(null, "There was an unexpected error deleting the record/nTry restarting the application.", "Warning", JOptionPane.ERROR_MESSAGE);
-						}
-					}
+					main = new Thread () {
+						  public void run () {
+							  if(validateBallroomDetails()){
+									updateBallroom();
+								}
+							  else{
+									main.interrupt();
+									AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+									AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+							  }
+						  }
+					  };
+					  final Thread a=main;
+					progress= new Thread(){
+						  public void run(){
+							  double increment=1;
+								 for (int i =  0; i <= 100; i+=increment) {
+								      final int percent = i;
+								      try {
+								        SwingUtilities.invokeLater(new Runnable() {
+								         public void run() {
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								          }
+								        });
+								        Thread.sleep(100);
+								        if(!a.isAlive()){
+								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	break;
+										 }
+								       
+								      } catch (InterruptedException e) {
+								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								      }
+								    } 
+								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								 this.interrupt();
+								 
+						  }
+					  };
+					  progress.start();
+					  main.start();
 				}
 			});
 		}
@@ -785,6 +833,7 @@ public class AdministrateBallroomForm {
 	 * Purpose : To validate the details before any CRUD
 	 * Return :boolean
 	 * *******************************************************/
+	@SuppressWarnings("deprecation")
 	public boolean validateBallroomDetails(){
 		boolean success=true;
 		Scanner scan = new Scanner(getJTextField_ballroomPrice().getText().toString());
@@ -795,33 +844,64 @@ public class AdministrateBallroomForm {
 		
 		if(getJComboBox_facilityName().getSelectedIndex()==0){
 			success=false;
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please select the facility where this ballroom belongs to", "Warning", JOptionPane.WARNING_MESSAGE);
 			getJComboBox_facilityName().requestFocus();
+			main.interrupt();
 		}
 		else if(getJTextField_ballroomTitle().getText().equals("")||getJTextField_ballroomTitle().getText().equals("                                                      Enter a Ballroom Name")){
 			success=false;
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please Enter a Ballroom Name", "Warning", JOptionPane.WARNING_MESSAGE);
 			getJTextField_ballroomTitle().requestFocus();
+			main.interrupt();
 		}
 		else if(getJComboBox_ballroomSize().getSelectedIndex()==0){
 			success=false;
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please Select a Ballroom Size", "Warning", JOptionPane.WARNING_MESSAGE);
 			getJComboBox_ballroomSize().requestFocus();
+			main.interrupt();
 		}
 		else if(getJTextField_ballroomPrice().getText().equals("")||getJTextField_ballroomPrice().getText().equals("0.00")){
 			success=false;
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please Enter a Ballroom Price", "Warning", JOptionPane.WARNING_MESSAGE);
 			getJTextField_ballroomPrice().requestFocus();
+			//main.stop();
+			main.interrupt();
 		}
 		if(IsDigit){
 			success=false;
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please enter a correct price value", "Warnning", JOptionPane.WARNING_MESSAGE);
 			getJTextField_ballroomPrice().requestFocus();
+			main.interrupt();
 		}
 		else if(getJTextArea_ballroomDescription().getText().equals("")||getJTextArea_ballroomDescription().getText().equals("\n\n                                                    Enter a Ballroom Description")){
 			success=false;
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please Enter a Ballroom Description", "Warning", JOptionPane.WARNING_MESSAGE);
 			getJTextArea_ballroomDescription().requestFocus();
+			main.interrupt();
 		}
 		return success;
 	}
@@ -871,20 +951,13 @@ public class AdministrateBallroomForm {
 	
 	/********************************************************
 	 * Method Name 		: download()
-	 * Input Parameter 	: void 
+	 * Input Parameter 	: String 
 	 * Return 			: void
 	 * Purpose 			: To download the form details in
 	 * 					  the local computer in PDF & CSV
 	 *******************************************************/
-	public void download() throws MalformedURLException, DocumentException, IOException{
-		//setting the file and path name
-		fc.setAcceptAllFileFilterUsed(false);
-		fc.setFocusable(false);
-		fc.setAcceptAllFileFilterUsed(false);
-		fc.showSaveDialog(fc);
-
-		String directory=null;
-		directory=fc.getSelectedFile().toString();
+	public void download(String directory) throws MalformedURLException, DocumentException, IOException{
+		
 		String PDFlink="";
 		String TXTlink="";
 		if(directory.substring(directory.length()-4).equals(".pdf")){
@@ -919,6 +992,7 @@ public class AdministrateBallroomForm {
 	 * Purpose 			: To download the form details in
 	 * 					  the local computer in CSV
 	 *******************************************************/
+	@SuppressWarnings("deprecation")
 	public void downloadPDF(String path) throws MalformedURLException, IOException, DocumentException{
 		String directory=path;
 		
@@ -963,6 +1037,10 @@ public class AdministrateBallroomForm {
 		 pdf.close();
 		
 		//prompt success
+		 progress.interrupt();
+		 progress.stop();
+		 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+		 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 		 JOptionPane.showMessageDialog(null, "File Downloaded Successfully at "+path, "Downloads", JOptionPane.INFORMATION_MESSAGE);
 		
 	}
@@ -1060,6 +1138,7 @@ public class AdministrateBallroomForm {
 	 * Purpose : To create a new Ballroom record in the database
 	 * Return :void
 	 *******************************************************/
+	@SuppressWarnings("deprecation")
 	public void createBallroom(){
 		//prepares the ballroom object to be pass into the controller
 		
@@ -1076,18 +1155,27 @@ public class AdministrateBallroomForm {
 		String ballroomID=control.processCreateBallroom();
 		
 		if(ballroomID.equals("")||ballroomID.equals(null)){
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "There was an unexpected uploading the ballroom record(s)/nTry restarting the application.", "Warning", JOptionPane.ERROR_MESSAGE);
-			deleteBallroom();
 		}
 		else{
-			JOptionPane.showMessageDialog(null, "Record has been uploaded successfully", "Success", JOptionPane.PLAIN_MESSAGE);
+			
 			getJTextField_ballroomID().setText(ballroomID);
 			getJTextField_ballroomID().setForeground(SystemColor.black);
 			getJButton_delete().setEnabled(true);
 			getJButton_update().setEnabled(true);
-			getJButton_upload().setEnabled(true);
+			getJButton_upload().setEnabled(false);
 			getJButton_download().setEnabled(true);
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			JOptionPane.showMessageDialog(null, "Record has been uploaded successfully", "Success", JOptionPane.PLAIN_MESSAGE);
 		}
+		displaySummary();
 	}
 	
 	/********************************************************
@@ -1096,9 +1184,26 @@ public class AdministrateBallroomForm {
 	 * Purpose : To Delete the Ballroom record in the database
 	 * Return :boolean
 	 *******************************************************/
-	public boolean deleteBallroom(){
+	@SuppressWarnings("deprecation")
+	public void deleteBallroom(){
 		AdministrateBallroomControl control= new AdministrateBallroomControl();
-		return control.processDeleteBallroom(getJTextField_ballroomID().getText().toString());
+		boolean result= control.processDeleteBallroom(getJTextField_ballroomID().getText().toString());
+		
+		if(result){
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			JOptionPane.showMessageDialog(null, "Record has been deleted successfully", "Success", JOptionPane.PLAIN_MESSAGE);
+			newBallroomTab();
+		}
+		else{
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			JOptionPane.showMessageDialog(null, "There was an unexpected error deleting the record/nTry restarting the application.", "Warning", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 	/********************************************************
@@ -1107,7 +1212,8 @@ public class AdministrateBallroomForm {
 	 * Purpose : To update the Ballroom record in the database
 	 * Return :boolean
 	 *******************************************************/
-	public boolean updateBallroom(){
+	@SuppressWarnings("deprecation")
+	public void updateBallroom(){
 		
 		//prepares the ballroom object to be pass into the controller
 		String facilityID=getJComboBox_facilityName().getName().toString();
@@ -1123,7 +1229,20 @@ public class AdministrateBallroomForm {
 		boolean success=false;
 		success=control.processUpdateBallroom(getJTextField_ballroomID().getText().toString());
 		
-		return success;
+		if(success){
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			JOptionPane.showMessageDialog(null, "Record has been updated successfully", "Success", JOptionPane.PLAIN_MESSAGE);
+		}
+		else{
+			progress.interrupt();
+			progress.stop();
+			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			JOptionPane.showMessageDialog(null, "There was an unexpected error deleting the record/nTry restarting the application.", "Warning", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 }

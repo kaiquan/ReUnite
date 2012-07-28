@@ -463,13 +463,25 @@ public class ConsolidateGuestListForm extends Fonts{
 	}
 	
 	private void refresh(){	
-		jContentPane.remove(pne);		
-		DefaultMutableTreeNode events = new DefaultMutableTreeNode("Events");
-		generateEvents(events);
+		jContentPane.remove(pne);
+		textField.setText("");
+		jTextField.setText("");
+		textField_1.setText("");
+		textField_2.setText("");
+		textField_3.setText("");
+		textField_4.setText("");
+		textField_4.setText("");
+		textField_5.setText("");
+		jTextArea.setText("");
+		DefaultMutableTreeNode events = new DefaultMutableTreeNode("Events");				
+		generateEvents(events);		
 		DefaultTreeModel model = new DefaultTreeModel(events);
-		tree.setModel(model);
-		pne.setViewportView(tree);
+		tree.setModel(model);		
+		pne.setViewportView(tree);		
 		jContentPane.add(pne);
+		
+		pne.updateUI();
+		
 	}
 
 	/**

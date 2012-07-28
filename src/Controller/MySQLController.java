@@ -124,6 +124,8 @@ public class MySQLController
 	public ResultSet readRequest(String dbQuery)
 	{
 		ResultSet rs = null;
+		int i=1;
+		while(true){
 		try
 		{
 			getConnection();
@@ -137,10 +139,14 @@ public class MySQLController
 				// execute an SQL query and get the result
 				rs = stmt.executeQuery(dbQuery);
 			}
+			break;
 		}
 		catch (SQLException e)
 		{
-			e.printStackTrace();
+			System.out.println("error in readRequest");
+			System.out.println("retry atmpt " + i);
+			i++;
+			//e.printStackTrace();
 		}
 		finally
 		{
@@ -157,6 +163,7 @@ public class MySQLController
 				}
 
 			}
+		}
 		}
 		return rs;
 	}

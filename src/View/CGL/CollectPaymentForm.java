@@ -78,6 +78,7 @@ public class CollectPaymentForm {
 	private String entertainmentPrice;
 	private String mealPrice;
 	private String packageDiscount;
+	public JScrollPane pne;
 	/**
 	 * This method initializes jFrame	
 	 * 	
@@ -108,7 +109,7 @@ public class CollectPaymentForm {
 			jContentPane.add(getSeparator(), getSeparator().getName());
 			jContentPane.add(getSeparator_1(), getSeparator_1().getName());
 			jContentPane.add(getJButton2(), null);
-			JScrollPane pne = new JScrollPane(getJPanel(),JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+			pne = new JScrollPane(getJPanel(),JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 			pne.setBounds(135, 8, 553, 268);
 			pne.setPreferredSize(new Dimension(553, 268));
 			jContentPane.add(pne);
@@ -235,8 +236,47 @@ public class CollectPaymentForm {
 			jButton2 = new JButton();
 			jButton2.setBounds(new Rectangle(26, 294, 86, 21));
 			jButton2.setText("Refresh");
+			jButton2.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					 // TODO Auto-generated Event stub actionPerformed()
+					jButton2.setEnabled(false);
+					refresh();
+					jButton2.setEnabled(true);
+				}
+			});
 		}
 		return jButton2;
+	}
+	
+	private void refresh(){	
+		jContentPane.remove(pne);
+		jTextField.setText("");
+		jTextField.setText("");
+		jTextField1.setText("");
+		jTextField2.setText("");
+		jTextField3.setText("");
+		jTextField4.setText("");
+		jTextField4.setText("");
+		jTextField5.setText("");
+		mealPrice="";
+		ballroomPrice="";
+		entertainmentPrice="";
+		packageDiscount="";
+		jTextField7.setText("");
+		jTextField8.setText("");
+		jRadioButton.setSelected(false);
+		jRadioButton1.setSelected(false);
+		
+		jTextArea.setText("");
+		DefaultMutableTreeNode events = new DefaultMutableTreeNode("Events");				
+		generateEvents(events);		
+		DefaultTreeModel model = new DefaultTreeModel(events);
+		tree.setModel(model);		
+		pne.setViewportView(tree);		
+		jContentPane.add(pne);
+		
+		pne.updateUI();
+		
 	}
 
 	/**

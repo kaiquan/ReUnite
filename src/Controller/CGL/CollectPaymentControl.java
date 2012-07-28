@@ -57,10 +57,20 @@ public class CollectPaymentControl {
 		
 		ArrayList<String> combined = new ArrayList<String>();
 		
-		Scanner sc = new Scanner(ballroom.get(0));
-		sc.useDelimiter(",");
-		String ballroomName=sc.next();
-		double ballroomFinalPrice=sc.nextDouble();
+		double ballroomFinalPrice;
+		String ballroomName;
+		
+		try {
+			Scanner sc = new Scanner(ballroom.get(0));
+			sc.useDelimiter(",");
+			ballroomName=sc.next();
+			ballroomFinalPrice=sc.nextDouble();
+			}
+			catch (Exception ex)
+			{
+				ballroomFinalPrice = 0;
+				ballroomName = "None";
+			}
 		
 		double entertainmentPrice;
 		

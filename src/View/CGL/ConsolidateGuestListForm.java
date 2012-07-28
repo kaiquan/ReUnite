@@ -80,10 +80,10 @@ public class ConsolidateGuestListForm extends Fonts{
 	private JTextArea jTextArea = null;
 	private JTextField textField_5;
 	private JLabel jLabel2 = null;
-	private String ballroomPrice;
-	private String entertainmentPrice;
-	private String mealPrice;
-	private String packageDiscount;
+	private String ballroomPrice="";
+	private String entertainmentPrice="";
+	private String mealPrice="";
+	private String packageDiscount="";
 	private static String FILE = null;
 
 	/**
@@ -117,7 +117,14 @@ public class ConsolidateGuestListForm extends Fonts{
 			jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
 				//+ Label Message Dialog
 				public void mouseClicked(java.awt.event.MouseEvent e) {
+					
+					if(ballroomPrice.equals("")&& entertainmentPrice.equals("")&&(mealPrice.equals("")&& (packageDiscount.equals("")))){
+						JOptionPane.showMessageDialog(null, "To view the breakdown of price,"+"\n"+"Please select an event");
+					}
+					
+					else{
 				JOptionPane.showMessageDialog(null, "Ballroom Price is " +ballroomPrice+"\n"+"Entertainment Price: "+entertainmentPrice+"\n"+"Meal Price: "+mealPrice +"\n"+"Package Discount: "+packageDiscount);
+				}
 				}
 			});
 			jLabel1 = new JLabel();
@@ -389,6 +396,10 @@ public class ConsolidateGuestListForm extends Fonts{
 		textField_4.setText("");
 		textField_5.setText("");
 		jTextArea.setText("");
+		ballroomPrice="";
+		entertainmentPrice="";
+		mealPrice="";
+		packageDiscount="";
 		DefaultMutableTreeNode events = new DefaultMutableTreeNode("Events");				
 		generateEvents(events);		
 		DefaultTreeModel model = new DefaultTreeModel(events);

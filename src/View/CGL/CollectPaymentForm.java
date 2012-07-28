@@ -74,10 +74,10 @@ public class CollectPaymentForm {
 	private JLabel jLabel15 = null;
 	private JComboBox jComboBox = null;
 	final JTree tree = new JTree();
-	private String ballroomPrice;
-	private String entertainmentPrice;  //  @jve:decl-index=0:
-	private String mealPrice;
-	private String packageDiscount;
+	private String ballroomPrice="";
+	private String entertainmentPrice="";  //  @jve:decl-index=0:
+	private String mealPrice="";
+	private String packageDiscount="";  //  @jve:decl-index=0:
 	private JScrollPane pne,pne1;
 	/**
 	 * This method initializes jFrame	
@@ -181,6 +181,7 @@ public class CollectPaymentForm {
                     		jRadioButton1.setSelected(true);
                     		jRadioButton.setEnabled(false);
                     		jLabel11.setEnabled(false);
+                    		jLabel12.setEnabled(true);
                     		Scanner sc1 = new Scanner(c2.processPaymentDetails(jTextField.getText()).get(0));
                         	sc1.useDelimiter(",");
                         	String totalCost=sc1.next();
@@ -263,6 +264,9 @@ public class CollectPaymentForm {
 		jTextField4.setText("");
 		jTextField4.setText("");
 		jTextField5.setText("");
+		jTextField6.setText("");
+		jTextArea1.setText("");
+		
 		mealPrice="";
 		ballroomPrice="";
 		entertainmentPrice="";
@@ -271,6 +275,7 @@ public class CollectPaymentForm {
 		jTextField8.setText("");
 		jRadioButton.setSelected(false);
 		jRadioButton1.setSelected(false);
+		jLabel12.setEnabled(false);
 		
 		//getJTextArea.setText("");
 		DefaultMutableTreeNode events = new DefaultMutableTreeNode("Events");				
@@ -360,6 +365,17 @@ public class CollectPaymentForm {
 			jLabel9.setBounds(new Rectangle(19, 172, 13, 16));
 			jLabel9.setFont(new Font("Dialog", Font.BOLD, 14));
 			jLabel9.setText("+");
+			jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent e) {
+					if(ballroomPrice.equals("")&& entertainmentPrice.equals("")&&(mealPrice.equals("")&& (packageDiscount.equals("")))){
+						JOptionPane.showMessageDialog(null, "To view the breakdown of price,"+"\n"+"Please select an event");
+					}
+					
+					else{
+					JOptionPane.showMessageDialog(null, "Ballroom Price is " +ballroomPrice+"\n"+"Entertainment Price: "+entertainmentPrice+"\n"+"Meal Price: "+mealPrice +"\n"+"Package Discount: "+packageDiscount);
+					}
+				}
+			});
 			jLabel8 = new JLabel();
 			jLabel8.setBounds(new Rectangle(20, 217, 108, 16));
 			jLabel8.setText("Event Description :");
@@ -619,6 +635,7 @@ public class CollectPaymentForm {
 						
 						if(c2.processUpdatePurchasePayment(jTextField8.getText(), jComboBox.getSelectedItem().toString(), jTextField6.getText(),jTextField.getText())){
 							JOptionPane.showMessageDialog(null, "Successfully Updated Purchase Summary");
+							
 						}
 						else{
 							JOptionPane.showMessageDialog(null, "Failure");
@@ -630,6 +647,7 @@ public class CollectPaymentForm {
 						String eventStatus="Confirmed";
 						if(c2.processUpdateEventStatus(jTextField.getText(), eventStatus)==true){
 							JOptionPane.showMessageDialog(null,"Successfully Changed Status");
+							refresh();
 							
 						}
 						

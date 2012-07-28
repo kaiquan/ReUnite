@@ -1,5 +1,5 @@
 package View.MM;
-
+import Images.MM.*;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -14,8 +14,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -259,12 +262,18 @@ public class ViewRIDetails {
 	//Buttons
 	
 	deleteAccountButton = new JButton();
-	deleteAccountButton.setBounds(0, 102, 150, 30);
+	deleteAccountButton.setBounds(0, 102, 100, 150);
+	deleteAccountButton.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Trash-Black-Empty-icon.png")));
 	deleteAccountButton.setText("Delete Account");
 	
+	
+	
 	updateAccountButton = new JButton();
-	updateAccountButton.setBounds(0, 29, 150, 30);
+	updateAccountButton.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Wordpad-icon.png")));
+	updateAccountButton.setBounds(0, 29, 80, 50);
 	updateAccountButton.setText("Update Account");
+	
+	
 	updateAccountButton.addActionListener(new java.awt.event.ActionListener() {
 		public void actionPerformed(java.awt.event.ActionEvent e) {
 			updateAccount();

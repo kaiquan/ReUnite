@@ -212,6 +212,11 @@ public class AdministratePackageForm {
 	final JFileChooser fc = new JFileChooser();
 	private Thread main=null;
 	private Thread progress=null;
+	protected String ballroomID;
+	protected String entertainmentID;
+	protected String mealOption1ID;
+	protected String mealOption2ID;
+	protected String mealOption3ID;
 	/********************************************************
 	 *					Start of UI
 	 *******************************************************/
@@ -1498,6 +1503,7 @@ public class AdministratePackageForm {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					getJTextField_Ballroom().setText(getJTextField_ballroomName().getText().toString());
 					getJTextField_Ballroom().setName(getJTextField_ballroomName().getName().toString());
+					ballroomID=getJTextField_ballroomName().getName().toString();
 					getJFrame_Ballroom().setVisible(false);
 					displaySummary();
 				}
@@ -1888,6 +1894,7 @@ public class AdministratePackageForm {
 						public void actionPerformed(java.awt.event.ActionEvent e) {
 							getJTextField_entertainment().setText(getJTextField_entertainmentName().getText());
 							getJTextField_entertainment().setName(getJTextField_entertainmentName().getName());
+							entertainmentID=getJTextField_entertainmentName().getName();
 							getJFrameEntertainment().setVisible(false);
 							displaySummary();
 						}
@@ -2279,14 +2286,17 @@ public class AdministratePackageForm {
 					if(getJFrameMeal().getName().equals("1")){
 						getJTextField_mealOption1().setText(getJTextField_mealName().getText().toString());
 						getJTextField_mealOption1().setName(getJTextField_mealName().getName().toString());
+						mealOption1ID=getJTextField_mealName().getName().toString();
 					}
 					if(getJFrameMeal().getName().equals("2")){
 						getJTextField_mealOption2().setText(getJTextField_mealName().getText().toString());
 						getJTextField_mealOption2().setName(getJTextField_mealName().getName().toString());
+						mealOption2ID=getJTextField_mealName().getName().toString();
 					}
 					if(getJFrameMeal().getName().equals("3")){
 						getJTextField_mealOption3().setText(getJTextField_mealName().getText().toString());
 						getJTextField_mealOption3().setName(getJTextField_mealName().getName().toString());
+						mealOption3ID=getJTextField_mealName().getName().toString();
 					}
 					getJFrameMeal().setVisible(false);
 					displaySummary();
@@ -2976,7 +2986,9 @@ public class AdministratePackageForm {
 	public void downloadTXT(String path) throws IOException{
 		CSVController controller= new CSVController();
 		ArrayList<String[]> data = new ArrayList<String[]>();
+		System.out.println(getJTextField_ballroomName().getText().toString());
 		System.out.println("downloading csv...");
+		
 		String[]packageHeader=new String[15];
 		packageHeader[0]="PACKAGE_ID";
 		packageHeader[1]="PACKAGE_TITLE";
@@ -3002,15 +3014,16 @@ public class AdministratePackageForm {
 		if(!getJCheckBox_packageAvailability().isSelected())
 			packageData[2]="NO";
 		packageData[3]=getJTextArea_packageDescription().getText().toString();
-		packageData[4]=getJTextField_ballroomName().getName().toString();
-		packageData[5]=getJTextField_ballroomName().getText().toString();
-		//packageData[6]=getJTextField_entertainmentName().getName().toString();
-		packageData[7]=getJTextField_entertainmentName().getText().toString();
-		//packageData[8]=getJTextField_mealOption1().getName().toString();
+		packageData[4]=ballroomID;
+		packageData[5]=getJTextField_Ballroom().getText().toString();
+		
+		packageData[6]=entertainmentID;
+		packageData[7]=getJTextField_entertainment().getText().toString();
+		packageData[8]=mealOption1ID;
 		packageData[9]=getJTextField_mealOption1().getText().toString();
-		//packageData[10]=getJTextField_mealOption2().getName().toString();
+		packageData[10]=mealOption2ID;
 		packageData[11]=getJTextField_mealOption2().getText().toString();
-		//packageData[12]=getJTextField_mealOption3().getName().toString();
+		packageData[12]=mealOption3ID;
 		packageData[13]=getJTextField_mealOption3().getText().toString();
 		packageData[14]=getJSlider_discount().getValue()+"";
 		data.add(packageHeader);

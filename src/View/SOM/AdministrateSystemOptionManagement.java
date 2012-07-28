@@ -1694,9 +1694,11 @@ public class AdministrateSystemOptionManagement {
 		form.getJCheckBox_packageAvailability().setSelected(control.getPack().isPackageAvailability());
 		form.getJTextField_Ballroom().setText(control.getBallroom().getBallroomName());
 		form.getJTextField_Ballroom().setName(control.getBallroom().getBallroomID());
+		form.ballroomID=control.getBallroom().getBallroomID();
 		if(control.getEntertainment().getEntertainmentID()!=null){
 			form.getJTextField_entertainment().setText(control.getEntertainment().getEntertainmentTitle());
 			form.getJTextField_entertainment().setName(control.getEntertainment().getEntertainmentID());
+			form.entertainmentID=control.getEntertainment().getEntertainmentID();
 			form.getJButton_entertainment().setEnabled(true);
 			form.getJCheckBox_entertainment().setSelected(true);
 		}
@@ -1705,18 +1707,21 @@ public class AdministrateSystemOptionManagement {
 		if(numOfMeal>0){
 			form.getJTextField_mealOption1().setText(control.getMeals().get(0).getMealTitle());
 			form.getJTextField_mealOption1().setName(control.getMeals().get(0).getMealID());
+			form.mealOption1ID=control.getMeals().get(0).getMealID();
 			form.getJButton_mealOption1().setEnabled(true);
 			form.getJCheckBox_mealOption1().setSelected(true);
 		}
 		if(numOfMeal>1){
 			form.getJTextField_mealOption2().setText(control.getMeals().get(1).getMealTitle());
 			form.getJTextField_mealOption2().setName(control.getMeals().get(1).getMealID());
+			form.mealOption2ID=control.getMeals().get(0).getMealID();
 			form.getJButton_mealOption2().setEnabled(true);
 			form.getJCheckBox_mealOption2().setSelected(true);
 		}
 		if(numOfMeal>2){
 			form.getJTextField_mealOption3().setText(control.getMeals().get(2).getMealTitle());
 			form.getJTextField_mealOption3().setName(control.getMeals().get(2).getMealID());
+			form.mealOption3ID=control.getMeals().get(0).getMealID();
 			form.getJButton_mealOption3().setEnabled(true);
 			form.getJCheckBox_mealOption3().setSelected(true);
 		}
@@ -2123,7 +2128,7 @@ public class AdministrateSystemOptionManagement {
 						form.getJButton_delete().setEnabled(true);
 						form.getJButton_download().setEnabled(true);
 						form.getJButton_update().setEnabled(true);
-						tabTitle="Meal "+data.get(1)[0];
+						tabTitle="Package "+data.get(1)[0];
 					}
 				}
 				//set the fieelds
@@ -2135,28 +2140,32 @@ public class AdministrateSystemOptionManagement {
 					form.getJCheckBox_packageAvailability().setSelected(false);
 				form.getJTextArea_packageDescription().setText(data.get(1)[3]);
 				form.getJTextArea_packageDescription().setForeground(SystemColor.black);
-				if(!data.get(1)[4].equals(null)||!data.get(1)[4].equals("")){
-					form.getJTextField_Ballroom().setName(data.get(1)[4]);
-					form.getJTextField_Ballroom().setText(data.get(1)[5]);
-				}
+				form.getJTextField_Ballroom().setName(data.get(1)[4]);
+				form.getJTextField_Ballroom().setText(data.get(1)[5]);
+				form.ballroomID=data.get(1)[4];
+				
 				if(!data.get(1)[6].equals(null)||!data.get(1)[6].equals("")){
 					form.getJTextField_entertainment().setName(data.get(1)[6]);
 					form.getJTextField_entertainment().setText(data.get(1)[7]);
+					form.entertainmentID=data.get(1)[6];
 					form.getJCheckBox_entertainment().setSelected(true);
 				}
 				if(!data.get(1)[8].equals(null)||!data.get(1)[8].equals("")){
 					form.getJTextField_mealOption1().setName(data.get(1)[8]);
 					form.getJTextField_mealOption1().setText(data.get(1)[9]);
+					form.mealOption1ID=data.get(1)[8];
 					form.getJCheckBox_mealOption1().setSelected(true);
 				}
 				if(!data.get(1)[10].equals(null)||!data.get(1)[8].equals("")){
 					form.getJTextField_mealOption2().setName(data.get(1)[10]);
 					form.getJTextField_mealOption2().setText(data.get(1)[11]);
+					form.mealOption2ID=data.get(1)[10];
 					form.getJCheckBox_mealOption2().setSelected(true);
 				}
 				if(!data.get(1)[12].equals(null)||!data.get(1)[8].equals("")){
 					form.getJTextField_mealOption3().setName(data.get(1)[12]);
 					form.getJTextField_mealOption3().setText(data.get(1)[13]);
+					form.mealOption3ID=data.get(1)[12];
 					form.getJCheckBox_mealOption3().setSelected(true);
 				}
 				form.getJSlider_discount().setValue(Integer.parseInt(data.get(1)[14]));

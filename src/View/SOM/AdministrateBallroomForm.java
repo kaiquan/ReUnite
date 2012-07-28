@@ -1155,6 +1155,8 @@ public class AdministrateBallroomForm {
 		String ballroomID=control.processCreateBallroom();
 		
 		if(ballroomID.equals("")||ballroomID.equals(null)){
+			//DELETE THE ENTERTAINMENT RECORD IS ANY WAS CREATEDD
+			deleteBallroom();
 			progress.interrupt();
 			progress.stop();
 			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);

@@ -1,34 +1,3 @@
-/*
- * TableSorter.java
- *
- * Copyright (c) 2004-2011 Gregory Kotsaftis
- * gregkotsaftis@yahoo.com
- * http://zeus-jscl.sourceforge.net/
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- */
-
-/*
- * The original code was written by 'Sun' and was published
- * at 'java.sun.com' tutorial. All original copyrights (if any) are
- * reserved by the original author.
- * The zeus-jscl copyright above refers only to any modifications
- * made to the original sources.
- * http://java.sun.com/docs/books/tutorial/uiswing/components/table.html#sorting
- */
-
 package View.RIM.Components.Table;
 
 import java.awt.Color;
@@ -55,68 +24,10 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
-/**
- * TableSorter is a decorator for TableModels; adding sorting
- * functionality to a supplied TableModel. TableSorter does
- * not store or copy the data in its TableModel; instead it maintains
- * a map from the row indexes of the view to the row indexes of the
- * model. As requests are made of the sorter (like getValueAt(row, col))
- * they are passed to the underlying model after the row numbers
- * have been translated via the internal mapping array. This way,
- * the TableSorter appears to hold another copy of the table
- * with the rows in a different order.
- * <p/>
- * TableSorter registers itself as a listener to the underlying model,
- * just as the JTable itself would. Events recieved from the model
- * are examined, sometimes manipulated (typically widened), and then
- * passed on to the TableSorter's listeners (typically the JTable).
- * If a change to the model has invalidated the order of TableSorter's
- * rows, a note of this is made and the sorter will resort the
- * rows the next time a value is requested.
- * <p/>
- * When the tableHeader property is set, either by using the
- * setTableHeader() method or the two argument constructor, the
- * table header may be used as a complete UI for TableSorter.
- * The default renderer of the tableHeader is decorated with a renderer
- * that indicates the sorting status of each column. In addition,
- * a mouse listener is installed with the following behavior:
- * <ul>
- * <li>
- * Mouse-click: Clears the sorting status of all other columns
- * and advances the sorting status of that column through three
- * values: {NOT_SORTED, ASCENDING, DESCENDING} (then back to
- * NOT_SORTED again).
- * <li>
- * SHIFT-mouse-click: Clears the sorting status of all other columns
- * and cycles the sorting status of the column through the same
- * three values, in the opposite order: {NOT_SORTED, DESCENDING, ASCENDING}.
- * <li>
- * CONTROL-mouse-click and CONTROL-SHIFT-mouse-click: as above except
- * that the changes to the column do not cancel the statuses of columns
- * that are already sorting - giving a way to initiate a compound
- * sort.
- * </ul>
- * <p/>
- * This is a long overdue rewrite of a class of the same name that
- * first appeared in the swing table demos in 1997.
- *
- * <p>
- * Modified by Gregory Kotsaftis in order to accept custom icon images
- * instead of just Arrow icon.
- * <p>
- *
- * @author Philip Milne
- * @author Brendon McLean
- * @author Dan van Enckevort
- * @author Parwinder Sekhon
- * @version 2.0 02/27/04
- *
- * @author Gregory Kotsaftis
- * @since 1.50
- */
+
+@SuppressWarnings({ "serial", "rawtypes", "unchecked" })
 public class TableSorter extends AbstractTableModel {
 
-    // Greg
     private boolean m_useCustomIcons = false;
     private Icon[] m_customUpIcons = null;
     private Icon[] m_customDownIcons = null;
@@ -151,7 +62,7 @@ public class TableSorter extends AbstractTableModel {
     private JTableHeader tableHeader;
     private MouseListener mouseListener;
     private TableModelListener tableModelListener;
-    private Map columnComparators = new HashMap();
+	private Map columnComparators = new HashMap();
     private List sortingColumns = new ArrayList();
 
 
@@ -192,7 +103,7 @@ public class TableSorter extends AbstractTableModel {
 
     /**
      * Arrays contains all custom icons with priority order from high to low.
-     * Greg
+     * 
      */
     public void setCustomIcons(Icon[] ups, Icon[] downs)
     {
@@ -318,7 +229,7 @@ public class TableSorter extends AbstractTableModel {
     }
 
 
-    // Greg
+    // 
     protected Icon getHeaderRendererCustomIcon(int column)
     {
         Directive directive = getDirective(column);
@@ -709,7 +620,7 @@ public class TableSorter extends AbstractTableModel {
                 JLabel l = (JLabel) c;
                 l.setHorizontalTextPosition(JLabel.LEFT);
                 int modelColumn = table.convertColumnIndexToModel(column);
-                // Greg
+                // 
                 if( m_useCustomIcons )
                 {
                     l.setIcon(getHeaderRendererCustomIcon(modelColumn));

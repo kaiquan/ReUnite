@@ -242,6 +242,7 @@ public class CreateInvitationView extends JFrame
 	
 	private void setRenderers()
 	{	
+		table.getColumnModel().getColumn(0).setMaxWidth(75);
 		table.getColumnModel().getColumn(0).setCellRenderer(new TableCellIconRenderer());
 	
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -251,6 +252,7 @@ public class CreateInvitationView extends JFrame
 		
 		String[] values = new String[]{"item1", "item2", "item3"};
 		table.getColumnModel().getColumn(4).setCellEditor(new MyComboBoxEditor(values));
+		table.getColumnModel().getColumn(4).setCellRenderer(new MyComboBoxRenderer<String>(values));
 	}
 	
 	public JPanel getStep2()

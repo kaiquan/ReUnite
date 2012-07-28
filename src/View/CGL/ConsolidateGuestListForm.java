@@ -318,6 +318,7 @@ public class ConsolidateGuestListForm extends Fonts{
 			jButton1 = new JButton();
 			jButton1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					
 					if(jTextField.getText().equals("")){
 						JOptionPane.showMessageDialog(null, "Please Select an event");
 						return;
@@ -327,110 +328,25 @@ public class ConsolidateGuestListForm extends Fonts{
 					
 					ConsolidateGuestListControl c1 = new ConsolidateGuestListControl();
 					if((c1.updateTotalPayableAmount((textField_4.getText()),textField.getText())==true)){
-						JOptionPane.showMessageDialog(null, "Payment Amount Updated");
-						
-						
-
-                    	FILE=textField.getText()+".pdf";
-                    	
+						System.out.println("Payment Amount Updated");
+                    	FILE=textField.getText()+".pdf";                    	
                     	ConsolidateGuestListForm g1 = new ConsolidateGuestListForm();
-                    	g1.pdfCreator(FILE,textField.getText(),textField_1.getText(),textField_2.getText(),textField_3.getText(),jTextField.getText(),textField_5.getText(),textField_4.getText(),getJTextArea().getText(),ballroomPrice,entertainmentPrice,mealPrice,packageDiscount);
-                    	
-                    	JOptionPane.showMessageDialog(null, "PDF CREATED SUCCESSFULLY");
-                    	
-                    	EmailController email = new EmailController();
-                    	
+                    	g1.pdfCreator(FILE,textField.getText(),textField_1.getText(),textField_2.getText(),textField_3.getText(),jTextField.getText(),textField_5.getText(),textField_4.getText(),getJTextArea().getText(),ballroomPrice,entertainmentPrice,mealPrice,packageDiscount);                    	
+                    	System.out.println("PDF CREATED SUCCESSFULLY");                    	
+                    	EmailController email = new EmailController();                    	
                     	File pdf = new File(FILE);
-                    	String[] test={"anniyan123456789@hotmail.com"};
-                    	
-                    	try {
+                    	String[] test={"anniyan123456789@hotmail.com"};                    	
+                    	/*try {
 							email.sendEmail("TEXT", test, "TEST EMAIL", "TESTING EMAIL", pdf, 3, "Payment");
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
+						}*/
+						if((c1.processUpdateEventStatus(textField.getText(),eventStatus)==true)){
+							System.out.println("Event Status Changed to Awaiting Payment");
+							refresh();						
 						}
-					
-					
-					if((c1.processUpdateEventStatus(textField.getText(),eventStatus)==true)){
-						JOptionPane.showMessageDialog(null, "Event Status Changed to Awaiting Payment");
-						
-						textField.setText("");
-						jTextField.setText("");
-						textField_1.setText("");
-						textField_2.setText("");
-						textField_3.setText("");
-						textField_4.setText("");
-						textField_4.setText("");
-						textField_5.setText("");
-						jTextArea.setText("");
-						jContentPane.remove(tree);
-						jContentPane.add(tree);
-						
-					
-						
-						
-						
-						
-						DefaultMutableTreeNode events = new DefaultMutableTreeNode("Events");
-						generateEvents(events);
-						DefaultTreeModel model = new DefaultTreeModel(events);
-					
-						
-						tree.setModel(model);
-						tree.setBounds(10, 14, 119, 264);
-						tree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
-							public void valueChanged(javax.swing.event.TreeSelectionEvent e) {
-								DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
-			                    if(node !=null ){
-			                    if (node.isLeaf() == true)
-			                    {
-			                    	textField.setText(node.getUserObject().toString());
-			                    	
-			                    	ConsolidateGuestListControl c1 = new ConsolidateGuestListControl();         
-			                    	String eventName=node.getUserObject().toString();
-			                    	c1.requestSelectedEventDetails((eventName)).get(0);
-			                    	
-			                    	Scanner sc = new Scanner(c1.requestSelectedEventDetails((eventName)).get(0));
-			                    	sc.useDelimiter(",");
-			                    	String ballroomName=sc.next();
-			                    	String eventTime=sc.next();
-			                    	String eventDate=sc.next();
-			                    	String eventStatus=sc.next();
-			                    	String eventDescription=sc.next();
-			                    	String guestCountr=sc.next();
-			                    	String totalPrice=sc.next();
-			                    	ballroomPrice=sc.next();
-			                    	entertainmentPrice=sc.next();
-			                    	mealPrice=sc.next();
-			                    	String facility=sc.next();
-			                    	packageDiscount=sc.next();
-			                    	
-			                    	
-			                    	
-			                    	
-			                    	textField_1.setText(eventDate);
-			                    	jTextField.setText(facility);
-			                    	textField_2.setText(guestCountr);
-			                    	textField_3.setText(eventTime);
-			                    	textField_5.setText(ballroomName);
-			                    	textField_4.setText(totalPrice);
-			                    	jTextArea.setText(eventDescription);
-			                    	
-			                    	
-			                    }
-								 
-			                    }
-
-							
-							}
-						});
-						jContentPane.add(tree);
-						
 					}
-					}
-					
-					
-					
 				}
 			});
 			jButton1.setBounds(new Rectangle(344, 263, 144, 15));
@@ -586,13 +502,13 @@ public class ConsolidateGuestListForm extends Fonts{
 		paragraph.setIndentationLeft(150f);
 		preface.add(paragraph);
 		addEmptyLine(preface, 1);
-		preface.add(new Chunk("Event Name:                         "+eventName));
-        preface.add(new Chunk("No Of Guests: "+noOfGuests));
+		preface.add(new Chunk("Event Name:"+eventName));
+        preface.add(new Chunk("No Of Guests:"+noOfGuests));        
         addEmptyLine(preface, 1);
-        preface.add(new Chunk("Event Date:                         "+eventDate));
+        preface.add(new Chunk("Event Date:"+eventDate));
         preface.add(new Chunk("Event Time: "+eventTime));
         addEmptyLine(preface, 1);
-        preface.add(new Chunk("Location:                         "+location));
+        preface.add(new Chunk("Location:"+location));
         preface.add(new Chunk("Ballroom: "+ballroom));
         addEmptyLine(preface, 1);
         preface.add(new Paragraph("Event Description: "+eventDesc));

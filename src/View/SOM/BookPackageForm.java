@@ -302,7 +302,6 @@ public class BookPackageForm {
 		if (jTextField_eventName == null) {
 			jTextField_eventName = new JTextField();
 			jTextField_eventName.setText("Give Your Event A Name");
-			jTextField_eventName.setFocusable(false);
 			jTextField_eventName.setForeground(SystemColor.scrollbar);
 			jTextField_eventName.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_eventName.setHorizontalAlignment(JTextField.CENTER);
@@ -335,7 +334,6 @@ public class BookPackageForm {
 	private JTextArea getJTextArea_eventDescription() {
 		if (jTextArea_eventDescription == null) {
 			jTextArea_eventDescription = new JTextArea();
-			jTextArea_eventDescription.setFocusable(false);
 			jTextArea_eventDescription.setForeground(SystemColor.scrollbar);
 			jTextArea_eventDescription.setText("\n\n                                            Give Youe Event A Description");
 			jTextArea_eventDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
@@ -1278,13 +1276,18 @@ public class BookPackageForm {
 			System.out.println("i m dasdasdhere\n "+timings.size());
 		}
 			int max=0;//error here!
+			System.out.println(timings.get(0));
 			for(int i=0; i<timings.size();i++){
 				while(getJComboBox_selectTime().getMaximumRowCount()>i){
-					if(getJComboBox_selectTime().getItemAt(i).equals(timings.get(i))){
+					if(getJComboBox_selectTime().getItemAt(i).equals(timings.get(max))){
+						System.out.println(timings.get(i));
 						getJComboBox_selectTime().removeItem(timings.get(i));
+						
 					}
-					max++;
+					
+					i++;
 				}
+				max++;
 			}
 		}
 	

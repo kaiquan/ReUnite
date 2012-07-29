@@ -22,7 +22,7 @@ import Model.Event;
 import Model.RIM.TableModels.InvitationTableModel;
 import View.RIM.Components.Table.AutoResizeTableColumns;
 import View.RIM.Components.Table.ProgressBarCellRenderer;
-import View.RIM.Components.Table.TableSorter;
+import Model.RIM.TableModels.TableSorter;
 import View.RIM.Components.Table.TableSorterIcons;
 
 @SuppressWarnings("serial")

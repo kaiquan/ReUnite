@@ -2,7 +2,7 @@ package Controller.RIM;
 /*******************************************************************************************
  * Project: ReUnite
  *
- * Class: EmailController
+ * Class: CreateInvitationViewController
  *
  * Author: Adeel M. Ateeque (112013Z)
  * 
@@ -14,16 +14,16 @@ package Controller.RIM;
  * Honor Code: I pledge that this program represents my own program code. 
  * I received help from no one in designing, coding and debugging my program.
  *******************************************************************************************/
-import java.util.*;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
 import Controller.RIM.Utils.DateHelper;
-import Model.*;
-import Model.Membership.*;
+import Model.Event;
+import Model.Invitation;
+import Model.Membership.Guest;
 import Model.RIM.GuestCollection;
 import Model.RIM.TableModels.GuestImportTableModel;
-import Model.RIM.TableModels.*;
 
 public class CreateInvitationViewController
 {
@@ -33,7 +33,6 @@ public class CreateInvitationViewController
 	
 	private static GuestCollection guests = new GuestCollection();
 	private static GuestImportTableModel tableModel = new GuestImportTableModel(guests);
-	private static TableSorter tableSorter = new TableSorter(tableModel);
 	
 	
 	public CreateInvitationViewController()
@@ -62,17 +61,10 @@ public class CreateInvitationViewController
 		return false;
 	}
 	
-	
 	//Table methods
 	public GuestImportTableModel getTableModel()
 	{
 		return tableModel;
-	}
-	
-	public TableSorter getTableSorter()
-	{
-		return tableSorter;
-		
 	}
 	
 	public void addRow()
@@ -89,8 +81,6 @@ public class CreateInvitationViewController
 	{
 		tableModel.deleteRow(row);
 	}
-	
-
 	
 	public static void main(String args[])
 	{

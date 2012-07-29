@@ -11,6 +11,7 @@ import Model.RIM.GuestCollection;
 
 public class GuestImportTableModel extends AbstractTableModel
 {
+	private static TableSorter tableSorter;
 	private static final long serialVersionUID = 1L;
 	private int rowCount, colCount;
 	private String[] columnNames = { "", "First name", "Last name", "School", "Date of birth", "Email", "Telephone number", "Handphone number", "Address" };
@@ -18,7 +19,7 @@ public class GuestImportTableModel extends AbstractTableModel
 
 
 	public GuestImportTableModel(GuestCollection guestList)
-	{		
+	{	
 		rowCount = guestList.getProfiles().size();
 		al = new ArrayList<Object[]>(rowCount);
 		colCount = columnNames.length;
@@ -32,15 +33,15 @@ public class GuestImportTableModel extends AbstractTableModel
 			data[i][1] = guest.getFirstName();
 			data[i][2] = guest.getLastName();
 			data[i][3] = guest.getSchool();
-			data[i][4] = Color.BLUE;
+			data[i][4] = guest.getDateOfBirth();
 			data[i][5] = guest.getEmail();
-			data[i][6] = guest.getTelephoneNo();
+			data[i][6] = Color.blue;
 			data[i][7] = guest.getHandphoneNo();
 			data[i][8] = guest.getAddress();
 			
 			al.add(data[i]);
 		}
-
+		tableSorter = new TableSorter(this);
 	}
 
 	public boolean isCellEditable(int row, int column)
@@ -123,7 +124,7 @@ public class GuestImportTableModel extends AbstractTableModel
 		data[1] = guest.getFirstName();
 		data[2] = guest.getLastName();
 		data[3] = guest.getSchool();
-		data[4] = guest.getDateOfBirth();
+		data[4] = Color.blue;
 		data[5] = guest.getEmail();
 		data[6] = guest.getTelephoneNo();
 		data[7] = guest.getHandphoneNo();
@@ -144,6 +145,15 @@ public class GuestImportTableModel extends AbstractTableModel
 		fireTableDataChanged();
 		
 	}
+	
+	public TableSorter getTableSorter() {
+		return tableSorter;
+	}
+
+	public static void setTableSorter(TableSorter tableSorter) {
+		GuestImportTableModel.tableSorter = tableSorter;
+	}
+
 }
 
 

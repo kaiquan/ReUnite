@@ -1,5 +1,5 @@
 
-package View.RIM.Components;
+package Model.RIM.ListModels;
 
 import java.text.Collator;
 import java.util.ArrayList;
@@ -7,13 +7,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
 import javax.swing.AbstractListModel;
-import javax.swing.DefaultListModel;
 import javax.swing.ListModel;
-import javax.swing.event.EventListenerList;
 import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
-import java.text.Collator;
 
 /**
  * SortedListModel decorates an unsorted ListModel to provide
@@ -22,9 +20,11 @@ import java.text.Collator;
  * a sorted view of your underlying model.
  *
  */
-public class SortedListModel extends AbstractListModel {
+@SuppressWarnings("serial")
+public class SortedListModel extends AbstractListModel<Object> {
     
-    private SortedListModel() {}
+    @SuppressWarnings("unused")
+	private SortedListModel() {}
     
     /**
      * Create a SortedListModel from an existing model
@@ -32,7 +32,7 @@ public class SortedListModel extends AbstractListModel {
      * in ascending order.
      * @param model the underlying, unsorted ListModel
      */
-    public SortedListModel(ListModel model) {
+    public SortedListModel(ListModel<Object> model) {
         this(model, SortOrder.ASCENDING, null);
     }
     
@@ -44,7 +44,7 @@ public class SortedListModel extends AbstractListModel {
      *@param model the unsorted list model
      *@param sortOrder that should be used
      */
-    public SortedListModel(ListModel model, SortOrder sortOrder) {
+    public SortedListModel(ListModel<Object> model, SortOrder sortOrder) {
         this(model, sortOrder, null);
     }
     
@@ -57,7 +57,7 @@ public class SortedListModel extends AbstractListModel {
      *@param comp
      *
      */
-    public SortedListModel(ListModel model, SortOrder sortOrder, Comparator comp) {
+    public SortedListModel(ListModel<Object> model, SortOrder sortOrder, Comparator<Object> comp) {
         unsortedModel = model;
         unsortedModel.addListDataListener(new ListDataListener() {
             public void intervalAdded(ListDataEvent e) {
@@ -190,7 +190,7 @@ public class SortedListModel extends AbstractListModel {
         }
     }
     
-    public void setComparator(Comparator comp) {
+    public void setComparator(Comparator<Object> comp) {
         if (comp == null) {
             sortOrder = SortOrder.UNORDERED;
             comparator = Collator.getInstance();
@@ -306,7 +306,7 @@ public class SortedListModel extends AbstractListModel {
     private int findInsertionPoint(SortedListEntry entry) {
         int insertionPoint = sortedModel.size();
         if (sortOrder != SortOrder.UNORDERED)  {
-            insertionPoint = Collections.binarySearch((List)sortedModel, entry);
+            insertionPoint = Collections.binarySearch((List<SortedListEntry>)sortedModel, entry);
             if (insertionPoint < 0) {
                 insertionPoint = -(insertionPoint +1);
             }
@@ -315,8 +315,8 @@ public class SortedListModel extends AbstractListModel {
     }
     
     private List<SortedListEntry> sortedModel;
-    private ListModel unsortedModel;
-    private Comparator comparator;
+    private ListModel<Object> unsortedModel;
+    private Comparator<Object> comparator;
     private SortOrder sortOrder;
     
     public enum SortOrder {
@@ -325,8 +325,9 @@ public class SortedListModel extends AbstractListModel {
         DESCENDING;
     }
     
-    class SortedListEntry  implements Comparable {
-        private SortedListEntry() {
+    class SortedListEntry  implements Comparable<Object> {
+        @SuppressWarnings("unused")
+		private SortedListEntry() {
             
         }
         

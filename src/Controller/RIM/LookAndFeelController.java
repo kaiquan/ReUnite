@@ -9,7 +9,7 @@ public class LookAndFeelController {
 	{
 		try 
 		{
-            UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
+            UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
             System.out.println("Setting Graphite Look and Feel");
 		}
             catch (UnsupportedLookAndFeelException ex) 

@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSpinner.DateEditor;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
@@ -30,7 +30,12 @@ import Controller.RIM.LookAndFeelController;
 import Images.RIM.ImageHelper;
 import Model.Membership.Guest;
 import View.RIM.Components.NavigationFooter;
-import View.RIM.Components.Table.*;
+import View.RIM.Components.Table.AutoResizeTableColumns;
+import View.RIM.Components.Table.ColorEditor;
+import View.RIM.Components.Table.ColorRenderer;
+import View.RIM.Components.Table.IconEditor;
+import View.RIM.Components.Table.IconRenderer;
+import View.RIM.Components.Table.DateCellEditor;
 
 
 @SuppressWarnings("serial")
@@ -176,49 +181,11 @@ public class CreateInvitationView extends JFrame
 
 	private JTable prepareTable()
 	{		
-		table = new JTable(controller.getTableModel())
-//		{
-//		    public Component prepareRenderer(TableCellRenderer renderer,int rowIndex, int vColIndex) 
-//		    {
-//		        Component c = super.prepareRenderer(renderer, rowIndex, vColIndex);
-//		        if (rowIndex % 2 == 0 && !isCellSelected(rowIndex, vColIndex)) {
-//		            c.setBackground(new Color(245, 245, 245));
-//		        }
-//		        else if(isRowSelected(rowIndex))
-//		        {
-//		        	c.setBackground(Color.LIGHT_GRAY);
-//		        }
-//		        else 
-//		        {
-//		            // If not shaded, match the table's background
-//		            c.setBackground(getBackground());
-//		        }
-//		        return c;
-//		    }
-//		}
-		;
+		table = new JTable(controller.getTableModel());
 		table.setRowHeight(75);
 		table.getTableHeader().setReorderingAllowed(false);
-		
-		Icon ups[] = new Icon[] 
-		{
-			TableSorterIcons.UP5_ICON, // this one will be dispayed first
-			TableSorterIcons.UP7_ICON, TableSorterIcons.UP6_ICON,
-			TableSorterIcons.UP4_ICON, TableSorterIcons.UP3_ICON,
-			TableSorterIcons.UP2_ICON, TableSorterIcons.UP1_ICON 
-		};
-
-		Icon downs[] = new Icon[] 
-		{
-			TableSorterIcons.DOWN5_ICON, // this one will be dispayed first
-			TableSorterIcons.DOWN7_ICON, TableSorterIcons.DOWN6_ICON,
-			TableSorterIcons.DOWN4_ICON, TableSorterIcons.DOWN3_ICON,
-			TableSorterIcons.DOWN2_ICON, TableSorterIcons.DOWN1_ICON 
-		};
-		
-		controller.getTableSorter().setCustomIcons(ups, downs);
-		controller.getTableSorter().setTableHeader(table.getTableHeader());
-		table.setModel(controller.getTableSorter());
+		controller.getTableModel().getTableSorter().setTableHeader(table.getTableHeader());
+		table.setModel(controller.getTableModel().getTableSorter());
 
 		setRenderers();
 		
@@ -244,8 +211,17 @@ public class CreateInvitationView extends JFrame
 		table.getColumnModel().getColumn(0).setCellRenderer(new IconRenderer());
 		table.getColumnModel().getColumn(0).setCellEditor(new IconEditor());
 		
-		table.getColumnModel().getColumn(4).setCellRenderer(new ColorRenderer(true));
-		table.getColumnModel().getColumn(4).setCellEditor(new ColorEditor());
+		table.getColumnModel().getColumn(6).setCellRenderer(new ColorRenderer(true));
+		table.getColumnModel().getColumn(6).setCellEditor(new ColorEditor());
+		
+		// Create our cell editor
+		DateCellEditor datePickerCellEditor = new DateCellEditor();
+
+		// Set the number of mouse clicks needed to activate it.
+		datePickerCellEditor.setClickCountToStart(1);
+
+		// Set it for the appropriate table column.
+		table.getColumnModel().getColumn(4).setCellEditor(datePickerCellEditor);
 		
 	}
 	
@@ -318,6 +294,7 @@ public class CreateInvitationView extends JFrame
 		new CreateInvitationView();
 	}
 }
+
 
 
 

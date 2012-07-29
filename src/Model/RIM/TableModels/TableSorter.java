@@ -25,6 +25,8 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
+import View.RIM.Components.Table.TableSorterIcons;
+
 
 @SuppressWarnings({ "serial", "rawtypes", "unchecked" })
 public class TableSorter extends AbstractTableModel {
@@ -69,6 +71,22 @@ public class TableSorter extends AbstractTableModel {
 
     public TableSorter()
     {
+    	Icon[] ups  = new Icon[] 
+				{
+				TableSorterIcons.UP5_ICON, // this one will be dispayed first
+				TableSorterIcons.UP7_ICON, TableSorterIcons.UP7_ICON,
+				TableSorterIcons.UP7_ICON, TableSorterIcons.UP7_ICON,
+				TableSorterIcons.UP7_ICON, TableSorterIcons.UP7_ICON 
+			};
+		
+		Icon[] downs = new Icon[] 
+				{
+				TableSorterIcons.DOWN5_ICON, // this one will be dispayed first
+				TableSorterIcons.DOWN7_ICON, TableSorterIcons.DOWN7_ICON,
+				TableSorterIcons.DOWN7_ICON, TableSorterIcons.DOWN7_ICON,
+				TableSorterIcons.DOWN7_ICON, TableSorterIcons.DOWN7_ICON 
+			};
+		this.setCustomIcons(ups, downs);
         this.mouseListener = new MouseHandler();
         this.tableModelListener = new TableModelHandler();
     }
@@ -88,7 +106,6 @@ public class TableSorter extends AbstractTableModel {
         setTableModel(tableModel);
     }
 
-
     private void clearSortingState()
     {
         viewToModel = null;
@@ -100,7 +117,6 @@ public class TableSorter extends AbstractTableModel {
     {
         return tableModel;
     }
-
 
     /**
      * Arrays contains all custom icons with priority order from high to low.

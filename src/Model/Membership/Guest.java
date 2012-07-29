@@ -21,12 +21,13 @@ public class Guest extends Account
 		setUserName(userName);
 	}
 	
-	public Guest(String name, String onlineStatus, String profilePicture)
+	public Guest(String name, String onlineStatus, String profilePicture, String school)
 	{
 		super.setFirstName(name);
 		setOnlineStatus(onlineStatus);
 		setLastName("Ateeque");
 		setProfilePicture(profilePicture);
+		setSchool(school);
 	}
 
 	public String getOnlineStatus()

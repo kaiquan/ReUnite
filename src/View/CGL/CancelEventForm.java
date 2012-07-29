@@ -346,6 +346,20 @@ public class CancelEventForm {
 		int n = JOptionPane.showOptionDialog(null,"Are you sure you want to cancel this event?","Please Confirm", JOptionPane.YES_NO_OPTION ,JOptionPane.QUESTION_MESSAGE, null,  options,options[1]);
 		 if(n == 0){
 	            System.out.println("YES Clicked");
+	            String reason="";
+	            reason=JOptionPane.showInputDialog(null,"Reason for cancellation");
+	            
+	            if(reason.equals("")){
+	            	JOptionPane.showMessageDialog(null, "Please enter the reason for cancellation");
+	            	return;
+	            }
+	            
+	            else{
+	            		//send email to guests regarding cancellation
+	            		//update cancellation table
+	            		//set event status to cancelledz
+	            		
+	            }
 	        }
 
 	       // NO OPTION CLICKED

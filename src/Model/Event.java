@@ -22,6 +22,7 @@ package Model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import Controller.RIM.Utils.DateHelper;
 import java.util.GregorianCalendar;
 import Controller.MyCalendar;
 import Controller.MySQLController; 
@@ -30,6 +31,7 @@ import Model.Membership.Account;
 import Model.RIM.TableNames;
 
 
+@SuppressWarnings("unused")
 public class Event {
 
 	/********************************************************

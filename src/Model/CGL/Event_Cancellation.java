@@ -10,7 +10,7 @@ import Model.Event;
 public class Event_Cancellation {
 	private static MySQLController DB = new MySQLController();
 	
-public boolean UPDATES_CANCELLATION_DETAILS(String eventName){
+public boolean UPDATES_CANCELLATION_DETAILS(String eventName,String reason){
 		boolean status=false;
 		MyCalendar m1 = new MyCalendar();
 		ResultSet rs = null;
@@ -18,15 +18,16 @@ public boolean UPDATES_CANCELLATION_DETAILS(String eventName){
 		String dbQuery;
 		int i=0;
 		
-		dbQuery = "INSERT INTO `saharp5_adeel_school`.`Event_Cancellation` (`eventID`, `cancellationDate`, `cancellationReason`) VALUES ((SELECT eventID FROM Event WHERE eventName='"+eventName+"'), '2012-07-20', 'hehe')";
+		dbQuery = "INSERT INTO `saharp5_adeel_school`.`Event_Cancellation` (`eventID`, `cancellationDate`, `cancellationReason`) VALUES ((SELECT eventID FROM Event WHERE eventName='"+eventName+"'), '"+m1.currentDate()+"', '"+reason+"')";
 					
 		
 			try{
 				i=DB.updateRequest(dbQuery);
+				
 			}
 			
 			catch(Exception ex){
-				System.out.println("Failed to update cancellation");
+				System.out.println("Failed to add record into cancellation");
 			}
 			
 			finally{
@@ -46,7 +47,7 @@ public boolean UPDATES_CANCELLATION_DETAILS(String eventName){
 
 	public static void main(String args[]){
 		Event_Cancellation e1 = new Event_Cancellation();
-		e1.UPDATES_CANCELLATION_DETAILS("Great Reunion");
+		e1.UPDATES_CANCELLATION_DETAILS("Great Reunion","Waste of time");
 	}
 
 }

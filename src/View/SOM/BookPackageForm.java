@@ -166,11 +166,11 @@ public class BookPackageForm {
 			jLabel_step3.setBounds(new Rectangle(15, 260, 365, 30));
 			jLabel_step3.setText("Step 3 - Give your event a name and description");
 			jLabel_step2 = new JLabel();
-			jLabel_step2.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_step2.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_step2.setBounds(new Rectangle(20, 140, 365, 30));
 			jLabel_step2.setText("Step 2- Choose your prefered date and time");
 			jLabel_step1 = new JLabel();
-			jLabel_step1.setFont(new Font("Century Gothic", Font.BOLD, 12));
+			jLabel_step1.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_step1.setBounds(new Rectangle(20, 20, 412, 30));
 			jLabel_step1.setText("Step 1-  Select an available package or customise you very own.");
 			jPanel = new JPanel();
@@ -195,6 +195,7 @@ public class BookPackageForm {
 	protected static JTextField getJTextField_seectedPackageTitle() {
 		if (jTextField_seectedPackageTitle == null) {
 			jTextField_seectedPackageTitle = new JTextField();
+			jTextField_seectedPackageTitle.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_seectedPackageTitle.setEnabled(false);
 			jTextField_seectedPackageTitle.setBounds(new Rectangle(15, 60, 420, 30));
 		}
@@ -203,7 +204,7 @@ public class BookPackageForm {
 	private JButton getJButton_selectStandardPackage() {
 		if (jButton_selectStandardPackage == null) {
 			jButton_selectStandardPackage = new JButton();
-			jButton_selectStandardPackage.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+			jButton_selectStandardPackage.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_selectStandardPackage.setFocusable(false);
 			jButton_selectStandardPackage.setFocusPainted(false);
 			jButton_selectStandardPackage.setBounds(new Rectangle(15, 100, 205, 30));
@@ -230,7 +231,7 @@ public class BookPackageForm {
 	private static JButton getJButton_selectCustomPackage() {
 		if (jButton_selectCustomPackage == null) {
 			jButton_selectCustomPackage = new JButton();
-			jButton_selectCustomPackage.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+			jButton_selectCustomPackage.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_selectCustomPackage.setFocusable(false);
 			jButton_selectCustomPackage.setFocusPainted(false);
 			jButton_selectCustomPackage.setBounds(new Rectangle(230, 100, 205, 30));
@@ -290,6 +291,7 @@ public class BookPackageForm {
 	private JComboBox getJComboBox_selectTime() {
 		if (jComboBox_selectTime == null) {
 			jComboBox_selectTime = new JComboBox();
+			jComboBox_selectTime.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jComboBox_selectTime.setFocusable(false);
 			jComboBox_selectTime.setEnabled(false);
 			jComboBox_selectTime.setBounds(new Rectangle(15, 220, 420, 30));
@@ -299,6 +301,7 @@ public class BookPackageForm {
 	private JTextField getJTextField_eventName() {
 		if (jTextField_eventName == null) {
 			jTextField_eventName = new JTextField();
+			jTextField_eventName.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_eventName.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_eventName.setBounds(new Rectangle(15, 300, 420, 30));
 			jTextField_eventName.addFocusListener(new java.awt.event.FocusAdapter() {   
@@ -323,6 +326,7 @@ public class BookPackageForm {
 	private JTextArea getJTextArea_eventDescription() {
 		if (jTextArea_eventDescription == null) {
 			jTextArea_eventDescription = new JTextArea();
+			jTextArea_eventDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextArea_eventDescription.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					System.out.println("focusLost()"); // TODO Auto-generated Event stub focusLost()
@@ -1296,6 +1300,9 @@ public class BookPackageForm {
 	  *******************************************************/
 	public String duplicate(){
 		String[]newMeals= new String[3];
+		newMeals[0]="null";
+		newMeals[1]="null";
+		newMeals[2]="null";
 		String newEntertainmentID="";
 		String newPackageID="";
 		
@@ -1328,10 +1335,12 @@ public class BookPackageForm {
 				newMeal.setModel(mealMenu.processRetrieveMealMenuByID(pkControl.getMealIDs().get(i)));
 				//create and store the id
 				newMeals[i]=(newMeal.processCreateMeal());
+				System.out.println("============================"+newMeals[i]);
 			}
 			
 			//recreating the package
 			AdministratePackageControl newPackage= new AdministratePackageControl("", newEntertainmentID, pkControl.getBallroom().getBallroomID(),"Standard", pkControl.getPack().getPackageTitle(),pkControl.getPack().getPackageDescription(),true, pkControl.getPack().getPackageHits(),pkControl.getPack().getPackageDiscount(),true);
+			System.out.println(newMeals[0]+"!!!!!!!!!!");
 			newPackageID=newPackage.processCreatePackage(newMeals[0], newMeals[1], newMeals[2]);
 			
 			

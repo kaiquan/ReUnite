@@ -147,8 +147,7 @@ public class CollectPaymentForm {
                     	String facilty=sc.next();
                     	packageDiscount=sc.next();
                     	
-                    	
-                    	
+                    	                    	
                     	
                     	
                     	jTextField1.setText(eventDate);

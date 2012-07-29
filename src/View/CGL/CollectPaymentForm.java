@@ -446,7 +446,11 @@ public class CollectPaymentForm extends Fonts {
 			jPanel.add(getJTextField5(), null);
 			jPanel.add(getJTextField6(), null);
 			jPanel.add(jLabel9, null);
-			jPanel.add(getJTextArea1(), null);
+			JScrollPane pne1 = new JScrollPane(getJTextArea1(),JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+			pne1.setVisible(true);
+			pne1.setBounds(new Rectangle(139, 209, 371, 36));
+			jPanel.add(pne1);
+			//jPanel.add(getJTextArea1(), null);
 			jPanel.add(jLabel10, null);
 			jPanel.add(jLabel11, null);
 			jPanel.add(getJRadioButton(), null);
@@ -563,6 +567,8 @@ public class CollectPaymentForm extends Fonts {
 		if (jTextArea1 == null) {
 			jTextArea1 = new JTextArea();
 			jTextArea1.setBounds(new Rectangle(139, 209, 371, 36));
+			jTextArea1.setWrapStyleWord(true);
+			jTextArea1.setLineWrap(true);
 		}
 		return jTextArea1;
 	}

@@ -47,6 +47,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class CollectPaymentForm extends Fonts {
 
 	
+
 	private JFrame jFrame = null;  //  @jve:decl-index=0:visual-constraint="99,17"
 	private JPanel jContentPane = null;
 	private JSeparator separator = null;

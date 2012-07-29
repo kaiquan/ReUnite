@@ -21,14 +21,24 @@ import javax.swing.JOptionPane;
 import Controller.RIM.Utils.DateHelper;
 import Model.*;
 import Model.Membership.*;
+import Model.RIM.GuestCollection;
+import Model.RIM.TableModels.GuestImportTableModel;
+import Model.RIM.TableModels.*;
 
-public class CreateInvitationController
+public class CreateInvitationViewController
 {
-	private final Invitation invitationModel = new Invitation();
-	DateHelper dateHelper = new DateHelper();
+	private DateHelper dateHelper = new DateHelper();
 	
-	public CreateInvitationController()
+	private final Invitation invitationModel = new Invitation();
+	
+	private static GuestCollection guests = new GuestCollection();
+	private static GuestImportTableModel tableModel = new GuestImportTableModel(guests);
+	private static TableSorter tableSorter = new TableSorter(tableModel);
+	
+	
+	public CreateInvitationViewController()
 	{
+		
 	}
 
 	/**
@@ -52,9 +62,39 @@ public class CreateInvitationController
 		return false;
 	}
 	
+	
+	//Table methods
+	public GuestImportTableModel getTableModel()
+	{
+		return tableModel;
+	}
+	
+	public TableSorter getTableSorter()
+	{
+		return tableSorter;
+		
+	}
+	
+	public void addRow()
+	{
+		tableModel.addRow(new Guest());
+	}
+	
+	public void addRow(ArrayList<Guest> guests)
+	{
+		tableModel.addRow(guests);
+	}
+	
+	public void deleteRow(int row[])
+	{
+		tableModel.deleteRow(row);
+	}
+	
+
+	
 	public static void main(String args[])
 	{
-		CreateInvitationController controller = new CreateInvitationController();
+		CreateInvitationViewController controller = new CreateInvitationViewController();
 		ArrayList<Guest> guestList = new ArrayList<Guest>();
 		controller.createNewInvitation(guestList , 4);
 	}

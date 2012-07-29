@@ -2,19 +2,15 @@ package View.RIM;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.DefaultCellEditor;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -26,36 +22,31 @@ import javax.swing.UIManager;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableCellRenderer;
 
 import net.miginfocom.swing.MigLayout;
 import Controller.RIM.ContactImporter;
+import Controller.RIM.CreateInvitationViewController;
 import Controller.RIM.LookAndFeelController;
 import Images.RIM.ImageHelper;
 import Model.Membership.Guest;
-import Model.RIM.GuestCollection;
-import Model.RIM.TableModels.GuestImportTableModel;
 import View.RIM.Components.NavigationFooter;
-import View.RIM.Components.Table.AutoResizeTableColumns;
-import View.RIM.Components.Table.TableSorter;
-import View.RIM.Components.Table.TableSorterIcons;
+import View.RIM.Components.Table.*;
+
 
 @SuppressWarnings("serial")
 public class CreateInvitationView extends JFrame
 {
+	//Controller
+	private CreateInvitationViewController controller = new CreateInvitationViewController();
 
 	// The panel that holds the cards
 	private JPanel mainPanel;
 	
-	//Table elements
-	private GuestCollection guests;
-	private GuestImportTableModel tableModel;
-	private TableSorter tableSorter;
 	private JTable table;
 
+	
 	public CreateInvitationView()
 	{
-		setIconImage(Toolkit.getDefaultToolkit().getImage(ImageHelper.class.getResource("emailIcon.png")));
 		initialize();
 	}
 
@@ -72,7 +63,6 @@ public class CreateInvitationView extends JFrame
 	public JPanel getContentPane()
 	{
 		mainPanel = new JPanel();
-
 		mainPanel.setLayout(new CardLayout());
 
 		// Add the two cards
@@ -117,15 +107,16 @@ public class CreateInvitationView extends JFrame
 				actionPanel.setBackground(Color.ORANGE);
 				actionPanel.setLayout(new MigLayout("", "[119px]", "[33px]"));
 
-				JButton plusButton = new JButton("");
-				plusButton.setIcon(new ImageIcon(ImageHelper.class.getResource("plus.png")));
-				plusButton.addActionListener(new ActionListener()
-				{
-					@Override
-					public void actionPerformed(ActionEvent arg0) {
-						tableModel.addRow(new Guest());
-					}
-				});
+					JButton plusButton = new JButton("");
+					plusButton.setIcon(new ImageIcon(ImageHelper.class.getResource("plus.png")));
+					plusButton.addActionListener(new ActionListener()
+					{
+						@Override
+						public void actionPerformed(ActionEvent arg0) {
+							controller.addRow();
+						}
+					});
+					
 				actionPanel.add(plusButton, "flowx,cell 0 0,alignx center,aligny top");
 
 
@@ -144,7 +135,7 @@ public class CreateInvitationView extends JFrame
 				{
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
-						tableModel.deleteRow(table.getSelectedRows());
+						controller.deleteRow(table.getSelectedRows());
 					}
 				});
 				actionPanel.add(minusButton, "cell 0 0,alignx center,aligny top");
@@ -161,7 +152,7 @@ public class CreateInvitationView extends JFrame
 					public void actionPerformed(ActionEvent arg0)
 					{
 						ArrayList<Guest> tempList = new ContactImporter("Hotmail").getContacts();
-						tableModel.addRow(tempList);
+						controller.addRow(tempList);
 					}
 				});
 				actionPanel.add(hotmailImportButton, "cell 0 0,alignx center,aligny top");
@@ -184,7 +175,31 @@ public class CreateInvitationView extends JFrame
 	}
 
 	private JTable prepareTable()
-	{
+	{		
+		table = new JTable(controller.getTableModel())
+//		{
+//		    public Component prepareRenderer(TableCellRenderer renderer,int rowIndex, int vColIndex) 
+//		    {
+//		        Component c = super.prepareRenderer(renderer, rowIndex, vColIndex);
+//		        if (rowIndex % 2 == 0 && !isCellSelected(rowIndex, vColIndex)) {
+//		            c.setBackground(new Color(245, 245, 245));
+//		        }
+//		        else if(isRowSelected(rowIndex))
+//		        {
+//		        	c.setBackground(Color.LIGHT_GRAY);
+//		        }
+//		        else 
+//		        {
+//		            // If not shaded, match the table's background
+//		            c.setBackground(getBackground());
+//		        }
+//		        return c;
+//		    }
+//		}
+		;
+		table.setRowHeight(75);
+		table.getTableHeader().setReorderingAllowed(false);
+		
 		Icon ups[] = new Icon[] 
 		{
 			TableSorterIcons.UP5_ICON, // this one will be dispayed first
@@ -201,40 +216,13 @@ public class CreateInvitationView extends JFrame
 			TableSorterIcons.DOWN2_ICON, TableSorterIcons.DOWN1_ICON 
 		};
 		
-		guests = new GuestCollection();
-		tableModel = new GuestImportTableModel(guests);
-		tableSorter =  new TableSorter(tableModel);
-		
-		table = new JTable(tableModel)
-		{
-		    public Component prepareRenderer(TableCellRenderer renderer,
-		                                     int rowIndex, int vColIndex) {
-		        Component c = super.prepareRenderer(renderer, rowIndex, vColIndex);
-		        if (rowIndex % 2 == 0 && !isCellSelected(rowIndex, vColIndex)) {
-		            c.setBackground(Color.lightGray);
-		        }
-		        else if(isRowSelected(rowIndex))
-		        {
-		        	c.setBackground(Color.gray);
-		        }
-		        else 
-		        {
-		            // If not shaded, match the table's background
-		            c.setBackground(getBackground());
-		        }
-		        return c;
-		    }
-		};
-		table.setRowHeight(75);
-		table.getTableHeader().setReorderingAllowed(false);
-		
-		tableSorter.setCustomIcons(ups, downs);
-		tableSorter.setTableHeader(table.getTableHeader());
-		table.setModel(tableSorter);
+		controller.getTableSorter().setCustomIcons(ups, downs);
+		controller.getTableSorter().setTableHeader(table.getTableHeader());
+		table.setModel(controller.getTableSorter());
 
 		setRenderers();
 		
-		AutoResizeTableColumns resizer = new AutoResizeTableColumns(table, tableModel, 32, true, true, new boolean[table.getColumnCount()]);
+		AutoResizeTableColumns resizer = new AutoResizeTableColumns(table, controller.getTableModel(), 32, true, true, new boolean[table.getColumnCount()]);
 		table.getModel().addTableModelListener(resizer);
 		
 		return table;
@@ -242,17 +230,23 @@ public class CreateInvitationView extends JFrame
 	
 	private void setRenderers()
 	{	
-		table.getColumnModel().getColumn(0).setMaxWidth(75);
-		table.getColumnModel().getColumn(0).setCellRenderer(new TableCellIconRenderer());
-	
+		//Align text to center
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 		table.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+		table.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+		table.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+		table.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+		table.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+	
+		//The profile picture cells
+		table.getColumnModel().getColumn(0).setMaxWidth(75);
+		table.getColumnModel().getColumn(0).setCellRenderer(new IconRenderer());
+		table.getColumnModel().getColumn(0).setCellEditor(new IconEditor());
 		
+		table.getColumnModel().getColumn(4).setCellRenderer(new ColorRenderer(true));
+		table.getColumnModel().getColumn(4).setCellEditor(new ColorEditor());
 		
-		String[] values = new String[]{"item1", "item2", "item3"};
-		table.getColumnModel().getColumn(4).setCellEditor(new MyComboBoxEditor(values));
-		table.getColumnModel().getColumn(4).setCellRenderer(new MyComboBoxRenderer<String>(values));
 	}
 	
 	public JPanel getStep2()
@@ -325,50 +319,6 @@ public class CreateInvitationView extends JFrame
 	}
 }
 
-@SuppressWarnings("serial")
-class TableCellIconRenderer extends DefaultTableCellRenderer 
-{
-	public Component getTableCellRendererComponent(JTable table, Object value,
-			boolean isSelected, boolean hasFocus, int row, int column)
-	{
-		JLabel label = (JLabel) super.getTableCellRendererComponent(table,value, isSelected, hasFocus, row, column);
-		
-		if (value instanceof ImageIcon) 
-		{
-			label.setText(null);
-			label.setIcon((ImageHelper.getScaledImageIcon((ImageIcon) value, 75, 75, 5)));
-		}
-		
-		return label;
-	}
-}
 
 
-@SuppressWarnings({ "serial", "hiding" })
-class MyComboBoxRenderer<String> extends JComboBox<String> implements TableCellRenderer {
-    public MyComboBoxRenderer(String[] items) {
-        super(items);
-    }
 
-    public Component getTableCellRendererComponent(JTable table, Object value,
-            boolean isSelected, boolean hasFocus, int row, int column) {
-        if (isSelected) {
-            setForeground(table.getSelectionForeground());
-            super.setBackground(table.getSelectionBackground());
-        } else {
-            setForeground(table.getForeground());
-            setBackground(table.getBackground());
-        }
-
-        // Select the current value
-        setSelectedItem(value);
-        return this;
-    }
-}
-
-@SuppressWarnings("serial")
-class MyComboBoxEditor extends DefaultCellEditor {
-	public MyComboBoxEditor(String[] items) {
-        super(new JComboBox<String>(items));
-    }
-}

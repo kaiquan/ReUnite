@@ -1,22 +1,28 @@
 package View.RIM.Guest;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.filechooser.FileFilter;
-
-import Images.RIM.ImageHelper;
-import Model.Membership.Guest;
-import View.RIM.Components.GuestActionsFooter;
-
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JToggleButton;
+import javax.swing.UIManager;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
+import Images.RIM.ImageHelper;
+import Model.Membership.Guest;
+import Controller.RIM.Utils.*;
+import View.RIM.Components.GuestActionsFooter;
 @SuppressWarnings("serial")
 public class GuestProfileView extends JFrame
 {
@@ -91,13 +97,13 @@ public class GuestProfileView extends JFrame
 		JLabel lblDateOfBirth = new JLabel("Date of Birth:");
 		form.add(lblDateOfBirth, "cell 0 3,alignx left");
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox<Integer> comboBox = new JComboBox<Integer>();
 		form.add(comboBox, "flowx,cell 1 3,growx");
 		
-		JComboBox comboBox_1 = new JComboBox();
+		JComboBox<Integer> comboBox_1 = new JComboBox<Integer>();
 		form.add(comboBox_1, "cell 2 3,growx");
 		
-		JComboBox comboBox_2 = new JComboBox();
+		JComboBox<Integer> comboBox_2 = new JComboBox<Integer>();
 		form.add(comboBox_2, "cell 1 3,growx");
 		
 		JLabel lblNric = new JLabel("NRIC:");
@@ -129,17 +135,7 @@ public class GuestProfileView extends JFrame
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				BufferedImage mImage = null;
-				String source = filechoose();
-				File inputFile = new File(source);
-				try 
-				{
-					mImage = ImageIO.read(inputFile);
-				} catch (IOException ex) 
-				{
-			
-				}
-				profilePicture.setIcon(ImageHelper.getScaledImageIcon(new ImageIcon(mImage), 200, -1, 5)); 
+				profilePicture.setIcon(ImageHelper.getScaledImageIcon(new ImageIcon(IOHelper.getImageFile()), 200, -1, 5)); 
 			}
 		});
 		defaultPanel.add(btnSelectPhoto, "cell 5 3,alignx center,aligny top");
@@ -162,47 +158,6 @@ public class GuestProfileView extends JFrame
 		return defaultPanel;
 	}
 	
-	String filechoose()
-	{
-		String name1 = null;
-		
-		JFileChooser chooser = new JFileChooser();
-		chooser.setCurrentDirectory(new File("."));
-	
-		chooser.setFileFilter(new FileFilter() 
-		{
-			public boolean accept(File f)
-			{
-				String name = f.getName().toLowerCase();
-				return name.endsWith(".gif") || name.endsWith(".jpg")|| name.endsWith(".jpeg") || f.isDirectory();
-			}
-	
-			public String getDescription() 
-			{
-				return "Image files";
-			}
-		});
-	
-		int r = chooser.showOpenDialog(this);
-	
-		if (r == JFileChooser.APPROVE_OPTION)
-		{
-			name1 = chooser.getSelectedFile().getAbsolutePath();
-			StringBuffer sb=new StringBuffer();
-			sb.append(name1);
-		
-			int l=sb.length();
-			for(int i=0;i<l;i++)
-			{
-				if(sb.charAt(i)=='\\')
-				{
-					sb.insert(i, "\\");i++;
-				}
-			}
-		}
-		return name1;
-	}
-
 
 	private void initialize()
 	{

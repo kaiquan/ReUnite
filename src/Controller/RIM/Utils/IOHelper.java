@@ -1,5 +1,7 @@
 package Controller.RIM.Utils;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -8,6 +10,10 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileFilter;
 /*******************************************************************************************
  * Project: ReUnite
  *
@@ -40,6 +46,63 @@ public final class IOHelper {
     private static final String SLASH = "/";
 
 
+    public static Image getImageFile()
+    {
+    	BufferedImage mImage = null;
+    	String source = filechoose();
+		File inputFile = new File(source);
+		try 
+		{
+			mImage = ImageIO.read(inputFile);
+		} 
+		catch (IOException ex) 
+		{
+	
+		}
+    	return mImage.getScaledInstance(-1, -1, 5);
+    }
+    
+    public static String filechoose()
+	{
+		String name1 = null;
+		
+		JFileChooser chooser = new JFileChooser();
+		chooser.setCurrentDirectory(new File("."));
+	
+		chooser.setFileFilter(new FileFilter() 
+		{
+			public boolean accept(File f)
+			{
+				String name = f.getName().toLowerCase();
+				return name.endsWith(".gif") || name.endsWith(".jpg")|| name.endsWith(".jpeg") || f.isDirectory();
+			}
+	
+			public String getDescription() 
+			{
+				return "Image files";
+			}
+		});
+	
+		int r = chooser.showOpenDialog(null);
+	
+		if (r == JFileChooser.APPROVE_OPTION)
+		{
+			name1 = chooser.getSelectedFile().getAbsolutePath();
+			StringBuffer sb=new StringBuffer();
+			sb.append(name1);
+		
+			int l=sb.length();
+			for(int i=0;i<l;i++)
+			{
+				if(sb.charAt(i)=='\\')
+				{
+					sb.insert(i, "\\");i++;
+				}
+			}
+		}
+		return name1;
+	}
+    
     /**
      * Creates the complete directory structure for a complete
      * <b>FOLDER</b> pathname.

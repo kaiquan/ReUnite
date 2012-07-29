@@ -1,4 +1,4 @@
-package View.RIM.Components.Table;
+package Model.RIM.TableModels;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -7,12 +7,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -56,8 +57,8 @@ public class TableSorter extends AbstractTableModel {
         }
     };
 
-    private Row[] viewToModel;
-    private int[] modelToView;
+    private ArrayList<Row> viewToModel;
+    private ArrayList<Integer> modelToView;
 
     private JTableHeader tableHeader;
     private MouseListener mouseListener;
@@ -292,20 +293,21 @@ public class TableSorter extends AbstractTableModel {
     }
 
 
-    private Row[] getViewToModel()
+    private ArrayList<Row> getViewToModel()
     {
         if (viewToModel == null)
         {
             int tableModelRowCount = tableModel.getRowCount();
-            viewToModel = new Row[tableModelRowCount];
+            viewToModel = new ArrayList<Row>(tableModelRowCount);
+      
             for (int row = 0; row < tableModelRowCount; row++)
             {
-                viewToModel[row] = new Row(row);
+            	viewToModel.add(row, new Row(row));
             }
 
             if (isSorting())
             {
-                Arrays.sort(viewToModel);
+            	Collections.sort(viewToModel);
             }
         }
         return viewToModel;
@@ -314,19 +316,19 @@ public class TableSorter extends AbstractTableModel {
 
     public int modelIndex(int viewIndex)
     {
-        return getViewToModel()[viewIndex].modelIndex;
+        return getViewToModel().get(viewIndex).modelIndex;
     }
 
 
-    private int[] getModelToView()
+    private  ArrayList<Integer> getModelToView()
     {
         if (modelToView == null)
         {
-            int n = getViewToModel().length;
-            modelToView = new int[n];
+            int n = getViewToModel().size();
+            modelToView = new ArrayList<Integer>(n);
             for (int i = 0; i < n; i++)
             {
-                modelToView[modelIndex(i)] = i;
+                modelToView.add(modelIndex(i), i);
             }
         }
         return modelToView;
@@ -483,7 +485,7 @@ public class TableSorter extends AbstractTableModel {
                     && getSortingStatus(column) == NOT_SORTED
                     && modelToView != null)
             {
-                int viewIndex = getModelToView()[e.getFirstRow()];
+                int viewIndex = getModelToView().get(e.getFirstRow());
                 fireTableChanged(new TableModelEvent(TableSorter.this,
                         viewIndex, viewIndex,
                         column, e.getType()));

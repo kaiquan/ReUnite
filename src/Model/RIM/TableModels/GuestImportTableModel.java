@@ -1,5 +1,6 @@
 package Model.RIM.TableModels;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
@@ -31,7 +32,7 @@ public class GuestImportTableModel extends AbstractTableModel
 			data[i][1] = guest.getFirstName();
 			data[i][2] = guest.getLastName();
 			data[i][3] = guest.getSchool();
-			data[i][4] = guest.getDateOfBirth();
+			data[i][4] = Color.BLUE;
 			data[i][5] = guest.getEmail();
 			data[i][6] = guest.getTelephoneNo();
 			data[i][7] = guest.getHandphoneNo();
@@ -47,6 +48,7 @@ public class GuestImportTableModel extends AbstractTableModel
 		return (true);
 	}
 
+	
 	public Class<?> getColumnClass(int column)
 	{  
 		Object value=this.getValueAt(0,column);  
@@ -78,8 +80,8 @@ public class GuestImportTableModel extends AbstractTableModel
 	}
 	
 	@Override
-	public void setValueAt(Object arg0, int arg1, int arg2) {
-		super.setValueAt(arg0, arg1, arg2);
+	public void setValueAt(Object value, int row, int column) {
+		al.get(row)[column] = value;
 	}
 
 	@Override
@@ -107,7 +109,8 @@ public class GuestImportTableModel extends AbstractTableModel
 		super.fireTableRowsUpdated(arg0, arg1);
 	}
 	
-	public void addRow(ArrayList<Guest> guestList) {
+	public void addRow(ArrayList<Guest> guestList) 
+	{
 
 	}
 	

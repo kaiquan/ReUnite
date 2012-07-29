@@ -170,8 +170,8 @@ public class ContactImporter
 					guest.setProfilePicture("hotmailIcon.png");
 					response.add(guest);
 				}
-				
-				System.out.println(getResource(jsonArray.getJSONObject(i).getString("id")));
+//				
+//				System.out.println(getResource(jsonArray.getJSONObject(i).getString("id")));
 			}
 			
 		}

@@ -125,6 +125,13 @@ public class CancelEventControl {
 		
 		return combined;
 	}
+	
+	public boolean processCancellation(){
+		//prepare email
+		//update date & time
+		//updates event record
+		
+	}
 
 
 }

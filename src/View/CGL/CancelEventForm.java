@@ -7,19 +7,28 @@ import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Rectangle;
+
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import javax.swing.JTextArea;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+
+import Controller.CGL.CancelEventControl;
+import Model.Event;
 
 public class CancelEventForm {
 
 	private JFrame jFrame = null;  //  @jve:decl-index=0:visual-constraint="66,8"
 	private JPanel jContentPane = null;
-	private JPanel jContentPane1 = null;
 	private JScrollPane pne = null;
 	private JTree tree = null;
 	private JLabel lblEventName = null;
@@ -45,6 +54,10 @@ public class CancelEventForm {
 	private JLabel lblBallroom = null;
 	private JTextField textField_5 = null;
 	private JLabel jLabel2 = null;
+	private String ballroomPrice;
+	private String entertainmentPrice;
+	private String mealPrice;
+	private String packageDiscount;
 	/**
 	 * This method initializes jFrame	
 	 * 	
@@ -68,12 +81,12 @@ public class CancelEventForm {
 
 
 	/**
-	 * This method initializes jContentPane1	
+	 * This method initializes jContentPane	
 	 * 	
 	 * @return javax.swing.JPanel	
 	 */
 	private JPanel getJContentPane() {
-		if (jContentPane1 == null) {
+		if (jContentPane == null) {
 			jLabel2 = new JLabel();
 			jLabel2.setBounds(new Rectangle(150, 162, 12, 15));
 			jLabel2.setText("+");
@@ -99,34 +112,34 @@ public class CancelEventForm {
 			lblEventDescript.setBounds(new java.awt.Rectangle(154,87,66,14));
 			lblEventName = new JLabel("Event Name :");
 			lblEventName.setBounds(new java.awt.Rectangle(154,49,76,14));
-			jContentPane1 = new JPanel();
-			jContentPane1.setLayout(null);
-			jContentPane1.setBounds(new Rectangle(9, 8, 10, 10));
-			jContentPane1.add(getPne(), getPne().getName());
-			jContentPane1.add(lblEventName, lblEventName.getName());
-			jContentPane1.add(lblEventDescript, lblEventDescript.getName());
-			jContentPane1.add(lblNoOfGuests, lblNoOfGuests.getName());
-			jContentPane1.add(lblEventTime, lblEventTime.getName());
-			jContentPane1.add(getTextField(), getTextField().getName());
-			jContentPane1.add(getTextField_1(), getTextField_1().getName());
-			jContentPane1.add(getTextField_2(), getTextField_2().getName());
-			jContentPane1.add(getTextField_3(), getTextField_3().getName());
-			jContentPane1.add(lblTotalPrice, lblTotalPrice.getName());
-			jContentPane1.add(getTextField_4(), getTextField_4().getName());
-			jContentPane1.add(lblEventDetails, lblEventDetails.getName());
-			jContentPane1.add(getSeparator(), getSeparator().getName());
-			jContentPane1.add(getSeparator_1(), getSeparator_1().getName());
-			jContentPane1.add(getJButton1(), null);
-			jContentPane1.add(getJButton2(), null);
-			jContentPane1.add(lblNewLabel, lblNewLabel.getName());
-			jContentPane1.add(getJTextField(), null);
-			jContentPane1.add(jLabel1, null);
-			jContentPane1.add(getPne1(), getPne1().getName());
-			jContentPane1.add(lblBallroom, lblBallroom.getName());
-			jContentPane1.add(getTextField_5(), getTextField_5().getName());
-			jContentPane1.add(jLabel2, null);
+			jContentPane = new JPanel();
+			jContentPane.setLayout(null);
+			jContentPane.setBounds(new Rectangle(9, 8, 10, 10));
+			jContentPane.add(getPne(), getPne().getName());
+			jContentPane.add(lblEventName, lblEventName.getName());
+			jContentPane.add(lblEventDescript, lblEventDescript.getName());
+			jContentPane.add(lblNoOfGuests, lblNoOfGuests.getName());
+			jContentPane.add(lblEventTime, lblEventTime.getName());
+			jContentPane.add(getTextField(), getTextField().getName());
+			jContentPane.add(getTextField_1(), getTextField_1().getName());
+			jContentPane.add(getTextField_2(), getTextField_2().getName());
+			jContentPane.add(getTextField_3(), getTextField_3().getName());
+			jContentPane.add(lblTotalPrice, lblTotalPrice.getName());
+			jContentPane.add(getTextField_4(), getTextField_4().getName());
+			jContentPane.add(lblEventDetails, lblEventDetails.getName());
+			jContentPane.add(getSeparator(), getSeparator().getName());
+			jContentPane.add(getSeparator_1(), getSeparator_1().getName());
+			jContentPane.add(getJButton1(), null);
+			jContentPane.add(getJButton2(), null);
+			jContentPane.add(lblNewLabel, lblNewLabel.getName());
+			jContentPane.add(getJTextField(), null);
+			jContentPane.add(jLabel1, null);
+			jContentPane.add(getPne1(), getPne1().getName());
+			jContentPane.add(lblBallroom, lblBallroom.getName());
+			jContentPane.add(getTextField_5(), getTextField_5().getName());
+			jContentPane.add(jLabel2, null);
 		}
-		return jContentPane1;
+		return jContentPane;
 	}
 
 	/**
@@ -137,6 +150,57 @@ public class CancelEventForm {
 	private JTree getTree() {
 		if (tree == null) {
 			tree = new JTree();
+			DefaultMutableTreeNode events = new DefaultMutableTreeNode("Events");
+			generateEvents(events);
+			DefaultTreeModel model = new DefaultTreeModel(events);
+			tree.setModel(model);
+			tree.setBounds(10, 14, 119, 264);
+			tree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+				//Once the event is selected,It retreives the event details for that respective event from the database.
+				public void valueChanged(javax.swing.event.TreeSelectionEvent e) {
+					DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+                    if(node !=null ){
+                    if (node.isLeaf() == true)
+                    {	
+                    	//Set the event name into a text box and retreive the details from the controller and splits them up
+                    	//using the Scanner class
+                    	textField.setText(node.getUserObject().toString());
+                    	CancelEventControl c1 = new CancelEventControl();         
+                    	String eventName=node.getUserObject().toString();
+                    	c1.requestSelectedEventDetails((eventName)).get(0);
+                    	Scanner sc = new Scanner(c1.requestSelectedEventDetails((eventName)).get(0));
+                    	sc.useDelimiter(",");
+                    	String ballroomName=sc.next();
+                    	String eventTime=sc.next();
+                    	String eventDate=sc.next();
+                    	String eventStatus=sc.next();
+                    	String eventDescription=sc.next();
+                    	String guestCountr=sc.next();
+                    	String totalPrice=sc.next();
+                    	ballroomPrice=sc.next();
+                    	entertainmentPrice=sc.next();
+                    	mealPrice=sc.next();
+                    	String facilty=sc.next();
+                    	packageDiscount=sc.next();
+                    	
+                    	//Once the items are split using the scanner class it sets them to the
+                    	//respective textbox
+                 	        	
+                    	textField_1.setText(eventDate);
+                    	textField_2.setText(guestCountr);
+                    	textField_3.setText(eventTime);
+                    	textField_5.setText(ballroomName);
+                    	textField_4.setText(totalPrice);
+                    	jTextArea.setText(eventDescription);
+                    	jTextField.setText(facilty);
+                    	                   	
+                    }
+					 
+                }
+                    
+				
+			}
+			});
 		}
 		return tree;
 	}
@@ -263,7 +327,7 @@ public class CancelEventForm {
 		if (jButton1 == null) {
 			jButton1 = new JButton();
 			jButton1.setBounds(new Rectangle(344, 263, 144, 15));
-			jButton1.setText("Send Email To RI");
+			jButton1.setText("Cancel Event");
 		}
 		return jButton1;
 	}
@@ -339,6 +403,48 @@ public class CancelEventForm {
 		}
 		return textField_5;
 	}
+	
+	private void generateEvents(DefaultMutableTreeNode tn)
+	{
+	
+
+		CancelEventControl c1 = new CancelEventControl();
+	
+		ArrayList<Event> eventList = c1.processExpiredInvitation();
+		
+		DefaultMutableTreeNode[] nodes = new DefaultMutableTreeNode[eventList.size()];
+		
+		if(eventList.size()==0){
+			JOptionPane.showMessageDialog(null, "No events to display");
+		}
+		
+		else{
+		
+		
+	Outer:
+		for (int i=0; i<eventList.size(); i++) {
+			for (int j=0; j<tn.getRoot().getChildCount(); j++)
+			{
+				
+				if (eventList.get(i).getEventDate().toString().equals(tn.getRoot().getChildAt(j).toString()))
+				{
+					
+					((DefaultMutableTreeNode)tn.getRoot().getChildAt(j)).add(new DefaultMutableTreeNode(eventList.get(i).getEventName()));
+					continue Outer;
+				}
+			}
+			
+			nodes[i] = new DefaultMutableTreeNode(eventList.get(i).getEventDate());
+			nodes[i].add(new DefaultMutableTreeNode(eventList.get(i).getEventName()));
+			tn.add(nodes[i]);
+			
+		}
+		
+		}
+		
+									
+			
+		}
 	
 	public static void main(String args[]){
 		CancelEventForm c1 = new CancelEventForm();

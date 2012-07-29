@@ -81,7 +81,7 @@ public class ConsolidateGuestListForm extends Fonts{
 	private JTextArea jTextArea = null;
 	private JTextField textField_5;
 	private JLabel jLabel2 = null;
-	private String ballroomPrice="";
+	private String ballroomPrice="";  //  @jve:decl-index=0:
 	private String entertainmentPrice="";
 	private String mealPrice="";
 	private String packageDiscount="";

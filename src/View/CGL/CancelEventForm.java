@@ -12,6 +12,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -447,8 +449,21 @@ public class CancelEventForm {
 		}
 	
 	public static void main(String args[]){
-		CancelEventForm c1 = new CancelEventForm();
-		c1.getJFrame().setVisible(true);
-	}
+		
+		try {
+            UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");          // start application       // select Look and Feel
+	
+		
+}        catch (Exception ex) {            ex.printStackTrace();            System.out.print("Error");
+}
+
+	CancelEventForm c1 = new CancelEventForm();
+	c1.getJFrame().setVisible(true);
+  
+	
+
+	
+}
+	
 
 }

@@ -611,6 +611,39 @@ public ArrayList<String> GET_EVENT_DETAILS(String eventName){
 				return status;
 				
 			}
+		
+		public ArrayList<Event> GET_EVENT_RECORDS_FOR_CANCELLATION(){
+			
+			MyCalendar m1 = new MyCalendar();
+			ArrayList<Event> e1 = new ArrayList<Event>();
+			ResultSet rs = null;
+			
+			String dbQuery;
+			
+			
+			dbQuery = "SELECT e.eventName,e.eventDate FROM Event e WHERE e.eventStatus='Pending' || e.eventStatus='Awaiting Payment'";
+			try{
+				
+				rs=DB.readRequest(dbQuery);
+				while(rs.next()){
+					e1.add(new Event(rs.getString("e.eventName"), rs.getString("eventDate")));
+			}
+			}
+				catch(Exception e){
+					e.printStackTrace();
+				}
+				
+				for (int i=0; i<e1.size(); i++)
+				{
+					System.out.println(e1.get(i).eventName);
+				}
+				
+				return e1;
+
+			
+		}
+		
+		
 	/********************************************************
 	 *				The Accessor Methods
 	 *******************************************************/

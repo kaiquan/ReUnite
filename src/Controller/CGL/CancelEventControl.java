@@ -14,10 +14,9 @@ import Model.Membership.Guest;
 public class CancelEventControl {
 	
 	public ArrayList<Event> processExpiredInvitation(){
-		
-		
+				
 		Event e1 = new Event();
-		return e1.RETRIEVE_EVENT_RECORDS();
+		return e1.GET_EVENT_RECORDS_FOR_CANCELLATION();
 	}
 	
 	

@@ -92,6 +92,8 @@ public class CollectPaymentForm extends Fonts {
 	private String packageDiscount="";  //  @jve:decl-index=0:
 	private JScrollPane pne,pne1;
 	private String eventStatus;
+	private String status;
+	private static String FILE = null;
 	/**
 	 * This method initializes jFrame	
 	 * 	
@@ -186,6 +188,7 @@ public class CollectPaymentForm extends Fonts {
                         	double newAmountPending= (Double.parseDouble(amountPending)/2);
                         	System.out.println(newAmountPending);
                     		jTextField7.setText(String.valueOf(newAmountPending));
+                    		status="Awaiting Payment";
                     		
                     		
                     		
@@ -202,6 +205,7 @@ public class CollectPaymentForm extends Fonts {
                         	String totalCost=sc1.next();
                         	String amountPending=sc1.next();
                         	jTextField7.setText(String.valueOf(amountPending));
+                        	status="Confirmed";
                     	}
                     	
                     	
@@ -291,6 +295,8 @@ public class CollectPaymentForm extends Fonts {
 		jRadioButton.setSelected(false);
 		jRadioButton1.setSelected(false);
 		jLabel12.setEnabled(false);
+		status="";
+		FILE="";
 		
 		//getJTextArea.setText("");
 		DefaultMutableTreeNode events = new DefaultMutableTreeNode("Events");				
@@ -658,20 +664,52 @@ public class CollectPaymentForm extends Fonts {
 			JOptionPane.showMessageDialog(null, "Failure");
 			return;
 		}			
-		//send email
+		
+		
 			
 		//update eventStatus
-		String eventStatus="Confirmed";
-		if(c2.processUpdateEventStatus(jTextField.getText(), eventStatus)==true){
-			JOptionPane.showMessageDialog(null,"Successfully Changed Status");
-			//g1.pdfCreator(FILE,textField.getText(),textField_1.getText(),textField_2.getText(),textField_3.getText(),jTextField.getText(),textField_5.getText(),textField_4.getText(),getJTextArea().getText(),ballroomPrice,entertainmentPrice,mealPrice,packageDiscount);
-			refresh();	
-		}
-		
-		else{
+		if(status.equals("Awaiting Payment")){
+			String eventStatus="Confirmed";
+			if(c2.processUpdateEventStatus(jTextField.getText(), eventStatus)==true){
+				JOptionPane.showMessageDialog(null, "Successfully Changed Status to confirmed");
+				CollectPaymentForm g1 = new CollectPaymentForm();
+				FILE=jTextField.getText()+" details"+".pdf"; 
+				g1.pdfCreator(FILE,jTextField.getText(),jTextField3.getText(),jTextField1.getText(),jTextField4.getText(),jTextField2.getText(),jTextField5.getText(),jTextField6.getText(),getJTextArea().getText(),ballroomPrice,entertainmentPrice,mealPrice,packageDiscount);
+				//send email
+				JOptionPane.showMessageDialog(null, "Successfully Created Pdf and sent an email*");
+				refresh();
+			}
+			
+			else{
 				JOptionPane.showMessageDialog(null, "Failure");
 				return;
-		}		
+			}
+			
+			
+		}
+		
+		
+		if(status.equals("Confirmed")){
+			String eventStatus="Confirmed";
+			if(c2.processUpdateEventStatus(jTextField.getText(), eventStatus)==true){
+				JOptionPane.showMessageDialog(null, "Successfully Changed Status to confirmed");
+				//CollectPaymentForm g1 = new CollectPaymentForm();
+				//FILE=jTextField.getText()+" payment_receipt"+".pdf"; 
+				//g1.pdfCreator(FILE,jTextField.getText(),jTextField3.getText(),jTextField1.getText(),jTextField4.getText(),jTextField2.getText(),jTextField5.getText(),jTextField6.getText(),getJTextArea().getText(),ballroomPrice,entertainmentPrice,mealPrice,packageDiscount);
+				//send email
+				JOptionPane.showMessageDialog(null, "Successfully sent an email* for payment 2");
+				refresh();
+			}
+			
+			else{
+				JOptionPane.showMessageDialog(null, "Failure");
+				return;
+			}
+			
+			
+		}
+				
+		
 	}
 
 	/**
@@ -692,7 +730,7 @@ public class CollectPaymentForm extends Fonts {
 	public void pdfCreator(String file,String eventName, String eventDate, String noOfGuests, String eventTime, String location, String ballroom, String totalPrice, String eventDesc, String ballroomPrice, String entertainmentPrice, String mealPrice, String packageDiscount) {
 		try {
 			Document document = new Document();
-			PdfWriter.getInstance(document, new FileOutputStream(eventName+".pdf"));
+			PdfWriter.getInstance(document, new FileOutputStream(FILE));
 			document.open();
 			addMetaData(document,eventName,eventDate,noOfGuests,eventTime,location,ballroom,totalPrice,eventDesc,ballroomPrice,entertainmentPrice,mealPrice,packageDiscount);
 			addTitlePage(document,eventName,eventDate,noOfGuests,eventTime,location,ballroom,totalPrice,eventDesc,ballroomPrice,entertainmentPrice,mealPrice,packageDiscount);
@@ -705,18 +743,15 @@ public class CollectPaymentForm extends Fonts {
 	
 	}
 	
-	private void addMetaData(Document document, String eventName, String eventDate, String noOfGuests, String eventTime, String location, String ballroom, String totalPrice, String eventDesc, String ballroomPrice2, String entertainmentPrice2, String mealPrice2, String packageDiscount2) {
+	private void addMetaData(Document document, String eventName, String noOfGuests, String eventDate, String eventTime, String location, String ballroom, String totalPrice, String eventDesc, String ballroomPrice2, String entertainmentPrice2, String mealPrice2, String packageDiscount2) {
 		document.addTitle(eventName);
-		if(eventStatus.equals("Hello")){
-			
-		}
-		document.addSubject("Payment Notification");
-		document.addKeywords("Payment,GR Administrator");
+		document.addSubject("Event Confirmation");
+		document.addKeywords("Event Confirmation,GR Administrator");
 		document.addAuthor("GR Administrator");
 		document.addCreator("GR Administrator");
 	}
 
-	private void addTitlePage(Document document, String eventName, String eventDate, String noOfGuests, String eventTime, String location, String ballroom, String totalPrice, String eventDesc, String ballroomPrice2, String entertainmentPrice2, String mealPrice2, String packageDiscount2)
+	private void addTitlePage(Document document, String eventName, String noOfGuests, String eventDate, String eventTime, String location, String ballroom, String totalPrice, String eventDesc, String ballroomPrice2, String entertainmentPrice2, String mealPrice2, String packageDiscount2)
 			throws DocumentException, MalformedURLException, IOException {
 		
 		Image image = Image.getInstance("src\\images\\CGL\\Reunion.jpg");
@@ -727,7 +762,8 @@ public class CollectPaymentForm extends Fonts {
 		// We add 6 empty line
 		addEmptyLine(preface, 6);
 		// Lets write a big header
-		Paragraph paragraph = new Paragraph("Payment Notification",Garamond);
+		preface.add(new Paragraph("****************************************************************************************************************"));
+		Paragraph paragraph = new Paragraph("Event Confirmation",Garamond);
 		paragraph.setIndentationLeft(150f);
 		preface.add(paragraph);
 		addEmptyLine(preface, 1);
@@ -744,28 +780,11 @@ public class CollectPaymentForm extends Fonts {
  		addEmptyLine(preface,1);
         addEmptyLine(preface, 1);
 		preface.add(new Paragraph("****************************************************************************************************************"));
-		Paragraph paragraph1 = new Paragraph("Payment Details",Garamond);
-		paragraph1.setIndentationLeft(170f);
-		preface.add(paragraph1);
-		addEmptyLine(preface, 1);
-		preface.add(new Paragraph("Total Ballroom Price : $"+ballroomPrice2));
-		addEmptyLine(preface,1);
-		preface.add(new Paragraph("Total Entertainment Price : $"+entertainmentPrice2));
-		addEmptyLine(preface,1);
-		preface.add(new Paragraph("Total Meal Price : $"+mealPrice2));
-		addEmptyLine(preface,1);
-		preface.add(new Paragraph("Package Discount: $"+packageDiscount2));
-		addEmptyLine(preface,1);
-		preface.add(new Paragraph("Total Price :$"+totalPrice));
-		addEmptyLine(preface, 2);
-		preface.add(new Paragraph("Please make your first payment(50% of total Price) Of $"+(Double.parseDouble(totalPrice)/2)+" as soon as possible :",smallBold));
-		addEmptyLine(preface,1);
-		preface.add(new Paragraph("****************************************************************************************************************"));
 	 	// Will create: Report generated by: _name, _date
-		preface.add(new Paragraph("Payment Notification generated by: " + System.getProperty("user.name") + ", " + new Date(), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		preface.add(new Paragraph("Event Confirmation generated by: " + System.getProperty("user.name") + ", " + new Date(), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		smallBold));
 		addEmptyLine(preface, 1);
-		preface.add(new Paragraph("Terms & Conditions: Once payment is made,there will be no refund .",
+		preface.add(new Paragraph("Note: Please be punctual for the event",
 		redFont));
 		document.add(preface);
 		// Start a new page

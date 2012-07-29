@@ -344,12 +344,12 @@ public class ConsolidateGuestListForm extends Fonts{
                     	EmailController email = new EmailController();                    	
                     	File pdf = new File(FILE);
                     	String[] test={"anniyan123456789@hotmail.com"};                    	
-                    	/*try {
+                    	try {
 							email.sendEmail("TEXT", test, "TEST EMAIL", "TESTING EMAIL", pdf, 3, "Payment");
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
-						}*/
+						}
 						if((c1.processUpdateEventStatus(textField.getText(),eventStatus)==true)){
 							System.out.println("Event Status Changed to Awaiting Payment");
 							refresh();						
@@ -491,7 +491,7 @@ public class ConsolidateGuestListForm extends Fonts{
 	
 	}
 	
-	private static void addMetaData(Document document, String eventName, String eventDate, String noOfGuests, String eventTime, String location, String ballroom, String totalPrice, String eventDesc, String ballroomPrice2, String entertainmentPrice2, String mealPrice2, String packageDiscount2) {
+	private void addMetaData(Document document, String eventName, String eventDate, String noOfGuests, String eventTime, String location, String ballroom, String totalPrice, String eventDesc, String ballroomPrice2, String entertainmentPrice2, String mealPrice2, String packageDiscount2) {
 		document.addTitle(eventName);
 		document.addSubject("Payment Notification");
 		document.addKeywords("Payment,GR Administrator");
@@ -499,7 +499,7 @@ public class ConsolidateGuestListForm extends Fonts{
 		document.addCreator("GR Administrator");
 	}
 
-	private static void addTitlePage(Document document, String eventName, String eventDate, String noOfGuests, String eventTime, String location, String ballroom, String totalPrice, String eventDesc, String ballroomPrice2, String entertainmentPrice2, String mealPrice2, String packageDiscount2)
+	private void addTitlePage(Document document, String eventName, String eventDate, String noOfGuests, String eventTime, String location, String ballroom, String totalPrice, String eventDesc, String ballroomPrice2, String entertainmentPrice2, String mealPrice2, String packageDiscount2)
 			throws DocumentException, MalformedURLException, IOException {
 		
 		Image image = Image.getInstance("src\\images\\CGL\\Reunion.jpg");
@@ -555,7 +555,7 @@ public class ConsolidateGuestListForm extends Fonts{
 		document.newPage();
 	}
 
-	private static void addEmptyLine(Paragraph paragraph, int number) {
+	private  void addEmptyLine(Paragraph paragraph, int number) {
 		for (int i = 0; i < number; i++) {
 			paragraph.add(new Paragraph(" "));
 		}

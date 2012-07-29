@@ -20,7 +20,11 @@ import java.awt.Rectangle;
 import javax.swing.JTextArea;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 import javax.swing.JRadioButton;
@@ -33,7 +37,14 @@ import Controller.CGL.CollectPaymentControl;
 import Model.Event;
 import javax.swing.JRadioButtonMenuItem;
 
-public class CollectPaymentForm {
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+
+public class CollectPaymentForm extends Fonts {
 
 	
 	private JFrame jFrame = null;  //  @jve:decl-index=0:visual-constraint="99,17"
@@ -79,6 +90,7 @@ public class CollectPaymentForm {
 	private String mealPrice="";
 	private String packageDiscount="";  //  @jve:decl-index=0:
 	private JScrollPane pne,pne1;
+	private String eventStatus;
 	/**
 	 * This method initializes jFrame	
 	 * 	
@@ -137,7 +149,7 @@ public class CollectPaymentForm {
                     	String ballroomName=sc.next();
                     	String eventTime=sc.next();
                     	String eventDate=sc.next();
-                    	String eventStatus=sc.next();
+                    	eventStatus=sc.next();
                     	String eventDescription=sc.next();
                     	String guestCountr=sc.next();
                     	String totalPrice=sc.next();
@@ -173,6 +185,9 @@ public class CollectPaymentForm {
                         	double newAmountPending= (Double.parseDouble(amountPending)/2);
                         	System.out.println(newAmountPending);
                     		jTextField7.setText(String.valueOf(newAmountPending));
+                    		
+                    		
+                    		
                     		
                     	}
                     	
@@ -611,52 +626,51 @@ public class CollectPaymentForm {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					submitDetails(); // TODO Auto-generated Event stub actionPerformed()
 				}
-
-				private void submitDetails() {
-					// TODO Auto-generated method stub
-					CollectPaymentControl c2 = new CollectPaymentControl();
-					
-					if(jTextField3.getText().equals("")){
-						JOptionPane.showMessageDialog(null, "Please Select an event");
-					}
-					
-				else if(jTextField8.getText().equals("")){
-						JOptionPane.showMessageDialog(null, "Please enter the amount paid");
-					}
-					
-					else if(!(jTextField8.getText().equals(jTextField7.getText())))
-							{
-								JOptionPane.showMessageDialog(null,"The amount paid does not match the "+"Amount to be paid");
-							}
-					
-					else {
-						JOptionPane.showMessageDialog(null, "Update the purchase payment");
-						
-						if(c2.processUpdatePurchasePayment(jTextField8.getText(), jComboBox.getSelectedItem().toString(), jTextField6.getText(),jTextField.getText())){
-							JOptionPane.showMessageDialog(null, "Successfully Updated Purchase Summary");
-							
-						}
-						else{
-							JOptionPane.showMessageDialog(null, "Failure");
-						}
-						
-						//send email
-						
-						//update eventStatus
-						String eventStatus="Confirmed";
-						if(c2.processUpdateEventStatus(jTextField.getText(), eventStatus)==true){
-							JOptionPane.showMessageDialog(null,"Successfully Changed Status");
-							refresh();
-							
-						}
-						
-						else
-							JOptionPane.showMessageDialog(null, "Failure");
-					}
-				}
 			});
 		}
 		return jButton;
+	}
+	
+	private void submitDetails() {
+		
+		CollectPaymentControl c2 = new CollectPaymentControl();
+		
+		if(jTextField3.getText().equals("")){
+			JOptionPane.showMessageDialog(null, "Please Select an event");
+			return;
+		}
+		if(jTextField8.getText().equals("")){
+			JOptionPane.showMessageDialog(null, "Please enter the amount paid");
+			return;
+		}		
+		if(!(jTextField8.getText().equals(jTextField7.getText()))){
+			JOptionPane.showMessageDialog(null,"The amount paid does not match the "+"Amount to be paid");
+			return;
+		}		
+		
+		JOptionPane.showMessageDialog(null, "Update the purchase payment");
+			
+		if(c2.processUpdatePurchasePayment(jTextField8.getText(), jComboBox.getSelectedItem().toString(), jTextField6.getText(),jTextField.getText())){
+			JOptionPane.showMessageDialog(null, "Successfully Updated Purchase Summary");				
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Failure");
+			return;
+		}			
+		//send email
+			
+		//update eventStatus
+		String eventStatus="Confirmed";
+		if(c2.processUpdateEventStatus(jTextField.getText(), eventStatus)==true){
+			JOptionPane.showMessageDialog(null,"Successfully Changed Status");
+			//g1.pdfCreator(FILE,textField.getText(),textField_1.getText(),textField_2.getText(),textField_3.getText(),jTextField.getText(),textField_5.getText(),textField_4.getText(),getJTextArea().getText(),ballroomPrice,entertainmentPrice,mealPrice,packageDiscount);
+			refresh();	
+		}
+		
+		else{
+				JOptionPane.showMessageDialog(null, "Failure");
+				return;
+		}		
 	}
 
 	/**
@@ -672,6 +686,95 @@ public class CollectPaymentForm {
 			jComboBox.setBounds(new Rectangle(261, 400, 94, 21));
 		}
 		return jComboBox;
+	}
+	
+	public void pdfCreator(String file,String eventName, String eventDate, String noOfGuests, String eventTime, String location, String ballroom, String totalPrice, String eventDesc, String ballroomPrice, String entertainmentPrice, String mealPrice, String packageDiscount) {
+		try {
+			Document document = new Document();
+			PdfWriter.getInstance(document, new FileOutputStream(eventName+".pdf"));
+			document.open();
+			addMetaData(document,eventName,eventDate,noOfGuests,eventTime,location,ballroom,totalPrice,eventDesc,ballroomPrice,entertainmentPrice,mealPrice,packageDiscount);
+			addTitlePage(document,eventName,eventDate,noOfGuests,eventTime,location,ballroom,totalPrice,eventDesc,ballroomPrice,entertainmentPrice,mealPrice,packageDiscount);
+			
+			
+			document.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+	}
+	
+	private void addMetaData(Document document, String eventName, String eventDate, String noOfGuests, String eventTime, String location, String ballroom, String totalPrice, String eventDesc, String ballroomPrice2, String entertainmentPrice2, String mealPrice2, String packageDiscount2) {
+		document.addTitle(eventName);
+		if(eventStatus.equals("Hello")){
+			
+		}
+		document.addSubject("Payment Notification");
+		document.addKeywords("Payment,GR Administrator");
+		document.addAuthor("GR Administrator");
+		document.addCreator("GR Administrator");
+	}
+
+	private void addTitlePage(Document document, String eventName, String eventDate, String noOfGuests, String eventTime, String location, String ballroom, String totalPrice, String eventDesc, String ballroomPrice2, String entertainmentPrice2, String mealPrice2, String packageDiscount2)
+			throws DocumentException, MalformedURLException, IOException {
+		
+		Image image = Image.getInstance("src\\images\\CGL\\Reunion.jpg");
+		image.setAbsolutePosition(80f, 700f);
+		image.scaleAbsolute(400f, 150f);
+		document.add(image);
+		Paragraph preface = new Paragraph();
+		// We add 6 empty line
+		addEmptyLine(preface, 6);
+		// Lets write a big header
+		Paragraph paragraph = new Paragraph("Payment Notification",Garamond);
+		paragraph.setIndentationLeft(150f);
+		preface.add(paragraph);
+		addEmptyLine(preface, 1);
+		preface.add(new Chunk("Event Name:"+eventName));
+        preface.add(new Chunk("                         No Of Guests:"+noOfGuests));        
+        addEmptyLine(preface, 1);
+        preface.add(new Chunk("Event Date:"+eventDate));
+        preface.add(new Chunk("                             Event Time: "+eventTime));
+        addEmptyLine(preface, 1);
+        preface.add(new Chunk("Location:"+location));
+        preface.add(new Chunk("                             Ballroom: "+ballroom));
+        addEmptyLine(preface, 1);
+        preface.add(new Paragraph("Event Description: "+eventDesc));
+ 		addEmptyLine(preface,1);
+        addEmptyLine(preface, 1);
+		preface.add(new Paragraph("****************************************************************************************************************"));
+		Paragraph paragraph1 = new Paragraph("Payment Details",Garamond);
+		paragraph1.setIndentationLeft(170f);
+		preface.add(paragraph1);
+		addEmptyLine(preface, 1);
+		preface.add(new Paragraph("Total Ballroom Price : $"+ballroomPrice2));
+		addEmptyLine(preface,1);
+		preface.add(new Paragraph("Total Entertainment Price : $"+entertainmentPrice2));
+		addEmptyLine(preface,1);
+		preface.add(new Paragraph("Total Meal Price : $"+mealPrice2));
+		addEmptyLine(preface,1);
+		preface.add(new Paragraph("Package Discount: $"+packageDiscount2));
+		addEmptyLine(preface,1);
+		preface.add(new Paragraph("Total Price :$"+totalPrice));
+		addEmptyLine(preface, 2);
+		preface.add(new Paragraph("Please make your first payment(50% of total Price) Of $"+(Double.parseDouble(totalPrice)/2)+" as soon as possible :",smallBold));
+		addEmptyLine(preface,1);
+		preface.add(new Paragraph("****************************************************************************************************************"));
+	 	// Will create: Report generated by: _name, _date
+		preface.add(new Paragraph("Payment Notification generated by: " + System.getProperty("user.name") + ", " + new Date(), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		smallBold));
+		addEmptyLine(preface, 1);
+		preface.add(new Paragraph("Terms & Conditions: Once payment is made,there will be no refund .",
+		redFont));
+		document.add(preface);
+		// Start a new page
+		document.newPage();
+	}
+
+	private static void addEmptyLine(Paragraph paragraph, int number) {
+		for (int i = 0; i < number; i++) {
+			paragraph.add(new Paragraph(" "));
+		}
 	}
 
 	public static void main(String args[]){

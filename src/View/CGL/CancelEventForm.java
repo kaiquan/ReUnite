@@ -65,21 +65,14 @@ public class CancelEventForm {
 	 * 	
 	 * @return javax.swing.JPanel	
 	 */
-	private JPanel getJContentPane() {
-		if (jContentPane == null) {
-			jContentPane = new JPanel();
-			jContentPane.setLayout(null);
-			jContentPane.add(getJContentPane1(), null);
-		}
-		return jContentPane;
-	}
+
 
 	/**
 	 * This method initializes jContentPane1	
 	 * 	
 	 * @return javax.swing.JPanel	
 	 */
-	private JPanel getJContentPane1() {
+	private JPanel getJContentPane() {
 		if (jContentPane1 == null) {
 			jLabel2 = new JLabel();
 			jLabel2.setBounds(new Rectangle(150, 162, 12, 15));
@@ -345,6 +338,11 @@ public class CancelEventForm {
 			textField_5.setColumns(10);
 		}
 		return textField_5;
+	}
+	
+	public static void main(String args[]){
+		CancelEventForm c1 = new CancelEventForm();
+		c1.getJFrame().setVisible(true);
 	}
 
 }

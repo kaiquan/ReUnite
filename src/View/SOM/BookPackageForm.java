@@ -141,7 +141,7 @@ public class BookPackageForm {
 		if (jFrame == null) {
 			jFrame = new JFrame();
 			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-			jFrame.setSize(new Dimension(493, 546));
+			jFrame.setSize(new Dimension(485, 546));
 			jFrame.setLocation(screenSize.width/2 - (jFrame.getWidth()/2),screenSize.height/2 - (jFrame.getHeight()/2));
 			jFrame.setTitle("Create Event Form");
 			jFrame.setContentPane(getJContentPane());
@@ -378,6 +378,7 @@ public class BookPackageForm {
 		if (jFrame_StandardPackage == null) {
 			jFrame_StandardPackage = new JFrame();
 			jFrame_StandardPackage.setSize(new Dimension(731, 237));
+			jFrame_StandardPackage.setContentPane(getJPanel_standardPackage());
 			jFrame_StandardPackage.setTitle("Select Standard Package");
 			jFrame_StandardPackage.setContentPane(getJScrollPane_StandardPackage());
 			jFrame_StandardPackage.setResizable(true);
@@ -393,7 +394,6 @@ public class BookPackageForm {
 	private JScrollPane getJScrollPane_StandardPackage() {
 		if (jScrollPane_StandardPackage == null) {
 			jScrollPane_StandardPackage = new JScrollPane();
-			jScrollPane_StandardPackage.setViewportView(getJPanel_standardPackage());
 		}
 		return jScrollPane_StandardPackage;
 	}
@@ -413,7 +413,7 @@ public class BookPackageForm {
 			jPanel_seachPanel = new JPanel();
 			jPanel_seachPanel.setLayout(null);
 			jPanel_seachPanel.setOpaque(false);
-			jPanel_seachPanel.setBounds(new Rectangle(32, 23, 649, 211));
+			jPanel_seachPanel.setBounds(new Rectangle(32, 23, 624, 200));
 			jPanel_seachPanel.add(getJScrollPane_search(), null);
 			jPanel_seachPanel.add(getJToolBar_previous(), null);
 			jPanel_seachPanel.add(getJToolBar_next(), null);
@@ -423,7 +423,7 @@ public class BookPackageForm {
 	private JScrollPane getJScrollPane_search() {
 		if (jScrollPane_search == null) {
 			jScrollPane_search = new JScrollPane();
-			jScrollPane_search.setBounds(new Rectangle(0, 0, 645, 155));
+			jScrollPane_search.setBounds(new Rectangle(0, 0, 624, 155));
 			jScrollPane_search.setViewportView(getJTable_search());
 		}
 		return jScrollPane_search;
@@ -490,6 +490,7 @@ public class BookPackageForm {
 	private JMenuItem getJMenuItem_retrive_package() {
 		if (jMenuItem_retrive_package == null) {
 			jMenuItem_retrive_package = new JMenuItem();
+			jMenuItem_retrive_package.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jMenuItem_retrive_package.setText("Show Details");
 			jMenuItem_retrive_package.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -509,7 +510,7 @@ public class BookPackageForm {
 			jToolBar_previous.setVisible(false);
 			jToolBar_previous.setFloatable(false);
 			jToolBar_previous.setFocusable(false);
-			jToolBar_previous.setBounds(new Rectangle(15, 160, 50, 40));
+			jToolBar_previous.setBounds(new Rectangle(5, 160, 50, 40));
 			jToolBar_previous.add(getJButton_previous());
 		}
 		return jToolBar_previous;
@@ -542,7 +543,7 @@ public class BookPackageForm {
 			jToolBar_next.setVisible(false);
 			jToolBar_next.setFloatable(false);
 			jToolBar_next.setFocusable(false);
-			jToolBar_next.setBounds(new Rectangle(595, 160, 50, 40));
+			jToolBar_next.setBounds(new Rectangle(570, 160, 50, 40));
 			jToolBar_next.add(getJButton_next());
 		}
 		return jToolBar_next;
@@ -572,7 +573,7 @@ public class BookPackageForm {
 		if (jPanel_body == null) {
 			jPanel_body = new JPanel();
 			jPanel_body.setLayout(new BoxLayout(getJPanel_body(), BoxLayout.Y_AXIS));
-			jPanel_body.setBounds(new Rectangle(32, 240, 624, 826));
+			jPanel_body.setBounds(new Rectangle(32, 240, 624, 535));
 			jPanel_body.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 			jPanel_body.add(getJPanel_package(), null);
 			jPanel_body.add(getJPanel_ballroom(), null);
@@ -587,13 +588,14 @@ public class BookPackageForm {
 		if (jPanel_package == null) {
 			jLabel_packageDescription = new JLabel();
 			jLabel_packageDescription.setBounds(new Rectangle(15, 70, 170, 30));
+			jLabel_packageDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_packageDescription.setText("Description :");
 			jPanel_package = new JPanel();
 			jPanel_package.setLayout(null);
 			jPanel_package.setMaximumSize(new Dimension(618, 80));
 			jPanel_package.setMinimumSize(new Dimension(618, 80));
 			jPanel_package.setPreferredSize(new Dimension(618, 80));
-			jPanel_package.setBorder(BorderFactory.createTitledBorder(null,"Package", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Century Gothic", Font.BOLD, 14), Color.black));
+			jPanel_package.setBorder(BorderFactory.createTitledBorder(null,"Package", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Century Gothic", Font.PLAIN, 14), Color.black));
 			jPanel_package.add(getJTextField_packageTitle(), null);
 			jPanel_package.add(getJScrollPane_packageDescription(), null);
 			jPanel_package.add(jLabel_packageDescription, null);
@@ -604,6 +606,8 @@ public class BookPackageForm {
 	private JTextField getJTextField_packageTitle() {
 		if (jTextField_packageTitle == null) {
 			jTextField_packageTitle = new JTextField();
+			jTextField_packageTitle.setHorizontalAlignment(JTextField.CENTER);
+			jTextField_packageTitle.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_packageTitle.setEditable(false);
 			jTextField_packageTitle.setBounds(new Rectangle(15, 30, 447, 30));
 		}
@@ -620,6 +624,7 @@ public class BookPackageForm {
 	private JTextArea getJTextArea_packageDescription() {
 		if (jTextArea_packageDescription == null) {
 			jTextArea_packageDescription = new JTextArea();
+			jTextArea_packageDescription.setFont(new Font("Century Gothic", Font.PLAIN, 12));
 			jTextArea_packageDescription.setEditable(false);
 			jTextArea_packageDescription.setLineWrap(true);
 			jTextArea_packageDescription.setWrapStyleWord(true);
@@ -629,6 +634,7 @@ public class BookPackageForm {
 	private JToggleButton getJToggleButton_viewPackage() {
 		if (jToggleButton_viewPackage == null) {
 			jToggleButton_viewPackage = new JToggleButton();
+			jToggleButton_viewPackage.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jToggleButton_viewPackage.setFocusable(false);
 			jToggleButton_viewPackage.setFocusPainted(false);
 			jToggleButton_viewPackage.setBounds(new Rectangle(471, 30, 136, 30));
@@ -657,27 +663,33 @@ public class BookPackageForm {
 		if (jPanel_ballroom == null) {
 			jLabel_ballroomAddress = new JLabel();
 			jLabel_ballroomAddress.setBounds(new Rectangle(15, 260, 100, 30));
+			jLabel_ballroomAddress.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_ballroomAddress.setText("Address :");
 			jLabel_facilityName = new JLabel();
 			jLabel_facilityName.setBounds(new Rectangle(15, 170, 100, 30));
+			jLabel_facilityName.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_facilityName.setText("Faciity Name :");
 			jLabel_weekendSurcharge = new JLabel();
 			jLabel_weekendSurcharge.setBounds(new Rectangle(315, 120, 127, 30));
+			jLabel_weekendSurcharge.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_weekendSurcharge.setText("Weekend Surcharge :");
 			jLabel_ballroomParking = new JLabel();
 			jLabel_ballroomParking.setBounds(new Rectangle(15, 120, 70, 30));
+			jLabel_ballroomParking.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_ballroomParking.setText("Parking :");
 			jLabel_ballroomFinalPrice = new JLabel();
 			jLabel_ballroomFinalPrice.setBounds(new Rectangle(315, 80, 70, 30));
+			jLabel_ballroomFinalPrice.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_ballroomFinalPrice.setText("Rate :");
 			jLabel_ballroomSize = new JLabel();
 			jLabel_ballroomSize.setBounds(new Rectangle(15, 80, 70, 30));
+			jLabel_ballroomSize.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_ballroomSize.setText("Size :");
 			jPanel_ballroom = new JPanel();
 			jPanel_ballroom.setMaximumSize(new Dimension(618, 80));
 			jPanel_ballroom.setPreferredSize(new Dimension(618,80));
 			jPanel_ballroom.setLayout(null);
-			jPanel_ballroom.setBorder(BorderFactory.createTitledBorder(null,"Ballroom", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Century Gothic", Font.BOLD, 12), Color.black));
+			jPanel_ballroom.setBorder(BorderFactory.createTitledBorder(null,"Ballroom", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Segoe UI", Font.PLAIN, 14), Color.black));
 			jPanel_ballroom.add(getJTextField_ballroomTitle(), null);
 			jPanel_ballroom.add(getJToggleButton_viewBallroom(), null);
 			jPanel_ballroom.add(jLabel_ballroomSize, null);
@@ -698,6 +710,8 @@ public class BookPackageForm {
 	private JTextField getJTextField_ballroomTitle() {
 		if (jTextField_ballroomTitle == null) {
 			jTextField_ballroomTitle = new JTextField();
+			jTextField_ballroomTitle.setHorizontalAlignment(JTextField.CENTER);
+			jTextField_ballroomTitle.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_ballroomTitle.setEditable(false);
 			jTextField_ballroomTitle.setBounds(new Rectangle(15, 30, 447, 30));
 		}
@@ -706,6 +720,7 @@ public class BookPackageForm {
 	private JToggleButton getJToggleButton_viewBallroom() {
 		if (jToggleButton_viewBallroom == null) {
 			jToggleButton_viewBallroom = new JToggleButton();
+			jToggleButton_viewBallroom.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jToggleButton_viewBallroom.setFocusable(false);
 			jToggleButton_viewBallroom.setFocusPainted(false);
 			jToggleButton_viewBallroom.setBounds(new Rectangle(471, 30, 136, 30));
@@ -732,6 +747,8 @@ public class BookPackageForm {
 	private JTextField getJTextField_ballroomSize() {
 		if (jTextField_ballroomSize == null) {
 			jTextField_ballroomSize = new JTextField();
+			jTextField_ballroomSize.setHorizontalAlignment(JTextField.CENTER);
+			jTextField_ballroomSize.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_ballroomSize.setEditable(false);
 			jTextField_ballroomSize.setBounds(new Rectangle(85, 80, 200, 30));
 		}
@@ -740,6 +757,8 @@ public class BookPackageForm {
 	private JTextField getJTextField_ballroomFinalPrice() {
 		if (jTextField_ballroomFinalPrice == null) {
 			jTextField_ballroomFinalPrice = new JTextField();
+			jTextField_ballroomFinalPrice.setHorizontalAlignment(JTextField.CENTER);
+			jTextField_ballroomFinalPrice.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_ballroomFinalPrice.setEditable(false);
 			jTextField_ballroomFinalPrice.setBounds(new Rectangle(440, 80, 160, 30));
 		}
@@ -748,6 +767,8 @@ public class BookPackageForm {
 	private JTextField getJTextField_ballroomParking() {
 		if (jTextField_ballroomParking == null) {
 			jTextField_ballroomParking = new JTextField();
+			jTextField_ballroomParking.setHorizontalAlignment(JTextField.CENTER);
+			jTextField_ballroomParking.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_ballroomParking.setEditable(false);
 			jTextField_ballroomParking.setBounds(new Rectangle(85, 120, 200, 30));
 		}
@@ -756,6 +777,8 @@ public class BookPackageForm {
 	private JTextField getJTextField_ballroomWeekendSurcharge() {
 		if (jTextField_ballroomWeekendSurcharge == null) {
 			jTextField_ballroomWeekendSurcharge = new JTextField();
+			jTextField_ballroomWeekendSurcharge.setHorizontalAlignment(JTextField.CENTER);
+			jTextField_ballroomWeekendSurcharge.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_ballroomWeekendSurcharge.setEditable(false);
 			jTextField_ballroomWeekendSurcharge.setBounds(new Rectangle(440, 120, 160, 30));
 		}
@@ -764,6 +787,8 @@ public class BookPackageForm {
 	private JTextField getJTextField_facilityName() {
 		if (jTextField_facilityName == null) {
 			jTextField_facilityName = new JTextField();
+			jTextField_facilityName.setHorizontalAlignment(JTextField.CENTER);
+			jTextField_facilityName.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_facilityName.setEditable(false);
 			jTextField_facilityName.setBounds(new Rectangle(15, 210, 584, 30));
 		}
@@ -780,6 +805,7 @@ public class BookPackageForm {
 	private JTextArea getJTextArea_facilityAddress() {
 		if (jTextArea_facilityAddress == null) {
 			jTextArea_facilityAddress = new JTextArea();
+			jTextArea_facilityAddress.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextArea_facilityAddress.setEditable(false);
 			jTextArea_facilityAddress.setWrapStyleWord(true);
 			jTextArea_facilityAddress.setLineWrap(true);
@@ -790,14 +816,16 @@ public class BookPackageForm {
 		if (jPanel_entertainment == null) {
 			jLabel_entertainmentFInalPrice = new JLabel();
 			jLabel_entertainmentFInalPrice.setBounds(new Rectangle(270, 75, 121, 31));
+			jLabel_entertainmentFInalPrice.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_entertainmentFInalPrice.setText("Total Price :");
 			jLabel_entertainmentMenu = new JLabel();
 			jLabel_entertainmentMenu.setBounds(new Rectangle(15, 75, 241, 31));
+			jLabel_entertainmentMenu.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_entertainmentMenu.setText("Activity :");
 			jPanel_entertainment = new JPanel();
 			jPanel_entertainment.setMaximumSize(new Dimension(616,75));
 			jPanel_entertainment.setPreferredSize(new Dimension(616,75));
-			jPanel_entertainment.setBorder(BorderFactory.createTitledBorder(null,"Entertainment", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Century Gothic", Font.BOLD, 12), Color.black));
+			jPanel_entertainment.setBorder(BorderFactory.createTitledBorder(null,"Entertainment", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Segoe UI", Font.PLAIN, 14), Color.black));
 			jPanel_entertainment.setLayout(null);
 			jPanel_entertainment.add(getJTextField_entertainmentTitle(), null);
 			jPanel_entertainment.add(getJToggleButton_viewEntertainment(), null);
@@ -811,6 +839,8 @@ public class BookPackageForm {
 	private JTextField getJTextField_entertainmentTitle() {
 		if (jTextField_entertainmentTitle == null) {
 			jTextField_entertainmentTitle = new JTextField();
+			jTextField_entertainmentTitle.setHorizontalAlignment(JTextField.CENTER);
+			jTextField_entertainmentTitle.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_entertainmentTitle.setEditable(false);
 			jTextField_entertainmentTitle.setBounds(new Rectangle(15, 30, 447, 30));
 		}
@@ -819,6 +849,7 @@ public class BookPackageForm {
 	private JToggleButton getJToggleButton_viewEntertainment() {
 		if (jToggleButton_viewEntertainment == null) {
 			jToggleButton_viewEntertainment = new JToggleButton();
+			jToggleButton_viewEntertainment.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jToggleButton_viewEntertainment.setFocusable(false);
 			jToggleButton_viewEntertainment.setFocusPainted(false);
 			jToggleButton_viewEntertainment.setBounds(new Rectangle(471, 30, 136, 30));
@@ -885,19 +916,22 @@ public class BookPackageForm {
 	private JPanel getJPanel_meal() {
 		if (jPanel_meal == null) {
 			jLabel_mealOption3 = new JLabel();
+			jLabel_mealOption3.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_mealOption3.setText("Option 3 :");
 			jLabel_mealOption3.setBounds(new Rectangle(15, 22, 80, 30));
 			jLabel_mealOption2 = new JLabel();
+			jLabel_mealOption2.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_mealOption2.setText("Option 2 :");
 			jLabel_mealOption2.setBounds(new Rectangle(15, 22, 80, 30));
 			jLabel_mealOption1 = new JLabel();
+			jLabel_mealOption1.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jLabel_mealOption1.setText("Option 1 :");
 			jLabel_mealOption1.setBounds(new Rectangle(15, 22, 80, 30));
 			jPanel_meal = new JPanel();
 			//jPanel_meal.setPreferredSize(new Dimension());
 			//jPanel_meal.setMaximumSize(new Dimension());
 			//jPanel_meal.setMinimumSize(new Dimension());
-			jPanel_meal.setBorder(BorderFactory.createTitledBorder(null,"Meal Options", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Century Gothic", Font.BOLD, 12), Color.black));
+			jPanel_meal.setBorder(BorderFactory.createTitledBorder(null,"Meal Options", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Segoe UI", Font.PLAIN, 14), Color.black));
 			jPanel_meal.setLayout(new BoxLayout(getJPanel_meal(), BoxLayout.Y_AXIS));
 			jPanel_meal.add(getJPanel_mealOption1(), null);
 			jPanel_meal.add(getJPanel_mealOption2(), null);
@@ -909,10 +943,9 @@ public class BookPackageForm {
 		if (jPanel_mealOption1 == null) {
 			jPanel_mealOption1 = new JPanel();
 			jPanel_mealOption1.setLayout(null);
-			jPanel_mealOption1.setPreferredSize(new Dimension(609,172));
-			jPanel_mealOption1.setMaximumSize(new Dimension(609,172));
-			jPanel_mealOption1.setMinimumSize(new Dimension(609,172));
-			
+			jPanel_mealOption1.setPreferredSize(new Dimension(609,70));
+			jPanel_mealOption1.setMaximumSize(new Dimension(609,70));
+			jPanel_mealOption1.setMinimumSize(new Dimension(609,70));
 			jPanel_mealOption1.setOpaque(false);
 			jPanel_mealOption1.add(jLabel_mealOption1, null);
 			jPanel_mealOption1.add(getJTextField_mealOption1(), null);
@@ -924,6 +957,8 @@ public class BookPackageForm {
 	private JTextField getJTextField_mealOption1() {
 		if (jTextField_mealOption1 == null) {
 			jTextField_mealOption1 = new JTextField();
+			jTextField_mealOption1.setHorizontalAlignment(JTextField.CENTER);
+			jTextField_mealOption1.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_mealOption1.setBounds(new Rectangle(96, 23, 360, 30));
 		}
 		return jTextField_mealOption1;
@@ -931,7 +966,7 @@ public class BookPackageForm {
 	private JScrollPane getJScrollPane_mealOption1() {
 		if (jScrollPane_mealOption1 == null) {
 			jScrollPane_mealOption1 = new JScrollPane();
-			jScrollPane_mealOption1.setBounds(new Rectangle(15, 72, 590, 100));
+			jScrollPane_mealOption1.setBounds(new Rectangle(15, 72, 570, 100));
 			jScrollPane_mealOption1.setViewportView(getJTable_mealOption1());
 		}
 		return jScrollPane_mealOption1;
@@ -961,6 +996,7 @@ public class BookPackageForm {
 	private JToggleButton getJToggleButton_viewMealOption1() {
 		if (jToggleButton_viewMealOption1 == null) {
 			jToggleButton_viewMealOption1 = new JToggleButton();
+			jToggleButton_viewMealOption1.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jToggleButton_viewMealOption1.setEnabled(false);
 			jToggleButton_viewMealOption1.setText("View Meal Details");
 			jToggleButton_viewMealOption1.setBounds(new Rectangle(460, 23, 136, 30));
@@ -977,8 +1013,18 @@ public class BookPackageForm {
 							jTable_mealOption1.getColumnModel().getColumn(2).setPreferredWidth(150);
 							jTable_mealOption1.getColumnModel().getColumn(3).setPreferredWidth(150);
 							jTable_mealOption1.getColumnModel().getColumn(3).setPreferredWidth(500);
-						}
-					});
+							if(jToggleButton_viewMealOption1.isSelected()){
+								jPanel_mealOption1.setPreferredSize(new Dimension(609,172));
+								jPanel_mealOption1.setMaximumSize(new Dimension(609,172));
+								jPanel_mealOption1.setMinimumSize(new Dimension(609,172));
+							}
+							else{
+								jPanel_mealOption1.setPreferredSize(new Dimension(609,70));
+								jPanel_mealOption1.setMaximumSize(new Dimension(609,70));
+								jPanel_mealOption1.setMinimumSize(new Dimension(609,70));
+							}
+							
+					}});
 		}
 		return jToggleButton_viewMealOption1;
 	}
@@ -986,9 +1032,9 @@ public class BookPackageForm {
 		if (jPanel_mealOption2 == null) {
 			jPanel_mealOption2 = new JPanel();
 			jPanel_mealOption2.setLayout(null);
-			jPanel_mealOption2.setPreferredSize(new Dimension(609,172));
-			jPanel_mealOption2.setMaximumSize(new Dimension(609,172));
-			jPanel_mealOption2.setMinimumSize(new Dimension(609,172));
+			jPanel_mealOption2.setPreferredSize(new Dimension(609,70));
+			jPanel_mealOption2.setMaximumSize(new Dimension(609,70));
+			jPanel_mealOption2.setMinimumSize(new Dimension(609,70));
 			jPanel_mealOption2.add(jLabel_mealOption2, null);
 			jPanel_mealOption2.add(getJTextField_mealOption2(), null);
 			jPanel_mealOption2.add(getJToggleButton_viewMealOption2(), null);
@@ -999,6 +1045,8 @@ public class BookPackageForm {
 	private JTextField getJTextField_mealOption2() {
 		if (jTextField_mealOption2 == null) {
 			jTextField_mealOption2 = new JTextField();
+			jTextField_mealOption2.setHorizontalAlignment(JTextField.CENTER);
+			jTextField_mealOption2.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_mealOption2.setBounds(new Rectangle(96, 23, 360, 30));
 		}
 		return jTextField_mealOption2;
@@ -1006,6 +1054,7 @@ public class BookPackageForm {
 	private JToggleButton getJToggleButton_viewMealOption2() {
 		if (jToggleButton_viewMealOption2 == null) {
 			jToggleButton_viewMealOption2 = new JToggleButton();
+			jToggleButton_viewMealOption2.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jToggleButton_viewMealOption2.setFocusable(false);
 			jToggleButton_viewMealOption2.setEnabled(false);
 			jToggleButton_viewMealOption2.setFocusPainted(false);
@@ -1022,6 +1071,16 @@ public class BookPackageForm {
 							jTable_mealOption2.getColumnModel().getColumn(2).setPreferredWidth(150);
 							jTable_mealOption2.getColumnModel().getColumn(3).setPreferredWidth(150);
 							jTable_mealOption2.getColumnModel().getColumn(3).setPreferredWidth(500);
+							if(jToggleButton_viewMealOption2.isSelected()){
+								jPanel_mealOption2.setPreferredSize(new Dimension(609,172));
+								jPanel_mealOption2.setMaximumSize(new Dimension(609,172));
+								jPanel_mealOption2.setMinimumSize(new Dimension(609,172));
+							}
+							else{
+								jPanel_mealOption2.setPreferredSize(new Dimension(609,70));
+								jPanel_mealOption2.setMaximumSize(new Dimension(609,70));
+								jPanel_mealOption2.setMinimumSize(new Dimension(609,70));
+							}
 						}
 					});
 		}
@@ -1058,9 +1117,25 @@ public class BookPackageForm {
 		}
 		return jTable_mealOption2;
 	}
+	private JPanel getJPanel_mealOption3() {
+		if (jPanel_mealOption3 == null) {
+			jPanel_mealOption3 = new JPanel();
+			jPanel_mealOption3.setLayout(null);
+			jPanel_mealOption3.setPreferredSize(new Dimension(609,70));
+			jPanel_mealOption3.setMaximumSize(new Dimension(609,70));
+			jPanel_mealOption3.setMinimumSize(new Dimension(609,70));
+			jPanel_mealOption3.add(jLabel_mealOption3, null);
+			jPanel_mealOption3.add(getJTextField_mealOption3(), null);
+			jPanel_mealOption3.add(getJToggleButton_viewMealOption3(), null);
+			jPanel_mealOption3.add(getJScrollPane_mealOption3(), null);
+		}
+		return jPanel_mealOption3;
+	}
 	private JTextField getJTextField_mealOption3() {
 		if (jTextField_mealOption3 == null) {
 			jTextField_mealOption3 = new JTextField();
+			jTextField_mealOption3.setHorizontalAlignment(JTextField.CENTER);
+			jTextField_mealOption3.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_mealOption3.setBounds(new Rectangle(96, 23, 360, 30));
 		}
 		return jTextField_mealOption3;
@@ -1068,6 +1143,7 @@ public class BookPackageForm {
 	private JToggleButton getJToggleButton_viewMealOption3() {
 		if (jToggleButton_viewMealOption3 == null) {
 			jToggleButton_viewMealOption3 = new JToggleButton();
+			jToggleButton_viewMealOption3.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jToggleButton_viewMealOption3.setFocusable(false);
 			jToggleButton_viewMealOption3.setFocusPainted(false);
 			jToggleButton_viewMealOption3.setEnabled(false);
@@ -1084,6 +1160,16 @@ public class BookPackageForm {
 							jTable_mealOption3.getColumnModel().getColumn(2).setPreferredWidth(150);
 							jTable_mealOption3.getColumnModel().getColumn(3).setPreferredWidth(150);
 							jTable_mealOption3.getColumnModel().getColumn(3).setPreferredWidth(500);
+							if(jToggleButton_viewMealOption3.isSelected()){
+								jPanel_mealOption3.setPreferredSize(new Dimension(609,172));
+								jPanel_mealOption3.setMaximumSize(new Dimension(609,172));
+								jPanel_mealOption3.setMinimumSize(new Dimension(609,172));
+							}
+							else{
+								jPanel_mealOption3.setPreferredSize(new Dimension(609,70));
+								jPanel_mealOption3.setMaximumSize(new Dimension(609,70));
+								jPanel_mealOption3.setMinimumSize(new Dimension(609,70));
+							}
 						}
 					});
 		}
@@ -1132,6 +1218,7 @@ public class BookPackageForm {
 	private JButton getJButton_standardPackage() {
 		if (jButton_standardPackage == null) {
 			jButton_standardPackage = new JButton();
+			jButton_standardPackage.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jButton_standardPackage.setText("Select This Package");
 			jButton_standardPackage.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/Select.png")));
 			jButton_standardPackage.addActionListener(new java.awt.event.ActionListener() {
@@ -1215,6 +1302,7 @@ public class BookPackageForm {
 			getJTextField_mealOption1().setText(control.getMeals().get(0).getMealTitle());
 			getJTextField_mealOption1().setName(control.getMeals().get(0).getMealID());
 			getJToggleButton_viewMealOption1().setEnabled(true);
+			//set the meal meu here
 		}
 		else if(control.getMealIDs().size()==2){
 			getJTextField_mealOption1().setText(control.getMeals().get(0).getMealTitle());
@@ -1436,25 +1524,8 @@ public class BookPackageForm {
 		}
 		return newPackageID;
 	}
-	/**
-	 * This method initializes jPanel_mealOption3	
-	 * 	
-	 * @return javax.swing.JPanel	
-	 */
-	private JPanel getJPanel_mealOption3() {
-		if (jPanel_mealOption3 == null) {
-			jPanel_mealOption3 = new JPanel();
-			jPanel_mealOption3.setLayout(null);
-			jPanel_mealOption3.setPreferredSize(new Dimension(609,172));
-			jPanel_mealOption3.setMaximumSize(new Dimension(609,172));
-			jPanel_mealOption3.setMinimumSize(new Dimension(609,172));
-			jPanel_mealOption3.add(jLabel_mealOption3, null);
-			jPanel_mealOption3.add(getJTextField_mealOption3(), null);
-			jPanel_mealOption3.add(getJToggleButton_viewMealOption3(), null);
-			jPanel_mealOption3.add(getJScrollPane_mealOption3(), null);
-		}
-		return jPanel_mealOption3;
-	}
+
+	
 
 	
 

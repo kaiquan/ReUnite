@@ -301,15 +301,24 @@ public class BookPackageForm {
 	private JTextField getJTextField_eventName() {
 		if (jTextField_eventName == null) {
 			jTextField_eventName = new JTextField();
+			jTextField_eventName.setText("Give Your Event A Name");
+			jTextField_eventName.setFocusable(false);
+			jTextField_eventName.setForeground(SystemColor.scrollbar);
 			jTextField_eventName.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_eventName.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_eventName.setBounds(new Rectangle(15, 300, 420, 30));
 			jTextField_eventName.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
-					System.out.println("focusLost()"); // TODO Auto-generated Event stub focusLost()
+					if(jTextField_eventName.getText().equals("")){
+						jTextField_eventName.setText("Give Your Event A Name");
+						jTextField_eventName.setForeground(SystemColor.scrollbar);
+					}
 				}
 				public void focusGained(java.awt.event.FocusEvent e) {
-					System.out.println("focusGained()"); // TODO Auto-generated Event stub focusGained()
+					if(jTextField_eventName.getText().equals("Give Your Event A Name")){
+						jTextField_eventName.setText("");
+						jTextField_eventName.setForeground(SystemColor.BLACK);
+					}
 				}
 			});
 		}
@@ -326,13 +335,22 @@ public class BookPackageForm {
 	private JTextArea getJTextArea_eventDescription() {
 		if (jTextArea_eventDescription == null) {
 			jTextArea_eventDescription = new JTextArea();
+			jTextArea_eventDescription.setFocusable(false);
+			jTextArea_eventDescription.setForeground(SystemColor.scrollbar);
+			jTextArea_eventDescription.setText("\n\n                                            Give Youe Event A Description");
 			jTextArea_eventDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextArea_eventDescription.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
-					System.out.println("focusLost()"); // TODO Auto-generated Event stub focusLost()
+					if(jTextArea_eventDescription.getText().equals("")){
+						jTextArea_eventDescription.setForeground(SystemColor.scrollbar);
+						jTextArea_eventDescription.setText("\n\n                                            Give Youe Event A Description");
+					}
 				}
 				public void focusGained(java.awt.event.FocusEvent e) {
-					System.out.println("focusGained()"); // TODO Auto-generated Event stub focusGained()
+					if(jTextArea_eventDescription.getText().equals("\n\n                                            Give Youe Event A Description")){
+						jTextArea_eventDescription.setText("");
+						jTextArea_eventDescription.setForeground(SystemColor.BLACK);
+					}
 				}
 			});
 		}

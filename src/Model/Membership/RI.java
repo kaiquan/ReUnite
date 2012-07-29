@@ -158,9 +158,9 @@ public class RI extends Account   {
 	// View)___________________________________________________
 
 	
-	public ArrayList<Purchase_Summary> GET_Payment_FOR_RI() {
+	public ArrayList<RI> GET_Payment_FOR_RI() {
 		ResultSet rs = null;
-		ArrayList<Purchase_Summary> paymentList = new ArrayList<Purchase_Summary>();
+		ArrayList<RI> paymentList = new ArrayList<RI>();
 			String dbQuery = "Select totalCost, amountPending FROM Purchase_Summary WHERE purchaseID='2'";
 			rs = db.readRequest(dbQuery);
 		
@@ -168,7 +168,7 @@ public class RI extends Account   {
 				while(rs.next()){
 
 				
-					Purchase_Summary ps = new Purchase_Summary();
+					RI ps = new RI();
 				
 					ps.setTotalCost(rs.getString("totalCost"));
 					ps.setAmountPending(rs.getString("amountPending"));
@@ -196,7 +196,7 @@ public class RI extends Account   {
 
 		try {
 
-			ArrayList<Purchase_Summary> tempList1 = riModelPayment.GET_Payment_FOR_RI();
+			ArrayList<RI> tempList1 = riModelPayment.GET_Payment_FOR_RI();
 			
 			for (int i = 0; i < tempList1.size(); i++) {
 				data[i][0]= tempList1.get(i).getTotalCost();
@@ -425,6 +425,7 @@ public class RI extends Account   {
 		
 		
 		
+		
 
 		
 		
@@ -438,7 +439,7 @@ public class RI extends Account   {
 		try {
 	
 			String dbQuery = "Select userName, type, status, firstName, lastName, dateOfBirth, nric, school, email, address, telephoneNo, handphoneNo FROM Account " +
-					"where userName = 'shahrikinalias@gmail.com'";
+					"where userName = 'kaiquan88@gmail.com'";
 			rs = db.readRequest(dbQuery);
 
 			while (rs.next()) {

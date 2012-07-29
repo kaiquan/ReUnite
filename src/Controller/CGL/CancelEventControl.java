@@ -15,6 +15,7 @@ public class CancelEventControl {
 	
 	public ArrayList<Event> processExpiredInvitation(){
 		
+		
 		Event e1 = new Event();
 		return e1.RETRIEVE_EVENT_RECORDS();
 	}

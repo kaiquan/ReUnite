@@ -18,7 +18,7 @@ public boolean UPDATES_CANCELLATION_DETAILS(String eventName){
 		String dbQuery;
 		int i=0;
 		
-		dbQuery = "INSERT INTO Event_Cancellation VALUES((SELECT eventID FROM Event WHERE eventName='Great Reunion'),'2012-07-06','Waste of time')";
+		dbQuery = "INSERT INTO `saharp5_adeel_school`.`Event_Cancellation` (`eventID`, `cancellationDate`, `cancellationReason`) VALUES ((SELECT eventID FROM Event WHERE eventName='"+eventName+"'), '2012-07-20', 'hehe')";
 					
 		
 			try{

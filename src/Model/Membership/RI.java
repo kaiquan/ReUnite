@@ -89,7 +89,7 @@ public class RI extends Account   {
 			, String type, String status,String firstName,
 			String lastName, Date dateOfBirth, String nric, String address,
 			String school, String email, String telephoneNo,
-			String handphoneNo, String secretQuestion, String secretAnswer) {
+			String handphoneNo, String secretQuestion, String secretAnswer, String closureReason) {
 		super();
 		super.setUserName(userName);
 		super.setPassword(password);
@@ -106,7 +106,7 @@ public class RI extends Account   {
 		super.setHandphoneNo(handphoneNo);
 		super.setSecretQuestion(secretQuestion);
 		super.setSecretAnswer(secretAnswer);
-		
+		super.setClosureReason(closureReason);
 		
 		
 		
@@ -161,7 +161,7 @@ public class RI extends Account   {
 	public ArrayList<RI> GET_Payment_FOR_RI() {
 		ResultSet rs = null;
 		ArrayList<RI> paymentList = new ArrayList<RI>();
-			String dbQuery = "Select totalCost, amountPending FROM Purchase_Summary WHERE purchaseID='2'";
+			String dbQuery = "Select totalCost, amountPending FROM Purchase_Summary WHERE purchaseID='12'";
 			rs = db.readRequest(dbQuery);
 		
 			try {
@@ -401,6 +401,17 @@ public class RI extends Account   {
 		return success;
 	}
 	
+	
+	public boolean updateClosure(Account account) {
+	
+		boolean success = false;
+		
+		String sql = "UPDATE Account SET userName = '"+account.getUserName()+"', closureReason='"+account.getClosureReason()+"'"+
+				 " WHERE userName ='"+account.getUserName()+"'";
+		if (db.updateRequest(sql) == 1)
+			success = true;
+		return success;
+	}
 	
 	
 	

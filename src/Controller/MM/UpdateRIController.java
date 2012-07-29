@@ -1,6 +1,7 @@
 package Controller.MM;
 
 import Model.Membership.*;
+import View.MM.ViewRIDetails;
 
 public class UpdateRIController {
 	
@@ -42,7 +43,23 @@ public class UpdateRIController {
 		
 	}
 	
-	
+	public void updateClosure(String userName, String closureReason){
+		RI updateReason = new RI();
+		updateReason.setUserName(userName);
+		updateReason.setClosureReason(closureReason);
+		
+		update.updateClosure(updateReason);
+		
+	}
+	public void checkIfCanDelete(String balanceAmount,String statusEvent ){
+		
+		ViewRIDetails delete = new ViewRIDetails();
+		
+		
+		
+		
+		
+	}
 	
 	
 

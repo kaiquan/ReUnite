@@ -51,6 +51,17 @@ public class ViewRIDetailsRIVIEW {
 
 	private JLabel title;
 	
+	private JLabel userNameLabel;
+	private JLabel firstNameLabel;
+	private JLabel lastNameLabel;
+	private JLabel dateOfBirthLabel;
+	private JLabel schoolLabel;
+	private JLabel emailLabel;
+	private JLabel telephoneLabel;
+	private JLabel handphoneLabel;
+	private JLabel nricLabel;
+	
+	
 	
 	//TextBoxes
 	JTextField userNameTextBox;
@@ -66,6 +77,7 @@ public class ViewRIDetailsRIVIEW {
 	private  JTextField statusTextBox;
 	JTextField eventStatus;
 	JTextField amountBalance;
+	
 
 	
 	//Buttons
@@ -73,6 +85,7 @@ public class ViewRIDetailsRIVIEW {
 	private JButton  updateAccountButton;
 	private JButton requestCloseAccountButton;
 	private JButton submitButton;
+	private JButton cancelButtonUpdate;
 
 	private JFrame getUpdateFrame(){
 		updateFrame = new JFrame();
@@ -89,7 +102,7 @@ public class ViewRIDetailsRIVIEW {
 	
 	private JFrame getJFrame(){
 		jframe = new JFrame();
-		jframe.setSize(1070, 788);
+		jframe.setSize(1000, 600);
 		jframe.setVisible(true);
 		jframe.setTitle("View");
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -108,6 +121,58 @@ public class ViewRIDetailsRIVIEW {
 		updatePanel = new JPanel();
 		updatePanel.setLayout(null);
 		updatePanel.setFont(new Font("Dialog", Font.PLAIN, 14));
+		
+		
+	//Label
+		
+		userNameLabel = new JLabel();
+		userNameLabel.setBounds(new Rectangle(50, 100, 400, 30));
+		userNameLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+		userNameLabel.setText("UserName :");
+		
+		firstNameLabel = new JLabel();
+		firstNameLabel.setBounds(new Rectangle(50, 150, 400, 30));
+		firstNameLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+		firstNameLabel.setText("First Name :");
+		
+		lastNameLabel = new JLabel();
+		lastNameLabel.setBounds(new Rectangle(50, 200, 400, 30));
+		lastNameLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+		lastNameLabel.setText("Last Name :");
+		
+		
+		
+		dateOfBirthLabel = new JLabel();
+		dateOfBirthLabel.setBounds(new Rectangle(50, 250, 400, 30));
+		dateOfBirthLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+		dateOfBirthLabel.setText("Date of Birth :");
+		
+		nricLabel = new JLabel();
+		nricLabel.setBounds(new Rectangle(50, 300, 400, 30));
+		nricLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+		nricLabel.setText("Nric :");
+		
+		schoolLabel = new JLabel();
+		schoolLabel.setBounds(new Rectangle(450, 100, 400, 30));
+		schoolLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+		schoolLabel.setText("School :");
+		
+		emailLabel = new JLabel();
+		emailLabel.setBounds(new Rectangle(450, 150, 400, 30));
+		emailLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+		emailLabel.setText("Email :");
+		
+		telephoneLabel = new JLabel();
+		telephoneLabel.setBounds(new Rectangle(450, 200, 400, 30));
+		telephoneLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+		telephoneLabel.setText("Telephone :");
+		
+		handphoneLabel = new JLabel();
+		handphoneLabel.setBounds(new Rectangle(450, 250, 400, 30));
+		handphoneLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+		handphoneLabel.setText("Handphone :");
+		
+	//End of Label	
 		
 		
 		userNameTextBox =new JTextField();
@@ -131,6 +196,11 @@ public class ViewRIDetailsRIVIEW {
 		dateOfBirthTextBox.setVisible(true);
 		
 		
+		nricTextBox = new JTextField();
+		nricTextBox.setBounds(new Rectangle(200, 300, 150, 25));
+		nricTextBox.setVisible(true);
+		
+		
 		schoolTextBox=new JTextField();
 		schoolTextBox.setBounds(new Rectangle(550, 100, 150, 25));
 		schoolTextBox.setVisible(true);
@@ -148,7 +218,7 @@ public class ViewRIDetailsRIVIEW {
 		handphoneTextBox.setVisible(true);
 		
 		submitButton = new JButton("Submit");
-		submitButton.setBounds(600, 300, 150, 30);
+		submitButton.setBounds(400, 300, 150, 30);
 		submitButton.addActionListener(new java.awt.event.ActionListener() {
 			
 			public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -175,7 +245,10 @@ public class ViewRIDetailsRIVIEW {
 					
 					updateAccountButton.setVisible(true);
 				
+					JOptionPane.showConfirmDialog(null,""+userNameTextBox.getText()+"Has Been Successfully updated!",
+							   "Account Updated!", JOptionPane.CLOSED_OPTION);
 				getUpdateFrame().setVisible(false);
+				getJFrame().setVisible(true);
 					
 
 					
@@ -183,6 +256,17 @@ public class ViewRIDetailsRIVIEW {
 			}
 		});
 		
+		cancelButtonUpdate = new JButton("Cancel");
+		cancelButtonUpdate.setBounds(600, 300, 150, 30);
+		cancelButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
+			
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				
+				getUpdateFrame().setVisible(false);
+				getJFrame().setVisible(true);
+				
+			}
+		});
 		
 		
 
@@ -190,15 +274,28 @@ public class ViewRIDetailsRIVIEW {
 		updatePanel.add(firstNameTextBox);
 		updatePanel.add(lastNameTextBox);
 		updatePanel.add(dateOfBirthTextBox);
+		updatePanel.add(nricTextBox);
 		updatePanel.add(schoolTextBox);
 		updatePanel.add(emailTextBox);
 		updatePanel.add(telephoneTextBox);
 		updatePanel.add(handphoneTextBox);
-		updatePanel.add(typeTextBox);
-		updatePanel.add(statusTextBox);
+	
+		
+		
+		updatePanel.add(userNameLabel);
+		updatePanel.add(firstNameLabel);
+		updatePanel.add( lastNameLabel);
+		updatePanel.add(dateOfBirthLabel);
+		updatePanel.add(nricLabel);
+		
+		updatePanel.add(schoolLabel);
+		updatePanel.add(emailLabel);
+		updatePanel.add(telephoneLabel);
+		updatePanel.add(handphoneLabel);
+		
+		
+		updatePanel.add(cancelButtonUpdate);
 		updatePanel.add(submitButton);
-		
-		
 		return updatePanel;
 	}
 	
@@ -285,7 +382,7 @@ public class ViewRIDetailsRIVIEW {
 	//Buttons
 	
 	updateAccountButton = new JButton();
-	updateAccountButton.setBounds(344, 42, 150, 30);
+	updateAccountButton.setBounds(213, 433, 150, 30);
 	updateAccountButton.setText("Update Account");
 	updateAccountButton.addActionListener(new java.awt.event.ActionListener() {
 		public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -300,7 +397,7 @@ public class ViewRIDetailsRIVIEW {
 	
 	
 				requestCloseAccountButton = new JButton();
-					requestCloseAccountButton.setBounds(509, 43, 293, 30);
+					requestCloseAccountButton.setBounds(391, 432, 293, 30);
 					requestCloseAccountButton.setText("Request Account Closure");
 					requestCloseAccountButton
 						.addActionListener(new java.awt.event.ActionListener() {
@@ -313,9 +410,13 @@ public class ViewRIDetailsRIVIEW {
 						if(eventStatus.getText().equals("Confirmed")|| eventStatus.getText().equals("Cancelled") && amountBalance.getText().isEmpty()|| amountBalance.getText().equals("0")){
 							
 							
-							String str = JOptionPane.showInputDialog(null, "Please enter the reason for closure : ", 
+							String closureReason = JOptionPane.showInputDialog(null, "Please enter the reason for closure : ", 
 									"Closure request sent!", 1);
 							
+							UpdateRIController closureReasonUpdate = new UpdateRIController();
+								
+								closureReasonUpdate.updateClosure(userNameTextBox.getText(), closureReason);
+					
 						}
 						else {
 							
@@ -357,15 +458,18 @@ public class ViewRIDetailsRIVIEW {
 			panel.add(amountBalance);
 		
 			JScrollPane tableScrollPane = new JScrollPane(getTable());
-			tableScrollPane.setBounds(0, 100, 600, 100);
+			tableScrollPane.setBounds(0, 150, 884, 40);
+			tableScrollPane.setFont(new Font("Dialog", Font.BOLD, 18));
+			tableScrollPane.setEnabled(false);
 			panel.add(tableScrollPane);
-				
+			
+			table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 			JScrollPane tableScrollPaneEvent = new JScrollPane(getTableEvent());
-			tableScrollPaneEvent.setBounds(2, 226, 600, 100);
+			tableScrollPaneEvent.setBounds(0, 250, 350, 100);
 			panel.add(tableScrollPaneEvent);
 				
 			JScrollPane tableScrollPanePayment = new JScrollPane(getTablePayment());
-			tableScrollPanePayment.setBounds(0, 360, 600, 100);
+			tableScrollPanePayment.setBounds(597, 255, 200, 100);
 			panel.add(tableScrollPanePayment);	
 			
 		return panel;
@@ -414,6 +518,8 @@ public class ViewRIDetailsRIVIEW {
 					}
 				});
 		amountBalance.setText((tablePayment.getModel()).getValueAt(0, 1).toString());
+
+	
 		return tablePayment;
 
 	}
@@ -461,7 +567,7 @@ public class ViewRIDetailsRIVIEW {
 				});
 
 		
-		eventStatus.setText((tableEvent.getModel()).getValueAt(4, 2).toString());
+		eventStatus.setText((tableEvent.getModel()).getValueAt(0, 2).toString());
 	
 		return tableEvent;
 
@@ -485,11 +591,12 @@ public class ViewRIDetailsRIVIEW {
 		DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
 		headerRenderer.setBackground(Color.GRAY);
 		
+	
 		
 		table.getTableHeader().setDefaultRenderer(headerRenderer);
 		
 		DefaultTableCellRenderer usernameRenderer = new DefaultTableCellRenderer();
-		usernameRenderer.setFont(new Font("Dialog", Font.BOLD, 50));
+		usernameRenderer.setFont(new Font("Dialog", Font.BOLD, 100));
 		
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener()
 		{
@@ -513,7 +620,7 @@ public class ViewRIDetailsRIVIEW {
 
 	
 		
-		userNameTextBox.setText((table.getModel()).getValueAt(0, 1).toString());
+		userNameTextBox.setText((table.getModel()).getValueAt(0, 0).toString());
 		firstNameTextBox.setText(table.getModel().getValueAt(0, 2).toString());
 		lastNameTextBox.setText(table.getModel().getValueAt(0, 3).toString());
 		emailTextBox.setText(table.getModel().getValueAt(0, 4).toString());
@@ -543,5 +650,18 @@ public class ViewRIDetailsRIVIEW {
 	
 	
 	}
+		public void checkforApproval(){
+			
+			String balanceAmount;
+			String statusEvent ;
+			
+			UpdateRIController check = new UpdateRIController();
+			
+			check.checkIfCanDelete(balanceAmount = amountBalance.getText(),statusEvent = eventStatus.getText());
+		
+		
+		
+		}
+		
 
 }

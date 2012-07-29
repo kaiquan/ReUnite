@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import Controller.MyCalendar;
 import Controller.MySQLController; 
-import Controller.RIM.Utils.DateHelper;
 import Model.Event;
 import Model.Membership.Account;
 import Model.RIM.TableNames;

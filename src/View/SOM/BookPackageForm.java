@@ -1255,40 +1255,53 @@ public class BookPackageForm {
 		//for loop to filter the timings
 		getJComboBox_selectTime().removeAllItems();
 		if(timings.size()==0){
-			getJComboBox_selectTime().addItem("=============");
-			getJComboBox_selectTime().addItem("12.00pm");
-			getJComboBox_selectTime().addItem("3.00pm");
-			getJComboBox_selectTime().addItem("6.00pm");
-			getJComboBox_selectTime().addItem("7.00pm");
-			getJComboBox_selectTime().addItem("=============");
+			getJComboBox_selectTime().addItem("==================");
+			getJComboBox_selectTime().addItem("12.00 pm");
+			getJComboBox_selectTime().addItem("3.00 pm");
+			getJComboBox_selectTime().addItem("6.00 pm");
+			getJComboBox_selectTime().addItem("7.00 pm");
+			getJComboBox_selectTime().addItem("==================");
 			getJComboBox_selectTime().setEnabled(true);
-			System.out.println("i m here\n "+timings.size());
 		}
 		else{
-			getJComboBox_selectTime().addItem("=============");
-			getJComboBox_selectTime().addItem("12.00pm");
-			getJComboBox_selectTime().addItem("3.00pm");
-			getJComboBox_selectTime().addItem("6.00pm");
-			getJComboBox_selectTime().addItem("7.00pm");
-			getJComboBox_selectTime().addItem("=============");
+			getJComboBox_selectTime().addItem("==================");
+			getJComboBox_selectTime().addItem("12.00 pm");
+			getJComboBox_selectTime().addItem("3.00 pm");
+			getJComboBox_selectTime().addItem("6.00 pm");
+			getJComboBox_selectTime().addItem("7.00 pm");
+			getJComboBox_selectTime().addItem("==================");
 			getJComboBox_selectTime().setEnabled(true);
-			//for loop to remove booked timings
-			System.out.println("i m dasdasdhere\n "+timings.size());
-		}
-			int max=0;//error here!
-			System.out.println(timings.get(0));
-			for(int i=0; i<timings.size();i++){
-				while(getJComboBox_selectTime().getMaximumRowCount()>i){
-					if(getJComboBox_selectTime().getItemAt(i).equals(timings.get(max))){
-						System.out.println(timings.get(i));
-						getJComboBox_selectTime().removeItem(timings.get(i));
-						
-					}
-					
-					i++;
-				}
-				max++;
+			String[]delete= new String[6];
+			//fill the array with""
+			for(int i=0; i<delete.length;i++){
+				delete[i]="";
 			}
+			//get the dates to delete
+			for(int i=0; i<timings.size();i++){
+				System.out.println(timings.size());
+				System.out.println(timings.get(i));
+				for(int x=0;x<getJComboBox_selectTime().getItemCount();x++){
+					System.out.println(getJComboBox_selectTime().getItemAt(x).toString()+" conpared with "+timings.get(i));
+					if(getJComboBox_selectTime().getItemAt(x).toString().equals(timings.get(i))){
+						System.out.println("true");
+						delete[x]=timings.get(i);
+					}
+					else{
+						if(delete[x].equals(""))
+							delete[x]="";
+					}
+				}
+				System.out.println("****");
+			}
+			//remove the dates
+			for(int i=0;i<delete.length;i++){
+				if(!delete[i].equals("")){
+					System.out.println("row"+i+" : "+delete[i]);
+					getJComboBox_selectTime().removeItem(delete[i]);
+				}
+			}
+		}		
+			
 		}
 	
 	//add hits function?

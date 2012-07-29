@@ -621,7 +621,7 @@ public ArrayList<String> GET_EVENT_DETAILS(String eventName){
 			String dbQuery;
 			
 			
-			dbQuery = "SELECT e.eventName,e.eventDate FROM Event e WHERE e.eventStatus='Pending' || e.eventStatus='Awaiting Payment'";
+			dbQuery = "SELECT e.eventName,e.eventDate FROM Event e WHERE e.eventStatus='Awaiting Payment' || e.eventStatus='Confirmed'";
 			try{
 				
 				rs=DB.readRequest(dbQuery);

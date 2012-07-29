@@ -330,8 +330,35 @@ public class CancelEventForm {
 			jButton1 = new JButton();
 			jButton1.setBounds(new Rectangle(344, 263, 144, 15));
 			jButton1.setText("Cancel Event");
+			jButton1.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					promptsConfirmation();
+				}
+			});
 		}
 		return jButton1;
+	}
+
+	private void promptsConfirmation() {
+		// TODO Auto-generated method stub
+		
+		String[] options={"YES","NO"};   
+		int n = JOptionPane.showOptionDialog(null,"Are you sure you want to cancel this event?","Please Confirm", JOptionPane.YES_NO_OPTION ,JOptionPane.QUESTION_MESSAGE, null,  options,options[1]);
+		 if(n == 0){
+	            System.out.println("YES Clicked");
+	        }
+
+	       // NO OPTION CLICKED
+	        if(n == 1){
+	            System.out.println("NO Clicked");
+	        }
+
+	       // CROSS CLICKED
+	        if(n == -1){
+	            System.out.println("Cross Clicked");
+	        }
+
+		
 	}
 
 	/**
@@ -344,6 +371,11 @@ public class CancelEventForm {
 			jButton2 = new JButton();
 			jButton2.setBounds(new Rectangle(26, 294, 86, 21));
 			jButton2.setText("Refresh");
+			jButton2.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					refresh();
+				}
+			});
 		}
 		return jButton2;
 	}
@@ -406,13 +438,39 @@ public class CancelEventForm {
 		return textField_5;
 	}
 	
+	private void refresh(){	
+		jContentPane.remove(pne);
+		textField.setText("");
+		jTextField.setText("");
+		textField_1.setText("");
+		textField_2.setText("");
+		textField_3.setText("");
+		textField_4.setText("");
+		textField_4.setText("");
+		textField_5.setText("");
+		jTextArea.setText("");
+		ballroomPrice="";
+		entertainmentPrice="";
+		mealPrice="";
+		packageDiscount="";
+		DefaultMutableTreeNode events = new DefaultMutableTreeNode("Events");				
+		generateEvents(events);		
+		DefaultTreeModel model = new DefaultTreeModel(events);
+		tree.setModel(model);		
+		pne.setViewportView(tree);		
+		jContentPane.add(pne);
+		
+		pne.updateUI();
+		
+	}
+	
 	private void generateEvents(DefaultMutableTreeNode tn)
 	{
 	
 
 		CancelEventControl c1 = new CancelEventControl();
 	
-		ArrayList<Event> eventList = c1.processExpiredInvitation();
+		ArrayList<Event> eventList = c1.processSelection();
 		
 		DefaultMutableTreeNode[] nodes = new DefaultMutableTreeNode[eventList.size()];
 		

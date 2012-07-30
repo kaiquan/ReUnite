@@ -26,7 +26,7 @@ public class SystemApp {
 	
 	   // calls the AdministrateSystemOptionManagement GUI
 	    //AdministrateSystemOptionManagement GA=new AdministrateSystemOptionManagement();
-	   // GA.getJFrame().setVisible(true);
+	    //GA.getJFrame().setVisible(true);
 	 
 
 	    BookPackageForm form1= new BookPackageForm();

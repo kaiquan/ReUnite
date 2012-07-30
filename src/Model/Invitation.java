@@ -265,7 +265,7 @@ public class Invitation
 	{
 		ResultSet rs = null;
 		ArrayList<Guest> guestList = new ArrayList<Guest>();
-		String dbQuery = "SELECT * FROM " + TableNames.GUEST_TABLE + " g INNER JOIN  "+TableNames.ACCOUNT_TABLE +" a ON i.userName = a.userName WHERE invitationID = " + invitationID + " AND g.response='Attending'";
+		String dbQuery = "SELECT * FROM Invitation i INNER JOIN Guest g ON g.invitationID=i.invitationID INNER JOIN Account a ON a.userName=g.userName WHERE i.invitationID = 17 AND g.response='Attending'";
 		try
 		{
 			rs = db.readRequest(dbQuery);
@@ -337,13 +337,21 @@ public class Invitation
 
 	public static void main(String args[])
 	{
-		Invitation invitation = new Invitation();
-		ArrayList<Invitation> invitationList = invitation.GET_ALL_INVITATIONS();
+//		Invitation invitation = new Invitation();
+//		ArrayList<Invitation> invitationList = invitation.GET_ALL_INVITATIONS();
+//		
+//		for(int i = 0; i < invitationList.size(); i++)
+//		{
+//			System.out.println(invitationList.get(i));
+//		}
 		
-		for(int i = 0; i < invitationList.size(); i++)
+		Invitation inviation = new Invitation(17);
+		ArrayList<Guest> invitationList = inviation.GET_ALL_ATTENDING_GUESTS();
+		
+		for(int i=0;i<invitationList.size();i++)
 		{
-			System.out.println(invitationList.get(i));
-		}
+			System.out.println(invitationList.get(i).getEmail());
+		}	
 	
 	}
 

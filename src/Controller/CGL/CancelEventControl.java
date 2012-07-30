@@ -126,7 +126,8 @@ public class CancelEventControl {
 		return combined;
 	}
 	
-	public boolean processCancellation(){
+	public boolean processCancellation(String eventName,String status,String reason){
+		//get all attending guests based on invitation id
 		//prepare email
 		//update date & time
 		//updates event record

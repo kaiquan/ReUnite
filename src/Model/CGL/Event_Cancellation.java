@@ -45,9 +45,46 @@ public boolean UPDATES_CANCELLATION_DETAILS(String eventName,String reason){
 			
 		}
 
-	public static void main(String args[]){
-		Event_Cancellation e1 = new Event_Cancellation();
-		e1.UPDATES_CANCELLATION_DETAILS("Great Reunion","Waste of time");
+
+/********************************************************
+ * Method Name 		: UPDATE_EVENT_STATUS
+ * Input Parameter 	: String eventName,String eventStatus
+ * Return 			: BOOLEAN
+ * Purpose 			: TO UPDATE THE EVENT STATUS BASED
+ * 					  ON THE EVENT RECORD
+ *******************************************************/
+		
+		public boolean UPDATE_EVENT_STATUS(String eventName,String eventStatus){
+			
+			boolean status=false;
+			String dbQuery;
+			
+			int i=0;
+			
+			
+			dbQuery = "UPDATE Event Set eventStatus='"+eventStatus+"'"+"WHERE eventName="+"'"+eventName+"'";
+
+	try{
+		i=DB.updateRequest(dbQuery);
 	}
+
+	catch(Exception ex){
+		System.out.println("Failed to update event status");
+				}
+				
+				finally{
+					
+				}
+				
+				if(i==1){
+					status=true;
+				
+				}
+				
+				
+				return status;
+				
+			}
+
 
 }

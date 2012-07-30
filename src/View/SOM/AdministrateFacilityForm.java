@@ -358,6 +358,7 @@ public class AdministrateFacilityForm {
 			model.setColumnIdentifiers(Header);
 			jTable_ballroomList = new JTable(model);
 			jTable_ballroomList.setOpaque(false);
+			jTable_ballroomList.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTable_ballroomList.setEnabled(false);
 			jTable_ballroomList.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 			jTable_ballroomList.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);

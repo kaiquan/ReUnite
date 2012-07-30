@@ -399,6 +399,7 @@ public class AdministrateSystemOptionManagement {
 			jTable.setOpaque(false);
 			jTable.setEnabled(false);
 			jTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+			jTable.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTable.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 			jTable.setIntercellSpacing(new Dimension(5, 5));
 			jTable.setRowSelectionAllowed(true);
@@ -584,7 +585,6 @@ public class AdministrateSystemOptionManagement {
 	public static JProgressBar getJProgressBar() {
 		if (jProgressBar == null) {
 			jProgressBar = new JProgressBar();
-			//jProgressBar.setStringPainted(true);
 			jProgressBar.setOpaque(true);
 			jProgressBar.setValue(0);
 			jProgressBar.setMaximum(100);

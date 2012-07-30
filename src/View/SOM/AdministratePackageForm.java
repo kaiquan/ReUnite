@@ -1206,6 +1206,7 @@ public class AdministratePackageForm {
 			DefaultTableModel model= new DefaultTableModel();
 			model.setColumnIdentifiers(new Object[]{"ID","Name","Size","Price","Description"});
 			jTable_ballroomList = new JTable(model);
+			jTable_ballroomList.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTable_ballroomList.setOpaque(false);
 			jTable_ballroomList.setEnabled(false);
 			jTable_ballroomList.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
@@ -1659,6 +1660,7 @@ public class AdministratePackageForm {
 			DefaultTableModel model= new DefaultTableModel();
 			model.setColumnIdentifiers(new Object[]{"ID","Name","Type","Price","Description"});
 			jTable_entertainmentList = new JTable(model);
+			jTable_entertainmentList.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTable_entertainmentList.setOpaque(false);
 			jTable_entertainmentList.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 			jTable_entertainmentList.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
@@ -1833,6 +1835,7 @@ public class AdministratePackageForm {
 			DefaultTableModel model= new DefaultTableModel();
 			model.setColumnIdentifiers(new Object[]{"Name","Price","Description"});
 			jTable_entertainmentMenu = new JTable(model);
+			jTable_entertainmentMenu.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTable_entertainmentMenu.setAutoResizeMode(jTable_ballroomList.AUTO_RESIZE_OFF);
 			jTable_entertainmentMenu.getColumnModel().getColumn(0).setPreferredWidth(565);
 			jTable_entertainmentMenu.getColumnModel().getColumn(1).setPreferredWidth(135);
@@ -2041,6 +2044,7 @@ public class AdministratePackageForm {
 			DefaultTableModel model= new DefaultTableModel();
 			model.setColumnIdentifiers(new Object[]{"ID","Name","Price","Description"});
 			jTable_mealLIst = new JTable(model);
+			jTable_mealLIst.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTable_mealLIst.setOpaque(false);
 			jTable_mealLIst.setEnabled(false);
 			jTable_mealLIst.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
@@ -2244,6 +2248,7 @@ public class AdministratePackageForm {
 			DefaultTableModel model= new DefaultTableModel();
 			model.setColumnIdentifiers(new Object[]{"ID","Meal Set Name","Type","Price/head","Description"});
 			jTable_mealList = new JTable(model);
+			jTable_mealList.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTable_mealList.setEnabled(true);
 			jTable_mealList.setAutoResizeMode(jTable_mealLIst.AUTO_RESIZE_OFF);
 			jTable_mealList.getColumnModel().getColumn(0).setPreferredWidth(450);

@@ -317,6 +317,7 @@ public class AdministrateEntertainmentForm {
 		if (jTable_entertainmentMenu == null) {
 			model.setColumnIdentifiers(Header);
 			jTable_entertainmentMenu = new JTable();
+			jTable_entertainmentMenu.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTable_entertainmentMenu.setModel(model);
 			jTable_entertainmentMenu.setOpaque(false);
 			jTable_entertainmentMenu.setEnabled(false);

@@ -38,7 +38,7 @@ import Controller.SOM.AdministrateMealControl;
 
 public class CreateCustomPackageForm {
 
-	private JFrame jFrame = null;  //  @jve:decl-index=0:visual-constraint="16,17"
+	private JFrame jFrame = null;  //  @jve:decl-index=0:visual-constraint="333,68"
 	private JScrollPane jScrollPane = null;
 	private JPanel jPanel = null;
 	private JPanel jPanel_header = null;
@@ -167,7 +167,7 @@ public class CreateCustomPackageForm {
 	protected JFrame getJFrame() {
 		if (jFrame == null) {
 			jFrame = new JFrame();
-			jFrame.setSize(new Dimension(900, 713));
+			jFrame.setSize(new Dimension(885, 713));
 			jFrame.setContentPane(getJScrollPane());
 			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 			jFrame.setLocation(screenSize.width/2 - (jFrame.getWidth()/2),screenSize.height/2 - (jFrame.getHeight()/2));
@@ -854,6 +854,7 @@ public class CreateCustomPackageForm {
 			DefaultTableModel model= new DefaultTableModel();
 			model.setColumnIdentifiers(new Object[]{"ID","Name","Size","Price","Description"});
 			jTable_ballroomList = new JTable(model);
+			jTable_ballroomList.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTable_ballroomList.setOpaque(false);
 			jTable_ballroomList.setEnabled(false);
 			jTable_ballroomList.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
@@ -1307,6 +1308,7 @@ public class CreateCustomPackageForm {
 			model.setColumnIdentifiers(new Object[]{"ID","Name","Type","Price","Description"});
 			jTable_entertainmentList = new JTable(model);
 			jTable_entertainmentList.setOpaque(false);
+			jTable_entertainmentList.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTable_entertainmentList.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 			jTable_entertainmentList.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 			jTable_entertainmentList.setIntercellSpacing(new Dimension(5, 5));
@@ -1482,6 +1484,7 @@ public class CreateCustomPackageForm {
 			DefaultTableModel model= new DefaultTableModel();
 			model.setColumnIdentifiers(new Object[]{"Name","Price","Description"});
 			jTable_entertainmentMenu = new JTable(model);
+			jTable_entertainmentMenu.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTable_entertainmentMenu.setAutoResizeMode(jTable_ballroomList.AUTO_RESIZE_OFF);
 			jTable_entertainmentMenu.getColumnModel().getColumn(0).setPreferredWidth(565);
 			jTable_entertainmentMenu.getColumnModel().getColumn(1).setPreferredWidth(135);
@@ -1689,6 +1692,7 @@ public class CreateCustomPackageForm {
 			jTable_mealLIst = new JTable(model);
 			jTable_mealLIst.setOpaque(false);
 			jTable_mealLIst.setEnabled(false);
+			jTable_mealLIst.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTable_mealLIst.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 			jTable_mealLIst.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 			jTable_mealLIst.setIntercellSpacing(new Dimension(5, 5));
@@ -1891,6 +1895,7 @@ public class CreateCustomPackageForm {
 			model.setColumnIdentifiers(new Object[]{"ID","Meal Set Name","Type","Price/head","Description"});
 			jTable_mealList = new JTable(model);
 			jTable_mealList.setEnabled(true);
+			jTable_mealList.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTable_mealList.setAutoResizeMode(jTable_mealLIst.AUTO_RESIZE_OFF);
 			jTable_mealList.getColumnModel().getColumn(0).setPreferredWidth(450);
 			jTable_mealList.getColumnModel().getColumn(1).setPreferredWidth(135);

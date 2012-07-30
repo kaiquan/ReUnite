@@ -348,6 +348,7 @@ public class AdministrateMealForm {
 			jTable_mealMenu.setModel(model);
 			jTable_mealMenu.setOpaque(false);
 			jTable_mealMenu.setEnabled(false);
+			jTable_mealMenu.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTable_mealMenu.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 			jTable_mealMenu.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 			jTable_mealMenu.setIntercellSpacing(new Dimension(5, 5));

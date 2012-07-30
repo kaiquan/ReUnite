@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import java.awt.SystemColor;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -211,7 +212,6 @@ public class BookPackageForm {
 			jButton_selectStandardPackage.setText("Select Available Packages");
 			jButton_selectStandardPackage
 					.addActionListener(new java.awt.event.ActionListener() {
-						@SuppressWarnings("static-access")
 						public void actionPerformed(java.awt.event.ActionEvent e) {
 							
 							AdministratePackageControl control= new AdministratePackageControl();
@@ -300,6 +300,7 @@ public class BookPackageForm {
 			jButton_selectDate.setBounds(new Rectangle(395, 180, 40, 30));
 			jButton_selectDate.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/30_calendar_icon.png")));
 			jButton_selectDate.addActionListener(new java.awt.event.ActionListener() {
+				@SuppressWarnings("unchecked")
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					if(cPackageTitle!=null){
 						getJTextField_selectedDate().setEnabled(true);
@@ -308,10 +309,20 @@ public class BookPackageForm {
 							String Date=getJTextField_selectedDate().getText();
 							if(isCustom){
 								filterTiming(cBallroomID, Date);
+								if(getJComboBox_selectTime().getItemCount()==2){
+									getJComboBox_selectTime().removeAll();
+									getJComboBox_selectTime().addItem("No Available Timings");
+									JOptionPane.showMessageDialog(null, "Sorry, we are fully booked at this date.\nPlease select another date", "Sorry", JOptionPane.WARNING_MESSAGE);
+								}
 							}
 							else{
 								String ballroomID=getJTextField_selectedDate().getName();
 								filterTiming(ballroomID, Date);
+								if(getJComboBox_selectTime().getItemCount()==2){
+									getJComboBox_selectTime().removeAll();
+									getJComboBox_selectTime().addItem("No Available Timings");
+									JOptionPane.showMessageDialog(null, "Sorry, we are fully booked at this date.\nPlease select another date", "Sorry", JOptionPane.WARNING_MESSAGE);
+								}
 							}
 							
 							
@@ -371,17 +382,17 @@ public class BookPackageForm {
 		if (jTextArea_eventDescription == null) {
 			jTextArea_eventDescription = new JTextArea();
 			jTextArea_eventDescription.setForeground(SystemColor.scrollbar);
-			jTextArea_eventDescription.setText("\n\n                                            Give Youe Event A Description");
+			jTextArea_eventDescription.setText("\n\n                                            Give Your Event A Description");
 			jTextArea_eventDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextArea_eventDescription.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					if(jTextArea_eventDescription.getText().equals("")){
 						jTextArea_eventDescription.setForeground(SystemColor.scrollbar);
-						jTextArea_eventDescription.setText("\n\n                                            Give Youe Event A Description");
+						jTextArea_eventDescription.setText("\n\n                                            Give Your Event A Description");
 					}
 				}
 				public void focusGained(java.awt.event.FocusEvent e) {
-					if(jTextArea_eventDescription.getText().equals("\n\n                                            Give Youe Event A Description")){
+					if(jTextArea_eventDescription.getText().equals("\n\n                                            Give Your Event A Description")){
 						jTextArea_eventDescription.setText("");
 						jTextArea_eventDescription.setForeground(SystemColor.BLACK);
 					}
@@ -400,7 +411,7 @@ public class BookPackageForm {
 			jButton_createEvent.setText("Create My Event");
 			jButton_createEvent.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					//validate();
+					if(validate())
 					createEvent();
 				}
 			});
@@ -464,6 +475,7 @@ public class BookPackageForm {
 			DefaultTableModel model= new DefaultTableModel();
 			model.setColumnIdentifiers(new Object[]{"ID","Title","Type","Description"});
 			jTable_search = new JTable(model);
+			jTable_search.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTable_search.setOpaque(false);
 			jTable_search.setEnabled(false);
 			jTable_search.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
@@ -945,6 +957,7 @@ public class BookPackageForm {
 		}
 		return jScrollPane_entertainmentMenu;
 	}
+	@SuppressWarnings("static-access")
 	private JTable getJTable_enterainementMenu() {
 		if (jTable_enterainementMenu == null) {
 			DefaultTableModel model= new DefaultTableModel();
@@ -959,7 +972,7 @@ public class BookPackageForm {
 			jTable_enterainementMenu.setShowGrid(false);
 			jTable_enterainementMenu.setFocusable(false);
 			jTable_enterainementMenu.setColumnSelectionAllowed(false);
-			jTable_enterainementMenu.setAutoResizeMode(jTable_search.AUTO_RESIZE_OFF);
+			jTable_enterainementMenu.setAutoResizeMode(getJTable_enterainementMenu().AUTO_RESIZE_OFF);
 			jTable_enterainementMenu.getColumnModel().getColumn(0).setPreferredWidth(50);
 			jTable_enterainementMenu.getColumnModel().getColumn(1).setPreferredWidth(150);
 			jTable_enterainementMenu.getColumnModel().getColumn(2).setPreferredWidth(500);
@@ -1027,11 +1040,12 @@ public class BookPackageForm {
 	private JScrollPane getJScrollPane_mealOption1() {
 		if (jScrollPane_mealOption1 == null) {
 			jScrollPane_mealOption1 = new JScrollPane();
-			jScrollPane_mealOption1.setBounds(new Rectangle(15, 72, 570, 100));
+			jScrollPane_mealOption1.setBounds(new Rectangle(15, 72, 585, 100));
 			jScrollPane_mealOption1.setViewportView(getJTable_mealOption1());
 		}
 		return jScrollPane_mealOption1;
 	}
+	@SuppressWarnings({ "static-access" })
 	private JTable getJTable_mealOption1() {
 		if (jTable_mealOption1 == null) {
 			DefaultTableModel model= new DefaultTableModel();
@@ -1046,11 +1060,13 @@ public class BookPackageForm {
 			jTable_mealOption1.setShowGrid(false);
 			jTable_mealOption1.setFocusable(false);
 			jTable_mealOption1.setColumnSelectionAllowed(false);
-			jTable_mealOption1.setAutoResizeMode(jTable_mealOption1.AUTO_RESIZE_OFF);
-			jTable_mealOption1.getColumnModel().getColumn(0).setPreferredWidth(550);
-			jTable_mealOption1.getColumnModel().getColumn(1).setPreferredWidth(150);
-			jTable_mealOption1.getColumnModel().getColumn(2).setPreferredWidth(150);
-			jTable_mealOption1.getColumnModel().getColumn(3).setPreferredWidth(550);
+			jTable_mealOption1.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+			jTable_mealOption1.setAutoResizeMode(getJTable_mealOption1().AUTO_RESIZE_OFF);
+			jTable_mealOption1.getColumnModel().getColumn(0).setPreferredWidth(450);
+			jTable_mealOption1.getColumnModel().getColumn(1).setPreferredWidth(115);
+			jTable_mealOption1.getColumnModel().getColumn(2).setPreferredWidth(50);
+			jTable_mealOption1.getColumnModel().getColumn(3).setPreferredWidth(80);
+			jTable_mealOption1.getColumnModel().getColumn(4).setPreferredWidth(435);
 		}
 		return jTable_mealOption1;
 	}
@@ -1065,16 +1081,17 @@ public class BookPackageForm {
 			jToggleButton_viewMealOption1.setFocusPainted(false);
 			jToggleButton_viewMealOption1
 					.addItemListener(new java.awt.event.ItemListener() {
+						@SuppressWarnings({ "static-access" })
 						public void itemStateChanged(java.awt.event.ItemEvent e) {
 							if(jTable_mealOption1.getModel().getRowCount()==0){
 								AdministrateMealControl control= new AdministrateMealControl();
 								getJTable_mealOption1().setModel(control.processRetrieveMealMenuByID(getJTextField_mealOption1().getName()));
-								jTable_mealOption1.setAutoResizeMode(jTable_mealOption1.AUTO_RESIZE_OFF);
-								jTable_mealOption1.getColumnModel().getColumn(0).setPreferredWidth(50);
-								jTable_mealOption1.getColumnModel().getColumn(1).setPreferredWidth(150);
-								jTable_mealOption1.getColumnModel().getColumn(2).setPreferredWidth(150);
-								jTable_mealOption1.getColumnModel().getColumn(3).setPreferredWidth(150);
-								jTable_mealOption1.getColumnModel().getColumn(3).setPreferredWidth(500);
+								jTable_mealOption1.setAutoResizeMode(getJTable_mealOption1().AUTO_RESIZE_OFF);
+								jTable_mealOption1.getColumnModel().getColumn(0).setPreferredWidth(450);
+								jTable_mealOption1.getColumnModel().getColumn(1).setPreferredWidth(115);
+								jTable_mealOption1.getColumnModel().getColumn(2).setPreferredWidth(50);
+								jTable_mealOption1.getColumnModel().getColumn(3).setPreferredWidth(80);
+								jTable_mealOption1.getColumnModel().getColumn(4).setPreferredWidth(435);
 							}
 							if(jToggleButton_viewMealOption1.isSelected()){
 								jPanel_meal.setMaximumSize(new Dimension(jPanel_meal.getMaximumSize().width,jPanel_meal.getMaximumSize().height+102));
@@ -1134,16 +1151,17 @@ public class BookPackageForm {
 			jToggleButton_viewMealOption2.setText("View MealDetails");
 			jToggleButton_viewMealOption2
 					.addItemListener(new java.awt.event.ItemListener() {
+						@SuppressWarnings("static-access")
 						public void itemStateChanged(java.awt.event.ItemEvent e) {
 							if(jTable_mealOption2.getModel().getRowCount()==0){
 								AdministrateMealControl control= new AdministrateMealControl();
 								getJTable_mealOption2().setModel(control.processRetrieveMealMenuByID(getJTextField_mealOption2().getName()));
-								jTable_mealOption2.setAutoResizeMode(jTable_mealOption2.AUTO_RESIZE_OFF);
-								jTable_mealOption2.getColumnModel().getColumn(0).setPreferredWidth(50);
-								jTable_mealOption2.getColumnModel().getColumn(1).setPreferredWidth(150);
-								jTable_mealOption2.getColumnModel().getColumn(2).setPreferredWidth(150);
-								jTable_mealOption2.getColumnModel().getColumn(3).setPreferredWidth(150);
-								jTable_mealOption2.getColumnModel().getColumn(3).setPreferredWidth(500);
+								jTable_mealOption2.setAutoResizeMode(getJTable_mealOption2().AUTO_RESIZE_OFF);
+								jTable_mealOption2.getColumnModel().getColumn(0).setPreferredWidth(450);
+								jTable_mealOption2.getColumnModel().getColumn(1).setPreferredWidth(115);
+								jTable_mealOption2.getColumnModel().getColumn(2).setPreferredWidth(50);
+								jTable_mealOption2.getColumnModel().getColumn(3).setPreferredWidth(80);
+								jTable_mealOption2.getColumnModel().getColumn(4).setPreferredWidth(435);
 							}
 							if(jToggleButton_viewMealOption2.isSelected()){
 								jPanel_meal.setMaximumSize(new Dimension(jPanel_meal.getMaximumSize().width,jPanel_meal.getMaximumSize().height+102));
@@ -1176,6 +1194,7 @@ public class BookPackageForm {
 		}
 		return jScrollPane_mealOption2;
 	}
+	@SuppressWarnings("static-access")
 	private JTable getJTable_mealOption2() {
 		if (jTable_mealOption2 == null) {
 			DefaultTableModel model= new DefaultTableModel();
@@ -1190,12 +1209,13 @@ public class BookPackageForm {
 			jTable_mealOption2.setShowGrid(false);
 			jTable_mealOption2.setFocusable(false);
 			jTable_mealOption2.setColumnSelectionAllowed(false);
-			jTable_mealOption2.setAutoResizeMode(jTable_mealOption2.AUTO_RESIZE_OFF);
-			jTable_mealOption2.getColumnModel().getColumn(0).setPreferredWidth(50);
-			jTable_mealOption2.getColumnModel().getColumn(1).setPreferredWidth(150);
-			jTable_mealOption2.getColumnModel().getColumn(2).setPreferredWidth(150);
-			jTable_mealOption2.getColumnModel().getColumn(3).setPreferredWidth(150);
-			jTable_mealOption2.getColumnModel().getColumn(3).setPreferredWidth(500);
+			jTable_mealOption2.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+			jTable_mealOption2.setAutoResizeMode(getJTable_mealOption2().AUTO_RESIZE_OFF);
+			jTable_mealOption2.getColumnModel().getColumn(0).setPreferredWidth(450);
+			jTable_mealOption2.getColumnModel().getColumn(1).setPreferredWidth(115);
+			jTable_mealOption2.getColumnModel().getColumn(2).setPreferredWidth(50);
+			jTable_mealOption2.getColumnModel().getColumn(3).setPreferredWidth(80);
+			jTable_mealOption2.getColumnModel().getColumn(4).setPreferredWidth(435);
 		}
 		return jTable_mealOption2;
 	}
@@ -1234,16 +1254,17 @@ public class BookPackageForm {
 			jToggleButton_viewMealOption3.setText("View Meal Details");
 			jToggleButton_viewMealOption3
 					.addItemListener(new java.awt.event.ItemListener() {
+						@SuppressWarnings("static-access")
 						public void itemStateChanged(java.awt.event.ItemEvent e) {
 							if(jTable_mealOption3.getModel().getRowCount()==0){
 								AdministrateMealControl control= new AdministrateMealControl();
 								getJTable_mealOption3().setModel(control.processRetrieveMealMenuByID(getJTextField_mealOption3().getName()));
-								jTable_mealOption3.setAutoResizeMode(jTable_mealOption3.AUTO_RESIZE_OFF);
-								jTable_mealOption3.getColumnModel().getColumn(0).setPreferredWidth(50);
-								jTable_mealOption3.getColumnModel().getColumn(1).setPreferredWidth(150);
-								jTable_mealOption3.getColumnModel().getColumn(2).setPreferredWidth(150);
-								jTable_mealOption3.getColumnModel().getColumn(3).setPreferredWidth(150);
-								jTable_mealOption3.getColumnModel().getColumn(3).setPreferredWidth(500);
+								jTable_mealOption3.setAutoResizeMode(getJTable_mealOption3().AUTO_RESIZE_OFF);
+								jTable_mealOption3.getColumnModel().getColumn(0).setPreferredWidth(450);
+								jTable_mealOption3.getColumnModel().getColumn(1).setPreferredWidth(115);
+								jTable_mealOption3.getColumnModel().getColumn(2).setPreferredWidth(50);
+								jTable_mealOption3.getColumnModel().getColumn(3).setPreferredWidth(80);
+								jTable_mealOption3.getColumnModel().getColumn(4).setPreferredWidth(435);
 							}
 							if(jToggleButton_viewMealOption3.isSelected()){
 								jPanel_meal.setMaximumSize(new Dimension(jPanel_meal.getMaximumSize().width,jPanel_meal.getMaximumSize().height+102));
@@ -1276,6 +1297,7 @@ public class BookPackageForm {
 		}
 		return jScrollPane_mealOption3;
 	}
+	@SuppressWarnings({ "static-access" })
 	private JTable getJTable_mealOption3() {
 		if (jTable_mealOption3 == null) {
 			DefaultTableModel model= new DefaultTableModel();
@@ -1290,12 +1312,13 @@ public class BookPackageForm {
 			jTable_mealOption3.setShowGrid(false);
 			jTable_mealOption3.setFocusable(false);
 			jTable_mealOption3.setColumnSelectionAllowed(false);
-			jTable_mealOption3.setAutoResizeMode(jTable_search.AUTO_RESIZE_OFF);
-			jTable_mealOption3.getColumnModel().getColumn(0).setPreferredWidth(50);
-			jTable_mealOption3.getColumnModel().getColumn(1).setPreferredWidth(150);
-			jTable_mealOption3.getColumnModel().getColumn(2).setPreferredWidth(150);
-			jTable_mealOption3.getColumnModel().getColumn(3).setPreferredWidth(150);
-			jTable_mealOption3.getColumnModel().getColumn(3).setPreferredWidth(500);
+			jTable_mealOption3.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+			jTable_mealOption3.setAutoResizeMode(getJTable_mealOption3().AUTO_RESIZE_OFF);
+			jTable_mealOption3.getColumnModel().getColumn(0).setPreferredWidth(450);
+			jTable_mealOption3.getColumnModel().getColumn(1).setPreferredWidth(115);
+			jTable_mealOption3.getColumnModel().getColumn(2).setPreferredWidth(50);
+			jTable_mealOption3.getColumnModel().getColumn(3).setPreferredWidth(80);
+			jTable_mealOption3.getColumnModel().getColumn(4).setPreferredWidth(435);
 		}
 		return jTable_mealOption3;
 	}
@@ -1361,6 +1384,41 @@ public class BookPackageForm {
 	/********************************************************
 	 *				Start of Custom Methods
 	 *******************************************************/
+	/********************************************************
+	  * Method Name : validate
+	  * Input Parameter : void
+	  * Purpose : To rvalidate
+	  * Return :boolean
+	  *******************************************************/
+	public boolean validate(){
+		boolean validate=true;
+		if(getJTextField_seectedPackageTitle().getText().equals("")){
+			validate=false;
+			JOptionPane.showMessageDialog(null, "Please select a package", "Missing Requirement", JOptionPane.WARNING_MESSAGE);
+			getJButton_selectStandardPackage().requestFocus();
+		}
+		else if(getJTextField_selectedDate().getText().equals("")){
+			validate=false;
+			JOptionPane.showMessageDialog(null, "Please select a prefered date", "Missing Requirement", JOptionPane.WARNING_MESSAGE);
+			getJButton_selectDate().requestFocus();
+		}
+		else if(getJComboBox_selectTime().getSelectedIndex()==0||getJComboBox_selectTime().getSelectedIndex()==getJComboBox_selectTime().getItemCount()){
+			validate=false;
+			JOptionPane.showMessageDialog(null, "Please select a prefered time", "Missing Requirement", JOptionPane.WARNING_MESSAGE);
+			getJComboBox_selectTime().requestFocus();
+		}
+		else if(getJTextField_eventName().getText().equals("")||getJTextField_eventName().getText().equals("Give Your Event A Name")){
+			validate=false;
+			JOptionPane.showMessageDialog(null, "Please enter a event name", "Missing Requirement", JOptionPane.WARNING_MESSAGE);
+			getJTextField_eventName().requestFocus();
+		}
+		else if(getJTextArea_eventDescription().getText().equals("")||getJTextArea_eventDescription().getText().equals("\n\n                                            Give Your Event A Description")){
+			validate=false;
+			JOptionPane.showMessageDialog(null, "Please enter a event description", "Missing Requirement", JOptionPane.WARNING_MESSAGE);
+			getJTextArea_eventDescription().requestFocus();
+		}
+		return validate;
+	}
 	/********************************************************
 	  * Method Name : retrievePackage
 	  * Input Parameter : void

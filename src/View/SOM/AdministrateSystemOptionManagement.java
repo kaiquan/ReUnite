@@ -46,6 +46,8 @@ import javax.swing.JProgressBar;
 import java.awt.ComponentOrientation;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Stack;
 
 import javax.swing.JPopupMenu;
 import javax.swing.JMenu;
@@ -100,8 +102,15 @@ public class AdministrateSystemOptionManagement {
 	private JMenuItem jMenuItem_retrive = null;
 	private Thread main=null;
 	private Thread progress=null;
-	private AdministratePackageForm meal=null;
 	
+	@SuppressWarnings("unchecked")
+	protected static LinkedList tabs=null;
+	protected Stack undoManager  =null;
+	private AdministratePackageForm packages=null;
+	private AdministrateEntertainmentForm entertainment=null;
+	private AdministrateBallroomForm ballroom=null;
+	private AdministrateFacilityForm facility=null;
+	private AdministrateMealForm meal= null;
 	/********************************************************
 	 *					Start of UI
 	 *******************************************************/
@@ -302,7 +311,19 @@ public class AdministrateSystemOptionManagement {
 			jButton_save.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/save.png")));
 			jButton_save.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					//save temp file
+					for(int i=0; i<tabs.size();i++){
+						if(tabs.get(i)instanceof AdministratePackageForm)
+							System.out.println("tab : "+i+ " is aPackageForm");
+						else if(tabs.get(i)instanceof AdministrateFacilityForm)
+							System.out.println("tab : "+i+ " is aFacilityForm");
+						else if(tabs.get(i)instanceof AdministrateEntertainmentForm)
+							System.out.println("tab : "+i+ " is aEntertainemntForm");
+						else if(tabs.get(i)instanceof AdministrateMealForm)
+							System.out.println("tab : "+i+ " is amealForm");
+						else if(tabs.get(i)instanceof AdministrateBallroomForm)
+							System.out.println("tab : "+i+ " is aballroomForm");
+					}
+					System.out.println("===");
 				}
 			});
 		}
@@ -1170,16 +1191,19 @@ public class AdministrateSystemOptionManagement {
 	 * Purpose : To create and set a new Entertinment Tab content.
 	 * Return : nil
 	 *******************************************************/
+	@SuppressWarnings("unchecked")
 	private void newEntertainmentTab(){
-		AdministrateEntertainmentForm en= new AdministrateEntertainmentForm();
+		entertainment= new AdministrateEntertainmentForm();
 		if(jTabbedPane.getTabCount()==1){
-			jTabbedPane.insertTab("Create Entertainment Form",null , en.getJScrollPane(),null , 1); // sets the content
+			tabs.add(entertainment);
+			jTabbedPane.insertTab("Create Entertainment Form",null , entertainment.getJScrollPane(),null , 1); // sets the content
 			createTabHeader(1);	//sets the custom tab header
 			jTabbedPane.remove(0);
 			jTabbedPane.setSelectedIndex(0);
 		}
 		else{
-			jTabbedPane.insertTab("Create Entertainment Form",null , en.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
+			tabs.add(jTabbedPane.getSelectedIndex(),entertainment);
+			jTabbedPane.insertTab("Create Entertainment Form",null , entertainment.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
 			createTabHeader(jTabbedPane.getSelectedIndex()-1);	//sets the custom tab header
 			jTabbedPane.remove(jTabbedPane.getSelectedIndex());
 			if(!(jTabbedPane.getSelectedIndex()==jTabbedPane.getTabCount()-1)){
@@ -1194,15 +1218,18 @@ public class AdministrateSystemOptionManagement {
 	 * Purpose : To create and set a new Meal Tab content.
 	 * Return : nil
 	 *******************************************************/
+	@SuppressWarnings("unchecked")
 	public void newMealTab(){
-		AdministrateMealForm meal=new AdministrateMealForm();
+		meal=new AdministrateMealForm();
 		if(jTabbedPane.getTabCount()==1){
+			tabs.add(meal);
 			jTabbedPane.insertTab("Create Meal Form",null , meal.getJScrollPane(),null , 1); // sets the content
 			createTabHeader(1);	//sets the custom tab header
 			jTabbedPane.remove(0);
 			jTabbedPane.setSelectedIndex(0);
 		}
 		else{
+			tabs.add(jTabbedPane.getSelectedIndex(),meal);
 			jTabbedPane.insertTab("Create Meal Form",null , meal.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
 			createTabHeader(jTabbedPane.getSelectedIndex()-1);	//sets the custom tab header
 			if(!(jTabbedPane.getSelectedIndex()==jTabbedPane.getTabCount()-1)){
@@ -1217,16 +1244,19 @@ public class AdministrateSystemOptionManagement {
 	 * Purpose : To create and set a new Facility Tab content.
 	 * Return : nil
 	 *******************************************************/
+	@SuppressWarnings("unchecked")
 	public void newFacilityTab(){	
-		AdministrateFacilityForm meal=new AdministrateFacilityForm();
+		facility=new AdministrateFacilityForm();
 		if(jTabbedPane.getTabCount()==1){
-			jTabbedPane.insertTab("Create Facility Form",null , meal.getJScrollPane(),null , 1); // sets the content
+			tabs.add(facility);
+			jTabbedPane.insertTab("Create Facility Form",null , facility.getJScrollPane(),null , 1); // sets the content
 			createTabHeader(1);	//sets the custom tab header
 			jTabbedPane.remove(0);
 			jTabbedPane.setSelectedIndex(0);
 		}
 		else{
-			jTabbedPane.insertTab("Create Facility Form",null , meal.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
+			tabs.add(jTabbedPane.getSelectedIndex(),facility);
+			jTabbedPane.insertTab("Create Facility Form",null , facility.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
 			createTabHeader(jTabbedPane.getSelectedIndex()-1);	//sets the custom tab header
 			jTabbedPane.remove(jTabbedPane.getSelectedIndex());
 			if(!(jTabbedPane.getSelectedIndex()==jTabbedPane.getTabCount()-1)){
@@ -1243,17 +1273,19 @@ public class AdministrateSystemOptionManagement {
 	 *******************************************************/
 	@SuppressWarnings("unchecked")
 	public void newBallroomTab(){
-		AdministrateBallroomForm form=new AdministrateBallroomForm();
+		ballroom=new AdministrateBallroomForm();
 		AdministrateFacilityControl control= new AdministrateFacilityControl();
-		form.getJComboBox_facilityName().setModel(control.processRetrieveFacilityNames());
+		ballroom.getJComboBox_facilityName().setModel(control.processRetrieveFacilityNames());
 		if(jTabbedPane.getTabCount()==1){
-			jTabbedPane.insertTab("Create Ballroom Form",null , form.getJScrollPane(),null , 1); // sets the content
+			tabs.add(ballroom);
+			jTabbedPane.insertTab("Create Ballroom Form",null , ballroom.getJScrollPane(),null , 1); // sets the content
 			createTabHeader(1);	//sets the custom tab header
 			jTabbedPane.remove(0);
 			jTabbedPane.setSelectedIndex(0);
 		}
 		else{
-			jTabbedPane.insertTab("Create Ballroom Form",null , form.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
+			tabs.add(jTabbedPane.getSelectedIndex(),ballroom);
+			jTabbedPane.insertTab("Create Ballroom Form",null , ballroom.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
 			createTabHeader(jTabbedPane.getSelectedIndex()-1);	//sets the custom tab header
 			jTabbedPane.remove(jTabbedPane.getSelectedIndex());
 			if(!(jTabbedPane.getSelectedIndex()==jTabbedPane.getTabCount()-1)){
@@ -1268,16 +1300,19 @@ public class AdministrateSystemOptionManagement {
 	 * Purpose : To create and set a new Package Tab content.
 	 * Return : nil
 	 *******************************************************/
+	@SuppressWarnings("unchecked")
 	public void newPackageTab(){	
-		meal=new AdministratePackageForm();
+		packages=new AdministratePackageForm();
 		if(jTabbedPane.getTabCount()==1){
-			jTabbedPane.insertTab("Create Package Form",null , meal.getJScrollPane(),null , 1); // sets the content
+			tabs.add(packages);
+			jTabbedPane.insertTab("Create Package Form",null , packages.getJScrollPane(),null , 1); // sets the content
 			createTabHeader(1);	//sets the custom tab header
 			jTabbedPane.remove(0);
 			jTabbedPane.setSelectedIndex(0);
 		}
 		else{
-			jTabbedPane.insertTab("Create Package Form",null , meal.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
+			tabs.add(jTabbedPane.getSelectedIndex(), packages);
+			jTabbedPane.insertTab("Create Package Form",null , packages.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
 			createTabHeader(jTabbedPane.getSelectedIndex()-1);	//sets the custom tab header
 			jTabbedPane.remove(jTabbedPane.getSelectedIndex());
 			if(!(jTabbedPane.getSelectedIndex()==jTabbedPane.getTabCount()-1)){
@@ -1340,37 +1375,37 @@ public class AdministrateSystemOptionManagement {
 		DecimalFormat fmt = new DecimalFormat("0.00");
 		
 		//sets the entertainment tab
-		AdministrateEntertainmentForm en= new AdministrateEntertainmentForm();
-		en.getJTextField_entertaimentID().setText(control.getEntertainment().getEntertainmentID());
-		en.getJCheckBox_entertainmentAvailability().setSelected(control.getEntertainment().isEntertainmentAvailability());
-		en.getJTextField_entertainmentTitle().setText(control.getEntertainment().getEntertainmentTitle());
-		en.getJTextField_entertainmentTitle().setForeground(SystemColor.black);
-		en.getJTextArea_entertainmentDescription().setText(control.getEntertainment().getEntertainmentDescription());
-		en.getJTextArea_entertainmentDescription().setForeground(SystemColor.black);
+		entertainment= new AdministrateEntertainmentForm();
+		entertainment.getJTextField_entertaimentID().setText(control.getEntertainment().getEntertainmentID());
+		entertainment.getJCheckBox_entertainmentAvailability().setSelected(control.getEntertainment().isEntertainmentAvailability());
+		entertainment.getJTextField_entertainmentTitle().setText(control.getEntertainment().getEntertainmentTitle());
+		entertainment.getJTextField_entertainmentTitle().setForeground(SystemColor.black);
+		entertainment.getJTextArea_entertainmentDescription().setText(control.getEntertainment().getEntertainmentDescription());
+		entertainment.getJTextArea_entertainmentDescription().setForeground(SystemColor.black);
 		
-		en.getJTextField_entertainmentDiscount().setText(fmt.format(control.getEntertainment().getEntertainmentDiscount())+"%");
-		en.getJSlider_entertainmentDiscount().setValue((int) control.getEntertainment().getEntertainmentDiscount());
-		en.getJButton_createEntertainment().setEnabled(false);
-		en.getJButton_Update().setEnabled(true);
-		en.getJButton_delete().setEnabled(true);
-		en.getJButton_download().setEnabled(true);
+		entertainment.getJTextField_entertainmentDiscount().setText(fmt.format(control.getEntertainment().getEntertainmentDiscount())+"%");
+		entertainment.getJSlider_entertainmentDiscount().setValue((int) control.getEntertainment().getEntertainmentDiscount());
+		entertainment.getJButton_createEntertainment().setEnabled(false);
+		entertainment.getJButton_Update().setEnabled(true);
+		entertainment.getJButton_delete().setEnabled(true);
+		entertainment.getJButton_download().setEnabled(true);
 
 		DefaultTableModel model= new DefaultTableModel();
 		model=control.getModel();
 		
-		en.model=model;
-		en.displaySummary();
-		en.getJTextField_entertainmentTotalPrice().setText(fmt.format(en.calculateFinalPrice()));
+		entertainment.model=model;
+		entertainment.displaySummary();
+		entertainment.getJTextField_entertainmentTotalPrice().setText(fmt.format(entertainment.calculateFinalPrice()));
 		
-		en.getJTable_entertainmentMenu().setModel(en.model);
-		en.getJTable_entertainmentMenu().setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		entertainment.getJTable_entertainmentMenu().setModel(entertainment.model);
+		entertainment.getJTable_entertainmentMenu().setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		if(jTabbedPane.getTabCount()==0){
-			jTabbedPane.insertTab("Entertainment "+control.getEntertainment().getEntertainmentID(),null , en.getJScrollPane(),null , 0); // sets the content
+			jTabbedPane.insertTab("Entertainment "+control.getEntertainment().getEntertainmentID(),null , entertainment.getJScrollPane(),null , 0); // sets the content
 			createTabHeader(0);	//sets the custom tab header
 			jTabbedPane.setSelectedIndex(0);
 		}
 		else{
-			jTabbedPane.insertTab("Entertainment "+control.getEntertainment().getEntertainmentID(),null , en.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
+			jTabbedPane.insertTab("Entertainment "+control.getEntertainment().getEntertainmentID(),null , entertainment.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
 			createTabHeader(jTabbedPane.getSelectedIndex()-1);	//sets the custom tab header
 			if(!(jTabbedPane.getSelectedIndex()==jTabbedPane.getTabCount())){
 				jTabbedPane.setSelectedIndex(jTabbedPane.getSelectedIndex()+1);
@@ -1430,42 +1465,42 @@ public class AdministrateSystemOptionManagement {
 		DecimalFormat fmt = new DecimalFormat("0.00");
 		
 		//sets the Meal tab
-		AdministrateMealForm form= new AdministrateMealForm();
-		form.getJTextField_mealID().setText(control.getMeal().getMealID());
-		form.getJCheckBox_mealAvailability().setSelected(control.getMeal().isMealAvailability());
-		form.getJTextField_mealTitle().setText(control.getMeal().getMealTitle());
-		form.getJTextField_mealTitle().setForeground(SystemColor.black);
-		form.getJTextArea_mealDescription().setText(control.getMeal().getMealDescription());
-		form.getJTextArea_mealDescription().setForeground(SystemColor.black);
-		form.getJComboBox_mealType().setSelectedItem(control.getMeal().getMealType());
-		form.getJTextField_mealDiscount().setText(fmt.format(control.getMeal().getMealDiscount())+"%");
-		form.getJSlider_mealDiscount().setValue((int)control.getMeal().getMealDiscount());
-		form.getJButton_delete().setEnabled(true);
-		form.getJButton_update().setEnabled(true);
-		form.getJButton_download().setEnabled(true);
-		form.getJButton_upload().setEnabled(false);
+		meal= new AdministrateMealForm();
+		meal.getJTextField_mealID().setText(control.getMeal().getMealID());
+		meal.getJCheckBox_mealAvailability().setSelected(control.getMeal().isMealAvailability());
+		meal.getJTextField_mealTitle().setText(control.getMeal().getMealTitle());
+		meal.getJTextField_mealTitle().setForeground(SystemColor.black);
+		meal.getJTextArea_mealDescription().setText(control.getMeal().getMealDescription());
+		meal.getJTextArea_mealDescription().setForeground(SystemColor.black);
+		meal.getJComboBox_mealType().setSelectedItem(control.getMeal().getMealType());
+		meal.getJTextField_mealDiscount().setText(fmt.format(control.getMeal().getMealDiscount())+"%");
+		meal.getJSlider_mealDiscount().setValue((int)control.getMeal().getMealDiscount());
+		meal.getJButton_delete().setEnabled(true);
+		meal.getJButton_update().setEnabled(true);
+		meal.getJButton_download().setEnabled(true);
+		meal.getJButton_upload().setEnabled(false);
 		
 		DefaultTableModel model= new DefaultTableModel();
 		model=control.getModel();
 		
-		form.model=model;
-		form.displaySummary();
-		form.getJTextField_mealTotalPricePerHead().setText(fmt.format(form.calculateFinalPrice()));
+		meal.model=model;
+		meal.displaySummary();
+		meal.getJTextField_mealTotalPricePerHead().setText(fmt.format(meal.calculateFinalPrice()));
 		
-		form.getJTable_mealMenu().setModel(model);
-		form.getJTable_mealMenu().setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		form.getJTable_mealMenu().getColumnModel().getColumn(0).setPreferredWidth(565);
-		form.getJTable_mealMenu().getColumnModel().getColumn(1).setPreferredWidth(135);
-		form.getJTable_mealMenu().getColumnModel().getColumn(2).setPreferredWidth(100);
-		form.getJTable_mealMenu().getColumnModel().getColumn(3).setPreferredWidth(100);
-		form.getJTable_mealMenu().getColumnModel().getColumn(4).setPreferredWidth(500);
+		meal.getJTable_mealMenu().setModel(model);
+		meal.getJTable_mealMenu().setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		meal.getJTable_mealMenu().getColumnModel().getColumn(0).setPreferredWidth(565);
+		meal.getJTable_mealMenu().getColumnModel().getColumn(1).setPreferredWidth(135);
+		meal.getJTable_mealMenu().getColumnModel().getColumn(2).setPreferredWidth(100);
+		meal.getJTable_mealMenu().getColumnModel().getColumn(3).setPreferredWidth(100);
+		meal.getJTable_mealMenu().getColumnModel().getColumn(4).setPreferredWidth(500);
 		if(jTabbedPane.getTabCount()==0){
-			jTabbedPane.insertTab("Meal "+control.getMeal().getMealID(),null , form.getJScrollPane(),null , 0); // sets the content
+			jTabbedPane.insertTab("Meal "+control.getMeal().getMealID(),null , meal.getJScrollPane(),null , 0); // sets the content
 			createTabHeader(0);	//sets the custom tab header
 			jTabbedPane.setSelectedIndex(0);
 		}
 		else{
-			jTabbedPane.insertTab("Meal "+control.getMeal().getMealID(),null , form.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
+			jTabbedPane.insertTab("Meal "+control.getMeal().getMealID(),null , meal.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
 			createTabHeader(jTabbedPane.getSelectedIndex()-1);	//sets the custom tab header
 			if(!(jTabbedPane.getSelectedIndex()==jTabbedPane.getTabCount())){
 				jTabbedPane.setSelectedIndex(jTabbedPane.getSelectedIndex()+1);
@@ -1530,42 +1565,42 @@ public class AdministrateSystemOptionManagement {
 		DecimalFormat fmt = new DecimalFormat("0.00");
 		
 		//set the ballroom tab
-		AdministrateBallroomForm form= new AdministrateBallroomForm();
+		ballroom= new AdministrateBallroomForm();
 		AdministrateFacilityControl fControl= new AdministrateFacilityControl();
-		form.getJComboBox_facilityName().setModel(fControl.processRetrieveFacilityNames());
+		ballroom.getJComboBox_facilityName().setModel(fControl.processRetrieveFacilityNames());
 		
 		fControl.processRetrieveFacilityByID(control.getBallroom().getFacilityID());
-		form.getJComboBox_facilityName().setName(fControl.getFacility().getFacilityID());
-		form.getJComboBox_facilityName().setSelectedItem(fControl.getFacility().getFacilityName());
-		form.getJTextArea_facilityAddress().setText(fControl.getFacility().getFacilityAddress());
-		form.getJTextField_facilityContact().setText(fControl.getFacility().getFacilityContact());
+		ballroom.getJComboBox_facilityName().setName(fControl.getFacility().getFacilityID());
+		ballroom.getJComboBox_facilityName().setSelectedItem(fControl.getFacility().getFacilityName());
+		ballroom.getJTextArea_facilityAddress().setText(fControl.getFacility().getFacilityAddress());
+		ballroom.getJTextField_facilityContact().setText(fControl.getFacility().getFacilityContact());
 		
-		form.getJTextField_ballroomID().setText(control.getBallroom().getBallroomID());
-		form.getJCheckBox_ballroomAvailability().setSelected(control.getBallroom().isBallroomAvailability());
-		form.getJTextField_ballroomTitle().setText(control.getBallroom().getBallroomName());
-		form.getJTextField_ballroomTitle().setForeground(SystemColor.black);
-		form.getJComboBox_ballroomSize().setSelectedItem(control.getBallroom().getBallroomSize());
-		form.getJTextField_ballroomPrice().setText(fmt.format(control.getBallroom().getBallroomPrice()));
-		form.getJTextField_ballroomPrice().setForeground(SystemColor.black);
-		form.getJTextArea_ballroomDescription().setText(control.getBallroom().getBallroomDescription());
-		form.getJTextArea_ballroomDescription().setForeground(SystemColor.black);
-		form.getJTextField_ballroomFinalPrice().setText(fmt.format(control.getBallroom().getBallroomFinalPrice()));
-		form.getJSlider_ballroomDiscount().setValue((int) control.getBallroom().getBallroomDiscount());
-		form.getJTextField_ballroomDiscount().setText(fmt.format(control.getBallroom().getBallroomDiscount()));
+		ballroom.getJTextField_ballroomID().setText(control.getBallroom().getBallroomID());
+		ballroom.getJCheckBox_ballroomAvailability().setSelected(control.getBallroom().isBallroomAvailability());
+		ballroom.getJTextField_ballroomTitle().setText(control.getBallroom().getBallroomName());
+		ballroom.getJTextField_ballroomTitle().setForeground(SystemColor.black);
+		ballroom.getJComboBox_ballroomSize().setSelectedItem(control.getBallroom().getBallroomSize());
+		ballroom.getJTextField_ballroomPrice().setText(fmt.format(control.getBallroom().getBallroomPrice()));
+		ballroom.getJTextField_ballroomPrice().setForeground(SystemColor.black);
+		ballroom.getJTextArea_ballroomDescription().setText(control.getBallroom().getBallroomDescription());
+		ballroom.getJTextArea_ballroomDescription().setForeground(SystemColor.black);
+		ballroom.getJTextField_ballroomFinalPrice().setText(fmt.format(control.getBallroom().getBallroomFinalPrice()));
+		ballroom.getJSlider_ballroomDiscount().setValue((int) control.getBallroom().getBallroomDiscount());
+		ballroom.getJTextField_ballroomDiscount().setText(fmt.format(control.getBallroom().getBallroomDiscount()));
 		
-		form.getJButton_upload().setEnabled(false);
-		form.getJButton_delete().setEnabled(true);
-		form.getJButton_update().setEnabled(true);
-		form.getJButton_download().setEnabled(true);
-		form.displaySummary();
+		ballroom.getJButton_upload().setEnabled(false);
+		ballroom.getJButton_delete().setEnabled(true);
+		ballroom.getJButton_update().setEnabled(true);
+		ballroom.getJButton_download().setEnabled(true);
+		ballroom.displaySummary();
 		
 		if(jTabbedPane.getTabCount()==0){
-			jTabbedPane.insertTab("Ballroom "+control.getBallroom().getBallroomID(),null , form.getJScrollPane(),null , 0); 
+			jTabbedPane.insertTab("Ballroom "+control.getBallroom().getBallroomID(),null , ballroom.getJScrollPane(),null , 0); 
 			createTabHeader(0);	
 			jTabbedPane.setSelectedIndex(0);
 		}
 		else{
-			jTabbedPane.insertTab("Ballroom "+control.getBallroom().getBallroomID(),null , form.getJScrollPane(),null , jTabbedPane.getSelectedIndex());
+			jTabbedPane.insertTab("Ballroom "+control.getBallroom().getBallroomID(),null , ballroom.getJScrollPane(),null , jTabbedPane.getSelectedIndex());
 			createTabHeader(jTabbedPane.getSelectedIndex()-1);	
 			if(!(jTabbedPane.getSelectedIndex()==jTabbedPane.getTabCount())){
 				jTabbedPane.setSelectedIndex(jTabbedPane.getSelectedIndex()+1);
@@ -1628,44 +1663,44 @@ public class AdministrateSystemOptionManagement {
 		DecimalFormat fmt = new DecimalFormat("0.00");
 		
 		//set the facility tab
-		AdministrateFacilityForm form= new AdministrateFacilityForm();
+		facility= new AdministrateFacilityForm();
 		
-		form.getJTextField_facilityID().setText(control.getFacility().getFacilityID().toString());
-		form.getJTextField_facilityContact().setText(control.getFacility().getFacilityContact().toString());
-		form.getJTextField_facilityContact().setForeground(SystemColor.black);
-		form.getJTextField_facilityAddress().setText(control.getFacility().getFacilityAddress().toString());
-		form.getJTextField_facilityAddress().setForeground(SystemColor.black);
-		form.getJTextArea_facilityDescription().setText(control.getFacility().getFacilityDescription().toString());
-		form.getJTextArea_facilityDescription().setForeground(SystemColor.black);
-		form.getJCheckBox_facilityParking().setSelected(control.getFacility().isFacilityParking());
-		form.getJTextField_facilityWeekendCost().setText(fmt.format(control.getFacility().getFacilityWeekendExtraCost()));
-		form.getJTextField_facilityWeekendCost().setForeground(SystemColor.black);
-		form.getJTextField_facilityName().setText(control.getFacility().getFacilityName().toString());
-		form.getJTextField_facilityName().setForeground(SystemColor.black);
+		facility.getJTextField_facilityID().setText(control.getFacility().getFacilityID().toString());
+		facility.getJTextField_facilityContact().setText(control.getFacility().getFacilityContact().toString());
+		facility.getJTextField_facilityContact().setForeground(SystemColor.black);
+		facility.getJTextField_facilityAddress().setText(control.getFacility().getFacilityAddress().toString());
+		facility.getJTextField_facilityAddress().setForeground(SystemColor.black);
+		facility.getJTextArea_facilityDescription().setText(control.getFacility().getFacilityDescription().toString());
+		facility.getJTextArea_facilityDescription().setForeground(SystemColor.black);
+		facility.getJCheckBox_facilityParking().setSelected(control.getFacility().isFacilityParking());
+		facility.getJTextField_facilityWeekendCost().setText(fmt.format(control.getFacility().getFacilityWeekendExtraCost()));
+		facility.getJTextField_facilityWeekendCost().setForeground(SystemColor.black);
+		facility.getJTextField_facilityName().setText(control.getFacility().getFacilityName().toString());
+		facility.getJTextField_facilityName().setForeground(SystemColor.black);
 		
-		form.getJButton_delete().setEnabled(true);
-		form.getJButton_update().setEnabled(true);
-		form.getJButton_upload().setEnabled(false);
-		form.getJButton_download().setEnabled(true);
+		facility.getJButton_delete().setEnabled(true);
+		facility.getJButton_update().setEnabled(true);
+		facility.getJButton_upload().setEnabled(false);
+		facility.getJButton_download().setEnabled(true);
 		
-		form.model=control.getModel();
-		form.getJTable_ballroomList().setModel(form.model);
-		form.getJTable_ballroomList().setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		form.getJTable_ballroomList().getColumnModel().getColumn(0).setPreferredWidth(440);
-		form.getJTable_ballroomList().getColumnModel().getColumn(1).setPreferredWidth(135);
-		form.getJTable_ballroomList().getColumnModel().getColumn(2).setPreferredWidth(130);
-		form.getJTable_ballroomList().getColumnModel().getColumn(3).setPreferredWidth(135);
-		form.getJTable_ballroomList().getColumnModel().getColumn(4).setPreferredWidth(563);
+		facility.model=control.getModel();
+		facility.getJTable_ballroomList().setModel(facility.model);
+		facility.getJTable_ballroomList().setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		facility.getJTable_ballroomList().getColumnModel().getColumn(0).setPreferredWidth(440);
+		facility.getJTable_ballroomList().getColumnModel().getColumn(1).setPreferredWidth(135);
+		facility.getJTable_ballroomList().getColumnModel().getColumn(2).setPreferredWidth(130);
+		facility.getJTable_ballroomList().getColumnModel().getColumn(3).setPreferredWidth(135);
+		facility.getJTable_ballroomList().getColumnModel().getColumn(4).setPreferredWidth(563);
 		
-		form.displaySummary();
+		facility.displaySummary();
 		
 		if(jTabbedPane.getTabCount()==0){
-			jTabbedPane.insertTab("Facility "+control.getFacility().getFacilityID(),null , form.getJScrollPane(),null , 0); 
+			jTabbedPane.insertTab("Facility "+control.getFacility().getFacilityID(),null , facility.getJScrollPane(),null , 0); 
 			createTabHeader(0);	
 			jTabbedPane.setSelectedIndex(0);
 		}
 		else{
-			jTabbedPane.insertTab("Facility "+control.getFacility().getFacilityID(),null , form.getJScrollPane(),null , jTabbedPane.getSelectedIndex());
+			jTabbedPane.insertTab("Facility "+control.getFacility().getFacilityID(),null , facility.getJScrollPane(),null , jTabbedPane.getSelectedIndex());
 			createTabHeader(jTabbedPane.getSelectedIndex()-1);	
 			if(!(jTabbedPane.getSelectedIndex()==jTabbedPane.getTabCount())){
 				jTabbedPane.setSelectedIndex(jTabbedPane.getSelectedIndex()+1);
@@ -1726,64 +1761,64 @@ public class AdministrateSystemOptionManagement {
 		control.processRetrievePackageByID(ID);
 		DecimalFormat fmt = new DecimalFormat("0.00");
 		//setting the fields
-		AdministratePackageForm form= new AdministratePackageForm();
-		form.getJTextField_packageID().setText(control.getPack().getPackageID());
-		form.getJTextField_packageTitle().setText(control.getPack().getPackageTitle());
-		form.getJTextField_packageTitle().setForeground(SystemColor.black);
-		form.getJTextArea_packageDescription().setForeground(SystemColor.black);
-		form.getJTextArea_packageDescription().setText(control.getPack().getPackageDescription());
-		form.getJCheckBox_packageAvailability().setSelected(control.getPack().isPackageAvailability());
-		form.getJTextField_Ballroom().setText(control.getBallroom().getBallroomName());
-		form.getJTextField_Ballroom().setName(control.getBallroom().getBallroomID());
-		form.ballroomID=control.getBallroom().getBallroomID();
+		packages= new AdministratePackageForm();
+		packages.getJTextField_packageID().setText(control.getPack().getPackageID());
+		packages.getJTextField_packageTitle().setText(control.getPack().getPackageTitle());
+		packages.getJTextField_packageTitle().setForeground(SystemColor.black);
+		packages.getJTextArea_packageDescription().setForeground(SystemColor.black);
+		packages.getJTextArea_packageDescription().setText(control.getPack().getPackageDescription());
+		packages.getJCheckBox_packageAvailability().setSelected(control.getPack().isPackageAvailability());
+		packages.getJTextField_Ballroom().setText(control.getBallroom().getBallroomName());
+		packages.getJTextField_Ballroom().setName(control.getBallroom().getBallroomID());
+		packages.ballroomID=control.getBallroom().getBallroomID();
 		if(control.getEntertainment().getEntertainmentID()!=null){
-			form.getJTextField_entertainment().setText(control.getEntertainment().getEntertainmentTitle());
-			form.getJTextField_entertainment().setName(control.getEntertainment().getEntertainmentID());
-			form.entertainmentID=control.getEntertainment().getEntertainmentID();
-			form.getJButton_entertainment().setEnabled(true);
-			form.getJCheckBox_entertainment().setSelected(true);
+			packages.getJTextField_entertainment().setText(control.getEntertainment().getEntertainmentTitle());
+			packages.getJTextField_entertainment().setName(control.getEntertainment().getEntertainmentID());
+			packages.entertainmentID=control.getEntertainment().getEntertainmentID();
+			packages.getJButton_entertainment().setEnabled(true);
+			packages.getJCheckBox_entertainment().setSelected(true);
 		}
 		int numOfMeal=control.getMeals().size();
 		
 		if(numOfMeal>0){
-			form.getJTextField_mealOption1().setText(control.getMeals().get(0).getMealTitle());
-			form.getJTextField_mealOption1().setName(control.getMeals().get(0).getMealID());
-			form.mealOption1ID=control.getMeals().get(0).getMealID();
-			form.getJButton_mealOption1().setEnabled(true);
-			form.getJCheckBox_mealOption1().setSelected(true);
+			packages.getJTextField_mealOption1().setText(control.getMeals().get(0).getMealTitle());
+			packages.getJTextField_mealOption1().setName(control.getMeals().get(0).getMealID());
+			packages.mealOption1ID=control.getMeals().get(0).getMealID();
+			packages.getJButton_mealOption1().setEnabled(true);
+			packages.getJCheckBox_mealOption1().setSelected(true);
 		}
 		if(numOfMeal>1){
-			form.getJTextField_mealOption2().setText(control.getMeals().get(1).getMealTitle());
-			form.getJTextField_mealOption2().setName(control.getMeals().get(1).getMealID());
-			form.mealOption2ID=control.getMeals().get(0).getMealID();
-			form.getJButton_mealOption2().setEnabled(true);
-			form.getJCheckBox_mealOption2().setSelected(true);
+			packages.getJTextField_mealOption2().setText(control.getMeals().get(1).getMealTitle());
+			packages.getJTextField_mealOption2().setName(control.getMeals().get(1).getMealID());
+			packages.mealOption2ID=control.getMeals().get(0).getMealID();
+			packages.getJButton_mealOption2().setEnabled(true);
+			packages.getJCheckBox_mealOption2().setSelected(true);
 		}
 		if(numOfMeal>2){
-			form.getJTextField_mealOption3().setText(control.getMeals().get(2).getMealTitle());
-			form.getJTextField_mealOption3().setName(control.getMeals().get(2).getMealID());
-			form.mealOption3ID=control.getMeals().get(0).getMealID();
-			form.getJButton_mealOption3().setEnabled(true);
-			form.getJCheckBox_mealOption3().setSelected(true);
+			packages.getJTextField_mealOption3().setText(control.getMeals().get(2).getMealTitle());
+			packages.getJTextField_mealOption3().setName(control.getMeals().get(2).getMealID());
+			packages.mealOption3ID=control.getMeals().get(0).getMealID();
+			packages.getJButton_mealOption3().setEnabled(true);
+			packages.getJCheckBox_mealOption3().setSelected(true);
 		}
-		form.getJTextField_discount().setText(fmt.format(control.getPack().getPackageDiscount()));
-		form.getJSlider_discount().setValue((int) control.getPack().getPackageDiscount());
-		form.displaySummary();
+		packages.getJTextField_discount().setText(fmt.format(control.getPack().getPackageDiscount()));
+		packages.getJSlider_discount().setValue((int) control.getPack().getPackageDiscount());
+		packages.displaySummary();
 		//set the buttons
-		form.getJButton_upload().setEnabled(false);
-		form.getJButton_delete().setEnabled(true);
-		form.getJButton_update().setEnabled(true);
-		form.getJButton_download().setEnabled(true);
+		packages.getJButton_upload().setEnabled(false);
+		packages.getJButton_delete().setEnabled(true);
+		packages.getJButton_update().setEnabled(true);
+		packages.getJButton_download().setEnabled(true);
 		
 		
 		//adds the form into the tab
 		if(jTabbedPane.getTabCount()==0){
-			jTabbedPane.insertTab("Package "+control.getPack().getPackageID(),null , form.getJScrollPane(),null , 0); 
+			jTabbedPane.insertTab("Package "+control.getPack().getPackageID(),null , packages.getJScrollPane(),null , 0); 
 			createTabHeader(0);	
 			jTabbedPane.setSelectedIndex(0);
 		}
 		else{
-			jTabbedPane.insertTab("Package "+control.getPack().getPackageID(),null , form.getJScrollPane(),null , jTabbedPane.getSelectedIndex());
+			jTabbedPane.insertTab("Package "+control.getPack().getPackageID(),null , packages.getJScrollPane(),null , jTabbedPane.getSelectedIndex());
 			createTabHeader(jTabbedPane.getSelectedIndex()-1);	
 			if(!(jTabbedPane.getSelectedIndex()==jTabbedPane.getTabCount())){
 				jTabbedPane.setSelectedIndex(jTabbedPane.getSelectedIndex()+1);

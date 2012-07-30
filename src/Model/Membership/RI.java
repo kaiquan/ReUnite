@@ -128,13 +128,10 @@ public class RI extends Account   {
 
 		boolean success = false;
 	
-		String sql = "INSERT INTO Account (userName, password, firstName, lastName, nric, school, email, address, telephoneNo, handphoneNo,secretQuestion, secretAnswer)"; 
-		sql +="VALUES ('"+ account.getUserName()+ "', '"+ account.getPassword()+"', '"+ account.getFirstName()+ "', '"+ account.getLastName()+ "', '"
+		String sql = "INSERT INTO Account (userName, password,type,status, firstName, lastName, nric, school, email, address, telephoneNo, handphoneNo,secretQuestion, secretAnswer)"; 
+		sql +="VALUES ('"+ account.getUserName()+ "', '"+ account.getPassword()+"','"+ account.getType()+"','"+ account.getStatus()+"', '"+ account.getFirstName()+ "', '"+ account.getLastName()+ "', '"
 		+ account.getNric()+ "', '"+ account.getSchool()+ "', '"+ account.getEmail()+ "', '"+ account.getAddress()+ "','"+ account.getTelephoneNo()
-				+ "','"+ account.getHandphoneNo()
-						+ "','"
-
-				+ account.getSecretQuestion()
+				+ "','"+ account.getHandphoneNo()+ "','"+ account.getSecretQuestion()
 	
 					+ "','"+ account.getSecretAnswer()+"')";
 		try {
@@ -429,56 +426,11 @@ public class RI extends Account   {
 	}
 	
 
-	public static void main(String args[]) throws ParseException {
 
-		ArrayList<Event> list = new ArrayList();
-		
-		
-		
-		
-		
 
-		
-		
 
-	}
 
-	public ArrayList<RI> retrieveSingleUser() {
-		ArrayList<RI> riList1 = new ArrayList<RI>();
-		ResultSet rs = null;
-
-		try {
 	
-			String dbQuery = "Select userName, type, status, firstName, lastName, dateOfBirth, nric, school, email, address, telephoneNo, handphoneNo FROM Account " +
-					"where userName = 'kaiquan88@gmail.com'";
-			rs = db.readRequest(dbQuery);
-
-			while (rs.next()) {
-				RI tempRI1 = new RI();
-			
-				tempRI1.setUserName(rs.getString("userName"));
-				tempRI1.setType(rs.getString("type"));
-				tempRI1.setStatus(rs.getString("status"));
-				tempRI1.setFirstName(rs.getString("firstName"));
-				tempRI1.setLastName(rs.getString("lastName"));
-				tempRI1.setDateOfBirth(rs.getDate("dateOfBirth"));
-				tempRI1.setNric(rs.getString("nric"));
-				tempRI1.setSchool(rs.getString("school"));
-				tempRI1.setEmail(rs.getString("email"));
-				tempRI1.setAddress(rs.getString("address"));
-				tempRI1.setTelephoneNo(rs.getString("telephoneNo"));
-				tempRI1.setHandphoneNo(rs.getString("handphoneNo"));
-				// tempRI1.setSecretQuestion(rs.getString("secretQuestion"));
-				// tempRI1.setSecretAnswer(rs.getString("secretAnswer"));
-				riList1.add(tempRI1);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-		}
-		return riList1;
-
-	}
 	
 	public String[][] getRITableModel1() {
 		RI riModel1 = new RI();
@@ -487,21 +439,20 @@ public class RI extends Account   {
 
 		try {
 
-			ArrayList<RI> tempList = riModel1.retrieveSingleUser();
 			
-			for (int i = 0; i < tempList.size(); i++) {
-				data[i][0] = tempList.get(i).getUserName();
-				data[i][1] = tempList.get(i).getType();
-				data[i][2] = tempList.get(i).getStatus();
+			for (int i = 0; i < 1; i++) {
+				data[i][0] = Account.currentUser.getUserName();
+				data[i][1] =Account.currentUser.getType();
+				data[i][2] = Account.currentUser.getStatus();
 				//data[i][1] = tempList.get(i).getPassword();
-				data[i][3] = tempList.get(i).getFirstName();
-				data[i][4] = tempList.get(i).getLastName();
+				data[i][3] = Account.currentUser.getFirstName();
+				data[i][4] = Account.currentUser.getLastName();
 				//data[i][4] = tempList.get(i).getDateOfBirth();
-				data[i][5] = tempList.get(i).getNric();
-				data[i][6] = tempList.get(i).getSchool();
-				data[i][7] = tempList.get(i).getEmail();
-				data[i][8] = tempList.get(i).getTelephoneNo();
-				data[i][9] = tempList.get(i).getHandphoneNo();
+				data[i][5] = Account.currentUser.getNric();
+				data[i][6] = Account.currentUser.getSchool();
+				data[i][7] = Account.currentUser.getEmail();
+				data[i][8] = Account.currentUser.getTelephoneNo();
+				data[i][9] = Account.currentUser.getHandphoneNo();
 				
 			}
 		} catch (Exception e) {
@@ -511,7 +462,13 @@ public class RI extends Account   {
 
 	}
 	
+	public static void main(String args[]) throws ParseException {
 
+		ArrayList<Event> list = new ArrayList();
+		
+
+
+	}
 	
 	
 }

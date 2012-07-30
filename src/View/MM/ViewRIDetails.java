@@ -71,9 +71,6 @@ public class ViewRIDetails {
 	private  JTextField handphoneTextBox;
 	private  JTextField typeTextBox;
 	private  JTextField statusTextBox;
-
-	
-	
 	
 	//Labels
 	private JLabel nameLabel ;
@@ -107,19 +104,20 @@ public class ViewRIDetails {
 	private JButton confirmUpdateButton;
 
 	private JButton refresh = null;
-
+	private JButton  viewEventAndPayment;
 	
  	
 	
 	// ***********************JFrame Method****************
 	
-	private JFrame getJFrame(){
+	JFrame getJFrame(){
 		jframe = new JFrame();
 		jframe.setSize(1000,700);
 		jframe.setVisible(true);
 		jframe.setTitle("GR View Of RI");
 		
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jframe.setResizable(false);
 		jframe.setContentPane(getPanel());
 		
 		return jframe;
@@ -259,7 +257,16 @@ public class ViewRIDetails {
 	
 	
 	
-	//Buttons
+	viewEventAndPayment =new JButton();
+	viewEventAndPayment.setBounds(0,250,150,30);
+	viewEventAndPayment.setText("View RI Event and Payment");
+	viewEventAndPayment.addActionListener(new java.awt.event.ActionListener() {
+		public void actionPerformed(java.awt.event.ActionEvent e) {
+			System.out.println("yo man");
+		}
+		
+	});	
+	
 	
 	deleteAccountButton = new JButton();
 	deleteAccountButton.setBounds(0, 102, 150, 30);
@@ -411,6 +418,7 @@ public class ViewRIDetails {
 			JOptionPane.showConfirmDialog(null,""+userNameTextBox.getText()+" Has Been Successfully disabled!",
 					   "Disable Confirmed!", JOptionPane.CLOSED_OPTION);
 			}
+
 			
 			
 //			ViewRIDetailsController verifyDelete = new ViewRIDetailsController();
@@ -493,6 +501,8 @@ public class ViewRIDetails {
 	// Content Pane
 	
 	//Table
+	
+	
 	
 //..............................add.......................................
 	
@@ -694,6 +704,7 @@ public class ViewRIDetails {
 			wankingPanel.add(deleteAccountButton);
 			wankingPanel.add(disableAccountButton);
 			wankingPanel.add(confirmUpdateButton );
+			wankingPanel.add(viewEventAndPayment);
 			wankingPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Actions", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		}
 		return wankingPanel;
@@ -723,6 +734,13 @@ public class ViewRIDetails {
 		return refresh;
 	}
 
+	public void checkIfCanDelete(String balanceAmount, String statusEvent ){
+		ViewRIDetailsRIVIEW check =new ViewRIDetailsRIVIEW();
+		
+		
+		
+	}
+	
 	public static void main(String a[]){
 		
 		
@@ -735,6 +753,7 @@ public class ViewRIDetails {
 		
 	
 	}
+	
 	
 	
 

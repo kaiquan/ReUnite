@@ -1,9 +1,17 @@
 package Model.Membership;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+
+import Controller.MySQLController;
 
 public class Account implements Comparable<Account>
 {
+	public static Account currentUser;
+	
+	private static MySQLController db = new MySQLController();
 	private String userName;
 	private String password;
 	private String type;
@@ -247,4 +255,66 @@ public class Account implements Comparable<Account>
 				+ ", handphoneNo=" + handphoneNo + ", secretQuestion=" + secretQuestion + ", secretAnswer=" + secretAnswer + ", closureRequestDate="
 				+ closureRequestDate + ", closureDate=" + closureDate + ", closureReason=" + closureReason + "]";
 	}
-}
+
+	
+	
+		public boolean INITIATE_LOGIN(Account accountSet) {
+			ResultSet rs = null;
+			boolean valid = false;
+				String dbQuery = "Select userName, password, type FROM Account WHERE userName='"+accountSet.getUserName()+"'AND password = '"+accountSet.getPassword()+"'";
+				rs = db.readRequest(dbQuery);
+			
+				try {
+					if(rs.next()){
+
+					
+						valid = true;
+					}
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}	
+					
+				return valid;
+				}
+
+		public Account GET_ACCOUNT(String userName) {
+			Account account = null;
+			ResultSet rs = null;
+			boolean valid = false;
+				String dbQuery = "Select * FROM Account WHERE userName='"+ userName+"'";
+				rs = db.readRequest(dbQuery);
+				
+				try {
+					if(rs.next()){
+						account = new Account();
+						
+						account.setUserName(rs.getString("userName"));
+						account.setType(rs.getString("type"));
+						account.setStatus(rs.getString("status"));
+						account.setFirstName(rs.getString("firstName"));
+						account.setLastName(rs.getString("lastName"));
+						account.setDateOfBirth(rs.getDate("dateOfBirth"));
+						account.setNric(rs.getString("nric"));
+						account.setSchool(rs.getString("school"));
+						account.setEmail(rs.getString("email"));
+						account.setAddress(rs.getString("address"));
+						account.setTelephoneNo(rs.getString("telephoneNo"));
+						account.setHandphoneNo(rs.getString("handphoneNo"));
+					}
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}	
+					
+				return account;
+				}
+			
+		}
+		
+	
+	
+
+
+	
+

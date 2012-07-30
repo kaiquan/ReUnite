@@ -12,33 +12,32 @@ public class ViewRIPersonalController {
 	RI riModel1 = new RI();
 	RI riModelEvent = new RI();
 	RI riModelPayment = new RI();
-	
-
+	LoginController login = new LoginController();  //  @jve:decl-index=0:
 	
 	
 	
 public ViewRIPersonalController(){}
-
+public Account GET_ACCOUNT(Account userName) {
 	
+	return userName;
 	
-	
-	
+}
 
 	public void retrieveRiDetails(String userName , String password,String firstName, String lastName, String nric, String postalAddress,  String school, String email){
 	
-		RI singleRetrieve = new RI();
 	
-		singleRetrieve.setUserName(userName);
-		singleRetrieve.setPassword(password);
-		singleRetrieve.setFirstName(firstName);
-		singleRetrieve.setLastName(lastName); 
-		singleRetrieve.setNric(nric);
-		singleRetrieve.setSchool(school);
-		singleRetrieve.setEmail(email);
-		singleRetrieve.setAddress(postalAddress);
+		Account.currentUser.setUserName(userName);
+		Account.currentUser.setPassword(password);
+		Account.currentUser.setFirstName(firstName);
+		Account.currentUser.setLastName(lastName); 
+		Account.currentUser.setNric(nric);
+		Account.currentUser.setSchool(school);
+		Account.currentUser.setEmail(email);
+		Account.currentUser.setAddress(postalAddress);
+		
 	
 		
-		singleRetrieve.retrieveSingleUser();
+
 
 	}
 	

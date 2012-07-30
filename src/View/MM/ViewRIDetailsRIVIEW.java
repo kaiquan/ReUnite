@@ -1,39 +1,24 @@
 package View.MM;
 
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
-import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRootPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
 
-import Model.*;
-import Model.Membership.RI;
-import Controller.MySQLController;
-import Controller.MM.*;
-
-import javax.swing.JList;
+import Controller.MM.UpdateRIController;
+import Controller.MM.ViewRIPersonalController;
 
 public class ViewRIDetailsRIVIEW {
 	
@@ -100,7 +85,7 @@ public class ViewRIDetailsRIVIEW {
 		
 	}
 	
-	private JFrame getJFrame(){
+	JFrame getJFrame(){
 		jframe = new JFrame();
 		jframe.setSize(1000, 600);
 		jframe.setVisible(true);
@@ -124,6 +109,10 @@ public class ViewRIDetailsRIVIEW {
 		
 		
 	//Label
+		JLabel welcomeLabel = new JLabel();
+		welcomeLabel.setBounds(10, 10, 150, 50);
+		welcomeLabel.setText((table.getModel()).getValueAt(0, 0).toString());
+		updatePanel.add(welcomeLabel);
 		
 		userNameLabel = new JLabel();
 		userNameLabel.setBounds(new Rectangle(50, 100, 400, 30));
@@ -244,15 +233,16 @@ public class ViewRIDetailsRIVIEW {
 					
 					
 					updateAccountButton.setVisible(true);
-				
+				}
+					else{
 					JOptionPane.showConfirmDialog(null,""+userNameTextBox.getText()+"Has Been Successfully updated!",
 							   "Account Updated!", JOptionPane.CLOSED_OPTION);
-				getUpdateFrame().setVisible(false);
-				getJFrame().setVisible(true);
-					
+			
+						getJFrame().setVisible(true);
+					}
 
 					
-				}
+				
 			}
 		});
 		
@@ -262,8 +252,7 @@ public class ViewRIDetailsRIVIEW {
 			
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				
-				getUpdateFrame().setVisible(false);
-				getJFrame().setVisible(true);
+				
 				
 			}
 		});
@@ -407,7 +396,7 @@ public class ViewRIDetailsRIVIEW {
 						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,null, options, options[0]);
 					if (confirmUpdateOption==0)
 					{
-						if(eventStatus.getText().equals("Confirmed")|| eventStatus.getText().equals("Cancelled") && amountBalance.getText().isEmpty()|| amountBalance.getText().equals("0")){
+						if(eventStatus.getText().equalsIgnoreCase("Confirmed")|| eventStatus.getText().equals("Cancelled") && amountBalance.getText().isEmpty()|| amountBalance.getText().equalsIgnoreCase("0")){
 							
 							
 							String closureReason = JOptionPane.showInputDialog(null, "Please enter the reason for closure : ", 
@@ -619,13 +608,7 @@ public class ViewRIDetailsRIVIEW {
 		
 
 	
-		
-		userNameTextBox.setText((table.getModel()).getValueAt(0, 0).toString());
-		firstNameTextBox.setText(table.getModel().getValueAt(0, 2).toString());
-		lastNameTextBox.setText(table.getModel().getValueAt(0, 3).toString());
-		emailTextBox.setText(table.getModel().getValueAt(0, 4).toString());
-		telephoneTextBox.setText(table.getModel().getValueAt(0, 5).toString());
-		schoolTextBox.setText(table.getModel().getValueAt(0, 6).toString());
+	
 		
 		return table;
 
@@ -647,6 +630,8 @@ public class ViewRIDetailsRIVIEW {
 	
 		ViewRIDetailsRIVIEW viewRiDetails = new ViewRIDetailsRIVIEW();
 		viewRiDetails.getJFrame().setVisible(true);
+		
+		
 	
 	
 	}
@@ -655,7 +640,7 @@ public class ViewRIDetailsRIVIEW {
 			String balanceAmount;
 			String statusEvent ;
 			
-			UpdateRIController check = new UpdateRIController();
+			ViewRIDetails check = new ViewRIDetails();
 			
 			check.checkIfCanDelete(balanceAmount = amountBalance.getText(),statusEvent = eventStatus.getText());
 		

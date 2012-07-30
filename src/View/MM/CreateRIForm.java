@@ -19,11 +19,13 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import Controller.MM.*;
+import java.awt.Rectangle;
+import java.awt.Dimension;
 
 
 public class CreateRIForm extends JFrame {
 	
-	private JFrame jFrame ;  
+	private JFrame jFrame ;  //  @jve:decl-index=0:visual-constraint="10,58"
 	private JPanel panel;
 	private JButton submitRegistrationButton;
 	private JButton cancelButton;
@@ -63,14 +65,16 @@ public class CreateRIForm extends JFrame {
 	private JTextField telephoneNoTextBox;
 	private JTextField handphoneNoTextBox;
 	private JTextField secretAnswerTextBox;
+	private JLabel cPasswordLabel = null;
 	
 	
 	JFrame getJFrame(){
 		jFrame = new JFrame();
-		jFrame.setSize(1000,1000);
+		jFrame.setSize(892, 788);
 		jFrame.setVisible(true);
 		jFrame.setTitle("Registration");
 		jFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		jFrame.setResizable(false);
 		jFrame.setContentPane(getPanel());
 		
 		return jFrame;
@@ -78,6 +82,9 @@ public class CreateRIForm extends JFrame {
 	}
 	
 	private JPanel getPanel(){
+		cPasswordLabel = new JLabel();
+		cPasswordLabel.setBounds(new Rectangle(443, 240, 129, 16));
+		cPasswordLabel.setText("Confirm Password");
 		panel = new JPanel();	
 		panel.setLayout(null);
 		panel.setSize(500,500);
@@ -86,7 +93,7 @@ public class CreateRIForm extends JFrame {
 		//Button
 		
 		cancelButton = new JButton();
-		cancelButton.setBounds(new Rectangle(850, 600, 81, 31));
+		cancelButton.setBounds(new Rectangle(665, 684, 81, 31));
 		cancelButton.setText("Cancel");
 		cancelButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -98,7 +105,7 @@ public class CreateRIForm extends JFrame {
 		
 		
 		submitRegistrationButton = new JButton();
-		submitRegistrationButton.setBounds(new Rectangle(750, 600, 81, 31));
+		submitRegistrationButton.setBounds(new Rectangle(553, 684, 81, 31));
 		submitRegistrationButton.setText("Submit");
 		submitRegistrationButton
 				.addActionListener(new java.awt.event.ActionListener() {
@@ -164,7 +171,7 @@ public class CreateRIForm extends JFrame {
 		
 		
 		secretQuestionCombo = new JComboBox(secretQuestion());
-		secretQuestionCombo.setBounds(240,550,140,20);
+		secretQuestionCombo.setBounds(230,700,180,20);
 		
 		
 		//Labels
@@ -210,24 +217,24 @@ public class CreateRIForm extends JFrame {
 		emailLabel.setText("Email");
 		
 		addressLabel = new JLabel();
-		addressLabel.setBounds(new Rectangle(120, 450, 140, 20));
+		addressLabel.setBounds(new Rectangle(120, 500, 140, 20));
 		addressLabel.setText("Address");
 		
 		telephoneNoLabel = new JLabel();
-		telephoneNoLabel.setBounds(new Rectangle(120, 500, 140, 20));
+		telephoneNoLabel.setBounds(new Rectangle(120, 600, 140, 20));
 		telephoneNoLabel.setText("Tel. No");
 		
 		handphoneNoLabel = new JLabel();
-		handphoneNoLabel.setBounds(new Rectangle(450, 500, 140, 20));
+		handphoneNoLabel.setBounds(new Rectangle(451, 500, 140, 20));
 		handphoneNoLabel.setText("H/p No");
 		
 
 		secretQuestionLabel = new JLabel();
-		secretQuestionLabel.setBounds(new Rectangle(120, 550, 140, 20));
+		secretQuestionLabel.setBounds(new Rectangle(120, 700, 140, 20));
 		secretQuestionLabel.setText("Secret Question");
 		
 		secretAnswerLabel = new JLabel();
-		secretAnswerLabel.setBounds(new Rectangle(450, 550, 140, 20));
+		secretAnswerLabel.setBounds(new Rectangle(445, 600, 140, 20));
 		secretAnswerLabel.setText("Secret Answer");
 		
 		
@@ -249,7 +256,7 @@ public class CreateRIForm extends JFrame {
 		passwordTextBox.setBounds(new Rectangle(550, 200, 140, 20));
 		
 		cPasswordTextBox = new JPasswordField();
-		cPasswordTextBox.setBounds(new Rectangle(650, 200, 140, 20));
+		cPasswordTextBox.setBounds(new Rectangle(553, 238, 140, 20));
 		
 		nricTextBox = new JTextField();
 		nricTextBox.setBounds(new Rectangle(200, 300, 140, 20));
@@ -261,17 +268,17 @@ public class CreateRIForm extends JFrame {
 		emailTextBox.setBounds(new Rectangle(550, 400, 140, 20));
 		
 		addressTextBox = new JTextField();
-		addressTextBox.setBounds(new Rectangle(200, 450, 140, 20));
+		addressTextBox.setBounds(new Rectangle(200, 500, 140, 20));
 		
 		telephoneNoTextBox = new JTextField();
-		telephoneNoTextBox.setBounds(new Rectangle(200, 500, 140, 20));
+		telephoneNoTextBox.setBounds(new Rectangle(200, 600, 140, 20));
 		
 		handphoneNoTextBox = new JTextField();
 		handphoneNoTextBox.setBounds(new Rectangle(550, 500, 140, 20));
 		
 		
 		secretAnswerTextBox = new JTextField();
-		secretAnswerTextBox.setBounds(new Rectangle(550,550,140,20));
+		secretAnswerTextBox.setBounds(new Rectangle(552, 600, 140, 20));
 		
 		
 		
@@ -318,6 +325,7 @@ public class CreateRIForm extends JFrame {
 		panel.add(telephoneNoTextBox);
 		panel.add(handphoneNoTextBox);
 		panel.add(cPasswordTextBox);
+		panel.add(cPasswordLabel, null);
 		
 		
 		

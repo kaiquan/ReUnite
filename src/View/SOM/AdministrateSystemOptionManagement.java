@@ -105,6 +105,7 @@ public class AdministrateSystemOptionManagement {
 	
 	@SuppressWarnings("unchecked")
 	protected static LinkedList tabs=null;
+	@SuppressWarnings("unchecked")
 	protected Stack undoManager  =null;
 	private AdministratePackageForm packages=null;
 	private AdministrateEntertainmentForm entertainment=null;

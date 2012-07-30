@@ -1402,7 +1402,6 @@ public class AdministratePackageForm {
 			jTextField_ballroomName = new JTextField();
 			jTextField_ballroomName.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_ballroomName.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-			jTextField_ballroomName.setOpaque(false);
 			jTextField_ballroomName.setBounds(new Rectangle(50, 80, 600, 30));
 			jTextField_ballroomName.setEditable(false);
 		}
@@ -1413,7 +1412,6 @@ public class AdministratePackageForm {
 			jTextField_ballroomSize = new JTextField();
 			jTextField_ballroomSize.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_ballroomSize.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-			jTextField_ballroomSize.setOpaque(false);
 			jTextField_ballroomSize.setEditable(false);
 			jTextField_ballroomSize.setBounds(new Rectangle(150, 120, 150, 30));
 		}
@@ -1424,7 +1422,6 @@ public class AdministratePackageForm {
 			jTextField_ballroomFinalPrice = new JTextField();
 			jTextField_ballroomFinalPrice.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_ballroomFinalPrice.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-			jTextField_ballroomFinalPrice.setOpaque(false);
 			jTextField_ballroomFinalPrice.setEditable(false);
 			jTextField_ballroomFinalPrice.setBounds(new Rectangle(490, 120, 160, 30));
 		}
@@ -1435,7 +1432,6 @@ public class AdministratePackageForm {
 			jTextField_facilityParking = new JTextField();
 			jTextField_facilityParking.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_facilityParking.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-			jTextField_facilityParking.setOpaque(false);
 			jTextField_facilityParking.setEditable(false);
 			jTextField_facilityParking.setBounds(new Rectangle(150, 160, 150, 30));
 		}
@@ -1446,7 +1442,6 @@ public class AdministratePackageForm {
 			jTextField_facilityWeekendCost = new JTextField();
 			jTextField_facilityWeekendCost.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_facilityWeekendCost.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-			jTextField_facilityWeekendCost.setOpaque(false);
 			jTextField_facilityWeekendCost.setEditable(false);
 			jTextField_facilityWeekendCost.setBounds(new Rectangle(490, 160, 160, 30));
 		}
@@ -1457,7 +1452,6 @@ public class AdministratePackageForm {
 			jTextField_facilityName = new JTextField();
 			jTextField_facilityName.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_facilityName.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-			jTextField_facilityName.setOpaque(false);
 			jTextField_facilityName.setEditable(false);
 			jTextField_facilityName.setBounds(new Rectangle(49, 230, 600, 30));
 		}
@@ -1476,7 +1470,6 @@ public class AdministratePackageForm {
 			jTextArea_facilityAddress = new JTextArea();
 			jTextArea_facilityAddress.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextArea_facilityAddress.setEditable(false);
-			jTextArea_facilityAddress.setOpaque(false);
 			jTextArea_facilityAddress.setWrapStyleWord(true);
 			jTextArea_facilityAddress.setLineWrap(true);
 		}
@@ -1816,7 +1809,6 @@ public class AdministratePackageForm {
 			jTextField_entertainmentName.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_entertainmentName.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_entertainmentName.setEditable(false);
-			jTextField_entertainmentName.setOpaque(false);
 			jTextField_entertainmentName.setBounds(new Rectangle(50, 80, 600, 30));
 		}
 		return jTextField_entertainmentName;
@@ -1835,6 +1827,7 @@ public class AdministratePackageForm {
 			DefaultTableModel model= new DefaultTableModel();
 			model.setColumnIdentifiers(new Object[]{"Name","Price","Description"});
 			jTable_entertainmentMenu = new JTable(model);
+			jTable_entertainmentMenu.setEnabled(false);
 			jTable_entertainmentMenu.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTable_entertainmentMenu.setAutoResizeMode(jTable_ballroomList.AUTO_RESIZE_OFF);
 			jTable_entertainmentMenu.getColumnModel().getColumn(0).setPreferredWidth(565);
@@ -1849,7 +1842,6 @@ public class AdministratePackageForm {
 			jTextField_entertainmentPrice.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_entertainmentPrice.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_entertainmentPrice.setEditable(false);
-			jTextField_entertainmentPrice.setOpaque(false);
 			jTextField_entertainmentPrice.setBounds(new Rectangle(200, 240, 250, 30));
 		}
 		return jTextField_entertainmentPrice;
@@ -1867,7 +1859,6 @@ public class AdministratePackageForm {
 			jTextArea_entertainmentDescription = new JTextArea();
 			jTextArea_entertainmentDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextArea_entertainmentDescription.setEditable(false);
-			jTextArea_entertainmentDescription.setOpaque(false);
 			jTextArea_entertainmentDescription.setWrapStyleWord(true);
 			jTextArea_entertainmentDescription.setLineWrap(true);
 		}
@@ -2174,7 +2165,7 @@ public class AdministratePackageForm {
 		if (jPanel_mealBody == null) {
 			jLabel_mealPrice = new JLabel();
 			jLabel_mealPrice.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-			jLabel_mealPrice.setBounds(new Rectangle(350, 120, 150, 30));
+			jLabel_mealPrice.setBounds(new Rectangle(416, 120, 84, 30));
 			jLabel_mealPrice.setText("Price/head");
 			jLabel_mealType = new JLabel();
 			jLabel_mealType.setFont(new Font("Segoe UI", Font.PLAIN, 12));
@@ -2205,7 +2196,6 @@ public class AdministratePackageForm {
 			jTextField_mealName = new JTextField();
 			jTextField_mealName.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_mealName.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-			jTextField_mealName.setOpaque(false);
 			jTextField_mealName.setEditable(false);
 			jTextField_mealName.setBounds(new Rectangle(50, 80, 600, 30));
 		}
@@ -2217,7 +2207,6 @@ public class AdministratePackageForm {
 			jTextField_mealType.setFocusable(false);
 			jTextField_mealType.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_mealType.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-			jTextField_mealType.setOpaque(false);
 			jTextField_mealType.setEditable(false);
 			jTextField_mealType.setBounds(new Rectangle(200, 120, 150, 30));
 		}
@@ -2229,7 +2218,6 @@ public class AdministratePackageForm {
 			jTextField_mealPrice.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_mealPrice.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_mealPrice.setEditable(false);
-			jTextField_mealPrice.setOpaque(false);
 			jTextField_mealPrice.setBounds(new Rectangle(500, 120, 150, 30));
 		}
 		return jTextField_mealPrice;
@@ -2249,7 +2237,7 @@ public class AdministratePackageForm {
 			model.setColumnIdentifiers(new Object[]{"ID","Meal Set Name","Type","Price/head","Description"});
 			jTable_mealList = new JTable(model);
 			jTable_mealList.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-			jTable_mealList.setEnabled(true);
+			jTable_mealList.setEnabled(false);
 			jTable_mealList.setAutoResizeMode(jTable_mealLIst.AUTO_RESIZE_OFF);
 			jTable_mealList.getColumnModel().getColumn(0).setPreferredWidth(450);
 			jTable_mealList.getColumnModel().getColumn(1).setPreferredWidth(135);
@@ -2314,7 +2302,6 @@ public class AdministratePackageForm {
 		if (jTextArea_mealDescription == null) {
 			jTextArea_mealDescription = new JTextArea();
 			jTextArea_mealDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-			jTextArea_mealDescription.setOpaque(false);
 			jTextArea_mealDescription.setEditable(false);
 			jTextArea_mealDescription.setLineWrap(true);
 			jTextArea_mealDescription.setWrapStyleWord(true);

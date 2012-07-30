@@ -242,10 +242,52 @@ public class AdministrateSystemOptionManagement {
 			jButton_open.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					fc.showOpenDialog(fc);
-					String path=fc.getSelectedFile().toString();
-					try {loadCSV(path);}
-					catch (IOException e1) {}
-					
+					final String path=fc.getSelectedFile().toString();
+					main = new Thread () {
+						  public void run () {
+							  try {int i=loadCSV(path);
+							  if(i==11)
+								  JOptionPane.showMessageDialog(null, "This file is empty!\nPlease load a correct file", "Error", JOptionPane.WARNING_MESSAGE);
+							  if(i==0)
+								  JOptionPane.showMessageDialog(null, "This file is of a different format\nPlease load a correct file", "Warnning", JOptionPane.WARNING_MESSAGE);
+							  
+							  }
+								catch (IOException e1) {}
+						  }
+					  };
+					progress= new Thread(){
+						  @SuppressWarnings("deprecation")
+						public void run(){
+							  double increment=1;
+							  int sleep=300;
+								 for (int i =  0; i <= 100; i+=increment) {
+								      final int percent = i;
+								      try {
+								        SwingUtilities.invokeLater(new Runnable() {
+								         public void run() {
+								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								          }
+								        });
+								        Thread.sleep(sleep);
+								        if(!main.isAlive()){
+								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
+								        	break;
+										 }
+								        sleep+=100;
+								        
+								       
+								      } catch (InterruptedException e) {
+								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								      }
+								    } 
+								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 this.stop();
+								 this.interrupt();
+						  }
+					  };
+					  progress.start();
+					  main.start(); 
 				}
 			});
 		}
@@ -536,7 +578,6 @@ public class AdministrateSystemOptionManagement {
 								        Thread.sleep(sleep);
 								        if(!a.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-								        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
 								        	break;
 										 }
 								        sleep+=100;

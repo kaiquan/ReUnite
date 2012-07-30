@@ -56,7 +56,7 @@ public class BookPackageForm {
 	private JLabel jLabel_step2 = null;
 	private JFrame jFrame_StandardPackage = null;  //  @jve:decl-index=0:visual-constraint="259,586"
 	private JScrollPane jScrollPane_StandardPackage = null;
-	private JPanel jPanel_standardPackage = null;
+	private JPanel jPanel_standardPackage = null;  //  @jve:decl-index=0:visual-constraint="270,826"
 	private JPanel jPanel_seachPanel = null;
 	private JScrollPane jScrollPane_search = null;
 	private JTable jTable_search = null;
@@ -378,7 +378,6 @@ public class BookPackageForm {
 		if (jFrame_StandardPackage == null) {
 			jFrame_StandardPackage = new JFrame();
 			jFrame_StandardPackage.setSize(new Dimension(731, 237));
-			jFrame_StandardPackage.setContentPane(getJPanel_standardPackage());
 			jFrame_StandardPackage.setTitle("Select Standard Package");
 			jFrame_StandardPackage.setContentPane(getJScrollPane_StandardPackage());
 			jFrame_StandardPackage.setResizable(true);

@@ -142,6 +142,28 @@ public class Invitation
 		return invitationList;
 	}
 
+	public int GET_INVITATION_RESPONSE()
+	{
+		ResultSet rs = null;
+		int response = 0;
+		String dbQuery = "SELECT (SELECT COUNT(*) FROM " + TableNames.GUEST_TABLE + " WHERE invitationID = " + this.invitationID + " AND response != 'ATTENDING')/(SELECT COUNT(*) FROM " + TableNames.GUEST_TABLE + " WHERE invitationID = " + this.invitationID + ") AS Response";
+		try
+		{
+			rs = db.readRequest(dbQuery);
+			if (rs.next())
+			{
+				response = rs.getInt("Response");
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return response;
+		
+	}
+	
 	public Event GET_INVITATION_EVENT(int invitationID)
 	{
 		ResultSet rs = null;
@@ -193,7 +215,7 @@ public class Invitation
 	{
 		ResultSet rs = null;
 		int count = 0;
-		String dbQuery = "SELECT COUNT(*) FROM " + TableNames.GUEST_TABLE + "WHERE invitationID = " + this.invitationID;
+		String dbQuery = "SELECT COUNT(*) FROM " + TableNames.GUEST_TABLE + " WHERE invitationID = " + this.invitationID;
 		try
 		{
 			
@@ -214,13 +236,22 @@ public class Invitation
 	{
 		ResultSet rs = null;
 		ArrayList<Guest> guestList = new ArrayList<Guest>();
-		String dbQuery = "SELECT * FROM " + TableNames.GUEST_TABLE + " WHERE invitationID = " + invitationID;
+		String dbQuery = "SELECT * FROM " + TableNames.GUEST_TABLE + " i INNER JOIN  "+TableNames.ACCOUNT_TABLE +" a ON i.userName = a.userName WHERE invitationID = " + invitationID;
 		try
 		{
 			rs = db.readRequest(dbQuery);
 			while (rs.next())
 			{
-				guestList.add(new Guest(rs.getString("userName")));
+				Guest guest = new Guest();
+				guest.setUserName(rs.getString("userName"));
+				guest.setFirstName(rs.getString("firstName"));
+				guest.setLastName(rs.getString("lastName"));
+				guest.setEmail(rs.getString("email"));
+				guest.setHandphoneNo(rs.getString("handPhoneNo"));
+				guest.setTelephoneNo(rs.getString("telephoneNo"));
+				guest.setNric(rs.getString("nric"));
+				
+				guestList.add(guest);
 			}
 		}
 		catch (Exception e)

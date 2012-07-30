@@ -7,20 +7,20 @@ import javax.swing.table.AbstractTableModel;
 
 import Images.RIM.ImageHelper;
 import Model.Membership.Guest;
-import Model.RIM.GuestCollection;
 
 public class GuestImportTableModel extends AbstractTableModel
 {
-	private static TableSorter tableSorter;
+	
 	private static final long serialVersionUID = 1L;
+	private TableSorter tableSorter;
 	private int rowCount, colCount;
-	private String[] columnNames = { "", "First name", "Last name", "School", "Date of birth", "Email", "Telephone number", "Handphone number", "Address" };
+	private String[] columnNames = { "", "First name", "Last name", "School", "Date of birth", "Email", "Contact", "Address" };
 	ArrayList<Object[]> al;
 
 
-	public GuestImportTableModel(GuestCollection guestList)
+	public GuestImportTableModel(ArrayList<Guest> guestList)
 	{	
-		rowCount = guestList.getProfiles().size();
+		rowCount = guestList.size();
 		al = new ArrayList<Object[]>(rowCount);
 		colCount = columnNames.length;
 		
@@ -28,16 +28,15 @@ public class GuestImportTableModel extends AbstractTableModel
 		
 		for (int i = 0; i < rowCount; i++)
 		{
-			Guest guest = guestList.getProfiles().get(i);
+			Guest guest = guestList.get(i);
 			data[i][0] = ImageHelper.loadImageIcon(guest.getProfilePicture(), "");
 			data[i][1] = guest.getFirstName();
 			data[i][2] = guest.getLastName();
 			data[i][3] = guest.getSchool();
 			data[i][4] = guest.getDateOfBirth();
 			data[i][5] = guest.getEmail();
-			data[i][6] = Color.blue;
-			data[i][7] = guest.getHandphoneNo();
-			data[i][8] = guest.getAddress();
+			data[i][6] = guest.getHandphoneNo();
+			data[i][7] = guest.getAddress();
 			
 			al.add(data[i]);
 		}
@@ -85,34 +84,13 @@ public class GuestImportTableModel extends AbstractTableModel
 		al.get(row)[column] = value;
 	}
 
-	@Override
-	public int findColumn(String arg0) {
-		return super.findColumn(arg0);
-	}
-
-	@Override
-	public void fireTableCellUpdated(int arg0, int arg1) {
-		super.fireTableCellUpdated(arg0, arg1);
-	}
-
-	@Override
-	public void fireTableRowsDeleted(int arg0, int arg1) {
-		super.fireTableRowsDeleted(arg0, arg1);
-	}
-
-	@Override
-	public void fireTableRowsInserted(int arg0, int arg1) {
-		super.fireTableRowsInserted(arg0, arg1);
-	}
-
-	@Override
-	public void fireTableRowsUpdated(int arg0, int arg1) {
-		super.fireTableRowsUpdated(arg0, arg1);
-	}
 	
-	public void addRow(ArrayList<Guest> guestList) 
+	public void addRows(ArrayList<Guest> guestList) 
 	{
-
+		for(int i = 0; i<guestList.size(); i++)
+		{
+			addRow(guestList.get(i));
+		}
 	}
 	
 	public void addRow(Guest guest) 
@@ -150,8 +128,8 @@ public class GuestImportTableModel extends AbstractTableModel
 		return tableSorter;
 	}
 
-	public static void setTableSorter(TableSorter tableSorter) {
-		GuestImportTableModel.tableSorter = tableSorter;
+	public void setTableSorter(TableSorter tableSorter) {
+		this.tableSorter = tableSorter;
 	}
 
 }

@@ -25,17 +25,18 @@ import Model.Membership.Guest;
 import Model.RIM.GuestCollection;
 import Model.RIM.TableModels.GuestImportTableModel;
 
-public class CreateInvitationViewController
+public class CreateInvitationController
 {
 	private DateHelper dateHelper = new DateHelper();
 	
 	private final Invitation invitationModel = new Invitation();
 	
 	private static GuestCollection guests = new GuestCollection();
-	private static GuestImportTableModel tableModel = new GuestImportTableModel(guests);
+	
+	private static GuestImportTableModel tableModel = new GuestImportTableModel(guests.getProfiles());
 	
 	
-	public CreateInvitationViewController()
+	public CreateInvitationController()
 	{
 		
 	}
@@ -74,7 +75,7 @@ public class CreateInvitationViewController
 	
 	public void addRow(ArrayList<Guest> guests)
 	{
-		tableModel.addRow(guests);
+		tableModel.addRows(guests);
 	}
 	
 	public void deleteRow(int row[])
@@ -84,7 +85,7 @@ public class CreateInvitationViewController
 	
 	public static void main(String args[])
 	{
-		CreateInvitationViewController controller = new CreateInvitationViewController();
+		CreateInvitationController controller = new CreateInvitationController();
 		ArrayList<Guest> guestList = new ArrayList<Guest>();
 		controller.createNewInvitation(guestList , 4);
 	}

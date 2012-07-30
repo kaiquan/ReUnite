@@ -42,6 +42,9 @@ package View.RIM.Components;
  */
 
 
+import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JPanel;
 
 import org.jfree.chart.ChartFactory;
@@ -51,15 +54,13 @@ import org.jfree.chart.StandardChartTheme;
 import org.jfree.chart.plot.PiePlot;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
-import org.jfree.ui.ApplicationFrame;
-import org.jfree.ui.RefineryUtilities;
 
-/**
- * A simple demonstration application showing how to create a pie chart using
- * data from a {@link DefaultPieDataset}.
- */
-public class PieChart extends ApplicationFrame {
+import Model.Invitation;
 
+public class PieChart extends JPanel {
+
+	private Invitation invitation;
+	
     private static final long serialVersionUID = 1L;
 
     {
@@ -74,9 +75,10 @@ public class PieChart extends ApplicationFrame {
      *
      * @param title  the frame title.
      */
-    public PieChart(String title) {
-        super(title);
-        setContentPane(createDemoPanel());
+    public PieChart(String title, Invitation invitation) {
+    	this.invitation = invitation;
+        add(createDemoPanel());
+        setVisible(true);
     }
 
     /**
@@ -84,9 +86,9 @@ public class PieChart extends ApplicationFrame {
      *
      * @return A sample dataset.
      */
-    private static PieDataset createDataset() {
+    private PieDataset createDataset() {
         DefaultPieDataset dataset = new DefaultPieDataset();
-        dataset.setValue("Attending", new Double(43.2));
+        dataset.setValue("Attending", new Double(62.5));
         dataset.setValue("Not Attendng", new Double(10.0));
         dataset.setValue("Not Sure", new Double(27.5));
         return dataset;
@@ -99,7 +101,7 @@ public class PieChart extends ApplicationFrame {
      *
      * @return A chart.
      */
-    private static JFreeChart createChart(PieDataset dataset) {
+    private JFreeChart createChart(PieDataset dataset) {
 
         JFreeChart chart = ChartFactory.createPieChart(
             "Invitation Response",  // chart title
@@ -108,7 +110,6 @@ public class PieChart extends ApplicationFrame {
             true,
             false
         );
-
         PiePlot plot = (PiePlot) chart.getPlot();
         plot.setSectionOutlinesVisible(false);
         plot.setNoDataMessage("No data available");
@@ -121,33 +122,20 @@ public class PieChart extends ApplicationFrame {
      *
      * @return A panel.
      */
-    public static JPanel createDemoPanel() 
+    public JPanel createDemoPanel() 
     {
         JFreeChart chart = createChart(createDataset());
         ChartPanel panel = new ChartPanel(chart);
+        panel.setMaximumSize(new Dimension(200, 200));
+        panel.setSize(150, 150);
         panel.setMouseWheelEnabled(true);
         return panel;
     }
 
-    /**
-     * Starting point for the demonstration application.
-     *
-     * @param args  ignored.
-     */
+
     public static void main(String[] args) {
 
-        // ******************************************************************
-        //  More than 150 demo applications are included with the JFreeChart
-        //  Developer Guide...for more information, see:
-        //
-        //  >   http://www.object-refinery.com/jfreechart/guide.html
-        //
-        // ******************************************************************
 
-    	PieChart demo = new PieChart("Invitation Response");
-        demo.pack();
-        RefineryUtilities.centerFrameOnScreen(demo);
-        demo.setVisible(true);
     }
 
 }

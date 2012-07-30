@@ -9,6 +9,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 import Images.RIM.ImageHelper;
 
+import Model.Membership.*;
+
 @SuppressWarnings("serial")
 public class IconRenderer extends DefaultTableCellRenderer 
 {
@@ -22,7 +24,12 @@ public class IconRenderer extends DefaultTableCellRenderer
 			label.setText(null);
 			label.setIcon((ImageHelper.getScaledImageIcon((ImageIcon) value, 75, 75, 5)));
 		}
-		
+		else if(value instanceof Account) 
+		{
+			label.setText(((Account) value).getUserName());
+			label.setIcon(ImageHelper.loadImageIcon("userIcon.png", "", 75, 75, 5));
+		}
+		setHorizontalAlignment(JLabel.CENTER);
 		return label;
 	}
 }

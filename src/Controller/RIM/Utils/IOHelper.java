@@ -10,10 +10,15 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
+
+import org.apache.commons.net.ftp.FTP;
+import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPFile;
 /*******************************************************************************************
  * Project: ReUnite
  *
@@ -101,6 +106,62 @@ public final class IOHelper {
 			}
 		}
 		return name1;
+	}
+    
+    public static void uploadFiles(File[] files, String directory) {
+		FTPClient client = new FTPClient();
+		FileInputStream fis = null;
+		if(files != null){
+		try {
+			client.connect("205.134.253.65");
+			client.login("reunite@saharpharma.com", "guest123");
+			int reply = client.getReplyCode();
+			if (!client.isConnected()) {
+				System.out
+						.println("FTP server refused connection." + reply);
+				client.disconnect();
+				System.exit(1);
+			} else {
+				System.out.println("FTP server connected." + reply);
+		        client.setControlKeepAliveTimeout(300);
+		        client.enterLocalPassiveMode();
+		        
+				if(directory!=null)
+				{
+					if(!client.changeWorkingDirectory(directory))
+					{
+						client.makeDirectory("/"+directory);
+					}
+		
+					client.changeWorkingDirectory(directory);
+					if(client.setFileType(FTP.BINARY_FILE_TYPE)){		
+						for(int i=0; i<files.length; i++)
+						{
+							// Create an InputStream for the file to be uploaded
+							fis = new FileInputStream(files[i]);
+							// Store file to server
+							if(client.storeUniqueFile(files[i].getName(), fis))
+							{
+								System.out.println("Successfully uploaded "+files[i].getName());
+							}
+						}	
+					}
+				}				
+			}
+			client.logout();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (fis != null) {
+					fis.close();
+				}
+				client.disconnect();
+			} catch (IOException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		}
 	}
     
     /**

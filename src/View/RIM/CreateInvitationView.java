@@ -15,7 +15,6 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner.DateEditor;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
@@ -25,24 +24,22 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 import net.miginfocom.swing.MigLayout;
 import Controller.RIM.ContactImporter;
-import Controller.RIM.CreateInvitationViewController;
+import Controller.RIM.CreateInvitationController;
 import Controller.RIM.LookAndFeelController;
 import Images.RIM.ImageHelper;
 import Model.Membership.Guest;
 import View.RIM.Components.NavigationFooter;
 import View.RIM.Components.Table.AutoResizeTableColumns;
-import View.RIM.Components.Table.ColorEditor;
-import View.RIM.Components.Table.ColorRenderer;
+import View.RIM.Components.Table.DateCellEditor;
 import View.RIM.Components.Table.IconEditor;
 import View.RIM.Components.Table.IconRenderer;
-import View.RIM.Components.Table.DateCellEditor;
 
 
 @SuppressWarnings("serial")
 public class CreateInvitationView extends JFrame
 {
 	//Controller
-	private CreateInvitationViewController controller = new CreateInvitationViewController();
+	private CreateInvitationController controller = new CreateInvitationController();
 
 	// The panel that holds the cards
 	private JPanel mainPanel;
@@ -190,7 +187,7 @@ public class CreateInvitationView extends JFrame
 		setRenderers();
 		
 		AutoResizeTableColumns resizer = new AutoResizeTableColumns(table, controller.getTableModel(), 32, true, true, new boolean[table.getColumnCount()]);
-		table.getModel().addTableModelListener(resizer);
+		controller.getTableModel().addTableModelListener(resizer);
 		
 		return table;
 	}
@@ -199,6 +196,7 @@ public class CreateInvitationView extends JFrame
 	{	
 		//Align text to center
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setFont(new Font("Segoe UI", Font.BOLD, 18));
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 		table.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
 		table.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
@@ -211,8 +209,6 @@ public class CreateInvitationView extends JFrame
 		table.getColumnModel().getColumn(0).setCellRenderer(new IconRenderer());
 		table.getColumnModel().getColumn(0).setCellEditor(new IconEditor());
 		
-		table.getColumnModel().getColumn(6).setCellRenderer(new ColorRenderer(true));
-		table.getColumnModel().getColumn(6).setCellEditor(new ColorEditor());
 		
 		// Create our cell editor
 		DateCellEditor datePickerCellEditor = new DateCellEditor();
@@ -222,7 +218,6 @@ public class CreateInvitationView extends JFrame
 
 		// Set it for the appropriate table column.
 		table.getColumnModel().getColumn(4).setCellEditor(datePickerCellEditor);
-		
 	}
 	
 	public JPanel getStep2()

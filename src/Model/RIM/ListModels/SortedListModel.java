@@ -24,7 +24,7 @@ import javax.swing.event.ListDataListener;
 public class SortedListModel extends AbstractListModel<Object> {
     
     @SuppressWarnings("unused")
-	private SortedListModel() {}
+	public SortedListModel() {}
     
     /**
      * Create a SortedListModel from an existing model

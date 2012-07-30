@@ -44,6 +44,8 @@ package View.RIM.Components;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Paint;
 
 import javax.swing.JPanel;
 
@@ -56,6 +58,9 @@ import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
 
 import Model.Invitation;
+import javax.swing.BoxLayout;
+import net.miginfocom.swing.MigLayout;
+import java.awt.BorderLayout;
 
 public class PieChart extends JPanel {
 
@@ -77,6 +82,7 @@ public class PieChart extends JPanel {
      */
     public PieChart(String title, Invitation invitation) {
     	this.invitation = invitation;
+        setLayout(new BorderLayout(0, 0));
         add(createDemoPanel());
         setVisible(true);
     }
@@ -104,7 +110,7 @@ public class PieChart extends JPanel {
     private JFreeChart createChart(PieDataset dataset) {
 
         JFreeChart chart = ChartFactory.createPieChart(
-            "Invitation Response",  // chart title
+            null,  // chart title
             dataset,             // data
             true,                // include legend
             true,
@@ -126,7 +132,8 @@ public class PieChart extends JPanel {
     {
         JFreeChart chart = createChart(createDataset());
         ChartPanel panel = new ChartPanel(chart);
-        panel.setMaximumSize(new Dimension(200, 200));
+        panel.setPreferredSize(new Dimension(400, 200));
+        panel.setMaximumSize(new Dimension(20, 200));
         panel.setSize(150, 150);
         panel.setMouseWheelEnabled(true);
         return panel;

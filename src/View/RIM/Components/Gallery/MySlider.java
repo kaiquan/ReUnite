@@ -20,12 +20,14 @@ public class MySlider extends JPanel {
     
     public MySlider() {
         setLayout(new BorderLayout());
-        setBackground(Color.BLUE);
  
         btnPrevious.setPressedIcon(ImageHelper.loadImageIcon("slideshowPrevDark.png", "gda"));
+        btnPrevious.setOpaque(false);
         btnNext.setPressedIcon(ImageHelper.loadImageIcon("slideshowNextDark.png", "gda"));
-        pnlMain.setBackground(Color.BLACK);
-        
+        btnNext.setOpaque(false);
+        pnlMain.setOpaque(false);
+        setOpaque(false);
+        setSize(400, 400);
         add(pnlMain, BorderLayout.CENTER);
         add(btnNext, BorderLayout.EAST);
         add(btnPrevious, BorderLayout.WEST);

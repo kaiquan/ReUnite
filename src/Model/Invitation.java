@@ -260,6 +260,35 @@ public class Invitation
 		}
 		return guestList;
 	}
+	
+	public ArrayList<Guest> GET_ALL_ATTENDING_GUESTS()
+	{
+		ResultSet rs = null;
+		ArrayList<Guest> guestList = new ArrayList<Guest>();
+		String dbQuery = "SELECT * FROM " + TableNames.GUEST_TABLE + " g INNER JOIN  "+TableNames.ACCOUNT_TABLE +" a ON i.userName = a.userName WHERE invitationID = " + invitationID + " AND g.response='Attending'";
+		try
+		{
+			rs = db.readRequest(dbQuery);
+			while (rs.next())
+			{
+				Guest guest = new Guest();
+				guest.setUserName(rs.getString("userName"));
+				guest.setFirstName(rs.getString("firstName"));
+				guest.setLastName(rs.getString("lastName"));
+				guest.setEmail(rs.getString("email"));
+				guest.setHandphoneNo(rs.getString("handPhoneNo"));
+				guest.setTelephoneNo(rs.getString("telephoneNo"));
+				guest.setNric(rs.getString("nric"));
+		
+				guestList.add(guest);
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return guestList;
+	}
 
 	public boolean CREATE_INVITATION(Invitation invitation)
 	{

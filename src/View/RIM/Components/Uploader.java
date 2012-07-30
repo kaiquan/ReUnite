@@ -111,16 +111,16 @@ public class Uploader extends JFrame {
 
 		JLabel uploadLabel = new JLabel();
 		uploadLabel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 10));
-		uploadButton = new JButton(uploadAction);
-		uploadLabel.add(uploadButton);
-		buttons.add(uploadButton);
+		
 
+		uploadButton = new JButton(uploadAction);
 		addButton = new JButton(browseAction);
 		removeButton = new JButton(removeAction);
 
-		buttons.add(removeButton);
 		buttons.add(addButton);
-
+		buttons.add(removeButton);
+		buttons.add(uploadButton);
+		
 		cp.add(buttons, BorderLayout.SOUTH);
 
 		currentDir = new File(System.getProperty("user.dir"));

@@ -8,12 +8,16 @@ import java.awt.event.WindowListener;
 
 import javax.swing.*;
 
+import com.explodingpixels.macwidgets.HudWindow;
+
 import Images.RIM.ImageHelper;
 import net.miginfocom.swing.MigLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.BorderLayout;
 
 @SuppressWarnings("serial")
-public class ImageGallery extends JFrame
+public class ImageGallery extends HudWindow
 {
 	private static MySlider mySlider;
 	private static GalleryImage pic1;
@@ -22,42 +26,34 @@ public class ImageGallery extends JFrame
 	ImageGallery()
 	{
 		JPanel mainPanel = new JPanel();
-		mainPanel.setLayout(new MigLayout("", "[46px][grow]", "[41px,grow]"));
-		
-		mySlider = new MySlider();
-		mySlider.setMinimumSize(new Dimension(300, 350));
 		
 		pic1 = new GalleryImage();
 		pic1.setIcon(ImageHelper.loadImageIcon("myPic.jpg", "testing"));
-		pic1.setSize(mySlider.getSize());
-		mySlider.addSliderComponent(pic1);
 		
 		pic2 = new GalleryImage();
 		pic2.setIcon(ImageHelper.loadImageIcon("bradPitt.jpg", "testing"));
-		pic2.setSize(mySlider.getSize());
-		mySlider.addSliderComponent(pic2);
-		
-		mySlider.refresh();
-		
-		mainPanel.add(mySlider, "cell 0 0,alignx left,aligny top");
-		
-		
-		JPanel panel = new JPanel();
-		panel.setMinimumSize(new Dimension(100, 10));
-		
-		JButton btnNewButton = new JButton("New button");
-		panel.add(btnNewButton);
-		
-		mainPanel.add(panel, "cell 1 0,grow");
 		
 	
 		
 		setContentPane(mainPanel);
-		setVisible(true);
-		setSize(500, 400);
 		
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		addWindowListener(new WindowListener()
+		mySlider = new MySlider();
+		mySlider.setBackground(new Color(240, 240, 240));
+		mySlider.setMinimumSize(new Dimension(300, 350));
+		pic1.setSize(mySlider.getSize());
+		mySlider.addSliderComponent(pic1);
+		pic2.setSize(mySlider.getSize());
+		mySlider.addSliderComponent(pic2);
+		
+		mySlider.refresh();
+		mainPanel.setLayout(new BorderLayout(0, 0));
+		
+		mainPanel.add(mySlider);
+		getJDialog().setVisible(true);
+		getJDialog().setSize(500, 400);
+		
+		getJDialog().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		getJDialog().addWindowListener(new WindowListener()
 		{
 
 			@Override
@@ -110,7 +106,7 @@ public class ImageGallery extends JFrame
 			}
 			
 		});
-		addComponentListener(new ComponentListener()
+		getJDialog().addComponentListener(new ComponentListener()
 		{
 
 			@Override

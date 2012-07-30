@@ -54,9 +54,9 @@ public class BookPackageForm {
 	private JButton jButton_createEvent = null;
 	private JLabel jLabel_step1 = null;
 	private JLabel jLabel_step2 = null;
-	private JFrame jFrame_StandardPackage = null;  //  @jve:decl-index=0:visual-constraint="259,586"
+	private JFrame jFrame_StandardPackage = null;  //  @jve:decl-index=0:visual-constraint="275,586"
 	private JScrollPane jScrollPane_StandardPackage = null;
-	private JPanel jPanel_standardPackage = null;  //  @jve:decl-index=0:visual-constraint="270,826"
+	private JPanel jPanel_standardPackage = null;
 	private JPanel jPanel_seachPanel = null;
 	private JScrollPane jScrollPane_search = null;
 	private JTable jTable_search = null;
@@ -211,8 +211,9 @@ public class BookPackageForm {
 			jButton_selectStandardPackage.setText("Select Available Packages");
 			jButton_selectStandardPackage
 					.addActionListener(new java.awt.event.ActionListener() {
+						@SuppressWarnings("static-access")
 						public void actionPerformed(java.awt.event.ActionEvent e) {
-							getJFrame_StandardPackage().setVisible(true);
+							
 							AdministratePackageControl control= new AdministratePackageControl();
 							DefaultTableModel model=control.processRetrievePackage();
 							getJTable_search().setModel(model);
@@ -221,8 +222,16 @@ public class BookPackageForm {
 							jTable_search.getColumnModel().getColumn(1).setPreferredWidth(150);
 							jTable_search.getColumnModel().getColumn(2).setPreferredWidth(150);
 							jTable_search.getColumnModel().getColumn(3).setPreferredWidth(550);
-							//set the frame location
 							
+							getJToolBar_previous().setVisible(false);
+							getJToolBar_next().setVisible(false);
+							//set the frame location
+							getJFrame_StandardPackage().setVisible(true);
+							getJFrame_StandardPackage().setSize(new Dimension(675, 237));
+							getJPanel_standardPackage().setPreferredSize(new Dimension(640, 50));
+							
+							Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+							getJFrame_StandardPackage().setLocation(screenSize.width/2 - (getJFrame_StandardPackage().getWidth()/2),screenSize.height/2 - (getJFrame_StandardPackage().getHeight()/2));
 						}
 					});
 		}
@@ -377,10 +386,16 @@ public class BookPackageForm {
 	private JFrame getJFrame_StandardPackage() {
 		if (jFrame_StandardPackage == null) {
 			jFrame_StandardPackage = new JFrame();
-			jFrame_StandardPackage.setSize(new Dimension(731, 237));
+			jFrame_StandardPackage.setSize(new Dimension(675, 237));
 			jFrame_StandardPackage.setTitle("Select Standard Package");
 			jFrame_StandardPackage.setContentPane(getJScrollPane_StandardPackage());
-			jFrame_StandardPackage.setResizable(true);
+			jFrame_StandardPackage.setResizable(false);
+			jFrame_StandardPackage
+					.addComponentListener(new java.awt.event.ComponentAdapter() {
+						public void componentResized(java.awt.event.ComponentEvent e) {
+							System.out.println(jFrame_StandardPackage.getSize()+"  "+getJPanel_body().getSize()); // TODO Auto-generated Event stub componentResized()
+						}
+					});
 			jFrame_StandardPackage
 					.addComponentListener(new java.awt.event.ComponentAdapter() {
 						public void componentMoved(java.awt.event.ComponentEvent e) {
@@ -393,6 +408,7 @@ public class BookPackageForm {
 	private JScrollPane getJScrollPane_StandardPackage() {
 		if (jScrollPane_StandardPackage == null) {
 			jScrollPane_StandardPackage = new JScrollPane();
+			jScrollPane_StandardPackage.setViewportView(getJPanel_standardPackage());
 		}
 		return jScrollPane_StandardPackage;
 	}
@@ -401,7 +417,8 @@ public class BookPackageForm {
 			jPanel_standardPackage = new JPanel();
 			jPanel_standardPackage.setLayout(null);
 			jPanel_standardPackage.setBackground(SystemColor.control);
-			jPanel_standardPackage.setPreferredSize(new Dimension(695, 1139));
+			jPanel_standardPackage.setMinimumSize(new Dimension(640, 775));
+			jPanel_standardPackage.setPreferredSize(new Dimension(640, 775));
 			jPanel_standardPackage.add(getJPanel_seachPanel(), null);
 			jPanel_standardPackage.add(getJPanel_body(), null);
 		}
@@ -412,7 +429,7 @@ public class BookPackageForm {
 			jPanel_seachPanel = new JPanel();
 			jPanel_seachPanel.setLayout(null);
 			jPanel_seachPanel.setOpaque(false);
-			jPanel_seachPanel.setBounds(new Rectangle(32, 23, 624, 200));
+			jPanel_seachPanel.setBounds(new Rectangle(15, 23, 624, 200));
 			jPanel_seachPanel.add(getJScrollPane_search(), null);
 			jPanel_seachPanel.add(getJToolBar_previous(), null);
 			jPanel_seachPanel.add(getJToolBar_next(), null);
@@ -427,6 +444,7 @@ public class BookPackageForm {
 		}
 		return jScrollPane_search;
 	}
+	@SuppressWarnings("static-access")
 	private JTable getJTable_search() {
 		if (jTable_search == null) {
 			DefaultTableModel model= new DefaultTableModel();
@@ -454,6 +472,10 @@ public class BookPackageForm {
 						retrievePackage(ID);
 						getJToolBar_next().setVisible(true);
 						getJToolBar_previous().setVisible(true);
+						getJPanel_standardPackage().setPreferredSize(new Dimension(640, 775));
+						getJFrame_StandardPackage().setSize(new Dimension(690,622));
+						Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+						getJFrame_StandardPackage().setLocation(screenSize.width/2 - (getJFrame_StandardPackage().getWidth()/2),screenSize.height/2 - (getJFrame_StandardPackage().getHeight()/2));
 					}
 				}
 				 @Override
@@ -497,6 +519,10 @@ public class BookPackageForm {
 					retrievePackage(ID);
 					getJToolBar_next().setVisible(true);
 					getJToolBar_previous().setVisible(true);
+					getJPanel_standardPackage().setPreferredSize(new Dimension(695, 775));
+					getJFrame_StandardPackage().setSize(new Dimension(690,622));
+					Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+					getJFrame_StandardPackage().setLocation(screenSize.width/2 - (getJFrame_StandardPackage().getWidth()/2),screenSize.height/2 - (getJFrame_StandardPackage().getHeight()/2));
 				}
 			});
 		}
@@ -509,7 +535,7 @@ public class BookPackageForm {
 			jToolBar_previous.setVisible(false);
 			jToolBar_previous.setFloatable(false);
 			jToolBar_previous.setFocusable(false);
-			jToolBar_previous.setBounds(new Rectangle(5, 160, 50, 40));
+			jToolBar_previous.setBounds(new Rectangle(0, 160, 50, 40));
 			jToolBar_previous.add(getJButton_previous());
 		}
 		return jToolBar_previous;
@@ -529,6 +555,10 @@ public class BookPackageForm {
 						getJTable_search().changeSelection(row, 0, false, false);
 						String ID=getJTable_search().getValueAt(getJTable_search().getSelectedRow(), 0).toString();
 						retrievePackage(ID);
+						getJPanel_standardPackage().setPreferredSize(new Dimension(640, 775));
+						getJFrame_StandardPackage().setSize(new Dimension(690,622));
+						Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+						getJFrame_StandardPackage().setLocation(screenSize.width/2 - (getJFrame_StandardPackage().getWidth()/2),screenSize.height/2 - (getJFrame_StandardPackage().getHeight()/2));
 					}
 				}
 			});
@@ -542,7 +572,7 @@ public class BookPackageForm {
 			jToolBar_next.setVisible(false);
 			jToolBar_next.setFloatable(false);
 			jToolBar_next.setFocusable(false);
-			jToolBar_next.setBounds(new Rectangle(570, 160, 50, 40));
+			jToolBar_next.setBounds(new Rectangle(590, 160, 50, 40));
 			jToolBar_next.add(getJButton_next());
 		}
 		return jToolBar_next;
@@ -562,6 +592,10 @@ public class BookPackageForm {
 						getJTable_search().changeSelection(row, 0, false, false);
 						String ID=getJTable_search().getValueAt(getJTable_search().getSelectedRow(), 0).toString();
 						retrievePackage(ID);
+						getJPanel_standardPackage().setPreferredSize(new Dimension(640, 775));
+						getJFrame_StandardPackage().setSize(new Dimension(690,622));
+						Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+						getJFrame_StandardPackage().setLocation(screenSize.width/2 - (getJFrame_StandardPackage().getWidth()/2),screenSize.height/2 - (getJFrame_StandardPackage().getHeight()/2));
 					}
 				}
 			});
@@ -572,7 +606,10 @@ public class BookPackageForm {
 		if (jPanel_body == null) {
 			jPanel_body = new JPanel();
 			jPanel_body.setLayout(new BoxLayout(getJPanel_body(), BoxLayout.Y_AXIS));
-			jPanel_body.setBounds(new Rectangle(32, 240, 624, 535));
+			jPanel_body.setSize(new Dimension(624,535));
+			jPanel_body.setPreferredSize(new Dimension(624,535));
+			jPanel_body.setMinimumSize(new Dimension(624,535));
+			jPanel_body.setBounds(new Rectangle(15, 240, 624, 535));
 			jPanel_body.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 			jPanel_body.add(getJPanel_package(), null);
 			jPanel_body.add(getJPanel_ballroom(), null);
@@ -641,17 +678,25 @@ public class BookPackageForm {
 			jToggleButton_viewPackage.addItemListener(new java.awt.event.ItemListener() {
 				public void itemStateChanged(java.awt.event.ItemEvent e) {
 					if(jToggleButton_viewPackage.isSelected()){
-						getJPanel_package().setMaximumSize(new Dimension(616,250));
-						getJPanel_package().setPreferredSize(new Dimension(616,250));
-						getJPanel_package().setSize(new Dimension(616,250));
-						getJPanel_package().setMinimumSize(new Dimension(616,250));
-						
+						getJPanel_package().setMaximumSize(new Dimension(618,250));
+						getJPanel_package().setPreferredSize(new Dimension(618,250));
+						getJPanel_package().setSize(new Dimension(618,250));
+						Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+						//jPanel_body.setPreferredSize(new Dimension(624,jPanel_body.HEIGHT+170));
+						getJPanel_body().setSize(new Dimension(getJPanel_body().WIDTH,getJPanel_body().HEIGHT+170));
+						getJPanel_body().setPreferredSize(new Dimension(getJPanel_body().WIDTH,getJPanel_body().HEIGHT+170));
+						getJPanel_standardPackage().setPreferredSize(new Dimension(screenSize.width,screenSize.height+170));	
 					}
 					else{
 						getJPanel_package().setMaximumSize(new Dimension(618, 80));
 						getJPanel_package().setPreferredSize(new Dimension(618, 80));
 						getJPanel_package().setSize(new Dimension(618, 80));
 						getJPanel_package().setMinimumSize(new Dimension(618, 80));
+						Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+						//jPanel_body.setPreferredSize(new Dimension(624,jPanel_body.HEIGHT-170));
+						getJPanel_body().setSize(new Dimension(getJPanel_body().WIDTH,getJPanel_body().HEIGHT-170));
+						getJPanel_body().setPreferredSize(new Dimension(getJPanel_body().WIDTH,getJPanel_body().HEIGHT-170));
+						getJPanel_standardPackage().setPreferredSize(new Dimension(screenSize.width,screenSize.height-170));
 					}
 				}
 			});

@@ -54,7 +54,7 @@ public class BookPackageForm {
 	private JButton jButton_createEvent = null;
 	private JLabel jLabel_step1 = null;
 	private JLabel jLabel_step2 = null;
-	private JFrame jFrame_StandardPackage = null;  //  @jve:decl-index=0:visual-constraint="275,586"
+	private JFrame jFrame_StandardPackage = null;  //  @jve:decl-index=0:visual-constraint="518,46"
 	private JScrollPane jScrollPane_StandardPackage = null;
 	private JPanel jPanel_standardPackage = null;
 	private JPanel jPanel_seachPanel = null;
@@ -386,22 +386,10 @@ public class BookPackageForm {
 	private JFrame getJFrame_StandardPackage() {
 		if (jFrame_StandardPackage == null) {
 			jFrame_StandardPackage = new JFrame();
-			jFrame_StandardPackage.setSize(new Dimension(675, 237));
+			jFrame_StandardPackage.setSize(new Dimension(675, 878));
 			jFrame_StandardPackage.setTitle("Select Standard Package");
 			jFrame_StandardPackage.setContentPane(getJScrollPane_StandardPackage());
 			jFrame_StandardPackage.setResizable(false);
-			jFrame_StandardPackage
-					.addComponentListener(new java.awt.event.ComponentAdapter() {
-						public void componentResized(java.awt.event.ComponentEvent e) {
-							System.out.println(jFrame_StandardPackage.getSize()+"  "+getJPanel_body().getSize()); // TODO Auto-generated Event stub componentResized()
-						}
-					});
-			jFrame_StandardPackage
-					.addComponentListener(new java.awt.event.ComponentAdapter() {
-						public void componentMoved(java.awt.event.ComponentEvent e) {
-							System.out.println(jFrame_StandardPackage.getSize()+"/n"+jFrame_StandardPackage.getLocation()); // TODO Auto-generated Event stub componentMoved()
-						}
-					});
 		}
 		return jFrame_StandardPackage;
 	}
@@ -417,7 +405,6 @@ public class BookPackageForm {
 			jPanel_standardPackage = new JPanel();
 			jPanel_standardPackage.setLayout(null);
 			jPanel_standardPackage.setBackground(SystemColor.control);
-			jPanel_standardPackage.setMinimumSize(new Dimension(640, 775));
 			jPanel_standardPackage.setPreferredSize(new Dimension(640, 775));
 			jPanel_standardPackage.add(getJPanel_seachPanel(), null);
 			jPanel_standardPackage.add(getJPanel_body(), null);
@@ -608,7 +595,6 @@ public class BookPackageForm {
 			jPanel_body.setLayout(new BoxLayout(getJPanel_body(), BoxLayout.Y_AXIS));
 			jPanel_body.setSize(new Dimension(624,535));
 			jPanel_body.setPreferredSize(new Dimension(624,535));
-			jPanel_body.setMinimumSize(new Dimension(624,535));
 			jPanel_body.setBounds(new Rectangle(15, 240, 624, 535));
 			jPanel_body.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 			jPanel_body.add(getJPanel_package(), null);
@@ -681,22 +667,19 @@ public class BookPackageForm {
 						getJPanel_package().setMaximumSize(new Dimension(618,250));
 						getJPanel_package().setPreferredSize(new Dimension(618,250));
 						getJPanel_package().setSize(new Dimension(618,250));
-						Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-						//jPanel_body.setPreferredSize(new Dimension(624,jPanel_body.HEIGHT+170));
-						getJPanel_body().setSize(new Dimension(getJPanel_body().WIDTH,getJPanel_body().HEIGHT+170));
-						getJPanel_body().setPreferredSize(new Dimension(getJPanel_body().WIDTH,getJPanel_body().HEIGHT+170));
-						getJPanel_standardPackage().setPreferredSize(new Dimension(screenSize.width,screenSize.height+170));	
+						//System.out.println(getJPanel_standardPackage().getSize());
+						getJPanel_standardPackage().setPreferredSize(new Dimension(getJPanel_standardPackage().getPreferredSize().width,getJPanel_standardPackage().getPreferredSize().height+170));	
+						getJPanel_body().setSize(new Dimension(getJPanel_body().getSize().width,getJPanel_body().getSize().height+170));
+						//System.out.println(getJPanel_standardPackage().getSize());
 					}
 					else{
 						getJPanel_package().setMaximumSize(new Dimension(618, 80));
 						getJPanel_package().setPreferredSize(new Dimension(618, 80));
 						getJPanel_package().setSize(new Dimension(618, 80));
 						getJPanel_package().setMinimumSize(new Dimension(618, 80));
-						Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-						//jPanel_body.setPreferredSize(new Dimension(624,jPanel_body.HEIGHT-170));
-						getJPanel_body().setSize(new Dimension(getJPanel_body().WIDTH,getJPanel_body().HEIGHT-170));
-						getJPanel_body().setPreferredSize(new Dimension(getJPanel_body().WIDTH,getJPanel_body().HEIGHT-170));
-						getJPanel_standardPackage().setPreferredSize(new Dimension(screenSize.width,screenSize.height-170));
+
+						getJPanel_standardPackage().setPreferredSize(new Dimension(getJPanel_standardPackage().getPreferredSize().width,getJPanel_standardPackage().getPreferredSize().height-170));	
+						getJPanel_body().setSize(new Dimension(getJPanel_body().getSize().width,getJPanel_body().getSize().height-170));
 					}
 				}
 			});
@@ -772,16 +755,20 @@ public class BookPackageForm {
 			jToggleButton_viewBallroom.addItemListener(new java.awt.event.ItemListener() {
 				public void itemStateChanged(java.awt.event.ItemEvent e) {
 					if(jToggleButton_viewBallroom.isSelected()){
-						getJPanel_ballroom().setMaximumSize(new Dimension(616,400));
-						getJPanel_ballroom().setPreferredSize(new Dimension(616,400));
-						getJPanel_ballroom().setSize(new Dimension(616,400));
-						getJPanel_ballroom().setMinimumSize(new Dimension(616,400));
+						getJPanel_ballroom().setMaximumSize(new Dimension(616,420));
+						getJPanel_ballroom().setPreferredSize(new Dimension(616,420));
+						getJPanel_ballroom().setSize(new Dimension(616,420));
+						getJPanel_ballroom().setMinimumSize(new Dimension(616,420));
+						getJPanel_standardPackage().setPreferredSize(new Dimension(getJPanel_standardPackage().getPreferredSize().width,getJPanel_standardPackage().getPreferredSize().height+340));	
+						getJPanel_body().setSize(new Dimension(getJPanel_body().getSize().width,getJPanel_body().getSize().height+340));
 					}
 					else{
 						getJPanel_ballroom().setMaximumSize(new Dimension(618, 80));
 						getJPanel_ballroom().setPreferredSize(new Dimension(618, 80));
 						getJPanel_ballroom().setSize(new Dimension(618, 80));
 						getJPanel_ballroom().setMinimumSize(new Dimension(618, 80));
+						getJPanel_standardPackage().setPreferredSize(new Dimension(getJPanel_standardPackage().getPreferredSize().width,getJPanel_standardPackage().getPreferredSize().height-340));	
+						getJPanel_body().setSize(new Dimension(getJPanel_body().getSize().width,getJPanel_body().getSize().height-340));
 					}
 				}
 			});
@@ -902,18 +889,20 @@ public class BookPackageForm {
 					.addItemListener(new java.awt.event.ItemListener() {
 						public void itemStateChanged(java.awt.event.ItemEvent e) {
 							if(jToggleButton_viewEntertainment.isSelected()){
-								getJPanel_entertainment().setMaximumSize(new Dimension(616,300));
-								getJPanel_entertainment().setPreferredSize(new Dimension(616,300));
-								getJPanel_entertainment().setSize(new Dimension(616,300));
-								getJPanel_entertainment().setMinimumSize(new Dimension(616,300));
-								//set the overall body size
+								getJPanel_entertainment().setMaximumSize(new Dimension(616,250));
+								getJPanel_entertainment().setPreferredSize(new Dimension(616,250));
+								getJPanel_entertainment().setSize(new Dimension(616,250));
+								getJPanel_entertainment().setMinimumSize(new Dimension(616,250));
+								getJPanel_standardPackage().setPreferredSize(new Dimension(getJPanel_standardPackage().getPreferredSize().width,getJPanel_standardPackage().getPreferredSize().height+165));	
+								getJPanel_body().setSize(new Dimension(getJPanel_body().getSize().width,getJPanel_body().getSize().height+165));
 							}
 							else{
 								getJPanel_entertainment().setMaximumSize(new Dimension(616,80));
 								getJPanel_entertainment().setPreferredSize(new Dimension(616,80));
 								getJPanel_entertainment().setSize(new Dimension(616,80));
 								getJPanel_entertainment().setMinimumSize(new Dimension(616,80));
-								
+								getJPanel_standardPackage().setPreferredSize(new Dimension(getJPanel_standardPackage().getPreferredSize().width,getJPanel_standardPackage().getPreferredSize().height-165));	
+								getJPanel_body().setSize(new Dimension(getJPanel_body().getSize().width,getJPanel_body().getSize().height-165));
 							}
 						}
 					});
@@ -953,7 +942,7 @@ public class BookPackageForm {
 		if (jTextField_entertainmentFinalPrice == null) {
 			jTextField_entertainmentFinalPrice = new JTextField();
 			jTextField_entertainmentFinalPrice.setEditable(false);
-			jTextField_entertainmentFinalPrice.setBounds(new Rectangle(390, 75, 212, 30));
+			jTextField_entertainmentFinalPrice.setBounds(new Rectangle(390, 80, 212, 30));
 		}
 		return jTextField_entertainmentFinalPrice;
 	}
@@ -972,9 +961,8 @@ public class BookPackageForm {
 			jLabel_mealOption1.setText("Option 1 :");
 			jLabel_mealOption1.setBounds(new Rectangle(15, 22, 80, 30));
 			jPanel_meal = new JPanel();
-			//jPanel_meal.setPreferredSize(new Dimension());
-			//jPanel_meal.setMaximumSize(new Dimension());
-			//jPanel_meal.setMinimumSize(new Dimension());
+			jPanel_meal.setPreferredSize(new Dimension(616,240));
+			jPanel_meal.setMaximumSize(new Dimension(616,240));
 			jPanel_meal.setBorder(BorderFactory.createTitledBorder(null,"Meal Options", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Segoe UI", Font.PLAIN, 14), Color.black));
 			jPanel_meal.setLayout(new BoxLayout(getJPanel_meal(), BoxLayout.Y_AXIS));
 			jPanel_meal.add(getJPanel_mealOption1(), null);
@@ -1043,29 +1031,38 @@ public class BookPackageForm {
 			jToggleButton_viewMealOption1.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jToggleButton_viewMealOption1.setEnabled(false);
 			jToggleButton_viewMealOption1.setText("View Meal Details");
-			jToggleButton_viewMealOption1.setBounds(new Rectangle(460, 23, 136, 30));
+			jToggleButton_viewMealOption1.setBounds(new Rectangle(465, 23, 136, 30));
 			jToggleButton_viewMealOption1.setFocusable(false);
 			jToggleButton_viewMealOption1.setFocusPainted(false);
 			jToggleButton_viewMealOption1
 					.addItemListener(new java.awt.event.ItemListener() {
 						public void itemStateChanged(java.awt.event.ItemEvent e) {
-							AdministrateMealControl control= new AdministrateMealControl();
-							getJTable_mealOption1().setModel(control.processRetrieveMealMenuByID(getJTextField_mealOption1().getName()));
-							jTable_mealOption1.setAutoResizeMode(jTable_search.AUTO_RESIZE_OFF);
-							jTable_mealOption1.getColumnModel().getColumn(0).setPreferredWidth(50);
-							jTable_mealOption1.getColumnModel().getColumn(1).setPreferredWidth(150);
-							jTable_mealOption1.getColumnModel().getColumn(2).setPreferredWidth(150);
-							jTable_mealOption1.getColumnModel().getColumn(3).setPreferredWidth(150);
-							jTable_mealOption1.getColumnModel().getColumn(3).setPreferredWidth(500);
+							if(jTable_mealOption1.getModel().getRowCount()==0){
+								AdministrateMealControl control= new AdministrateMealControl();
+								getJTable_mealOption1().setModel(control.processRetrieveMealMenuByID(getJTextField_mealOption1().getName()));
+								jTable_mealOption1.setAutoResizeMode(jTable_search.AUTO_RESIZE_OFF);
+								jTable_mealOption1.getColumnModel().getColumn(0).setPreferredWidth(50);
+								jTable_mealOption1.getColumnModel().getColumn(1).setPreferredWidth(150);
+								jTable_mealOption1.getColumnModel().getColumn(2).setPreferredWidth(150);
+								jTable_mealOption1.getColumnModel().getColumn(3).setPreferredWidth(150);
+								jTable_mealOption1.getColumnModel().getColumn(3).setPreferredWidth(500);
+							}
 							if(jToggleButton_viewMealOption1.isSelected()){
+								jPanel_meal.setMaximumSize(new Dimension(jPanel_meal.getMaximumSize().width,jPanel_meal.getMaximumSize().height+102));
 								jPanel_mealOption1.setPreferredSize(new Dimension(609,172));
 								jPanel_mealOption1.setMaximumSize(new Dimension(609,172));
 								jPanel_mealOption1.setMinimumSize(new Dimension(609,172));
+								getJPanel_standardPackage().setPreferredSize(new Dimension(getJPanel_standardPackage().getPreferredSize().width,getJPanel_standardPackage().getPreferredSize().height+102));	
+								getJPanel_body().setSize(new Dimension(getJPanel_body().getSize().width,getJPanel_body().getSize().height+102));
+								
 							}
 							else{
+								jPanel_meal.setMaximumSize(new Dimension(jPanel_meal.getMaximumSize().width,jPanel_meal.getMaximumSize().height-102));
 								jPanel_mealOption1.setPreferredSize(new Dimension(609,70));
 								jPanel_mealOption1.setMaximumSize(new Dimension(609,70));
 								jPanel_mealOption1.setMinimumSize(new Dimension(609,70));
+								getJPanel_standardPackage().setPreferredSize(new Dimension(getJPanel_standardPackage().getPreferredSize().width,getJPanel_standardPackage().getPreferredSize().height-102));	
+								getJPanel_body().setSize(new Dimension(getJPanel_body().getSize().width,getJPanel_body().getSize().height-102));
 							}
 							
 					}});
@@ -1102,28 +1099,36 @@ public class BookPackageForm {
 			jToggleButton_viewMealOption2.setFocusable(false);
 			jToggleButton_viewMealOption2.setEnabled(false);
 			jToggleButton_viewMealOption2.setFocusPainted(false);
-			jToggleButton_viewMealOption2.setBounds(new Rectangle(460, 23, 136, 30));
+			jToggleButton_viewMealOption2.setBounds(new Rectangle(465, 23, 136, 30));
 			jToggleButton_viewMealOption2.setText("View MealDetails");
 			jToggleButton_viewMealOption2
 					.addItemListener(new java.awt.event.ItemListener() {
 						public void itemStateChanged(java.awt.event.ItemEvent e) {
-							AdministrateMealControl control= new AdministrateMealControl();
-							getJTable_mealOption2().setModel(control.processRetrieveMealMenuByID(getJTextField_mealOption2().getName()));
-							jTable_mealOption2.setAutoResizeMode(jTable_search.AUTO_RESIZE_OFF);
-							jTable_mealOption2.getColumnModel().getColumn(0).setPreferredWidth(50);
-							jTable_mealOption2.getColumnModel().getColumn(1).setPreferredWidth(150);
-							jTable_mealOption2.getColumnModel().getColumn(2).setPreferredWidth(150);
-							jTable_mealOption2.getColumnModel().getColumn(3).setPreferredWidth(150);
-							jTable_mealOption2.getColumnModel().getColumn(3).setPreferredWidth(500);
+							if(jTable_mealOption2.getModel().getRowCount()==0){
+								AdministrateMealControl control= new AdministrateMealControl();
+								getJTable_mealOption2().setModel(control.processRetrieveMealMenuByID(getJTextField_mealOption2().getName()));
+								jTable_mealOption2.setAutoResizeMode(jTable_search.AUTO_RESIZE_OFF);
+								jTable_mealOption2.getColumnModel().getColumn(0).setPreferredWidth(50);
+								jTable_mealOption2.getColumnModel().getColumn(1).setPreferredWidth(150);
+								jTable_mealOption2.getColumnModel().getColumn(2).setPreferredWidth(150);
+								jTable_mealOption2.getColumnModel().getColumn(3).setPreferredWidth(150);
+								jTable_mealOption2.getColumnModel().getColumn(3).setPreferredWidth(500);
+							}
 							if(jToggleButton_viewMealOption2.isSelected()){
+								jPanel_meal.setMaximumSize(new Dimension(jPanel_meal.getMaximumSize().width,jPanel_meal.getMaximumSize().height+102));
 								jPanel_mealOption2.setPreferredSize(new Dimension(609,172));
 								jPanel_mealOption2.setMaximumSize(new Dimension(609,172));
 								jPanel_mealOption2.setMinimumSize(new Dimension(609,172));
+								getJPanel_standardPackage().setPreferredSize(new Dimension(getJPanel_standardPackage().getPreferredSize().width,getJPanel_standardPackage().getPreferredSize().height+102));	
+								getJPanel_body().setSize(new Dimension(getJPanel_body().getSize().width,getJPanel_body().getSize().height+102));
 							}
 							else{
+								jPanel_meal.setMaximumSize(new Dimension(jPanel_meal.getMaximumSize().width,jPanel_meal.getMaximumSize().height-102));
 								jPanel_mealOption2.setPreferredSize(new Dimension(609,70));
 								jPanel_mealOption2.setMaximumSize(new Dimension(609,70));
 								jPanel_mealOption2.setMinimumSize(new Dimension(609,70));
+								getJPanel_standardPackage().setPreferredSize(new Dimension(getJPanel_standardPackage().getPreferredSize().width,getJPanel_standardPackage().getPreferredSize().height-102));	
+								getJPanel_body().setSize(new Dimension(getJPanel_body().getSize().width,getJPanel_body().getSize().height-102));
 							}
 						}
 					});
@@ -1191,28 +1196,36 @@ public class BookPackageForm {
 			jToggleButton_viewMealOption3.setFocusable(false);
 			jToggleButton_viewMealOption3.setFocusPainted(false);
 			jToggleButton_viewMealOption3.setEnabled(false);
-			jToggleButton_viewMealOption3.setBounds(new Rectangle(460, 23, 136, 30));
+			jToggleButton_viewMealOption3.setBounds(new Rectangle(465, 23, 136, 30));
 			jToggleButton_viewMealOption3.setText("View Meal Details");
 			jToggleButton_viewMealOption3
 					.addItemListener(new java.awt.event.ItemListener() {
 						public void itemStateChanged(java.awt.event.ItemEvent e) {
-							AdministrateMealControl control= new AdministrateMealControl();
-							getJTable_mealOption3().setModel(control.processRetrieveMealMenuByID(getJTextField_mealOption3().getName()));
-							jTable_mealOption3.setAutoResizeMode(jTable_search.AUTO_RESIZE_OFF);
-							jTable_mealOption3.getColumnModel().getColumn(0).setPreferredWidth(50);
-							jTable_mealOption3.getColumnModel().getColumn(1).setPreferredWidth(150);
-							jTable_mealOption3.getColumnModel().getColumn(2).setPreferredWidth(150);
-							jTable_mealOption3.getColumnModel().getColumn(3).setPreferredWidth(150);
-							jTable_mealOption3.getColumnModel().getColumn(3).setPreferredWidth(500);
+							if(jTable_mealOption3.getModel().getRowCount()==0){
+								AdministrateMealControl control= new AdministrateMealControl();
+								getJTable_mealOption3().setModel(control.processRetrieveMealMenuByID(getJTextField_mealOption3().getName()));
+								jTable_mealOption3.setAutoResizeMode(jTable_search.AUTO_RESIZE_OFF);
+								jTable_mealOption3.getColumnModel().getColumn(0).setPreferredWidth(50);
+								jTable_mealOption3.getColumnModel().getColumn(1).setPreferredWidth(150);
+								jTable_mealOption3.getColumnModel().getColumn(2).setPreferredWidth(150);
+								jTable_mealOption3.getColumnModel().getColumn(3).setPreferredWidth(150);
+								jTable_mealOption3.getColumnModel().getColumn(3).setPreferredWidth(500);
+							}
 							if(jToggleButton_viewMealOption3.isSelected()){
+								jPanel_meal.setMaximumSize(new Dimension(jPanel_meal.getMaximumSize().width,jPanel_meal.getMaximumSize().height+102));
 								jPanel_mealOption3.setPreferredSize(new Dimension(609,172));
 								jPanel_mealOption3.setMaximumSize(new Dimension(609,172));
 								jPanel_mealOption3.setMinimumSize(new Dimension(609,172));
+								getJPanel_standardPackage().setPreferredSize(new Dimension(getJPanel_standardPackage().getPreferredSize().width,getJPanel_standardPackage().getPreferredSize().height+102));	
+								getJPanel_body().setSize(new Dimension(getJPanel_body().getSize().width,getJPanel_body().getSize().height+102));
 							}
 							else{
+								jPanel_meal.setMaximumSize(new Dimension(jPanel_meal.getMaximumSize().width,jPanel_meal.getMaximumSize().height-102));
 								jPanel_mealOption3.setPreferredSize(new Dimension(609,70));
 								jPanel_mealOption3.setMaximumSize(new Dimension(609,70));
 								jPanel_mealOption3.setMinimumSize(new Dimension(609,70));
+								getJPanel_standardPackage().setPreferredSize(new Dimension(getJPanel_standardPackage().getPreferredSize().width,getJPanel_standardPackage().getPreferredSize().height-102));	
+								getJPanel_body().setSize(new Dimension(getJPanel_body().getSize().width,getJPanel_body().getSize().height-102));
 							}
 						}
 					});

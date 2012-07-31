@@ -1139,7 +1139,7 @@ public class AdministrateSystemOptionManagement {
 							        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
 							        	break;
 									 }
-							        sleep+=100;
+							        sleep+=150;
 							      } catch (InterruptedException e) {
 							    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
 							      }

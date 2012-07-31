@@ -830,7 +830,7 @@ public class AdministratePackageForm {
 							  else{
 									main.interrupt();
 									main.stop();
-									AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+									AdministrateServiceOptionManagement.getJProgressBar().setValue(0);
 							  }
 						  }
 					  };
@@ -844,22 +844,22 @@ public class AdministratePackageForm {
 								      try {
 								        SwingUtilities.invokeLater(new Runnable() {
 								         public void run() {
-								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
-								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								        	 AdministrateServiceOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
 								        Thread.sleep(sleep);
 								        if(!main.isAlive()){
-								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-								        	AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								        	AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+								        	AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 								        	break;
 										 }
 								        sleep+=100;
 								      } catch (InterruptedException e) {
-								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
 								    } 
-								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 								 this.stop();
 								 this.interrupt();
 						  }
@@ -889,8 +889,8 @@ public class AdministratePackageForm {
 								}
 							  else{
 									main.interrupt();
-									AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
-									AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+									AdministrateServiceOptionManagement.getJProgressBar().setValue(0);
+									AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 							  }
 						  }
 					  };
@@ -903,22 +903,22 @@ public class AdministratePackageForm {
 								      try {
 								        SwingUtilities.invokeLater(new Runnable() {
 								         public void run() {
-								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
-								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								        	 AdministrateServiceOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
 								        Thread.sleep(sleep);
 								        if(!main.isAlive()){
-								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-								        	AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								        	AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+								        	AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 								        	break;
 										 }
 								        sleep+=100;
 								      } catch (InterruptedException e) {
-								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
 								    } 
-								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 								 this.interrupt();
 						  }
 					  };
@@ -959,22 +959,22 @@ public class AdministratePackageForm {
 								      try {
 								        SwingUtilities.invokeLater(new Runnable() {
 								         public void run() {
-								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
-								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								        	 AdministrateServiceOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
 								        Thread.sleep(100);
 								        if(!a.isAlive()){
-								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 								        	break;
 										 }
 								        sleep+=100;
 								      } catch (InterruptedException e) {
-								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
 								    } 
-								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-								 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+								 AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 								 this.interrupt();
 								 
 						  }
@@ -1005,8 +1005,8 @@ public class AdministratePackageForm {
 								}
 							  else{
 									main.interrupt();
-									AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
-									AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+									AdministrateServiceOptionManagement.getJProgressBar().setValue(0);
+									AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 							  }
 						  }
 					  };
@@ -1020,22 +1020,22 @@ public class AdministratePackageForm {
 								      try {
 								        SwingUtilities.invokeLater(new Runnable() {
 								         public void run() {
-								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
-								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								        	 AdministrateServiceOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
 								        Thread.sleep(sleep);
 								        if(!a.isAlive()){
-								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 								        	break;
 										 }
 								        sleep+=100;
 								      } catch (InterruptedException e) {
-								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
 								    } 
-								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-								 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+								 AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 								 this.interrupt();
 								 
 						  }
@@ -2723,8 +2723,8 @@ public class AdministratePackageForm {
 			success=false;
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(0);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please enter a Package title", "Warnning", JOptionPane.WARNING_MESSAGE);
 			getJTextField_packageTitle().requestFocus();
 			main.interrupt();
@@ -2733,8 +2733,8 @@ public class AdministratePackageForm {
 			success=false;
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(0);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please enter a Package description", "Warnning", JOptionPane.WARNING_MESSAGE);
 			getJTextArea_packageDescription().requestFocus();
 			main.interrupt();
@@ -2743,8 +2743,8 @@ public class AdministratePackageForm {
 			success=false;
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(0);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please select a ballroom", "Warnning", JOptionPane.WARNING_MESSAGE);
 			getJButton_ballroom().requestFocus();
 			main.interrupt();
@@ -2753,8 +2753,8 @@ public class AdministratePackageForm {
 			success=false;
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(0);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please select a entertainment if you had choose to have one", "Warnning", JOptionPane.WARNING_MESSAGE);
 			getJButton_entertainment().requestFocus();
 			main.interrupt();
@@ -2763,8 +2763,8 @@ public class AdministratePackageForm {
 			success=false;
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(0);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please select a meal option if you had choose to have one", "Warnning", JOptionPane.WARNING_MESSAGE);
 			getJButton_mealOption1().requestFocus();
 			main.interrupt();
@@ -2773,8 +2773,8 @@ public class AdministratePackageForm {
 			success=false;
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(0);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please select a meal option if you had choose to have one", "Warnning", JOptionPane.WARNING_MESSAGE);
 			getJButton_mealOption2().requestFocus();
 			main.interrupt();
@@ -2783,8 +2783,8 @@ public class AdministratePackageForm {
 			success=false;
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(0);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please select a meal option if you had choose to have one", "Warnning", JOptionPane.WARNING_MESSAGE);
 			getJButton_mealOption3().requestFocus();
 			main.interrupt();
@@ -2956,8 +2956,8 @@ public class AdministratePackageForm {
 		//prompt success
 		 progress.interrupt();
 		 progress.stop();
-		 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-		 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+		 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+		 AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 		 JOptionPane.showMessageDialog(null, "File Downloaded Successfully at "+path, "Downloads", JOptionPane.INFORMATION_MESSAGE);
 		
 	}
@@ -3027,8 +3027,8 @@ public class AdministratePackageForm {
 	 * Tested : Success
 	 *******************************************************/
 	private void createTabHeader(int index){
-		CustomTabHeader tab=new CustomTabHeader(AdministrateSystemOptionManagement.getJTabbedPane());
-		AdministrateSystemOptionManagement.getJTabbedPane().setTabComponentAt( index,tab );
+		CustomTabHeader tab=new CustomTabHeader(AdministrateServiceOptionManagement.getJTabbedPane());
+		AdministrateServiceOptionManagement.getJTabbedPane().setTabComponentAt( index,tab );
 		
 	}
 	
@@ -3040,18 +3040,18 @@ public class AdministratePackageForm {
 	 *******************************************************/
 	public void newPackageTab(){	
 		AdministratePackageForm meal=new AdministratePackageForm();
-		if(AdministrateSystemOptionManagement.getJTabbedPane().getTabCount()==1){
-			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("Create Package Form",null , meal.getJScrollPane(),null , 1); // sets the content
+		if(AdministrateServiceOptionManagement.getJTabbedPane().getTabCount()==1){
+			AdministrateServiceOptionManagement.getJTabbedPane().insertTab("Create Package Form",null , meal.getJScrollPane(),null , 1); // sets the content
 			createTabHeader(1);	//sets the custom tab header
-			AdministrateSystemOptionManagement.getJTabbedPane().remove(0);
-			AdministrateSystemOptionManagement.getJTabbedPane().setSelectedIndex(0);
+			AdministrateServiceOptionManagement.getJTabbedPane().remove(0);
+			AdministrateServiceOptionManagement.getJTabbedPane().setSelectedIndex(0);
 		}
 		else{
-			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("Create Package Form",null , meal.getJScrollPane(),null , AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()); // sets the content
-			createTabHeader(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()-1);	//sets the custom tab header
-			AdministrateSystemOptionManagement.getJTabbedPane().remove(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex());
-			if(!(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()==AdministrateSystemOptionManagement.getJTabbedPane().getTabCount()-1)){
-				AdministrateSystemOptionManagement.getJTabbedPane().setSelectedIndex(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()-1);
+			AdministrateServiceOptionManagement.getJTabbedPane().insertTab("Create Package Form",null , meal.getJScrollPane(),null , AdministrateServiceOptionManagement.getJTabbedPane().getSelectedIndex()); // sets the content
+			createTabHeader(AdministrateServiceOptionManagement.getJTabbedPane().getSelectedIndex()-1);	//sets the custom tab header
+			AdministrateServiceOptionManagement.getJTabbedPane().remove(AdministrateServiceOptionManagement.getJTabbedPane().getSelectedIndex());
+			if(!(AdministrateServiceOptionManagement.getJTabbedPane().getSelectedIndex()==AdministrateServiceOptionManagement.getJTabbedPane().getTabCount()-1)){
+				AdministrateServiceOptionManagement.getJTabbedPane().setSelectedIndex(AdministrateServiceOptionManagement.getJTabbedPane().getSelectedIndex()-1);
 				}
 			}
 	}
@@ -3101,8 +3101,8 @@ public class AdministratePackageForm {
 		if(ID.equals(null)){
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Failed to create package record", "Warnning", JOptionPane.ERROR_MESSAGE);
 		}
 		else{
@@ -3113,8 +3113,8 @@ public class AdministratePackageForm {
 			getJButton_download().setEnabled(true);
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Successfully created a package record", "Warnning", JOptionPane.INFORMATION_MESSAGE);
 			displaySummary();
 		}
@@ -3134,16 +3134,16 @@ public class AdministratePackageForm {
 		if(control.processDeletePackage(ID)){
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Successfully deleted package record", "Success", JOptionPane.INFORMATION_MESSAGE);
 			newPackageTab();
 		}
 		else{
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Failed to delete package record", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -3192,16 +3192,16 @@ public class AdministratePackageForm {
 		if(control.processUpdatePackage(mealID1, mealID2, mealID3)){
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Successfully updated package record", "Success", JOptionPane.INFORMATION_MESSAGE);
 			displaySummary();
 		}
 		else{
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Failed to update package record", "Error", JOptionPane.ERROR_MESSAGE);
 			displaySummary();
 		}

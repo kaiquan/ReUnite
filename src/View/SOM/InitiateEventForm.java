@@ -38,7 +38,7 @@ import Controller.SOM.InitiateEventControl;
 import javax.swing.BoxLayout;
 
 
-public class BookPackageForm {
+public class InitiateEventForm {
 	/********************************************************
 	 *					The Attributes
 	 *******************************************************/

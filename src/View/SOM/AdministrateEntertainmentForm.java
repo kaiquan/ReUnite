@@ -632,7 +632,7 @@ public class AdministrateEntertainmentForm {
 							  else{
 									main.interrupt();
 									main.stop();
-									AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+									AdministrateServiceOptionManagement.getJProgressBar().setValue(0);
 							  }
 						  }
 					  };
@@ -646,22 +646,22 @@ public class AdministrateEntertainmentForm {
 								      try {
 								        SwingUtilities.invokeLater(new Runnable() {
 								         public void run() {
-								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
-								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								        	 AdministrateServiceOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
 								        Thread.sleep(sleep);
 								        if(!main.isAlive()){
-								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-								        	AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								        	AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+								        	AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 								        	break;
 										 }
 								        sleep+=100;
 								      } catch (InterruptedException e) {
-								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
 								    } 
-								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 								 this.stop();
 								 this.interrupt();
 						  }
@@ -692,8 +692,8 @@ public class AdministrateEntertainmentForm {
 										}
 									  else{
 											main.interrupt();
-											AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
-											AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+											AdministrateServiceOptionManagement.getJProgressBar().setValue(0);
+											AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 									  }
 								  }
 							  };
@@ -706,22 +706,22 @@ public class AdministrateEntertainmentForm {
 										      try {
 										        SwingUtilities.invokeLater(new Runnable() {
 										         public void run() {
-										        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
-										        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+										        	 AdministrateServiceOptionManagement.getJProgressBar().setValue(percent);
+										        	 AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 										          }
 										        });
 										        Thread.sleep(sleep);
 										        if(!main.isAlive()){
-										        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-										        	AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+										        	AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+										        	AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 										        	break;
 												 }
 										        sleep+=100;
 										      } catch (InterruptedException e) {
-										    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+										    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
 										      }
 										    } 
-										 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+										 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 										 this.interrupt();
 								  }
 							  };
@@ -751,8 +751,8 @@ public class AdministrateEntertainmentForm {
 								}
 							  else{
 									main.interrupt();
-									AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
-									AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+									AdministrateServiceOptionManagement.getJProgressBar().setValue(0);
+									AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 							  }
 						  }
 					  };
@@ -766,22 +766,22 @@ public class AdministrateEntertainmentForm {
 								      try {
 								        SwingUtilities.invokeLater(new Runnable() {
 								         public void run() {
-								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
-								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								        	 AdministrateServiceOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
 								        Thread.sleep(sleep);
 								        if(!a.isAlive()){
-								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 								        	break;
 										 }
 								        sleep+=100;
 								      } catch (InterruptedException e) {
-								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
 								    } 
-								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-								 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+								 AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 								 this.interrupt();
 								 
 						  }
@@ -823,22 +823,22 @@ public class AdministrateEntertainmentForm {
 								      try {
 								        SwingUtilities.invokeLater(new Runnable() {
 								         public void run() {
-								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
-								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								        	 AdministrateServiceOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
 								        Thread.sleep(sleep);
 								        if(!a.isAlive()){
-								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 								        	break;
 										 }
 								        sleep+=100;
 								      } catch (InterruptedException e) {
-								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
 								    } 
-								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-								 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+								 AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 								 this.interrupt();
 								 
 						  }
@@ -918,8 +918,8 @@ public class AdministrateEntertainmentForm {
 			success=false;
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(0);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please enter an entertainment title", "Missing Fields", JOptionPane.WARNING_MESSAGE);
 			getJTextField_entertainmentTitle().requestFocus();
 			main.interrupt();
@@ -929,8 +929,8 @@ public class AdministrateEntertainmentForm {
 			success=false;
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(0);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please enter an entertainment description", "Missing Fields", JOptionPane.WARNING_MESSAGE);
 			getJTextArea_entertainmentDescription().requestFocus();
 			main.interrupt();
@@ -940,8 +940,8 @@ public class AdministrateEntertainmentForm {
 			success=false;
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(0);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "There must be an entertainment in the entertainment list", "Missing Fields", JOptionPane.WARNING_MESSAGE);
 			getJTextField_entertainmentMenu().requestFocus();
 			main.interrupt();
@@ -1103,8 +1103,8 @@ public class AdministrateEntertainmentForm {
 		//prompt success
 		 progress.interrupt();
 		 progress.stop();
-		 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-		 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+		 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+		 AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 		 JOptionPane.showMessageDialog(null, "File Downloaded Successfully at "+path, "Downloads", JOptionPane.INFORMATION_MESSAGE);
 		
 	}
@@ -1167,8 +1167,8 @@ public class AdministrateEntertainmentForm {
 	 * Purpose 			: To create and set a custom Tab Header.
 	 *******************************************************/
 	private void createTabHeader(int index){
-		CustomTabHeader tab=new CustomTabHeader(AdministrateSystemOptionManagement.getJTabbedPane());
-		AdministrateSystemOptionManagement.getJTabbedPane().setTabComponentAt( index,tab );
+		CustomTabHeader tab=new CustomTabHeader(AdministrateServiceOptionManagement.getJTabbedPane());
+		AdministrateServiceOptionManagement.getJTabbedPane().setTabComponentAt( index,tab );
 		
 	}
 	/********************************************************
@@ -1180,18 +1180,18 @@ public class AdministrateEntertainmentForm {
 	 *******************************************************/
 	private void newEntertainmentTab(){
 		AdministrateEntertainmentForm en= new AdministrateEntertainmentForm();
-		if(AdministrateSystemOptionManagement.getJTabbedPane().getTabCount()==1){
-			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("New Entertainment",null , en.getJScrollPane(),null , 1); //SETS THE CONTENT
+		if(AdministrateServiceOptionManagement.getJTabbedPane().getTabCount()==1){
+			AdministrateServiceOptionManagement.getJTabbedPane().insertTab("New Entertainment",null , en.getJScrollPane(),null , 1); //SETS THE CONTENT
 			createTabHeader(1);	//SETS THE CUSTOM TAB HEADER
-			AdministrateSystemOptionManagement.getJTabbedPane().remove(0);
-			AdministrateSystemOptionManagement.getJTabbedPane().setSelectedIndex(0);
+			AdministrateServiceOptionManagement.getJTabbedPane().remove(0);
+			AdministrateServiceOptionManagement.getJTabbedPane().setSelectedIndex(0);
 		}
 		else{
-			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("New Entertainment",null , en.getJScrollPane(),null , AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()); // SETS THE CONTENT
-			createTabHeader(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()-1);	//SETS THE CUSTOM TAB HEADER
-			AdministrateSystemOptionManagement.getJTabbedPane().remove(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex());
-			if(!(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()==AdministrateSystemOptionManagement.getJTabbedPane().getTabCount()-1)){
-				AdministrateSystemOptionManagement.getJTabbedPane().setSelectedIndex(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()-1);
+			AdministrateServiceOptionManagement.getJTabbedPane().insertTab("New Entertainment",null , en.getJScrollPane(),null , AdministrateServiceOptionManagement.getJTabbedPane().getSelectedIndex()); // SETS THE CONTENT
+			createTabHeader(AdministrateServiceOptionManagement.getJTabbedPane().getSelectedIndex()-1);	//SETS THE CUSTOM TAB HEADER
+			AdministrateServiceOptionManagement.getJTabbedPane().remove(AdministrateServiceOptionManagement.getJTabbedPane().getSelectedIndex());
+			if(!(AdministrateServiceOptionManagement.getJTabbedPane().getSelectedIndex()==AdministrateServiceOptionManagement.getJTabbedPane().getTabCount()-1)){
+				AdministrateServiceOptionManagement.getJTabbedPane().setSelectedIndex(AdministrateServiceOptionManagement.getJTabbedPane().getSelectedIndex()-1);
 				}
 			}
 	}
@@ -1235,8 +1235,8 @@ public class AdministrateEntertainmentForm {
 				getJButton_download().setEnabled(true);
 				progress.interrupt();
 				progress.stop();
-				AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-				AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+				AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+				AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 				JOptionPane.showMessageDialog(null, "Record has been uploaded successfully", "Success", JOptionPane.PLAIN_MESSAGE);
 				
 			}
@@ -1245,8 +1245,8 @@ public class AdministrateEntertainmentForm {
 				deleteEntertainment();
 				progress.interrupt();
 				progress.stop();
-				AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-				AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+				AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+				AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 				JOptionPane.showMessageDialog(null, "There was an unexpected uploading the entertainment record(s)\n1)Try restarting the application.", "Upload Failure", JOptionPane.ERROR_MESSAGE);
 			}
 	}
@@ -1267,16 +1267,16 @@ public class AdministrateEntertainmentForm {
 		if(result){
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Record has been deleted successfully", "Success", JOptionPane.PLAIN_MESSAGE);
 			newEntertainmentTab();
 		}
 		else{
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "There was an unexpected error deleting the record/nTry restarting the application.", "Warning", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -1313,16 +1313,16 @@ public class AdministrateEntertainmentForm {
 		if(success){
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Record has been updated successfully", "Success", JOptionPane.PLAIN_MESSAGE);
 			displaySummary();
 		}
 		else{
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "There was an unexpected error deleting the record/nTry restarting the application.", "Warning", JOptionPane.ERROR_MESSAGE);
 			displaySummary();
 		}

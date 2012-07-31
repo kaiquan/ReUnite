@@ -235,22 +235,22 @@ public class AdministrateBallroomForm {
 								      try {
 								        SwingUtilities.invokeLater(new Runnable() {
 								         public void run() {
-								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateServiceOptionManagement.getJProgressBar().setValue(percent);
 								          }
 								        });
 								        Thread.sleep(sleep);
 								        if(!a.isAlive()){
-								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-								        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
+								        	AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+								        	System.out.println( AdministrateServiceOptionManagement.getJProgressBar().getValue());
 								        	break;
 										 }
 								        sleep+=100;
 								       
 								      } catch (InterruptedException e) {
-								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
 								    } 
-								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 								 this.interrupt();
 						  }
 					  };
@@ -573,7 +573,7 @@ public class AdministrateBallroomForm {
 							  else{
 									main.interrupt();
 									main.stop();
-									AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
+									AdministrateServiceOptionManagement.getJProgressBar().setValue(0);
 							  }
 						  }
 					  };
@@ -587,22 +587,22 @@ public class AdministrateBallroomForm {
 								      try {
 								        SwingUtilities.invokeLater(new Runnable() {
 								         public void run() {
-								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
-								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								        	 AdministrateServiceOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
 								        Thread.sleep(sleep);
 								        if(!main.isAlive()){
-								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-								        	AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								        	AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+								        	AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 								        	break;
 										 }
 								        sleep+=100;
 								      } catch (InterruptedException e) {
-								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
 								    } 
-								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 								 this.stop();
 								 this.interrupt();
 						  }
@@ -632,8 +632,8 @@ public class AdministrateBallroomForm {
 								}
 							  else{
 									main.interrupt();
-									AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
-									AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+									AdministrateServiceOptionManagement.getJProgressBar().setValue(0);
+									AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 							  }
 						  }
 					  };
@@ -646,22 +646,22 @@ public class AdministrateBallroomForm {
 								      try {
 								        SwingUtilities.invokeLater(new Runnable() {
 								         public void run() {
-								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
-								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								        	 AdministrateServiceOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
 								        Thread.sleep(sleep);
 								        if(!main.isAlive()){
-								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-								        	AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								        	AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+								        	AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 								        	break;
 										 }
 								        sleep+=100;
 								      } catch (InterruptedException e) {
-								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
 								    } 
-								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 								 this.interrupt();
 						  }
 					  };
@@ -703,22 +703,22 @@ public class AdministrateBallroomForm {
 								      try {
 								        SwingUtilities.invokeLater(new Runnable() {
 								         public void run() {
-								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
-								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								        	 AdministrateServiceOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
 								        Thread.sleep(sleep);
 								        if(!a.isAlive()){
-								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 								        	break;
 										 }
 								        sleep+=100;
 								      } catch (InterruptedException e) {
-								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
 								    } 
-								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-								 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+								 AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 								 this.interrupt();
 								 
 						  }
@@ -749,8 +749,8 @@ public class AdministrateBallroomForm {
 								}
 							  else{
 									main.interrupt();
-									AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
-									AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+									AdministrateServiceOptionManagement.getJProgressBar().setValue(0);
+									AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 							  }
 						  }
 					  };
@@ -764,22 +764,22 @@ public class AdministrateBallroomForm {
 								      try {
 								        SwingUtilities.invokeLater(new Runnable() {
 								         public void run() {
-								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
-								        	 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								        	 AdministrateServiceOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 								          }
 								        });
 								        Thread.sleep(sleep);
 								        if(!a.isAlive()){
-								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 								        	break;
 										 }
 								        sleep+=100;
 								      } catch (InterruptedException e) {
-								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
 								    } 
-								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-								 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+								 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+								 AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 								 this.interrupt();
 								 
 						  }
@@ -854,8 +854,8 @@ public class AdministrateBallroomForm {
 			success=false;
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(0);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please select the facility where this ballroom belongs to", "Warning", JOptionPane.WARNING_MESSAGE);
 			getJComboBox_facilityName().requestFocus();
 			main.interrupt();
@@ -864,8 +864,8 @@ public class AdministrateBallroomForm {
 			success=false;
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(0);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please Enter a Ballroom Name", "Warning", JOptionPane.WARNING_MESSAGE);
 			getJTextField_ballroomTitle().requestFocus();
 			main.interrupt();
@@ -874,8 +874,8 @@ public class AdministrateBallroomForm {
 			success=false;
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(0);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please Select a Ballroom Size", "Warning", JOptionPane.WARNING_MESSAGE);
 			getJComboBox_ballroomSize().requestFocus();
 			main.interrupt();
@@ -884,8 +884,8 @@ public class AdministrateBallroomForm {
 			success=false;
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(0);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please Enter a Ballroom Price", "Warning", JOptionPane.WARNING_MESSAGE);
 			getJTextField_ballroomPrice().requestFocus();
 			//main.stop();
@@ -895,8 +895,8 @@ public class AdministrateBallroomForm {
 			success=false;
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(0);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please enter a correct price value", "Warnning", JOptionPane.WARNING_MESSAGE);
 			getJTextField_ballroomPrice().requestFocus();
 			main.interrupt();
@@ -905,8 +905,8 @@ public class AdministrateBallroomForm {
 			success=false;
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(0);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(0);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Please Enter a Ballroom Description", "Warning", JOptionPane.WARNING_MESSAGE);
 			getJTextArea_ballroomDescription().requestFocus();
 			main.interrupt();
@@ -1094,8 +1094,8 @@ public class AdministrateBallroomForm {
 	
 		 progress.interrupt();
 		 progress.stop();
-		 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-		 AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+		 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+		 AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 		 JOptionPane.showMessageDialog(null, "File Downloaded Successfully at "+path, "Downloads", JOptionPane.INFORMATION_MESSAGE);
 	
 	}
@@ -1106,8 +1106,8 @@ public class AdministrateBallroomForm {
 	 * Return 			: void
 	 *******************************************************/
 	private void createTabHeader(int index){
-		CustomTabHeader tab=new CustomTabHeader(AdministrateSystemOptionManagement.getJTabbedPane());
-		AdministrateSystemOptionManagement.getJTabbedPane().setTabComponentAt( index,tab );
+		CustomTabHeader tab=new CustomTabHeader(AdministrateServiceOptionManagement.getJTabbedPane());
+		AdministrateServiceOptionManagement.getJTabbedPane().setTabComponentAt( index,tab );
 		
 	}
 	
@@ -1122,19 +1122,19 @@ public class AdministrateBallroomForm {
 		AdministrateBallroomForm form=new AdministrateBallroomForm();
 		AdministrateFacilityControl control= new AdministrateFacilityControl();
 		form.getJComboBox_facilityName().setModel(control.processRetrieveFacilityNames());
-		if(AdministrateSystemOptionManagement.getJTabbedPane().getTabCount()==1){
-			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("Create Ballroom Form",null , form.getJScrollPane(),null , 1); // sets the content
+		if(AdministrateServiceOptionManagement.getJTabbedPane().getTabCount()==1){
+			AdministrateServiceOptionManagement.getJTabbedPane().insertTab("Create Ballroom Form",null , form.getJScrollPane(),null , 1); // sets the content
 			createTabHeader(1);	//sets the custom tab header
-			AdministrateSystemOptionManagement.getJTabbedPane().remove(0);
-			AdministrateSystemOptionManagement.getJTabbedPane().setSelectedIndex(0);
+			AdministrateServiceOptionManagement.getJTabbedPane().remove(0);
+			AdministrateServiceOptionManagement.getJTabbedPane().setSelectedIndex(0);
 		}
 		else{
-			System.out.println(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex());
-			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("Create Ballroom Form",null , form.getJScrollPane(),null , AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()); // sets the content
-			createTabHeader(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()-1);	//sets the custom tab header
-			AdministrateSystemOptionManagement.getJTabbedPane().remove(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex());
-			if(!(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()==AdministrateSystemOptionManagement.getJTabbedPane().getTabCount()-1)){
-				AdministrateSystemOptionManagement.getJTabbedPane().setSelectedIndex(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()-1);
+			System.out.println(AdministrateServiceOptionManagement.getJTabbedPane().getSelectedIndex());
+			AdministrateServiceOptionManagement.getJTabbedPane().insertTab("Create Ballroom Form",null , form.getJScrollPane(),null , AdministrateServiceOptionManagement.getJTabbedPane().getSelectedIndex()); // sets the content
+			createTabHeader(AdministrateServiceOptionManagement.getJTabbedPane().getSelectedIndex()-1);	//sets the custom tab header
+			AdministrateServiceOptionManagement.getJTabbedPane().remove(AdministrateServiceOptionManagement.getJTabbedPane().getSelectedIndex());
+			if(!(AdministrateServiceOptionManagement.getJTabbedPane().getSelectedIndex()==AdministrateServiceOptionManagement.getJTabbedPane().getTabCount()-1)){
+				AdministrateServiceOptionManagement.getJTabbedPane().setSelectedIndex(AdministrateServiceOptionManagement.getJTabbedPane().getSelectedIndex()-1);
 				}
 			}
 	}
@@ -1166,8 +1166,8 @@ public class AdministrateBallroomForm {
 			deleteBallroom();
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "There was an unexpected uploading the ballroom record(s)/nTry restarting the application.", "Warning", JOptionPane.ERROR_MESSAGE);
 		}
 		else{
@@ -1180,8 +1180,8 @@ public class AdministrateBallroomForm {
 			getJButton_download().setEnabled(true);
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Record has been uploaded successfully", "Success", JOptionPane.PLAIN_MESSAGE);
 		}
 		displaySummary();
@@ -1201,16 +1201,16 @@ public class AdministrateBallroomForm {
 		if(result){
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Record has been deleted successfully", "Success", JOptionPane.PLAIN_MESSAGE);
 			newBallroomTab();
 		}
 		else{
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "There was an unexpected error deleting the record/nTry restarting the application.", "Warning", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -1241,16 +1241,16 @@ public class AdministrateBallroomForm {
 		if(success){
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "Record has been updated successfully", "Success", JOptionPane.PLAIN_MESSAGE);
 			displaySummary();
 		}
 		else{
 			progress.interrupt();
 			progress.stop();
-			AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-			AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(false);
+			AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
+			AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 			JOptionPane.showMessageDialog(null, "There was an unexpected error deleting the record/nTry restarting the application.", "Warning", JOptionPane.ERROR_MESSAGE);
 			displaySummary();
 		}

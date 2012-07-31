@@ -63,7 +63,7 @@ import Controller.SOM.AdministrateMealControl;
 import Controller.SOM.AdministratePackageControl;
 import Controller.SOM.CSVController;
 
-public class AdministrateSystemOptionManagement {
+public class AdministrateServiceOptionManagement {
 	
 	/********************************************************
 	 *					The Attributes
@@ -214,22 +214,22 @@ public class AdministrateSystemOptionManagement {
 								      try {
 								        SwingUtilities.invokeLater(new Runnable() {
 								         public void run() {
-								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateServiceOptionManagement.getJProgressBar().setValue(percent);
 								          }
 								        });
 								        Thread.sleep(sleep);
 								        if(!main.isAlive()){
-								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 								        	break;
 										 }
 								        sleep+=100;
 								        
 								       
 								      } catch (InterruptedException e) {
-								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
 								    } 
-								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 								 this.stop();
 								 this.interrupt();
 						  }
@@ -274,22 +274,22 @@ public class AdministrateSystemOptionManagement {
 								      try {
 								        SwingUtilities.invokeLater(new Runnable() {
 								         public void run() {
-								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateServiceOptionManagement.getJProgressBar().setValue(percent);
 								          }
 								        });
 								        Thread.sleep(sleep);
 								        if(!main.isAlive()){
-								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 								        	break;
 										 }
 								        sleep+=100;
 								        
 								       
 								      } catch (InterruptedException e) {
-								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
 								    } 
-								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 								 this.stop();
 								 this.interrupt();
 						  }
@@ -502,20 +502,20 @@ public class AdministrateSystemOptionManagement {
 									      try {
 									        SwingUtilities.invokeLater(new Runnable() {
 									         public void run() {
-									        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+									        	 AdministrateServiceOptionManagement.getJProgressBar().setValue(percent);
 									          }
 									        });
 									        Thread.sleep(sleep);
 									        if(!a.isAlive()){
-									        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+									        	AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 									        	break;
 											 }
 									        sleep+=100;
 									      } catch (InterruptedException e) {
-									    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+									    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
 									      }
 									    } 
-									 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+									 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 									 this.stop();
 									 this.interrupt();
 							  }
@@ -591,21 +591,21 @@ public class AdministrateSystemOptionManagement {
 								      try {
 								        SwingUtilities.invokeLater(new Runnable() {
 								         public void run() {
-								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateServiceOptionManagement.getJProgressBar().setValue(percent);
 								          }
 								        });
 								        Thread.sleep(sleep);
 								        if(!a.isAlive()){
-								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 								        	break;
 										 }
 								        sleep+=100;
 								       
 								      } catch (InterruptedException e) {
-								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
 								    } 
-								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 								 this.stop();
 								 this.interrupt();
 						  }
@@ -739,21 +739,21 @@ public class AdministrateSystemOptionManagement {
 								      try {
 								        SwingUtilities.invokeLater(new Runnable() {
 								         public void run() {
-								        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+								        	 AdministrateServiceOptionManagement.getJProgressBar().setValue(percent);
 								          }
 								        });
 								        Thread.sleep(sleep);
 								        if(!a.isAlive()){
-								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								        	AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 								        	break;
 										 }
 								        sleep+=100;
 								       
 								      } catch (InterruptedException e) {
-								    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+								    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
 								      }
 								    } 
-								 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+								 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 								 this.stop();
 								 this.interrupt();
 						  }
@@ -912,21 +912,21 @@ public class AdministrateSystemOptionManagement {
 							      try {
 							        SwingUtilities.invokeLater(new Runnable() {
 							         public void run() {
-							        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+							        	 AdministrateServiceOptionManagement.getJProgressBar().setValue(percent);
 							          }
 							        });
 							        Thread.sleep(sleep);
 							        if(!a.isAlive()){
-							        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+							        	AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 							        	break;
 									 }
 							        sleep+=100;
 							       
 							      } catch (InterruptedException e) {
-							    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+							    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
 							      }
 							    } 
-							 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+							 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 							 this.stop();
 							 this.interrupt();
 					  }
@@ -969,20 +969,20 @@ public class AdministrateSystemOptionManagement {
 							      try {
 							        SwingUtilities.invokeLater(new Runnable() {
 							         public void run() {
-							        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+							        	 AdministrateServiceOptionManagement.getJProgressBar().setValue(percent);
 							          }
 							        });
 							        Thread.sleep(sleep);
 							        if(!a.isAlive()){
-							        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+							        	AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 							        	break;
 									 }
 							        sleep+=100;
 							      } catch (InterruptedException e) {
-							    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+							    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
 							      }
 							    } 
-							 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+							 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 							 this.stop();
 							 this.interrupt();
 					  }
@@ -1023,20 +1023,20 @@ public class AdministrateSystemOptionManagement {
 							      try {
 							        SwingUtilities.invokeLater(new Runnable() {
 							         public void run() {
-							        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+							        	 AdministrateServiceOptionManagement.getJProgressBar().setValue(percent);
 							          }
 							        });
 							        Thread.sleep(sleep);
 							        if(!a.isAlive()){
-							        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+							        	AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 							        	break;
 									 }
 							        sleep+=100;
 							      } catch (InterruptedException e) {
-							    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+							    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
 							      }
 							    } 
-							 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+							 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 							 this.stop();
 							 this.interrupt();
 					  }
@@ -1077,20 +1077,20 @@ public class AdministrateSystemOptionManagement {
 							      try {
 							        SwingUtilities.invokeLater(new Runnable() {
 							         public void run() {
-							        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+							        	 AdministrateServiceOptionManagement.getJProgressBar().setValue(percent);
 							          }
 							        });
 							        Thread.sleep(sleep);
 							        if(!a.isAlive()){
-							        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+							        	AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 							        	break;
 									 }
 							        sleep+=100;
 							      } catch (InterruptedException e) {
-							    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+							    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
 							      }
 							    } 
-							 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+							 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 							 this.stop();
 							 this.interrupt();
 					  }
@@ -1131,20 +1131,20 @@ public class AdministrateSystemOptionManagement {
 							      try {
 							        SwingUtilities.invokeLater(new Runnable() {
 							         public void run() {
-							        	 AdministrateSystemOptionManagement.getJProgressBar().setValue(percent);
+							        	 AdministrateServiceOptionManagement.getJProgressBar().setValue(percent);
 							          }
 							        });
 							        Thread.sleep(sleep);
 							        if(!a.isAlive()){
-							        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+							        	AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 							        	break;
 									 }
 							        sleep+=150;
 							      } catch (InterruptedException e) {
-							    	  AdministrateSystemOptionManagement.getJProgressBar().setIndeterminate(true);
+							    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
 							      }
 							    } 
-							 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
+							 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
 							 this.stop();
 							 this.interrupt();
 					  }

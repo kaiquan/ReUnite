@@ -724,21 +724,21 @@ public class CreateCustomPackageForm {
 			jButton_createEvent.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					if(validatePackageDetails()){
-						BookPackageForm.cPackageTitle=getJTextField_packageTitle().getText();
-						BookPackageForm.cBallroomID=getJTextField_Ballroom().getName();
-						BookPackageForm.cPackageDescription=getJTextArea_packageDescription().getText();
-						BookPackageForm.cPackageAvailability=getJCheckBox_packageAvailability().isSelected();
-						BookPackageForm.isCustom=true;
-						BookPackageForm.isStandard=false;
-						BookPackageForm.getJTextField_seectedPackageTitle().setText(getJTextField_packageTitle().getText());
+						InitiateEventForm.cPackageTitle=getJTextField_packageTitle().getText();
+						InitiateEventForm.cBallroomID=getJTextField_Ballroom().getName();
+						InitiateEventForm.cPackageDescription=getJTextArea_packageDescription().getText();
+						InitiateEventForm.cPackageAvailability=getJCheckBox_packageAvailability().isSelected();
+						InitiateEventForm.isCustom=true;
+						InitiateEventForm.isStandard=false;
+						InitiateEventForm.getJTextField_seectedPackageTitle().setText(getJTextField_packageTitle().getText());
 						if(getJCheckBox_mealOption1().isSelected())
-							BookPackageForm.cMealOption1ID=getJTextField_mealOption1().getName();
+							InitiateEventForm.cMealOption1ID=getJTextField_mealOption1().getName();
 						if(getJCheckBox_mealOption2().isSelected())
-							BookPackageForm.cMealOption2ID=getJTextField_mealOption2().getName();
+							InitiateEventForm.cMealOption2ID=getJTextField_mealOption2().getName();
 						if(getJCheckBox_mealOption3().isSelected())
-							BookPackageForm.cMealOption3ID=getJTextField_mealOption3().getName();
+							InitiateEventForm.cMealOption3ID=getJTextField_mealOption3().getName();
 						if(getJCheckBox_entertainment().isSelected())
-							BookPackageForm.cEntertainmentID=getJTextField_entertainment().getName();
+							InitiateEventForm.cEntertainmentID=getJTextField_entertainment().getName();
 						getJFrame().setVisible(false);
 						}
 					}

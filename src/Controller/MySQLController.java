@@ -35,39 +35,39 @@ public class MySQLController
 
 	public MySQLController()
 	{
-//		if (connectionPool == null)
-//		{
-//			try 
-//			{
-//				DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
-//			} 
-//			catch (SQLException e1) 
-//			{
-//				e1.printStackTrace();
-//			}
-//			
-//			BoneCPConfig config = new BoneCPConfig();
-//			config.setJdbcUrl("jdbc:mysql://205.134.253.65/saharp5_adeel_school");
-//			config.setUsername("saharp5_guest");
-//			config.setPassword("guest123");
-//			config.setMinConnectionsPerPartition(1);
-//			config.setMaxConnectionsPerPartition(10);
-//			config.setPartitionCount(3);
-//			try
-//			{
-//				connectionPool = new BoneCP(config);// setup the connection pool
-//			}
-//			catch (SQLException e)
-//			{
-//				JOptionPane.showMessageDialog(null, e.getCause().getMessage());
-//				System.out.println(e.getCause().getLocalizedMessage());
-//			}
-//
-//			if (connectionPool != null)
-//			{
-//				System.out.println("Successfully created a pool of connection");
-//			}
-//		}
+		if (connectionPool == null)
+		{
+			try 
+			{
+				DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
+			} 
+			catch (SQLException e1) 
+			{
+				e1.printStackTrace();
+			}
+			
+			BoneCPConfig config = new BoneCPConfig();
+			config.setJdbcUrl("jdbc:mysql://205.134.253.65/saharp5_adeel_school");
+			config.setUsername("saharp5_guest");
+			config.setPassword("guest123");
+			config.setMinConnectionsPerPartition(1);
+			config.setMaxConnectionsPerPartition(10);
+			config.setPartitionCount(3);
+			try
+			{
+				connectionPool = new BoneCP(config);// setup the connection pool
+			}
+			catch (SQLException e)
+			{
+				JOptionPane.showMessageDialog(null, e.getCause().getMessage());
+				System.out.println(e.getCause().getLocalizedMessage());
+			}
+
+			if (connectionPool != null)
+			{
+				System.out.println("Successfully created a pool of connection");
+			}
+		}
 	}
 
 	/********************************************************

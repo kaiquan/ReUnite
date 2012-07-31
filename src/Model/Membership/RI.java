@@ -225,60 +225,43 @@ public class RI extends Account   {
 	
 	
 	
-	public ArrayList<Object[]> GET_EVENTS_FOR_RI() {
+	public Object[][] GET_EVENTS_FOR_RI() {
 		ArrayList<Object[]> tempList = new ArrayList<Object[]>();
+		Object[][] records = null;
 		ResultSet rs = null;
 			String dbQuery = "SELECT * FROM Event e INNER JOIN Purchase_Summary p ON e.eventID = p.eventID WHERE e.eventID IN (SELECT ev.eventID FROM Event ev WHERE ev.userName ='"+Account.currentUser.getUserName()+"')";
 			rs = db.readRequest(dbQuery);
 			try {
-				while(rs.next()){
+				while(rs.next())
+				{
 					Object[] row = new Object[5];
+					
 					row[0] = rs.getString("eventID");
 					row[1] =  rs.getString("eventStatus");
 					row[2] = rs.getString("eventName");
 					row[3] = rs.getString("totalCost");
 					row[4] = rs.getString("amountPending");
-				
-					
+		
 					tempList.add(row);
-					
-				
+				}
+				records = new Object[tempList.size()][5];
+				for(int i = 0; i<tempList.size(); i++)
+				{
+					records[i][0] = tempList.get(i)[0];
+					records[i][1] = tempList.get(i)[1];
+					records[i][2] = tempList.get(i)[2];
+					records[i][3] = tempList.get(i)[3];
+					records[i][4] = tempList.get(i)[4];
 				}
 			} catch (SQLException e) {
 			
 				e.printStackTrace();
 			}	
 				
-			return tempList;
+			return records;
 			}
 
 		
-
-	public String[][] getRITableModelEvent() {
-	RI riModelEvent = new RI();
-
-		String data[][] = new String[5][13];
-
-		try {
-
-			ArrayList<Object[]> tempList1 = riModelEvent.GET_EVENTS_FOR_RI();
-			
-			for (int i = 0; i < tempList1.size(); i++) {
-				
-				data[i][0] =tempList1.get(i).getEventID();
-				data[i][1] = 
-				data[i][3] = 
-				data[i][4] = 
-				data[i][5] = 
-
-			}
-		} catch (Exception e) {
-		}
-
-	return data;
-
-	}
-	
 	public String[] getRITableColumNamesEvent() {
 		String col[] = {"Event Namne", "EventID", "Status","Total Cost","Amount Pending"};
 		return col;
@@ -361,6 +344,10 @@ public class RI extends Account   {
 		}
 
 		return data;
+	}
+	public String[] getRIEventColumnNames() {
+		String col[] = {"name1", "name2","name3" ,"name4", "name5"};
+		return col;
 
 	}
 

@@ -55,7 +55,7 @@ public ViewRIPersonalController(){}
 	}
 	
 	public TableModel getRITableModelEvent() {
-		DefaultTableModel modelEvent = new DefaultTableModel(riModelEvent.getRITableModelEvent(), riModelEvent.getRITableColumnNamesEvent());
+		DefaultTableModel modelEvent = new DefaultTableModel(riModelEvent.GET_EVENTS_FOR_RI(), riModelEvent.getRIEventColumnNames());
 		return modelEvent;
 	}
 	

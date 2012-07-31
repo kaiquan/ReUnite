@@ -59,7 +59,7 @@ public class CancelEventForm {
 	private String ballroomPrice;
 	private String entertainmentPrice;
 	private String mealPrice;
-	private String packageDiscount;
+	private String packageDiscount;  //  @jve:decl-index=0:
 	/**
 	 * This method initializes jFrame	
 	 * 	
@@ -232,6 +232,8 @@ public class CancelEventForm {
 		if (textField == null) {
 			textField = new JTextField();
 			textField.setBounds(new java.awt.Rectangle(244,46,137,20));
+			textField.setEnabled(true);
+			textField.setEditable(false);
 			textField.setColumns(10);
 		}
 		return textField;
@@ -246,6 +248,8 @@ public class CancelEventForm {
 		if (textField_1 == null) {
 			textField_1 = new JTextField();
 			textField_1.setBounds(new java.awt.Rectangle(244,84,135,20));
+			textField_1.setEnabled(true);
+			textField_1.setEditable(false);
 			textField_1.setColumns(10);
 		}
 		return textField_1;
@@ -260,6 +264,8 @@ public class CancelEventForm {
 		if (textField_2 == null) {
 			textField_2 = new JTextField();
 			textField_2.setBounds(new java.awt.Rectangle(526,45,135,20));
+			textField_2.setEnabled(true);
+			textField_2.setEditable(false);
 			textField_2.setColumns(10);
 		}
 		return textField_2;
@@ -274,6 +280,8 @@ public class CancelEventForm {
 		if (textField_3 == null) {
 			textField_3 = new JTextField();
 			textField_3.setBounds(new java.awt.Rectangle(526,83,135,20));
+			textField_3.setEnabled(true);
+			textField_3.setEditable(false);
 			textField_3.setColumns(10);
 		}
 		return textField_3;
@@ -288,6 +296,8 @@ public class CancelEventForm {
 		if (textField_4 == null) {
 			textField_4 = new JTextField();
 			textField_4.setBounds(new java.awt.Rectangle(245,160,135,20));
+			textField_4.setEnabled(true);
+			textField_4.setEditable(false);
 			textField_4.setColumns(10);
 		}
 		return textField_4;
@@ -338,30 +348,39 @@ public class CancelEventForm {
 		}
 		return jButton1;
 	}
-
+	
+	//Prompts whether the event really needs to be cancelled or not
 	private void promptsConfirmation() {
-		// TODO Auto-generated method stub
-		
 		String[] options={"YES","NO"};   
 		int n = JOptionPane.showOptionDialog(null,"Are you sure you want to cancel this event?","Please Confirm", JOptionPane.YES_NO_OPTION ,JOptionPane.QUESTION_MESSAGE, null,  options,options[1]);
 		 if(n == 0){
+			 
+			 	//If the GR Administrator wants to cancel the event,it will prompt the GR administrator to write
+			 	//reason of cancellation
 	            System.out.println("YES Clicked");
 	            String reason="";
 	            reason=JOptionPane.showInputDialog(null,"Reason for cancellation");
 	            
-	            if(reason.equals("")){
+	            if(reason.equals(""))
+	            {
 	            	JOptionPane.showMessageDialog(null, "Please enter the reason for cancellation");
 	            	return;
 	            }
 	            
 	            else{
-	            		//send email to guests regarding cancellation
+	            		//once the reason is entered
+	            		//the program sends an email to the guests regarding the cancellation
 	            		//update cancellation table
 	            		//set event status to cancelled
 	            	
 	            	CancelEventControl c1 = new CancelEventControl();
 	            	if( c1.processCancellation(textField.getText(), textField_1.getText(),reason, "Cancelled",jTextField.getText())==true){
 	            		JOptionPane.showMessageDialog(null, "Event cancelled successfully and guests have been notified");
+	            	}
+	            	
+	            	else
+	            	{
+	            		JOptionPane.showMessageDialog(null, "Error in processing cancellation");
 	            	}
 	            	refresh();
 
@@ -409,6 +428,8 @@ public class CancelEventForm {
 		if (jTextField == null) {
 			jTextField = new JTextField();
 			jTextField.setBounds(new Rectangle(244, 122, 137, 20));
+			jTextField.setEditable(false);
+			jTextField.setEnabled(true);
 		}
 		return jTextField;
 	}
@@ -424,6 +445,7 @@ public class CancelEventForm {
 			jTextArea.setBounds(new Rectangle(281, 213, 388, 35));
 			jTextArea.setWrapStyleWord(true);
 			jTextArea.setLineWrap(true);
+			jTextArea.setEditable(false);
 		}
 		return jTextArea;
 	}
@@ -439,6 +461,7 @@ public class CancelEventForm {
 					JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 					JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 			pne1.setBounds(new Rectangle(281, 213, 388, 35));
+			pne1.setEnabled(false);
 			pne1.setVisible(true);
 		}
 		return pne1;
@@ -453,10 +476,16 @@ public class CancelEventForm {
 		if (textField_5 == null) {
 			textField_5 = new JTextField();
 			textField_5.setBounds(new java.awt.Rectangle(526,121,135,20));
+			textField_5.setEnabled(true);
+			textField_5.setEditable(false);
 			textField_5.setColumns(10);
 		}
 		return textField_5;
 	}
+	//This method basically refreshes the UI
+	//For example when an event is consolidated,cancelled or used to collect payment.
+	//Once the objective is completed for the event this method would refresh the whole
+	//JFrame
 	
 	private void refresh(){	
 		jContentPane.remove(pne);
@@ -483,18 +512,15 @@ public class CancelEventForm {
 		pne.updateUI();
 		
 	}
-	
+	//This method gets events from database and make sures that 
+	//events with the same date will be put into the same folder in the JTree
 	private void generateEvents(DefaultMutableTreeNode tn)
 	{
-	
-
 		CancelEventControl c1 = new CancelEventControl();
-	
 		ArrayList<Event> eventList = c1.processSelection();
-		
 		DefaultMutableTreeNode[] nodes = new DefaultMutableTreeNode[eventList.size()];
-		
-		if(eventList.size()==0){
+		if(eventList.size()==0)
+		{
 			JOptionPane.showMessageDialog(null, "No events to display");
 		}
 		
@@ -528,19 +554,20 @@ public class CancelEventForm {
 	
 	public static void main(String args[]){
 		
-		try {
-            UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");          // start application       // select Look and Feel
-	
-		
-}        catch (Exception ex) {            ex.printStackTrace();            System.out.print("Error");
-}
+		//JTATTOO SET LOOK AND FEEL
+		try 
+		{
+			 UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");   
+		}        
+		catch (Exception ex) 
+		{           
+			ex.printStackTrace();           
+			System.out.print("Error");
+		}
 
-	CancelEventForm c1 = new CancelEventForm();
-	c1.getJFrame().setVisible(true);
-  
-	
-
-	
+		CancelEventForm c1 = new CancelEventForm();
+		c1.getJFrame().setVisible(true);
+  			
 }
 	
 

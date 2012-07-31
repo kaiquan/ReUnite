@@ -62,7 +62,6 @@ import Controller.SOM.AdministrateFacilityControl;
 import Controller.SOM.AdministrateMealControl;
 import Controller.SOM.AdministratePackageControl;
 import Controller.SOM.CSVController;
-import java.awt.Point;
 
 public class AdministrateSystemOptionManagement {
 	
@@ -112,7 +111,7 @@ public class AdministrateSystemOptionManagement {
 	private AdministrateEntertainmentForm entertainment=null;
 	private AdministrateBallroomForm ballroom=null;
 	private AdministrateFacilityForm facility=null;
-	private AdministrateMealForm meal= null;
+	private AdministrateMealForm meal= null;  //  @jve:decl-index=0:
 	/********************************************************
 	 *					Start of UI
 	 *******************************************************/
@@ -1167,31 +1166,6 @@ public class AdministrateSystemOptionManagement {
 		jToolBar_Ballroom.setOpaque(false);
 		jToolBar_Ballroom.setBounds(new Rectangle(539, 190, 218, 56));
 		jToolBar_Ballroom.add(jButton_ballroom);
-		//converting to window 8 metro tiles
-		
-		JButton meal=new JButton();
-		//setting the button settings
-		meal.setSize(new Dimension(300, 126));
-		meal.setBorderPainted(false);
-		meal.setBackground(Color.blue);
-		
-		JPanel mealContent= new JPanel();
-		mealContent.setLayout(null);
-		mealContent.setSize(new Dimension(216, 100));
-		mealContent.setBackground(Color.blue);
-		
-		JLabel mealIcon= new JLabel();
-		mealIcon.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/meal.png")));
-		mealIcon.setLocation(new Point(0, 0));
-		mealIcon.setSize(new Dimension(48, 50));
-		
-		mealContent.add(mealIcon);
-		
-		//meal.add(mealContent);
-		
-		
-		
-		
 		
 		JPanel jPanel = new JPanel();
 		jPanel = new JPanel();
@@ -1204,11 +1178,10 @@ public class AdministrateSystemOptionManagement {
 		jPanel.add(jToolBar_Ballroom, null);
 		jPanel.add(jToolBar_Package, null);
 		
-		
-		//jScrollPane = new JScrollPane(jPanel);
-		//jScrollPane.setSize(new Dimension(1021, 303));
-		//jScrollPane.setViewportView(jPanel);
-		//jScrollPane.setPreferredSize(new Dimension(1021, 303));
+		jScrollPane = new JScrollPane(jPanel);
+		jScrollPane.setSize(new Dimension(1021, 303));
+		jScrollPane.setViewportView(jPanel);
+		jScrollPane.setPreferredSize(new Dimension(1021, 303));
 
 		jTabbedPane.add("New",jScrollPane);
 	}

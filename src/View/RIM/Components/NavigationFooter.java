@@ -12,7 +12,7 @@ import java.awt.event.*;
 import net.miginfocom.swing.MigLayout;
 
 @SuppressWarnings("serial")
-public abstract class NavigationFooter extends JPanel
+public class NavigationFooter extends JPanel
 {
 	public NavigationFooter()
 	{
@@ -30,7 +30,7 @@ public abstract class NavigationFooter extends JPanel
 			}
 		});
 
-		JLabel lblOf = new JLabel("(1 of 5)");
+		JLabel lblOf = new JLabel("(1 of 2)");
 		lblOf.setFont(new Font("Tahoma", Font.BOLD, 11));
 		add(lblOf, "flowx,cell 0 0,alignx right");
 		label.setIcon(new ImageIcon(ImageHelper.class.getResource("nextIcon.png")));
@@ -41,5 +41,8 @@ public abstract class NavigationFooter extends JPanel
 		add(lblNewLabel, "cell 2 0,alignx left");
 	}
 
-	public abstract void nextButtonClicked();
+	public void nextButtonClicked()
+	{
+		
+	}
 }

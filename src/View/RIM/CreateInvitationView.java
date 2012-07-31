@@ -77,101 +77,111 @@ public class CreateInvitationView extends JFrame
 	public JPanel getStep1()
 	{
 		JPanel step1 = new JPanel();
-		step1.setLayout(new MigLayout("", "[403.00,grow]", "[59.00][98.00,grow]"));
+		step1.setLayout(new MigLayout("", "[403.00,grow]", "[52.00][3.00][341.00,bottom][28.00,grow]"));
 
 			// The heading panel
 			JPanel headerPanel = new JPanel();
-			headerPanel.setLayout(new MigLayout("", "[-20.00px][284px][][][][][][][][][][][][][][]", "[125px]"));
+			headerPanel.setLayout(new MigLayout("", "[-20.00px][284px][]", "[125px]"));
 	
 				JLabel headingLabel = new JLabel("Please specify your contacts...");
 				headingLabel.setFont(new Font("Segoe UI", Font.PLAIN, 22));
 				
-			headerPanel.add(headingLabel, "cell 1 0,alignx left,aligny center");
+			headerPanel.add(headingLabel, "cell 1 0,alignx center,aligny center");
+
+		step1.add(headerPanel, "cell 0 0,alignx center,growy");
 			
 				JLabel headerIcon = new JLabel("");
-				headerIcon.setIcon(ImageHelper.loadImageIcon("selectContacts.png", "background", -1, 75, 5));
+				headerIcon.setIcon(ImageHelper.loadImageIcon("selectContacts.png", "background", -1, 50, 5));
 				
-			headerPanel.add(headerIcon, "cell 14 0,aligny top");
-
-		step1.add(headerPanel, "cell 0 0, grow");
+				headerPanel.add(headerIcon, "cell 2 0,aligny top");
+			
+			JPanel actionPanel = new JPanel();
+			actionPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+			step1.add(actionPanel, "flowx,cell 0 1,alignx center,aligny bottom");
+			actionPanel.setBackground(Color.ORANGE);
+			actionPanel.setLayout(new MigLayout("", "[119px]", "[33px][]"));
+			
+								JButton plusButton = new JButton("");
+								plusButton.setIcon(new ImageIcon(ImageHelper.class.getResource("plus.png")));
+								plusButton.addActionListener(new ActionListener()
+								{
+									@Override
+									public void actionPerformed(ActionEvent arg0) {
+										controller.addRow();
+									}
+								});
+								
+				actionPanel.add(plusButton, "flowx,cell 0 0,alignx center,aligny bottom");
+				
+				
+			JButton facebookImportButton = new JButton("");
+			facebookImportButton.setIcon(ImageHelper.loadImageIcon("facebookIcon.png", "Import from Facebook", -1, 24, 5));
+			facebookImportButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0)
+				{
+					new ContactImporter("Facebook");
+				}
+			});
+			
+							JButton minusButton = new JButton("");
+							minusButton.setIcon(new ImageIcon(ImageHelper.class.getResource("minus.png")));
+							minusButton.addActionListener(new ActionListener()
+							{
+								@Override
+								public void actionPerformed(ActionEvent arg0) {
+									controller.deleteRow(table.getSelectedRows());
+								}
+							});
+							actionPanel.add(minusButton, "cell 0 0,alignx center,aligny top");
+							
+							JLabel lblOrImportFrom = new JLabel("   or import from:   ");
+							lblOrImportFrom.setFont(new Font("Tahoma", Font.BOLD, 12));
+							actionPanel.add(lblOrImportFrom, "cell 0 0,alignx left,aligny center");
+							actionPanel.add(facebookImportButton, "cell 0 0,alignx center,aligny top");
+							
+						JButton hotmailImportButton = new JButton("");
+						hotmailImportButton.setIcon(ImageHelper.loadImageIcon("hotmailIcon.png", "Import from Hotmail", -1, 24, 5));
+						hotmailImportButton.addActionListener(new ActionListener() 
+						{
+							public void actionPerformed(ActionEvent arg0)
+							{
+								ArrayList<Guest> tempList = new ContactImporter("Hotmail").getContacts();
+								controller.addRows(tempList);
+							}
+						});
+						actionPanel.add(hotmailImportButton, "cell 0 0,alignx center,aligny top");
+						
+						JButton googleImportButton = new JButton("");
+						googleImportButton.setIcon(ImageHelper.loadImageIcon("googleIcon.png", "Import from Google", -1, 24, 5));
+						googleImportButton.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent arg0)
+							{
+								new ContactImporter("Google");
+							}
+						});
+						actionPanel.add(googleImportButton, "cell 0 0,alignx center,aligny top");
 
 			// The contact list panel
 			JPanel contactListPanel = new JPanel();
-			contactListPanel.setLayout(new MigLayout("", "[692.00,grow]", "[28.00px,grow][][][][][][][][][][][]"));
-			contactListPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Contact List", TitledBorder.LEADING,
-					TitledBorder.TOP, null, null));
+			contactListPanel.setLayout(new MigLayout("", "[692.00,grow]", "[28.00px,grow][][][][][][][][][][][61.00][]"));
+			contactListPanel.setBorder(null);
 			
 				JScrollPane tableScrollPane = new JScrollPane();
 				tableScrollPane.setViewportView(prepareTable());
-				contactListPanel.add(tableScrollPane, "cell 0 0 1 11,grow");
-				
-				JPanel actionPanel = new JPanel();
-				actionPanel.setBackground(Color.ORANGE);
-				actionPanel.setLayout(new MigLayout("", "[119px]", "[33px]"));
-
-					JButton plusButton = new JButton("");
-					plusButton.setIcon(new ImageIcon(ImageHelper.class.getResource("plus.png")));
-					plusButton.addActionListener(new ActionListener()
-					{
-						@Override
-						public void actionPerformed(ActionEvent arg0) {
-							controller.addRow();
-						}
-					});
-					
-				actionPanel.add(plusButton, "flowx,cell 0 0,alignx center,aligny top");
-
-
-				JButton facebookImportButton = new JButton("");
-				facebookImportButton.setIcon(ImageHelper.loadImageIcon("facebookIcon.png", "Import from Facebook", -1, 24, 5));
-				facebookImportButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0)
-					{
-						new ContactImporter("Facebook");
-					}
-				});
-
-				JButton minusButton = new JButton("");
-				minusButton.setIcon(new ImageIcon(ImageHelper.class.getResource("minus.png")));
-				minusButton.addActionListener(new ActionListener()
-				{
-					@Override
-					public void actionPerformed(ActionEvent arg0) {
-						controller.deleteRow(table.getSelectedRows());
-					}
-				});
-				actionPanel.add(minusButton, "cell 0 0,alignx center,aligny top");
-
-				JLabel lblOrImportFrom = new JLabel("   or import from:   ");
-				lblOrImportFrom.setFont(new Font("Tahoma", Font.BOLD, 12));
-				actionPanel.add(lblOrImportFrom, "cell 0 0,alignx left,aligny center");
-				actionPanel.add(facebookImportButton, "cell 0 0,alignx center,aligny top");
-
-				JButton hotmailImportButton = new JButton("");
-				hotmailImportButton.setIcon(ImageHelper.loadImageIcon("hotmailIcon.png", "Import from Hotmail", -1, 24, 5));
-				hotmailImportButton.addActionListener(new ActionListener() 
-				{
-					public void actionPerformed(ActionEvent arg0)
-					{
-						ArrayList<Guest> tempList = new ContactImporter("Hotmail").getContacts();
-						controller.addRows(tempList);
-					}
-				});
-				actionPanel.add(hotmailImportButton, "cell 0 0,alignx center,aligny top");
-
-				JButton googleImportButton = new JButton("");
-				googleImportButton.setIcon(ImageHelper.loadImageIcon("googleIcon.png", "Import from Google", -1, 24, 5));
-				googleImportButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0)
-					{
-						new ContactImporter("Google");
-					}
-				});
-				actionPanel.add(googleImportButton, "cell 0 0,alignx center,aligny top");
-				
-			contactListPanel.add(actionPanel, "cell 0 11,alignx center");
+				contactListPanel.add(tableScrollPane, "cell 0 0 1 13,growx,aligny center");
 			
-		step1.add(contactListPanel, "cell 0 1,grow");
+		step1.add(contactListPanel, "cell 0 2,grow");
+						
+						NavigationFooter navigationFooter = new NavigationFooter() {
+
+							@Override
+							public void nextButtonClicked()
+							{
+								switchPanels();
+							}
+
+						};
+						step1.add(navigationFooter, "cell 0 3,growx,aligny bottom");
 	
 		return step1;
 	}

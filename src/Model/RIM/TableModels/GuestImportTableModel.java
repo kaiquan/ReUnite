@@ -13,7 +13,7 @@ public class GuestImportTableModel extends AbstractTableModel
 	private static final long serialVersionUID = 1L;
 	private TableSorter tableSorter;
 	private int rowCount, colCount;
-	private String[] columnNames = { "", "First name", "Last name", "School", "Date of birth", "Email", "Contact", "Address" };
+	private String[] columnNames = { "", "First name*", "Last name*", "School", "Date of birth", "Email*", "Contact", "Address" };
 	ArrayList<Object[]> al;
 
 

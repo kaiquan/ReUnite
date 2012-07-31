@@ -43,7 +43,7 @@ public class DatePicker {
                                 button[x].setText(header[x]);
                                 button[x].setForeground(Color.red);
                         }
-                        p1.add(button[x]);
+                    p1.add(button[x]);
                 }
                 JPanel p2 = new JPanel(new GridLayout(1, 3));
                 p2.setOpaque(false);
@@ -81,8 +81,7 @@ public class DatePicker {
         public void displayDate() {
                 for (int x = 7; x < button.length; x++)
                         button[x].setText("");
-                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat(
-                                "MMMM yyyy");
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("MMMM yyyy");
                 java.util.Calendar cal = java.util.Calendar.getInstance();
                 cal.set(year, month, 1);
                 int dayOfWeek = cal.get(java.util.Calendar.DAY_OF_WEEK);
@@ -90,18 +89,19 @@ public class DatePicker {
                 for (int x = 6 + dayOfWeek, day = 1; day <= daysInMonth; x++, day++)
                         button[x].setText("" + day);
                 l.setText(sdf.format(cal.getTime()));
+                l.setForeground(Color.WHITE);
                 d.getJDialog().setTitle("Date Picker");
         }
 
-        public String setPickedDate() {
+        public String getPickedDate() {
                 if (day.equals(""))
                         return day;
-                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat(
-                                "dd-MM-yyyy");
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd-MM-yyyy");
                 java.util.Calendar cal = java.util.Calendar.getInstance();
                 cal.set(year, month, Integer.parseInt(day));
                 return sdf.format(cal.getTime());
         }
+        
         public static void main(String[] args) {
             JLabel label = new JLabel("Selected Date:");
             final JTextField text = new JTextField(20);
@@ -116,7 +116,7 @@ public class DatePicker {
             f.setVisible(true);
             b.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent ae) {
-                            text.setText(new DatePicker().setPickedDate());
+                            text.setText(new DatePicker().getPickedDate());
                     }
             });
     }

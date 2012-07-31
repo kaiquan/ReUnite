@@ -13,9 +13,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import View.RIM.Components.DatePicker;
-
-//Our custom cell editor class:
+@SuppressWarnings("serial")
 public class DateCellEditor extends DefaultCellEditor {
 
 // we need this as DefaultCellEditor has no default constructor.
@@ -27,7 +25,8 @@ public DateCellEditor() {
 // If you don't want any keyboard editing, return false if not a MouseEvent.
 public boolean isCellEditable(EventObject anEvent) {
    boolean isEditable = super.isCellEditable(anEvent);
-   if (isEditable && anEvent instanceof MouseEvent) {
+   if (isEditable && anEvent instanceof MouseEvent) 
+   {
        setupDatePicker();
    }
    return isEditable;
@@ -36,12 +35,10 @@ public boolean isCellEditable(EventObject anEvent) {
 // Set the edit placeholder for the cell, and make the delegate our DatePickerComponent
 // (the component that displays the DatePicker).
 private void setupDatePicker() {
-   editorComponent = new JLabel("*** Editing ***");
+   editorComponent = new JLabel("");
    delegate = new DatePickerComponent(this);
 }
 
-// This component contains the actual date picker (represented here by a dialog with a
-// text field and an OK button).
 class DatePickerComponent extends EditorDelegate {
 
    CellEditor cellEditor;  // reference to our cell editor so we can tell it when we're finished.
@@ -86,7 +83,7 @@ class DatePickerComponent extends EditorDelegate {
        DatePicker() {
 
            dialog = new JDialog();
-           new View.RIM.Components.DatePicker().setPickedDate();
+           View.RIM.Components.DatePicker picker = new View.RIM.Components.DatePicker();
            textField = new JTextField();
            dialog.add(textField);
            dialog.add(new JButton(new AbstractAction("OK") {

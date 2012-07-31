@@ -1124,14 +1124,14 @@ public class AdministrateBallroomForm {
 		AdministrateFacilityControl control= new AdministrateFacilityControl();
 		form.getJComboBox_facilityName().setModel(control.processRetrieveFacilityNames());
 		if(AdministrateSystemOptionManagement.getJTabbedPane().getTabCount()==1){
-			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("New Facility",null , form.getJScrollPane(),null , 1); // sets the content
+			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("Create Ballroom Form",null , form.getJScrollPane(),null , 1); // sets the content
 			createTabHeader(1);	//sets the custom tab header
 			AdministrateSystemOptionManagement.getJTabbedPane().remove(0);
 			AdministrateSystemOptionManagement.getJTabbedPane().setSelectedIndex(0);
 		}
 		else{
 			System.out.println(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex());
-			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("New Facility",null , form.getJScrollPane(),null , AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()); // sets the content
+			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("Create Ballroom Form",null , form.getJScrollPane(),null , AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()); // sets the content
 			createTabHeader(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()-1);	//sets the custom tab header
 			AdministrateSystemOptionManagement.getJTabbedPane().remove(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex());
 			if(!(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()==AdministrateSystemOptionManagement.getJTabbedPane().getTabCount()-1)){

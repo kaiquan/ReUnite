@@ -3046,13 +3046,13 @@ public class AdministratePackageForm {
 	public void newPackageTab(){	
 		AdministratePackageForm meal=new AdministratePackageForm();
 		if(AdministrateSystemOptionManagement.getJTabbedPane().getTabCount()==1){
-			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("New Package",null , meal.getJScrollPane(),null , 1); // sets the content
+			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("Create Package Form",null , meal.getJScrollPane(),null , 1); // sets the content
 			createTabHeader(1);	//sets the custom tab header
 			AdministrateSystemOptionManagement.getJTabbedPane().remove(0);
 			AdministrateSystemOptionManagement.getJTabbedPane().setSelectedIndex(0);
 		}
 		else{
-			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("New Package",null , meal.getJScrollPane(),null , AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()); // sets the content
+			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("Create Package Form",null , meal.getJScrollPane(),null , AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()); // sets the content
 			createTabHeader(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()-1);	//sets the custom tab header
 			AdministrateSystemOptionManagement.getJTabbedPane().remove(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex());
 			if(!(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()==AdministrateSystemOptionManagement.getJTabbedPane().getTabCount()-1)){

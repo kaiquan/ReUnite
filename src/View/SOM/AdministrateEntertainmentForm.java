@@ -423,7 +423,7 @@ public class AdministrateEntertainmentForm {
 					if (!scanner.hasNextDouble()) {  
 					    isDigit=true;   
 					}  
-					if(getJTextField_entertainmentMenu().getText().equals("")||getJTextField_entertainmentMenu().getText().equals("                      Enter Entertainment Name Here...")){
+					if(getJTextField_entertainmentMenu().getText().equals("")||getJTextField_entertainmentMenu().getText().equals("Enter Entertainment Name Here...")){
 						JOptionPane.showMessageDialog(null, "Please enter a entertainment Name.", "Missing Fields", JOptionPane.WARNING_MESSAGE);
 						getJTextField_entertainmentMenu().requestFocus();
 					}
@@ -431,7 +431,7 @@ public class AdministrateEntertainmentForm {
 						JOptionPane.showMessageDialog(null, "Please enter the entertainment price.", "Missing Fields", JOptionPane.WARNING_MESSAGE);
 						getJTextField_entertainmentPrice().requestFocus();
 					}
-					else if(getJTextArea_entertainmentMenuDescription().getText().equals("")||getJTextArea_entertainmentMenuDescription().getText().equals("\n\n                                                  Enter a short Description of the entertainment")){
+					else if(getJTextArea_entertainmentMenuDescription().getText().equals("")||getJTextArea_entertainmentMenuDescription().getText().equals("\n\n                                                                                Enter a short Description of the entertainment")){
 						JOptionPane.showMessageDialog(null, "Please enter the entertainment description", "Missing Fields", JOptionPane.WARNING_MESSAGE);
 						getJTextArea_entertainmentMenuDescription().requestFocus();
 					}
@@ -890,11 +890,11 @@ public class AdministrateEntertainmentForm {
 		model.addRow(new Object[]{entertainmentName,entertainmentPrice,entertainmentDescription});
 		getJTable_entertainmentMenu().setModel(model);
 		//CLEAR THE TEXTBOX
-		getJTextField_entertainmentMenu().setText("                      Enter Entertainment Name Here...");
+		getJTextField_entertainmentMenu().setText("Enter Entertainment Name Here...");
 		getJTextField_entertainmentMenu().setForeground(SystemColor.scrollbar);
 		getJTextField_entertainmentPrice().setText("0.00");
 		getJTextField_entertainmentPrice().setForeground(SystemColor.scrollbar);
-		getJTextArea_entertainmentMenuDescription().setText("\n\n                                                  Enter a short Description of the entertainment");
+		getJTextArea_entertainmentMenuDescription().setText("\n\n                                                                                Enter a short Description of the entertainment");
 		getJTextArea_entertainmentMenuDescription().setForeground(SystemColor.scrollbar);
 		getJTextField_entertainmentPrice().requestFocus(false);
 		getJTextField_entertainmentMenu().requestFocus(false);

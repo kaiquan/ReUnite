@@ -182,6 +182,7 @@ public class Entertainment {
 		try{
 			rs = DB.readRequest(sqlQuery);
 			while (rs.next()){
+				
 				model.addRow(new Object[]{rs.getString("entertainmentID"),rs.getString("entertainmentTitle"),rs.getString("entertainmentFinalPrice"),rs.getString("entertainmentDescription")});
 		   }
 		}

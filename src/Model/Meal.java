@@ -350,6 +350,7 @@ public class Meal {
 public ArrayList<String> GET_MEAL_PRICE(String eventName){
 		
 		ArrayList<String> e1 = new ArrayList<String>();
+		@SuppressWarnings("unused")
 		ArrayList<String> e2 = new ArrayList<String>();
 		
 		ResultSet rs = null;

@@ -449,7 +449,7 @@ public class AdministrateMealForm {
 					if (!scanner.hasNextDouble()) {  
 					    isDigit=true;   
 					}  
-					if(getJTextField_mealMenu().getText().equals("")||getJTextField_mealMenu().getText().equals("                                                  Enter a Meal Name")){
+					if(getJTextField_mealMenu().getText().equals("")||getJTextField_mealMenu().getText().equals("Enter a Meal Name")){
 						JOptionPane.showMessageDialog(null, "Please Enter An Meal Name", "Missing Fields", JOptionPane.WARNING_MESSAGE);
 						getJTextField_mealMenu().requestFocus();
 					}
@@ -457,7 +457,7 @@ public class AdministrateMealForm {
 						JOptionPane.showMessageDialog(null, "Please Enter An Meal Price", "Missing Fields", JOptionPane.WARNING_MESSAGE);
 						getJTextField_mealPrice().requestFocus();
 					}
-					else if(getJTextArea_mealMenuDescription().getText().equals("")||getJTextArea_mealMenuDescription().getText().equals("\n\n\n                                        Enter a Short Description of the Meal")){
+					else if(getJTextArea_mealMenuDescription().getText().equals("")||getJTextArea_mealMenuDescription().getText().equals("\n\n\n                                                         Enter a Short Description of the Meal")){
 						JOptionPane.showMessageDialog(null, "Please Enter An Meal Description", "Missing Fields", JOptionPane.WARNING_MESSAGE);
 						getJTextArea_mealMenuDescription().requestFocus();
 					}
@@ -953,17 +953,17 @@ public class AdministrateMealForm {
 		String MealMenuName=getJTextField_mealMenu().getText().toString();
 		String MealMenuPrice=getJTextField_mealPrice().getText().toString();
 		String MealMenuDescription=getJTextArea_mealMenuDescription().getText().toString();
-		String MealMenuHalal="false";
-		if(getJCheckBox_mealHalal().isSelected())MealMenuHalal="true";
-		String MealMenuVegetarian="false";
-		if(getJCheckBox_mealVegetarian().isSelected())MealMenuVegetarian="true";
+		String MealMenuHalal="NO";
+		if(getJCheckBox_mealHalal().isSelected())MealMenuHalal="YES";
+		String MealMenuVegetarian="NO";
+		if(getJCheckBox_mealVegetarian().isSelected())MealMenuVegetarian="YES";
 		
 		//ADD THE ENTERTAINMENT
 		model.addRow(new Object[]{MealMenuName,MealMenuPrice,MealMenuHalal,MealMenuVegetarian, MealMenuDescription});
 		getJTable_mealMenu().setModel(model);
 		
 		//CLEAR THE TEXTBOX
-		getJTextField_mealMenu().setText("                                                  Enter a Meal Name");
+		getJTextField_mealMenu().setText("Enter a Meal Name");
 		getJTextField_mealMenu().setForeground(SystemColor.scrollbar);
 		getJTextField_mealMenu().requestFocus(false);
 		getJTextField_mealPrice().setText("0.00");
@@ -971,7 +971,7 @@ public class AdministrateMealForm {
 		getJTextField_mealPrice().requestFocus(false);
 		getJCheckBox_mealHalal().setSelected(false);
 		getJCheckBox_mealVegetarian().setSelected(false);
-		getJTextArea_mealMenuDescription().setText("\n\n\n                                        Enter a Short Description of the Meal");
+		getJTextArea_mealMenuDescription().setText("\n\n\n                                                         Enter a Short Description of the Meal");
 		getJTextArea_mealMenuDescription().setForeground(SystemColor.scrollbar);
 		getJTextArea_mealMenuDescription().requestFocus(false);
 		
@@ -1170,17 +1170,17 @@ public class AdministrateMealForm {
 		 for(int i=0;i<model.getRowCount();i++){
 			table.addCell(model.getValueAt(i, 0).toString());
 			table.addCell(model.getValueAt(i, 1).toString());
-			if(model.getValueAt(i, 2).equals("true")||model.getValueAt(i, 2).equals("1")){
-				table.addCell("Yes");
+			if(model.getValueAt(i, 2).equals("YES")||model.getValueAt(i, 2).equals("YES")){
+				table.addCell("YES");
 			}
-			if(model.getValueAt(i, 2).equals("fasle")||model.getValueAt(i, 2).equals("0")){
-				table.addCell("No");
+			if(model.getValueAt(i, 2).equals("NO")||model.getValueAt(i, 2).equals("NO")){
+				table.addCell("NO");
 			}
-			if(model.getValueAt(i, 3).equals("true")||model.getValueAt(i, 2).equals("1")){
-				table.addCell("Yes");
+			if(model.getValueAt(i, 3).equals("YES")||model.getValueAt(i, 2).equals("YES")){
+				table.addCell("YES");
 			}
-			if(model.getValueAt(i, 3).equals("false")||model.getValueAt(i, 2).equals("0")){
-				table.addCell("No");
+			if(model.getValueAt(i, 3).equals("NO")||model.getValueAt(i, 2).equals("NO")){
+				table.addCell("NO");
 			}
 			table.addCell(model.getValueAt(i, 4).toString());
 		}
@@ -1258,16 +1258,16 @@ public class AdministrateMealForm {
 			mealMenuData= new String[5];
 			mealMenuData[0]=(model.getValueAt(i, 0).toString());
 			mealMenuData[1]=(model.getValueAt(i, 1).toString());
-			if(model.getValueAt(i, 2).equals("true")||model.getValueAt(i, 2).equals("1")){
+			if(model.getValueAt(i, 2).equals("YES")||model.getValueAt(i, 2).equals("YES")){
 				mealMenuData[2]="YES";
 			}
-			if(model.getValueAt(i, 2).equals("fasle")||model.getValueAt(i, 2).equals("0")){
+			if(model.getValueAt(i, 2).equals("NO")||model.getValueAt(i, 2).equals("NO")){
 				mealMenuData[2]="NO";
 			}
-			if(model.getValueAt(i, 3).equals("true")||model.getValueAt(i, 2).equals("1")){
+			if(model.getValueAt(i, 3).equals("YES")||model.getValueAt(i, 3).equals("YES")){
 				mealMenuData[3]="YES";
 			}
-			if(model.getValueAt(i, 3).equals("false")||model.getValueAt(i, 2).equals("0")){
+			if(model.getValueAt(i, 3).equals("NO")||model.getValueAt(i, 3).equals("NO")){
 				mealMenuData[3]="NO";;
 			}
 			mealMenuData[4]=(model.getValueAt(i, 4).toString());
@@ -1299,14 +1299,14 @@ public class AdministrateMealForm {
 		AdministrateMealForm meal=new AdministrateMealForm();
 		if(AdministrateSystemOptionManagement.getJTabbedPane().getTabCount()==1){
 			System.out.println(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex());
-			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("New Meal",null , meal.getJScrollPane(),null , 1); // sets the content
+			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("Create Meal Form",null , meal.getJScrollPane(),null , 1); // sets the content
 			createTabHeader(1);	//SETS THE CUSTOM TAB HEADER
 			AdministrateSystemOptionManagement.getJTabbedPane().remove(0);
 			AdministrateSystemOptionManagement.getJTabbedPane().setSelectedIndex(0);
 		}
 		else{
 			System.out.println(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex());
-			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("New Meal",null , meal.getJScrollPane(),null , AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()); // sets the content
+			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("Create Meal Form",null , meal.getJScrollPane(),null , AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()); // sets the content
 			createTabHeader(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()-1);	//sets the custom tab header
 			AdministrateSystemOptionManagement.getJTabbedPane().remove(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex());
 			if(!(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()==AdministrateSystemOptionManagement.getJTabbedPane().getTabCount()-1)){

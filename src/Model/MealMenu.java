@@ -124,7 +124,18 @@ public class MealMenu {
 		try{
 			rs = DB.readRequest(sqlQuery);
 			while (rs.next()){
-				model.addRow(new Object[]{rs.getString("mealMenuName"),rs.getString("mealMenuPrice"),rs.getString("mealMenuHalal"),rs.getString("mealMenuVegetarian"),rs.getString("mealMeuDescription")});
+				String hala = "";
+				String vegetarian="";
+				if(rs.getString("mealMenuHalal").equals("1"))
+					hala="YES";
+				if(rs.getString("mealMenuHalal").equals("0"))
+					hala="NO";
+				if(rs.getString("mealMenuVegetarian").equals("1"))
+					 vegetarian="YES";
+				if(rs.getString("mealMenuVegetarian").equals("0"))
+					 vegetarian="NO";
+				System.out.println(hala);
+				model.addRow(new Object[]{rs.getString("mealMenuName"),rs.getString("mealMenuPrice"),hala,vegetarian,rs.getString("mealMeuDescription")});
 		   }
 		}
 		catch (Exception e) {

@@ -1814,7 +1814,7 @@ public class AdministrateSystemOptionManagement {
 	  *******************************************************/
 	@SuppressWarnings("unchecked")
 	public int loadCSV(String path) throws IOException{
-		int result=0;
+		int result=1;
 		String tabTitle="";
 		//-1 means empty file
 		//0 means wrong format file
@@ -1842,7 +1842,7 @@ public class AdministrateSystemOptionManagement {
 			if(!(data.get(2)[1].equals("ENTERTAINMENT_MENU_PRICE"))) return 0;
 			if(!(data.get(2)[2].equals("ENTERTAINMENT_MENU_DESCRIPTION"))) return 0;
 			else{
-				tabTitle="New Entertainment Form";
+				tabTitle="Create Entertainment Form";
 				//LOADS THE DATA
 				//CALLS THE ENTERTAINMENT FORM
 				AdministrateEntertainmentForm form= new AdministrateEntertainmentForm();
@@ -1926,7 +1926,7 @@ public class AdministrateSystemOptionManagement {
 			if(!data.get(2)[3].equals("BALLROOM_DESCRIPTION"))return 0;
 			
 			else{
-				tabTitle="New Facility Form";
+				tabTitle="Create Facility Form";
 				//LOADS THE DATA
 				//CHECKS THE DATABASE FOR AN ID PROJECTED ON THE CSV FILE
 				AdministrateFacilityControl control= new AdministrateFacilityControl();
@@ -1950,9 +1950,13 @@ public class AdministrateSystemOptionManagement {
 				}
 				//SETTING THE FORM FIELDS ACCORDLIGLY 
 				form.getJTextField_facilityName().setText(data.get(1)[1]);
+				form.getJTextField_facilityName().setForeground(SystemColor.black);
 				form.getJTextField_facilityAddress().setText(data.get(1)[3]);
+				form.getJTextField_facilityAddress().setForeground(SystemColor.black);
 				form.getJTextField_facilityContact().setText(data.get(1)[2]);
+				form.getJTextField_facilityContact().setForeground(SystemColor.black);
 				form.getJTextArea_facilityDescription().setText(data.get(1)[4]);
+				form.getJTextArea_facilityDescription().setForeground(SystemColor.black);
 				if(data.get(1)[5].equals("YES"))
 					form.getJCheckBox_facilityParking().setSelected(true);
 				if(data.get(1)[5].equals("NO"))
@@ -2007,7 +2011,7 @@ public class AdministrateSystemOptionManagement {
 			if(!data.get(0)[10].equals("BALLROOM_FINAL_PRICE"))return 0;
 			
 			else{
-				tabTitle="New Ballroom Form";
+				tabTitle="Create Ballroom Form";
 				//LOADS THE DATA
 				//CHECKS THE DATABASE FOR AN ID PROJECTED ON THE CSV FILE
 				AdministrateBallroomControl control= new AdministrateBallroomControl();
@@ -2081,7 +2085,7 @@ public class AdministrateSystemOptionManagement {
 			if(!data.get(2)[4].equals("MEAL_MENU_DESCRIPTION")) return 0;
 
 			else{
-				tabTitle="New Meal Form";
+				tabTitle="Create Meal Form";
 				//LOADS THE DATA
 				//CHECKS THE DATABASE FOR AN ID PROJECTED ON THE CSV FILE
 				AdministrateMealControl control= new AdministrateMealControl();
@@ -2165,7 +2169,7 @@ public class AdministrateSystemOptionManagement {
 			if(!data.get(0)[14].equals("PACKAGE_DISCOUNT"))return 0;
 	
 			else{
-				tabTitle="New Package Form";
+				tabTitle="Create Package Form";
 				//LOADS THE DATA
 				//CHECKS THE DATABASE FOR AN ID PROJECTED ON THE CSV FILE
 				AdministratePackageControl control= new AdministratePackageControl();
@@ -2200,25 +2204,25 @@ public class AdministrateSystemOptionManagement {
 				form.getJTextField_Ballroom().setText(data.get(1)[5]);
 				form.ballroomID=data.get(1)[4];
 				
-				if(!data.get(1)[6].equals(null)||!data.get(1)[6].equals("")){
+				if(!data.get(1)[6].equals(null)||!data.get(1)[6].equals("")||data.get(1)[6]!=null){
 					form.getJTextField_entertainment().setName(data.get(1)[6]);
 					form.getJTextField_entertainment().setText(data.get(1)[7]);
 					form.entertainmentID=data.get(1)[6];
 					form.getJCheckBox_entertainment().setSelected(true);
 				}
-				if(!data.get(1)[8].equals(null)||!data.get(1)[8].equals("")){
+				if(!data.get(1)[8].equals(null)||!data.get(1)[8].equals("")||data.get(1)[8]!=null){
 					form.getJTextField_mealOption1().setName(data.get(1)[8]);
 					form.getJTextField_mealOption1().setText(data.get(1)[9]);
 					form.mealOption1ID=data.get(1)[8];
 					form.getJCheckBox_mealOption1().setSelected(true);
 				}
-				if(!data.get(1)[10].equals(null)||!data.get(1)[8].equals("")){
+				if(!data.get(1)[10].equals(null)||!data.get(1)[8].equals("")||data.get(1)[10]!=null){
 					form.getJTextField_mealOption2().setName(data.get(1)[10]);
 					form.getJTextField_mealOption2().setText(data.get(1)[11]);
 					form.mealOption2ID=data.get(1)[10];
 					form.getJCheckBox_mealOption2().setSelected(true);
 				}
-				if(!data.get(1)[12].equals(null)||!data.get(1)[8].equals("")){
+				if(!data.get(1)[12].equals(null)||!data.get(1)[8].equals("")||data.get(1)[12]!=null){
 					form.getJTextField_mealOption3().setName(data.get(1)[12]);
 					form.getJTextField_mealOption3().setText(data.get(1)[13]);
 					form.mealOption3ID=data.get(1)[12];

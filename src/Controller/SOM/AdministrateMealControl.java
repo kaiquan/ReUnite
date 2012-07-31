@@ -81,13 +81,13 @@ public class AdministrateMealControl {
 			boolean Vegetarian=false;
 			boolean halal=false;
 				for(int i=0;i<model.getRowCount();i++){
-					if(model.getValueAt(i, 2).equals(true))
+					if(model.getValueAt(i, 2).equals("YES"))
 						halal=true;
-					if(model.getValueAt(i, 2).equals(false))
+					if(model.getValueAt(i, 2).equals("NO"))
 						halal=false;
-					if(model.getValueAt(i, 3).equals(false))
-						Vegetarian=false;
-					if(model.getValueAt(i, 3).equals(false))
+					if(model.getValueAt(i, 3).equals("YES"))
+						Vegetarian=true;
+					if(model.getValueAt(i, 3).equals("NO"))
 						Vegetarian=false;
 				mealMenu = new MealMenu(ID,model.getValueAt(i, 0).toString(),model.getValueAt(i, 4).toString(),Double.parseDouble((String) model.getValueAt(i, 1)),halal,Vegetarian);
 				success=mealMenu.CREATE_MEAL_MENU();
@@ -142,13 +142,13 @@ public class AdministrateMealControl {
 				boolean Vegetarian=false;
 				boolean halal=false;
 					for(int i=0;i<model.getRowCount();i++){
-						if(model.getValueAt(i, 2).equals(true))
+						if(model.getValueAt(i, 2).equals("YES"))
 							halal=true;
-						if(model.getValueAt(i, 2).equals(false))
+						if(model.getValueAt(i, 2).equals("NO"))
 							halal=false;
-						if(model.getValueAt(i, 3).equals(false))
-							Vegetarian=false;
-						if(model.getValueAt(i, 3).equals(false))
+						if(model.getValueAt(i, 3).equals("YES"))
+							Vegetarian=true;
+						if(model.getValueAt(i, 3).equals("NO"))
 							Vegetarian=false;
 					mealMenu = new MealMenu(ID,model.getValueAt(i, 0).toString(),model.getValueAt(i, 4).toString(),Double.parseDouble((String) model.getValueAt(i, 1)),halal,Vegetarian);
 					success=mealMenu.CREATE_MEAL_MENU();

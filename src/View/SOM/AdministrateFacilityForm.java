@@ -563,11 +563,11 @@ public class AdministrateFacilityForm {
 					if (!scanDiscount.hasNextDouble()) {  
 						discountIsDigit=true;   
 					}  
-					if(getJTextField_ballroomTitle().getText().equals("")||getJTextField_ballroomTitle().getText().equals("                                      Enter a Ballroom Name")){
+					if(getJTextField_ballroomTitle().getText().equals("")||getJTextField_ballroomTitle().getText().equals("Enter a Ballroom Name")){
 						JOptionPane.showMessageDialog(null, "Please Enter An Ballroom Name", "Warnning", JOptionPane.WARNING_MESSAGE);
 						getJTextField_ballroomTitle().requestFocus();
 					}
-					else if(getJTextArea_ballroomDescription().getText().equals("")||getJTextArea_ballroomDescription().getText().equals("\n\n                          Enter a Short Description of the Ballroom")){
+					else if(getJTextArea_ballroomDescription().getText().equals("")||getJTextArea_ballroomDescription().getText().equals("\n\n                                              Enter a Short Description of the Ballroom")){
 						JOptionPane.showMessageDialog(null, "Please Enter An Ballroom Description", "Warnning", JOptionPane.WARNING_MESSAGE);
 						getJTextArea_ballroomDescription().requestFocus();
 					}
@@ -575,7 +575,7 @@ public class AdministrateFacilityForm {
 						JOptionPane.showMessageDialog(null, "Please Select An Ballroom Size", "Warnning", JOptionPane.WARNING_MESSAGE);
 						getJComboBox_ballroomSize().requestFocus();
 					}
-					else if(getJTextField_ballroomPrice().getText().equals("")||getJTextField_ballroomPrice().getText().equals("            Enter Price")){
+					else if(getJTextField_ballroomPrice().getText().equals("")||getJTextField_ballroomPrice().getText().equals("Enter Price")){
 						JOptionPane.showMessageDialog(null, "Please Enter A Price", "Warnning", JOptionPane.WARNING_MESSAGE);
 						getJTextField_ballroomPrice().requestFocus();
 					}
@@ -583,7 +583,7 @@ public class AdministrateFacilityForm {
 						JOptionPane.showMessageDialog(null, "Please enter a correct value for discount", "Warnning", JOptionPane.WARNING_MESSAGE);
 						getJTextField_ballroomDiscount().requestFocus();
 					}
-					else if(getJTextField_ballroomDiscount().getText().equals("")||getJTextField_ballroomDiscount().getText().equals("     Enter Entitled Discount")){
+					else if(getJTextField_ballroomDiscount().getText().equals("")||getJTextField_ballroomDiscount().getText().equals("Enter Entitled Discount")){
 						JOptionPane.showMessageDialog(null, "Please Enter A Discount Percantage", "Warnning", JOptionPane.WARNING_MESSAGE);
 						getJTextField_ballroomDiscount().requestFocus();
 					}
@@ -1010,13 +1010,13 @@ public class AdministrateFacilityForm {
 		getJTable_ballroomList().setModel(model);
 		//reset the fields
 		getJTextField_ballroomTitle().setForeground(SystemColor.scrollbar);
-		getJTextField_ballroomTitle().setText("                                      Enter a Ballroom Name");
+		getJTextField_ballroomTitle().setText("Enter a Ballroom Name");
 		getJTextField_ballroomPrice().setForeground(SystemColor.scrollbar);
-		getJTextField_ballroomPrice().setText("            Enter Price");
+		getJTextField_ballroomPrice().setText("Enter Price");
 		getJTextField_ballroomDiscount().setForeground(SystemColor.scrollbar);
-		getJTextField_ballroomDiscount().setText("     Enter Entitled Discount");
+		getJTextField_ballroomDiscount().setText("Enter Entitled Discount");
 		getJTextArea_ballroomDescription().setForeground(SystemColor.scrollbar);
-		getJTextArea_ballroomDescription().setText("\n\n                          Enter a Short Description of the Ballroom");
+		getJTextArea_ballroomDescription().setText("\n\n                                              Enter a Short Description of the Ballroom");
 		getJComboBox_ballroomSize().setSelectedIndex(0);
 		
 		displaySummary();
@@ -1318,14 +1318,14 @@ public class AdministrateFacilityForm {
 		AdministrateFacilityForm meal=new AdministrateFacilityForm();
 		if(AdministrateSystemOptionManagement.getJTabbedPane().getTabCount()==1){
 			System.out.println(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex());
-			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("New Facility",null , meal.getJScrollPane(),null , 1); // sets the content
+			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("Create Facility Form",null , meal.getJScrollPane(),null , 1); // sets the content
 			createTabHeader(1);	//sets the custom tab header
 			AdministrateSystemOptionManagement.getJTabbedPane().remove(0);
 			AdministrateSystemOptionManagement.getJTabbedPane().setSelectedIndex(0);
 		}
 		else{
 			System.out.println(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex());
-			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("New Facility",null , meal.getJScrollPane(),null , AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()); // sets the content
+			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("Create Facility Form",null , meal.getJScrollPane(),null , AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()); // sets the content
 			createTabHeader(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()-1);	//sets the custom tab header
 			AdministrateSystemOptionManagement.getJTabbedPane().remove(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex());
 			if(!(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()==AdministrateSystemOptionManagement.getJTabbedPane().getTabCount()-1)){

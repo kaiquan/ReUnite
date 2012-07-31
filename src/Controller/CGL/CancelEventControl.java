@@ -1,12 +1,15 @@
 package Controller.CGL;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Controller.EmailController;
 import Model.Ballroom;
 import Model.Entertainment;
 import Model.Event;
 import Model.Facility;
+import Model.Invitation;
 import Model.Meal;
 import Model.Package;
 import Model.Membership.Guest;
@@ -126,7 +129,28 @@ public class CancelEventControl {
 		return combined;
 	}
 	
-	public boolean processCancellation(String eventName,String status,String reason){
+	public boolean processCancellation(String eventName,String eventDate,String status,String reason){
+		
+		String[] guestEmail=null;
+		Invitation invitation = new Invitation();
+		ArrayList<String> attendingGuests = new ArrayList<String>();
+		
+		for(int i=0;i<invitation.GET_ALL_ATTENDING_GUESTS(eventName, eventDate).size();i++){
+			guestEmail[i]=invitation.GET_ALL_ATTENDING_GUESTS(eventName, eventDate).get(i).getEmail();
+		}
+		
+		String content="Hi"+"\n"+"The event : "+eventName +"which was supposed to be held on "+eventDate +"has been cancelled due to"+reason;
+		
+		EmailController email = new EmailController();
+		try {
+			email.sendEmail("TEXT", guestEmail, "Cancellation Of Event: "+eventName, content, null, 1, "Cancellation");
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		
+		
 		//get all attending guests based on invitation id
 		//prepare email
 		//update date & time

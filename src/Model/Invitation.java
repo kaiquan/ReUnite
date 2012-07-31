@@ -261,11 +261,11 @@ public class Invitation
 		return guestList;
 	}
 	
-	public ArrayList<Guest> GET_ALL_ATTENDING_GUESTS()
+	public ArrayList<Guest> GET_ALL_ATTENDING_GUESTS(String eventName,String eventDate)
 	{
 		ResultSet rs = null;
 		ArrayList<Guest> guestList = new ArrayList<Guest>();
-		String dbQuery = "SELECT * FROM Invitation i INNER JOIN Guest g ON g.invitationID=i.invitationID INNER JOIN Account a ON a.userName=g.userName WHERE i.invitationID = 17 AND g.response='Attending'";
+		String dbQuery = "SELECT * FROM Invitation i INNER JOIN Guest g ON g.invitationID=i.invitationID INNER JOIN Account a ON a.userName=g.userName WHERE i.eventID =(SELECT eventID FROM Event WHERE eventName='"+eventName+"'" +" AND eventDate='"+eventDate+"')"+" AND g.response='Attending'";
 		try
 		{
 			rs = db.readRequest(dbQuery);
@@ -346,7 +346,7 @@ public class Invitation
 //		}
 		
 		Invitation inviation = new Invitation(17);
-		ArrayList<Guest> invitationList = inviation.GET_ALL_ATTENDING_GUESTS();
+		ArrayList<Guest> invitationList = inviation.GET_ALL_ATTENDING_GUESTS("e1","2012-07-28");
 		
 		for(int i=0;i<invitationList.size();i++)
 		{

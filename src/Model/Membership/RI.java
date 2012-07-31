@@ -292,7 +292,7 @@ public class RI extends Account   {
 
 		try {
 	
-			String dbQuery = "Select userName, type, status, firstName, lastName, dateOfBirth, nric, school, email, address, telephoneNo, handphoneNo FROM Account";
+			String dbQuery = "Select userName, type, status, firstName, lastName, dateOfBirth, nric, school, email, address, telephoneNo, handphoneNo FROM Account Where type='RI' OR type = 'GR' OR typer ='Guest'Group by type Order by type  ";
 			rs = db.readRequest(dbQuery);
 
 			while (rs.next()) {

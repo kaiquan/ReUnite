@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 import Controller.MM.UpdateRIController;
 import Controller.MM.ViewRIPersonalController;
+import Model.Membership.Account;
 
 public class ViewRIDetailsRIVIEW {
 	
@@ -357,12 +358,12 @@ public class ViewRIDetailsRIVIEW {
 	statusTextBox.setVisible(false);
 	
 	eventStatus=new JTextField();
-	eventStatus.setBounds(new Rectangle(600, 650, 150, 25));
+	eventStatus.setBounds(new Rectangle(0, 0, 150, 25));
 	eventStatus.setEditable(true);
 	eventStatus.setVisible(true);
 	
 	amountBalance=new JTextField();
-	amountBalance.setBounds(new Rectangle(700, 650, 150, 25));
+	amountBalance.setBounds(new Rectangle(100, 0, 150, 25));
 	amountBalance.setEditable(true);
 	amountBalance.setVisible(true);
 	
@@ -404,7 +405,7 @@ public class ViewRIDetailsRIVIEW {
 							
 							UpdateRIController closureReasonUpdate = new UpdateRIController();
 								
-								closureReasonUpdate.updateClosure(userNameTextBox.getText(), closureReason);
+								closureReasonUpdate.updateClosure(Account.currentUser.getUserName(), closureReason);
 					
 						}
 						else {

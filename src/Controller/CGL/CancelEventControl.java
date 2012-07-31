@@ -132,7 +132,7 @@ public class CancelEventControl {
 		return combined;
 	}
 	
-	public boolean processCancellation(String eventName,String eventDate,String reason,String eventStatus){
+	public boolean processCancellation(String eventName,String eventDate,String reason,String eventStatus,String location){
 		
 		boolean success=false;
 		
@@ -143,11 +143,11 @@ public class CancelEventControl {
 			guestEmail[i]=invitation.GET_ALL_ATTENDING_GUESTS(eventName, eventDate).get(i).getEmail();
 		}
 		
-		String content="Hi"+"\n"+"The event : "+eventName +"which was supposed to be held on "+eventDate +"has been cancelled due to"+reason;
+		String content="Dear Sir/Madam"+"\n"+"\n"+"We are sorry to inform you that the following event : "+eventName +" which was supposed to be held on "+eventDate +" at "+location+" has been cancelled due to "+reason+"."+"\n"+"+\n"+"For any clarifications regarding the cancellation please do not hesitate to call us at 67747173. "+"\n"+"\n"+"Shahrikin"+"\n"+"GR Administrator"+"\n"+"\n"+"This is a computer generated letter";
 		
 		EmailController email = new EmailController();
 		try {
-			email.sendEmail("TEXT", guestEmail, "Cancellation Of Event: "+eventName, content, null, 1, "Cancellation");
+			email.sendEmail("TEXT", guestEmail, "RE:Cancellation Of Event: "+eventName, content, null, 1, "Cancellation");
 		} catch (Exception e) {
 			
 			e.printStackTrace();

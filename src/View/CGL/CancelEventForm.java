@@ -357,15 +357,14 @@ public class CancelEventForm {
 	            else{
 	            		//send email to guests regarding cancellation
 	            		//update cancellation table
-	            		//set event status to cancelledz
+	            		//set event status to cancelled
 	            	
 	            	CancelEventControl c1 = new CancelEventControl();
-<<<<<<< HEAD
-	            		
-=======
-	            	c1.processCancellation(textField.getText(), textField_1.getText(),reason, "Cancelled");
-	            		refresh();
->>>>>>> Bingo!
+	            	if( c1.processCancellation(textField.getText(), textField_1.getText(),reason, "Cancelled",jTextField.getText())==true){
+	            		JOptionPane.showMessageDialog(null, "Event cancelled successfully and guests have been notified");
+	            	}
+	            	refresh();
+
 	            }
 	        }
 

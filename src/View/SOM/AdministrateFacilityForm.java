@@ -12,7 +12,7 @@ METHODS LIST 			: 	addBallroom() : void
 						:	displaySummary() : void
 						:	download() : void
 						:	downloadPDF(String) : void
-						:	downloadTXT(String) : void
+						:	downloadCSV(String) : void
 						:	createTabHeader() : void
 						:	newFacilityTab() : void
 						:	createFacility() : void
@@ -110,8 +110,8 @@ public class AdministrateFacilityForm {
 	private JLabel jLabel_facilityWeekendCost = null;
 	private JTextField jTextField_facilityWeekendCost = null;
 	private JTextArea jTextArea_facilitySummary = null;
-	private String []Header={"Ballroom Name","Price","Entitled Discount","Size","Description"};	//for the jtable
-	protected DefaultTableModel model= new DefaultTableModel();//for the jTable
+	private String []Header={"Ballroom Name","Price","Entitled Discount","Size","Description"};
+	protected DefaultTableModel model= new DefaultTableModel();
 	private JPopupMenu jPopupMenu = null;  //  @jve:decl-index=0:visual-constraint="209,861"
 	private JMenuItem jMenuItem_remove = null;
 	final JFileChooser fc = new JFileChooser();
@@ -719,7 +719,7 @@ public class AdministrateFacilityForm {
 			jButton_download.setBounds(new Rectangle(400, 100, 160, 45));
 			jButton_download.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					//setting the file and path name
+					//SETS THE PATH AND FILE NAME
 					fc.setAcceptAllFileFilterUsed(false);
 					fc.setFocusable(false);
 					fc.setAcceptAllFileFilterUsed(false);
@@ -992,11 +992,10 @@ public class AdministrateFacilityForm {
 	 *******************************************************/
 	
 	/********************************************************
-	 * Method Name : addBallroom
-	 * Input Parameter : NIL 
-	 * Purpose : To add an Ballroom into the Ballroom List Table
-	 * Return :void
-	 * Tested : Success
+	 * Method Name 		: addBallroom
+	 * Input Parameter 	: void 
+	 * Purpose 			: To add an Ballroom into the Ballroom List Table
+	 * Return 			: void
 	 *******************************************************/
 	public void addBallroom(){
 		//prepare the data
@@ -1022,11 +1021,10 @@ public class AdministrateFacilityForm {
 		displaySummary();
 	}
 	/********************************************************
-	 * Method Name : validateFacilityDetails
-	 * Input Parameter : NIL 
-	 * Purpose : To validate the details before any CRUD
-	 * Return :boolean
-	 * Tested : 
+	 * Method Name 		: validateFacilityDetails
+	 * Input Parameter  : void 
+	 * Purpose 			: To validate the details before any CRUD
+	 * Return 			: boolean
 	 * *******************************************************/
 	@SuppressWarnings("deprecation")
 	public boolean validateFacilityDetails(){
@@ -1146,7 +1144,7 @@ public class AdministrateFacilityForm {
 				PDFlink=sc1.next();
 			}
 			downloadPDF(PDFlink+".pdf");
-			downloadTXT(PDFlink+".CSV");
+			downloadCSV(PDFlink+".CSV");
 		}
 		else if(directory.substring(directory.length()-2).equals(".CSV")){
 			Scanner sc2= new Scanner(directory);
@@ -1156,11 +1154,11 @@ public class AdministrateFacilityForm {
 				TXTlink=sc2.next();
 			}
 			downloadPDF(TXTlink+".pdf");
-			downloadTXT(TXTlink+".CSV");
+			downloadCSV(TXTlink+".CSV");
 		}
 		else{
 			downloadPDF(directory+".pdf");
-			downloadTXT(directory+".CSV");
+			downloadCSV(directory+".CSV");
 		}
 	}
 	/********************************************************
@@ -1174,7 +1172,7 @@ public class AdministrateFacilityForm {
 	public void downloadPDF(String path) throws MalformedURLException, IOException, DocumentException{
 		String directory=path;
 		
-		//writting the pdf
+		//WRITTING THE PDF
 		 Document pdf = new Document (PageSize.A4);
 		 PdfWriter.getInstance(pdf, new FileOutputStream(directory));
 		 pdf.open ();
@@ -1201,9 +1199,9 @@ public class AdministrateFacilityForm {
 		 pdf.add(new Paragraph("   "));
 		 pdf.add(new Paragraph("   "));
 		//TABLE FOR THE BALLROOM
-		 float[] colsWidth = {2f, 1f,1f,3f}; // Code 1
+		 float[] colsWidth = {2f, 1f,1f,3f}; // SETS THE COL WIDTH
 		 PdfPTable table = new PdfPTable(colsWidth);
-		 table.setWidthPercentage(100); // Code 2
+		 table.setWidthPercentage(100); 
 		 PdfPCell cell = new PdfPCell(new Paragraph("Ballroom List"));
 		 cell.setColspan(4);
 		 table.addCell(cell);
@@ -1231,7 +1229,7 @@ public class AdministrateFacilityForm {
 		 
 		 pdf.close();
 		
-		//prompt success
+		//PROMPT SUCCESS
 		 progress.interrupt();
 		 progress.stop();
 		 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
@@ -1241,14 +1239,14 @@ public class AdministrateFacilityForm {
 	}
 	
 	/********************************************************
-	 * Method Name 		: downloadTXT()
+	 * Method Name 		: downloadCSV()
 	 * Input Parameter 	: String 
 	 * Return 			: void
 	 * Purpose 			: To download the form details in
 	 * 					  the local computer
 	 * @throws IOException 
 	 *******************************************************/
-	public void downloadTXT(String path) throws IOException{
+	public void downloadCSV(String path) throws IOException{
 		CSVController controller= new CSVController();
 		ArrayList<String[]> data = new ArrayList<String[]>();
 		String[]facilityHeader=new String[7];
@@ -1295,11 +1293,10 @@ public class AdministrateFacilityForm {
 	}
 	
 	/********************************************************
-	 * Method Name : createTabHeader
-	 * Input Parameter : nil
-	 * Purpose : To create and set the custom Tab Header.
-	 * Return : nil
-	 * Tested : Success
+	 * Method Name 		: createTabHeader
+	 * Input Parameter 	: void
+	 * Purpose 			: To create and set the custom Tab Header.
+	 * Return 			: void
 	 *******************************************************/
 	private void createTabHeader(int index){
 		CustomTabHeader tab=new CustomTabHeader(AdministrateSystemOptionManagement.getJTabbedPane());
@@ -1308,10 +1305,10 @@ public class AdministrateFacilityForm {
 	}
 	
 	/********************************************************
-	 * Method Name : newFacilityTab
-	 * Input Parameter : nil 
-	 * Purpose : To create and set a new Ballroom Tab content.
-	 * Return : nil
+	 * Method Name 		: newFacilityTab
+	 * Input Parameter 	: void 
+	 * Purpose			: To create and set a new Ballroom Tab content.
+	 * Return 			: void
 	 *******************************************************/
 	public void newFacilityTab(){
 		
@@ -1335,15 +1332,14 @@ public class AdministrateFacilityForm {
 	}
 	
 	/********************************************************
-	 * Method Name : createFacility
-	 * Input Parameter : NIL 
-	 * Purpose : To create a new Ballroom record in the database
-	 * Return :void
-	 * Tested : Success
+	 * Method Name 		: createFacility
+	 * Input Parameter 	: void 
+	 * Purpose 			: To create a new Ballroom record in the database
+	 * Return 			: void
 	 *******************************************************/
 	@SuppressWarnings("deprecation")
 	public void createFacility(){
-		//preparing the facility details
+		//PREPARING THE DETAILS
 		String contact=getJTextField_facilityContact().getText().toString();
 		String name=getJTextField_facilityName().getText().toString();
 		String address=getJTextField_facilityAddress().getText().toString();
@@ -1351,21 +1347,20 @@ public class AdministrateFacilityForm {
 		boolean parking=getJCheckBox_facilityParking().isSelected();
 		double weekendCost=Double.parseDouble(getJTextField_facilityWeekendCost().getText().toString());
 		
-		//passing in the facility details to control
+		//PASSING THE DATA INTO THE CONTROLLER
 		AdministrateFacilityControl control= new AdministrateFacilityControl(name, description, address,contact, parking, weekendCost);
 		control.setModel(model);
 		
-		//creates the facility
+		//CREATES THE FACILITY
 		String facilityID=null;
 		facilityID=control.processCreateFacility();
 
-			//check if all ballroom are created successfully
+			//CHECK IF ALL THE BALLROOM ARE CREATED SUCCESSFULLY
 			if(!facilityID.equals(null)){
 				getJTextField_facilityID().setText(facilityID);
 				getJTextField_facilityID().setForeground(SystemColor.black);
-				//disable the create button?
+				//SET THE BUTTONS CONTROL IN THE FORM
 				getJButton_upload().setEnabled(false);
-				//enable delete and update button
 				getJButton_update().setEnabled(true);
 				getJButton_delete().setEnabled(true);
 				getJButton_download().setEnabled(true);
@@ -1386,11 +1381,10 @@ public class AdministrateFacilityForm {
 	}
 	
 	/********************************************************
-	 * Method Name : deleteBallroom
-	 * Input Parameter : NIL 
-	 * Purpose : To Delete the ballroom record in the database
-	 * Return :void
-	 * Tested : Success
+	 * Method Name 		: deleteBallroom
+	 * Input Parameter 	: void 
+	 * Purpose 			: To Delete the ballroom record in the database
+	 * Return 			: void
 	 *******************************************************/
 	@SuppressWarnings("deprecation")
 	public void deleteFacility(){
@@ -1417,14 +1411,14 @@ public class AdministrateFacilityForm {
 	}
 	
 	/********************************************************
-	 * Method Name : updateFacility
-	 * Input Parameter : NIL 
-	 * Purpose : To update the ballroom record in the database
-	 * Return :void
+	 * Method Name 		: updateFacility
+	 * Input Parameter 	: void 
+	 * Purpose 			: To update the ballroom record in the database
+	 * Return 			: void
 	 *******************************************************/
 	@SuppressWarnings("deprecation")
 	public void updateFacility(){
-		//prepares the facility object to be pass into the controller
+		//PREPARES THE DATA
 		String name=getJTextField_facilityName().getText().toString();
 		String contact=getJTextField_facilityContact().getText().toString();
 		String address=getJTextField_facilityAddress().getText().toString();
@@ -1432,7 +1426,7 @@ public class AdministrateFacilityForm {
 		boolean parking=getJCheckBox_facilityParking().isSelected();
 		double extraCost=Double.parseDouble(getJTextField_facilityWeekendCost().getText().toString());
 		
-		//pass in the details into the controller
+		//PASSES THE DATA INTO THE CONTROLLER
 		AdministrateFacilityControl control= new AdministrateFacilityControl(name, description, address, contact, parking, extraCost);
 		control.setModel(model);
 		
@@ -1440,7 +1434,7 @@ public class AdministrateFacilityForm {
 		boolean success=true;
 		success=control.processUpdateFacility(facilityID);
 		
-		//check update success
+		//CHECK IF THE UPDATES IS SUCCESSFULL
 		if(success){
 			progress.interrupt();
 			progress.stop();

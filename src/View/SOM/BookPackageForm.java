@@ -1663,12 +1663,12 @@ public class BookPackageForm {
 			
 				//create the package
 				if(i==0){
-					AdministratePackageControl newPackage= new AdministratePackageControl("", newEntertainmentID, cBallroomID,"Standard",cPackageTitle,cPackageDescription,true, 0,0,true);
+					AdministratePackageControl newPackage= new AdministratePackageControl("", newEntertainmentID, cBallroomID,"Custom",cPackageTitle,cPackageDescription,true, 0,0,true);
 					newPackageID=newPackage.processCreatePackage(newMeals[0], newMeals[1], newMeals[2]);
 				//get the new package id and return
 				}
 				else{
-					AdministratePackageControl newPackage= new AdministratePackageControl("", newEntertainmentID, cBallroomID,"Standard",cPackageTitle,cPackageDescription,true, 0,0,false);
+					AdministratePackageControl newPackage= new AdministratePackageControl("", newEntertainmentID, cBallroomID,"Custom",cPackageTitle,cPackageDescription,true, 0,0,false);
 					newPackageID=newPackage.processCreatePackage(newMeals[0], newMeals[1], newMeals[2]);
 				}
 			}

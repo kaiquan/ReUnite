@@ -14,7 +14,7 @@ METHODS LIST 			: 	addEntertainment() : void
 						:	displaySummary() : void
 						:	download() : void
 						:	downloadPDF(String) : void
-						:	downloadTXT(String) : void
+						:	downloadCSV(String) : void
 						:	createTabHeader() : void
 						:	newEntertainmentTab() : void
 						:	createEntertainment() : void
@@ -607,7 +607,7 @@ public class AdministrateEntertainmentForm {
 			jButton_download.setText("Download");
 			jButton_download.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					//setting the file and path name
+					//SETS THE FILE AND PATH NAME
 					fc.setAcceptAllFileFilterUsed(false);
 					fc.setFocusable(false);
 					fc.setAcceptAllFileFilterUsed(false);
@@ -1047,7 +1047,7 @@ public class AdministrateEntertainmentForm {
 	public void downloadPDF(String path) throws MalformedURLException, IOException, DocumentException{
 		String directory=path;
 		
-		//writting the pdf
+		//WRITTING THE PDF
 		 Document pdf = new Document (PageSize.A4);
 		 PdfWriter.getInstance(pdf, new FileOutputStream(directory));
 		 pdf.open ();
@@ -1072,9 +1072,9 @@ public class AdministrateEntertainmentForm {
 		 pdf.add(new Paragraph("   "));
 		 pdf.add(new Paragraph("   "));
 		//TABLE FOR THE ENTERTAINMENT MENU
-		 float[] colsWidth = {2f, 1f,3f}; // Code 1
+		 float[] colsWidth = {2f, 1f,3f}; // SETS THE COL WIDTH
 		 PdfPTable table = new PdfPTable(colsWidth);
-		 table.setWidthPercentage(100); // Code 2
+		 table.setWidthPercentage(100); 
 		 PdfPCell cell = new PdfPCell(new Paragraph("Entertainment List"));
 		 cell.setColspan(3);
 		 table.addCell(cell);
@@ -1110,7 +1110,7 @@ public class AdministrateEntertainmentForm {
 	}
 	
 	/********************************************************
-	 * Method Name 		: downloadTXT()
+	 * Method Name 		: downloadCSV()
 	 * Input Parameter 	: String 
 	 * Return 			: void
 	 * Purpose 			: To download the form details in
@@ -1181,14 +1181,14 @@ public class AdministrateEntertainmentForm {
 	private void newEntertainmentTab(){
 		AdministrateEntertainmentForm en= new AdministrateEntertainmentForm();
 		if(AdministrateSystemOptionManagement.getJTabbedPane().getTabCount()==1){
-			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("New Entertainment",null , en.getJScrollPane(),null , 1); // sets the content
-			createTabHeader(1);	//sets the custom tab header
+			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("New Entertainment",null , en.getJScrollPane(),null , 1); //SETS THE CONTENT
+			createTabHeader(1);	//SETS THE CUSTOM TAB HEADER
 			AdministrateSystemOptionManagement.getJTabbedPane().remove(0);
 			AdministrateSystemOptionManagement.getJTabbedPane().setSelectedIndex(0);
 		}
 		else{
-			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("New Entertainment",null , en.getJScrollPane(),null , AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()); // sets the content
-			createTabHeader(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()-1);	//sets the custom tab header
+			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("New Entertainment",null , en.getJScrollPane(),null , AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()); // SETS THE CONTENT
+			createTabHeader(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()-1);	//SETS THE CUSTOM TAB HEADER
 			AdministrateSystemOptionManagement.getJTabbedPane().remove(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex());
 			if(!(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()==AdministrateSystemOptionManagement.getJTabbedPane().getTabCount()-1)){
 				AdministrateSystemOptionManagement.getJTabbedPane().setSelectedIndex(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()-1);
@@ -1253,8 +1253,8 @@ public class AdministrateEntertainmentForm {
 	
 	/********************************************************
 	 * Method Name 		: deleteEntertainment()
-	 * Input Parameter	: VOID 
-	 * Return 			: boolean
+	 * Input Parameter	: void 
+	 * Return 			: void
 	 * Purpose 			: To Delete a entertainment record 
 	 * 					  in the database
 	 *******************************************************/

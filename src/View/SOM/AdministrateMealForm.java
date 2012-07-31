@@ -14,7 +14,7 @@ METHODS LIST 			: 	addMealMenu() : void
 						:	displaySummary() : void
 						:	download() : void
 						:	downloadPDF(String) : void
-						:	downloadTXT(String) : void
+						:	downloadCSV(String) : void
 						:	createTabHeader() : void
 						:	newMealTab() : void
 						:	createMeal() : void
@@ -678,7 +678,7 @@ public class AdministrateMealForm {
 			jButton_download.setText("Download");
 			jButton_download.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					//setting the file and path name
+					//SETS THE PATH AND FILE NAME
 					fc.setAcceptAllFileFilterUsed(false);
 					fc.setFocusable(false);
 					fc.setAcceptAllFileFilterUsed(false);
@@ -1099,7 +1099,7 @@ public class AdministrateMealForm {
 				PDFlink=sc1.next();
 			}
 			downloadPDF(PDFlink+".pdf");
-			downloadTXT(PDFlink+".csv");
+			downloadCSV(PDFlink+".csv");
 		}
 		else if(directory.substring(directory.length()-2).equals(".csv")){
 			Scanner sc2= new Scanner(directory);
@@ -1109,17 +1109,17 @@ public class AdministrateMealForm {
 				TXTlink=sc2.next();
 			}
 			downloadPDF(TXTlink+".pdf");
-			downloadTXT(TXTlink+".csv");
+			downloadCSV(TXTlink+".csv");
 		}
 		else{
 			downloadPDF(directory+".pdf");
-			downloadTXT(directory+".csv");
+			downloadCSV(directory+".csv");
 		}
 	}
 	
 	/********************************************************
 	 * Method Name 		: downloadPDF()
-	 * Input Parameter 	: void 
+	 * Input Parameter 	: String 
 	 * Return 			: void
 	 * Purpose 			: To download the details of the form 
 	 * 					  into the local computer in PDF
@@ -1128,7 +1128,7 @@ public class AdministrateMealForm {
 	public void downloadPDF(String path) throws DocumentException, MalformedURLException, IOException{
 		String directory=path;
 		
-		//writting the pdf
+		//WRITTING THE PDF
 		 Document pdf = new Document (PageSize.A4);
 		 PdfWriter.getInstance(pdf, new FileOutputStream(directory));
 		 pdf.open ();
@@ -1153,9 +1153,9 @@ public class AdministrateMealForm {
 		 pdf.add(new Paragraph("   "));
 		 pdf.add(new Paragraph("   "));
 		//TABLE FOR THE ENTERTAINMENT MENU
-		 float[] colsWidth = {2f, 1f,1f,1f,3f}; // Code 1
+		 float[] colsWidth = {2f, 1f,1f,1f,3f}; //THIS SETS THE COL WIDTH
 		 PdfPTable table = new PdfPTable(colsWidth);
-		 table.setWidthPercentage(100); // Code 2
+		 table.setWidthPercentage(100); 
 		 PdfPCell cell1 = new PdfPCell(new Paragraph("Meal Menu"));
 		 cell1.setColspan(5);
 		 table.addCell(cell1);
@@ -1200,7 +1200,7 @@ public class AdministrateMealForm {
 		 
 		 pdf.close();
 		
-		//prompt success
+		//PROMPT SUCCESS
 		 progress.interrupt();
 		 progress.stop();
 		 AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
@@ -1210,14 +1210,14 @@ public class AdministrateMealForm {
 	}
 	
 	/********************************************************
-	 * Method Name 		: downloadTXT()
+	 * Method Name 		: downloadCSV()
 	 * Input Parameter 	: void 
 	 * Return 			: void
 	 * Purpose 			: To download the details of the form 
 	 * 					  into the local computer in TXT
 	 * @throws IOException 
 	 *******************************************************/
-	public void downloadTXT(String path) throws IOException{
+	public void downloadCSV(String path) throws IOException{
 		CSVController controller= new CSVController();
 		ArrayList<String[]> data = new ArrayList<String[]>();
 		
@@ -1291,7 +1291,7 @@ public class AdministrateMealForm {
 	
 	/********************************************************
 	 * Method Name		: newMealTab()
-	 * Input Parameter 	: nil 
+	 * Input Parameter 	: void 
 	 * Return 			: void
 	 * Purpose 			: To create and set a new Meal Tab content.
 	 *******************************************************/
@@ -1299,15 +1299,15 @@ public class AdministrateMealForm {
 		AdministrateMealForm meal=new AdministrateMealForm();
 		if(AdministrateSystemOptionManagement.getJTabbedPane().getTabCount()==1){
 			System.out.println(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex());
-			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("Create Meal Form",null , meal.getJScrollPane(),null , 1); // sets the content
+			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("Create Meal Form",null , meal.getJScrollPane(),null , 1); // SETS THE CONTENT
 			createTabHeader(1);	//SETS THE CUSTOM TAB HEADER
 			AdministrateSystemOptionManagement.getJTabbedPane().remove(0);
 			AdministrateSystemOptionManagement.getJTabbedPane().setSelectedIndex(0);
 		}
 		else{
 			System.out.println(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex());
-			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("Create Meal Form",null , meal.getJScrollPane(),null , AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()); // sets the content
-			createTabHeader(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()-1);	//sets the custom tab header
+			AdministrateSystemOptionManagement.getJTabbedPane().insertTab("Create Meal Form",null , meal.getJScrollPane(),null , AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()); // SETS THE CONTENT
+			createTabHeader(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()-1);	//SETS THE CUSTOM TAB HEADER
 			AdministrateSystemOptionManagement.getJTabbedPane().remove(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex());
 			if(!(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()==AdministrateSystemOptionManagement.getJTabbedPane().getTabCount()-1)){
 				AdministrateSystemOptionManagement.getJTabbedPane().setSelectedIndex(AdministrateSystemOptionManagement.getJTabbedPane().getSelectedIndex()-1);

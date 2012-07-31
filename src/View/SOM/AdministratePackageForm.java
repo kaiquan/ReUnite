@@ -2348,10 +2348,10 @@ public class AdministratePackageForm {
 	 *				Start of Custom Methods
 	 *******************************************************/
 	/********************************************************
-	  * Method Name : retrieveBallroom
+	  * Method Name 	: retrieveBallroom
 	  * Input Parameter : void
-	  * Purpose : To retrieve all Ballroom record
-	  * Return :void
+	  * Purpose 		: To retrieve all Ballroom record
+	  * Return 			: void
 	  *******************************************************/
 	public void retrieveBallroom(){
 		AdministrateBallroomControl control= new AdministrateBallroomControl();
@@ -2364,8 +2364,7 @@ public class AdministratePackageForm {
 		getJTable_ballroomList().getColumnModel().getColumn(3).setPreferredWidth(135);
 		getJTable_ballroomList().getColumnModel().getColumn(4).setPreferredWidth(570);
 		
-		//check for data
-		
+		//CHECKS IF THERE IS DATA IN THE RETRIVAL
 		if(model.getRowCount()>0){
 			getJButton_ballroomPrevious().setEnabled(true);
 			getJButton_ballroomNext().setEnabled(true);
@@ -2377,10 +2376,10 @@ public class AdministratePackageForm {
 	}
 	
 	/********************************************************
-	  * Method Name : retrieveBallroom
+	  * Method Name 	: retrieveBallroom
 	  * Input Parameter : String
-	  * Purpose : To retrieve all Ballroom record like paramater
-	  * Return :void
+	  * Purpose 		: To retrieve all Ballroom record like paramater
+	  * Return 			: void
 	  *******************************************************/
 	public void retrieveBallroom(String parameter){
 		AdministrateBallroomControl control= new AdministrateBallroomControl();
@@ -2393,8 +2392,7 @@ public class AdministratePackageForm {
 		getJTable_ballroomList().getColumnModel().getColumn(3).setPreferredWidth(135);
 		getJTable_ballroomList().getColumnModel().getColumn(4).setPreferredWidth(570);
 		
-		//check for data
-		
+		//CHECKS IF THERE IS DATA IN THE RETRIVAL
 		if(model.getRowCount()>0){
 			getJButton_ballroomPrevious().setEnabled(true);
 			getJButton_ballroomNext().setEnabled(true);
@@ -2405,10 +2403,10 @@ public class AdministratePackageForm {
 		}
 	}
 	/********************************************************
-	  * Method Name : retrieveBallroomByFacility
+	  * Method Name 	: retrieveBallroomByFacility
 	  * Input Parameter : String
-	  * Purpose : To retrieve all Ballroom record like paramater from facility
-	  * Return :void
+	  * Purpose 		: To retrieve all Ballroom record like paramater from facility
+	  * Return 			: void
 	  *******************************************************/
 	public void retrieveBallroomByFacility(String parameter){
 		AdministrateFacilityControl fControl=new AdministrateFacilityControl();
@@ -2417,7 +2415,8 @@ public class AdministratePackageForm {
 		DefaultTableModel fModel= new DefaultTableModel();
 		DefaultTableModel bModel= new DefaultTableModel();
 		fModel=fControl.processRetrieveFacility(parameter);
-		//get the id retrivof the model retrieve and retrieve all ballrooms from the facility retrieve (i,0)
+		
+		//THIS METHODS RETRIEVE THE BALLROOM BASE ON LIKE"FACILITY"
 		fModel=fControl.processRetrieveFacility(parameter);
 		
 		for(int i=0;i<fModel.getRowCount();i++){
@@ -2436,7 +2435,7 @@ public class AdministratePackageForm {
 		getJTable_ballroomList().getColumnModel().getColumn(3).setPreferredWidth(135);
 		getJTable_ballroomList().getColumnModel().getColumn(4).setPreferredWidth(570);
 		
-		//check for data
+		//CHECKS IF THERE IS DATA IN THE RETRIVAL
 		if(model.getRowCount()>0){
 			getJButton_ballroomPrevious().setEnabled(true);
 			getJButton_ballroomNext().setEnabled(true);
@@ -2448,17 +2447,17 @@ public class AdministratePackageForm {
 		}
 	}
 	/********************************************************
-	  * Method Name : retrieveBallroomByID
+	  * Method Name 	: retrieveBallroomByID
 	  * Input Parameter : String
-	  * Purpose : To retrieve all Ballroom record by ID
-	  * Return :void
+	  * Purpose		 	: To retrieve all Ballroom record by ID
+	  * Return 			: void
 	  *******************************************************/
 	public void retrieveBallroomByID(String ID){
 		AdministrateBallroomControl control= new AdministrateBallroomControl();
 		control.processRetrieveBallroomByID(ID);
 
 		DecimalFormat fmt = new DecimalFormat("0.00");
-		//set the fields
+		//SETTING THE REVALENT FIELDS
 		getJTextField_ballroomName().setText(control.getBallroom().getBallroomName().toString());
 		getJTextField_ballroomName().setName(control.getBallroom().getBallroomID().toString());
 		getJTextField_ballroomSize().setText(control.getBallroom().getBallroomSize().toString());
@@ -2478,7 +2477,7 @@ public class AdministratePackageForm {
 		getJTextArea_facilityAddress().setText(fControl.getFacility().getFacilityAddress().toString());
 		getJButton_selectBallroom().setEnabled(true);
 		
-		//setting the buttons and frame
+		//SETTING THE BUTTONS AND CONTROL FOR THE FORM
 		getJButton_ballroomPrevious().setEnabled(true);
 		getJButton_ballroomPrevious().setVisible(true);
 		getJButton_ballroomNext().setEnabled(true);
@@ -2491,10 +2490,10 @@ public class AdministratePackageForm {
 	
 	
 	/********************************************************
-	  * Method Name : retrieveEntertainment
+	  * Method Name 	: retrieveEntertainment
 	  * Input Parameter : void
-	  * Purpose : To retrieve all Entertainment record
-	  * Return :void
+	  * Purpose 		: To retrieve all Entertainment record
+	  * Return 			: void
 	  *******************************************************/
 	@SuppressWarnings("static-access")
 	public void retrieveEntertainment(){
@@ -2504,15 +2503,13 @@ public class AdministratePackageForm {
 		getJTable_entertainmentList().getColumnModel().getColumn(1).setPreferredWidth(500);
 		getJTable_entertainmentList().getColumnModel().getColumn(2).setPreferredWidth(150);
 		getJTable_entertainmentList().getColumnModel().getColumn(3).setPreferredWidth(700);
-		
-		//jLabel_BallroomInformation.setText(model.getRowCount()+" Records found");
 	}
 
 	/********************************************************
-	  * Method Name : retrieveEntertainment
+	  * Method Name 	: retrieveEntertainment
 	  * Input Parameter : String
-	  * Purpose : To retrieve all Entertainment record
-	  * Return :void
+	  * Purpose 		: To retrieve all Entertainment record
+	  * Return 			: void
 	  *******************************************************/
 	@SuppressWarnings("static-access")
 	public void retrieveEntertainment(String parameter){
@@ -2522,14 +2519,12 @@ public class AdministratePackageForm {
 		getJTable_entertainmentList().getColumnModel().getColumn(1).setPreferredWidth(500);
 		getJTable_entertainmentList().getColumnModel().getColumn(2).setPreferredWidth(150);
 		getJTable_entertainmentList().getColumnModel().getColumn(3).setPreferredWidth(700);
-		
-		//jLabel_BallroomInformation.setText(model.getRowCount()+" Records found");
 	}
 	/********************************************************
-	  * Method Name : retrieveEntertainmentByProgram
+	  * Method Name 	: retrieveEntertainmentByProgram
 	  * Input Parameter : String
-	  * Purpose : To retrieve all Entertainmetn record like paramater from entertainmentmenu
-	  * Return :void
+	  * Purpose 		: To retrieve all Entertainmetn record like paramater from entertainmentmenu
+	  * Return 			: void
 	  *******************************************************/
 	@SuppressWarnings("static-access")
 	public void retrieveEntertainmentByProgram(String parameter){
@@ -2555,7 +2550,7 @@ public class AdministratePackageForm {
 		}
 		//set the table properties
 		getJTable_entertainmentList().setModel(model);
-		getJTable_entertainmentList().setAutoResizeMode(jTable_ballroomList.AUTO_RESIZE_OFF);
+		getJTable_entertainmentList().setAutoResizeMode(getJTable_entertainmentList().AUTO_RESIZE_OFF);
 		getJTable_entertainmentList().getColumnModel().getColumn(1).setPreferredWidth(500);
 		getJTable_entertainmentList().getColumnModel().getColumn(2).setPreferredWidth(150);
 		getJTable_entertainmentList().getColumnModel().getColumn(3).setPreferredWidth(700);

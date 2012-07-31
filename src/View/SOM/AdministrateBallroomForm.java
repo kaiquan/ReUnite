@@ -13,7 +13,7 @@ METHODS LIST 			: 	retrieveFacilityByName() : void
 						:	displaySummary() : void
 						:	download() : void
 						:	downloadPDF(String) : void
-						:	downloadTXT(String) : void
+						:	downloadCSV(String) : void
 						:	createTabHeader() : void
 						:	newBallroomTab() : void
 						:	createBallroom() : void
@@ -824,7 +824,7 @@ public class AdministrateBallroomForm {
 	/********************************************************
 	  * Method Name 	: retrieveFacilityByName
 	  * Input Parameter : String
-	  * Purpose 		: To retrieve all facility record by name= string
+	  * Purpose 		: To retrieve all facility record by name
 	  * Return 			: void 
 	  *******************************************************/
 	public void retrieveFacilityByName(){
@@ -836,10 +836,10 @@ public class AdministrateBallroomForm {
 	}
 	
 	/********************************************************
-	 * Method Name : validate
-	 * Input Parameter : NIL 
-	 * Purpose : To validate the details before any CRUD
-	 * Return :boolean
+	 * Method Name 		: validate
+	 * Input Parameter 	: void 
+	 * Purpose 			: To validate the details before any CRUD
+	 * Return 			: boolean
 	 * *******************************************************/
 	@SuppressWarnings("deprecation")
 	public boolean validateBallroomDetails(){
@@ -915,10 +915,10 @@ public class AdministrateBallroomForm {
 	}
 	
 	/********************************************************
-	 * Method Name : caculateFinalPrice
-	 * Input Parameter : NIL 
-	 * Purpose : To caculate the Final price after discount
-	 * Return :double
+	 * Method Name 		: caculateFinalPrice
+	 * Input Parameter 	: void 
+	 * Purpose 			: To caculate the Final price after discount
+	 * Return 			: double
 	 * *******************************************************/
 	public double caculateFinalPrice(){
 		AdministrateBallroomControl control= new AdministrateBallroomControl();
@@ -926,10 +926,10 @@ public class AdministrateBallroomForm {
 	}
 	
 	/********************************************************
-	 * Method Name : displaySummary
-	 * Input Parameter : NIL 
-	 * Purpose : To display the summary of the current Ballroom record
-	 * Return :void
+	 * Method Name 		: displaySummary
+	 * Input Parameter 	: void 
+	 * Purpose 			: To display the summary of the current Ballroom record
+	 * Return 			: void
 	 *******************************************************/
 	public void displaySummary(){
 		String header="====================================\n";
@@ -976,7 +976,7 @@ public class AdministrateBallroomForm {
 				PDFlink=sc1.next();
 			}
 			downloadPDF(PDFlink+".pdf");
-			downloadTXT(PDFlink+".CSV");
+			downloadCSV(PDFlink+".CSV");
 		}
 		else if(directory.substring(directory.length()-2).equals(".csv")){
 			Scanner sc2= new Scanner(directory);
@@ -986,11 +986,11 @@ public class AdministrateBallroomForm {
 				TXTlink=sc2.next();
 			}
 			downloadPDF(TXTlink+".pdf");
-			downloadTXT(TXTlink+".CSV");
+			downloadCSV(TXTlink+".CSV");
 		}
 		else{
 			downloadPDF(directory+".pdf");
-			downloadTXT(directory+".CSV");
+			downloadCSV(directory+".CSV");
 		}
 	}
 	/********************************************************
@@ -1046,7 +1046,7 @@ public class AdministrateBallroomForm {
 	}
 	
 	/********************************************************
-	 * Method Name 		: downloadTXT()
+	 * Method Name 		: downloadCSV()
 	 * Input Parameter 	: String 
 	 * Return 			: void
 	 * Purpose 			: To download the form details in
@@ -1054,7 +1054,7 @@ public class AdministrateBallroomForm {
 	 * @throws IOException 
 	 *******************************************************/
 	@SuppressWarnings("deprecation")
-	public void downloadTXT(String path) throws IOException{
+	public void downloadCSV(String path) throws IOException{
 		CSVController controller= new CSVController();
 		ArrayList<String[]> data = new ArrayList<String[]>();
 		String[]ballroomHeader=new String[11];
@@ -1100,11 +1100,10 @@ public class AdministrateBallroomForm {
 	
 	}
 	/********************************************************
-	 * Method Name : createTabHeader
-	 * Input Parameter : nil
-	 * Purpose : To create and set the custom Tab Header.
-	 * Return : nil
-	 * Tested : Success
+	 * Method Name		: createTabHeader
+	 * Input Parameter 	: int
+	 * Purpose 			: To create and set the custom Tab Header.
+	 * Return 			: void
 	 *******************************************************/
 	private void createTabHeader(int index){
 		CustomTabHeader tab=new CustomTabHeader(AdministrateSystemOptionManagement.getJTabbedPane());
@@ -1113,10 +1112,10 @@ public class AdministrateBallroomForm {
 	}
 	
 	/********************************************************
-	 * Method Name : newBallroomTab
-	 * Input Parameter : nil 
-	 * Purpose : To create and set a new Ballroom Tab content.
-	 * Return : nil
+	 * Method Name 		: newBallroomTab
+	 * Input Parameter 	: void 
+	 * Purpose 			: To create and set a new Ballroom Tab content.
+	 * Return 			: void
 	 *******************************************************/
 	@SuppressWarnings("unchecked")
 	public void newBallroomTab(){
@@ -1141,10 +1140,10 @@ public class AdministrateBallroomForm {
 	}
 	
 	/********************************************************
-	 * Method Name : createBallroom
-	 * Input Parameter : NIL 
-	 * Purpose : To create a new Ballroom record in the database
-	 * Return :void
+	 * Method Name 		: createBallroom
+	 * Input Parameter 	: void 
+	 * Purpose 			: To create a new Ballroom record in the database
+	 * Return 			: void
 	 *******************************************************/
 	@SuppressWarnings("deprecation")
 	public void createBallroom(){
@@ -1189,10 +1188,10 @@ public class AdministrateBallroomForm {
 	}
 	
 	/********************************************************
-	 * Method Name : deleteBallroom
-	 * Input Parameter : NIL 
-	 * Purpose : To Delete the Ballroom record in the database
-	 * Return :boolean
+	 * Method Name 		: deleteBallroom
+	 * Input Parameter	: void 
+	 * Purpose 			: To Delete the Ballroom record in the database
+	 * Return 			: void
 	 *******************************************************/
 	@SuppressWarnings("deprecation")
 	public void deleteBallroom(){
@@ -1217,10 +1216,10 @@ public class AdministrateBallroomForm {
 	}
 	
 	/********************************************************
-	 * Method Name : updateBallroom
-	 * Input Parameter : void
-	 * Purpose : To update the Ballroom record in the database
-	 * Return :boolean
+	 * Method Name 		: updateBallroom
+	 * Input Parameter 	: void
+	 * Purpose 			: To update the Ballroom record in the database
+	 * Return 			: void
 	 *******************************************************/
 	@SuppressWarnings("deprecation")
 	public void updateBallroom(){

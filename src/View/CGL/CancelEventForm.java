@@ -359,7 +359,7 @@ public class CancelEventForm {
 	            		//update cancellation table
 	            		//set event status to cancelledz
 	            	
-	            	CancelEventControl c1 = new CancelEventCont
+	            	CancelEventControl c1 = new CancelEventControl();
 	            		
 	            }
 	        }

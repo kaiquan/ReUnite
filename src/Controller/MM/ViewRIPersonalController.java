@@ -17,11 +17,7 @@ public class ViewRIPersonalController {
 	
 	
 public ViewRIPersonalController(){}
-public Account GET_ACCOUNT(Account userName) {
-	
-	return userName;
-	
-}
+
 
 	public void retrieveRiDetails(String userName , String password,String firstName, String lastName, String nric, String postalAddress,  String school, String email){
 	
@@ -53,8 +49,6 @@ public Account GET_ACCOUNT(Account userName) {
 	}
 
 
-
-
 	public TableModel getRITableModel1() {
 		DefaultTableModel model = new DefaultTableModel(riModel1.getRITableModel1(), riModel1.getRITableColumnNames());
 		return model;
@@ -69,14 +63,6 @@ public Account GET_ACCOUNT(Account userName) {
 		DefaultTableModel modelPayment = new DefaultTableModel(riModelPayment.getRITableModelPayment(), riModelPayment.getRITableColumnNamesPayment());
 		return modelPayment;
 	}
-	
-	
 
-	
-
-	
-
-	
-	
 
 }

@@ -15,7 +15,7 @@ public class ViewRIDetailsController {
 	public void retrieveRiDetails(String userName, String password,
 			String type, String status,
 			String firstName, String lastName, String nric,
-			String postalAddress, String school, String email) {
+			String address, String school, String email , String closureRequest) {
 
 		RI retrieveDetails = new RI();
 
@@ -28,7 +28,8 @@ public class ViewRIDetailsController {
 		retrieveDetails.setNric(nric);
 		retrieveDetails.setSchool(school);
 		retrieveDetails.setEmail(email);
-		retrieveDetails.setAddress(postalAddress);
+		retrieveDetails.setAddress(address);
+		retrieveDetails.setClosureRequest(closureRequest);
 
 		retrieveDetails.retrieveUser();
 

@@ -14,6 +14,7 @@ import Controller.MySQLController;
 
 public class RI extends Account   {
 
+	
 
 
 	private static MySQLController db = new MySQLController();
@@ -24,6 +25,7 @@ public class RI extends Account   {
 	public String totalCost;
 	public String amountPending;
 	
+	ArrayList eventList = new ArrayList();
 
 	public String getTotalCost() {
 		return totalCost;
@@ -89,7 +91,7 @@ public class RI extends Account   {
 			, String type, String status,String firstName,
 			String lastName, Date dateOfBirth, String nric, String address,
 			String school, String email, String telephoneNo,
-			String handphoneNo, String secretQuestion, String secretAnswer, String closureReason) {
+			String handphoneNo, String secretQuestion, String secretAnswer, String closureReason, String closureRequest) {
 		super();
 		super.setUserName(userName);
 		super.setPassword(password);
@@ -107,6 +109,8 @@ public class RI extends Account   {
 		super.setSecretQuestion(secretQuestion);
 		super.setSecretAnswer(secretAnswer);
 		super.setClosureReason(closureReason);
+		super.setClosureRequest(closureRequest);
+		
 		
 		
 		
@@ -157,8 +161,10 @@ public class RI extends Account   {
 	
 	public ArrayList<RI> GET_Payment_FOR_RI() {
 		ResultSet rs = null;
+		
 		ArrayList<RI> paymentList = new ArrayList<RI>();
-			String dbQuery = "Select totalCost, amountPending FROM Purchase_Summary WHERE purchaseID='12'";
+		for (int i = 0; i < paymentList.size(); i++) {
+			String dbQuery = "Select totalCost, amountPending FROM Purchase_Summary WHERE eventID='"+((Event) eventList.get(i)).getEventID()+"'";
 			rs = db.readRequest(dbQuery);
 		
 			try {
@@ -179,7 +185,7 @@ public class RI extends Account   {
 			
 				e.printStackTrace();
 			}	
-				
+		}
 			return paymentList;
 			}
 
@@ -219,67 +225,62 @@ public class RI extends Account   {
 	
 	
 	
-	public ArrayList<Event> GET_EVENTS_FOR_RI() {
+	public ArrayList<Object[]> GET_EVENTS_FOR_RI() {
+		ArrayList<Object[]> tempList = new ArrayList<Object[]>();
 		ResultSet rs = null;
-		ArrayList<Event> eventList = new ArrayList<Event>();
-			String dbQuery = "Select eventID, eventStatus, eventName FROM Event WHERE userName='kaiquan88@gmail.com'";
+			String dbQuery = "SELECT * FROM Event e INNER JOIN Purchase_Summary p ON e.eventID = p.eventID WHERE e.eventID IN (SELECT ev.eventID FROM Event ev WHERE ev.userName ='"+Account.currentUser.getUserName()+"')";
 			rs = db.readRequest(dbQuery);
-		
 			try {
 				while(rs.next()){
-
-					Event tempEvent = new Event();
+					Object[] row = new Object[5];
+					row[0] = rs.getString("eventID");
+					row[1] =  rs.getString("eventStatus");
+					row[2] = rs.getString("eventName");
+					row[3] = rs.getString("totalCost");
+					row[4] = rs.getString("amountPending");
+				
+					
+					tempList.add(row);
 					
 				
-					tempEvent.setEventStatus(rs.getString("eventStatus"));
-					tempEvent.setEventName(rs.getString("eventName"));
-					tempEvent.setEventID(rs.getString("eventID"));
-					
-			
-					
-					eventList.add(tempEvent);
 				}
 			} catch (SQLException e) {
 			
 				e.printStackTrace();
 			}	
 				
-			return eventList;
+			return tempList;
 			}
 
 		
 
 	public String[][] getRITableModelEvent() {
-		RI riModelEvent = new RI();
+	RI riModelEvent = new RI();
 
 		String data[][] = new String[5][13];
 
 		try {
 
-			ArrayList<Event> tempList = riModelEvent.GET_EVENTS_FOR_RI();
+			ArrayList<Object[]> tempList1 = riModelEvent.GET_EVENTS_FOR_RI();
 			
-			for (int i = 0; i < tempList.size(); i++) {
-		
-				data[i][0] = tempList.get(i).getEventName();
-				data[i][1] = tempList.get(i).getEventID();
-				data[i][2] = tempList.get(i).getEventStatus();
+			for (int i = 0; i < tempList1.size(); i++) {
 				
-				
-				
-				
-				
+				data[i][0] =tempList1.get(i).getEventID();
+				data[i][1] = 
+				data[i][3] = 
+				data[i][4] = 
+				data[i][5] = 
 
-				
 			}
 		} catch (Exception e) {
 		}
 
-		return data;
+	return data;
 
 	}
 	
-	public String[] getRITableColumnNamesEvent() {
-		String col[] = {"Event Name", "EventID", "Status"};
+	public String[] getRITableColumNamesEvent() {
+		String col[] = {"Event Namne", "EventID", "Status","Total Cost","Amount Pending"};
 		return col;
 
 	}
@@ -292,7 +293,7 @@ public class RI extends Account   {
 
 		try {
 	
-			String dbQuery = "Select userName, type, status, firstName, lastName, dateOfBirth, nric, school, email, address, telephoneNo, handphoneNo FROM Account Where type='RI' OR type = 'GR' OR typer ='Guest'Group by type Order by type  ";
+			String dbQuery = "Select userName, type, status, firstName, lastName, dateOfBirth, nric, school, email, address, telephoneNo, handphoneNo, closureRequest FROM Account Where type='RI' OR type = 'GR'  Order by type   ";
 			rs = db.readRequest(dbQuery);
 
 			while (rs.next()) {
@@ -310,6 +311,7 @@ public class RI extends Account   {
 				tempRI.setAddress(rs.getString("address"));
 				tempRI.setTelephoneNo(rs.getString("telephoneNo"));
 				tempRI.setHandphoneNo(rs.getString("handphoneNo"));
+				tempRI.setClosureRequest(rs.getString("closureRequest"));
 				// tempRI.setSecretQuestion(rs.getString("secretQuestion"));
 				// tempRI.setSecretAnswer(rs.getString("secretAnswer"));
 				riList.add(tempRI);
@@ -344,12 +346,15 @@ public class RI extends Account   {
 				//data[i][1] = tempList.get(i).getPassword();
 				data[i][3] = tempList.get(i).getFirstName();
 				data[i][4] = tempList.get(i).getLastName();
-				//data[i][4] = tempList.get(i).getDateOfBirth();
+				//data[i[4] = tempList.get(i).getDateOfBirth();
 				data[i][5] = tempList.get(i).getNric();
 				data[i][6] = tempList.get(i).getSchool();
 				data[i][7] = tempList.get(i).getEmail();
-				data[i][8] = tempList.get(i).getTelephoneNo();
-				data[i][9] = tempList.get(i).getHandphoneNo();
+				data[i][8] = tempList.get(i).getAddress();
+				data[i][9] = tempList.get(i).getTelephoneNo();
+				data[i][10] = tempList.get(i).getHandphoneNo();
+				data[i][11] = tempList.get(i).getClosureRequest();
+				
 				
 			}
 		} catch (Exception e) {
@@ -360,7 +365,7 @@ public class RI extends Account   {
 	}
 
 	public String[] getRITableColumnNames() {
-		String col[] = {"Username", "Type","Status" ,"First Name", "Last Name", "Nric", "School", "Email Address", "Telephone No.","Handphone No."};
+		String col[] = {"Username", "Type","Status" ,"First Name", "Last Name", "Nric", "School", "Email Address","Residential Address", "Telephone No.","Handphone No.","closure Request"};
 		return col;
 
 	}
@@ -403,7 +408,7 @@ public class RI extends Account   {
 	
 		boolean success = false;
 		
-		String sql = "UPDATE Account SET userName = '"+account.getUserName()+"', closureReason='"+account.getClosureReason()+"'"+
+		String sql = "UPDATE Account SET userName = '"+Account.currentUser.getUserName()+"', closureReason='"+account.getClosureReason()+"', closureRequest='"+Account.currentUser.getUserName()+"'"+
 				 " WHERE userName ='"+account.getUserName()+"'";
 		if (db.updateRequest(sql) == 1)
 			success = true;

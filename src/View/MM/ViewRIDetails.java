@@ -25,6 +25,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 
@@ -67,10 +68,12 @@ public class ViewRIDetails {
 	private  JTextField	nricTextBox;
 	private  JTextField	schoolTextBox;
 	private  JTextField	emailTextBox;
+	private JTextField addressTextBox;	
 	private  JTextField	telephoneTextBox;
 	private  JTextField handphoneTextBox;
 	private  JTextField typeTextBox;
 	private  JTextField statusTextBox;
+	JTextField closureRequest;
 	
 	//Labels
 	private JLabel nameLabel ;
@@ -112,7 +115,7 @@ public class ViewRIDetails {
 	
 	JFrame getJFrame(){
 		jframe = new JFrame();
-		jframe.setSize(1000,700);
+		jframe.setSize(1000,1000);
 		jframe.setVisible(true);
 		jframe.setTitle("GR View Of RI");
 		
@@ -237,6 +240,10 @@ public class ViewRIDetails {
 	emailTextBox.setBounds(new Rectangle(500, 100, 150, 25));
 	emailTextBox.setEditable(false);
 	
+	addressTextBox=new JTextField();
+	addressTextBox.setBounds(new Rectangle(500, 350, 150, 50));
+	addressTextBox.setEditable(false);
+	
 	telephoneTextBox=new JTextField();
 	telephoneTextBox.setBounds(new Rectangle(500, 150, 150, 25));
 	telephoneTextBox.setEditable(false);
@@ -252,6 +259,10 @@ public class ViewRIDetails {
 	statusTextBox=new JTextField();
 	statusTextBox.setBounds(new Rectangle(800, 300, 150, 25));
 	statusTextBox.setEditable(false);
+	
+	closureRequest = new JTextField();
+	closureRequest.setVisible(false);
+
 	
 	
 	
@@ -300,6 +311,7 @@ public class ViewRIDetails {
 				emailTextBox.setEditable(true);
 				nricTextBox.setEditable(true);
 				schoolTextBox.setEditable(true);
+				addressTextBox.setEditable(true);
 				telephoneTextBox.setEditable(true);
 				handphoneTextBox.setEditable(true);
 //				typeTextBox.setEditable(true);
@@ -337,7 +349,8 @@ public class ViewRIDetails {
 						|| lastNameTextBox.getText().equals("")
 							|| nricTextBox.getText().equals("")
 					|| schoolTextBox.getText().equals("")
-							|| emailTextBox.getText().equals("")) {
+							|| emailTextBox.getText().equals("")||
+							addressTextBox.getText().equals("")) {
 
 				JOptionPane.showConfirmDialog(null,"Please Fill up all Field",
 							   "Empty Field", JOptionPane.CLOSED_OPTION);
@@ -366,6 +379,7 @@ public class ViewRIDetails {
 					schoolTextBox.setText("");
 					emailTextBox.setText("");
 					telephoneTextBox.setText("");
+					addressTextBox.setText("");
 					handphoneTextBox.setText("");
 					statusTextBox.setText("");
 					typeTextBox.setText("");
@@ -378,6 +392,7 @@ public class ViewRIDetails {
 					emailTextBox.setEditable(false);
 					nricTextBox.setEditable(false);
 					schoolTextBox.setEditable(false);
+					addressTextBox.setEditable(false);
 					telephoneTextBox.setEditable(false);
 					handphoneTextBox.setEditable(false);
 					
@@ -464,6 +479,7 @@ public class ViewRIDetails {
 			nricTextBox.setText("");
 			schoolTextBox.setText("");
 			emailTextBox.setText("");
+			addressTextBox.setText("");
 			telephoneTextBox.setText("");
 			handphoneTextBox.setText("");
 			statusTextBox.setText("");
@@ -477,6 +493,7 @@ public class ViewRIDetails {
 			emailTextBox.setEditable(false);
 			nricTextBox.setEditable(false);
 			schoolTextBox.setEditable(false);
+			addressTextBox.setEditable(false);
 			telephoneTextBox.setEditable(false);
 			handphoneTextBox.setEditable(false);
 			}
@@ -533,6 +550,7 @@ public class ViewRIDetails {
 	panel.add(nricTextBox);
 	panel.add(schoolTextBox);
 	panel.add(emailTextBox);
+	panel.add(addressTextBox);
 	panel.add(telephoneTextBox);
 	panel.add(handphoneTextBox);
 	panel.add(typeTextBox);
@@ -548,7 +566,7 @@ public class ViewRIDetails {
 	
 	
 	JScrollPane tableScrollPane = new JScrollPane(getTable());
-	tableScrollPane.setBounds(-8, 97, 975, 200);
+	tableScrollPane.setBounds(0, 97, 975, 200);
 	panel.add(tableScrollPane);
 	panel.add(getWankingPanel(), null);
 	panel.add(getRefresh(), null);
@@ -626,8 +644,9 @@ public class ViewRIDetails {
 
 
 	public void shiftData(int row) {
-																					//add Date of birth here		
-			JTextField[] textBoxes = {userNameTextBox, typeTextBox, statusTextBox, firstNameTextBox, lastNameTextBox,  nricTextBox, schoolTextBox, emailTextBox, telephoneTextBox, handphoneTextBox};
+																				
+			//add Date of birth here		
+			JTextField[] textBoxes = {userNameTextBox, typeTextBox, statusTextBox,firstNameTextBox, lastNameTextBox,  nricTextBox, schoolTextBox, emailTextBox, addressTextBox, telephoneTextBox, handphoneTextBox,closureRequest};
 	        int columns = table.getColumnCount();  
 	       
 	        
@@ -660,7 +679,7 @@ public class ViewRIDetails {
 		if(infoPanel == null) {
 			infoPanel = new JPanel();
 			infoPanel.setLayout(null);
-			infoPanel.setBounds(new Rectangle(0, 328, 780, 300));
+			infoPanel.setBounds(new Rectangle(0, 328, 900, 500));
 			infoPanel.add(userNameLabel);
 			infoPanel.add(firstNameLabel);
 			infoPanel.add( lastNameLabel);
@@ -671,6 +690,7 @@ public class ViewRIDetails {
 			infoPanel.add(telephoneLabel);
 			infoPanel.add(handphoneLabel);
 			infoPanel.add(typeLabel);
+			infoPanel.add(closureRequest);
 			
 			
 			//add textBox
@@ -681,6 +701,7 @@ public class ViewRIDetails {
 			infoPanel.add(nricTextBox);
 			infoPanel.add(schoolTextBox);
 			infoPanel.add(emailTextBox);
+			infoPanel.add(addressTextBox);
 			infoPanel.add(telephoneTextBox);
 			infoPanel.add(handphoneTextBox);
 			infoPanel.add(typeTextBox);

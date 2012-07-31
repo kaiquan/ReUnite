@@ -507,7 +507,12 @@ public class ViewRIDetailsRIVIEW {
 						}
 					}
 				});
-		amountBalance.setText((tablePayment.getModel()).getValueAt(0, 1).toString());
+		for(int i=0; i<tablePayment.getModel().getRowCount(); i++){
+		amountBalance.setText((tablePayment.getModel()).getValueAt(i, 1).toString());
+		
+		
+		
+		}
 
 	
 		return tablePayment;
@@ -636,18 +641,9 @@ public class ViewRIDetailsRIVIEW {
 	
 	
 	}
-		public void checkforApproval(){
-			
-			String balanceAmount;
-			String statusEvent ;
-			
-			ViewRIDetails check = new ViewRIDetails();
-			
-			check.checkIfCanDelete(balanceAmount = amountBalance.getText(),statusEvent = eventStatus.getText());
 		
 		
 		
-		}
 		
 
 }

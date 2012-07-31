@@ -32,6 +32,8 @@ public class Account implements Comparable<Account>
 	private Date closureRequestDate;
 	private Date closureDate;
 	private String closureReason;
+	private String closureRequest;
+
 
 	public Account(){}
 	
@@ -246,6 +248,15 @@ public class Account implements Comparable<Account>
 		this.closureReason = closureReason;
 	}
 	
+
+	public String getClosureRequest() {
+		return closureRequest;
+	}
+
+	public void setClosureRequest(String closureRequest) {
+		this.closureRequest = closureRequest;
+	}
+	
 	@Override
 	public String toString()
 	{
@@ -253,7 +264,7 @@ public class Account implements Comparable<Account>
 				+ status + ", confirmed=" + confirmed + ", firstName=" + firstName + ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth
 				+ ", nric=" + nric + ", school=" + school + ", email=" + email + ", address=" + address + ", telephoneNo=" + telephoneNo
 				+ ", handphoneNo=" + handphoneNo + ", secretQuestion=" + secretQuestion + ", secretAnswer=" + secretAnswer + ", closureRequestDate="
-				+ closureRequestDate + ", closureDate=" + closureDate + ", closureReason=" + closureReason + "]";
+				+ closureRequestDate + ", closureDate=" + closureDate + ", closureReason=" + closureReason + ", closureRequest=" + closureRequest + "]";
 	}
 
 	

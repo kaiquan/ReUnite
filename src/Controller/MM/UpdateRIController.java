@@ -47,6 +47,8 @@ public class UpdateRIController {
 		RI updateReason = new RI();
 		updateReason.setUserName(userName);
 		updateReason.setClosureReason(closureReason);
+		updateReason.setClosureRequest("close Request");
+		
 		
 		update.updateClosure(updateReason);
 		

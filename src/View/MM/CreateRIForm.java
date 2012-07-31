@@ -21,6 +21,7 @@ import javax.swing.JTextField;
 import Controller.MM.*;
 import java.awt.Rectangle;
 import java.awt.Dimension;
+import javax.swing.JTextPane;
 
 
 public class CreateRIForm extends JFrame {
@@ -61,13 +62,12 @@ public class CreateRIForm extends JFrame {
 	private JTextField nricTextBox;
 	private JTextField schoolTextBox;
 	private JTextField emailTextBox;
-	private JTextField addressTextBox;
+	private JTextPane addressTextBox;
 	private JTextField telephoneNoTextBox;
 	private JTextField handphoneNoTextBox;
 	private JTextField secretAnswerTextBox;
 	private JLabel cPasswordLabel = null;
-	
-	
+	private JComboBox jComboBox = null;
 	JFrame getJFrame(){
 		jFrame = new JFrame();
 		jFrame.setSize(892, 788);
@@ -112,48 +112,10 @@ public class CreateRIForm extends JFrame {
 					public void actionPerformed(java.awt.event.ActionEvent e) {
 						
 			
-						System.out.println(yearCombo.getSelectedIndex());
-						System.out.println(monthCombo.getSelectedItem());
-						System.out.println(dayCombo.getSelectedItem());
-						System.out.println(secretQuestionCombo.getSelectedItem());
-						
-						if(validateEmptyField()){
-							System.out.println("hello1");
-				
-						}
-						 if((validateEmptyField())!=true && (validatePassword()==false))
-					{
-						}
-						
-						 if((validatePassword())!=true &&(validateNumbers()==false)){
-							
-						}
-						
-							
-						else{
-		CreateRIController registerController = new CreateRIController();
-					try {
-						registerController.createRegistration(
-											userNameTextBox.getText(),
-											passwordTextBox.getText(),
-											firstNameTextBox.getText(),
-											lastNameTextBox.getText(),
-											// parseDate(date()),
-											nricTextBox.getText(),
-											schoolTextBox.getText(),
-											emailTextBox.getText(),
-											addressTextBox.getText(),
-											telephoneNoTextBox.getText(),
-											handphoneNoTextBox.getText(), // secretQuestion(),
-											secretAnswerTextBox.getText(),
-											secretQuestionCombo.getSelectedItem().toString());
-								} catch (Exception e1) {
-									// TODO Auto-generated catch block
-									e1.printStackTrace();
-								}
-						}
-							
-						
+				if(validation()){
+					System.out.println("validation ok");
+				}
+				createUser();	
 				
 			}});
 		
@@ -267,8 +229,9 @@ public class CreateRIForm extends JFrame {
 		emailTextBox = new JTextField();
 		emailTextBox.setBounds(new Rectangle(550, 400, 140, 20));
 		
-		addressTextBox = new JTextField();
-		addressTextBox.setBounds(new Rectangle(200, 500, 140, 20));
+		addressTextBox = new JTextPane();
+		addressTextBox.setBounds(new Rectangle(200, 500, 142, 67));
+		
 		
 		telephoneNoTextBox = new JTextField();
 		telephoneNoTextBox.setBounds(new Rectangle(200, 600, 140, 20));
@@ -326,6 +289,7 @@ public class CreateRIForm extends JFrame {
 		panel.add(handphoneNoTextBox);
 		panel.add(cPasswordTextBox);
 		panel.add(cPasswordLabel, null);
+		panel.add(getJComboBox(), null);
 		
 		
 		
@@ -400,63 +364,82 @@ public class CreateRIForm extends JFrame {
 	return question;
 	}
 	
-	
-	public boolean validateEmptyField(){
-		boolean success = false;
-	if(
-		userNameTextBox.getText().equals("")
-		|| passwordTextBox.getText().equals("")
-		|| firstNameTextBox.getText().equals("")
-		|| lastNameTextBox.getText().equals("")
-		|| nricTextBox.getText().equals("")
-		|| schoolTextBox.getText().equals("")
-		|| emailTextBox.getText().equals("")
-	   )
-			
-	{
-				System.out.println("Empty field");
-				JOptionPane.showConfirmDialog(null,
-						"Please Fill up all Field", "Empty Field",
-						JOptionPane.CLOSED_OPTION);
-	}	
-			success= true;
-		
-		return success;
-		
-	}
-	
-	public boolean validateNumbers(){
-		boolean success = false;
-		String number = "[\\p{Digit}&&[123456789]]+";
-		if (!telephoneNoTextBox.getText().matches(number)) 
-		{JOptionPane.showMessageDialog(null,"Only Numerical values allowed for phone Numbers");
-			System.out.println("telephomeNumber");
-		}
-		if(!handphoneNoTextBox.getText().matches(number)){
-			JOptionPane.showMessageDialog(null,"Only Numerical values allowed for phone Numbers");
-			System.out.println("handphoneNumber");
-		}
-		
-			success= true;
-			
-			return success;
-		}
-	public boolean validatePassword(){
-		boolean success = false;
-		if (!(passwordTextBox.getText()
-			.equals(cPasswordTextBox.getText()))) 
-		{
+				public boolean validation()
+				{
+					boolean validate = true;
+					String number="[\\p{Digit}&&[123456789]]+";
+					
+					
+					if(userNameTextBox.getText().equals("")||passwordTextBox.getText().equals("")||firstNameTextBox.getText().equals("")||lastNameTextBox.getText().equals("")||
+					nricTextBox.getText().equals("")||schoolTextBox.getText().equals("")||emailTextBox.getText().equals("")||addressTextBox.getText().equals("")||
+					telephoneNoTextBox.getText().equals("")||handphoneNoTextBox.getText().equals("")||//secretQuestionCombo.getSelectedItem().toString(),
+					secretAnswerTextBox.getText().equals(""))
+					{
+						validate = false;
+						JOptionPane.showMessageDialog(null, "Please fill up all the fields to continue...");
+					}
+					else if(!(passwordTextBox.getText().equals(cPasswordTextBox.getText())))
+					{
+						
+						JOptionPane.showMessageDialog(null, "The passwords do not match, please try again to continue");
+						validate = false;
+					}
+					
+					 else if(!telephoneNoTextBox.getText().matches(number)&& !handphoneNoTextBox.getText().matches(number))
+						 
+					 {
+						 validate = false;
+						 JOptionPane.showMessageDialog(null, "Only Numerical values are allowed for handphone and telephphone please ammend to continue");
+					 }
+//					String string=nricTextBox.getText(); 
+//					String substringNric = string.substring(0,1);
+//					String substringNric1 = string.substring(8,9);
+//					String substringNric2 = string.substring(2,7); 
+					//else if(substringNric.matches(number)&&substringNric1.matches(number) && !substringNric2.matches(number) )
+//					 {	
+//						 validate = false;
+//						 JOptionPane.showMessageDialog(null, "Invalid IC Number");
+//					}	
+							return validate;
+				}
+				
+				public void createUser(){
+					CreateRIController registerController = new CreateRIController();
+					try {
+						registerController.createRegistration(
+											userNameTextBox.getText(),
+											passwordTextBox.getText(),
+											firstNameTextBox.getText(),
+											lastNameTextBox.getText(),
+											// parseDate(date()),
+											nricTextBox.getText(),
+											schoolTextBox.getText(),
+											emailTextBox.getText(),
+											addressTextBox.getText(),
+											telephoneNoTextBox.getText(),
+											handphoneNoTextBox.getText(), 
+											secretQuestionCombo.getSelectedItem().toString(),
+											secretAnswerTextBox.getText());
+								} catch (Exception e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+						
+					
+				}
+	/**
+				 * This method initializes jComboBox	
+				 * 	
+				 * @return javax.swing.JComboBox	
+				 */
+				private JComboBox getJComboBox() {
+					if (jComboBox == null) {
+						jComboBox = new JComboBox();
+						jComboBox.setBounds(new Rectangle(245, 533, 31, 25));
+					}
+					return jComboBox;
+				}
 
-		JOptionPane.showMessageDialog(null,
-				"Password Does not Match!");
-		System.out.println("password");
-		}
-		
-		success= true;
-		
-		return success;
-	}
-	
 	public static void main(String a[]){
 		
 		

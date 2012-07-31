@@ -49,16 +49,21 @@ import java.awt.GridBagLayout;
 
 public class ViewRIDetails {
 
-	ViewRIDetailsController viewRIDetailsController = new ViewRIDetailsController();  //  @jve:decl-index=0:
+	ViewRIDetailsController viewRIDetailsController = new ViewRIDetailsController(); 
+	ViewRIDetailsController viewRIDetailsController2 = new ViewRIDetailsController();//  @jve:decl-index=0:
 	
 	public JTable table;
+	public JTable framesTable;
 	private JFrame jframe;
+	private JFrame frames;
 	private JPanel panel;
 	private JPanel panel2;
 	private JPanel wankingPanel ;
 	private JPanel infoPanel;
+	private JPanel framesPanel;
 	
 	private DefaultTableModel tableModel = viewRIDetailsController.getRITableModel();
+	private DefaultTableModel tableModel1 = viewRIDetailsController2.getRITableModelEvent();
 	
 	//TextBoxes
 	private JTextField userNameTextBox;
@@ -126,6 +131,35 @@ public class ViewRIDetails {
 		return jframe;
 		
 	}
+
+	JFrame getFrames(){
+		frames = new JFrame();
+		frames.setSize(1000,1000);
+		frames.setVisible(true);
+		frames.setTitle("View of all Event and Purchase");
+		
+		frames.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frames.setResizable(false);
+		frames.setContentPane(getFramesPanel());
+		
+		return frames;
+		
+	}
+	private JPanel getFramesPanel()
+	{
+		framesPanel = new JPanel();
+		framesPanel.setLayout(null);
+
+		JScrollPane tableScrollPane1 = new JScrollPane(getFramesTable());
+		tableScrollPane1.setBounds(0, 97, 975, 200);
+		framesPanel.add(tableScrollPane1);
+		framesPanel.add(getFramesTable(), null);
+		
+		
+		return framesPanel;
+	}
+
+	
 	
 	// ***********************JPanel Method****************	
 	private JPanel getPanel(){
@@ -273,7 +307,7 @@ public class ViewRIDetails {
 	viewEventAndPayment.setText("View RI Event and Payment");
 	viewEventAndPayment.addActionListener(new java.awt.event.ActionListener() {
 		public void actionPerformed(java.awt.event.ActionEvent e) {
-			System.out.println("yo man");
+			getFrames().setVisible(true);
 		}
 		
 	});	
@@ -283,6 +317,19 @@ public class ViewRIDetails {
 	deleteAccountButton.setBounds(0, 102, 150, 30);
 //	deleteAccountButton.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Trash-Black-Empty-icon.png")));
 	deleteAccountButton.setText("Delete Account");
+	deleteAccountButton.addActionListener(new java.awt.event.ActionListener() {
+		public void actionPerformed(java.awt.event.ActionEvent e) {
+			Object[] options = { "OK", "CANCEL" };
+			int confirmUpdateOption = JOptionPane.showOptionDialog(null, "Are You Sure You Want to Delete  " +userNameTextBox.getText() +"", "Please Confirm",
+			JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+			null, options, options[0]);
+			if (confirmUpdateOption == 0)
+			{DeleteRIController deleteController = new DeleteRIController();
+			deleteController.delteRIAccount(userNameTextBox.getText());
+				
+			}
+		}
+	});
 	
 	
 	
@@ -383,7 +430,7 @@ public class ViewRIDetails {
 					handphoneTextBox.setText("");
 					statusTextBox.setText("");
 					typeTextBox.setText("");
-					//secretQuestion(),
+					
 					
 					userNameTextBox.setEditable(false);
 					firstNameTextBox.setEditable(false);
@@ -435,22 +482,7 @@ public class ViewRIDetails {
 			}
 
 			
-			
-//			ViewRIDetailsController verifyDelete = new ViewRIDetailsController();
-//			
-//			if(verifyDelete.ableToDelete()==false){
-//			
-//			JOptionPane.showConfirmDialog(null,""+userNameTextBox.getText()+" You have an Outstanding Event",
-//					   "Disable Confirmed!", JOptionPane.CLOSED_OPTION);
-//			
-//		}
-//			
-//		else{
-//		
-//			JOptionPane.showConfirmDialog(null,""+userNameTextBox.getText()+" Has Been Successfully DiSa l!",
-//					   "Disable Confirmed!", JOptionPane.CLOSED_OPTION);
-//		}
-			
+
 			if(disableAccountButton.getText()=="Enable Account"){
 				Object[] options = { "OK", "CANCEL" };
 				int confirmUpdateOption = JOptionPane.showOptionDialog(null, "Are Sure You want to Enable  "+userNameTextBox.getText()+"?", "Please Confirm",
@@ -577,6 +609,37 @@ public class ViewRIDetails {
 	
 // .......................................JTable.........................	
 
+	public JTable getFramesTable() {
+
+		RI riModel = new RI();
+		framesTable = new JTable();	
+		framesTable.setBackground(Color.white);
+		framesTable.setBorder(null);
+		framesTable.setModel(tableModel1);
+		framesTable.setColumnSelectionAllowed(false);
+		framesTable.setCellSelectionEnabled(false);
+		framesTable.setRowSelectionAllowed(true);
+		framesTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+
+
+		
+		
+		DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
+		headerRenderer.setBackground(Color.GRAY);
+		
+		
+		
+		framesTable.getTableHeader().setDefaultRenderer(headerRenderer);
+		
+		DefaultTableCellRenderer usernameRenderer = new DefaultTableCellRenderer();
+		usernameRenderer.setFont(new Font("Dialog", Font.BOLD, 50));
+		return framesTable;
+	
+	
+	}
+		
+		
 	public JTable getTable() {
 
 		submitButton.addActionListener(new ActionListener() {

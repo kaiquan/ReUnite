@@ -316,9 +316,9 @@ public class CreateRIForm extends JFrame {
 	public String [] monthArray(){
 		String[] monthArray = new String[13];
 		monthArray[0]="Month";
-		monthArray[1]= "January";monthArray[2]= "February";monthArray[3]= "March";monthArray[4]= "April";monthArray[5]="May";
-		monthArray[6]= "June";monthArray[7]= "July";monthArray[8]= "August";monthArray[9]= "September";monthArray[10]= "October";
-		monthArray[11]= "November";monthArray[12]= "December";
+		monthArray[1]= "1";monthArray[2]= "2";monthArray[3]= "3";monthArray[4]= "4";monthArray[5]="5";
+		monthArray[6]= "6";monthArray[7]= "7";monthArray[8]= "8";monthArray[9]= "9";monthArray[10]= "10";
+		monthArray[11]= "11";monthArray[12]= "12";
 		
 		
 		return monthArray;
@@ -339,16 +339,10 @@ public class CreateRIForm extends JFrame {
 		
 	}
 	
-	public String date(){
+	public String toString(){
 		return (yearCombo.getSelectedItem()+"-"+monthCombo.getSelectedItem()+"-"+dayCombo.getSelectedItem());
 	}
 	
-	
-	public Date parseDate(String date) throws ParseException
-	{
-		SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-DD hh:mm:ss");
-		return formatter.parse(date());
-	}
 	
 	
 	
@@ -411,7 +405,7 @@ public class CreateRIForm extends JFrame {
 											passwordTextBox.getText(),
 											firstNameTextBox.getText(),
 											lastNameTextBox.getText(),
-											// parseDate(date()),
+											toString(),
 											nricTextBox.getText(),
 											schoolTextBox.getText(),
 											emailTextBox.getText(),

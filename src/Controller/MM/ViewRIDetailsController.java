@@ -3,12 +3,14 @@ package Controller.MM;
 
 
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import Model.Membership.*;
 
 public class ViewRIDetailsController {
 
 	RI riModel = new RI();
+	RI eventAndPurchaseModel = new RI();
 	
 	public ViewRIDetailsController() {}
 
@@ -39,6 +41,10 @@ public class ViewRIDetailsController {
 	{
 		DefaultTableModel model = new DefaultTableModel(riModel.getRITableModel(), riModel.getRITableColumnNames());
 		return model;
+	}
+	public DefaultTableModel getRITableModelEvent() {
+		DefaultTableModel modelEvent = new DefaultTableModel(eventAndPurchaseModel.GET_EVENTS_PURCHASE_FOR_RI(), eventAndPurchaseModel.getRIEventNPurchaseColumnNames());
+		return modelEvent;
 	}
 
 	

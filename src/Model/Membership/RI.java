@@ -157,71 +157,64 @@ public class RI extends Account   {
 	// _______________________________________________________________Retrieve
 	// All RI Account (GR
 	// View)___________________________________________________
-
 	
-	public ArrayList<RI> GET_Payment_FOR_RI() {
+	public Object[][] GET_EVENTS_PURCHASE_FOR_RI() {
+		ArrayList<Object[]> tempList = new ArrayList<Object[]>();
+		Object[][] records = null;
 		ResultSet rs = null;
-		
-		ArrayList<RI> paymentList = new ArrayList<RI>();
-		for (int i = 0; i < paymentList.size(); i++) {
-			String dbQuery = "Select totalCost, amountPending FROM Purchase_Summary WHERE eventID='"+((Event) eventList.get(i)).getEventID()+"'";
+			String dbQuery = "SELECT * FROM Event e INNER JOIN Purchase_Summary p ON e.eventID = p.eventID ";
 			rs = db.readRequest(dbQuery);
-		
 			try {
-				while(rs.next()){
-
-				
-					RI ps = new RI();
-				
-					ps.setTotalCost(rs.getString("totalCost"));
-					ps.setAmountPending(rs.getString("amountPending"));
-				
+				while(rs.next())
+				{
+					Object[] row = new Object[5];
 					
-			
+					row[0] = rs.getString("eventID");
+					row[1] =  rs.getString("packageID");
+					row[2] = rs.getString("userName");
+					row[3] = rs.getString("eventStatus");
+					row[4] = rs.getString("eventName");
+					row[5] = rs.getString("purchaseID");
+					row[6] = rs.getString("eventID");
+					row[7] = rs.getString("totalCost");
+					row[8] = rs.getString("amountPending");
+					row[9] = rs.getString("dateOfPurchase");
 					
-					paymentList.add(ps);
+					
+					
+		
+					tempList.add(row);
+				}
+				records = new Object[tempList.size()][5];
+				for(int i = 0; i<tempList.size(); i++)
+				{
+					records[i][0] = tempList.get(i)[0];
+					records[i][1] = tempList.get(i)[1];
+					records[i][2] = tempList.get(i)[2];
+					records[i][3] = tempList.get(i)[3];
+					records[i][4] = tempList.get(i)[4];
+					records[i][5] = tempList.get(i)[5];
+					records[i][6] = tempList.get(i)[6];
+					records[i][7] = tempList.get(i)[7];
+					records[i][8] = tempList.get(i)[8];
+					records[i][9] = tempList.get(i)[9];
+					
+					
 				}
 			} catch (SQLException e) {
 			
 				e.printStackTrace();
 			}	
-		}
-			return paymentList;
-			}
-
-		
-
-
-	public String[][] getRITableModelPayment() {
-		RI riModelPayment= new RI();
-
-		String data[][] = new String[5][13];
-
-		try {
-
-			ArrayList<RI> tempList1 = riModelPayment.GET_Payment_FOR_RI();
-			
-			for (int i = 0; i < tempList1.size(); i++) {
-				data[i][0]= tempList1.get(i).getTotalCost();
-				data[i][1]= tempList1.get(i).getAmountPending();
-	
 				
+			return records;
 			}
-		} catch (Exception e) {
-		}
 
-		return data;
 
-	}
-	
-	public String[] getRITableColumnNamesPayment() {
-		String col[] = { "Total Due", "Total Balance"};
+	public String[] getRIEventNPurchaseColumnNames() {
+		String col[] = {"Event ID", "packageID","userName" ,"eventStatus", "Event Name", "Purchase ID", "eventID", "Total Cost", "Amount Due","Date of Purchase"};
 		return col;
 
 	}
-	
-	
-	
 	
 	
 	
@@ -229,7 +222,7 @@ public class RI extends Account   {
 		ArrayList<Object[]> tempList = new ArrayList<Object[]>();
 		Object[][] records = null;
 		ResultSet rs = null;
-			String dbQuery = "SELECT * FROM Event e INNER JOIN Purchase_Summary p ON e.eventID = p.eventID WHERE e.eventID IN (SELECT ev.eventID FROM Event ev WHERE ev.userName ='"+Account.currentUser.getUserName()+"')";
+			String dbQuery = "SELECT * FROM Event e INNER JOIN Purchase_Summary p ON e.eventID = p.eventID WHERE e.eventID IN (SELECT ev.eventID FROM Event ev WHERE ev.userName ='"+Account.currentUser.getUserName()+"') Order by eventStatus , amountPending ";
 			rs = db.readRequest(dbQuery);
 			try {
 				while(rs.next())
@@ -262,12 +255,12 @@ public class RI extends Account   {
 			}
 
 		
-	public String[] getRITableColumNamesEvent() {
-		String col[] = {"Event Namne", "EventID", "Status","Total Cost","Amount Pending"};
+
+	public String[] getRIEventColumnNames() {
+		String col[] = {"Event ID", "Event Status","Event Name" ,"Total Due", "Total Balance"};
 		return col;
 
 	}
-	
 
 	
 	public ArrayList<RI> retrieveUser() {
@@ -345,11 +338,7 @@ public class RI extends Account   {
 
 		return data;
 	}
-	public String[] getRIEventColumnNames() {
-		String col[] = {"name1", "name2","name3" ,"name4", "name5"};
-		return col;
-
-	}
+	
 
 	public String[] getRITableColumnNames() {
 		String col[] = {"Username", "Type","Status" ,"First Name", "Last Name", "Nric", "School", "Email Address","Residential Address", "Telephone No.","Handphone No.","closure Request"};
@@ -364,8 +353,7 @@ public class RI extends Account   {
 
 	public boolean deleteRIAccount(RI account) {
 		boolean success = false;
-		String sql = "DELETE FROM Account  where UserName = '" + getUserName()
-				+ "'";
+		String sql = "DELETE * FROM Account  where userName = '" + account.getUserName()+ "'";
 		if (db.updateRequest(sql) == 1)
 			success = true;
 		return success;

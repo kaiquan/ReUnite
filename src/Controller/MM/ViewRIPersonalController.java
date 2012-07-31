@@ -11,7 +11,7 @@ import Model.Membership.*;
 public class ViewRIPersonalController {
 	RI riModel1 = new RI();
 	RI riModelEvent = new RI();
-	RI riModelPayment = new RI();
+	;
 	LoginController login = new LoginController();  //  @jve:decl-index=0:
 	
 	
@@ -59,10 +59,6 @@ public ViewRIPersonalController(){}
 		return modelEvent;
 	}
 	
-	public TableModel getRITableModelPayment() {
-		DefaultTableModel modelPayment = new DefaultTableModel(riModelPayment.getRITableModelPayment(), riModelPayment.getRITableColumnNamesPayment());
-		return modelPayment;
-	}
 
 
 }

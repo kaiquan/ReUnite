@@ -4,7 +4,7 @@ import Model.Membership.*;
 
 public class DeleteRIController {
 	
-	DeleteRIController(){}
+	public DeleteRIController(){}
 	
 	RI delete = new RI();
 	

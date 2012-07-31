@@ -154,7 +154,7 @@ public class CreateInvitationView extends JFrame
 					public void actionPerformed(ActionEvent arg0)
 					{
 						ArrayList<Guest> tempList = new ContactImporter("Hotmail").getContacts();
-						controller.addRow(tempList);
+						controller.addRows(tempList);
 					}
 				});
 				actionPanel.add(hotmailImportButton, "cell 0 0,alignx center,aligny top");

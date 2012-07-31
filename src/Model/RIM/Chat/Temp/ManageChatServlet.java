@@ -4,6 +4,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.ServletException;
+
+import Model.RIM.Chat.ChatRoom;
+import Model.RIM.Chat.ChatRoomList;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Properties;

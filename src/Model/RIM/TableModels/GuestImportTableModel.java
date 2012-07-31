@@ -1,6 +1,5 @@
 package Model.RIM.TableModels;
 
-import java.awt.Color;
 import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
@@ -98,15 +97,14 @@ public class GuestImportTableModel extends AbstractTableModel
 		colCount = columnNames.length;
 		Object[] data = new Object[colCount];
 
-		data[0] = guest.getProfilePicture();
+		data[0] = guest.getProfilePicture()!= null?ImageHelper.loadImageIcon(guest.getProfilePicture(), ""):ImageHelper.loadImageIcon("userIcon.png", "");
 		data[1] = guest.getFirstName();
 		data[2] = guest.getLastName();
 		data[3] = guest.getSchool();
-		data[4] = Color.blue;
+		data[4] = guest.getDateOfBirth();
 		data[5] = guest.getEmail();
-		data[6] = guest.getTelephoneNo();
-		data[7] = guest.getHandphoneNo();
-		data[8] = guest.getAddress();
+		data[6] = guest.getHandphoneNo();
+		data[7] = guest.getAddress();
 			
 		al.add(data);
 		

@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 import View.RIM.Guest.ChatClientGUI;
 
-public class ChatClient implements Runnable
+public class ChatClientThread implements Runnable
 {
 	Calendar calendar = new GregorianCalendar();
 	DateFormat dateFormat = new SimpleDateFormat("HH:mm");
@@ -19,7 +19,7 @@ public class ChatClient implements Runnable
 	Scanner SEND = new Scanner(System.in);
 	PrintWriter OUT;
 	
-	public ChatClient(Socket x)
+	public ChatClientThread(Socket x)
 	{
 		this.SOCK = x;
 	}

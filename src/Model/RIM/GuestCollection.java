@@ -25,24 +25,24 @@ public class GuestCollection
 	public GuestCollection()
 	{
 		guests = new ArrayList<Guest>();
-		guests.add(new Guest("Adeel Ateeque", "Online", "myPic.jpg", "Nanyang Polytechnic"));
-		guests.add(new Guest("Shahrikin Alias", "Online", "userIcon.png", "RP"));
-		guests.add(new Guest("Lee Kai Quan", "Busy", "userIcon.png", "Ngee Ann"));
-		guests.add(new Guest("A.Ameenudeen", "Offline", "userIcon.png", "SP")); 
-		guests.add(new Guest("Jhonny Bravo", "Away", "johnnyBravo.gif", "National Poly"));
-		guests.add(new Guest("Brad Pitt", "Sleeping", "bradPitt.jpg", "NYP"));
-		guests.add(new Guest("Adeel Ateeque", "Online", "myPic.jpg", "Nanyang Polytechnic"));
-		guests.add(new Guest("Shahrikin Alias", "Online", "userIcon.png", "RP"));
-		guests.add(new Guest("Lee Kai Quan", "Busy", "userIcon.png", "Ngee Ann"));
-		guests.add(new Guest("A.Ameenudeen", "Offline", "userIcon.png", "SP")); 
-		guests.add(new Guest("Jhonny Bravo", "Away", "johnnyBravo.gif", "National Poly"));
-		guests.add(new Guest("Brad Pitt", "Sleeping", "bradPitt.jpg", "NYP"));
-		guests.add(new Guest("Adeel Ateeque", "Online", "myPic.jpg", "Nanyang Polytechnic"));
-		guests.add(new Guest("Shahrikin Alias", "Online", "userIcon.png", "RP"));
-		guests.add(new Guest("Lee Kai Quan", "Busy", "userIcon.png", "Ngee Ann"));
-		guests.add(new Guest("A.Ameenudeen", "Offline", "userIcon.png", "SP")); 
-		guests.add(new Guest("Jhonny Bravo", "Away", "johnnyBravo.gif", "National Poly"));
-		guests.add(new Guest("Brad Pitt", "Sleeping", "bradPitt.jpg", "NYP"));
+		guests.add(new Guest("Adeel Ateeque", true, "myPic.jpg", "Nanyang Polytechnic"));
+		guests.add(new Guest("Shahrikin Alias", false, "userIcon.png", "RP"));
+		guests.add(new Guest("Lee Kai Quan", false, "userIcon.png", "Ngee Ann"));
+		guests.add(new Guest("A.Ameenudeen", false, "userIcon.png", "SP")); 
+		guests.add(new Guest("Jhonny Bravo", true, "johnnyBravo.gif", "National Poly"));
+		guests.add(new Guest("Brad Pitt", true, "bradPitt.jpg", "NYP"));
+		guests.add(new Guest("Adeel Ateeque", false, "myPic.jpg", "Nanyang Polytechnic"));
+		guests.add(new Guest("Shahrikin Alias", false, "userIcon.png", "RP"));
+		guests.add(new Guest("Lee Kai Quan", true, "userIcon.png", "Ngee Ann"));
+		guests.add(new Guest("A.Ameenudeen", false, "userIcon.png", "SP")); 
+		guests.add(new Guest("Jhonny Bravo", false, "johnnyBravo.gif", "National Poly"));
+		guests.add(new Guest("Brad Pitt", true, "bradPitt.jpg", "NYP"));
+		guests.add(new Guest("Adeel Ateeque", true, "myPic.jpg", "Nanyang Polytechnic"));
+		guests.add(new Guest("Shahrikin Alias", true, "userIcon.png", "RP"));
+		guests.add(new Guest("Lee Kai Quan", false, "userIcon.png", "Ngee Ann"));
+		guests.add(new Guest("A.Ameenudeen", false, "userIcon.png", "SP")); 
+		guests.add(new Guest("Jhonny Bravo", false, "johnnyBravo.gif", "National Poly"));
+		guests.add(new Guest("Brad Pitt", false, "bradPitt.jpg", "NYP"));
 	}
 
 

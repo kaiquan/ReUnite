@@ -73,7 +73,7 @@ public class CreateInvitationController
 		tableModel.addRow(new Guest());
 	}
 	
-	public void addRow(ArrayList<Guest> guests)
+	public void addRows(ArrayList<Guest> guests)
 	{
 		tableModel.addRows(guests);
 	}

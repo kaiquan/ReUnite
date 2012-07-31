@@ -17,6 +17,7 @@ package Controller.RIM;
 import java.util.ArrayList;
 
 import net.sf.json.JSONArray;
+import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 
@@ -57,7 +58,7 @@ public class ContactImporter
 			PROTECTED_RESOURCE_URL = "https://apis.live.net/v5.0/";
 			API_KEY = "00000000440CAA45";
 			API_SECRET = "5Lw8GFNWSy4CZba-SrWZIk4TPjXEDYiO";
-			SCOPE = "wl.basic wl.emails";
+			SCOPE = "wl.basic wl.emails wl.birthday wl.postal_addresses wl.phone_numbers";
 
 			service = new ServiceBuilder().provider(LiveApi.class).apiKey(API_KEY).apiSecret(API_SECRET).scope(SCOPE).callback(CALL_BACK_URL).build();
 		}
@@ -145,6 +146,8 @@ public class ContactImporter
 		}
 
 		Response response = request.send();
+		
+		
 
 		return response.getBody();
 	}
@@ -157,23 +160,49 @@ public class ContactImporter
 		{
 			String data = getResource("me/contacts");
 			
-			JSONObject json = (JSONObject) JSONSerializer.toJSON(data);
-
-			JSONArray jsonArray = json.getJSONArray("data");
-
-			for (int i = 0; i < jsonArray.size(); i++)
-			{
-				if (ValidationHelper.validateEmail(jsonArray.getJSONObject(i).getString("name")))
-				{
-					Guest guest = new Guest();
-					guest.setFirstName(jsonArray.getJSONObject(i).getString("name"));
-					guest.setProfilePicture("hotmailIcon.png");
-					response.add(guest);
-				}
-//				
-//				System.out.println(getResource(jsonArray.getJSONObject(i).getString("id")));
-			}
+			System.out.println(data);
 			
+			JSONObject result = (JSONObject) JSONSerializer.toJSON(data);
+
+             try 
+             {
+                 JSONArray contacts = result.optJSONArray("data");
+                 for (int i = 0; i < contacts.size(); i++) {
+                    JSONObject contact = contacts.getJSONObject(i);
+                    
+                    if (ValidationHelper.validateEmail(contact.getString("name"))||
+                    		((!contact.getString("first_name").equals("null") && 
+                    				(!contact.getString("last_name").equals("null")))))
+    				{
+                    	Guest guest = new Guest();
+                    	
+                    	if(!contact.getString("first_name").equals("null"))
+                    	{
+                    		guest.setFirstName(contact.getString("first_name"));
+    					}
+                    	
+    					if(!contact.getString("last_name").equals(contact.getString("first_name")))
+    					{
+    						if(!contact.getString("first_name").equals("null"))
+                        	{
+    							guest.setLastName(contact.getString("last_name"));
+                        	}
+    					}
+    					if(ValidationHelper.validateEmail(contact.getString("name")))
+    					{
+    						guest.setEmail(contact.getString("name"));
+    					}
+    					
+    					guest.setProfilePicture("hotmailIcon.png");
+                   
+    					response.add(guest);
+    				}	
+                }
+             }
+             catch(JSONException ex) 
+             {
+                System.out.println("Error getting contacts " + ex.getMessage()+ ex.getLocalizedMessage());
+             }
 		}
 //		else if (SERVICE_NAME.equals("Google"))
 //		{
@@ -195,7 +224,10 @@ public class ContactImporter
 	public static void main(String args[])
 	{
 		ContactImporter importer = new ContactImporter("Hotmail");
-		importer.getContacts();
+		for(Guest guest:importer.getContacts())
+		{
+			System.out.println(guest.getFirstName() + " " + guest.getLastName() + " " + guest.getEmail());
+		}
 	}
 	
 }

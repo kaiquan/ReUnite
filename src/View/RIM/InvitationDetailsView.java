@@ -18,12 +18,15 @@ import javax.swing.border.TitledBorder;
 import net.miginfocom.swing.MigLayout;
 import Images.RIM.ImageHelper;
 import Model.Event;
-import Model.RIM.*;
 import Model.Invitation;
 import Model.Membership.Guest;
-import Model.RIM.ListModels.SortedListModel;
+import Model.RIM.GuestCollection;
+import Model.RIM.GuestListModel;
 import View.RIM.Components.JListGuestListRenderer;
 import View.RIM.Components.PieChart;
+import View.RIM.Guest.ChatClientGUI;
+
+import java.awt.BorderLayout;
 
 @SuppressWarnings("serial")
 public class InvitationDetailsView extends JDialog
@@ -47,6 +50,7 @@ public class InvitationDetailsView extends JDialog
 	private JTextArea textArea;
 	private JScrollPane scrollPane;
 	private JList<Guest> list;
+	private JPanel panel_5;
 	 
 	public InvitationDetailsView(Event event)
 	{
@@ -81,9 +85,11 @@ public class InvitationDetailsView extends JDialog
 		tabbedPane.addTab("Guests", null, guestTabPanel, null);
 		guestTabPanel.setLayout(new MigLayout("", "[grow]", "[grow]"));
 		
-		scrollPane = new JScrollPane();
-		guestTabPanel.add(scrollPane, "cell 0 0,grow");
+		panel_5 = new JPanel(new MigLayout("", "[1060.00][804px]", "[353px]"));
+		guestTabPanel.add(panel_5, "cell 0 0,grow");
+	
 		
+		scrollPane = new JScrollPane();
 		GuestCollection collection = new GuestCollection();
 		ListModel<Guest> listModel = new GuestListModel(collection);
 		list = new JList<Guest>(listModel);
@@ -94,6 +100,10 @@ public class InvitationDetailsView extends JDialog
 		list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 		list.setCellRenderer(new JListGuestListRenderer());
 		scrollPane.setViewportView(list);
+		panel_5.add(scrollPane, "cell 0 0,grow");
+		
+		ChatClientGUI chatBox = new ChatClientGUI();
+		panel_5.add(chatBox, "cell 1 0,grow");
 		
 		panel_2 = new JPanel();
 		tabbedPane.addTab("Entertainment", null, panel_2, null);

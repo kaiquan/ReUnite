@@ -5,6 +5,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import Model.RIM.Chat.ChatRoom;
+import Model.RIM.Chat.ChatRoomList;
+import Model.RIM.Chat.Chatter;
+
 import java.io.IOException;
 
 

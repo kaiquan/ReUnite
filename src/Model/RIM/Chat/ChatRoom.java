@@ -1,5 +1,8 @@
-package Model.RIM.Chat.Temp;
+package Model.RIM.Chat;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.Socket;
 import java.util.Map;
 import java.util.LinkedList;
 import java.util.ArrayList;
@@ -9,8 +12,33 @@ import java.util.Iterator;
 import java.util.HashMap;
 import java.util.Set;
 
+import Model.RIM.Chat.Temp.Message;
+
 public class ChatRoom
 {
+	public static ArrayList<Socket> connectionArray = new ArrayList<Socket>();
+	ArrayList<String> currentUsers = new ArrayList<String>();
+	
+	public void addUser(Socket X, String userName) throws IOException
+	{
+		currentUsers.add(userName);
+		//To inform all other users about the new user
+		for(int i = 1; i<=connectionArray.size(); i++)
+		{
+			Socket temp_sock = (Socket)connectionArray.get(i-1);
+			PrintWriter OUT = new PrintWriter(temp_sock.getOutputStream());
+			
+			
+			OUT.println("#?!" + currentUsers);//Send the whole ArrayList object
+			OUT.flush();
+		}
+				
+		ChatServerThread CHAT = new ChatServerThread(X, this);
+		
+		Thread thread = new Thread(CHAT);
+		thread.start();
+	}
+	
 	/*
 	* used to stroe name of the room
 	*/

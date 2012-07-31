@@ -36,7 +36,7 @@ public class JListGuestListRenderer extends JPanel implements ListCellRenderer<G
 
 	@Override
 	public Component getListCellRendererComponent(JList<? extends Guest> list, Guest value, int index, boolean isSelected, boolean hasFocus) {
-		JPanel panel = new JPanel(new MigLayout("", "[-14.00][125.00]", "[69.00][]"));
+		JPanel panel = new JPanel(new MigLayout("", "[-14.00][125.00]", "[69.00]"));
 		panel.setBorder(BorderFactory.createEtchedBorder());
 		
 		if(isSelected)
@@ -46,7 +46,7 @@ public class JListGuestListRenderer extends JPanel implements ListCellRenderer<G
 		}
 
 		JLabel label = new JLabel();
-		JLabel nameLabel = new JLabel();
+		JLabel onlineIndicator = new JLabel();
 		label.setSize(75, 75);
 		if (value instanceof Guest)
 		{
@@ -58,21 +58,25 @@ public class JListGuestListRenderer extends JPanel implements ListCellRenderer<G
 				iconTable.put(guest, icon);
 			}
 			label.setIcon(icon);
+			label.setToolTipText(guest.getFirstName() + guest.getLastName() + "("+guest.getUserName()+")");
 			
-			String guestName = (guest.getFirstName().length()>=10) ? guest.getFirstName().substring(0, 10)+"..." : guest.getFirstName();
-			nameLabel.setText(guestName);
+
+			
+			if(guest.getOnlineStatus()){
+				onlineIndicator.setIcon(ImageHelper.loadImageIcon("onlineIndicatorIcon.png", "edit", -1, 12, 5));
+			}
+			else
+			{
+				onlineIndicator.setIcon(ImageHelper.loadImageIcon("offlineIndicatorIcon.png", "edit", -1, 12, 5));
+			}
 		}
 		else
 		{
 			label.setIcon(ImageHelper.loadImageIcon("userIcon.png", "", 75, 75, 5));
 		}
 		panel.add(label, "cell 0 0 2 1");
-		panel.add(nameLabel, "cell 1 1");
 		
-		ImageButton editButton = new ImageButton(ImageHelper.loadImageIcon("onlineIndicatorIcon.png", "edit", -1, 12, 5));
-
-		
-		panel.add(editButton, "aligny top");
+		panel.add(onlineIndicator, "aligny top");
 		
 		return panel;
 	}

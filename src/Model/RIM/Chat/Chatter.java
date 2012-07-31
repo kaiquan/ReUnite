@@ -1,4 +1,4 @@
-package Model.RIM.Chat.Temp;
+package Model.RIM.Chat;
 
 
 public class Chatter
@@ -19,10 +19,9 @@ public class Chatter
 	* @param loginTime time when user logged in. Got using Date.getTime(). Works as a timestamp.
 	*/
 	
-	public Chatter(String name, String sex, long loginTime)
+	public Chatter(String name, long loginTime)
 	{
 		this.name = name;
-		this.sex = sex;
 		this.loginTime = loginTime;
 	}	
 	

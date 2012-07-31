@@ -7,7 +7,7 @@ import Controller.MySQLController;
 
 public class Guest extends Account
 {
-	String onlineStatus;
+	boolean onlineStatus;
 	String profilePicture;
 	
 	private MySQLController DB = new MySQLController();
@@ -21,7 +21,7 @@ public class Guest extends Account
 		setUserName(userName);
 	}
 	
-	public Guest(String name, String onlineStatus, String profilePicture, String school)
+	public Guest(String name, boolean onlineStatus, String profilePicture, String school)
 	{
 		super.setFirstName(name);
 		setOnlineStatus(onlineStatus);
@@ -30,12 +30,12 @@ public class Guest extends Account
 		setSchool(school);
 	}
 
-	public String getOnlineStatus()
+	public boolean getOnlineStatus()
 	{
 		return (onlineStatus);
 	}
 
-	public void setOnlineStatus(String onlineStatus)
+	public void setOnlineStatus(boolean onlineStatus)
 	{
 		this.onlineStatus = onlineStatus;
 	}

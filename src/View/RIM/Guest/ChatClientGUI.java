@@ -1,25 +1,36 @@
 package View.RIM.Guest;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-import javax.sound.sampled.*;
-import javax.swing.*;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 
 import Images.RIM.ImageHelper;
-import Model.RIM.Chat.ChatClient;
+import Model.RIM.Chat.ChatClientThread;
 import Model.RIM.Chat.ChatServer;
 
-import java.awt.Dimension;
-
-public class ChatClientGUI
+@SuppressWarnings("serial")
+public class ChatClientGUI extends JPanel
 {
-	private static ChatClient chatClient;
+	private static ChatClientThread chatClient;
 	public static String userName = "Anonymous";
 	
-	//Main window
-	public static JFrame MainWindow = new JFrame();
+
 	private static JButton B_ABOUT = new JButton();
 	private static JButton B_CONNECT = new JButton();
 	private static JButton B_DISCONNECT = new JButton();
@@ -43,10 +54,19 @@ public class ChatClientGUI
 	private static JLabel L_EnterUserName = new JLabel("Enter username: ");
 	private static JPanel P_Login = new JPanel();
 	
-	public static void main(String args[])
+	public ChatClientGUI()
 	{
 		buildMainWindow();
 		initialize();
+	}
+	
+	public static void main(String args[])
+	{
+		JFrame frame = new JFrame();
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setContentPane(new ChatClientGUI());
+		frame.setVisible(true);
+		
 	}
 	
 	public static void connect()
@@ -58,11 +78,11 @@ public class ChatClientGUI
 			Socket SOCK = new Socket(HOST, PORT);
 			System.out.println("You are connected to: " + HOST);
 			
-			chatClient = new ChatClient(SOCK);
+			chatClient = new ChatClientThread(SOCK);
 			
 			//Send name to add to 'online' list
 			PrintWriter OUT = new PrintWriter(SOCK.getOutputStream());
-			OUT.println(userName);
+			OUT.println(userName + "&*&*& 3");
 			OUT.flush();
 			
 			Thread X = new Thread(chatClient);
@@ -100,68 +120,60 @@ public class ChatClientGUI
 		
 	}
 	
-	public static void buildMainWindow()
+	public void buildMainWindow()
 	{
-		MainWindow.setTitle(userName + "'s Chat Box");
-		MainWindow.setSize(450, 500);
-		MainWindow.setLocation(200, 180);
-		MainWindow.setResizable(false);
-		MainWindow.setVisible(true);
-		MainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		configureMainWindow();
 		mainWindowAction();
 	}
 	
-	public static void configureMainWindow()
+	public void configureMainWindow()
 	{
-		MainWindow.setBackground(new java.awt.Color(255, 255, 255));
-		MainWindow.setSize(500, 320);
-		MainWindow.getContentPane().setLayout(null);
 
+		setLayout(null);
 		B_SEND.setIcon(ImageHelper.loadImageIcon("send.png", "Send message", 16, -1, 5));
 		B_SEND.setText("SEND");
-		MainWindow.getContentPane().add(B_SEND);
+		add(B_SEND);
 		B_SEND.setBounds(270, 40, 100, 25);
 		
 		B_DISCONNECT.setIcon(ImageHelper.loadImageIcon("disconnect.png", "disconnect", 16, -1, 5));
 		B_DISCONNECT.setText("DISCONNECT");
-		MainWindow.getContentPane().add(B_DISCONNECT);
+		add(B_DISCONNECT);
 		B_DISCONNECT.setBounds(10, 40, 130, 25);
 		
 		B_CONNECT.setIcon(ImageHelper.loadImageIcon("connect.png", "connect", 16, -1, 5));
 		B_CONNECT.setText("CONNECT");
 		B_CONNECT.setToolTipText("");
-		MainWindow.getContentPane().add(B_CONNECT);
+		add(B_CONNECT);
 		B_CONNECT.setBounds(150, 40, 110, 25);
 		
 		B_HELP.setBackground(new java.awt.Color(0,0,255));
 		B_HELP.setForeground(new java.awt.Color(255, 255, 255));
 		B_HELP.setText("HELP");
 		B_HELP.setToolTipText("");
-		MainWindow.getContentPane().add(B_HELP);
+		add(B_HELP);
 		
 		B_ABOUT.setText("NUDGE!");
 		B_ABOUT.setToolTipText("");
-		MainWindow.getContentPane().add(B_ABOUT);
+		add(B_ABOUT);
 		B_ABOUT.setBounds(380, 42, 100, 20);
 		
 		L_MESSAGE.setText("Message");
-		MainWindow.getContentPane().add(L_MESSAGE);
+		add(L_MESSAGE);
 		L_MESSAGE.setBounds(10, 10, 60, 20);
 		
 		TF_MESSAGE.setForeground(new java.awt.Color(0, 0, 255));
 		TF_MESSAGE.requestFocus();
-		MainWindow.getContentPane().add(TF_MESSAGE);
+		add(TF_MESSAGE);
 		TF_MESSAGE.setBounds(70, 4, 260, 30);
 		
 		L_CONVERSATION.setHorizontalAlignment(SwingConstants.CENTER);
 		L_CONVERSATION.setText("Your messages:");
-		MainWindow.getContentPane().add(L_CONVERSATION);
+		add(L_CONVERSATION);
 		L_CONVERSATION.setBounds(100, 70, 140, 16);
 		
 		SP_CONVERSATION.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		SP_CONVERSATION.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		MainWindow.getContentPane().add(SP_CONVERSATION);
+		add(SP_CONVERSATION);
 		TA_CONVERSATION.setSize(new Dimension(200, 200));
 		TA_CONVERSATION.setPreferredSize(new Dimension(200, 200));
 		TA_CONVERSATION.setBackground(java.awt.Color.lightGray);
@@ -170,13 +182,13 @@ public class ChatClientGUI
 		TA_CONVERSATION.setForeground(new java.awt.Color(0, 0, 255));
 		TA_CONVERSATION.setLineWrap(true);
 		TA_CONVERSATION.setEditable(false);
-		MainWindow.getContentPane().add(TA_CONVERSATION);
+		add(TA_CONVERSATION);
 		TA_CONVERSATION.setBounds(10, 114, 321, 156);
 		
 		L_ONLINE.setHorizontalAlignment(SwingConstants.CENTER);
 		L_ONLINE.setText("Currently Online");
 		L_ONLINE.setToolTipText("");
-		MainWindow.getContentPane().add(L_ONLINE);
+		add(L_ONLINE);
 		L_ONLINE.setBounds(350, 70, 130, 16);
 		
 //		String[] TestNames = {"Bob", "Sue", "Jenny", "Anna"};
@@ -186,17 +198,17 @@ public class ChatClientGUI
 		SP_ONLINE.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		SP_ONLINE.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		SP_ONLINE.setViewportView(JL_Online);
-		MainWindow.getContentPane().add(SP_ONLINE);
+		add(SP_ONLINE);
 		SP_ONLINE.setBounds(350, 90, 130, 180);
 		
 		L_LoggedInAs.setFont(new java.awt.Font("Tahoma",0, 12));
 		L_LoggedInAs.setText("Currently logged in as");
-		MainWindow.getContentPane().add(L_LoggedInAs);
+		add(L_LoggedInAs);
 		L_LoggedInAs.setBounds(348, 0, 140, 15);
 		
 		L_LoggedInAsBox.setFont(new java.awt.Font("Tahoma",java.awt.Font.BOLD, 12));
 		L_LoggedInAsBox.setText(userName);
-		MainWindow.getContentPane().add(L_LoggedInAsBox);
+		add(L_LoggedInAsBox);
 		L_LoggedInAsBox.setBounds(375, 15, 140, 15);
 	}
 	
@@ -320,8 +332,7 @@ public class ChatClientGUI
 		{
 			userName = TF_UserNameBox.getText().trim();
 			L_LoggedInAsBox.setText(userName);
-			ChatServer.currentUsers.add(userName);
-			MainWindow.setTitle(userName + "'s Chat Box");
+//			ChatServer.currentUsers.add(userName);
 			loginWindow.setVisible(false);
 			B_SEND.setEnabled(true);
 			B_DISCONNECT.setEnabled(true);

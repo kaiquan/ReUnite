@@ -1,9 +1,10 @@
-package Model.RIM.Chat.Temp;
+package Model.RIM.Chat;
 
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.Iterator;
+
 
 /**
 * This class is used to manipulate and store ChatRoom objects.

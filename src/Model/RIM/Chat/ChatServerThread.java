@@ -8,31 +8,33 @@ public class ChatServerThread implements Runnable
 {
 	//Globals
 	Socket SOCK;
+	ChatRoom room;
 	private Scanner INPUT;
 	@SuppressWarnings("unused")
 	private PrintWriter OUT;
 	String MESSAGE = "";
 	
-	public ChatServerThread(Socket X)
+	public ChatServerThread(Socket X, ChatRoom room)
 	{
 		this.SOCK = X;
+		this.room = room;
 	}
 	
 	public void CheckConnection() throws IOException
 	{
 		if(!SOCK.isConnected())
 		{
-			for(int i = 1; i <= ChatServer.connectionArray.size(); i++)
+			for(int i = 1; i <= room.connectionArray.size(); i++)
 			{
-				if(ChatServer.connectionArray.get(i) == SOCK)
+				if(room.connectionArray.get(i) == SOCK)
 				{
-					ChatServer.connectionArray.remove(i);
+					room.connectionArray.remove(i);
 				}
 			}
 			
-			for(int i=1; i<= ChatServer.connectionArray.size(); i++)
+			for(int i=1; i<= room.connectionArray.size(); i++)
 			{
-				Socket TEMP_SOCK = (Socket) ChatServer.connectionArray.get(i-1);
+				Socket TEMP_SOCK = (Socket) room.connectionArray.get(i-1);
 				PrintWriter TEMP_OUT = new PrintWriter(TEMP_SOCK.getOutputStream());
 				TEMP_OUT.println(TEMP_SOCK.getLocalAddress().getHostName() + "disconnected!");
 				TEMP_OUT.flush();
@@ -65,9 +67,9 @@ public class ChatServerThread implements Runnable
 					
 					System.out.println("Client said: "+MESSAGE);
 					
-					for(int i = 1; i<=ChatServer.connectionArray.size(); i++)
+					for(int i = 1; i<=room.connectionArray.size(); i++)
 					{
-						Socket TEMP_SOCK = (Socket) ChatServer.connectionArray.get(i-1);
+						Socket TEMP_SOCK = (Socket) room.connectionArray.get(i-1);
 						PrintWriter TEMP_OUT = new PrintWriter(TEMP_SOCK.getOutputStream());
 						TEMP_OUT.println(MESSAGE);
 						TEMP_OUT.flush();

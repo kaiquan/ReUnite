@@ -5,6 +5,10 @@ import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSession;
 import javax.servlet.ServletContext;
 
+import Model.RIM.Chat.ChatRoom;
+import Model.RIM.Chat.ChatRoomList;
+import Model.RIM.Chat.Chatter;
+
 
 public class SessionListener implements HttpSessionAttributeListener 
 {

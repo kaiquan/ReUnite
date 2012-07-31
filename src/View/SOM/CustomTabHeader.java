@@ -77,7 +77,6 @@ public class CustomTabHeader extends JPanel {
         public void actionPerformed(ActionEvent e) {
             int i = pane.indexOfTabComponent(CustomTabHeader.this);
             if (i != -1) {
-            	AdministrateSystemOptionManagement.tabs.remove(i);
                 pane.remove(i);
             }
         }

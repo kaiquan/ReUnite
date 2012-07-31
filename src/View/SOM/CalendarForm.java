@@ -52,6 +52,7 @@ public class CalendarForm {
 				button[x].removeNotify();
 				button[x].setEnabled(false);
 				button[x].setForeground(Color.red);
+				button[x].setBorderPainted(false);
 			}
 			p1.add(button[x]);
 		}

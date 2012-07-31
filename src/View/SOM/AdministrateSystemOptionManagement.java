@@ -220,7 +220,6 @@ public class AdministrateSystemOptionManagement {
 								        Thread.sleep(sleep);
 								        if(!main.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-								        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
 								        	break;
 										 }
 								        sleep+=100;
@@ -281,7 +280,6 @@ public class AdministrateSystemOptionManagement {
 								        Thread.sleep(sleep);
 								        if(!main.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-								        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
 								        	break;
 										 }
 								        sleep+=100;
@@ -510,7 +508,6 @@ public class AdministrateSystemOptionManagement {
 									        Thread.sleep(sleep);
 									        if(!a.isAlive()){
 									        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-									        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
 									        	break;
 											 }
 									        sleep+=100;
@@ -748,7 +745,6 @@ public class AdministrateSystemOptionManagement {
 								        Thread.sleep(sleep);
 								        if(!a.isAlive()){
 								        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-								        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
 								        	break;
 										 }
 								        sleep+=100;
@@ -893,6 +889,8 @@ public class AdministrateSystemOptionManagement {
 		jButton_Package.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		jButton_Package.setText("New Package Record");
 		jButton_Package.setOpaque(false);
+		jButton_Package.setFocusPainted(false);
+		jButton_Package.setFocusCycleRoot(false);
 		jButton_Package.setFocusable(false);
 		jButton_Package.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/package.png")));
 		jButton_Package.addActionListener(new java.awt.event.ActionListener() {
@@ -920,7 +918,6 @@ public class AdministrateSystemOptionManagement {
 							        Thread.sleep(sleep);
 							        if(!a.isAlive()){
 							        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-							        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
 							        	break;
 									 }
 							        sleep+=100;
@@ -978,7 +975,6 @@ public class AdministrateSystemOptionManagement {
 							        Thread.sleep(sleep);
 							        if(!a.isAlive()){
 							        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-							        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
 							        	break;
 									 }
 							        sleep+=100;
@@ -1033,7 +1029,6 @@ public class AdministrateSystemOptionManagement {
 							        Thread.sleep(sleep);
 							        if(!a.isAlive()){
 							        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-							        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
 							        	break;
 									 }
 							        sleep+=100;
@@ -1088,7 +1083,6 @@ public class AdministrateSystemOptionManagement {
 							        Thread.sleep(sleep);
 							        if(!a.isAlive()){
 							        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-							        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
 							        	break;
 									 }
 							        sleep+=100;
@@ -1143,7 +1137,6 @@ public class AdministrateSystemOptionManagement {
 							        Thread.sleep(sleep);
 							        if(!a.isAlive()){
 							        	AdministrateSystemOptionManagement.getJProgressBar().setValue(100);
-							        	System.out.println( AdministrateSystemOptionManagement.getJProgressBar().getValue());
 							        	break;
 									 }
 							        sleep+=100;
@@ -1191,18 +1184,15 @@ public class AdministrateSystemOptionManagement {
 	 * Purpose : To create and set a new Entertinment Tab content.
 	 * Return : nil
 	 *******************************************************/
-	@SuppressWarnings("unchecked")
 	private void newEntertainmentTab(){
 		entertainment= new AdministrateEntertainmentForm();
 		if(jTabbedPane.getTabCount()==1){
-			tabs.add(entertainment);
 			jTabbedPane.insertTab("Create Entertainment Form",null , entertainment.getJScrollPane(),null , 1); // sets the content
 			createTabHeader(1);	//sets the custom tab header
 			jTabbedPane.remove(0);
 			jTabbedPane.setSelectedIndex(0);
 		}
 		else{
-			tabs.add(jTabbedPane.getSelectedIndex(),entertainment);
 			jTabbedPane.insertTab("Create Entertainment Form",null , entertainment.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
 			createTabHeader(jTabbedPane.getSelectedIndex()-1);	//sets the custom tab header
 			jTabbedPane.remove(jTabbedPane.getSelectedIndex());
@@ -1218,24 +1208,22 @@ public class AdministrateSystemOptionManagement {
 	 * Purpose : To create and set a new Meal Tab content.
 	 * Return : nil
 	 *******************************************************/
-	@SuppressWarnings("unchecked")
 	public void newMealTab(){
 		meal=new AdministrateMealForm();
 		if(jTabbedPane.getTabCount()==1){
-			tabs.add(meal);
 			jTabbedPane.insertTab("Create Meal Form",null , meal.getJScrollPane(),null , 1); // sets the content
 			createTabHeader(1);	//sets the custom tab header
 			jTabbedPane.remove(0);
 			jTabbedPane.setSelectedIndex(0);
 		}
 		else{
-			tabs.add(jTabbedPane.getSelectedIndex(),meal);
 			jTabbedPane.insertTab("Create Meal Form",null , meal.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
 			createTabHeader(jTabbedPane.getSelectedIndex()-1);	//sets the custom tab header
+			jTabbedPane.remove(jTabbedPane.getSelectedIndex());
 			if(!(jTabbedPane.getSelectedIndex()==jTabbedPane.getTabCount()-1)){
 				jTabbedPane.setSelectedIndex(jTabbedPane.getSelectedIndex()-1);
 				}
-			}
+		}
 	}
 	
 	/********************************************************
@@ -1244,18 +1232,15 @@ public class AdministrateSystemOptionManagement {
 	 * Purpose : To create and set a new Facility Tab content.
 	 * Return : nil
 	 *******************************************************/
-	@SuppressWarnings("unchecked")
 	public void newFacilityTab(){	
 		facility=new AdministrateFacilityForm();
 		if(jTabbedPane.getTabCount()==1){
-			tabs.add(facility);
 			jTabbedPane.insertTab("Create Facility Form",null , facility.getJScrollPane(),null , 1); // sets the content
 			createTabHeader(1);	//sets the custom tab header
 			jTabbedPane.remove(0);
 			jTabbedPane.setSelectedIndex(0);
 		}
 		else{
-			tabs.add(jTabbedPane.getSelectedIndex(),facility);
 			jTabbedPane.insertTab("Create Facility Form",null , facility.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
 			createTabHeader(jTabbedPane.getSelectedIndex()-1);	//sets the custom tab header
 			jTabbedPane.remove(jTabbedPane.getSelectedIndex());
@@ -1277,14 +1262,12 @@ public class AdministrateSystemOptionManagement {
 		AdministrateFacilityControl control= new AdministrateFacilityControl();
 		ballroom.getJComboBox_facilityName().setModel(control.processRetrieveFacilityNames());
 		if(jTabbedPane.getTabCount()==1){
-			tabs.add(ballroom);
 			jTabbedPane.insertTab("Create Ballroom Form",null , ballroom.getJScrollPane(),null , 1); // sets the content
 			createTabHeader(1);	//sets the custom tab header
 			jTabbedPane.remove(0);
 			jTabbedPane.setSelectedIndex(0);
 		}
 		else{
-			tabs.add(jTabbedPane.getSelectedIndex(),ballroom);
 			jTabbedPane.insertTab("Create Ballroom Form",null , ballroom.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
 			createTabHeader(jTabbedPane.getSelectedIndex()-1);	//sets the custom tab header
 			jTabbedPane.remove(jTabbedPane.getSelectedIndex());
@@ -1300,18 +1283,15 @@ public class AdministrateSystemOptionManagement {
 	 * Purpose : To create and set a new Package Tab content.
 	 * Return : nil
 	 *******************************************************/
-	@SuppressWarnings("unchecked")
 	public void newPackageTab(){	
 		packages=new AdministratePackageForm();
 		if(jTabbedPane.getTabCount()==1){
-			tabs.add(packages);
 			jTabbedPane.insertTab("Create Package Form",null , packages.getJScrollPane(),null , 1); // sets the content
 			createTabHeader(1);	//sets the custom tab header
 			jTabbedPane.remove(0);
 			jTabbedPane.setSelectedIndex(0);
 		}
 		else{
-			tabs.add(jTabbedPane.getSelectedIndex(), packages);
 			jTabbedPane.insertTab("Create Package Form",null , packages.getJScrollPane(),null , jTabbedPane.getSelectedIndex()); // sets the content
 			createTabHeader(jTabbedPane.getSelectedIndex()-1);	//sets the custom tab header
 			jTabbedPane.remove(jTabbedPane.getSelectedIndex());

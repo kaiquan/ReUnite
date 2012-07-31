@@ -56,10 +56,10 @@ public class CancelEventForm {
 	private JLabel lblBallroom = null;
 	private JTextField textField_5 = null;
 	private JLabel jLabel2 = null;
-	private String ballroomPrice;
-	private String entertainmentPrice;
-	private String mealPrice;
-	private String packageDiscount;  //  @jve:decl-index=0:
+	private String ballroomPrice="";  //  @jve:decl-index=0:
+	private String entertainmentPrice="";
+	private String mealPrice="";
+	private String packageDiscount="";  //  @jve:decl-index=0:
 	/**
 	 * This method initializes jFrame	
 	 * 	
@@ -93,6 +93,18 @@ public class CancelEventForm {
 			jLabel2.setBounds(new Rectangle(150, 162, 12, 15));
 			jLabel2.setText("+");
 			jLabel2.setFont(new Font("Dialog", Font.BOLD, 14));
+			//Price BreakDown
+			jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent e) {
+					if(ballroomPrice.equals("")&& entertainmentPrice.equals("")&&(mealPrice.equals("")&& (packageDiscount.equals("")))){
+						JOptionPane.showMessageDialog(null, "To view the breakdown of price,"+"\n"+"Please select an event");
+					}
+					
+					else{
+				JOptionPane.showMessageDialog(null, "Ballroom Price is " +ballroomPrice+"\n"+"Entertainment Price: "+entertainmentPrice+"\n"+"Meal Price: "+mealPrice +"\n"+"Package Discount: "+packageDiscount);
+				}
+			}
+			});
 			lblBallroom = new JLabel("Ballroom :");
 			lblBallroom.setBounds(new java.awt.Rectangle(437,124,78,14));
 			jLabel1 = new JLabel();

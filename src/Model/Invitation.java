@@ -345,14 +345,21 @@ public class Invitation
 //			System.out.println(invitationList.get(i));
 //		}
 		
-		Invitation inviation = new Invitation(17);
-		ArrayList<Guest> invitationList = inviation.GET_ALL_ATTENDING_GUESTS("e1","2012-07-28");
 		
-		for(int i=0;i<invitationList.size();i++)
-		{
-			System.out.println(invitationList.get(i).getEmail());
-		}	
-	
+//		Invitation test= new Invitation();
+//		ArrayList<Guest> invitationList = test.GET_ALL_ATTENDING_GUESTS("e1","2012-07-28");
+//		String[] email= new String[invitationList.size()];
+//		
+//		for(int i=0;i<invitationList.size();i++)
+//		{
+//			
+//			email[i]=invitationList.get(i).getEmail();
+//		}	
+//		
+//		for(int i=0;i<email.length;i++){
+//			System.out.println(email[i]);
+//		}
+//	
 	}
 
 }

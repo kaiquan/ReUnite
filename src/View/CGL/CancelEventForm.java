@@ -360,7 +360,12 @@ public class CancelEventForm {
 	            		//set event status to cancelledz
 	            	
 	            	CancelEventControl c1 = new CancelEventControl();
+<<<<<<< HEAD
 	            		
+=======
+	            	c1.processCancellation(textField.getText(), textField_1.getText(),reason, "Cancelled");
+	            		refresh();
+>>>>>>> Bingo!
 	            }
 	        }
 

@@ -132,12 +132,12 @@ public class CancelEventControl {
 		return combined;
 	}
 	
-	public boolean processCancellation(String eventName,String eventDate,String status,String reason,String eventStatus){
+	public boolean processCancellation(String eventName,String eventDate,String reason,String eventStatus){
 		
 		boolean success=false;
-		String[] guestEmail=null;
+		
 		Invitation invitation = new Invitation();
-		ArrayList<String> attendingGuests = new ArrayList<String>();
+		String[] guestEmail= new String[invitation.GET_ALL_ATTENDING_GUESTS(eventName, eventDate).size()];
 		
 		for(int i=0;i<invitation.GET_ALL_ATTENDING_GUESTS(eventName, eventDate).size();i++){
 			guestEmail[i]=invitation.GET_ALL_ATTENDING_GUESTS(eventName, eventDate).get(i).getEmail();

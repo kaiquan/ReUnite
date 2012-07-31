@@ -358,6 +358,8 @@ public class CancelEventForm {
 	            		//send email to guests regarding cancellation
 	            		//update cancellation table
 	            		//set event status to cancelledz
+	            	
+	            	CancelEventControl c1 = new CancelEventCont
 	            		
 	            }
 	        }

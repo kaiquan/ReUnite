@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 import Controller.EmailController;
 import Model.Ballroom;
 import Model.Entertainment;
@@ -12,6 +14,7 @@ import Model.Facility;
 import Model.Invitation;
 import Model.Meal;
 import Model.Package;
+import Model.CGL.Event_Cancellation;
 import Model.Membership.Guest;
 
 public class CancelEventControl {
@@ -129,8 +132,9 @@ public class CancelEventControl {
 		return combined;
 	}
 	
-	public boolean processCancellation(String eventName,String eventDate,String status,String reason){
+	public boolean processCancellation(String eventName,String eventDate,String status,String reason,String eventStatus){
 		
+		boolean success=false;
 		String[] guestEmail=null;
 		Invitation invitation = new Invitation();
 		ArrayList<String> attendingGuests = new ArrayList<String>();
@@ -149,12 +153,22 @@ public class CancelEventControl {
 			e.printStackTrace();
 		}
 		
+		Event_Cancellation c1 = new Event_Cancellation();
+		try{
+		c1.UPDATE_EVENT_STATUS(eventName, eventStatus);
+		success=true;
+		}
 		
+		catch(Exception e){
+			JOptionPane.showMessageDialog(null, "Unable to update event Status");
+		}
 		
 		//get all attending guests based on invitation id
 		//prepare email
 		//update date & time
 		//updates event record
+		
+		return success;
 		
 	}
 

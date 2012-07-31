@@ -7,6 +7,12 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.GridBagLayout;
 import java.awt.SystemColor;
+import java.awt.Window;
+
+import javax.swing.JButton;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class testing {
 
@@ -16,8 +22,7 @@ public class testing {
 	private JPanel jPanel1 = null;
 	private JPanel jPanel2 = null;
 	private JPanel jPanel3 = null;
-	private JPanel jPanel4 = null;
-
+	private JButton jButton = null;
 	/**
 	 * This method initializes jFrame	
 	 * 	
@@ -47,10 +52,14 @@ public class testing {
 			jContentPane.add(getJPanel1(), null);
 			jContentPane.add(getJPanel2(), null);
 			jContentPane.add(getJPanel3(), null);
-			jContentPane.add(getJPanel4(), null);
+			jContentPane.add(getJButton(), null);
+			t.setSize(new Dimension(210, 113));
+			t.add(getJPanel3());
+	
 		}
 		return jContentPane;
 	}
+
 
 	/**
 	 * This method initializes jPanel	
@@ -121,20 +130,28 @@ public class testing {
 	}
 
 	/**
-	 * This method initializes jPanel4	
+	 * This method initializes jButton	
 	 * 	
-	 * @return javax.swing.JPanel	
+	 * @return javax.swing.JButton	
 	 */
-	private JPanel getJPanel4() {
-		if (jPanel4 == null) {
-			jPanel4 = new JPanel();
-			jPanel4.setLayout(new GridBagLayout());
-			jPanel4.setBounds(new Rectangle(510, 15, 149, 99));
-			jPanel4.setBackground(SystemColor.textHighlight);
+	private JButton getJButton() {
+		if (jButton == null) {
+			jButton = new JButton();
+			jButton.setBounds(new Rectangle(495, 36, 143, 79));
+			jButton.setBackground(SystemColor.textHighlight);
+			jButton.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/closer.gif")));
+			jButton.setHorizontalTextPosition(SwingConstants.RIGHT);
+			jButton.setBorderPainted(false);
+			JPanel p= new JPanel();
+			p.add(new JLabel("dsa"));
+			jButton.add(p);
+			p.setBackground(SystemColor.textHighlight);
+			jButton.setText("dsadsfdsffffffffffffffffffffff");
 		}
-		return jPanel4;
+		return jButton;
 	}
-public static void main(String a[]){
+
+	public static void main(String a[]){
 	testing t= new testing();
 	t.getJFrame().setVisible(true);
 }

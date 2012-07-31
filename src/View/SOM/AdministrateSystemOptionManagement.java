@@ -62,6 +62,7 @@ import Controller.SOM.AdministrateFacilityControl;
 import Controller.SOM.AdministrateMealControl;
 import Controller.SOM.AdministratePackageControl;
 import Controller.SOM.CSVController;
+import java.awt.Point;
 
 public class AdministrateSystemOptionManagement {
 	
@@ -96,7 +97,7 @@ public class AdministrateSystemOptionManagement {
 	@SuppressWarnings("unchecked")
 	private JComboBox jComboBox_search = null;
 	private JTextField jTextField_search = null;
-	final JFileChooser fc = new JFileChooser();
+	final JFileChooser fc = new JFileChooser();  //  @jve:decl-index=0:visual-constraint="1063,298"
 	protected DefaultTableModel model= new DefaultTableModel();//for the jTable
 	private JPopupMenu jPopupMenu = null;  //  @jve:decl-index=0:visual-constraint="209,861"
 	private JMenuItem jMenuItem_retrive = null;
@@ -942,7 +943,7 @@ public class AdministrateSystemOptionManagement {
 		JToolBar jToolBar_Package = new JToolBar();
 		jToolBar_Package.setFloatable(false);
 		jToolBar_Package.setOpaque(false);
-		jToolBar_Package.setBounds(new Rectangle(648, 142, 219, 56));
+		jToolBar_Package.setBounds(new Rectangle(648, 120, 219, 56));
 		jToolBar_Package.add(jButton_Package);
 		
 		
@@ -999,7 +1000,7 @@ public class AdministrateSystemOptionManagement {
 		JToolBar jToolBar_Entertainment = new JToolBar();
 		jToolBar_Entertainment.setFloatable(false);
 		jToolBar_Entertainment.setOpaque(false);
-		jToolBar_Entertainment.setBounds(new Rectangle(380, 142, 257, 56));
+		jToolBar_Entertainment.setBounds(new Rectangle(380, 120, 257, 56));
 		jToolBar_Entertainment.add(jButton_Entertainment);
 		
 		JButton jButton_Meal = new JButton();
@@ -1054,7 +1055,7 @@ public class AdministrateSystemOptionManagement {
 		JToolBar jToolBar_Meal = new JToolBar();
 		jToolBar_Meal.setFloatable(false);
 		jToolBar_Meal.setOpaque(false);
-		jToolBar_Meal.setBounds(new Rectangle(181, 142, 190, 56));
+		jToolBar_Meal.setBounds(new Rectangle(181, 120, 190, 56));
 		jToolBar_Meal.add(jButton_Meal);
 		
 		JButton jButton_Facility = new JButton();
@@ -1109,7 +1110,7 @@ public class AdministrateSystemOptionManagement {
 		JToolBar jToolBar_Facility = new JToolBar();
 		jToolBar_Facility.setFloatable(false);
 		jToolBar_Facility.setOpaque(false);
-		jToolBar_Facility.setBounds(new Rectangle(289, 212, 189, 56));
+		jToolBar_Facility.setBounds(new Rectangle(289, 190, 189, 56));
 		jToolBar_Facility.add(jButton_Facility);
 		
 		JButton jButton_ballroom = new JButton();
@@ -1164,14 +1165,39 @@ public class AdministrateSystemOptionManagement {
 		JToolBar jToolBar_Ballroom = new JToolBar();
 		jToolBar_Ballroom.setFloatable(false);
 		jToolBar_Ballroom.setOpaque(false);
-		jToolBar_Ballroom.setBounds(new Rectangle(539, 212, 218, 56));
+		jToolBar_Ballroom.setBounds(new Rectangle(539, 190, 218, 56));
 		jToolBar_Ballroom.add(jButton_ballroom);
+		//converting to window 8 metro tiles
+		
+		JButton meal=new JButton();
+		//setting the button settings
+		meal.setSize(new Dimension(300, 126));
+		meal.setBorderPainted(false);
+		meal.setBackground(Color.blue);
+		
+		JPanel mealContent= new JPanel();
+		mealContent.setLayout(null);
+		mealContent.setSize(new Dimension(216, 100));
+		mealContent.setBackground(Color.blue);
+		
+		JLabel mealIcon= new JLabel();
+		mealIcon.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/meal.png")));
+		mealIcon.setLocation(new Point(0, 0));
+		mealIcon.setSize(new Dimension(48, 50));
+		
+		mealContent.add(mealIcon);
+		
+		//meal.add(mealContent);
+		
+		
+		
+		
 		
 		JPanel jPanel = new JPanel();
 		jPanel = new JPanel();
 		jPanel.setLayout(null);
-		jPanel.setSize(new Dimension(1000,300));
-		jPanel.setPreferredSize(new Dimension(1000,300));
+		jPanel.setSize(new Dimension(1000,290));
+		jPanel.setPreferredSize(new Dimension(1000,290));
 		jPanel.add(jToolBar_Meal, null);
 		jPanel.add(jToolBar_Entertainment, null);
 		jPanel.add(jToolBar_Facility, null);
@@ -1179,10 +1205,10 @@ public class AdministrateSystemOptionManagement {
 		jPanel.add(jToolBar_Package, null);
 		
 		
-		jScrollPane = new JScrollPane(jPanel);
-		jScrollPane.setSize(new Dimension(1021, 303));
-		jScrollPane.setViewportView(jPanel);
-		jScrollPane.setPreferredSize(new Dimension(1021, 303));
+		//jScrollPane = new JScrollPane(jPanel);
+		//jScrollPane.setSize(new Dimension(1021, 303));
+		//jScrollPane.setViewportView(jPanel);
+		//jScrollPane.setPreferredSize(new Dimension(1021, 303));
 
 		jTabbedPane.add("New",jScrollPane);
 	}

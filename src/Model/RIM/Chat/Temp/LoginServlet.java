@@ -78,7 +78,7 @@ public class LoginServlet extends HttpServlet
 					{
 						sex = "Female";
 					}
-					chatter = new Chatter(nickname, sex, new java.util.Date().getTime());
+					chatter = new Chatter(nickname, new java.util.Date().getTime());
 					chatRoom.addChatter(chatter);
 					response.sendRedirect(contextPath + "/listrooms.jsp");
 

@@ -1,0 +1,93 @@
+package View.RIM;
+
+import java.awt.Font;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableCellRenderer;
+
+import net.miginfocom.swing.MigLayout;
+import Controller.RIM.SearchUsersController;
+
+import View.RIM.Components.Table.*;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class SearchUsersView extends JFrame
+{
+	SearchUsersController controller = new SearchUsersController();
+	private JTextField txtSearchOurDirectory;
+	public JTable table;
+	private JButton btnAddToList;
+	public SearchUsersView() 
+	{
+		initialize();
+		setPanel();
+	}
+
+	private void initialize()
+	{
+		setVisible(true);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setSize(800, 500);
+	}
+	private void setPanel()
+	{	
+		getContentPane().setLayout(new MigLayout("", "[198.00,grow][449.00,grow][195.00,grow][21.00]", "[38.00][374.00,grow][]"));
+		
+		txtSearchOurDirectory = new JTextField();
+		txtSearchOurDirectory.setText("  Search our directory of users...");
+		getContentPane().add(txtSearchOurDirectory, "cell 1 0,grow");
+		txtSearchOurDirectory.setColumns(10);
+		
+	
+		table = new JTable(controller.getTableModel());
+		table.setRowHeight(75);
+		table.getTableHeader().setReorderingAllowed(false);
+		controller.getTableModel().getTableSorter().setTableHeader(table.getTableHeader());
+		table.setModel(controller.getTableModel().getTableSorter());
+		setRenderers();
+
+		AutoResizeTableColumns resizer = new AutoResizeTableColumns(table, controller.getTableModel(), 32, true, true, new boolean[table.getColumnCount()]);
+		controller.getTableModel().addTableModelListener(resizer);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setViewportView(table);
+
+		getContentPane().add(scrollPane, "cell 0 1 3 1,grow");
+		
+		btnAddToList = new JButton("Add to list");
+		btnAddToList.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				controller.addToList();
+			}
+		});
+		getContentPane().add(btnAddToList, "cell 2 2,alignx right,growy");
+	}
+	
+	private void setRenderers()
+	{
+		// Align text to center
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setFont(new Font("Segoe UI", Font.BOLD, 18));
+		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+		table.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+		table.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+		table.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+		table.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+		table.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+
+		// The profile picture cells
+		table.getColumnModel().getColumn(0).setMaxWidth(75);
+		table.getColumnModel().getColumn(0).setCellRenderer(new IconRenderer());
+	}
+	
+	public static void main(String args[])
+	{
+		new SearchUsersView();
+	}
+}

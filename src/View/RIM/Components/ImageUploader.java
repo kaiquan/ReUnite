@@ -45,9 +45,8 @@ import Controller.RIM.Utils.IOHelper;
 import Images.RIM.ImageHelper;
 
 @SuppressWarnings("serial")
-public class Uploader extends JFrame {
+public class ImageUploader extends JPanel {
 
-	public static JFrame frame;
 	public JList<Object> list;
 	public DefaultListModel<Object> model;
 
@@ -56,11 +55,9 @@ public class Uploader extends JFrame {
 
 	JButton addButton, removeButton, uploadButton;
 
-	public Uploader() {
-		setSize(600, 400);
-		setResizable(true);
+	public ImageUploader() {
+		setSize(600, 600);
 		setLocation(100, 100);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		Action uploadAction = new UploadAction("Upload",
 				ImageHelper.loadImageIcon("uploadIcon.png", "", 32, 32, 5));
@@ -70,26 +67,25 @@ public class Uploader extends JFrame {
 				ImageHelper.loadImageIcon("deleteIcon.png", "", 32, 32, 5));
 		Action selectAllAction = new SelectAllAction("Select All");
 
-		JPanel cp = new JPanel();
-		cp.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		cp.setLayout(new BorderLayout());
+		setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		setLayout(new BorderLayout());
 
-		setContentPane(cp);
 
-		JMenuBar menuBar = new JMenuBar();
-		JMenu fileMenu = new JMenu("File");
-		JMenu editMenu = new JMenu("Edit");
-		JMenuItem item;
-		int metaKey = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
-		fileMenu.add(item = new JMenuItem(browseAction));
-		item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, metaKey));
-		fileMenu.add(item = new JMenuItem(uploadAction));
-		editMenu.add(item = new JMenuItem(selectAllAction));
-		item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, metaKey));
-		editMenu.add(item = new JMenuItem(removeAction));
-		menuBar.add(fileMenu);
-		menuBar.add(editMenu);
-		setJMenuBar(menuBar);
+
+//		JMenuBar menuBar = new JMenuBar();
+//		JMenu fileMenu = new JMenu("File");
+//		JMenu editMenu = new JMenu("Edit");
+//		JMenuItem item;
+//		int metaKey = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+//		fileMenu.add(item = new JMenuItem(browseAction));
+//		item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, metaKey));
+//		fileMenu.add(item = new JMenuItem(uploadAction));
+//		editMenu.add(item = new JMenuItem(selectAllAction));
+//		item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, metaKey));
+//		editMenu.add(item = new JMenuItem(removeAction));
+//		menuBar.add(fileMenu);
+//		menuBar.add(editMenu);
+//		setJMenuBar(menuBar);
 
 		model = new DefaultListModel<Object>();
 
@@ -104,7 +100,7 @@ public class Uploader extends JFrame {
 
 		target = new DropTarget(list, new FileDropTargetListener());
 
-		cp.add(new JScrollPane(list), BorderLayout.CENTER);
+		add(new JScrollPane(list), BorderLayout.CENTER);
 
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 10));
@@ -121,7 +117,7 @@ public class Uploader extends JFrame {
 		buttons.add(removeButton);
 		buttons.add(uploadButton);
 		
-		cp.add(buttons, BorderLayout.SOUTH);
+		add(buttons, BorderLayout.SOUTH);
 
 		currentDir = new File(System.getProperty("user.dir"));
 
@@ -141,9 +137,7 @@ public class Uploader extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		LookAndFeelController.setGlobalLookAndFeel();
-		frame = new Uploader();
-		frame.setVisible(true);
+
 	}
 
 	class BrowseAction extends AbstractAction {
@@ -157,7 +151,7 @@ public class Uploader extends JFrame {
 			chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 			chooser.setMultiSelectionEnabled(true);
 			chooser.setDragEnabled(true);
-			chooser.showOpenDialog(frame);
+			chooser.showOpenDialog(null);
 
 			currentDir = chooser.getCurrentDirectory();
 
@@ -267,7 +261,7 @@ public class Uploader extends JFrame {
 
 	class FileDropTargetListener extends DropTargetAdapter {
 		public void dragEnter(DropTargetDragEvent evt) {
-			frame.requestFocusInWindow();
+			requestFocusInWindow();
 		}
 
 		public void drop(DropTargetDropEvent evt) {
@@ -294,7 +288,7 @@ public class Uploader extends JFrame {
 					}
 					JOptionPane
 							.showMessageDialog(
-									frame,
+									null,
 									"You may only drag and drop\nimage files of type JPEG or PNG\nto the Uploader for uploading.",
 									"Invalid File Type",
 									JOptionPane.WARNING_MESSAGE);

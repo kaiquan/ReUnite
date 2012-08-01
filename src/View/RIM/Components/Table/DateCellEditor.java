@@ -83,8 +83,8 @@ class DatePickerComponent extends EditorDelegate {
        DatePicker() {
 
            dialog = new JDialog();
-           View.RIM.Components.DatePicker picker = new View.RIM.Components.DatePicker();
            textField = new JTextField();
+           textField.setText(new View.RIM.Components.DatePicker(null).setPickedDate());
            dialog.add(textField);
            dialog.add(new JButton(new AbstractAction("OK") {
                public void actionPerformed(ActionEvent e) {

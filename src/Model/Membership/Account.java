@@ -10,7 +10,7 @@ import Controller.MySQLController;
 public class Account implements Comparable<Account>
 {
 	public static Account currentUser;
-	
+
 	private static MySQLController db = new MySQLController();
 	private String userName;
 	private String password;
@@ -34,14 +34,15 @@ public class Account implements Comparable<Account>
 	private String closureReason;
 	private String closureRequest;
 
+	public Account()
+	{
+	}
 
-	public Account(){}
-	
 	public Account(String userName)
 	{
 		this.userName = userName;
 	}
-	
+
 	public int compareTo(Account o)
 	{
 		// Do some comparison here
@@ -247,85 +248,85 @@ public class Account implements Comparable<Account>
 	{
 		this.closureReason = closureReason;
 	}
-	
 
-	public String getClosureRequest() {
+	public String getClosureRequest()
+	{
 		return closureRequest;
 	}
 
-	public void setClosureRequest(String closureRequest) {
+	public void setClosureRequest(String closureRequest)
+	{
 		this.closureRequest = closureRequest;
 	}
-	
+
 	@Override
 	public String toString()
 	{
-		return "Account [userName=" + userName + ", password=" + password + ", type=" + type + ", creationDate=" + creationDate + ", status="
-				+ status + ", confirmed=" + confirmed + ", firstName=" + firstName + ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth
-				+ ", nric=" + nric + ", school=" + school + ", email=" + email + ", address=" + address + ", telephoneNo=" + telephoneNo
-				+ ", handphoneNo=" + handphoneNo + ", secretQuestion=" + secretQuestion + ", secretAnswer=" + secretAnswer + ", closureRequestDate="
-				+ closureRequestDate + ", closureDate=" + closureDate + ", closureReason=" + closureReason + ", closureRequest=" + closureRequest + "]";
+		return "Account [userName=" + userName + ", password=" + password + ", type=" + type + ", creationDate=" + creationDate + ", status=" + status + ", confirmed=" + confirmed + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth + ", nric=" + nric + ", school=" + school + ", email=" + email + ", address=" + address + ", telephoneNo="
+				+ telephoneNo + ", handphoneNo=" + handphoneNo + ", secretQuestion=" + secretQuestion + ", secretAnswer=" + secretAnswer + ", closureRequestDate=" + closureRequestDate
+				+ ", closureDate=" + closureDate + ", closureReason=" + closureReason + ", closureRequest=" + closureRequest + "]";
 	}
 
-	
-	
-		public boolean INITIATE_LOGIN(Account accountSet) {
-			ResultSet rs = null;
-			boolean valid = false;
-				String dbQuery = "Select userName, password, type FROM Account WHERE userName='"+accountSet.getUserName()+"'AND password = '"+accountSet.getPassword()+"'";
-				rs = db.readRequest(dbQuery);
-			
-				try {
-					if(rs.next()){
+	public boolean INITIATE_LOGIN(Account accountSet)
+	{
+		ResultSet rs = null;
+		boolean valid = false;
+		String dbQuery = "Select userName, password, type FROM Account WHERE userName='" + accountSet.getUserName() + "'AND password = '" + accountSet.getPassword() + "'";
+		rs = db.readRequest(dbQuery);
 
-					
-						valid = true;
-					}
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}	
-					
-				return valid;
-				}
+		try
+		{
+			if (rs.next())
+			{
 
-		public Account GET_ACCOUNT(String userName) {
-			Account account = null;
-			ResultSet rs = null;
-			boolean valid = false;
-				String dbQuery = "Select * FROM Account WHERE userName='"+ userName+"'";
-				rs = db.readRequest(dbQuery);
-				
-				try {
-					if(rs.next()){
-						account = new Account();
-						
-						account.setUserName(rs.getString("userName"));
-						account.setType(rs.getString("type"));
-						account.setStatus(rs.getString("status"));
-						account.setFirstName(rs.getString("firstName"));
-						account.setLastName(rs.getString("lastName"));
-						account.setDateOfBirth(rs.getDate("dateOfBirth"));
-						account.setNric(rs.getString("nric"));
-						account.setSchool(rs.getString("school"));
-						account.setEmail(rs.getString("email"));
-						account.setAddress(rs.getString("address"));
-						account.setTelephoneNo(rs.getString("telephoneNo"));
-						account.setHandphoneNo(rs.getString("handphoneNo"));
-					}
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-				}	
-					
-				return account;
-				}
-			
+				valid = true;
+			}
 		}
-		
-	
-	
+		catch (SQLException e)
+		{
 
+			e.printStackTrace();
+		}
 
-	
+		return valid;
+	}
 
+	public Account GET_ACCOUNT(String userName)
+	{
+		Account account = null;
+		ResultSet rs = null;
+		boolean valid = false;
+		String dbQuery = "Select * FROM Account WHERE userName='" + userName + "'";
+		rs = db.readRequest(dbQuery);
+
+		try
+		{
+			if (rs.next())
+			{
+				account = new Account();
+
+				account.setUserName(rs.getString("userName"));
+				account.setType(rs.getString("type"));
+				account.setStatus(rs.getString("status"));
+				account.setFirstName(rs.getString("firstName"));
+				account.setLastName(rs.getString("lastName"));
+				account.setDateOfBirth(rs.getDate("dateOfBirth"));
+				account.setNric(rs.getString("nric"));
+				account.setSchool(rs.getString("school"));
+				account.setEmail(rs.getString("email"));
+				account.setAddress(rs.getString("address"));
+				account.setTelephoneNo(rs.getString("telephoneNo"));
+				account.setHandphoneNo(rs.getString("handphoneNo"));
+			}
+		}
+		catch (SQLException e)
+		{
+
+			e.printStackTrace();
+		}
+
+		return account;
+	}
+
+}

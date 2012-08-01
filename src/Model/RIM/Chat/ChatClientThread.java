@@ -7,7 +7,7 @@ import java.util.*;
 
 import javax.swing.JOptionPane;
 
-import View.RIM.Guest.ChatClientGUI;
+import View.RIM.Components.ChatClientGUI;
 
 public class ChatClientThread implements Runnable
 {

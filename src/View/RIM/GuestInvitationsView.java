@@ -1,4 +1,4 @@
-package View.RIM.Guest;
+package View.RIM;
 
 import java.awt.BorderLayout;
 import java.util.ArrayList;
@@ -14,9 +14,9 @@ import Model.RIM.EventListModel;
 import View.RIM.Components.JEventListRenderer;
 
 @SuppressWarnings("serial")
-public class ViewInvitationsView extends JFrame
+public class GuestInvitationsView extends JFrame
 {
-	public ViewInvitationsView() {
+	public GuestInvitationsView() {
 		ArrayList<Event> events = new Event().GET_ALL_EVENTS();
 		EventCollection collection = new EventCollection(events);
 		ListModel<Event> listModel = new EventListModel(collection);
@@ -34,7 +34,7 @@ public class ViewInvitationsView extends JFrame
 
 	public static void main(String args[])
 	{
-		new ViewInvitationsView();
+		new GuestInvitationsView();
 	}
 }
 

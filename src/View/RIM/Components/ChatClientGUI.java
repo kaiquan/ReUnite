@@ -1,4 +1,4 @@
-package View.RIM.Guest;
+package View.RIM.Components;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;

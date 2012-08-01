@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.TitledBorder;
@@ -22,16 +23,14 @@ import Model.Invitation;
 import Model.Membership.Guest;
 import Model.RIM.GuestCollection;
 import Model.RIM.GuestListModel;
+import View.RIM.Components.ChatClientGUI;
 import View.RIM.Components.JListGuestListRenderer;
 import View.RIM.Components.PieChart;
-import View.RIM.Guest.ChatClientGUI;
-
-import java.awt.BorderLayout;
 
 @SuppressWarnings("serial")
 public class InvitationDetailsView extends JDialog
 {
-	private JPanel panel;
+	private JPanel mainPanel;
 	private JTabbedPane tabbedPane;
 	private JPanel panel_1;
 	private JPanel panel_2;
@@ -45,15 +44,19 @@ public class InvitationDetailsView extends JDialog
 	private JButton btnNotGoing;
 	private JButton btnNotSure;
 	private JPanel generalInfoPanel;
-	private JLabel lblInitiator_1;
-	private JLabel lblNewLabel_1;
+	private JLabel lblInitiatedBy;
 	private JTextArea textArea;
 	private JScrollPane scrollPane;
 	private JList<Guest> list;
 	private JPanel panel_5;
+	private JLabel lblDatetime;
+	private JLabel titleText;
+	private JLabel dateTimeText;
+	private JLabel initiatedByText;
 	 
 	public InvitationDetailsView(Event event)
 	{
+		setResizable(false);
 		initialize();
 		
 		setTitle(event.getEventName());
@@ -63,7 +66,7 @@ public class InvitationDetailsView extends JDialog
 		
 		guestResponsePanel = new JPanel();
 		guestResponsePanel.setBorder(new TitledBorder(null, "Are you going for this event?", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.add(guestResponsePanel, "cell 1 2 2 1,alignx left,aligny center");
+		mainPanel.add(guestResponsePanel, "cell 1 2,alignx left,aligny center");
 		guestResponsePanel.setLayout(new MigLayout("", "[96.00px][95.00px][]", "[]"));
 		
 		btnGoing = new JButton("Going");
@@ -79,7 +82,7 @@ public class InvitationDetailsView extends JDialog
 		guestResponsePanel.add(btnNotSure, "cell 2 0,alignx left,aligny top");
 		
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		panel.add(tabbedPane, "cell 1 3 4 2,grow");
+		mainPanel.add(tabbedPane, "cell 1 3 3 2,grow");
 		
 		guestTabPanel = new JPanel();
 		tabbedPane.addTab("Guests", null, guestTabPanel, null);
@@ -120,8 +123,11 @@ public class InvitationDetailsView extends JDialog
 		
 		lblNewLabel = new JLabel(event.getEventDescription());
 		panel_1.add(lblNewLabel, "cell 1 1");
-		setSize(857, 707);
 		
+		initiatedByText = new JLabel(event.getEventInitiator().getUserName());
+		initiatedByText.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		mainPanel.add(initiatedByText, "cell 1 0,alignx center");
+		setSize(857, 707);
 		
 		
 		setVisible(true);
@@ -131,41 +137,45 @@ public class InvitationDetailsView extends JDialog
 	public void initialize()
 	{
 		
-		panel = new JPanel();
-		panel.setLayout(new MigLayout("", "[55px][445.00px,grow][311.00px,grow][69.00px][690px]", "[][213.00px,grow][][37.00,grow][223.00,grow]"));
+		mainPanel = new JPanel();
+		mainPanel.setLayout(new MigLayout("", "[55px][872.00px,grow][613.00px][690px,grow]", "[][213.00px,grow][][37.00,grow][223.00,grow]"));
 		
-		lblInitiator_1 = new JLabel("Initiated by:");
-		panel.add(lblInitiator_1, "cell 1 0,gapx 8 0");
+		lblInitiatedBy = new JLabel("Initiated by: ");
+		mainPanel.add(lblInitiatedBy, "flowx,cell 1 0,gapx 8 0");
 		
 		lblGuestResponse = new JLabel("Guest response:");
 		lblGuestResponse.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		panel.add(lblGuestResponse, "cell 4 0,alignx center");
+		mainPanel.add(lblGuestResponse, "cell 2 0 2 1,alignx center");
 		
 		generalInfoPanel = new JPanel();
-		panel.add(generalInfoPanel, "cell 1 1 2 1,grow");
-		generalInfoPanel.setLayout(new MigLayout("", "[104px,grow][1px][][][][70.00][65.00]", "[20.00][4.00][8.00][17.00][33.00][21.00px][grow]"));
+		mainPanel.add(generalInfoPanel, "cell 1 1,grow");
+		generalInfoPanel.setLayout(new MigLayout("", "[104px,grow][9.00][grow][][104px,grow][-83.00px][][][][70.00][65.00]", "[18.00][][25.00][][grow][][12.00,grow][][][][24.00][][16.00][21.00px][grow]"));
 		
-		JLabel lblDescription = new JLabel("Description:");
-		generalInfoPanel.add(lblDescription, "cell 0 5");
+		JLabel lblTitle = new JLabel("Title:");
+		generalInfoPanel.add(lblTitle, "flowx,cell 2 1,aligny top");
+		
+		titleText = new JLabel("");
+		generalInfoPanel.add(titleText, "cell 2 3 9 1");
+		
+		lblDatetime = new JLabel("Date/Time");
+		generalInfoPanel.add(lblDatetime, "cell 2 5");
+		
+		dateTimeText = new JLabel("");
+		generalInfoPanel.add(dateTimeText, "cell 2 7 9 2");
 		
 		final JLabel profilePicture = new JLabel("");
-		generalInfoPanel.add(profilePicture, "cell 0 0 1 5,alignx left,aligny top");
+		generalInfoPanel.add(profilePicture, "flowx,cell 0 0 1 9,alignx left,aligny top");
 		profilePicture.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		profilePicture.setIcon(ImageHelper.loadImageIcon("userIcon.png", "", 100, -1, 5));
 		
-		JLabel lblTitle = new JLabel("Title:");
-		generalInfoPanel.add(lblTitle, "flowx,cell 2 1 1 2,aligny top");
-		
-		lblNewLabel_1 = new JLabel("General info:");
-		generalInfoPanel.add(lblNewLabel_1, "cell 2 0 1 5,aligny top");
+		JLabel lblDescription = new JLabel("Description:");
+		generalInfoPanel.add(lblDescription, "cell 0 9");
 		
 		textArea = new JTextArea();
 		textArea.setEditable(false);
 		textArea.setBackground(null);
-		generalInfoPanel.add(textArea, "cell 0 6 7 1,grow");
-		panel.add(new PieChart(null, new Invitation()), "cell 3 1 2 2,grow");
-		getContentPane().add(panel);
+		generalInfoPanel.add(textArea, "cell 0 10 11 5,grow");
+		mainPanel.add(new PieChart(null, new Invitation()), "cell 2 1 2 2,grow");
+		getContentPane().add(mainPanel);
 	}
-	
-
 }

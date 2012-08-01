@@ -1,5 +1,6 @@
 package View.RIM.Components;
 
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -8,17 +9,15 @@ import com.explodingpixels.macwidgets.HudWindow;
 
 public class DatePicker {
         int month = java.util.Calendar.getInstance().get(java.util.Calendar.MONTH);
-        int year = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR);;
+        int year = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR);
         JLabel l = new JLabel("", JLabel.CENTER);
         String day = "";
-        HudWindow d = new HudWindow("Window");
-
+        HudWindow d;
         JButton[] button = new JButton[49];
 
-        public DatePicker() {
-	             d.getJDialog().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-	             d.getJDialog().setVisible(true);
-
+        public DatePicker(Frame parent) {
+                d = new HudWindow();
+                d.getJDialog().setModal(true);
                 String[] header = { "Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat" };
                 JPanel p1 = new JPanel(new GridLayout(7, 7));
                 p1.setOpaque(false);
@@ -30,28 +29,32 @@ public class DatePicker {
                         button[x].setFocusPainted(false);
                         button[x].setForeground(Color.WHITE);
                         button[x].setOpaque(false);
-                        button[x].setContentAreaFilled(false);
                         button[x].setBorderPainted(false);
+                        button[x].setBackground(Color.white);
                         if (x > 6)
                                 button[x].addActionListener(new ActionListener() {
                                         public void actionPerformed(ActionEvent ae) {
                                                 day = button[selection].getActionCommand();
                                                 d.getJDialog().dispose();
+                                
                                         }
                                 });
                         if (x < 7) {
                                 button[x].setText(header[x]);
                                 button[x].setForeground(Color.red);
                         }
-                    p1.add(button[x]);
+                        p1.add(button[x]);
                 }
                 JPanel p2 = new JPanel(new GridLayout(1, 3));
                 p2.setOpaque(false);
+               
+                
                 JButton previous = new JButton("<< Previous");
                 previous.setOpaque(false);
-                previous.setContentAreaFilled(false);
                 previous.setBorderPainted(false);
-                previous.setForeground(Color.white);
+                previous.setForeground(Color.WHITE);
+                previous.setContentAreaFilled(false);
+                previous.setBackground(null);
                 previous.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent ae) {
                                 month--;
@@ -62,9 +65,10 @@ public class DatePicker {
                 p2.add(l);
                 JButton next = new JButton("Next >>");
                 next.setOpaque(false);
-                next.setContentAreaFilled(false);
                 next.setBorderPainted(false);
-                next.setForeground(Color.white);
+                next.setForeground(Color.WHITE);
+                next.setContentAreaFilled(false);
+                next.setBackground(null);
                 next.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent ae) {
                                 month++;
@@ -75,13 +79,16 @@ public class DatePicker {
                 d.getJDialog().add(p1, BorderLayout.CENTER);
                 d.getJDialog().add(p2, BorderLayout.SOUTH);
                 d.getJDialog().pack();
+                d.getJDialog().setLocationRelativeTo(parent);
                 displayDate();
+                d.getJDialog().setVisible(true);
         }
 
         public void displayDate() {
                 for (int x = 7; x < button.length; x++)
                         button[x].setText("");
-                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("MMMM yyyy");
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat(
+                                "MMMM yyyy");
                 java.util.Calendar cal = java.util.Calendar.getInstance();
                 cal.set(year, month, 1);
                 int dayOfWeek = cal.get(java.util.Calendar.DAY_OF_WEEK);
@@ -93,15 +100,15 @@ public class DatePicker {
                 d.getJDialog().setTitle("Date Picker");
         }
 
-        public String getPickedDate() {
+        public String setPickedDate() {
                 if (day.equals(""))
                         return day;
-                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd-MM-yyyy");
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat(
+                                "dd-MM-yyyy");
                 java.util.Calendar cal = java.util.Calendar.getInstance();
                 cal.set(year, month, Integer.parseInt(day));
                 return sdf.format(cal.getTime());
         }
-        
         public static void main(String[] args) {
             JLabel label = new JLabel("Selected Date:");
             final JTextField text = new JTextField(20);
@@ -116,9 +123,10 @@ public class DatePicker {
             f.setVisible(true);
             b.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent ae) {
-                            text.setText(new DatePicker().getPickedDate());
+                            text.setText(new DatePicker(f).setPickedDate());
                     }
             });
     }
 }
+
 

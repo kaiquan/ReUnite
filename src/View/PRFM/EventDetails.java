@@ -1,4 +1,4 @@
-package form;
+package View.PRFM;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -9,9 +9,9 @@ import java.awt.Rectangle;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 
-import controller.AdministrateEventController;
-
-import entity.Event;
+import Controller.PRFM.*;
+import Model.*;
+import Model.PRFM.*;
 
 public class EventDetails {
 

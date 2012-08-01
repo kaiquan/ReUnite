@@ -1,4 +1,4 @@
-package form;
+package View.PRFM;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -12,16 +12,9 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
-import controller.AdministrateEventController;
-import controller.AdministrateFeedbackFormController;
-import controller.AdministrateFeedbackQuestionController;
-import controller.AdministrateFeedbackResultController;
-
-import entity.Event;
-import entity.EventForm;
-import entity.FeedbackForm;
-import entity.FeedbackQuestion;
-import entity.FeedbackResult;
+import Controller.PRFM.*;
+import Model.*;
+import Model.PRFM.*;
 
 public class QuestionTableButtonMouseListener extends MouseAdapter {
 private JTable table;

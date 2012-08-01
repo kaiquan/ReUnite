@@ -1,4 +1,4 @@
-package form;
+package View.PRFM;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -20,19 +20,9 @@ import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
 import org.jfree.util.Rotation;
-
-import controller.AdministrateFeedbackFormController;
-import controller.AdministrateFeedbackQuestionController;
-import controller.AdministrateFeedbackResultController;
-
-import entity.FeedbackForm;
-import entity.FeedbackQuestion;
-import entity.FeedbackResult;
-import entity.OpenEndedResult;
-import entity.RatingQuestion;
-import entity.RatingResult;
-import entity.YesNoQuestion;
-import entity.YesNoResult;
+import Controller.PRFM.*;
+import Model.*;
+import Model.PRFM.*;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;

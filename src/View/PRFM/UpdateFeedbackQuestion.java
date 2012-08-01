@@ -1,4 +1,4 @@
-package form;
+package View.PRFM;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
@@ -7,11 +7,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import controller.AdministrateFeedbackFormController;
-import controller.AdministrateFeedbackQuestionController;
-
-import entity.FeedbackForm;
-import entity.FeedbackQuestion;
+import Controller.PRFM.*;
+import Model.*;
+import Model.PRFM.*;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;

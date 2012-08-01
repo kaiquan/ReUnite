@@ -1,4 +1,4 @@
-package form;
+package View.PRFM;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -11,10 +11,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.JTextField;
-
-import controller.AdministrateFeedbackQuestionController;
-
-import entity.RatingQuestion;
+import Controller.PRFM.*;
+import Model.*;
+import Model.PRFM.*;
 import javax.swing.JButton;
 
 public class UpdateRatingQuestion {

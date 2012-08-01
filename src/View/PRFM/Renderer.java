@@ -1,4 +1,4 @@
-package form;
+package View.PRFM;
 import java.awt.Component;
 
 import javax.swing.ImageIcon;

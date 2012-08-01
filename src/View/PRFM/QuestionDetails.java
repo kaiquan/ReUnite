@@ -1,4 +1,4 @@
-package form;
+package View.PRFM;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,11 +10,9 @@ import java.util.ArrayList;
 
 import javax.swing.JTextField;
 
-import controller.AdministrateFeedbackFormController;
-import controller.AdministrateFeedbackQuestionController;
-
-import entity.FeedbackForm;
-import entity.FeedbackQuestion;
+import Controller.PRFM.*;
+import Model.*;
+import Model.PRFM.*;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 

@@ -1,4 +1,4 @@
-package form;
+package View.PRFM;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;

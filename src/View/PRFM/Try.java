@@ -1,4 +1,4 @@
-package form;
+package View.PRFM;
 
 public class Try {
 	public static void main(String[] args){

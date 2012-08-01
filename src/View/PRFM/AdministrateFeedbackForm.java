@@ -1,4 +1,4 @@
-package form;
+package View.PRFM;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,11 +11,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 
-import controller.AdministrateEventController;
-import controller.AdministrateFeedbackFormController;
+import Controller.PRFM.*;
 
-import entity.Event;
-import entity.EventForm;
+import Model.Event;
+import Model.PRFM.*;
 
 import java.awt.Rectangle;
 public class AdministrateFeedbackForm {

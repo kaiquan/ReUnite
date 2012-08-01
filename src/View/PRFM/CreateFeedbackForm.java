@@ -1,4 +1,4 @@
-package form;
+package View.PRFM;
 
 import javax.swing.JFrame;
 
@@ -18,13 +18,9 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import controller.AdministrateEventController;
-import controller.AdministrateFeedbackFormController;
-import controller.AdministrateFeedbackQuestionController;
-import entity.Event;
-import entity.EventForm;
-import entity.FeedbackForm;
-import entity.FeedbackQuestion;
+import Controller.PRFM.*;
+import Model.*;
+import Model.PRFM.*;
 
 public class CreateFeedbackForm {
 

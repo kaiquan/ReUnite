@@ -1,4 +1,4 @@
-package form;
+package View.PRFM;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
@@ -22,18 +22,9 @@ import java.util.Scanner;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 
-import controller.AdministrateFeedbackFormController;
-import controller.AdministrateFeedbackQuestionController;
-import controller.AdministrateFeedbackResultController;
-
-import entity.FeedbackForm;
-import entity.FeedbackQuestion;
-import entity.FeedbackResult;
-import entity.OpenEndedResult;
-import entity.RatingQuestion;
-import entity.RatingResult;
-import entity.YesNoQuestion;
-import entity.YesNoResult;
+import Controller.PRFM.*;
+import Model.*;
+import Model.PRFM.*;
 
 import javax.swing.JButton;
 import javax.swing.JRadioButton;

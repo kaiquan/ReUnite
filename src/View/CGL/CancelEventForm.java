@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import java.awt.Rectangle;
 
 import javax.swing.JOptionPane;
+import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.JTextField;
@@ -70,6 +71,8 @@ public class CancelEventForm {
 			jFrame = new JFrame();
 			jFrame.setSize(new Dimension(722, 359));
 			jFrame.setTitle("Cancel Event");
+			jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			jFrame.setResizable(false);
 			jFrame.setContentPane(getJContentPane());
 		}
 		return jFrame;
@@ -363,19 +366,19 @@ public class CancelEventForm {
 	
 	//Prompts whether the event really needs to be cancelled or not
 	private void promptsConfirmation() {
-		String[] options={"YES","NO"};   
+		String[] options={"YES","NO"};
 		int n = JOptionPane.showOptionDialog(null,"Are you sure you want to cancel this event?","Please Confirm", JOptionPane.YES_NO_OPTION ,JOptionPane.QUESTION_MESSAGE, null,  options,options[1]);
+		
 		 if(n == 0){
 			 
 			 	//If the GR Administrator wants to cancel the event,it will prompt the GR administrator to write
-			 	//reason of cancellation
+			 	//reason for cancellation
 	            System.out.println("YES Clicked");
-	            String reason="";
-	            reason=JOptionPane.showInputDialog(null,"Reason for cancellation");
-	            
+	            String reason="";	            
+	            reason=JOptionPane.showInputDialog(null,"Reason for cancellation");	            
 	            if(reason.equals(""))
 	            {
-	            	JOptionPane.showMessageDialog(null, "Please enter the reason for cancellation");
+	            	JOptionPane.showMessageDialog(null, "Please enter the reason for cancellation");	            	
 	            	return;
 	            }
 	            
@@ -385,9 +388,11 @@ public class CancelEventForm {
 	            		//update cancellation table
 	            		//set event status to cancelled
 	            	
+	            	
+	            		            	
 	            	CancelEventControl c1 = new CancelEventControl();
 	            	if( c1.processCancellation(textField.getText(), textField_1.getText(),reason, "Cancelled",jTextField.getText())==true){
-	            		JOptionPane.showMessageDialog(null, "Event cancelled successfully and guests have been notified");
+	            		
 	            	}
 	            	
 	            	else
@@ -402,6 +407,7 @@ public class CancelEventForm {
 	       // NO OPTION CLICKED
 	        if(n == 1){
 	            System.out.println("NO Clicked");
+	            
 	        }
 
 	       // CROSS CLICKED
@@ -578,6 +584,7 @@ public class CancelEventForm {
 		}
 
 		CancelEventForm c1 = new CancelEventForm();
+		c1.getJFrame().setLocationRelativeTo(null);
 		c1.getJFrame().setVisible(true);
   			
 }

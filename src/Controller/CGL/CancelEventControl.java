@@ -16,6 +16,7 @@ import Model.Meal;
 import Model.Package;
 import Model.CGL.Event_Cancellation;
 import Model.Membership.Guest;
+import View.CGL.ProgressBar;
 
 public class CancelEventControl {
 	
@@ -173,7 +174,7 @@ public class CancelEventControl {
 	// 3)Updates Cancellation table with cancellation details
 
 	public boolean processCancellation(String eventName,String eventDate,String reason,String eventStatus,String location){
-		
+		  	
 		boolean success=false;
 		
 		Invitation invitation = new Invitation();
@@ -187,6 +188,7 @@ public class CancelEventControl {
 		
 		
 		//send email to registered guest regarding the cancellation
+		
 		EmailController email = new EmailController();
 		try {
 			email.sendEmail("TEXT", guestEmail, "RE:Cancellation Of Event: "+eventName, content, null, 1, "Cancellation");
@@ -202,6 +204,7 @@ public class CancelEventControl {
 		Event_Cancellation c1 = new Event_Cancellation();
 		
 		//updates event status to cancelled
+		
 		try{
 		c1.UPDATE_EVENT_STATUS(eventName, eventStatus);
 		success=true;

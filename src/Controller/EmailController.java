@@ -21,17 +21,31 @@ package Controller;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Properties;
 
-import javax.mail.*;
-import javax.mail.internet.*;
-import javax.activation.*;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.Address;
+import javax.mail.Authenticator;
+import javax.mail.BodyPart;
+import javax.mail.Message;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.SendFailedException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 public class EmailController
 {
 	private static MySQLController db = new MySQLController();
 
-	public void sendEmail(String TEXTorHTML, String[] recipient, String subject, String content, File attachment, int eventID, String notificationType)
+	public void sendEmail(String TEXTorHTML, String[] recipient, String subject, String content, File attachment, String notificationType)
 			throws Exception
 	{
 		String from = "reunite_sg@hotmail.com";
@@ -119,6 +133,9 @@ public class EmailController
 				System.out.println(recipient[i]);
 			}
 		}
+	}
+	public static void main(String args[])
+	{
 	}
 }
 

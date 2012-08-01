@@ -345,7 +345,7 @@ public class ConsolidateGuestListForm extends Fonts{
                     	File pdf = new File(FILE);
                     	String[] test={"anniyan123456789@hotmail.com"};                    	
                     	try {
-							email.sendEmail("TEXT", test, "TEST EMAIL", "TESTING EMAIL", pdf, 3, "Payment");
+							email.sendEmail("TEXT", test, "TEST EMAIL", "TESTING EMAIL", pdf, "Payment");
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();

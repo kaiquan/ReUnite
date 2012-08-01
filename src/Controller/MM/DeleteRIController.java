@@ -14,7 +14,7 @@ public class DeleteRIController {
 		deleteRI.setUserName(userName);
 		
 		
-		delete.deleteRIAccount(deleteRI);
+		delete.DELETE_RI_ACCOUNT(deleteRI);
 
 	}
 	

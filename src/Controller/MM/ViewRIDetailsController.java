@@ -33,7 +33,7 @@ public class ViewRIDetailsController {
 		retrieveDetails.setAddress(address);
 		retrieveDetails.setClosureRequest(closureRequest);
 
-		retrieveDetails.retrieveUser();
+		retrieveDetails.RETRIEVE_USER();
 
 	}
 
@@ -43,7 +43,7 @@ public class ViewRIDetailsController {
 		return model;
 	}
 	public DefaultTableModel getRITableModelEvent() {
-		DefaultTableModel modelEvent = new DefaultTableModel(eventAndPurchaseModel.GET_EVENTS_PURCHASE_FOR_RI(), eventAndPurchaseModel.getRIEventNPurchaseColumnNames());
+		DefaultTableModel modelEvent = new DefaultTableModel(eventAndPurchaseModel.GET_EVENTS_ALL_FOR_RI(), eventAndPurchaseModel.getRIEventNPurchaseColumnNames());
 		return modelEvent;
 	}
 

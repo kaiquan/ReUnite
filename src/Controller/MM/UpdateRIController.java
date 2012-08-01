@@ -9,15 +9,14 @@ public class UpdateRIController {
 	
 	public UpdateRIController(){}
 	
-							// puts in all the method arguments
-	
+			
 	public void disableRIAccount ( String userName,String status){
 		RI disableAccount = new RI();
 		
 		disableAccount.setUserName(userName);
 		disableAccount.setStatus(status);
 		
-		update.disableRIAccount(disableAccount);
+		update.DISABLE_ACCOUNT(disableAccount);
 		
 	}
 	
@@ -38,7 +37,7 @@ public class UpdateRIController {
 		 updateRI.setHandphoneNo(handphoneNo);
 	
 
-		update.updateRIAccount(updateRI);
+		update.UPDATE_RI_ACCOUNT(updateRI);
 		
 		
 	}
@@ -50,7 +49,7 @@ public class UpdateRIController {
 		updateReason.setClosureRequest("close Request");
 		
 		
-		update.updateClosure(updateReason);
+		update.UPDATE_CLOSURE(updateReason);
 		
 	}
 	public void checkIfCanDelete(String balanceAmount,String statusEvent ){

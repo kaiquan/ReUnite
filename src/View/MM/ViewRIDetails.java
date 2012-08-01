@@ -41,6 +41,7 @@ import javax.swing.table.TableCellRenderer;
 
 import Model.*;
 import Model.Membership.RI;
+import Controller.EmailController;
 import Controller.MySQLController;
 import Controller.MM.*;
 import java.awt.GridBagLayout;
@@ -110,7 +111,7 @@ public class ViewRIDetails {
 	private JButton  disableAccountButton;
 	private JButton  createAccountButton;
 	private JButton confirmUpdateButton;
-
+	private JButton closeButton;
 	private JButton refresh = null;
 	private JButton  viewEventAndPayment;
 	
@@ -154,7 +155,7 @@ public class ViewRIDetails {
 		tableScrollPane1.setBounds(0, 97, 975, 200);
 		framesPanel.add(tableScrollPane1);
 		framesPanel.add(getFramesTable(), null);
-		
+		framesPanel.add(closeButton);
 		
 		return framesPanel;
 	}
@@ -298,7 +299,8 @@ public class ViewRIDetails {
 	closureRequest.setVisible(false);
 
 	
-	
+	closeButton = new JButton();
+	closeButton.setBounds(300,500,150,30);
 	
 	
 	
@@ -450,11 +452,27 @@ public class ViewRIDetails {
 					table.setModel(tableModel);
 					table.updateUI();
 					
+				
+					String[] emailArray;               
+				      emailArray = new String[1]; 
+				      emailArray[0] = emailTextBox.getText();
+						
+						EmailController updateEmail = new EmailController();
+						try {
+							updateEmail.sendEmail("text",emailArray, "Update Reunion Initiator Account with Great Reunion ", "Please be notified that you have updated an account successfully with Great Reunion.", null, "Account");
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+					
+				}
+				
 					
 			}}
 			
 	
-		}
+		
 	});
 	
 	disableAccountButton = new JButton();
@@ -481,6 +499,18 @@ public class ViewRIDetails {
 					   "Disable Confirmed!", JOptionPane.CLOSED_OPTION);
 			}
 
+			String[] emailArray1;               
+		      emailArray1 = new String[1]; 
+		      emailArray1[0] = emailTextBox.getText();
+			
+			EmailController deActiveEmail = new EmailController();
+			try {
+				deActiveEmail.sendEmail("text",emailArray1, "Account Set to Inactive", "Please be notified that your account is currently deactivated.", null, "Account");
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
 			
 
 			if(disableAccountButton.getText()=="Enable Account"){
@@ -495,8 +525,19 @@ public class ViewRIDetails {
 				disableAccount.disableRIAccount(userNameTextBox.getText(), statusTextBox.getText());
 				}
 				
-			
-			
+				
+				String[] emailArray;               
+			      emailArray = new String[1]; 
+			      emailArray[0] = emailTextBox.getText();
+				
+				EmailController activeEmail = new EmailController();
+				try {
+					activeEmail.sendEmail("text",emailArray, "Account Set to Active", "Please be notified that your account is currently set to active.", null, "Account");
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			
 			
 			tableModel = viewRIDetailsController.getRITableModel();

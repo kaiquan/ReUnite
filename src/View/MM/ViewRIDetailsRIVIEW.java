@@ -1,6 +1,7 @@
 package View.MM;
 
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Font;
 import java.awt.Rectangle;
 
@@ -17,6 +18,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import Controller.EmailController;
 import Controller.MM.UpdateRIController;
 import Controller.MM.ViewRIPersonalController;
 import Model.Membership.Account;
@@ -103,6 +105,8 @@ public class ViewRIDetailsRIVIEW {
 	
 	
 	
+
+
 	// ***********************JPanel Method****************	
 	
 	private JPanel getUpdatePanel(){
@@ -214,53 +218,63 @@ public class ViewRIDetailsRIVIEW {
 		submitButton = new JButton("Submit");
 		submitButton.setBounds(385, 303, 150, 30);
 		submitButton.addActionListener(new java.awt.event.ActionListener() {
-			
+
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				Object[] options = { "OK", "CANCEL" };
-				int confirmUpdateOption = JOptionPane.showOptionDialog(null, "Are You Sure You Want to UPDATE RI DATA?", "Please Confirm",
-				JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-				null, options, options[0]);
-				if (confirmUpdateOption==0){
-					UpdateRIController updateController = new UpdateRIController();
-				
-					updateController.updateRIAccount
-					
-			(userNameTextBox.getText(),
-				
-				firstNameTextBox.getText(),
-				lastNameTextBox.getText(),
-				//parseDate(date()), 
-				nricTextBox.getText(),
-				schoolTextBox.getText(),
-				emailTextBox.getText(),
-				telephoneTextBox.getText(),
-				handphoneTextBox.getText()); 
-					
-					
-					updateAccountButton.setVisible(true);
-				}
-					else{
-					JOptionPane.showConfirmDialog(null,""+userNameTextBox.getText()+"Has Been Successfully updated!",
-							   "Account Updated!", JOptionPane.CLOSED_OPTION);
-			
-						getJFrame().setVisible(true);
-					}
+				int confirmUpdateOption = JOptionPane.showOptionDialog(null,
+						"Are You Sure You Want to UPDATE RI DATA?",
+						"Please Confirm", JOptionPane.DEFAULT_OPTION,
+						JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+				if (confirmUpdateOption == 0) {
 
-					
-				
+					UpdateRIController updateController = new UpdateRIController();
+
+					updateController.updateRIAccount
+
+					(userNameTextBox.getText(),
+
+					firstNameTextBox.getText(),
+							lastNameTextBox.getText(),
+							// parseDate(date()),
+							nricTextBox.getText(), schoolTextBox.getText(),
+							emailTextBox.getText(), telephoneTextBox.getText(),
+							handphoneTextBox.getText());
+
+					updateAccountButton.setVisible(true);
+					String[] emailArray1;
+					emailArray1 = new String[1];
+					emailArray1[0] = Account.currentUser.getEmail();
+
+					EmailController updateEmail = new EmailController();
+					try {
+						updateEmail
+								.sendEmail(
+										"text",
+										emailArray1,
+										"Update Reunion Initiator Account",
+										"Please be notified that your account has been successfully updated.",
+										null, "Account");
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+
+						JOptionPane.showConfirmDialog(null, ""
+								+ userNameTextBox.getText()
+								+ "Has Been Successfully updated!",
+								"Account Updated!", JOptionPane.CLOSED_OPTION);
+
+						getJFrame().setVisible(true);
+
+					}
+				}
 			}
+
 		});
 		
 		cancelButtonUpdate = new JButton("Cancel");
 		cancelButtonUpdate.setBounds(568, 300, 150, 30);
-		cancelButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
+		
 			
-			public void actionPerformed(java.awt.event.ActionEvent e) {
-				
-				
-				
-			}
-		});
 		
 		
 
@@ -423,27 +437,39 @@ public class ViewRIDetailsRIVIEW {
 							
 							String closureReason = JOptionPane.showInputDialog(null, "Please enter the reason for closure : ", 
 									"Closure request sent!", 1);
-							
-							UpdateRIController closureReasonUpdate = new UpdateRIController();
-								
-								closureReasonUpdate.updateClosure(Account.currentUser.getUserName(), closureReason);
-									
-						
-							
-						}
-						}}}
-					
-			
-							});
-					
 
-	
-	//Table
-	
-	
-	
-	
-//..............................add.......................................
+									UpdateRIController closureReasonUpdate = new UpdateRIController();
+
+									closureReasonUpdate.updateClosure(
+											Account.currentUser.getUserName(),
+											closureReason);
+
+									String[] emailArray;
+									emailArray = new String[1];
+									emailArray[0] = Account.currentUser
+											.getEmail();
+
+									EmailController deActiveEmail = new EmailController();
+									try {
+										deActiveEmail
+												.sendEmail(
+														"text",
+														emailArray,
+														"Request for closure Account",
+														"Please be notified that your request for account closure is currently being reviewed.",
+														null, "Account");
+									} catch (Exception e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									}
+
+								}
+							}
+						}
+					}
+
+				});
+
 			
 			panel.add(title);
 			panel.add(requestCloseAccountButton);

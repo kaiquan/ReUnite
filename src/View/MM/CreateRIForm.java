@@ -424,9 +424,15 @@ public class CreateRIForm extends JFrame {
 									e1.printStackTrace();
 								}
 						EmailController emailController = new EmailController();
-						
-						Array[] emailArray = (Array[]) new Array[1];
-						emailController.sendEmail(String "text", Array[] emailTextBox.getText(), String "Creating Account", String "You have created an account", null, 0, String "Account");
+						String[] emailArray;               
+					      emailArray = new String[1]; 
+					      emailArray[0] = emailTextBox.getText();
+						try {
+							emailController.sendEmail("text", emailArray, "Account Creation with Great Reunion", "Congratulations! You have successfully created a new account with Great Reunion!", null, "Account");
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						
 					
 				}
@@ -448,7 +454,7 @@ public class CreateRIForm extends JFrame {
 		
 		CreateRIForm view = new CreateRIForm();
 		view.getJFrame().setVisible(true);
-		System.out.println(view.date());
+	//	System.out.println(view.date());
 		
 	}
 }

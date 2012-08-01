@@ -128,7 +128,7 @@ public class RI extends Account   {
 	// RI
 	// Account___________________________________________________________________
 
-	public boolean createRIAccount(RI account) {
+	public boolean CREATE_RI_ACCOUNT(RI account) {
 
 		boolean success = false;
 	
@@ -158,34 +158,32 @@ public class RI extends Account   {
 	// All RI Account (GR
 	// View)___________________________________________________
 	
-	public Object[][] GET_EVENTS_PURCHASE_FOR_RI() {
+	public Object[][] GET_EVENTS_ALL_FOR_RI() {
 		ArrayList<Object[]> tempList = new ArrayList<Object[]>();
 		Object[][] records = null;
 		ResultSet rs = null;
-			String dbQuery = "SELECT * FROM Event e INNER JOIN Purchase_Summary p ON e.eventID = p.eventID ";
+			String dbQuery = "SELECT * FROM Event ";
 			rs = db.readRequest(dbQuery);
 			try {
 				while(rs.next())
 				{
-					Object[] row = new Object[5];
+					Object[] row = new Object[8];
 					
 					row[0] = rs.getString("eventID");
 					row[1] =  rs.getString("packageID");
 					row[2] = rs.getString("userName");
 					row[3] = rs.getString("eventStatus");
-					row[4] = rs.getString("eventName");
-					row[5] = rs.getString("purchaseID");
-					row[6] = rs.getString("eventID");
-					row[7] = rs.getString("totalCost");
-					row[8] = rs.getString("amountPending");
-					row[9] = rs.getString("dateOfPurchase");
-					
+					row[4] = rs.getString("eventDate");
+					row[5] = rs.getString("eventTime");
+					row[6] = rs.getString("eventName");
+					row[7] = rs.getString("eventDescription");
+			
 					
 					
 		
 					tempList.add(row);
 				}
-				records = new Object[tempList.size()][5];
+				records = new Object[tempList.size()][8];
 				for(int i = 0; i<tempList.size(); i++)
 				{
 					records[i][0] = tempList.get(i)[0];
@@ -196,8 +194,7 @@ public class RI extends Account   {
 					records[i][5] = tempList.get(i)[5];
 					records[i][6] = tempList.get(i)[6];
 					records[i][7] = tempList.get(i)[7];
-					records[i][8] = tempList.get(i)[8];
-					records[i][9] = tempList.get(i)[9];
+			
 					
 					
 				}
@@ -211,7 +208,7 @@ public class RI extends Account   {
 
 
 	public String[] getRIEventNPurchaseColumnNames() {
-		String col[] = {"Event ID", "packageID","userName" ,"eventStatus", "Event Name", "Purchase ID", "eventID", "Total Cost", "Amount Due","Date of Purchase"};
+		String col[] = {"Event ID", "packageID","userName" ,"eventStatus", "Event Date", "Event Time", "Event Name", "Event Description"};
 		return col;
 
 	}
@@ -263,7 +260,7 @@ public class RI extends Account   {
 	}
 
 	
-	public ArrayList<RI> retrieveUser() {
+	public ArrayList<RI> RETRIEVE_USER() {
 		ArrayList<RI> riList = new ArrayList<RI>();
 		ResultSet rs = null;
 
@@ -313,7 +310,7 @@ public class RI extends Account   {
 
 		try {
 
-			ArrayList<RI> tempList = riModel.retrieveUser();
+			ArrayList<RI> tempList = riModel.RETRIEVE_USER();
 			
 			for (int i = 0; i < tempList.size(); i++) {
 				data[i][0] = tempList.get(i).getUserName();
@@ -351,7 +348,7 @@ public class RI extends Account   {
 	// Account(Only GR Can
 	// Do)________________________________________________________________________________
 
-	public boolean deleteRIAccount(RI account) {
+	public boolean DELETE_RI_ACCOUNT(RI account) {
 		boolean success = false;
 		String sql = "DELETE * FROM Account  where userName = '" + account.getUserName()+ "'";
 		if (db.updateRequest(sql) == 1)
@@ -363,7 +360,7 @@ public class RI extends Account   {
 	// _____________________________________________________________________Update
 	// RI Account ____________________________________________________________
 
-	public boolean updateRIAccount(Account account) {
+	public boolean UPDATE_RI_ACCOUNT(Account account) {
 	
 		RI updateRi = new RI();
 		
@@ -379,7 +376,7 @@ public class RI extends Account   {
 	}
 	
 	
-	public boolean updateClosure(Account account) {
+	public boolean UPDATE_CLOSURE(Account account) {
 	
 		boolean success = false;
 		
@@ -394,7 +391,7 @@ public class RI extends Account   {
 	
 	
 	
-	public boolean disableRIAccount(Account account){
+	public boolean DISABLE_ACCOUNT(Account account){
 		boolean success = false;
 		
 		String sql ="UPDATE Account SET status='"+account.getStatus()+"'"+

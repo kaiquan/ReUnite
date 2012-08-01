@@ -48,7 +48,7 @@ public class CreateRIController {
 		
 	
 	
-		createRI.createRIAccount(newRI);
+		createRI.CREATE_RI_ACCOUNT(newRI);
 
 	}
 

@@ -212,6 +212,7 @@ public class CollectPaymentForm extends Fonts {
                         	String amountPending=sc1.next();
                         	jTextField7.setText(String.valueOf(amountPending));
                         	status="Confirmed";
+                        	jButton.setText("Submit Payment Details");
                     	}
                     	
                     	
@@ -291,6 +292,7 @@ public class CollectPaymentForm extends Fonts {
 		jTextField5.setText("");
 		jTextField6.setText("");
 		jTextArea1.setText("");
+		jButton.setText("Send Email to guests");
 		
 		mealPrice="";
 		ballroomPrice="";
@@ -342,6 +344,11 @@ public class CollectPaymentForm extends Fonts {
 			ArrayList<Event> eventList = c2.processSelection();
 			DefaultMutableTreeNode[] nodes = new DefaultMutableTreeNode[eventList.size()];
 				
+			if(eventList.size()==0){
+				JOptionPane.showMessageDialog(null, "No events to display");
+			}
+			
+			else{
 	Outer:
 		for (int i=0; i<eventList.size(); i++) {
 			for (int j=0; j<tn.getRoot().getChildCount(); j++)
@@ -356,7 +363,7 @@ public class CollectPaymentForm extends Fonts {
 			nodes[i].add(new DefaultMutableTreeNode(eventList.get(i).getEventName()));
 			tn.add(nodes[i]);
 			}
-		
+			}
 	}
 	/**
 	 * This method initializes jPanel 
@@ -679,15 +686,27 @@ public class CollectPaymentForm extends Fonts {
 					JOptionPane.showMessageDialog(null, "Email sent to guests successfully");
 					refresh();
 				}
+				
+				else
+				{
+					refresh();
+				}
 			}
 			
 			else if (eventStatus.equals("Confirmed")){
-//				String content="Dear Sir you have paid for the event";
-//				if(c2.processAmountEntered(jTextField8.getText(), jComboBox.getSelectedItem().toString(), jTextField6.getText(), jTextField.getText(), jTextField1.getText(), jTextField2.getText(), "Confirmed",null,content,"RE: Full Payment for Event "+jTextField.getText(),"Full Payment")==true)
-//				{
-//					JOptionPane.showMessageDialog(null, "Email sent to guests successfully");
-//					refresh();
-//				}
+				String content="";
+				if(c2.processAmountEntered(jTextField8.getText(), jComboBox.getSelectedItem().toString(), jTextField6.getText(), jTextField.getText(), jTextField1.getText(), jTextField2.getText(), "Confirmed",null,content,"RE: Full Payment for Event "+jTextField.getText(),"Full Payment")==true)
+				{
+					JOptionPane.showMessageDialog(null, "Payment Updated Successfully");
+					refresh();
+				}
+				
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Failure to update payment");
+					refresh();
+				}
+				}
 				
 			}
 			
@@ -748,7 +767,7 @@ public class CollectPaymentForm extends Fonts {
 //		}
 //				
 //		
-	}
+	
 
 	/**
 	 * This method initializes jComboBox	

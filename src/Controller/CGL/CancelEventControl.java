@@ -191,7 +191,7 @@ public class CancelEventControl {
 		
 		EmailController email = new EmailController();
 		try {
-			email.sendEmail("TEXT", guestEmail, "RE:Cancellation Of Event: "+eventName, content, null, 1, "Cancellation");
+			email.sendEmail("TEXT", guestEmail, "RE:Cancellation Of Event: "+eventName, content, null, "Cancellation");
 			success=true;
 		} catch (Exception e) {
 			

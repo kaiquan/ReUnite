@@ -18,9 +18,12 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import Controller.EmailController;
 import Controller.MM.*;
 import java.awt.Rectangle;
 import java.awt.Dimension;
+import java.io.File;
+
 import javax.swing.JTextPane;
 
 
@@ -414,10 +417,16 @@ public class CreateRIForm extends JFrame {
 											handphoneNoTextBox.getText(), 
 											secretQuestionCombo.getSelectedItem().toString(),
 											secretAnswerTextBox.getText());
+						
+						
 								} catch (Exception e1) {
 									// TODO Auto-generated catch block
 									e1.printStackTrace();
 								}
+						EmailController emailController = new EmailController();
+						
+						Array[] emailArray = (Array[]) new Array[1];
+						emailController.sendEmail(String "text", Array[] emailTextBox.getText(), String "Creating Account", String "You have created an account", null, 0, String "Account");
 						
 					
 				}

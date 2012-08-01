@@ -35,7 +35,7 @@ public class CreateRIController {
 		// newRI.setConfirmed("1");
 		newRI.setFirstName(firstName);
 		newRI.setLastName(lastName);
-		newRI.setDateOfBirth(dateOfBirth);//
+		//newRI.setDateOfBirth(dateOfBirth);//
 	
 		newRI.setNric(nric);
 		newRI.setSchool(school);

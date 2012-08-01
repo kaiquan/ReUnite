@@ -1,0 +1,334 @@
+package form;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import javax.swing.JLabel;
+import java.awt.Rectangle;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
+import javax.swing.JTextField;
+
+import controller.AdministrateEventController;
+import controller.AdministrateFeedbackFormController;
+import controller.AdministrateFeedbackQuestionController;
+
+import entity.Event;
+import entity.EventForm;
+import entity.FeedbackForm;
+import entity.FeedbackQuestion;
+import javax.swing.JButton;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+
+public class DeleteFeedbackForm {
+
+	private int code;
+	private FeedbackForm ff = new FeedbackForm();
+	private EventForm ef = new EventForm();
+	private JFrame jFrame = null;  //  @jve:decl-index=0:visual-constraint="142,5"
+	private JPanel jContentPane = null;
+	private JLabel codeLabel = null;
+	private JLabel creationDateLabel = null;
+	private JTextField codeTextField = null;
+	private JTextField creationDateTextField = null;
+	private JLabel fqCodeLabel = null;
+	private JTextField fqCodeTextField = null;
+	private JButton viewFqButton = null;
+	private JButton deleteButton = null;
+	private JLabel eventIDLabel = null;
+	private JTextField eventIDTextField = null;
+	private JButton viewEventButton = null;
+
+	/**
+	 * This method initializes jFrame	
+	 * 	
+	 * @return javax.swing.JFrame	
+	 */
+	JFrame getJFrame() {
+		if (jFrame == null) {
+			jFrame = new JFrame();
+			jFrame.setTitle("Details of Feedback Form #" + ff.getCode().get(0).toString());
+			jFrame.setSize(new Dimension(520, 250));
+			jFrame.setContentPane(getJContentPane());
+		}
+		return jFrame;
+	}
+
+	/**
+	 * This method initializes jContentPane	
+	 * 	
+	 * @return javax.swing.JPanel	
+	 */
+	private JPanel getJContentPane() {
+		if (jContentPane == null) {
+			eventIDLabel = new JLabel();
+			eventIDLabel.setBounds(new Rectangle(25, 110, 120, 15));
+			eventIDLabel.setText("Event ID: ");
+			fqCodeLabel = new JLabel();
+			fqCodeLabel.setBounds(new Rectangle(25, 80, 120, 15));
+			fqCodeLabel.setText("FQ Code (in order): ");
+			creationDateLabel = new JLabel();
+			creationDateLabel.setBounds(new Rectangle(25, 50, 120, 15));
+			creationDateLabel.setText("Creation Date: ");
+			codeLabel = new JLabel();
+			codeLabel.setBounds(new Rectangle(25, 20, 120, 15));
+			codeLabel.setText("Code: ");
+			jContentPane = new JPanel();
+			jContentPane.setLayout(null);
+			jContentPane.add(codeLabel, null);
+			jContentPane.add(creationDateLabel, null);
+			jContentPane.add(getCodeTextField(), null);
+			jContentPane.add(getCreationDateTextField(), null);
+			jContentPane.add(fqCodeLabel, null);
+			jContentPane.add(getFqCodeTextField(), null);
+			jContentPane.add(getViewFqButton(), null);
+			jContentPane.add(getDeleteButton(), null);
+			jContentPane.add(eventIDLabel, null);
+			jContentPane.add(getEventIDTextField(), null);
+			jContentPane.add(getViewEventButton(), null);
+		}
+		return jContentPane;
+	}
+	
+	/**
+	 * This method initializes codeTextField	
+	 * 	
+	 * @return javax.swing.JTextField	
+	 */
+	private JTextField getCodeTextField() {
+		if (codeTextField == null) {
+			codeTextField = new JTextField();
+			codeTextField.setBounds(new Rectangle(160, 19, 300, 20));
+			codeTextField.setBackground(null);
+			codeTextField.setBorder(null);
+			codeTextField.setEditable(false);
+			codeTextField.setText(ff.getCode().get(0).toString());
+		}
+		return codeTextField;
+	}
+
+	/**
+	 * This method initializes creationDateTextField	
+	 * 	
+	 * @return javax.swing.JTextField	
+	 */
+	private JTextField getCreationDateTextField() {
+		if (creationDateTextField == null) {
+			creationDateTextField = new JTextField();
+			creationDateTextField.setBounds(new Rectangle(160, 49, 300, 20));
+			creationDateTextField.setBackground(null);
+			creationDateTextField.setBorder(null);
+			creationDateTextField.setEditable(false);
+			creationDateTextField.setText(ff.getCreationDate().get(0).toString());
+		}
+		return creationDateTextField;
+	}
+
+	/**
+	 * This method initializes fqCodeTextField	
+	 * 	
+	 * @return javax.swing.JTextField	
+	 */
+	private JTextField getFqCodeTextField() {
+		if (fqCodeTextField == null) {
+			fqCodeTextField = new JTextField();
+			fqCodeTextField.setBounds(new Rectangle(160, 79, 300, 20));
+			fqCodeTextField.setBackground(null);
+			fqCodeTextField.setBorder(null);
+			fqCodeTextField.setEditable(false);
+			
+			String fqCode = new String();
+			
+			for (int i = 1; i <= ff.getCode().size(); i++){
+				for (int x = 0; x < ff.getCode().size(); x++){
+					if (ff.getFqOrder().get(x) == i){
+						if (i == 1){
+							fqCode = ff.getFqCode().get(x).toString();
+						}
+						else{
+							fqCode += ff.getFqCode().get(x).toString();
+						}
+						
+						if (i != ff.getCode().size()){
+							fqCode += ", ";
+						}
+						
+						break;
+					}
+				}
+			}
+			
+			fqCodeTextField.setText(fqCode);
+		}
+		return fqCodeTextField;
+	}
+
+	/**
+	 * This method initializes viewFqButton	
+	 * 	
+	 * @return javax.swing.JButton	
+	 */
+	private JButton getViewFqButton() {
+		if (viewFqButton == null) {
+			viewFqButton = new JButton();
+			viewFqButton.setBounds(new Rectangle(20, 150, 200, 20));
+			viewFqButton.setText("View feedback questions");
+			viewFqButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+			        ArrayList<FeedbackQuestion> fqArr = new ArrayList<FeedbackQuestion>();
+			        FeedbackQuestion fq = new FeedbackQuestion();
+			        AdministrateFeedbackQuestionController controller = new AdministrateFeedbackQuestionController();
+			        
+			        for (int x = 0; x < ff.getCode().size(); x++){
+			        	fq = controller.processSearchTerm(ff.getFqCode().get(x), null, null, null);
+			        	fqArr.add(fq);
+			        }
+			        
+			        int colSize = 4;
+					Object[] colNames = {"Code", "Creation Date", "Type", "Question"};
+			        Object[][] data = new Object[fqArr.size()][colSize];
+
+			        for (int i = 0; i < fqArr.size(); i++){
+		        		data[i][0] = fqArr.get(i).getCode().get(0);
+		        		data[i][1] = fqArr.get(i).getCreationDate().get(0);
+		        		data[i][2] = fqArr.get(i).getType().get(0);
+		        		data[i][3] = fqArr.get(i).getQuestion().get(0);
+			        	}
+			        
+					DefaultTableModel model = new DefaultTableModel(data, colNames);
+					RetrieveFeedbackQuestion retrieve = new RetrieveFeedbackQuestion(model);
+			        retrieve.getJFrame().setVisible(true);
+				}
+			});
+		}
+		return viewFqButton;
+	}
+
+	/**
+	 * This method initializes deleteButton	
+	 * 	
+	 * @return javax.swing.JButton	
+	 */
+	private JButton getDeleteButton() {
+		if (deleteButton == null) {
+			deleteButton = new JButton();
+			deleteButton.setBounds(new Rectangle(380, 150, 100, 20));
+			deleteButton.setText("Delete");
+			deleteButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					int option = JOptionPane.showConfirmDialog(getJFrame(), "Do you really want to delete this feedback form?", "Message", JOptionPane.YES_NO_OPTION);	
+					
+					if (option == JOptionPane.YES_OPTION){
+						AdministrateFeedbackFormController controller = new AdministrateFeedbackFormController();
+
+						if (controller.processDeleteEventForm(code, null) && controller.processDelete(code, 0)){
+							JOptionPane.showMessageDialog(getJFrame(), "Successfully deleted!");
+							getJFrame().dispose();
+						}
+						else{
+							JOptionPane.showMessageDialog(getJFrame(), "Unsuccessful. Please try again.");
+						}
+					}
+				}
+			});
+		}
+		return deleteButton;
+	}
+
+	/**
+	 * This method initializes eventIDTextField	
+	 * 	
+	 * @return javax.swing.JTextField	
+	 */
+	private JTextField getEventIDTextField() {
+		if (eventIDTextField == null) {
+			eventIDTextField = new JTextField();
+			eventIDTextField.setBounds(new Rectangle(160, 109, 300, 20));
+			eventIDTextField.setBackground(null);
+			eventIDTextField.setBorder(null);
+			eventIDTextField.setEditable(false);
+			
+			String eventID = "NIL";
+			
+			for (int i = 0; i < ef.getEventID().size(); i++){
+				if (i == 0){
+					eventID = ef.getEventID().get(i).toString();
+				}
+				else{
+					eventID += ef.getEventID().get(i).toString();
+				}
+				
+				if (i != ef.getEventID().size() - 1){
+					eventID += ", ";
+				}
+			}
+			
+			eventIDTextField.setText(eventID);	
+			
+		}
+		return eventIDTextField;
+	}
+
+	/**
+	 * This method initializes viewEventButton	
+	 * 	
+	 * @return javax.swing.JButton	
+	 */
+	private JButton getViewEventButton() {
+		if (viewEventButton == null) {
+			viewEventButton = new JButton();
+			viewEventButton.setBounds(new Rectangle(240, 150, 120, 20));
+			viewEventButton.setText("View event(s)");
+			
+			if (getEventIDTextField().getText().equals("NIL")){
+				viewEventButton.setEnabled(false);
+			}
+			
+			viewEventButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					Event event = new Event();
+					AdministrateEventController controller = new AdministrateEventController();
+					event = controller.processEventID(ef.getEventID());
+					
+					int colSize = 5;
+			        Object[] colNames = {"Event ID", "Event Date", "Event Time", "Event Name", "Status"};
+			        Object[][] data = new Object[event.getEventID().size()][colSize];
+
+			        for (int i = 0; i < event.getEventID().size(); i++){
+		        		data[i][0] = event.getEventID().get(i);
+		        		data[i][1] = controller.calendarToString(event.getEventDate().get(i));
+		        		data[i][2] = event.getEventTime().get(i);
+		        		data[i][3] = event.getEventName().get(i);
+		        		data[i][4] = event.getEventStatus().get(i);
+			        }
+			        
+					DefaultTableModel model = new DefaultTableModel(data, colNames);
+					RetrieveEvent retrieve = new RetrieveEvent(model);
+			        retrieve.getJFrame().setVisible(true);
+				}
+			});
+		}
+		return viewEventButton;
+	}
+
+	public static void main(String[] args){
+		DeleteFeedbackForm delete = new DeleteFeedbackForm();
+		delete.getJFrame().setVisible(true);
+	}
+	
+	public DeleteFeedbackForm(){
+		
+	}
+	
+	public DeleteFeedbackForm(int code){
+		this.code = code;
+		AdministrateFeedbackFormController ffController = new AdministrateFeedbackFormController();
+		ff = ffController.processSearchTerm(code, null, 0);
+		ef = ffController.processEventFormSearchTerm(code, 0);
+	}
+}

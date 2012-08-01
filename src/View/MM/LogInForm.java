@@ -14,6 +14,11 @@ import javax.swing.JTextField;
 
 import Controller.MM.LoginController;
 import Model.Membership.Account;
+import java.awt.GridBagLayout;
+import java.awt.SystemColor;
+import javax.swing.ImageIcon;
+import java.awt.Color;
+import java.awt.Font;
 
 public class LogInForm extends JFrame {
 
@@ -23,6 +28,9 @@ public class LogInForm extends JFrame {
 		private JPasswordField passwordTextBox = null;
 		private JLabel userNameLabel = null;
 		private JLabel passwordLabel = null;
+		private JPanel jPanel = null;
+		private JLabel jLabel = null;
+		private JTextField jTextField = null;  //  @jve:decl-index=0:visual-constraint="760,255"
 		/**
 		 * This method initializes 
 		 * 
@@ -37,7 +45,8 @@ public class LogInForm extends JFrame {
 		 * 
 		 */
 		private void initialize() {
-	        this.setSize(new Dimension(545, 261));
+	        this.setSize(new Dimension(568, 322));
+	        this.setResizable(false);
 	        this.setContentPane(getLoginPanel());
 	        this.setTitle("Login");
 				
@@ -51,19 +60,16 @@ public class LogInForm extends JFrame {
 		private JPanel getLoginPanel() {
 			if (loginPanel == null) {
 				passwordLabel = new JLabel();
-				passwordLabel.setBounds(new Rectangle(74, 124, 103, 16));
 				passwordLabel.setText("Password");
+				passwordLabel.setFont(new Font("Gill Sans MT", Font.BOLD | Font.ITALIC, 18));
+				passwordLabel.setBounds(new Rectangle(69, 177, 130, 20));
 				userNameLabel = new JLabel();
-				userNameLabel.setBounds(new Rectangle(73, 62, 96, 16));
 				userNameLabel.setText("User Name");
-				GridBagConstraints gridBagConstraints = new GridBagConstraints();
+				userNameLabel.setFont(new Font("Gill Sans MT", Font.BOLD | Font.ITALIC, 18));
+				userNameLabel.setBounds(new Rectangle(69, 93, 153, 38));
 				loginPanel = new JPanel();
 				loginPanel.setLayout(null);
-				loginPanel.add(getLoginButton(), gridBagConstraints);
-				loginPanel.add(getUserNameTextBox(), null);
-				loginPanel.add(getPasswordTextBox(), null);
-				loginPanel.add(userNameLabel, null);
-				loginPanel.add(passwordLabel, null);
+				loginPanel.add(getJPanel(), null);
 			}
 			return loginPanel;
 		}
@@ -77,7 +83,8 @@ public class LogInForm extends JFrame {
 			if (loginButton == null) {
 				loginButton = new JButton();
 				loginButton.setText("Login");
-				loginButton.setBounds(new Rectangle(344, 168, 97, 26));
+				loginButton.setRolloverIcon(new ImageIcon(getClass().getResource("/Images/MM/glossy_black_button_icon_079.png")));
+				loginButton.setBounds(new Rectangle(224, 246, 101, 30));
 				loginButton.addActionListener(new java.awt.event.ActionListener() {
 					public void actionPerformed(java.awt.event.ActionEvent e) {
 						LoginController login = new LoginController();
@@ -125,7 +132,7 @@ public class LogInForm extends JFrame {
 		private JTextField getUserNameTextBox() {
 			if (userNameTextBox == null) {
 				userNameTextBox = new JTextField();
-				userNameTextBox.setBounds(new Rectangle(196, 61, 150, 20));
+				userNameTextBox.setBounds(new Rectangle(86, 133, 389, 33));
 			}
 			return userNameTextBox;
 		}
@@ -138,17 +145,55 @@ public class LogInForm extends JFrame {
 		private JPasswordField getPasswordTextBox() {
 			if (passwordTextBox == null) {
 				passwordTextBox = new JPasswordField();
-				passwordTextBox.setBounds(new Rectangle(197, 123, 151, 20));
+				passwordTextBox.setBounds(new Rectangle(88, 204, 390, 31));
 			}
 			return passwordTextBox;
 		}
 		
 		
 		
+		/**
+		 * This method initializes jPanel	
+		 * 	
+		 * @return javax.swing.JPanel	
+		 */
+		private JPanel getJPanel() {
+			if (jPanel == null) {
+				jLabel = new JLabel();
+				jLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/folder_black_lock.png")));
+				jLabel.setBounds(new Rectangle(209, 11, 223, 105));
+				jLabel.setFont(new Font("KaiTi", Font.BOLD | Font.ITALIC, 24));
+				jLabel.setText("Login");
+				jPanel = new JPanel();
+				jPanel.setLayout(null);
+				jPanel.setBounds(new Rectangle(-1, 2, 596, 319));
+				jPanel.setBackground(new Color(76, 151, 225));
+				jPanel.add(getPasswordTextBox(), null);
+				jPanel.add(passwordLabel, null);
+				jPanel.add(getUserNameTextBox(), null);
+				jPanel.add(userNameLabel, null);
+				jPanel.add(getLoginButton(), null);
+				jPanel.add(jLabel, null);
+			}
+			return jPanel;
+		}
+
+		/**
+		 * This method initializes jTextField	
+		 * 	
+		 * @return javax.swing.JTextField	
+		 */
+		private JTextField getJTextField() {
+			if (jTextField == null) {
+				jTextField = new JTextField();
+			}
+			return jTextField;
+		}
+
 		public static void main(String args[]){
 				LogInForm n = new LogInForm();
 				n.setVisible(true);
 		}
 
 
-}
+}  //  @jve:decl-index=0:visual-constraint="10,10"

@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import Controller.EmailController;
@@ -25,6 +26,9 @@ import java.awt.Dimension;
 import java.io.File;
 
 import javax.swing.JTextPane;
+import java.awt.Color;
+import javax.swing.ImageIcon;
+import java.awt.Font;
 
 
 public class CreateRIForm extends JFrame {
@@ -80,9 +84,14 @@ public class CreateRIForm extends JFrame {
 		jFrame.setResizable(false);
 		jFrame.setContentPane(getPanel());
 		
+		
+		
 		return jFrame;
 		
 	}
+
+	
+	
 	
 	private JPanel getPanel(){
 		cPasswordLabel = new JLabel();
@@ -107,8 +116,10 @@ public class CreateRIForm extends JFrame {
 		});
 		
 		
+		
 		submitRegistrationButton = new JButton();
-		submitRegistrationButton.setBounds(new Rectangle(553, 684, 81, 31));
+		submitRegistrationButton.setBounds(new Rectangle(535, 678, 113, 42));
+		submitRegistrationButton.setIcon(new ImageIcon(getClass().getResource("/Images/MM/registration_submit_icon.png")));
 		submitRegistrationButton.setText("Submit");
 		submitRegistrationButton
 				.addActionListener(new java.awt.event.ActionListener() {
@@ -142,8 +153,11 @@ public class CreateRIForm extends JFrame {
 		//Labels
 		
 		headerText = new JLabel();
-		headerText.setBounds(new Rectangle(44, 15, 205, 69));
-		headerText.setFont(new Font("Eras Light ITC", Font.BOLD | Font.ITALIC, 20));
+		headerText.setBounds(new Rectangle(0, 1, 885, 91));
+		headerText.setFont(new Font("Eras Light ITC", Font.ITALIC, 20));
+		headerText.setBackground(Color.black);
+		headerText.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Button-Next-icon.png")));
+		headerText.setForeground(Color.blue);
 		headerText.setText("Member Registration");
 		
 		

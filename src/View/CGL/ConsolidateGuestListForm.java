@@ -347,7 +347,7 @@ public class ConsolidateGuestListForm extends Fonts{
                     	try {
 							email.sendEmail("TEXT", test, "TEST EMAIL", "TESTING EMAIL", pdf, "Payment");
 						} catch (Exception e) {
-							// TODO Auto-generated catch block
+							
 							e.printStackTrace();
 						}
 						if((c1.processUpdateEventStatus(textField.getText(),eventStatus)==true)){

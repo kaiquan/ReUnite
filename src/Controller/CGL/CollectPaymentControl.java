@@ -172,6 +172,7 @@ public class CollectPaymentControl {
 		
 		EmailController email = new EmailController();
 		try {
+
 			email.sendEmail("TEXT", guestEmail, subject, content, pdf, type);
 			success=true;
 		} catch (Exception e) {

@@ -5,6 +5,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Rectangle;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -19,6 +20,8 @@ import java.awt.SystemColor;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.ComponentOrientation;
+import java.awt.event.KeyEvent;
 
 public class LogInForm extends JFrame {
 
@@ -31,6 +34,8 @@ public class LogInForm extends JFrame {
 		private JPanel jPanel = null;
 		private JLabel jLabel = null;
 		private JTextField jTextField = null;  //  @jve:decl-index=0:visual-constraint="760,255"
+		private JLabel forgotPassword = null;
+		private JLabel createMember = null;
 		/**
 		 * This method initializes 
 		 * 
@@ -44,7 +49,7 @@ public class LogInForm extends JFrame {
 		 * This method initializes this
 		 * 
 		 */
-		private void initialize() {
+		void initialize() {
 	        this.setSize(new Dimension(568, 322));
 	        this.setResizable(false);
 	        this.setContentPane(getLoginPanel());
@@ -159,6 +164,27 @@ public class LogInForm extends JFrame {
 		 */
 		private JPanel getJPanel() {
 			if (jPanel == null) {
+				createMember = new JLabel();
+				createMember.setBounds(new Rectangle(336, 9, 268, 16));
+				createMember.setDisplayedMnemonic(KeyEvent.VK_UNDEFINED);
+				createMember.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Login-in-icon.png")));
+				createMember.setText("SignUp  |");
+				createMember.addMouseListener(new java.awt.event.MouseAdapter() {
+					public void mouseClicked(java.awt.event.MouseEvent e) {
+						CreateRIForm create = new CreateRIForm();
+						create.getJFrame().setVisible(true);
+					}
+				});
+				forgotPassword = new JLabel();
+				forgotPassword.setBounds(new Rectangle(449, 9, 163, 16));
+				forgotPassword.setComponentOrientation(ComponentOrientation.UNKNOWN);
+				forgotPassword.setDisplayedMnemonic(KeyEvent.VK_UNDO);
+				forgotPassword.setText("Forgot Password");
+				forgotPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+					public void mouseClicked(java.awt.event.MouseEvent e) {
+						System.out.println("mouseClicked()"); // TODO Auto-generated Event stub mouseClicked()
+					}
+				});
 				jLabel = new JLabel();
 				jLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/folder_black_lock.png")));
 				jLabel.setBounds(new Rectangle(209, 11, 223, 105));
@@ -174,6 +200,8 @@ public class LogInForm extends JFrame {
 				jPanel.add(userNameLabel, null);
 				jPanel.add(getLoginButton(), null);
 				jPanel.add(jLabel, null);
+				jPanel.add(forgotPassword, null);
+				jPanel.add(createMember, null);
 			}
 			return jPanel;
 		}
@@ -193,6 +221,11 @@ public class LogInForm extends JFrame {
 		public static void main(String args[]){
 				LogInForm n = new LogInForm();
 				n.setVisible(true);
+		}
+
+		public JComponent getJFrame() {
+			// TODO Auto-generated method stub
+			return null;
 		}
 
 

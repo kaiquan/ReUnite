@@ -27,6 +27,7 @@ import Controller.MM.DeleteRIController;
 import Controller.MM.UpdateRIController;
 import Controller.MM.ViewRIDetailsController;
 import Model.Membership.RI;
+import javax.swing.ImageIcon;
 
 public class AdministrateRIDetails {
 	
@@ -93,6 +94,8 @@ public class AdministrateRIDetails {
 	private JButton closeButton;
 	private JButton refresh = null;
 	private JButton  viewEventAndPayment;
+	private JLabel refreshLabel = null;
+	private JLabel createAccountLabel = null;
 	
  	
 	
@@ -143,18 +146,28 @@ public class AdministrateRIDetails {
 	
 	// ***********************JPanel Method****************	
 	private JPanel getPanel(){
+	createAccountLabel = new JLabel();
+	createAccountLabel.setBounds(new Rectangle(804, 13, 175, 40));
+	createAccountLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Login-in-icon.png")));
+	createAccountLabel.setText("Create New Account");
+	refreshLabel = new JLabel();
+	refreshLabel.setBounds(new Rectangle(848, 55, 120, 40));
+	refreshLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Refresh-icon.png")));
+	refreshLabel.setText("Refresh Table");
 	panel = new JPanel();	
 	panel.setLayout(null);
 	panel.setFont(new Font("Dialog", Font.PLAIN, 14));
+	panel.setBackground(new Color(102, 153, 255));
 	
 	
 	
 	//Labels
 	
 	title = new JLabel();
-	title.setBounds(new Rectangle(10, 10, 300, 100));
-	title.setFont(new Font("Dialog", Font.BOLD, 30));
-	title.setText("RI ACCOUNTS");
+	title.setBounds(new Rectangle(-5, -2, 605, 100));
+	title.setFont(new Font("Gill Sans MT", Font.BOLD | Font.ITALIC, 24));
+	title.setIcon(new ImageIcon(getClass().getResource("/Images/MM/1343842308_kontact_contacts.png")));
+	title.setText("RI ACCOUNTS INFORMATION");
 	
 	
 	
@@ -162,6 +175,7 @@ public class AdministrateRIDetails {
 	statusLabel = new JLabel();
 	statusLabel.setBounds(new Rectangle(650, 300, 400, 30));
 	statusLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+	statusLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Status-mail-task-icon.png")));
 	statusLabel.setText("Account Status :");
 	
 	statusLabel1 = new JLabel();
@@ -562,7 +576,7 @@ public class AdministrateRIDetails {
 	});
 	
 	createAccountButton = new JButton();
-	createAccountButton.setBounds(810, 46, 150, 30);
+	createAccountButton.setBounds(972, 33, 150, 30);
 	createAccountButton.setText("Create Account");
 	createAccountButton.addActionListener(new java.awt.event.ActionListener() {
 		public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -630,8 +644,10 @@ public class AdministrateRIDetails {
 	tableScrollPane.setBounds(0, 97, 975, 200);
 	panel.add(tableScrollPane);
 	panel.add(getWankingPanel(), null);
-	panel.add(getRefresh(), null);
 	panel.add(getInfoPanel(),null);
+	panel.add(refreshLabel, null);
+	panel.add(getRefresh(), null);
+	panel.add(createAccountLabel, null);
 		return panel;
 	}
 	
@@ -830,7 +846,7 @@ public class AdministrateRIDetails {
 	private JButton getRefresh() {
 		if (refresh == null) {
 			refresh = new JButton("Refresh");
-			refresh.setBounds(new Rectangle(712, 77, 262, 18));
+			refresh.setBounds(new Rectangle(971, 76, 79, 26));
 			refresh.addActionListener(new ActionListener()
 			{
 

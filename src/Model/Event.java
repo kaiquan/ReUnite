@@ -22,6 +22,8 @@ package Model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 import Controller.RIM.Utils.DateHelper;
 import java.util.GregorianCalendar;
 import Controller.MyCalendar;
@@ -56,12 +58,24 @@ public class Event {
 	private String eventName;
 	private String eventDescription;
 	
-
+	private ArrayList<Integer> array_eventID, array_packageID;
+	private ArrayList<String> array_userName, array_eventStatus, array_eventName, array_eventTime, array_eventDescription;
+	private ArrayList<GregorianCalendar> array_eventDate;
+	
 	/********************************************************
 	 *				The Constructor(s)
 	 *******************************************************/
 	
-	public Event(){}
+	public Event(){
+		array_eventID = new ArrayList<Integer>();
+		array_packageID = new ArrayList<Integer>();
+		array_userName = new ArrayList<String>();
+		array_eventStatus = new ArrayList<String>();
+		array_eventDate = new ArrayList<GregorianCalendar>();
+		array_eventTime = new ArrayList<String>();
+		array_eventName = new ArrayList<String>();
+		array_eventDescription = new ArrayList<String>();
+	}
 	public Event(int eventID)
 	{
 		this.setID(eventID);
@@ -642,6 +656,50 @@ public ArrayList<String> GET_EVENT_DETAILS(String eventName){
 			
 		}
 		
+		public boolean RETRIEVE_EVENTS(String condition){
+			boolean success = false;
+			ResultSet rs = null;
+			String dbQuery = "SELECT * FROM saharp5_adeel_school.Event";
+			
+			if (condition != null){
+				dbQuery += condition;
+			}
+			
+			rs = DB.readRequest(dbQuery);
+			
+			try {
+					while (rs.next())   
+					{   
+						String date = rs.getString("eventDate");
+						Scanner sc = new Scanner(date);
+						sc.useDelimiter("-");
+						
+						ArrayList<Integer> dateArr = new ArrayList<Integer>();
+						
+						while (sc.hasNext()){
+							dateArr.add(sc.nextInt());
+						}
+						
+						array_eventDate.add(new GregorianCalendar(dateArr.get(0), dateArr.get(1) - 1, dateArr.get(2)));
+					
+						array_eventID.add(rs.getInt("eventID"));
+						array_packageID.add(rs.getInt("packageID"));
+						array_userName.add(rs.getString("userName"));
+						array_eventStatus.add(rs.getString("eventStatus"));
+						array_eventTime.add(rs.getString("eventTime"));
+						array_eventName.add(rs.getString("eventName"));
+						array_eventDescription.add(rs.getString("eventDescription"));
+					    success = true;
+					}   
+		
+				}
+			catch (Exception e){
+				e.printStackTrace();
+			}
+
+			return success;
+		}
+		
 		
 	/********************************************************
 	 *				The Accessor Methods
@@ -753,6 +811,71 @@ public ArrayList<String> GET_EVENT_DETAILS(String eventName){
 	{
 		this.invitation = invitation;
 	}
+	public ArrayList<Integer> getArray_EventID() {
+		return array_eventID;
+	}
+
+	public void setArray_EventID(int eventID) {
+		this.array_eventID.add(eventID);
+	}
+
+	public ArrayList<Integer> getArray_PackageID() {
+		return array_packageID;
+	}
+
+	public void setArray_PackageID(int packageID) {
+		this.array_packageID.add(packageID);
+	}
+
+	public ArrayList<String> getArray_UserName() {
+		return array_userName;
+	}
+
+	public void setArray_UserName(String userName) {
+		this.array_userName.add(userName);
+	}
+
+	public ArrayList<String> getArray_EventStatus() {
+		return array_eventStatus;
+	}
+
+	public void setArray_EventStatus(String eventStatus) {
+		this.array_eventStatus.add(eventStatus);
+	}
+
+	public ArrayList<String> getArray_EventName() {
+		return array_eventName;
+	}
+
+	public void setArray_EventName(String eventName) {
+		this.array_eventName.add(eventName);
+	}
+
+	public ArrayList<String> getArray_EventTime() {
+		return array_eventTime;
+	}
+
+	public void setArray_EventTime(String eventTime) {
+		this.array_eventTime.add(eventTime);
+	}
+
+	public ArrayList<String> getArray_EventDescription() {
+		return array_eventDescription;
+	}
+
+	public void setArray_EventDescription(String eventDescription) {
+		this.array_eventDescription.add(eventDescription);
+	}
+
+	public ArrayList<GregorianCalendar> getArray_EventDate() {
+		return array_eventDate;
+	}
+
+	public void setArray_EventDate(GregorianCalendar eventDate) {
+		this.array_eventDate.add(eventDate);
+	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

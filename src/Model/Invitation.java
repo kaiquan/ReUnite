@@ -308,6 +308,7 @@ public class Invitation
 		if (success == 1)
 		{
 			System.out.println("Successfully inserted new invitation...");
+			@SuppressWarnings("unused")
 			Guest guestModel = new Guest();
 //			guestModel.CREATE_GUEST_ACCOUNT(account)
 			return true;

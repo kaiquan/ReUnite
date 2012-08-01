@@ -1,12 +1,17 @@
 package Controller.CGL;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
+import Controller.EmailController;
 import Model.Ballroom;
 import Model.Entertainment;
 import Model.Event;
 import Model.Facility;
+import Model.Invitation;
 import Model.Package;
 import Model.Membership.Guest;
 import Model.Meal;
@@ -134,12 +139,60 @@ public class CollectPaymentControl {
 		
 		return combined;
 	}
+	
+	public boolean processAmountEntered(String amount,String paymentMethod,String totalCost,String eventName,String eventDate,String location,String eventStatus,File pdf,String content,String subject,String type){
+		
+		boolean success=false;
+		//updates amount paid in purchase summary
+		//prepare email/
+		//update date and time notification table
+		try
+		{
+			Purchase_Payment p1 = new Purchase_Payment();
+			success= p1.UPDATES_PURCHASE_PAYMENT(amount, paymentMethod, totalCost, eventName);
+		}
+		catch(Exception ex){
+			JOptionPane.showMessageDialog(null, "Failed to update purchase payment");
+			return success=false;
+		}
+		
 
-	public boolean processUpdateEventStatus(String eventName,String eventStatus){
-		Event e1 = new Event();
-		return e1.UPDATE_EVENT_STATUS(eventName, eventStatus);
+		
+		Invitation invitation = new Invitation();
+		String[] guestEmail= new String[invitation.GET_ALL_ATTENDING_GUESTS(eventName, eventDate).size()];
+		
+		for(int i=0;i<invitation.GET_ALL_ATTENDING_GUESTS(eventName, eventDate).size();i++){
+			guestEmail[i]=invitation.GET_ALL_ATTENDING_GUESTS(eventName, eventDate).get(i).getEmail();
+		}
+		
+		
+		
+		
+		//send email to registered guest regarding the cancellation
+		
+		EmailController email = new EmailController();
+		try {
+			email.sendEmail("TEXT", guestEmail, subject, content, pdf, type);
+			success=true;
+		} catch (Exception e) {
+			
+			
+			JOptionPane.showMessageDialog(null, "Email Failure");
+			success=false;
+			return success;
+		}
+		
+		try{
+			Event e1 = new Event();
+			success=e1.UPDATE_EVENT_STATUS(eventName, eventStatus);
+		}
+		
+		catch(Exception e){
+			JOptionPane.showMessageDialog(null, "Failed to Update event Status");
+			success=false;
+		}
+		
+		return success;
 	}
-	
-	
 
 }

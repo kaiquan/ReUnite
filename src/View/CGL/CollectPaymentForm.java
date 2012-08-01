@@ -20,6 +20,7 @@ import java.awt.Rectangle;
 import javax.swing.JTextArea;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -32,6 +33,7 @@ import javax.swing.JComboBox;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
+import Controller.EmailController;
 import Controller.CGL.CollectPaymentControl;
 
 import Model.Event;
@@ -135,12 +137,16 @@ public class CollectPaymentForm extends Fonts {
 			DefaultTreeModel model = new DefaultTreeModel(events);		
 			tree.setModel(model);
 			tree.setBounds(10, 14, 119, 264);
+			
+			//When an event is selected in the jTree,the relevant event details would be 
+			//retrieved from the database via controller
 			tree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
 				public void valueChanged(javax.swing.event.TreeSelectionEvent e) {
 					DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
                     if(node !=null ){
                     if (node.isLeaf() == true)
                     {
+                    	//get the details and sets it in the database
                     	jTextField.setText(node.getUserObject().toString());
                     	
                     	CollectPaymentControl c2 = new CollectPaymentControl();     
@@ -175,7 +181,7 @@ public class CollectPaymentForm extends Fonts {
                     	
                     	
                     	
-                    	
+                    	//based on the event status retrieved earlier
                     	if(eventStatus.equals("Awaiting Payment")){
                     		jRadioButton.setSelected(true);
                     		jRadioButton1.setEnabled(false);
@@ -263,7 +269,7 @@ public class CollectPaymentForm extends Fonts {
 			jButton2.setText("Refresh");
 			jButton2.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					 // TODO Auto-generated Event stub actionPerformed()
+					 // once the refresh button is selected is calls the refresh() method
 					jButton2.setEnabled(false);
 					refresh();
 					jButton2.setEnabled(true);
@@ -297,15 +303,13 @@ public class CollectPaymentForm extends Fonts {
 		jLabel12.setEnabled(false);
 		status="";
 		FILE="";
-		
-		//getJTextArea.setText("");
+				
 		DefaultMutableTreeNode events = new DefaultMutableTreeNode("Events");				
 		generateEvents(events);		
 		DefaultTreeModel model = new DefaultTreeModel(events);
 		tree.setModel(model);		
 		pne1.setViewportView(tree);		
 		jContentPane.add(pne1);
-		
 		pne1.updateUI();
 		
 	}
@@ -334,7 +338,6 @@ public class CollectPaymentForm extends Fonts {
 	
 	private void generateEvents(DefaultMutableTreeNode tn)
 	{
-			
 			CollectPaymentControl c2 = new CollectPaymentControl();
 			ArrayList<Event> eventList = c2.processSelection();
 			DefaultMutableTreeNode[] nodes = new DefaultMutableTreeNode[eventList.size()];
@@ -387,6 +390,7 @@ public class CollectPaymentForm extends Fonts {
 			jLabel9.setFont(new Font("Dialog", Font.BOLD, 14));
 			jLabel9.setText("+");
 			jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+				//when the + sign is selected
 				public void mouseClicked(java.awt.event.MouseEvent e) {
 					if(ballroomPrice.equals("")&& entertainmentPrice.equals("")&&(mealPrice.equals("")&& (packageDiscount.equals("")))){
 						JOptionPane.showMessageDialog(null, "To view the breakdown of price,"+"\n"+"Please select an event");
@@ -450,7 +454,6 @@ public class CollectPaymentForm extends Fonts {
 			pne1.setVisible(true);
 			pne1.setBounds(new Rectangle(139, 209, 371, 36));
 			jPanel.add(pne1);
-			//jPanel.add(getJTextArea1(), null);
 			jPanel.add(jLabel10, null);
 			jPanel.add(jLabel11, null);
 			jPanel.add(getJRadioButton(), null);
@@ -637,7 +640,8 @@ public class CollectPaymentForm extends Fonts {
 			jButton.setText("Send Email to Guests");
 			jButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					submitDetails(); // TODO Auto-generated Event stub actionPerformed()
+					//when the submit button is selected
+					submitDetails(); 
 				}
 			});
 		}
@@ -661,61 +665,89 @@ public class CollectPaymentForm extends Fonts {
 			return;
 		}		
 		
-		JOptionPane.showMessageDialog(null, "Update the purchase payment");
+		else
+		{
 			
-		if(c2.processUpdatePurchasePayment(jTextField8.getText(), jComboBox.getSelectedItem().toString(), jTextField6.getText(),jTextField.getText())){
-			JOptionPane.showMessageDialog(null, "Successfully Updated Purchase Summary");				
-		}
-		else {
-			JOptionPane.showMessageDialog(null, "Failure");
-			return;
-		}			
-		
-		
-			
-		//update eventStatus
-		if(status.equals("Awaiting Payment")){
-			String eventStatus="Confirmed";
-			if(c2.processUpdateEventStatus(jTextField.getText(), eventStatus)==true){
-				JOptionPane.showMessageDialog(null, "Successfully Changed Status to confirmed");
-				CollectPaymentForm g1 = new CollectPaymentForm();
+			if(eventStatus.equals("Awaiting Payment")){
 				FILE=jTextField.getText()+" details"+".pdf"; 
+				File pdf = new File(FILE);
+				String content="Dear Sir/Madam"+"\n"+"\n"+"The following event : "+jTextField.getText() +" which is confirmed and will be held on "+jTextField1.getText() +" at "+jTextField2.getText()+"."+"+\n"+"Please be punctual for the event.We hope to see you present on that day+"+"\n"+"For any enquiries please do not hesitate to call as us 67747173"+"\n"+"Shahrikin"+"\n"+"GR Administrator";
+				CollectPaymentForm g1 = new CollectPaymentForm();
 				g1.pdfCreator(FILE,jTextField.getText(),jTextField3.getText(),jTextField1.getText(),jTextField4.getText(),jTextField2.getText(),jTextField5.getText(),jTextField6.getText(),getJTextArea().getText(),ballroomPrice,entertainmentPrice,mealPrice,packageDiscount);
-				//send email
-				JOptionPane.showMessageDialog(null, "Successfully Created Pdf and sent an email*");
-				refresh();
+				if(c2.processAmountEntered(jTextField8.getText(), jComboBox.getSelectedItem().toString(), jTextField6.getText(), jTextField.getText(), jTextField1.getText(), jTextField2.getText(), "Confirmed",pdf,content,"RE: Confirmation Of Event "+jTextField.getText(),"Event Confirmation")==true)
+				{
+					JOptionPane.showMessageDialog(null, "Email sent to guests successfully");
+					refresh();
+				}
 			}
 			
-			else{
-				JOptionPane.showMessageDialog(null, "Failure");
-				return;
-			}
-			
-			
-		}
-		
-		
-		if(status.equals("Confirmed")){
-			String eventStatus="Confirmed";
-			if(c2.processUpdateEventStatus(jTextField.getText(), eventStatus)==true){
-				JOptionPane.showMessageDialog(null, "Successfully Changed Status to confirmed");
-				//CollectPaymentForm g1 = new CollectPaymentForm();
-				//FILE=jTextField.getText()+" payment_receipt"+".pdf"; 
-				//g1.pdfCreator(FILE,jTextField.getText(),jTextField3.getText(),jTextField1.getText(),jTextField4.getText(),jTextField2.getText(),jTextField5.getText(),jTextField6.getText(),getJTextArea().getText(),ballroomPrice,entertainmentPrice,mealPrice,packageDiscount);
-				//send email
-				JOptionPane.showMessageDialog(null, "Successfully sent an email* for payment 2");
-				refresh();
-			}
-			
-			else{
-				JOptionPane.showMessageDialog(null, "Failure");
-				return;
-			}
-			
-			
-		}
+			else if (eventStatus.equals("Confirmed")){
+//				String content="Dear Sir you have paid for the event";
+//				if(c2.processAmountEntered(jTextField8.getText(), jComboBox.getSelectedItem().toString(), jTextField6.getText(), jTextField.getText(), jTextField1.getText(), jTextField2.getText(), "Confirmed",null,content,"RE: Full Payment for Event "+jTextField.getText(),"Full Payment")==true)
+//				{
+//					JOptionPane.showMessageDialog(null, "Email sent to guests successfully");
+//					refresh();
+//				}
 				
-		
+			}
+			
+		}
+			
+//			
+//		else if(c2.processUpdatePurchasePayment(jTextField8.getText(), jComboBox.getSelectedItem().toString(), jTextField6.getText(),jTextField.getText())){
+//			JOptionPane.showMessageDialog(null, "Successfully Updated Purchase Summary");				
+//		}
+//		else {
+//			JOptionPane.showMessageDialog(null, "Failure");
+//			return;
+//		}			
+//		
+//		
+//			
+//		//update eventStatus
+//		if(status.equals("Awaiting Payment")){
+//			String eventStatus="Confirmed";
+//			if(c2.processUpdateEventStatus(jTextField.getText(), eventStatus)==true){
+//				JOptionPane.showMessageDialog(null, "Successfully Changed Status to confirmed");
+//				CollectPaymentForm g1 = new CollectPaymentForm();
+//				FILE=jTextField.getText()+" details"+".pdf"; 
+//				g1.pdfCreator(FILE,jTextField.getText(),jTextField3.getText(),jTextField1.getText(),jTextField4.getText(),jTextField2.getText(),jTextField5.getText(),jTextField6.getText(),getJTextArea().getText(),ballroomPrice,entertainmentPrice,mealPrice,packageDiscount);
+//				//send email
+//				
+//				JOptionPane.showMessageDialog(null, "Successfully Created Pdf and sent an email to guests");
+//				refresh();
+//			}
+//			
+//			else{
+//				JOptionPane.showMessageDialog(null, "Failure");
+//				return;
+//			}
+//			
+//			
+//		}
+//		
+//		
+//		if(status.equals("Confirmed")){
+//			String eventStatus="Confirmed";
+//			if(c2.processUpdateEventStatus(jTextField.getText(), eventStatus)==true){
+//				JOptionPane.showMessageDialog(null, "Successfully Changed Status to confirmed");
+//				//CollectPaymentForm g1 = new CollectPaymentForm();
+//				//FILE=jTextField.getText()+" payment_receipt"+".pdf"; 
+//				//g1.pdfCreator(FILE,jTextField.getText(),jTextField3.getText(),jTextField1.getText(),jTextField4.getText(),jTextField2.getText(),jTextField5.getText(),jTextField6.getText(),getJTextArea().getText(),ballroomPrice,entertainmentPrice,mealPrice,packageDiscount);
+//				//send email
+//				JOptionPane.showMessageDialog(null, "Successfully sent an email* for payment 2");
+//				refresh();
+//			}
+//			
+//			else{
+//				JOptionPane.showMessageDialog(null, "Failure");
+//				return;
+//			}
+//			
+//			
+//		}
+//				
+//		
 	}
 
 	/**

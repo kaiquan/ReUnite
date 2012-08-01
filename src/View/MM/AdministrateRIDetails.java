@@ -1,55 +1,35 @@
 package View.MM;
-import Images.MM.*;
+
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import javax.swing.ImageIcon;
 
-import javax.swing.BorderFactory;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
-import javax.swing.ListSelectionModel;
-import javax.swing.UIManager;
-
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
 
-
-import Model.*;
-import Model.Membership.RI;
 import Controller.EmailController;
-import Controller.MySQLController;
-import Controller.MM.*;
-import java.awt.GridBagLayout;
+import Controller.MM.DeleteRIController;
+import Controller.MM.UpdateRIController;
+import Controller.MM.ViewRIDetailsController;
+import Model.Membership.RI;
 
-;
-
-public class ViewRIDetails {
-
+public class AdministrateRIDetails {
+	
 	ViewRIDetailsController viewRIDetailsController = new ViewRIDetailsController(); 
 	ViewRIDetailsController viewRIDetailsController2 = new ViewRIDetailsController();//  @jve:decl-index=0:
 	
@@ -878,7 +858,7 @@ public class ViewRIDetails {
 		
 		
 		
-		ViewRIDetails viewRiDetails = new ViewRIDetails();
+		AdministrateRIDetails viewRiDetails = new AdministrateRIDetails();
 		viewRiDetails.getJFrame().setVisible(true);
 		
 
@@ -890,6 +870,3 @@ public class ViewRIDetails {
 	
 
 }
-//String addFirstName=rs.getString("firstName");
-//userNameTextBox.setText(addFirstName);
-

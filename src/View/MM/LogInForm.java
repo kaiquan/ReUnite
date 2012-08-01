@@ -91,12 +91,12 @@ public class LogInForm extends JFrame {
 							if(Account.currentUser.getType().equalsIgnoreCase("RI"))
 							{
 								System.out.println("Access Granted");
-										new ViewRIDetailsRIVIEW().getJFrame().setVisible(true);
+										new AdministrateRIPersonalDetails().getJFrame().setVisible(true);
 							}
 							
 							else if(Account.currentUser.getType().equalsIgnoreCase("GR")) 
 							{
-								new ViewRIDetails().getJFrame().setVisible(true);
+								new AdministrateRIDetails().getJFrame().setVisible(true);
 							}
 						}
 						else

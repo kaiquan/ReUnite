@@ -392,7 +392,7 @@ public class CancelEventForm {
 	            		            	
 	            	CancelEventControl c1 = new CancelEventControl();
 	            	if( c1.processCancellation(textField.getText(), textField_1.getText(),reason, "Cancelled",jTextField.getText())==true){
-	            		
+	            		JOptionPane.showMessageDialog(null, "Event Cancelled Successfully");
 	            	}
 	            	
 	            	else

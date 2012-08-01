@@ -37,16 +37,9 @@ public class GuestActionsFooter extends JPanel
 		
 		JLabel label_2 = new JLabel("");
 		label_2.setIcon(new ImageIcon(ImageHelper.loadImage("invitationIcon.png", "Testing").getScaledInstance(-1, 75, 5)));
-		add(label_2, "flowy,cell 2 0,alignx center,aligny center");
-		
-		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(ImageHelper.loadImage("viewInboxIcon.png", "Testing").getScaledInstance(75, -1, 5)));
-		add(label_1, "flowy,cell 4 0,alignx center");
+		add(label_2, "flowy,cell 4 0,alignx center,aligny center");
 		
 		JLabel lblViewInvitations = new JLabel("View invitations");
-		add(lblViewInvitations, "cell 2 0,alignx center");
-		
-		JLabel lblNewLabel = new JLabel("View messages");
-		add(lblNewLabel, "cell 4 0,alignx center");
+		add(lblViewInvitations, "cell 4 0,alignx center");
 	}
 }

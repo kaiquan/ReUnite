@@ -135,27 +135,11 @@ public class ServiceLoginWindow extends JFrame
 		{
 			accessCode = textToParse.substring(textToParse.indexOf("code=")).substring(5).trim();
 		}
-		else if(serviceName.equals("Google"))
-		{
-			String temp = textToParse.substring(textToParse.indexOf("oauth_verifier=")).substring(15);
-			accessCode = temp.substring(0, temp.indexOf("&oauth_token")).trim();
-		}
-		else if(serviceName.equals("Facebook"))
-		{
-//			accessCode = textToParse.substring(textToParse.indexOf("code=")).substring(5).trim();
-			String temp = textToParse.substring(textToParse.indexOf("code=")).substring(5);
-			accessCode = temp.substring(0, temp.indexOf("#_=_")).trim();
-		}
 	}
 	
 	public String getAccessCode()
 	{
 		return accessCode;
-	}
-	
-	public static void main(String[] args)
-	{
-		new ServiceLoginWindow("http://www.google.com", "www.twitter.com", "Google");
 	}
 
 }

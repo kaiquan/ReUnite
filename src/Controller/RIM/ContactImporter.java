@@ -22,8 +22,6 @@ import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 
 import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.FacebookApi;
-import org.scribe.builder.api.GoogleApi;
 import org.scribe.builder.api.LiveApi;
 import org.scribe.model.OAuthRequest;
 import org.scribe.model.Response;
@@ -62,24 +60,6 @@ public class ContactImporter
 
 			service = new ServiceBuilder().provider(LiveApi.class).apiKey(API_KEY).apiSecret(API_SECRET).scope(SCOPE).callback(CALL_BACK_URL).build();
 		}
-		else if (serviceName.equals("Google"))
-		{
-			PROTECTED_RESOURCE_URL = "https://docs.google.com/feeds/default/private/full/";
-			API_KEY = "anonymous";
-			API_SECRET = "anonymous";
-			SCOPE = "https://docs.google.com/feeds/";
-
-			service = new ServiceBuilder().provider(GoogleApi.class).apiKey(API_KEY).apiSecret(API_SECRET).scope(SCOPE).callback(CALL_BACK_URL)
-					.build();
-		}
-		else if (serviceName.equals("Facebook"))
-		{
-			PROTECTED_RESOURCE_URL = "https://graph.facebook.com/me";
-			API_KEY = "335189139899151";
-			API_SECRET = "5b84db1c6e20ac51f24c9932eb02f1fc";
-
-			service = new ServiceBuilder().provider(FacebookApi.class).apiKey(API_KEY).apiSecret(API_SECRET).callback(CALL_BACK_URL).build();
-		}
 
 		ServiceLoginWindow loginWindow = new ServiceLoginWindow(getAuthorizationURL(), CALL_BACK_URL, SERVICE_NAME);
 
@@ -94,15 +74,9 @@ public class ContactImporter
 
 		System.out.println("Fetching the Authorization URL...");
 
-		if (SERVICE_NAME.equals("Google"))
-		{
-			REQUEST_TOKEN = service.getRequestToken();
-			authorizationUrl = "https://www.google.com/accounts/OAuthAuthorizeToken?oauth_token=" + REQUEST_TOKEN.getToken();
-		}
-		else
-		{
-			authorizationUrl = service.getAuthorizationUrl(REQUEST_TOKEN);
-		}
+
+		authorizationUrl = service.getAuthorizationUrl(REQUEST_TOKEN);
+	
 
 		System.out.println("Got the Authorization URL!");
 		System.out.println(authorizationUrl);
@@ -138,12 +112,6 @@ public class ContactImporter
 		System.out.println("Accessing protected resource...");
 		OAuthRequest request = new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL + query);
 		service.signRequest(ACCESS_TOKEN, request);
-
-		// add header if service is google
-		if (SERVICE_NAME.equals("Google"))
-		{
-			request.addHeader("GData-Version", "3.0");
-		}
 
 		Response response = request.send();
 		
@@ -204,23 +172,9 @@ public class ContactImporter
                 System.out.println("Error getting contacts " + ex.getMessage()+ ex.getLocalizedMessage());
              }
 		}
-//		else if (SERVICE_NAME.equals("Google"))
-//		{
-//			System.out.println(parseXMLResposne(getResource("")));
-//		}
-//		else if (SERVICE_NAME.equals("Facebook"))
-//		{
-//			System.out.println(getResource(""));
-//		}
-
 		return response;
 	}
 
-//	private String parseXMLResposne(String resource)
-//	{
-//		return resource;
-//	}
-//
 	public static void main(String args[])
 	{
 		ContactImporter importer = new ContactImporter("Hotmail");

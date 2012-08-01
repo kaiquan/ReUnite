@@ -2,6 +2,7 @@ package View.RIM;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,6 +22,7 @@ import javax.swing.border.TitledBorder;
 import net.miginfocom.swing.MigLayout;
 import Images.RIM.ImageHelper;
 import Model.Membership.Guest;
+import Controller.RIM.LookAndFeelController;
 import Controller.RIM.Utils.*;
 import View.RIM.Components.GuestActionsFooter;
 @SuppressWarnings("serial")
@@ -37,24 +39,24 @@ public class GuestProfileView extends JFrame
 	public GuestProfileView(Guest guest)
 	{
 		this.guest = guest;
-		initialize();
 		setContentPane(getContentPane());
+		initialize();
 	}
 	
 	public JPanel getContentPane()
 	{
 		
 		JPanel defaultPanel = new JPanel();
-		defaultPanel.setLayout(new MigLayout("", "[28.00][403.00,grow][][384.00,grow][][384.00,grow][106.00]", "[40.00][20.00][98.00,grow][285.00][27.00][grow][18.00][]"));
+		defaultPanel.setLayout(new MigLayout("", "[28.00][403.00,grow][][384.00,grow][][384.00,grow][106.00]", "[][40.00][20.00][98.00,grow][285.00][27.00][grow][18.00][]"));
 		
 		JLabel lblCreateYourInvitation = new JLabel("Welcome, " +guest.getUserName());
 		lblCreateYourInvitation.setFont(new Font("Segoe UI", Font.PLAIN, 22));
-		defaultPanel.add(lblCreateYourInvitation, "cell 1 0 5 1,alignx center,aligny center");
+		defaultPanel.add(lblCreateYourInvitation, "cell 1 1 5 1,alignx center,aligny bottom");
 		
 		JPanel form = new JPanel();
 		form.setFont(new Font("Segoe UI Light", Font.PLAIN, 11));
 		form.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Personal Details", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		defaultPanel.add(form, "cell 1 2 4 5,grow");
+		defaultPanel.add(form, "cell 1 3 4 5,grow");
 		form.setLayout(new MigLayout("", "[][176.00,grow][102.00,grow][grow]", "[][][][][][][][][][128.00,grow][69.00]"));
 		
 		JLabel lblFirstName = new JLabel("First name: ");
@@ -126,7 +128,7 @@ public class GuestProfileView extends JFrame
 		
 		final JLabel profilePicture = new JLabel("");
 		profilePicture.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		defaultPanel.add(profilePicture, "flowy,cell 5 2,alignx center,gapy 5 0");
+		defaultPanel.add(profilePicture, "flowy,cell 5 3,alignx center,gapy 5 0");
 		profilePicture.setIcon(ImageHelper.loadImageIcon("userIcon.png", "", 215, -1, 5));
 		
 		
@@ -135,21 +137,31 @@ public class GuestProfileView extends JFrame
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				profilePicture.setIcon(ImageHelper.getScaledImageIcon(new ImageIcon(IOHelper.getImageFile()), 200, -1, 5)); 
+				ImageIcon backupIcon = (ImageIcon) profilePicture.getIcon();
+			
+					Image image = IOHelper.getImageFile();
+					if(image !=null)
+					{
+						profilePicture.setIcon(ImageHelper.getScaledImageIcon(new ImageIcon(image), 200, -1, 5));
+					}
+					else 
+					{ 
+						profilePicture.setIcon(backupIcon);
+					}
 			}
 		});
-		defaultPanel.add(btnSelectPhoto, "cell 5 3,alignx center,aligny top");
+		defaultPanel.add(btnSelectPhoto, "cell 5 4,alignx center,aligny top");
 		
 		JLabel cutShadow = new JLabel("");
 		cutShadow.setIcon(new ImageIcon(ImageHelper.loadImage("cutShadowBottom.png", "testing")));
-		defaultPanel.add(cutShadow, "cell 1 7 5 1,alignx center");
+		defaultPanel.add(cutShadow, "cell 1 8 5 1,alignx center");
 		
 		
 		
 		defaultPanel.add(new GuestActionsFooter(), "south,alignx center");
 		
 		JLabel lblNewLabel = new JLabel("");
-		defaultPanel.add(lblNewLabel, "cell 5 2");
+		defaultPanel.add(lblNewLabel, "cell 5 3");
 		lblNewLabel.setIcon(new ImageIcon(ImageHelper.loadImage("cutShadowTop.png", "testing").getScaledInstance(230, -1, 3)));
 		
 		
@@ -164,11 +176,13 @@ public class GuestProfileView extends JFrame
 		setTitle( "Profile of " + guest.getUserName());
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);	
 		setSize(new Dimension(677, 600));
+		setResizable(false);
 		setVisible(true);
 	}
 	
 	public static void main(String args[])
 	{
+		LookAndFeelController.setGlobalLookAndFeel();
 		new GuestProfileView(new Guest("adeelateeque@hotmail.com"));
 	}
 }

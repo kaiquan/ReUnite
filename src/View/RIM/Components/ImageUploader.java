@@ -18,6 +18,7 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -30,9 +31,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -40,11 +38,10 @@ import javax.swing.KeyStroke;
 import javax.swing.ListCellRenderer;
 import javax.swing.border.Border;
 
-import Controller.RIM.LookAndFeelController;
 import Controller.RIM.Utils.IOHelper;
 import Images.RIM.ImageHelper;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "rawtypes", "unchecked" })
 public class ImageUploader extends JPanel {
 
 	public JList<Object> list;
@@ -70,22 +67,20 @@ public class ImageUploader extends JPanel {
 		setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		setLayout(new BorderLayout());
 
-
-
-//		JMenuBar menuBar = new JMenuBar();
-//		JMenu fileMenu = new JMenu("File");
-//		JMenu editMenu = new JMenu("Edit");
-//		JMenuItem item;
-//		int metaKey = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
-//		fileMenu.add(item = new JMenuItem(browseAction));
-//		item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, metaKey));
-//		fileMenu.add(item = new JMenuItem(uploadAction));
-//		editMenu.add(item = new JMenuItem(selectAllAction));
-//		item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, metaKey));
-//		editMenu.add(item = new JMenuItem(removeAction));
-//		menuBar.add(fileMenu);
-//		menuBar.add(editMenu);
-//		setJMenuBar(menuBar);
+		// JMenuBar menuBar = new JMenuBar();
+		// JMenu fileMenu = new JMenu("File");
+		// JMenu editMenu = new JMenu("Edit");
+		// JMenuItem item;
+		// int metaKey = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+		// fileMenu.add(item = new JMenuItem(browseAction));
+		// item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, metaKey));
+		// fileMenu.add(item = new JMenuItem(uploadAction));
+		// editMenu.add(item = new JMenuItem(selectAllAction));
+		// item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, metaKey));
+		// editMenu.add(item = new JMenuItem(removeAction));
+		// menuBar.add(fileMenu);
+		// menuBar.add(editMenu);
+		// setJMenuBar(menuBar);
 
 		model = new DefaultListModel<Object>();
 
@@ -107,7 +102,6 @@ public class ImageUploader extends JPanel {
 
 		JLabel uploadLabel = new JLabel();
 		uploadLabel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 10));
-		
 
 		uploadButton = new JButton(uploadAction);
 		addButton = new JButton(browseAction);
@@ -116,16 +110,16 @@ public class ImageUploader extends JPanel {
 		buttons.add(addButton);
 		buttons.add(removeButton);
 		buttons.add(uploadButton);
-		
+
 		add(buttons, BorderLayout.SOUTH);
 
 		currentDir = new File(System.getProperty("user.dir"));
 
 	}
 
-	public int addToListModel(ArrayList filenames) {
+	public int addToListModel(ArrayList<String> filenames) {
 		int count = 0;
-		for (Iterator i = filenames.iterator(); i.hasNext();) {
+		for (Iterator<String> i = filenames.iterator(); i.hasNext();) {
 			String filename = (String) i.next();
 			if (!model.contains(filename)) {
 				model.addElement(filename);
@@ -137,7 +131,11 @@ public class ImageUploader extends JPanel {
 	}
 
 	public static void main(String[] args) {
-
+		JFrame frame = new JFrame();
+		frame.setContentPane(new ImageUploader());
+		frame.setSize(500, 600);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
 	class BrowseAction extends AbstractAction {
@@ -156,7 +154,7 @@ public class ImageUploader extends JPanel {
 			currentDir = chooser.getCurrentDirectory();
 
 			File[] files = chooser.getSelectedFiles();
-			ArrayList filenames = new ArrayList(files.length);
+			ArrayList<String> filenames = new ArrayList<String>(files.length);
 			for (int i = 0; i < files.length; i++)
 				filenames.add(files[i].getAbsolutePath());
 			addToListModel(filenames);
@@ -185,11 +183,10 @@ public class ImageUploader extends JPanel {
 			System.out.println(evt.getActionCommand());
 			// HTTP Client Networking Code called here.
 			File[] files = new File[model.size()];
-			for(int i=0; i<model.size(); i++)
-			{
+			for (int i = 0; i < model.size(); i++) {
 				files[i] = new File(model.get(i).toString());
 			}
-			
+
 			IOHelper.uploadFiles(files, "Images/3");
 		}
 	}
@@ -222,7 +219,7 @@ public class ImageUploader extends JPanel {
 		}
 	}
 
-	class ImageCellRenderer extends JLabel implements ListCellRenderer {
+	class ImageCellRenderer extends JLabel implements ListCellRenderer<Object> {
 		public ImageCellRenderer() {
 			setOpaque(true);
 			setIconTextGap(12);
@@ -271,8 +268,7 @@ public class ImageUploader extends JPanel {
 				for (int i = 0; i < flavors.length; i++) {
 					if (flavors[i].isFlavorJavaFileListType()) {
 						evt.acceptDrop(DnDConstants.ACTION_COPY);
-						java.util.List list2 = (java.util.List) tr
-								.getTransferData(flavors[i]);
+						List list2 = (List) tr.getTransferData(flavors[i]);
 						ArrayList filenames = new ArrayList();
 						for (int j = 0; j < list2.size(); j++) {
 							String path = list2.get(j).toString();
@@ -281,6 +277,7 @@ public class ImageUploader extends JPanel {
 							}
 						}
 						if (filenames.size() > 0) {
+							@SuppressWarnings("unused")
 							int numAdded = addToListModel(filenames);
 							evt.dropComplete(true);
 							return;

@@ -1,6 +1,7 @@
 package View.RIM.Components.Table;
 
 import java.awt.Component;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -43,17 +44,23 @@ protected static final String EDIT = "edit";
 	*/
 	public void actionPerformed(ActionEvent e) 
 	{
+		ImageIcon backupIcon = profilePicture;
 		if (EDIT.equals(e.getActionCommand())) 
 		{
 			//The user has clicked the cell, so
 			//bring up the dialog.
-			profilePicture = new ImageIcon(IOHelper.getImageFile());
+			Image image = IOHelper.getImageFile();
+			if(image !=null)
+			{
+				profilePicture = new ImageIcon(image);
+			}
 		
 			//Make the renderer reappear.
 			fireEditingStopped();
 		} 
 		else 
-		{ //User pressed dialog's "OK" button.
+		{ 
+			profilePicture = backupIcon;
 		}
 	}
 	

@@ -112,16 +112,6 @@ public class CreateInvitationView extends JFrame
 
 		actionPanel.add(plusButton, "flowx,cell 0 0,alignx center,aligny bottom");
 
-		JButton facebookImportButton = new JButton("");
-		facebookImportButton.setIcon(ImageHelper.loadImageIcon("facebookIcon.png", "Import from Facebook", -1, 24, 5));
-		facebookImportButton.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent arg0)
-			{
-				new ContactImporter("Facebook");
-			}
-		});
-
 		JButton minusButton = new JButton("");
 		minusButton.setIcon(new ImageIcon(ImageHelper.class.getResource("minus.png")));
 		minusButton.addActionListener(new ActionListener()
@@ -148,9 +138,8 @@ public class CreateInvitationView extends JFrame
 		JLabel lblOrImportFrom = new JLabel("   or import from:   ");
 		lblOrImportFrom.setFont(new Font("Tahoma", Font.BOLD, 12));
 		actionPanel.add(lblOrImportFrom, "cell 0 0,alignx left,aligny center");
-		actionPanel.add(facebookImportButton, "cell 0 0,alignx center,aligny top");
 
-		JButton hotmailImportButton = new JButton("");
+		JButton hotmailImportButton = new JButton("Hotmail");
 		hotmailImportButton.setIcon(ImageHelper.loadImageIcon("hotmailIcon.png", "Import from Hotmail", -1, 24, 5));
 		hotmailImportButton.addActionListener(new ActionListener()
 		{
@@ -161,17 +150,6 @@ public class CreateInvitationView extends JFrame
 			}
 		});
 		actionPanel.add(hotmailImportButton, "cell 0 0,alignx center,aligny top");
-
-		JButton googleImportButton = new JButton("");
-		googleImportButton.setIcon(ImageHelper.loadImageIcon("googleIcon.png", "Import from Google", -1, 24, 5));
-		googleImportButton.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent arg0)
-			{
-				new ContactImporter("Google");
-			}
-		});
-		actionPanel.add(googleImportButton, "cell 0 0,alignx center,aligny top");
 
 		JScrollPane tableScrollPane = new JScrollPane();
 		tableScrollPane.setViewportView(prepareTable());

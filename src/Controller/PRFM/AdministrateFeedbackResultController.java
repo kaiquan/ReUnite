@@ -1,4 +1,4 @@
-package controller;
+package Controller.PRFM;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -7,10 +7,10 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.Scanner;
 
-import entity.FeedbackResult;
-import entity.OpenEndedResult;
-import entity.RatingResult;
-import entity.YesNoResult;
+import Model.PRFM.FeedbackResult;
+import Model.PRFM.OpenEndedResult;
+import Model.PRFM.RatingResult;
+import Model.PRFM.YesNoResult;
 
 public class AdministrateFeedbackResultController {
 	

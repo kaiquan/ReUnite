@@ -1,10 +1,10 @@
-package controller;
+package Controller.PRFM;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import entity.Event;
+import Model.Event;
 
 public class AdministrateEventController {
 	
@@ -14,7 +14,7 @@ public class AdministrateEventController {
 	
 	public Event processRetrieve(){
 		Event event = new Event();
-		event.retrieveEvent(null);
+		event.RETRIEVE_EVENTS(null);
 		return event;
 	}
 	
@@ -59,7 +59,7 @@ public class AdministrateEventController {
 			}
 		}
 		
-		event.retrieveEvent(condition);
+		event.RETRIEVE_EVENTS(condition);
 		return event;
 	}
 	
@@ -83,7 +83,7 @@ public class AdministrateEventController {
 		}
 		
 		condition += ")";
-		event.retrieveEvent(condition);
+		event.RETRIEVE_EVENTS(condition);
 		return event;
 	}
 

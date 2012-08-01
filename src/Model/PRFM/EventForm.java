@@ -1,11 +1,11 @@
-package entity;
+package Model.PRFM;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
-import controller.MySQLController;
+import Controller.MySQLController;
 
 public class EventForm extends FeedbackForm{
 	private static MySQLController db;

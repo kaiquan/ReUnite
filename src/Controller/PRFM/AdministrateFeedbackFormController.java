@@ -1,4 +1,4 @@
-package controller;
+package Controller.PRFM;
 
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
@@ -7,9 +7,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import entity.EventForm;
-import entity.FeedbackForm;
-import entity.FeedbackQuestion;
+import Model.PRFM.EventForm;
+import Model.PRFM.FeedbackForm;
+import Model.PRFM.FeedbackQuestion;
 
 public class AdministrateFeedbackFormController {
 

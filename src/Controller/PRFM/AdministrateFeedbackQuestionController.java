@@ -1,4 +1,4 @@
-package controller;
+package Controller.PRFM;
 
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -7,10 +7,10 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Scanner;
 
-import entity.FeedbackQuestion;
-import entity.OpenEndedResult;
-import entity.RatingQuestion;
-import entity.YesNoQuestion;
+import Model.PRFM.FeedbackQuestion;
+import Model.PRFM.OpenEndedResult;
+import Model.PRFM.RatingQuestion;
+import Model.PRFM.YesNoQuestion;
 
 public class AdministrateFeedbackQuestionController {
 

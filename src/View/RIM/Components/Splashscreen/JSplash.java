@@ -33,20 +33,6 @@ import javax.swing.JWindow;
 
 import Controller.RIM.Utils.GUIUtils;
 
-/**
- * A simple, yet nice splash screen implementation for java applications.
- * Follows Sun recommendations for splash screen and logos: see
- * <a href="http://java.sun.com/products/jlf/ed2/book/HIG.Graphics7.html">
- * <i>"Designing Graphics for Corporate and Product Identity"</i></a>.
- * Draws a black border of one pixel wide around the splash image.
- * Also uses a simple progress bar that the user must "progress" manually in his
- * code in order for it to work. Also, it has options for percent display,
- * custom loading messages display and application version string display at the
- * bottom-right corner of the image.
- * <p>
- * @author Gregory Kotsaftis
- * @since 1.0
- */
 @SuppressWarnings("serial")
 public final class JSplash extends JWindow {
 

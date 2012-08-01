@@ -65,6 +65,8 @@ public class InvitationResponseView extends JFrame {
 	private InvitationResponseController controller = new InvitationResponseController();
 	
 	public InvitationResponseView() {
+		getContentPane().setPreferredSize(new Dimension(800, 500));
+		getContentPane().setSize(new Dimension(800, 500));
 		initComponents();
 
 		table.setModel(controller.getTableModel());
@@ -167,8 +169,10 @@ public class InvitationResponseView extends JFrame {
 		button = new JButton();
 		button.setPreferredSize(new Dimension(100, 9));
 
-		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Invitations");
+		setSize(1068, 546);
+		getContentPane().setLayout(new MigLayout("", "[795.00px,grow]", "[427px,grow][60px]"));
 
 		table.setModel(new DefaultTableModel(new Object[][] {
 
@@ -177,7 +181,7 @@ public class InvitationResponseView extends JFrame {
 		table.setToolTipText("Press down and hold CTRL or SHIFT while selecting multiple columns' headers for sorting.");
 		jScrollPane1.setViewportView(table);
 
-		getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
+		getContentPane().add(jScrollPane1, "cell 0 0,grow");
 
 		jPanel1.setMinimumSize(new java.awt.Dimension(500, 60));
 		jPanel1.setPreferredSize(new java.awt.Dimension(500, 60));
@@ -222,7 +226,7 @@ public class InvitationResponseView extends JFrame {
 		});
 		jPanel1.add(button, "cell 7 0 2 2,alignx right,growy");
 
-		getContentPane().add(jPanel1, BorderLayout.SOUTH);
+		getContentPane().add(jPanel1, "cell 0 1,alignx center,aligny top");
 
 		pack();
 	}

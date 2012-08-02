@@ -16,6 +16,7 @@ package Controller;
  * I received help from no one in designing, coding and debugging my program.
  *******************************************************************************************/
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -24,6 +25,7 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 import com.jolbox.bonecp.BoneCP;
+import com.jolbox.bonecp.BoneCPConfig;
 
 public class MySQLController
 {
@@ -33,39 +35,39 @@ public class MySQLController
 
 	public MySQLController()
 	{
-//		if (connectionPool == null)
-//		{
-//			try 
-//			{
-//				DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
-//			} 
-//			catch (SQLException e1) 
-//			{
-//				e1.printStackTrace();
-//			}
-//			
-//			BoneCPConfig config = new BoneCPConfig();
-//			config.setJdbcUrl("jdbc:mysql://205.134.253.65/saharp5_adeel_school");
-//			config.setUsername("saharp5_guest");
-//			config.setPassword("guest123");
-//			config.setMinConnectionsPerPartition(1);
-//			config.setMaxConnectionsPerPartition(10);
-//			config.setPartitionCount(3);
-//			try
-//			{
-//				connectionPool = new BoneCP(config);// setup the connection pool
-//			}
-//			catch (SQLException e)
-//			{
-//				JOptionPane.showMessageDialog(null, e.getCause().getMessage());
-//				System.out.println(e.getCause().getLocalizedMessage());
-//			}
-//
-//			if (connectionPool != null)
-//			{
-//				System.out.println("Successfully created a pool of connection");
-//			}
-//		}
+		if (connectionPool == null)
+		{
+			try 
+			{
+				DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
+			} 
+			catch (SQLException e1) 
+			{
+				e1.printStackTrace();
+			}
+			
+			BoneCPConfig config = new BoneCPConfig();
+			config.setJdbcUrl("jdbc:mysql://205.134.253.65/saharp5_adeel_school");
+			config.setUsername("saharp5_guest");
+			config.setPassword("guest123");
+			config.setMinConnectionsPerPartition(1);
+			config.setMaxConnectionsPerPartition(10);
+			config.setPartitionCount(3);
+			try
+			{
+				connectionPool = new BoneCP(config);// setup the connection pool
+			}
+			catch (SQLException e)
+			{
+				JOptionPane.showMessageDialog(null, e.getCause().getMessage());
+				System.out.println(e.getCause().getLocalizedMessage());
+			}
+
+			if (connectionPool != null)
+			{
+				System.out.println("Successfully created a pool of connection");
+			}
+		}
 	}
 
 	/********************************************************

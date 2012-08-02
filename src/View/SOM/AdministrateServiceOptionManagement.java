@@ -1054,7 +1054,7 @@ public class AdministrateServiceOptionManagement {
 		
 		JButton jButton_Facility = new JButton();
 		jButton_Facility.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		jButton_Facility.setText("Regisister Facility");
+		jButton_Facility.setText("Register Facility");
 		jButton_Facility.setFocusable(false);
 		jButton_Facility.setOpaque(false);
 		jButton_Facility.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/facility.png")));

@@ -30,32 +30,75 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import Controller.MySQLController;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Ballroom.
+ */
 public class Ballroom {
 	
-	/********************************************************
-	 *					The Attributes
-	 *******************************************************/
+	/** ****************************************************** The Attributes *****************************************************. */
 	
 	private Ballroom data=null;								//stores data from the controler;
+	
+	/** The rs. */
 	private ResultSet rs=null;								//result set to ertrive items directly from database
+	
+	/** The db. */
 	private static MySQLController DB = new MySQLController();
 	
+	/** The ballroom id. */
 	private String ballroomID=null;
+	
+	/** The facility id. */
 	private String facilityID=null;
+	
+	/** The facility. */
 	private Facility facility = null;
+	
+	/** The ballroom name. */
 	private String ballroomName=null;
+	
+	/** The ballroom description. */
 	private String ballroomDescription=null;
+	
+	/** The ballroom size. */
 	private String ballroomSize=null;
+	
+	/** The ballroom discount. */
 	private double ballroomDiscount=0.00;
+	
+	/** The ballroom price. */
 	private double ballroomPrice=0.00;
+	
+	/** The ballroom final price. */
 	private double ballroomFinalPrice=0.00;
+	
+	/** The ballroom hits. */
 	private int ballroomHits=0;
+	
+	/** The ballroom availability. */
 	private boolean ballroomAvailability=false;
 	
-	/********************************************************
-	 *				The Constructor(s)
-	 *******************************************************/
+	/**
+	 * ******************************************************
+	 * The Constructor(s)
+	 * *****************************************************.
+	 */
 	public Ballroom(){}
+	
+	/**
+	 * Instantiates a new ballroom.
+	 *
+	 * @param ID the id
+	 * @param Name the name
+	 * @param Description the description
+	 * @param Size the size
+	 * @param Discount the discount
+	 * @param Price the price
+	 * @param FinalPrice the final price
+	 * @param Hits the hits
+	 * @param Availability the availability
+	 */
 	public Ballroom(String ID, String Name, String Description, String Size, double Discount, double Price, double FinalPrice, int Hits, boolean Availability){
 		this.facilityID=ID;
 		this.ballroomName=Name;
@@ -68,9 +111,13 @@ public class Ballroom {
 		this.ballroomAvailability=Availability;
 	}
 	
-	/********************************************************
-	 *				The Method(s)
-	 *******************************************************/
+	/**
+	 * ******************************************************
+	 * The Method(s)
+	 * *****************************************************.
+	 *
+	 * @return the string
+	 */
 	
 	/********************************************************
 	 * Method Name 		: createBallroom()
@@ -111,12 +158,17 @@ public class Ballroom {
 		return ballroomID;
 	}
 	
-	/********************************************************
+	/**
+	 * ******************************************************
 	 * Method Name		: deleteBallroom()
 	 * Input Parameter 	: String
 	 * Return 			: boolean
 	 * Purpose 			: To delete an Ballroom record
-	 *******************************************************/
+	 * *****************************************************.
+	 *
+	 * @param ID the id
+	 * @return true, if successful
+	 */
 	public boolean DELETE_BALLROOM(String ID){
 		boolean success=true;
 		String sqlQuery;
@@ -138,13 +190,18 @@ public class Ballroom {
 		return success;
 	}
 	
-	/********************************************************
+	/**
+	 * ******************************************************
 	 * Method Name		: deleteBallroomByFID()
 	 * Input Parameter 	: String
 	 * Return 			: boolean
-	 * Purpose 			: To delete an Ballroom record 
-	 * 					  by facility ID
-	 *******************************************************/
+	 * Purpose 			: To delete an Ballroom record
+	 * by facility ID
+	 * *****************************************************.
+	 *
+	 * @param ID the id
+	 * @return true, if successful
+	 */
 	public boolean DELETE_BALLROOM_BY_FID(String ID){
 		boolean success=true;
 		String sqlQuery;
@@ -166,12 +223,17 @@ public class Ballroom {
 		return success;
 	}
 	
-	/********************************************************
+	/**
+	 * ******************************************************
 	 * Method Name		: updateBallroom
 	 * Input Parameter 	: String
 	 * Return 			: boolean
 	 * Purpose 			: To update an Ballroom record
-	 *******************************************************/
+	 * *****************************************************.
+	 *
+	 * @param ID the id
+	 * @return true, if successful
+	 */
 	public boolean UPDATE_BALLROOM(String ID){
 		boolean success=false;
 		String sqlQuery;
@@ -193,13 +255,17 @@ public class Ballroom {
 		return success;
 	}
 	
-	/********************************************************
+	/**
+	 * ******************************************************
 	 * Method Name		: retrieveBallroom
 	 * Input Parameter 	: void
 	 * Return 			: DefaultTableModel
 	 * Purpose 			: To retrieve all Ballroom record
-	 * 					  where is not purchase record
-	 *******************************************************/
+	 * where is not purchase record
+	 * *****************************************************.
+	 *
+	 * @return the default table model
+	 */
 	public DefaultTableModel RETRIEVE_BALLROOM(){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
@@ -220,14 +286,19 @@ public class Ballroom {
 		return model;
 	}
 	
-	/********************************************************
+	/**
+	 * ******************************************************
 	 * Method Name		: retrieveBallroom
 	 * Input Parameter 	: String
 	 * Return 			: DefaultTableModel
 	 * Purpose 			: To retrieve all Ballroom record
-	 * 					  where is not purchase record
-	 * 					  & by input paramater
-	 *******************************************************/
+	 * where is not purchase record
+	 * & by input paramater
+	 * *****************************************************.
+	 *
+	 * @param parameter the parameter
+	 * @return the default table model
+	 */
 	public DefaultTableModel RETRIEVE_BALLROOM(String parameter){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
@@ -254,13 +325,18 @@ public class Ballroom {
 		return model;
 	}
 	
-	/********************************************************
+	/**
+	 * ******************************************************
 	 * Method Name		: retrieveBallroomByID
 	 * Input Parameter 	: String
 	 * Return 			: Ballroom
 	 * Purpose 			: To retrieve a Ballroom record
-	 * 					  by ballroomID
-	 *******************************************************/
+	 * by ballroomID
+	 * *****************************************************.
+	 *
+	 * @param ID the id
+	 * @return the ballroom
+	 */
 	public Ballroom RETRIEVE_BALLROOM_BY_ID(String ID){
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM saharp5_adeel_school.Ballroom WHERE `ballroomID`='"+ID+"'";
@@ -288,13 +364,18 @@ public class Ballroom {
 		return data;
 	}
 	
-	/********************************************************
+	/**
+	 * ******************************************************
 	 * Method Name		: retrieveBallroomModel()
 	 * Input Parameter 	: String
 	 * Return 			: DefaultTableModel
 	 * Purpose 			: To retrieve a Ballroom record
-	 * 					  by ballroomID
-	 *******************************************************/
+	 * by ballroomID
+	 * *****************************************************.
+	 *
+	 * @param ID the id
+	 * @return the default table model
+	 */
 	public DefaultTableModel RETRIEVE_BALLROOM_MODEL(String ID){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
@@ -315,13 +396,18 @@ public class Ballroom {
 		return model;
 	}
 	
-	/********************************************************
+	/**
+	 * ******************************************************
 	 * Method Name		: retrieveBallroomByFacility()
 	 * Input Parameter 	: String
 	 * Return 			: DefaultTableModel
 	 * Purpose 			: To retrieve a Ballroom record
-	 * 					  by ballroomID
-	 *******************************************************/
+	 * by ballroomID
+	 * *****************************************************.
+	 *
+	 * @param ID the id
+	 * @return the default table model
+	 */
 	public DefaultTableModel RETRIEVE_BALLROOM_BY_FACILITY(String ID){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
@@ -342,13 +428,18 @@ public class Ballroom {
 		return model;
 	}
 	
-	/********************************************************
-	  * Method Name 	: checkRelationship()
-	  * Input Parameter : String
-	  * Return 			: boolean
-	  * Purpose 		: To check if the ballroom is 
-	  * 				  tied to a package
-	  *******************************************************/
+	/**
+	 * ******************************************************
+	 * Method Name 	: checkRelationship()
+	 * Input Parameter : String
+	 * Return 			: boolean
+	 * Purpose 		: To check if the ballroom is
+	 * tied to a package
+	 * *****************************************************.
+	 *
+	 * @param ID the id
+	 * @return true, if successful
+	 */
 	public boolean CHECK_RELATIONSHIP(String ID){
 		boolean ties=false;
 		String sqlQuery;
@@ -369,13 +460,18 @@ public class Ballroom {
 	}
 	
 	
-	/********************************************************
+	/**
+	 * ******************************************************
 	 * Author			: A Ameenudeen(111942S)
 	 * Method Name		: GET_BALLROOM_DETAILS
 	 * Input Parameter 	: String eventName
 	 * Return 			: ArrayList<String>
 	 * Purpose 			: To get the ballroom details
-	 *******************************************************/
+	 * *****************************************************.
+	 *
+	 * @param eventName the event name
+	 * @return the array list
+	 */
 	public ArrayList<String> GET_BALLROOM_DETAILS(String eventName){
 		
 		
@@ -407,92 +503,258 @@ public class Ballroom {
 		}
 	
 	
-	/********************************************************
-	 *				The Accessor Methods
-	 *******************************************************/
+	/**
+	 * ******************************************************
+	 * The Accessor Methods
+	 * *****************************************************.
+	 *
+	 * @return the data
+	 */
 	public Ballroom getData() {
 		return data;
 	}
+	
+	/**
+	 * Sets the data.
+	 *
+	 * @param data the new data
+	 */
 	public void setData(Ballroom data) {
 		this.data = data;
 	}
+	
+	/**
+	 * Gets the rs.
+	 *
+	 * @return the rs
+	 */
 	public ResultSet getRs() {
 		return rs;
 	}
+	
+	/**
+	 * Sets the rs.
+	 *
+	 * @param rs the new rs
+	 */
 	public void setRs(ResultSet rs) {
 		this.rs = rs;
 	}
+	
+	/**
+	 * Gets the id.
+	 *
+	 * @return the id
+	 */
 	public int getID()
 	{
 		return Integer.parseInt(ballroomID);
 	}
+	
+	/**
+	 * Sets the id.
+	 *
+	 * @param ballroomID the new id
+	 */
 	public void setID(int ballroomID)
 	{
 		this.ballroomID = Integer.toString(ballroomID);
 	}
+	
+	/**
+	 * Gets the ballroom id.
+	 *
+	 * @return the ballroom id
+	 */
 	public String getBallroomID() {
 		return ballroomID;
 	}
+	
+	/**
+	 * Sets the ballroom id.
+	 *
+	 * @param ballroomID the new ballroom id
+	 */
 	public void setBallroomID(String ballroomID) {
 		this.ballroomID = ballroomID;
 	}
+	
+	/**
+	 * Gets the facility id.
+	 *
+	 * @return the facility id
+	 */
 	public String getFacilityID() {
 		return facilityID;
 	}
+	
+	/**
+	 * Sets the facility id.
+	 *
+	 * @param facilityID the new facility id
+	 */
 	public void setFacilityID(String facilityID) {
 		this.facilityID = facilityID;
 	}
+	
+	/**
+	 * Gets the ballroom name.
+	 *
+	 * @return the ballroom name
+	 */
 	public String getBallroomName() {
 		return ballroomName;
 	}
+	
+	/**
+	 * Sets the ballroom name.
+	 *
+	 * @param ballroomName the new ballroom name
+	 */
 	public void setBallroomName(String ballroomName) {
 		this.ballroomName = ballroomName;
 	}
+	
+	/**
+	 * Gets the ballroom description.
+	 *
+	 * @return the ballroom description
+	 */
 	public String getBallroomDescription() {
 		return ballroomDescription;
 	}
+	
+	/**
+	 * Sets the ballroom description.
+	 *
+	 * @param ballroomDescription the new ballroom description
+	 */
 	public void setBallroomDescription(String ballroomDescription) {
 		this.ballroomDescription = ballroomDescription;
 	}
+	
+	/**
+	 * Gets the ballroom size.
+	 *
+	 * @return the ballroom size
+	 */
 	public String getBallroomSize() {
 		return ballroomSize;
 	}
+	
+	/**
+	 * Sets the ballroom size.
+	 *
+	 * @param ballroomSize the new ballroom size
+	 */
 	public void setBallroomSize(String ballroomSize) {
 		this.ballroomSize = ballroomSize;
 	}
+	
+	/**
+	 * Gets the ballroom discount.
+	 *
+	 * @return the ballroom discount
+	 */
 	public double getBallroomDiscount() {
 		return ballroomDiscount;
 	}
+	
+	/**
+	 * Sets the ballroom discount.
+	 *
+	 * @param ballroomDiscount the new ballroom discount
+	 */
 	public void setBallroomDiscount(double ballroomDiscount) {
 		this.ballroomDiscount = ballroomDiscount;
 	}
+	
+	/**
+	 * Gets the ballroom price.
+	 *
+	 * @return the ballroom price
+	 */
 	public double getBallroomPrice() {
 		return ballroomPrice;
 	}
+	
+	/**
+	 * Sets the ballroom price.
+	 *
+	 * @param ballroomPrice the new ballroom price
+	 */
 	public void setBallroomPrice(double ballroomPrice) {
 		this.ballroomPrice = ballroomPrice;
 	}
+	
+	/**
+	 * Gets the ballroom final price.
+	 *
+	 * @return the ballroom final price
+	 */
 	public double getBallroomFinalPrice() {
 		return ballroomFinalPrice;
 	}
+	
+	/**
+	 * Sets the ballroom final price.
+	 *
+	 * @param ballroomFinalPrice the new ballroom final price
+	 */
 	public void setBallroomFinalPrice(double ballroomFinalPrice) {
 		this.ballroomFinalPrice = ballroomFinalPrice;
 	}
+	
+	/**
+	 * Gets the ballroom hits.
+	 *
+	 * @return the ballroom hits
+	 */
 	public int getBallroomHits() {
 		return ballroomHits;
 	}
+	
+	/**
+	 * Sets the ballroom hits.
+	 *
+	 * @param ballroomHits the new ballroom hits
+	 */
 	public void setBallroomHits(int ballroomHits) {
 		this.ballroomHits = ballroomHits;
 	}
+	
+	/**
+	 * Sets the ballroom availability.
+	 *
+	 * @param ballroomAvailability the new ballroom availability
+	 */
 	public void setBallroomAvailability(boolean ballroomAvailability) {
 		this.ballroomAvailability = ballroomAvailability;
 	}
+	
+	/**
+	 * Checks if is ballroom availability.
+	 *
+	 * @return true, if is ballroom availability
+	 */
 	public boolean isBallroomAvailability() {
 		return ballroomAvailability;
 	}
+	
+	/**
+	 * Gets the facility.
+	 *
+	 * @return the facility
+	 */
 	public Facility getFacility() {
 		return facility;
 	}
+	
+	/**
+	 * Sets the facility.
+	 *
+	 * @param facility the new facility
+	 */
 	public void setFacility(Facility facility) {
 		this.facility = facility;
 	}

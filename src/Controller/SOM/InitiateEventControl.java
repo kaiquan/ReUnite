@@ -78,7 +78,7 @@ public class InitiateEventControl {
 	}
 	
 	/********************************************************
-	 * Method Name 		: processGetTimming()
+	 * Method Name 		: processRetrieveTimming()
 	 * Input Parameter 	: void
 	 * Return 			: String
 	 * Purpose 			: To get the all the booked time 

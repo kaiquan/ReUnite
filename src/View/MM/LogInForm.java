@@ -14,6 +14,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import Controller.MM.LoginController;
+import Controller.RIM.LookAndFeelController;
 import Model.Membership.Account;
 import java.awt.GridBagLayout;
 import java.awt.SystemColor;
@@ -221,6 +222,7 @@ public class LogInForm extends JFrame {
 		public static void main(String args[]){
 				LogInForm n = new LogInForm();
 				n.setVisible(true);
+				LookAndFeelController.setGlobalLookAndFeel();
 		}
 
 		public JComponent getJFrame() {

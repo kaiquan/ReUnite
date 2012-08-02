@@ -25,7 +25,7 @@ public class RIDashboard extends JFrame{
 	public RIDashboard() 
 	{
 		setBackground(new Color(0, 128, 128));
-		mainPanel.setBackground(new Color(0, 139, 139));
+		mainPanel.setBackground(new Color(102, 153, 255));
 		setContentPane(mainPanel);
 		mainPanel.setLayout(new MigLayout("", "[-18.00][391.00,grow][399.00,grow][grow]", "[16.00][211.00][259.00]"));
 		
@@ -131,7 +131,8 @@ public class RIDashboard extends JFrame{
 		lblWelcome.setFont(new Font("Segoe UI", Font.PLAIN, 30));
 		mainPanel.add(lblWelcome, "flowx,cell 1 0 2 1,alignx left");
 		
-		JLabel lblGasdga = new JLabel(Account.currentUser.getFirstName() + Account.currentUser.getLastName());
+		//Account.currentUser.getFirstName() + Account.currentUser.getLastName()
+		JLabel lblGasdga = new JLabel("Adeel Ateeque");
 		lblGasdga.setForeground(Color.WHITE);
 		lblGasdga.setFont(new Font("Segoe UI", Font.PLAIN, 30));
 		mainPanel.add(lblGasdga, "cell 1 0");

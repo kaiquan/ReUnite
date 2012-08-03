@@ -44,14 +44,14 @@ public class CollectPaymentControl {
 		//Creates ArrayList of String 
 		//get the ballroom details and adds it to the arrayList
 		Ballroom b1 = new Ballroom();
-		ArrayList<String> ballroom= new ArrayList<String>();
+		ArrayList<Ballroom> ballroom= new ArrayList<Ballroom>();
 		ballroom=b1.GET_BALLROOM_DETAILS(eventName);
 		
 		
 		//Creates Entertainment Object
 		//Creates ArrayList of String 
 		//get the entertainment details and adds it to the arrayList
-		ArrayList<String> entertainment = new ArrayList<String>();
+		ArrayList<Entertainment> entertainment = new ArrayList<Entertainment>();
 		Entertainment e1 = new Entertainment();
 		entertainment=e1.GET_ENTERTAINMENT_PRICE(eventName);
 		
@@ -65,7 +65,7 @@ public class CollectPaymentControl {
 		//Creates guest Object
 		//Creates ArrayList of String 
 		//get the number of guests and adds it to the arrayList
-		ArrayList<String> guest = new ArrayList<String>();
+		ArrayList<Guest> guest = new ArrayList<Guest>();
 		Guest g1= new Guest();
 		guest=g1.getNumberOfGuests(eventName);
 		

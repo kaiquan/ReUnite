@@ -16,7 +16,6 @@ METHODS LIST 			: 	AdministratePcakageControl();
 						:	processRetrievePackage(String) :DefaultTableModel
 						:	processRetrievePackageByID(String) : Package
 						:	processRetrieveMealOptions(String) : ArrayList<Meal>
-						:	
 						:	Accessor Methods...
 ********************************************************************************************************************************************************/
 package Controller.SOM;
@@ -76,7 +75,7 @@ public class AdministratePackageControl {
 
 	/********************************************************
 	 * Method Name 		: processCreatePackage
-	 * Input Parameter 	: NIL 
+	 * Input Parameter 	: String, String, String 
 	 * Purpose 			: To create a new Package 
 	 * 					  record in the database
 	 * Return 			: String

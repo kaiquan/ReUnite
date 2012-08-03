@@ -2,9 +2,9 @@ package Controller.MM;
 import javax.swing.JOptionPane;
 
 import Model.Membership.Account;
-import View.MM.AdministrateRIDetails;
-import View.MM.AdministrateRIPersonalDetails;
-import View.RIM.CreateInvitationView;
+import View.GRDashboard;
+import View.RIDashboard;
+import View.RIM.GuestProfileView;
 
 
 
@@ -12,9 +12,10 @@ public class LoginController {
 		
 	Account account = new Account();
 	
-	public void initiateLogin(String userName, String password){
+	public boolean initiateLogin(String userName, String password){
+		boolean valid = false;
+		
 		Account accountSet = new Account();
-
 		accountSet.setUserName(userName);
 		accountSet.setPassword(password);
 	
@@ -22,30 +23,32 @@ public class LoginController {
 		
 		if(account!=null)
 		{
+			valid = true;
 			Account.currentUser = account;
 			if(Account.currentUser.getType().equalsIgnoreCase("RI"))
 			{
-				System.out.println("Access Granted");
-						new AdministrateRIPersonalDetails().getJFrame().setVisible(true);
+				new RIDashboard();
+			
 			}
 			
 			else if(Account.currentUser.getType().equalsIgnoreCase("GR")) 
 			{
-				new AdministrateRIDetails().getJFrame().setVisible(true);
+				new GRDashboard();
 			}
-			else if(Account.currentUser.getType().equalsIgnoreCase("Guest")){
+			else if(Account.currentUser.getType().equalsIgnoreCase("Guest"))
+			{
 				
-				new CreateInvitationView();
+				new GuestProfileView();
 			}
 		}
 		else
 		{	
-			JOptionPane.showMessageDialog(null,"UserName or Password does not exist, Try Again");
+			JOptionPane.showMessageDialog(null,"User name or password does not exist. Please try again.");
 		
 			System.out.println("Access Denied");
 			
 		}
-		
+		return valid;
 	}
 
 	

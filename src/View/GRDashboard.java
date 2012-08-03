@@ -128,7 +128,7 @@ public class GRDashboard extends JFrame{
 		lblWelcome.setFont(new Font("Segoe UI", Font.PLAIN, 30));
 		mainPanel.add(lblWelcome, "flowx,cell 1 0 2 1,alignx left");
 		
-		JLabel lblGasdga = new JLabel(Account.currentUser.getFirstName() + Account.currentUser.getLastName());
+		JLabel lblGasdga = new JLabel(Account.currentUser.getFirstName() +" "+ Account.currentUser.getLastName());
 		lblGasdga.setForeground(Color.WHITE);
 		lblGasdga.setFont(new Font("Segoe UI", Font.PLAIN, 30));
 		mainPanel.add(lblGasdga, "cell 1 0");

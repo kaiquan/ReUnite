@@ -134,6 +134,49 @@ public class Guest extends Account
 
 		return e1;
 	}
+	
+	public Guest GET_GUEST_ACCOUNT(String userName)
+	{
+		Guest guest = null;
+		ResultSet rs = null;
+
+		String dbQuery;
+
+		dbQuery = "SELECT * FROM Account WHERE userName = '"+userName+"' AND type='Guest'";
+		try
+		{
+
+			rs = DB.readRequest(dbQuery);
+			if (rs.next())
+			{
+
+				guest = new Guest();
+
+				guest.setUserName(rs.getString("userName"));
+				guest.setType(rs.getString("type"));
+				guest.setStatus(rs.getString("status"));
+				guest.setFirstName(rs.getString("firstName"));
+				guest.setLastName(rs.getString("lastName"));
+				guest.setDateOfBirth(rs.getDate("dateOfBirth"));
+				guest.setNric(rs.getString("nric"));
+				guest.setSchool(rs.getString("school"));
+				guest.setEmail(rs.getString("email"));
+				guest.setAddress(rs.getString("address"));
+				guest.setTelephoneNo(rs.getString("telephoneNo"));
+				guest.setHandphoneNo(rs.getString("handphoneNo"));
+				guest.setProfilePicture(rs.getString("profilePicture"));
+
+			}
+
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+
+		return guest;
+		
+	}
 
 	public boolean CREATE_GUEST_ACCOUNT(Guest account)
 	{

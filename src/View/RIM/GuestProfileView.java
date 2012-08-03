@@ -21,6 +21,7 @@ import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
 import Images.RIM.ImageHelper;
+import Model.Membership.Account;
 import Model.Membership.Guest;
 import Controller.RIM.LookAndFeelController;
 import Controller.RIM.Utils.*;
@@ -36,9 +37,10 @@ public class GuestProfileView extends JFrame
 	private JTextField textField_4;
 	private JTextField textField_5;
 	
-	public GuestProfileView(Guest guest)
+	public GuestProfileView()
 	{
-		this.guest = guest;
+		guest = new Guest();
+		guest = guest.GET_GUEST_ACCOUNT(Account.currentUser.getUserName());
 		setContentPane(getContentPane());
 		initialize();
 	}
@@ -183,6 +185,6 @@ public class GuestProfileView extends JFrame
 	public static void main(String args[])
 	{
 		LookAndFeelController.setGlobalLookAndFeel();
-		new GuestProfileView(new Guest("adeelateeque@hotmail.com"));
+		new GuestProfileView();
 	}
 }

@@ -1,30 +1,26 @@
 package View.MM;
 
+import java.awt.Color;
+import java.awt.ComponentOrientation;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
+import java.awt.Font;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import Controller.MM.LoginController;
 import Controller.RIM.LookAndFeelController;
-import Model.Membership.Account;
-import java.awt.GridBagLayout;
-import java.awt.SystemColor;
-import javax.swing.ImageIcon;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.ComponentOrientation;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
+@SuppressWarnings("serial")
 public class LogInForm extends JFrame {
 
 		private JPanel loginPanel = null;
@@ -56,6 +52,8 @@ public class LogInForm extends JFrame {
 	        this.setResizable(false);
 	        this.setContentPane(getLoginPanel());
 	        this.setTitle("Login");
+	        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+	        this.setLocationRelativeTo(null);
 				
 		}
 
@@ -104,13 +102,13 @@ public class LogInForm extends JFrame {
 		public void loginUser()
 		{
 			LoginController login = new LoginController();
+			this.setVisible(false);
+			boolean valid = login.initiateLogin(userNameTextBox.getText(), passwordTextBox.getText());
 			
-			login.initiateLogin(userNameTextBox.getText(), passwordTextBox.getText());
-			
-			LoginController verify = new LoginController();
-			
-			verify.initiateLogin(getUserNameTextBox().getText(), getPasswordTextBox().getText());
-		
+			if(valid==true)
+			{
+				this.dispose();
+			}
 		}
 		/**
 		 * This method initializes UserNameTextBox	
@@ -234,6 +232,6 @@ public class LogInForm extends JFrame {
 			// TODO Auto-generated method stub
 			return null;
 		}
-
+		
 
 }  //  @jve:decl-index=0:visual-constraint="10,10"

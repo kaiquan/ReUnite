@@ -2,7 +2,6 @@ package Model.Membership;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Date;
 
 import Controller.MySQLController;
@@ -272,8 +271,7 @@ public class Account implements Comparable<Account>
 	{
 		ResultSet rs = null;
 		Account account = null;
-		boolean valid = false;
-		String dbQuery = "Select userName, password, type FROM Account WHERE userName='" + accountSet.getUserName() + "'AND password = '" + accountSet.getPassword() + "'";
+		String dbQuery = "Select * FROM Account WHERE userName='" + accountSet.getUserName() + "' AND password = '" + accountSet.getPassword() + "'";
 		rs = db.readRequest(dbQuery);
 
 		try

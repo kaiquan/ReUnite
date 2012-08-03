@@ -1038,7 +1038,7 @@ public class AdministrateFacilityForm {
 			getJTextField_facilityWeekendCost().requestFocus();
 			main.interrupt();
 		}
-		else if(getJTextField_facilityContact().getText().equals("")||getJTextField_facilityContact().getText().equals("          Enter Contact No")){
+		else if(getJTextField_facilityContact().getText().equals("")||getJTextField_facilityContact().getText().equals("               Enter Contact No")){
 			validate=false;
 			progress.interrupt();
 			progress.stop();
@@ -1048,7 +1048,7 @@ public class AdministrateFacilityForm {
 			getJTextField_facilityContact().requestFocus();
 			main.interrupt();
 		}
-		else if(getJTextField_facilityName().getText().equals("")||getJTextField_facilityName().getText().equals("                                                 Enter Facility Name Here")){
+		else if(getJTextField_facilityName().getText().equals("")||getJTextField_facilityName().getText().equals("                                                                             Enter Facility Name")){
 			validate=false;
 			progress.interrupt();
 			progress.stop();
@@ -1058,7 +1058,7 @@ public class AdministrateFacilityForm {
 			getJTextField_facilityName().requestFocus();
 			main.interrupt();
 		}
-		else if(getJTextField_facilityAddress().getText().equals("")||getJTextField_facilityAddress().getText().equals("                                                Enter Facility Adress Here")){
+		else if(getJTextField_facilityAddress().getText().equals("")||getJTextField_facilityAddress().getText().equals("                                                                           Enter Facility Address")){
 			validate=false;
 			progress.interrupt();
 			progress.stop();
@@ -1068,7 +1068,7 @@ public class AdministrateFacilityForm {
 			getJTextField_facilityAddress().requestFocus();
 			main.interrupt();
 		}
-		else if(getJTextArea_facilityDescription().getText().equals("")||getJTextArea_facilityDescription().getText().equals("\n\n                                                  Enter a Description Here")){
+		else if(getJTextArea_facilityDescription().getText().equals("")||getJTextArea_facilityDescription().getText().equals("\n\n                                                                             Enter Description")){
 			validate=false;
 			progress.interrupt();
 			progress.stop();

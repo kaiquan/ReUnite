@@ -859,7 +859,7 @@ public class AdministrateBallroomForm {
 			getJComboBox_facilityName().requestFocus();
 			main.interrupt();
 		}
-		else if(getJTextField_ballroomTitle().getText().equals("")||getJTextField_ballroomTitle().getText().equals("                                                      Enter a Ballroom Name")){
+		else if(getJTextField_ballroomTitle().getText().equals("")||getJTextField_ballroomTitle().getText().equals("                                                                            Enter a Ballroom Name")){
 			success=false;
 			progress.interrupt();
 			progress.stop();
@@ -900,7 +900,7 @@ public class AdministrateBallroomForm {
 			getJTextField_ballroomPrice().requestFocus();
 			main.interrupt();
 		}
-		else if(getJTextArea_ballroomDescription().getText().equals("")||getJTextArea_ballroomDescription().getText().equals("\n\n                                                    Enter a Ballroom Description")){
+		else if(getJTextArea_ballroomDescription().getText().equals("")||getJTextArea_ballroomDescription().getText().equals("\n\n                                                                           Enter a Ballroom Description")){
 			success=false;
 			progress.interrupt();
 			progress.stop();

@@ -1543,7 +1543,6 @@ public class InitiateEventForm {
 			
 		}
 	
-	//add hits function?
 	/********************************************************
 	  * Method Name : createEvent
 	  * Input Parameter : void
@@ -1613,7 +1612,6 @@ public class InitiateEventForm {
 			
 			//recreating the package
 			AdministratePackageControl newPackage= new AdministratePackageControl("", newEntertainmentID, pkControl.getBallroom().getBallroomID(),"Standard", pkControl.getPack().getPackageTitle(),pkControl.getPack().getPackageDescription(),true, pkControl.getPack().getPackageHits(),pkControl.getPack().getPackageDiscount(),true);
-			System.out.println(newMeals[0]+"!!!!!!!!!!");
 			newPackageID=newPackage.processCreatePackage(newMeals[0], newMeals[1], newMeals[2]);
 			
 			

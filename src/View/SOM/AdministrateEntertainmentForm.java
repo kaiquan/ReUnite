@@ -914,7 +914,7 @@ public class AdministrateEntertainmentForm {
 	@SuppressWarnings("deprecation")
 	public boolean validateEntertainmentDetails(){
 		boolean success=true;
-		if(getJTextField_entertainmentTitle().getText().equals("")||getJTextField_entertainmentTitle().getText().equals("                                                           Enter a Title Here...")){
+		if(getJTextField_entertainmentTitle().getText().equals("")||getJTextField_entertainmentTitle().getText().equals("                                                                                     Enter a Title Here")){
 			success=false;
 			progress.interrupt();
 			progress.stop();
@@ -924,7 +924,7 @@ public class AdministrateEntertainmentForm {
 			getJTextField_entertainmentTitle().requestFocus();
 			main.interrupt();
 		}
-		else if(getJTextArea_entertainmentDescription().getText().equals("")||getJTextArea_entertainmentDescription().getText().equals("\n\n                                                       Enter a Description Here...")){
+		else if(getJTextArea_entertainmentDescription().getText().equals("")||getJTextArea_entertainmentDescription().getText().equals("\n\n                                                                                Enter a Description Here")){
 			success=false;
 			success=false;
 			progress.interrupt();

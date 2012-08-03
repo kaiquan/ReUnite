@@ -986,7 +986,7 @@ public class AdministrateMealForm {
 	public boolean validateMealDetails(){
 		boolean success=true;
 		
-		if(getJTextField_mealTitle().getText().equals("")||getJTextField_mealTitle().getText().equals("                                                       Enter Meal TItle Here")){
+		if(getJTextField_mealTitle().getText().equals("")||getJTextField_mealTitle().getText().equals("                                                                                  Enter A Meal Title")){
 			success=false;
 			progress.interrupt();
 			progress.stop();
@@ -996,7 +996,7 @@ public class AdministrateMealForm {
 			getJTextField_mealTitle().requestFocus();
 			main.interrupt();
 		}
-		else if(getJTextArea_mealDescription().getText().equals("")||getJTextArea_mealDescription().getText().equals("\n\n                                                      Enter a Description Here")){
+		else if(getJTextArea_mealDescription().getText().equals("")||getJTextArea_mealDescription().getText().equals("\n\n                                                                                Enter A Description")){
 			success=false;
 			progress.interrupt();
 			progress.stop();

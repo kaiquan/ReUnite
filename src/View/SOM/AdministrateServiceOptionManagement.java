@@ -310,19 +310,7 @@ public class AdministrateServiceOptionManagement {
 			jButton_save.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/save.png")));
 			jButton_save.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					for(int i=0; i<tabs.size();i++){
-						if(tabs.get(i)instanceof AdministratePackageForm)
-							System.out.println("tab : "+i+ " is aPackageForm");
-						else if(tabs.get(i)instanceof AdministrateFacilityForm)
-							System.out.println("tab : "+i+ " is aFacilityForm");
-						else if(tabs.get(i)instanceof AdministrateEntertainmentForm)
-							System.out.println("tab : "+i+ " is aEntertainemntForm");
-						else if(tabs.get(i)instanceof AdministrateMealForm)
-							System.out.println("tab : "+i+ " is amealForm");
-						else if(tabs.get(i)instanceof AdministrateBallroomForm)
-							System.out.println("tab : "+i+ " is aballroomForm");
-					}
-					System.out.println("===");
+					
 				}
 			});
 		}
@@ -1605,7 +1593,7 @@ public class AdministrateServiceOptionManagement {
 		getJTable().getColumnModel().getColumn(2).setPreferredWidth(600);
 		getJTable().getColumnModel().getColumn(3).setPreferredWidth(300);
 		getJTable().getColumnModel().getColumn(4).setPreferredWidth(120);
-		getJTable().getColumnModel().getColumn(5).setPreferredWidth(600);
+		getJTable().getColumnModel().getColumn(5).setPreferredWidth(975);
 		jLabel.setText(model.getRowCount()+" Records Found!");
 		getJTable().setName("facility");
 	}
@@ -1626,7 +1614,7 @@ public class AdministrateServiceOptionManagement {
 		getJTable().getColumnModel().getColumn(2).setPreferredWidth(600);
 		getJTable().getColumnModel().getColumn(3).setPreferredWidth(300);
 		getJTable().getColumnModel().getColumn(4).setPreferredWidth(120);
-		getJTable().getColumnModel().getColumn(5).setPreferredWidth(600);
+		getJTable().getColumnModel().getColumn(5).setPreferredWidth(975);
 		jLabel.setText(model.getRowCount()+" Records Found!");
 		getJTable().setName("facility");
 	}

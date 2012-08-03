@@ -84,7 +84,7 @@ public class Entertainment {
 		String sqlQuery;
 		String entertainmentID=null;
 
-		sqlQuery = "INSERT INTO `saharp5_adeel_school`.`Entertainment` (`entertainmentAvailability`, `entertainmentDescription`, `entertainmentTitle`, `entertainmentDiscount`, `entertainmentPrice`, `entertainmentFinalPrice`, `entertainmentHits`, `isRecord`)"; 
+		sqlQuery = "INSERT INTO Entertainment (`entertainmentAvailability`, `entertainmentDescription`, `entertainmentTitle`, `entertainmentDiscount`, `entertainmentPrice`, `entertainmentFinalPrice`, `entertainmentHits`, `isRecord`)"; 
 		sqlQuery +="VALUES ("+this.entertainmentAvailability+", '"+this.entertainmentDescription+"', '"+this.entertainmentTitle+"', "+this.entertainmentDiscount+", "+this.entertainmentPrice+", "+this.entertainmentFinalPrice+", "+this.entertainmentHits+","+this.isRecord+" )";
 		try{
 			DB.updateRequest(sqlQuery);
@@ -96,7 +96,7 @@ public class Entertainment {
 		}
 	
 		//RETRIEVEING THE CREATES RECORD ID
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Entertainment";
+		sqlQuery = "SELECT * FROM Entertainment";
 		try{
 			rs = DB.readRequest(sqlQuery);
 			while (rs.next()){
@@ -121,7 +121,7 @@ public class Entertainment {
 		boolean success=false;
 		String sqlQuery;
 		
-		sqlQuery = "DELETE FROM `saharp5_adeel_school`.`Entertainment` WHERE `entertainmentID`='"+ID+"'";
+		sqlQuery = "DELETE FROM Entertainment WHERE `entertainmentID`='"+ID+"'";
 		int i = 0;
 
 		try{
@@ -148,7 +148,7 @@ public class Entertainment {
 		boolean success=false;
 		String sqlQuery;
 		
-		sqlQuery = "UPDATE `saharp5_adeel_school`.`Entertainment` SET `entertainmentAvailability`="+this.entertainmentAvailability+", `entertainmentDescription`='"+this.entertainmentDescription+"', `entertainmentTitle`='"+this.entertainmentTitle+"', `entertainmentDiscount`="+this.entertainmentDiscount+", `entertainmentPrice`="+this.entertainmentPrice+", `entertainmentFinalPrice`="+this.entertainmentFinalPrice+" WHERE `entertainmentID`='"+ID+"';";
+		sqlQuery = "UPDATE Entertainment SET `entertainmentAvailability`="+this.entertainmentAvailability+", `entertainmentDescription`='"+this.entertainmentDescription+"', `entertainmentTitle`='"+this.entertainmentTitle+"', `entertainmentDiscount`="+this.entertainmentDiscount+", `entertainmentPrice`="+this.entertainmentPrice+", `entertainmentFinalPrice`="+this.entertainmentFinalPrice+" WHERE `entertainmentID`='"+ID+"';";
 		int i = 0;
 
 		try{
@@ -176,7 +176,7 @@ public class Entertainment {
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
 		
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Entertainment WHERE `isRecord`=false";
+		sqlQuery = "SELECT * FROM Entertainment WHERE `isRecord`=false";
 		
 		model.setColumnIdentifiers(new Object[]{"ID","Title","Price/Hr","Description"});
 		try{
@@ -207,7 +207,7 @@ public class Entertainment {
 	public DefaultTableModel RETRIEVE_ENTERTAINMENT(String parameter){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Entertainment WHERE (entertainmentID LIKE '"+parameter+"%'";
+		sqlQuery = "SELECT * FROM Entertainment WHERE (entertainmentID LIKE '"+parameter+"%'";
 		sqlQuery+=" OR entertainmentDescription LIKE'"+parameter+"%'";
 		sqlQuery+=" OR entertainmentTitle LIKE'"+parameter+"%'";
 		sqlQuery+=" OR entertainmentDiscount LIKE'"+parameter+"%'";
@@ -241,7 +241,7 @@ public class Entertainment {
 	  *******************************************************/
 	public Entertainment RETRIEVE_ENTERTAINMENT_BY_ID(String ID){
 		String sqlQuery;
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Entertainment WHERE `entertainmentID`='"+ID+"'";
+		sqlQuery = "SELECT * FROM Entertainment WHERE `entertainmentID`='"+ID+"'";
 		data= new Entertainment();
 		
 		try{
@@ -275,7 +275,7 @@ public class Entertainment {
 	public boolean UPDATE_HITS(String ID){
 		//RETRIEVE THE RECORD TO UPDATE
 		String sqlQuery;
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Entertainment WHERE `entertainmentID`='"+ID+"'";
+		sqlQuery = "SELECT * FROM Entertainment WHERE `entertainmentID`='"+ID+"'";
 		int hits=0;
 		
 		try{
@@ -293,7 +293,7 @@ public class Entertainment {
 		
 		//UPDATES THE ENTERTAINMENT HITS
 		boolean success=false;
-		sqlQuery = "UPDATE `saharp5_adeel_school`.`Entertainment` SET  `entertainmentHits`="+hits+" WHERE `entertainmentID`='"+ID+"';";
+		sqlQuery = "UPDATE Entertainment SET  `entertainmentHits`="+hits+" WHERE `entertainmentID`='"+ID+"';";
 		int i = 0;
 
 		try{
@@ -319,7 +319,7 @@ public class Entertainment {
 	public boolean CHECK_RELATIONSHIP(String ID){
 		boolean ties=false;
 		String sqlQuery;
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Package WHERE `entertainmentID`='"+ID+"'";
+		sqlQuery = "SELECT * FROM Package WHERE `entertainmentID`='"+ID+"'";
 		
 		try{
 			rs = DB.readRequest(sqlQuery);

@@ -110,7 +110,7 @@ public class Event {
 		boolean success=false;
 		String sqlQuery;
 
-		sqlQuery = "INSERT INTO `saharp5_adeel_school`.`Event` (`packageID`, "+Account.currentUser+", `eventStatus`, `eventDate`, `eventTime`, `eventName`, `eventDescription`)";
+		sqlQuery = "INSERT INTO Event (`packageID`, "+Account.currentUser+", `eventStatus`, `eventDate`, `eventTime`, `eventName`, `eventDescription`)";
 		sqlQuery +="VALUES ("+this.packageID+", '"+this.userName+"', 'Pending', '"+this.eventDate+"', '"+this.eventTime+"', '"+this.eventName+"','"+this.eventDescription+"')";
 		int i = 0;
 		try{
@@ -125,7 +125,7 @@ public class Event {
 			success=true;
 		
 		//RETRIEVE THE CREATED EVENT ID
-		sqlQuery="SELECT * FROM saharp5_adeel_school.Event;";
+		sqlQuery="SELECT * FROM Event;";
 		try{
 			rs = DB.readRequest(sqlQuery);
 			while (rs.next()){
@@ -140,7 +140,7 @@ public class Event {
 		
 		
 		//CREATE THE PURCHASE SUMMARY
-		sqlQuery = "INSERT INTO `saharp5_adeel_school`.`Purchase_Summary` (`eventID`,`dateOfPurchase`) VALUES ('"+this.eventID+"','"+MyCalendar.formatDate(new GregorianCalendar())+"')"; 
+		sqlQuery = "INSERT INTO Purchase_Summary (`eventID`,`dateOfPurchase`) VALUES ('"+this.eventID+"','"+MyCalendar.formatDate(new GregorianCalendar())+"')"; 
 		i = 0;
 		try{
 			i=DB.updateRequest(sqlQuery);
@@ -166,7 +166,7 @@ public class Event {
 		ArrayList<String> packagelist= new ArrayList<String>();
 		String sqlQuery;
 		
-		sqlQuery="SELECT distinct packageID FROM saharp5_adeel_school.Package WHERE ballroomID="+ballroomID+"";
+		sqlQuery="SELECT distinct packageID FROM Package WHERE ballroomID="+ballroomID+"";
 		try{
 			rs = DB.readRequest(sqlQuery);
 			while (rs.next()){
@@ -182,7 +182,7 @@ public class Event {
 
 		ArrayList<String> Timelist= new ArrayList<String>();
 		for(int i=0; i<packagelist.size();i++){
-			sqlQuery = "SELECT * FROM saharp5_adeel_school.Event WHERE (`eventStatus`='Pending' AND `eventDate`='"+Date+"'  AND `packageID`="+packagelist.get(i)+")";
+			sqlQuery = "SELECT * FROM Event WHERE (`eventStatus`='Pending' AND `eventDate`='"+Date+"'  AND `packageID`="+packagelist.get(i)+")";
 			
 			try{
 				rs = DB.readRequest(sqlQuery);

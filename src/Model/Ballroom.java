@@ -130,7 +130,7 @@ public class Ballroom {
 		String ballroomID="";
 		String sqlQuery;
 
-		sqlQuery = "INSERT INTO `saharp5_adeel_school`.`Ballroom` (`ballroomName`, `ballroomDescription`, `ballroomSize`, `ballroomDiscount`, `ballroomPrice`, `ballroomFinalPrice`, `ballroomHits`, `facilityID`,`ballroomAvailability` )"; 
+		sqlQuery = "INSERT INTO Ballroom (`ballroomName`, `ballroomDescription`, `ballroomSize`, `ballroomDiscount`, `ballroomPrice`, `ballroomFinalPrice`, `ballroomHits`, `facilityID`,`ballroomAvailability` )"; 
 		sqlQuery +="VALUES ('"+this.ballroomName+"', '"+this.ballroomDescription+"', '"+this.ballroomSize+"', "+this.ballroomDiscount+", "+this.ballroomPrice+", "+this.ballroomFinalPrice+", "+this.ballroomHits+", "+this.facilityID+", "+this.ballroomAvailability+")";
 
 		try{
@@ -173,7 +173,7 @@ public class Ballroom {
 		boolean success=true;
 		String sqlQuery;
 		
-		sqlQuery = "DELETE FROM `saharp5_adeel_school`.`Ballroom` WHERE `ballroomID`='"+ID+"';";
+		sqlQuery = "DELETE FROM Ballroom WHERE `ballroomID`='"+ID+"';";
 		int i = 0;
 
 		try{
@@ -206,7 +206,7 @@ public class Ballroom {
 		boolean success=true;
 		String sqlQuery;
 		
-		sqlQuery = "DELETE FROM `saharp5_adeel_school`.`Ballroom` WHERE `facilityID`='"+ID+"';";
+		sqlQuery = "DELETE FROM Ballroom WHERE `facilityID`='"+ID+"';";
 		int i = 0;
 
 		try{
@@ -238,7 +238,7 @@ public class Ballroom {
 		boolean success=false;
 		String sqlQuery;
 
-		sqlQuery = "UPDATE `saharp5_adeel_school`.`Ballroom` SET `ballroomName`='"+this.ballroomName+"', `ballroomDescription`='"+this.ballroomDescription+"', `ballroomSize`='"+this.ballroomSize+"', `ballroomDiscount`="+this.ballroomDiscount+", `ballroomPrice`="+this.ballroomPrice+", `ballroomFinalPrice`="+this.ballroomFinalPrice+", `ballroomAvailability`="+this.ballroomAvailability+" WHERE `ballroomID`='"+ID+"'";
+		sqlQuery = "UPDATE Ballroom SET `ballroomName`='"+this.ballroomName+"', `ballroomDescription`='"+this.ballroomDescription+"', `ballroomSize`='"+this.ballroomSize+"', `ballroomDiscount`="+this.ballroomDiscount+", `ballroomPrice`="+this.ballroomPrice+", `ballroomFinalPrice`="+this.ballroomFinalPrice+", `ballroomAvailability`="+this.ballroomAvailability+" WHERE `ballroomID`='"+ID+"'";
 		int i = 0;
 
 		try{
@@ -269,7 +269,7 @@ public class Ballroom {
 	public DefaultTableModel RETRIEVE_BALLROOM(){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Ballroom";
+		sqlQuery = "SELECT * FROM Ballroom";
 		
 		model.setColumnIdentifiers(new Object[]{"ID","Name","Size","Price","Description"});
 		try{
@@ -302,7 +302,7 @@ public class Ballroom {
 	public DefaultTableModel RETRIEVE_BALLROOM(String parameter){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Ballroom WHERE (facilityID LIKE '"+parameter+"%'";
+		sqlQuery = "SELECT * FROM Ballroom WHERE (facilityID LIKE '"+parameter+"%'";
 		sqlQuery+=" OR ballroomName LIKE'"+parameter+"%'";
 		sqlQuery+=" OR ballroomDescription LIKE'"+parameter+"%'";
 		sqlQuery+=" OR ballroomSize LIKE'"+parameter+"%'";
@@ -339,7 +339,7 @@ public class Ballroom {
 	 */
 	public Ballroom RETRIEVE_BALLROOM_BY_ID(String ID){
 		String sqlQuery;
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Ballroom WHERE `ballroomID`='"+ID+"'";
+		sqlQuery = "SELECT * FROM Ballroom WHERE `ballroomID`='"+ID+"'";
 		data= new Ballroom();
 		try{
 			rs = DB.readRequest(sqlQuery);
@@ -379,7 +379,7 @@ public class Ballroom {
 	public DefaultTableModel RETRIEVE_BALLROOM_MODEL(String ID){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Ballroom WHERE `facilityID`='"+ID+"'";
+		sqlQuery = "SELECT * FROM Ballroom WHERE `facilityID`='"+ID+"'";
 	
 		model.setColumnIdentifiers(new Object[]{"Ballroom Name","Price","Entitled Discount","Size","Description"});
 		try{
@@ -411,7 +411,7 @@ public class Ballroom {
 	public DefaultTableModel RETRIEVE_BALLROOM_BY_FACILITY(String ID){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Ballroom WHERE `facilityID`='"+ID+"'";
+		sqlQuery = "SELECT * FROM Ballroom WHERE `facilityID`='"+ID+"'";
 	
 		model.setColumnIdentifiers(new Object[]{"ID","Name","Size","Price","Description"});
 		try{
@@ -443,7 +443,7 @@ public class Ballroom {
 	public boolean CHECK_RELATIONSHIP(String ID){
 		boolean ties=false;
 		String sqlQuery;
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Package WHERE `ballroomID`='"+ID+"'";
+		sqlQuery = "SELECT * FROM Package WHERE `ballroomID`='"+ID+"'";
 		
 		try{
 			rs = DB.readRequest(sqlQuery);

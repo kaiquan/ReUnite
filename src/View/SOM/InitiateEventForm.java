@@ -39,6 +39,11 @@ import Controller.SOM.AdministrateEntertainmentControl;
 import Controller.SOM.AdministrateMealControl;
 import Controller.SOM.AdministratePackageControl;
 import Controller.SOM.InitiateEventControl;
+<<<<<<< HEAD
+=======
+import javax.swing.BoxLayout;
+import javax.swing.WindowConstants;
+>>>>>>> craving for kfc
 
 
 public class InitiateEventForm {
@@ -146,6 +151,7 @@ public class InitiateEventForm {
 			jFrame = new JFrame();
 			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 			jFrame.setSize(new Dimension(485, 546));
+			jFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			jFrame.setLocation(screenSize.width/2 - (jFrame.getWidth()/2),screenSize.height/2 - (jFrame.getHeight()/2));
 			jFrame.setTitle("Create Event Form");
 			jFrame.setContentPane(getJContentPane());
@@ -429,6 +435,7 @@ public class InitiateEventForm {
 			jFrame_StandardPackage = new JFrame();
 			jFrame_StandardPackage.setSize(new Dimension(675, 878));
 			jFrame_StandardPackage.setTitle("Select Standard Package");
+			jFrame_StandardPackage.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			jFrame_StandardPackage.setContentPane(getJScrollPane_StandardPackage());
 			jFrame_StandardPackage.setResizable(false);
 		}

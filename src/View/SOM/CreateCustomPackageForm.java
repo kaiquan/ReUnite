@@ -35,6 +35,7 @@ import Controller.SOM.AdministrateBallroomControl;
 import Controller.SOM.AdministrateEntertainmentControl;
 import Controller.SOM.AdministrateFacilityControl;
 import Controller.SOM.AdministrateMealControl;
+import javax.swing.WindowConstants;
 
 public class CreateCustomPackageForm {
 
@@ -168,6 +169,7 @@ public class CreateCustomPackageForm {
 		if (jFrame == null) {
 			jFrame = new JFrame();
 			jFrame.setSize(new Dimension(885, 713));
+			jFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			jFrame.setContentPane(getJScrollPane());
 			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 			jFrame.setLocation(screenSize.width/2 - (jFrame.getWidth()/2),screenSize.height/2 - (jFrame.getHeight()/2));

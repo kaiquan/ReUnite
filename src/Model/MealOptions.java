@@ -53,7 +53,7 @@ public class MealOptions {
 		boolean success=false;
 		String sqlQuery;
 		
-		sqlQuery = "INSERT INTO `saharp5_adeel_school`.`Meal_Options` (`packageID`, `mealID`) VALUES ("+packageID+", "+mealID+")";
+		sqlQuery = "INSERT INTO Meal_Options (`packageID`, `mealID`) VALUES ("+packageID+", "+mealID+")";
 
 		int i = 0;
 
@@ -81,7 +81,7 @@ public class MealOptions {
 		boolean success=false;
 		String sqlQuery;
 		
-		sqlQuery = "DELETE FROM `saharp5_adeel_school`.`Meal_Options` WHERE `packageID`='"+ID+"'";
+		sqlQuery = "DELETE FROM Meal_Options WHERE `packageID`='"+ID+"'";
 		int i = 0;
 
 		try{
@@ -107,7 +107,7 @@ public class MealOptions {
 		ArrayList<String> mealID = new ArrayList<String>();
 		String sqlQuery;
 		
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Meal_Options WHERE `packageID`='"+ID+"'";
+		sqlQuery = "SELECT * FROM Meal_Options WHERE `packageID`='"+ID+"'";
 		
 		
 		try{

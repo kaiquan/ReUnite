@@ -85,11 +85,11 @@ public class Package {
 
 		
 		if(this.EntertainmentID.equals("")){
-			sqlQuery = "INSERT INTO `saharp5_adeel_school`.`Package` (`ballroomID`, `packageType`, `packageTitle`, `packageDescription`, `packageAvailability`, `packageHits`, `packageDiscount`,`isRecord` )"; 
+			sqlQuery = "INSERT INTO Package (`ballroomID`, `packageType`, `packageTitle`, `packageDescription`, `packageAvailability`, `packageHits`, `packageDiscount`,`isRecord` )"; 
 			sqlQuery +="VALUES ("+this.BallroomID+", '"+this.packageType+"', '"+this.packageTitle+"', '"+this.packageDescription+"', "+this.packageAvailability+", "+this.packageHits+", "+this.packageDiscount+","+this.isRecord+")";
 		}
 		else{
-			sqlQuery = "INSERT INTO `saharp5_adeel_school`.`Package` (`ballroomID`, `entertainmentID`, `packageType`, `packageTitle`, `packageDescription`, `packageAvailability`, `packageHits`, `packageDiscount`,`isRecord`)"; 
+			sqlQuery = "INSERT INTO Package (`ballroomID`, `entertainmentID`, `packageType`, `packageTitle`, `packageDescription`, `packageAvailability`, `packageHits`, `packageDiscount`,`isRecord`)"; 
 			sqlQuery +="VALUES ("+this.BallroomID+", "+this.EntertainmentID+", '"+this.packageType+"', '"+this.packageTitle+"', '"+this.packageDescription+"', "+this.packageAvailability+", "+this.packageHits+", "+this.packageDiscount+","+this.isRecord+")";
 		}
 		
@@ -103,7 +103,7 @@ public class Package {
 		}
 		
 		//RETRIEVEING THE CREATED PACKAGE ID
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Package";
+		sqlQuery = "SELECT * FROM Package";
 		try{
 			rs = DB.readRequest(sqlQuery);
 			while (rs.next()){
@@ -143,7 +143,7 @@ public class Package {
 		boolean success=false;
 		String sqlQuery;
 		
-		sqlQuery = "DELETE FROM `saharp5_adeel_school`.`Package` WHERE `packageID`='"+ID+"'";
+		sqlQuery = "DELETE FROM Package WHERE `packageID`='"+ID+"'";
 		int i = 0;
 
 		try{
@@ -175,11 +175,11 @@ public class Package {
 		boolean success=false;
 		String sqlQuery;
 		if(this.EntertainmentID.equals(null)||this.EntertainmentID.equals("")){
-			sqlQuery = "UPDATE `saharp5_adeel_school`.`Package` SET `ballroomID`="+this.BallroomID+",`entertainmentID`=null, `packageType`='Standard', `packageTitle`='"+this.packageTitle+"', `packageDescription`='"+this.packageDescription+"', `packageAvailability`="+this.packageAvailability+", `packageDiscount`="+this.packageDiscount+" WHERE `packageID`='"+this.packageID+"'";
+			sqlQuery = "UPDATE Package SET `ballroomID`="+this.BallroomID+",`entertainmentID`=null, `packageType`='Standard', `packageTitle`='"+this.packageTitle+"', `packageDescription`='"+this.packageDescription+"', `packageAvailability`="+this.packageAvailability+", `packageDiscount`="+this.packageDiscount+" WHERE `packageID`='"+this.packageID+"'";
 
 		}
 		else{
-			sqlQuery = "UPDATE `saharp5_adeel_school`.`Package` SET `ballroomID`="+this.BallroomID+", `entertainmentID`="+this.EntertainmentID+", `packageType`='Standard', `packageTitle`='"+this.packageTitle+"', `packageDescription`='"+this.packageDescription+"', `packageAvailability`="+this.packageAvailability+", `packageDiscount`="+this.packageDiscount+" WHERE `packageID`='"+this.packageID+"'";
+			sqlQuery = "UPDATE Package SET `ballroomID`="+this.BallroomID+", `entertainmentID`="+this.EntertainmentID+", `packageType`='Standard', `packageTitle`='"+this.packageTitle+"', `packageDescription`='"+this.packageDescription+"', `packageAvailability`="+this.packageAvailability+", `packageDiscount`="+this.packageDiscount+" WHERE `packageID`='"+this.packageID+"'";
 
 		}
 		int i = 1;
@@ -225,7 +225,7 @@ public class Package {
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
 		
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Package WHERE `isRecord`=false";
+		sqlQuery = "SELECT * FROM Package WHERE `isRecord`=false";
 		
 		model.setColumnIdentifiers(new Object[]{"ID","Title","Type","Description"});
 		try{
@@ -254,7 +254,7 @@ public class Package {
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
 		
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Package WHERE (packageID LIKE '"+parameter+"%'";
+		sqlQuery = "SELECT * FROM Package WHERE (packageID LIKE '"+parameter+"%'";
 		sqlQuery+=" OR ballroomID LIKE'"+parameter+"%'";
 		sqlQuery+=" OR entertainmentID LIKE'"+parameter+"%'";
 		sqlQuery+=" OR packageType LIKE'"+parameter+"%'";
@@ -288,7 +288,7 @@ public class Package {
 	  *******************************************************/
 	public Package RETRIEVE_PACKAGE_BY_ID(String ID){
 		String sqlQuery;
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Package WHERE `packageID`='"+ID+"'";
+		sqlQuery = "SELECT * FROM Package WHERE `packageID`='"+ID+"'";
 		data= new Package();
 		
 		try{

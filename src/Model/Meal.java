@@ -87,7 +87,7 @@ public class Meal {
 		String sqlQuery;
 		String MealID=null;
 
-		sqlQuery = "INSERT INTO `saharp5_adeel_school`.`Meal` (`mealTitle`, `mealDescription`, `mealType`, `mealPricePerHead`, `mealDiscount`, `mealFinalPrice`, `mealAvailability`, `mealHits`, `isRecord`)"; 
+		sqlQuery = "INSERT INTO Meal (`mealTitle`, `mealDescription`, `mealType`, `mealPricePerHead`, `mealDiscount`, `mealFinalPrice`, `mealAvailability`, `mealHits`, `isRecord`)"; 
 		sqlQuery +="VALUES ('"+this.mealTitle+"', '"+this.mealDescription+"', '"+this.mealType+"', "+this.mealPricePerHead+", "+this.mealDiscount+", "+this.mealFinalPrice+", "+this.mealAvailability+", "+this.mealHits+","+this.isRecord+")";
 		System.out.println(sqlQuery);
 		try{
@@ -125,7 +125,7 @@ public class Meal {
 		boolean success=false;
 		String sqlQuery;
 
-		sqlQuery = "DELETE FROM `saharp5_adeel_school`.`Meal` WHERE `mealID`='"+ID+"'";
+		sqlQuery = "DELETE FROM Meal WHERE `mealID`='"+ID+"'";
 		int i = 0;
 		try{
 			i=DB.updateRequest(sqlQuery);
@@ -151,7 +151,7 @@ public class Meal {
 		boolean success=false;
 		String sqlQuery;
 
-		sqlQuery = "UPDATE `saharp5_adeel_school`.`Meal` SET `mealTitle`='"+this.mealTitle+"', `mealDescription`='"+this.mealDescription+"', `mealType`='"+this.mealType+"', `mealPricePerHead`="+this.mealPricePerHead+", `mealDiscount`="+this.mealDiscount+", `mealFinalPrice`="+this.mealFinalPrice+", `mealAvailability`="+this.mealAvailability+" WHERE `mealID`='"+ID+"'";
+		sqlQuery = "UPDATE Meal SET `mealTitle`='"+this.mealTitle+"', `mealDescription`='"+this.mealDescription+"', `mealType`='"+this.mealType+"', `mealPricePerHead`="+this.mealPricePerHead+", `mealDiscount`="+this.mealDiscount+", `mealFinalPrice`="+this.mealFinalPrice+", `mealAvailability`="+this.mealAvailability+" WHERE `mealID`='"+ID+"'";
 		int i = 0;
 
 		try{
@@ -178,7 +178,7 @@ public class Meal {
 	public DefaultTableModel RETRIEVE_MEAL(){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Meal WHERE `isRecord`=false";
+		sqlQuery = "SELECT * FROM Meal WHERE `isRecord`=false";
 		
 		model.setColumnIdentifiers(new Object[]{"ID","Title","Type","PricePerHead","Description"});
 		try{
@@ -206,7 +206,7 @@ public class Meal {
 	public DefaultTableModel RETRIEVE_MEAL(String parameter){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Meal WHERE (mealID LIKE '"+parameter+"%'";
+		sqlQuery = "SELECT * FROM Meal WHERE (mealID LIKE '"+parameter+"%'";
 		sqlQuery+=" OR mealTitle LIKE'"+parameter+"%'";
 		sqlQuery+=" OR mealDescription LIKE'"+parameter+"%'";
 		sqlQuery+=" OR mealType LIKE'"+parameter+"%'";
@@ -239,7 +239,7 @@ public class Meal {
 	  *******************************************************/
 	public Meal RETRIEVE_MEAL_BY_ID(String ID){
 		String sqlQuery;
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Meal WHERE `mealID`='"+ID+"'";
+		sqlQuery = "SELECT * FROM Meal WHERE `mealID`='"+ID+"'";
 		data= new Meal();
 		try{
 			rs = DB.readRequest(sqlQuery);
@@ -270,7 +270,7 @@ public class Meal {
 	  *******************************************************/
 	public boolean UPDATE_HITS(String ID){
 		String sqlQuery;
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Meal WHERE `mealID`='"+ID+"'";
+		sqlQuery = "SELECT * FROM Meal WHERE `mealID`='"+ID+"'";
 		int hits=0;
 		try{
 			rs = DB.readRequest(sqlQuery);
@@ -288,7 +288,7 @@ public class Meal {
 		//UPDATES THE MEAL HITS
 		boolean success=false;
 
-		sqlQuery = "UPDATE `saharp5_adeel_school`.`Meal` SET  `mealHits`="+hits+" WHERE `mealID`='"+ID+"'";
+		sqlQuery = "UPDATE Meal SET  `mealHits`="+hits+" WHERE `mealID`='"+ID+"'";
 		int i = 0;
 
 		try{
@@ -315,7 +315,7 @@ public class Meal {
 	public boolean CHECK_RELATIONSHIP(String ID){
 		boolean ties=false;
 		String sqlQuery;
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Meal_Options WHERE `mealID`='"+ID+"'";
+		sqlQuery = "SELECT * FROM Meal_Options WHERE `mealID`='"+ID+"'";
 		
 		try{
 			ResultSet rs;

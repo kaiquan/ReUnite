@@ -73,6 +73,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
+import javax.swing.WindowConstants;
 
 @SuppressWarnings("unused")
 public class AdministratePackageForm {
@@ -1110,6 +1111,7 @@ public class AdministratePackageForm {
 			jFrame_Ballroom.setResizable(false);
 			jFrame_Ballroom.setLocation(323, 66);
 			jFrame_Ballroom.setTitle("Select Ballroom");
+			jFrame_Ballroom.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			jFrame_Ballroom.setContentPane(getJScrollPaneBallroom());
 			jFrame_Ballroom.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Images/SOM/facility.png")));
 		}
@@ -1558,6 +1560,7 @@ public class AdministratePackageForm {
 			jFrameEntertainment.setLocation(323, 66);
 			jFrameEntertainment.setResizable(false);
 			jFrameEntertainment.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Images/SOM/entertainment.png")));
+			jFrameEntertainment.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			jFrameEntertainment.setContentPane(getJScrollPaneEntertainment());
 			jFrameEntertainment.setTitle("Select Entertainment");
 		}
@@ -1942,6 +1945,7 @@ public class AdministratePackageForm {
 			jFrameMeal.setResizable(false);
 			jFrameMeal.setLocation(323, 66);
 			jFrameMeal.setTitle("Select Meal");
+			jFrameMeal.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			jFrameMeal.setContentPane(getJScrollPaneMeal());
 			jFrameMeal.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Images/SOM/meal.png")));
 		}

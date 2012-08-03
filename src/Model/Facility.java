@@ -76,7 +76,7 @@ public class Facility {
 		String sqlQuery;
 		String facilityID=null;
 
-		sqlQuery = "INSERT INTO `saharp5_adeel_school`.`Facility` (`facilityName`, `facilityAddress`, `facilityDescription`, `facilityContact`, `facilityParking`, `facilityWeekendExtraCost`)"; 
+		sqlQuery = "INSERT INTO Facility (`facilityName`, `facilityAddress`, `facilityDescription`, `facilityContact`, `facilityParking`, `facilityWeekendExtraCost`)"; 
 		sqlQuery +="VALUES ('"+this.facilityName+"', '"+this.facilityAddress+"', '"+this.facilityDescription+"', '"+this.facilityContact+"', "+this.facilityParking+", "+this.facilityWeekendExtraCost+")";
 		try{
 			DB.updateRequest(sqlQuery);
@@ -88,7 +88,7 @@ public class Facility {
 		}
 
 		//RETRIEVING THE CREATED FACILITY ID
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Facility";
+		sqlQuery = "SELECT * FROM Facility";
 		try{
 			rs = DB.readRequest(sqlQuery);
 			while (rs.next()){
@@ -114,7 +114,7 @@ public class Facility {
 		boolean success=true;
 		String sqlQuery;
 		
-		sqlQuery = "DELETE FROM `saharp5_adeel_school`.`Facility` WHERE `facilityID`='"+ID+"'";
+		sqlQuery = "DELETE FROM Facility WHERE `facilityID`='"+ID+"'";
 		int i = 0;
 
 		try{
@@ -141,7 +141,7 @@ public class Facility {
 		boolean success=false;
 		String sqlQuery;
 
-		sqlQuery = "UPDATE `saharp5_adeel_school`.`Facility` SET `facilityName`='"+this.facilityName+"', `facilityAddress`='"+this.facilityAddress+"', `facilityDescription`='"+this.facilityDescription+"', `facilityContact`='"+this.facilityContact+"', `facilityParking`="+this.facilityParking+", `facilityWeekendExtraCost`="+this.facilityWeekendExtraCost+" WHERE `facilityID`='"+ID+"'";
+		sqlQuery = "UPDATE Facility SET `facilityName`='"+this.facilityName+"', `facilityAddress`='"+this.facilityAddress+"', `facilityDescription`='"+this.facilityDescription+"', `facilityContact`='"+this.facilityContact+"', `facilityParking`="+this.facilityParking+", `facilityWeekendExtraCost`="+this.facilityWeekendExtraCost+" WHERE `facilityID`='"+ID+"'";
 		int i = 0;
 
 		try{
@@ -167,7 +167,7 @@ public class Facility {
 	public DefaultTableModel RETRIEVE_FACILITY(){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Facility";
+		sqlQuery = "SELECT * FROM Facility";
 		
 		model.setColumnIdentifiers(new Object[]{"ID","Name","Address","Contact","Parking","Description"});
 		try{
@@ -201,7 +201,7 @@ public class Facility {
 	public DefaultTableModel RETRIEVE_FACILITY(String parameter){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Facility WHERE (facilityID LIKE '"+parameter+"%'";
+		sqlQuery = "SELECT * FROM Facility WHERE (facilityID LIKE '"+parameter+"%'";
 		sqlQuery+=" OR facilityName LIKE'"+parameter+"%'";
 		sqlQuery+=" OR facilityAddress LIKE'"+parameter+"%'";
 		sqlQuery+=" OR facilityDescription LIKE'"+parameter+"%'";
@@ -239,7 +239,7 @@ public class Facility {
 	  *******************************************************/
 	public Facility RETRIEVE_FACILITY_BY_ID(String ID){
 		String sqlQuery;
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Facility WHERE `facilityID`='"+ID+"'";
+		sqlQuery = "SELECT * FROM Facility WHERE `facilityID`='"+ID+"'";
 		data= new Facility();
 		try{
 			rs = DB.readRequest(sqlQuery);
@@ -270,7 +270,7 @@ public class Facility {
 	public DefaultComboBoxModel<String> RETRIEVE_FACILITY_NAMES(){
 		DefaultComboBoxModel<String>  cModel = new DefaultComboBoxModel<String>();
 		String sqlQuery;
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Facility";
+		sqlQuery = "SELECT * FROM Facility";
 		cModel.addElement("Select a Facility");
 		try{
 			rs = DB.readRequest(sqlQuery);
@@ -294,7 +294,7 @@ public class Facility {
 	  *******************************************************/
 	public Facility RETRIEVE_FACILITY_BY_NAME(String name){
 		String sqlQuery;
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Facility WHERE `facilityName`='"+name+"'";
+		sqlQuery = "SELECT * FROM Facility WHERE `facilityName`='"+name+"'";
 		data= new Facility();
 		try{
 			rs = DB.readRequest(sqlQuery);

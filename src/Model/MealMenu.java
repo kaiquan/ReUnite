@@ -66,7 +66,7 @@ public class MealMenu {
 		boolean success=false;
 		String sqlQuery;
 		
-		sqlQuery = "INSERT INTO `saharp5_adeel_school`.`Meal_Menu` (`mealID`, `mealMenuName`, `mealMeuDescription`, `mealMenuPrice`, `mealMenuHalal`, `mealMenuVegetarian`)"; 
+		sqlQuery = "INSERT INTO Meal_Menu (`mealID`, `mealMenuName`, `mealMeuDescription`, `mealMenuPrice`, `mealMenuHalal`, `mealMenuVegetarian`)"; 
 		sqlQuery +="VALUES ("+this.mealID+", '"+this.mealMenuName+"', '"+this.mealMenuDescription+"', "+this.mealMenuPrice+", "+this.mealMenuHalal+", "+this.MealMenuVegetarian+")";
 
 		try{
@@ -92,7 +92,7 @@ public class MealMenu {
 		boolean success=true;
 		String sqlQuery;
 		
-		sqlQuery = "DELETE FROM `saharp5_adeel_school`.`Meal_Menu` WHERE `mealID`='"+ID+"'";
+		sqlQuery = "DELETE FROM Meal_Menu WHERE `mealID`='"+ID+"'";
 		int i = 0;
 
 		try{
@@ -118,7 +118,7 @@ public class MealMenu {
 	public DefaultTableModel RETRIEVE_MEAL_MENU_BY_ID(String ID){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Meal_Menu WHERE`mealID`='"+ID+"'";
+		sqlQuery = "SELECT * FROM Meal_Menu WHERE`mealID`='"+ID+"'";
 		
 		model.setColumnIdentifiers(new Object[]{"Meal Name","Price/Hr","Halal","Vegetarian","Description"});
 		try{
@@ -155,7 +155,7 @@ public class MealMenu {
 	public DefaultTableModel RETRIEVE_MEAL_MENU(String parameter){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Meal_Menu WHERE ( mealMenuID LIKE '"+parameter+"%'";
+		sqlQuery = "SELECT * FROM Meal_Menu WHERE ( mealMenuID LIKE '"+parameter+"%'";
 		sqlQuery+=" OR mealID LIKE'"+parameter+"%'";
 		sqlQuery+=" OR mealMenuName LIKE'"+parameter+"%'";
 		sqlQuery+=" OR mealMeuDescription LIKE'"+parameter+"%'";

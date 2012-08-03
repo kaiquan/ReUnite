@@ -67,7 +67,7 @@ public class EntertainmentMenu {
 		boolean success=false;
 		String sqlQuery;
 		
-		sqlQuery = "INSERT INTO `saharp5_adeel_school`.`Entertainment_Menu` (`entertainmentID`, `entertainmentMenuName`, `entertainmentMenuPrice`, `entertainmentMenuDescription`)"; 
+		sqlQuery = "INSERT INTO Entertainment_Menu (`entertainmentID`, `entertainmentMenuName`, `entertainmentMenuPrice`, `entertainmentMenuDescription`)"; 
 		sqlQuery +="VALUES ('"+EntertainmentID+"', '"+EntertainmentMenuName+"', "+EntertainmentMenuPrice+", '"+EntertainmentMenuDescription+"')";
 
 		try{
@@ -92,7 +92,7 @@ public class EntertainmentMenu {
 		boolean success=true;
 		String sqlQuery;
 		
-		sqlQuery = "DELETE FROM `saharp5_adeel_school`.`Entertainment_Menu` WHERE `entertainmentID`='"+ID+"'";
+		sqlQuery = "DELETE FROM Entertainment_Menu WHERE `entertainmentID`='"+ID+"'";
 		int i = 0;
 
 		try{
@@ -119,7 +119,7 @@ public class EntertainmentMenu {
 	public DefaultTableModel RETRIEVE_ENTERTAINMENT_MENU_BY_ID(String ID){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Entertainment_Menu WHERE`entertainmentID`='"+ID+"'";
+		sqlQuery = "SELECT * FROM Entertainment_Menu WHERE`entertainmentID`='"+ID+"'";
 		
 		model.setColumnIdentifiers(new Object[]{"Entertinment Name","Price/Hr","Description"});
 
@@ -147,7 +147,7 @@ public class EntertainmentMenu {
 	public DefaultTableModel RETRIEVE_ENTERTAINMENT_MENU(String parameter){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
-		sqlQuery = "SELECT * FROM saharp5_adeel_school.Entertainment_Menu WHERE (";
+		sqlQuery = "SELECT * FROM Entertainment_Menu WHERE (";
 		sqlQuery+=" entertainmentMenuName LIKE'"+parameter+"%'";
 		sqlQuery+=" OR entertainmentMenuPrice LIKE'"+parameter+"%'";
 		sqlQuery+=" OR entertainmentMenuDescription LIKE'"+parameter+"%')";

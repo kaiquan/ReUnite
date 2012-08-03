@@ -107,7 +107,7 @@ public class AdministrateRIDetails {
 	
 	// ***********************JFrame Method****************
 	
-	JFrame getJFrame(){
+	public JFrame getJFrame(){
 		jframe = new JFrame();
 		jframe.setSize(1073, 788);
 		jframe.setVisible(true);

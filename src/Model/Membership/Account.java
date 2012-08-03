@@ -268,36 +268,12 @@ public class Account implements Comparable<Account>
 				+ ", closureDate=" + closureDate + ", closureReason=" + closureReason + ", closureRequest=" + closureRequest + "]";
 	}
 
-	public boolean INITIATE_LOGIN(Account accountSet)
+	public Account INITIATE_LOGIN(Account accountSet)
 	{
 		ResultSet rs = null;
+		Account account = null;
 		boolean valid = false;
 		String dbQuery = "Select userName, password, type FROM Account WHERE userName='" + accountSet.getUserName() + "'AND password = '" + accountSet.getPassword() + "'";
-		rs = db.readRequest(dbQuery);
-
-		try
-		{
-			if (rs.next())
-			{
-
-				valid = true;
-			}
-		}
-		catch (SQLException e)
-		{
-
-			e.printStackTrace();
-		}
-
-		return valid;
-	}
-
-	public Account GET_ACCOUNT(String userName)
-	{
-		Account account = null;
-		ResultSet rs = null;
-		boolean valid = false;
-		String dbQuery = "Select * FROM Account WHERE userName='" + userName + "'";
 		rs = db.readRequest(dbQuery);
 
 		try

@@ -23,6 +23,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.ComponentOrientation;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class LogInForm extends JFrame {
 
@@ -93,43 +94,24 @@ public class LogInForm extends JFrame {
 				loginButton.setBounds(new Rectangle(224, 246, 101, 30));
 				loginButton.addActionListener(new java.awt.event.ActionListener() {
 					public void actionPerformed(java.awt.event.ActionEvent e) {
-						LoginController login = new LoginController();
-						
-						login.initiateLogin(userNameTextBox.getText(), passwordTextBox.getText());
-						
-						LoginController verify = new LoginController();
-						
-						if (verify.initiateLogin(getUserNameTextBox().getText(), getPasswordTextBox().getText()) == true)
-						{
-							if(Account.currentUser.getType().equalsIgnoreCase("RI"))
-							{
-								System.out.println("Access Granted");
-										new AdministrateRIPersonalDetails().getJFrame().setVisible(true);
-							}
-							
-							else if(Account.currentUser.getType().equalsIgnoreCase("GR")) 
-							{
-								new AdministrateRIDetails().getJFrame().setVisible(true);
-							}
-						}
-						else
-						{	
-							JOptionPane.showMessageDialog(null,"UserName or Password does not exist, Try Again");
-						
-							System.out.println("Access Denied");
-							
-						}
-						
-						
-						
-						
+						loginUser();
 					}
 				});
-				
 			}
 			return loginButton;
 		}
 
+		public void loginUser()
+		{
+			LoginController login = new LoginController();
+			
+			login.initiateLogin(userNameTextBox.getText(), passwordTextBox.getText());
+			
+			LoginController verify = new LoginController();
+			
+			verify.initiateLogin(getUserNameTextBox().getText(), getPasswordTextBox().getText());
+		
+		}
 		/**
 		 * This method initializes UserNameTextBox	
 		 * 	
@@ -152,6 +134,29 @@ public class LogInForm extends JFrame {
 			if (passwordTextBox == null) {
 				passwordTextBox = new JPasswordField();
 				passwordTextBox.setBounds(new Rectangle(88, 204, 390, 31));
+				passwordTextBox.addKeyListener(new KeyListener(){
+
+					@Override
+					public void keyPressed(KeyEvent e) {
+						
+					if(e.getKeyCode()==10)
+					{
+						loginUser();
+					}
+						
+					}
+
+					@Override
+					public void keyReleased(KeyEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void keyTyped(KeyEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}});
 			}
 			return passwordTextBox;
 		}

@@ -93,7 +93,7 @@ public class AdministrateRIPersonalDetails {
 		
 	}
 	
-	JFrame getJFrame(){
+	public JFrame getJFrame(){
 		jframe = new JFrame();
 		jframe.setSize(1211, 452);
 		jframe.setVisible(true);

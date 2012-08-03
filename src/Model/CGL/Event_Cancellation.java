@@ -1,13 +1,8 @@
 package Model.CGL;
 
 import java.sql.ResultSet;
-import java.util.ArrayList;
-
-import sun.util.calendar.LocalGregorianCalendar.Date;
-
 import Controller.MyCalendar;
 import Controller.MySQLController;
-import Model.Event;
 
 public class Event_Cancellation {
 	private int cancellationID;
@@ -80,6 +75,7 @@ public class Event_Cancellation {
 public boolean UPDATES_CANCELLATION_DETAILS(String eventName,String reason){
 		boolean status=false;
 		MyCalendar m1 = new MyCalendar();
+		@SuppressWarnings("unused")
 		ResultSet rs = null;
 		
 		String dbQuery;

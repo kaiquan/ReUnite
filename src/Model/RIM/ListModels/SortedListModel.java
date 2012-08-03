@@ -23,8 +23,7 @@ import javax.swing.event.ListDataListener;
 @SuppressWarnings("serial")
 public class SortedListModel extends AbstractListModel<Object> {
     
-    @SuppressWarnings("unused")
-	public SortedListModel() {}
+    public SortedListModel() {}
     
     /**
      * Create a SortedListModel from an existing model

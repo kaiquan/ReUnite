@@ -6,8 +6,6 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import Model.Membership.Account;
-
 public class Client
 {
 	private int eventID;
@@ -143,6 +141,7 @@ public class Client
 	class ListenFromServer extends Thread
 	{
 
+		@SuppressWarnings("unchecked")
 		public void run()
 		{
 			while (true)
@@ -152,6 +151,7 @@ public class Client
 					Object msg = (Object) sInput.readObject();
 					if(msg instanceof ArrayList<?>)
 					{
+						@SuppressWarnings("unused")
 						ArrayList<String> mgg = (ArrayList) msg;
 					}
 					else{

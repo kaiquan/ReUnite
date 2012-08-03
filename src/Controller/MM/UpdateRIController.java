@@ -54,6 +54,7 @@ public class UpdateRIController {
 	}
 	public void checkIfCanDelete(String balanceAmount,String statusEvent ){
 		
+		@SuppressWarnings("unused")
 		ViewRIDetails delete = new ViewRIDetails();
 		
 		

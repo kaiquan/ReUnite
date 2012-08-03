@@ -85,8 +85,10 @@ public class Purchase_Payment {
 	
 	public boolean UPDATES_PURCHASE_PAYMENT(String amount,String paymentMethod,String totalCost,String eventName){
 		boolean status=false;
+		@SuppressWarnings("unused")
 		ConsolidateGuestListControl c1 = new ConsolidateGuestListControl();
 		MyCalendar m1 = new MyCalendar();
+		@SuppressWarnings("unused")
 		ResultSet rs = null;
 		
 		String dbQuery;

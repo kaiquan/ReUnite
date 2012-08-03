@@ -1,13 +1,10 @@
 package Model.Membership;
 
-import Model.Ballroom;
-import Model.Event;
-import Model.CGL.*;
+
 
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
 
 import Controller.MySQLController;
@@ -26,6 +23,7 @@ public class RI extends Account   {
 	public String totalCost;
 	public String amountPending;
 	
+	@SuppressWarnings("unchecked")
 	ArrayList eventList = new ArrayList();
 
 	public String getTotalCost() {
@@ -363,6 +361,7 @@ public class RI extends Account   {
 
 	public boolean UPDATE_RI_ACCOUNT(Account account) {
 	
+		@SuppressWarnings("unused")
 		RI updateRi = new RI();
 		
 		boolean success = false;
@@ -411,6 +410,7 @@ public class RI extends Account   {
 	
 	
 	public String[][] getRITableModel1() {
+		@SuppressWarnings("unused")
 		RI riModel1 = new RI();
 
 		String data[][] = new String[1][13];

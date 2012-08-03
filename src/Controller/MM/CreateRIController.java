@@ -1,7 +1,5 @@
 package Controller.MM;
 import java.sql.Date;
-import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
 
 import Model.Membership.*;
 
@@ -21,6 +19,7 @@ public class CreateRIController {
 	 */
 	
 	//date and secret Question Not yet Included
+	@SuppressWarnings("deprecation")
 	public void createRegistration(String userName, String password,
 			String firstName, String lastName,String dateOfBirth, String nric, String email, 
 			String school, String address, String telephoneNo, String handphoneNo,String secretQuestion, String secretAnswer) throws Exception {
@@ -36,6 +35,7 @@ public class CreateRIController {
 		newRI.setFirstName(firstName);
 		newRI.setLastName(lastName);
 	//	newRI.setDateOfBirth(dateOfBirth);//
+		@SuppressWarnings("unused")
 		Date d= new Date(0, 0, 0);
 		newRI.setNric(nric);
 		newRI.setSchool(school);
@@ -52,6 +52,7 @@ public class CreateRIController {
 
 	}
 
+	@SuppressWarnings("unused")
 	private String secretQuestion() {
 		// TODO Auto-generated method stub
 		return null;

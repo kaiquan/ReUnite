@@ -1,11 +1,8 @@
 package Controller.MM;
 
-import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-
-import Model.Event;
 import Model.Membership.*;
 
 public class ViewRIPersonalController {

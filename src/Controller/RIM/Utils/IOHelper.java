@@ -2,13 +2,8 @@ package Controller.RIM.Utils;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -18,7 +13,6 @@ import javax.swing.filechooser.FileFilter;
 
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
-import org.apache.commons.net.ftp.FTPFile;
 /*******************************************************************************************
  * Project: ReUnite
  *
@@ -38,17 +32,20 @@ public final class IOHelper {
     /**
      * Buffer size.
      */
-    private static final int IO_BUF_SIZE = 1024 * 32;
+    @SuppressWarnings("unused")
+	private static final int IO_BUF_SIZE = 1024 * 32;
 
     /**
      * Path separator for Windows OS.
      */
-    private static final String BACKSLASH = "\\";
+    @SuppressWarnings("unused")
+	private static final String BACKSLASH = "\\";
 
     /**
      * Path separator for Unix OS.
      */
-    private static final String SLASH = "/";
+    @SuppressWarnings("unused")
+	private static final String SLASH = "/";
 
 
     public static Image getImageFile()

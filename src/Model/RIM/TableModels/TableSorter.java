@@ -28,7 +28,7 @@ import javax.swing.table.TableModel;
 import View.RIM.Components.Table.TableSorterIcons;
 
 
-@SuppressWarnings({ "serial", "rawtypes", "unchecked" })
+@SuppressWarnings({ "serial", "unchecked" })
 public class TableSorter extends AbstractTableModel {
 
     private boolean m_useCustomIcons = false;

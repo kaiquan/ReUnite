@@ -15,24 +15,21 @@ package Controller.RIM;
  * Honor Code: I pledge that this program represents my own program code. 
  * I received help from no one in designing, coding and debugging my program.
  *******************************************************************************************/
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
+
 
 import Controller.RIM.Utils.DateHelper;
-import Model.Event;
-import Model.Invitation;
+
 import Model.Membership.Guest;
 import Model.RIM.GuestCollection;
 import Model.RIM.TableModels.GuestImportTableModel;
-import View.RIM.SearchUsersView;
-import Controller.RIM.*;
 
 public class SearchUsersController
 {
 	
+	@SuppressWarnings("unused")
 	private DateHelper dateHelper = new DateHelper();
 	
 	

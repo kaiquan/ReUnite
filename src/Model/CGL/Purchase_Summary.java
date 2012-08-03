@@ -16,18 +16,16 @@ METHODS LIST 			: 	UPDATES_TOTAL_PAYABLE_AMOUNT(String,String) : Boolean
 
 
 import java.sql.ResultSet;
-
 import java.util.ArrayList;
-
 import Controller.CGL.ConsolidateGuestListControl;
 import Controller.MySQLController;
-
-import Controller.MyCalendar;
 
 public class Purchase_Summary {
 	private int purchaseID;
 	private int eventID;
+	@SuppressWarnings("unused")
 	private String totalCost;
+	@SuppressWarnings("unused")
 	private String amountPending;
 	private String dateOfPurchase;
 	
@@ -83,8 +81,10 @@ public class Purchase_Summary {
 	
 public boolean UPDATES_TOTAL_PAYABLE_AMOUNT(String amount,String eventName){
 		boolean status=false;
+		@SuppressWarnings("unused")
 		ConsolidateGuestListControl c1 = new ConsolidateGuestListControl();
 		
+		@SuppressWarnings("unused")
 		ResultSet rs = null;
 		
 		String dbQuery;

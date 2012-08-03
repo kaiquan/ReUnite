@@ -14,8 +14,10 @@ import java.awt.event.ActionEvent;
 @SuppressWarnings("serial")
 public class InvitationWelcomeView extends JFrame
 {
-	public InvitationWelcomeView()
+	private int eventID;
+	public InvitationWelcomeView(int eventID)
 	{
+		this.eventID = eventID;
 		JPanel panel = new JPanel(new MigLayout("", "[65.00][170.00px:n,grow][167.00px:n,grow][82.00][172.00][150.00]", "[][216.00px,grow][65.00px,grow]"));
 		panel.setBackground(new Color(245, 245, 245));
 
@@ -51,8 +53,7 @@ public class InvitationWelcomeView extends JFrame
 				emailButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0)
 					{
-						dispose();
-						new CreateInvitationView();
+						showCreateInvitationWindow();
 					}
 				});
 				emailButton.setFocusPainted(false);
@@ -64,13 +65,18 @@ public class InvitationWelcomeView extends JFrame
 		setVisible(true);
 	}
 
+	private void showCreateInvitationWindow()
+	{
+		this.dispose();
+		new CreateInvitationView(eventID);
+	}
 	public static void main(String args[])
 	{
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run()
 			{
 				LookAndFeelController.setGlobalLookAndFeel();
-				new InvitationWelcomeView();
+				new InvitationWelcomeView(3);
 			}
 		});
 	}

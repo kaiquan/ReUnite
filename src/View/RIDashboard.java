@@ -66,7 +66,7 @@ public class RIDashboard extends JFrame
 			public void mouseClicked(MouseEvent e)
 			{
 				RIDashboard.getWindows()[0].dispose();
-				new InvitationWelcomeView();
+				new InvitationWelcomeView(4);
 			}
 		});
 		panel_1.setBackground(new Color(220, 20, 60));
@@ -235,7 +235,7 @@ public class RIDashboard extends JFrame
 	protected void showProfile()
 	{
 		this.dispose();
-		new AdministrateRIPersonalDetails();
+		new AdministrateRIPersonalDetails().getJFrame().setVisible(true);
 	}
 
 	public static void main(String args[])

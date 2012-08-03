@@ -1,41 +1,44 @@
 package View.SOM;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Rectangle;
-import java.awt.Toolkit;
-import javax.swing.BorderFactory;
-import javax.swing.border.EtchedBorder;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.ImageIcon;
 import java.awt.SystemColor;
-import javax.swing.JLabel;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JToolBar;
-import javax.swing.JToggleButton;
-import javax.swing.border.TitledBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JTextArea;
-import java.awt.Color;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JToggleButton;
+import javax.swing.JToolBar;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
+
+import View.RIM.InvitationWelcomeView;
+
 import Controller.SOM.AdministrateEntertainmentControl;
 import Controller.SOM.AdministrateMealControl;
 import Controller.SOM.AdministratePackageControl;
 import Controller.SOM.InitiateEventControl;
-import javax.swing.BoxLayout;
 
 
 public class InitiateEventForm {
@@ -1559,7 +1562,8 @@ public class InitiateEventForm {
 		InitiateEventControl control= new InitiateEventControl(newPackageID, "kaiquan88@gmail.com","Pending",getJTextField_selectedDate().getText(),getJComboBox_selectTime().getSelectedItem().toString(),getJTextField_eventName().getText(),getJTextArea_eventDescription().getText());
 		String eventID=control.processInitiateEvent();
 		if(eventID!=null){
-			
+			this.getJFrame().dispose();
+			new InvitationWelcomeView(Integer.parseInt(eventID));
 		}
 		else{
 			System.out.println("smth wrong");

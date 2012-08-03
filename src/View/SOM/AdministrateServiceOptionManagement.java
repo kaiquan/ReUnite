@@ -368,8 +368,7 @@ public class AdministrateServiceOptionManagement {
 			jButton_logout.setIcon(new ImageIcon(getClass().getResource("/Images/SOM/logout.png")));
 			jButton_logout.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					//exit
-					//call sharinkin form
+					getJFrame().dispose();
 				}
 			});
 		}

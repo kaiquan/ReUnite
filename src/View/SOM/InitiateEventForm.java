@@ -39,11 +39,8 @@ import Controller.SOM.AdministrateEntertainmentControl;
 import Controller.SOM.AdministrateMealControl;
 import Controller.SOM.AdministratePackageControl;
 import Controller.SOM.InitiateEventControl;
-<<<<<<< HEAD
-=======
-import javax.swing.BoxLayout;
 import javax.swing.WindowConstants;
->>>>>>> craving for kfc
+
 
 
 public class InitiateEventForm {

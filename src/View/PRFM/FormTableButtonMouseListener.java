@@ -49,8 +49,8 @@ private String source, selection = null;
 		  int i = 0;
 		  
 		  if (event != null){
-			  while (valid && i < event.getEventID().size()){
-				  int option = ffController.compareCurrentDate(event.getEventDate().get(i));
+			  while (valid && i < event.getArray_EventID().size()){
+				  int option = ffController.compareCurrentDate(event.getArray_EventDate().get(i));
 	
 				  if (option < 0){
 					JOptionPane.showMessageDialog(null, "Feedback Form #" + code + " has already been published and therefore, cannot be updated.");
@@ -80,8 +80,8 @@ private String source, selection = null;
 		  int i = 0;
 		  
 		  if (event != null){
-			  while (valid && i < event.getEventDate().size()){
-				  int option = ffController.compareCurrentDate(event.getEventDate().get(i));
+			  while (valid && i < event.getArray_EventDate().size()){
+				  int option = ffController.compareCurrentDate(event.getArray_EventDate().get(i));
 				  
 				  if (option < 0){
 					JOptionPane.showMessageDialog(null, "Feedback Form #" + code + " has already been published and therefore, cannot be deleted.");

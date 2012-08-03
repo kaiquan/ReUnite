@@ -226,7 +226,7 @@ public class AdministrateServiceOptionManagement {
 								        
 								       
 								      } catch (InterruptedException e) {
-								    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
+								    	  
 								      }
 								    } 
 								 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
@@ -286,7 +286,7 @@ public class AdministrateServiceOptionManagement {
 								        
 								       
 								      } catch (InterruptedException e) {
-								    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
+								    	
 								      }
 								    } 
 								 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
@@ -499,7 +499,6 @@ public class AdministrateServiceOptionManagement {
 											 }
 									        sleep+=100;
 									      } catch (InterruptedException e) {
-									    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
 									      }
 									    } 
 									 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
@@ -589,7 +588,7 @@ public class AdministrateServiceOptionManagement {
 								        sleep+=100;
 								       
 								      } catch (InterruptedException e) {
-								    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
+								    	  
 								      }
 								    } 
 								 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
@@ -737,7 +736,7 @@ public class AdministrateServiceOptionManagement {
 								        sleep+=100;
 								       
 								      } catch (InterruptedException e) {
-								    	  AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(true);
+								    	  
 								      }
 								    } 
 								 AdministrateServiceOptionManagement.getJProgressBar().setValue(100);

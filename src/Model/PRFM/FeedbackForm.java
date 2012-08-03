@@ -1,13 +1,13 @@
-package entity;
+package Model.PRFM;
 
 import java.util.Date;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import controller.MySQLController;
+import Controller.MySQLController;
 
 public class FeedbackForm {
-	private static MySQLController db;
+	private static Controller.MySQLController db;
 	private ArrayList<Integer> code, fqCode, fqOrder;
 	private ArrayList<Date> creationDate;
 	

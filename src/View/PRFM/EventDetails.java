@@ -45,7 +45,7 @@ public class EventDetails {
 	JFrame getJFrame() {
 		if (jFrame == null) {
 			jFrame = new JFrame();
-			jFrame.setTitle("Details of Event #" + event.getEventID().get(0));
+			jFrame.setTitle("Details of Event #" + event.getArray_EventID().get(0));
 			jFrame.setSize(new Dimension(500, 380));
 			jFrame.setContentPane(getJContentPane());
 		}
@@ -117,7 +117,7 @@ public class EventDetails {
 			eventIDTextField.setBackground(null);
 			eventIDTextField.setBorder(null);
 			eventIDTextField.setEditable(false);
-			eventIDTextField.setText(event.getEventID().get(0).toString());
+			eventIDTextField.setText(event.getArray_EventID().get(0).toString());
 		}
 		return eventIDTextField;
 	}
@@ -134,7 +134,7 @@ public class EventDetails {
 			packageIDTextField.setBackground(null);
 			packageIDTextField.setBorder(null);
 			packageIDTextField.setEditable(false);
-			packageIDTextField.setText(event.getPackageID().get(0).toString());
+			packageIDTextField.setText(event.getArray_PackageID().get(0).toString());
 		}
 		return packageIDTextField;
 	}
@@ -151,7 +151,7 @@ public class EventDetails {
 			usernameTextField.setBackground(null);
 			usernameTextField.setBorder(null);
 			usernameTextField.setEditable(false);
-			usernameTextField.setText(event.getUserName().get(0));
+			usernameTextField.setText(event.getArray_UserName().get(0));
 		}
 		return usernameTextField;
 	}
@@ -168,7 +168,7 @@ public class EventDetails {
 			statusTextField.setBackground(null);
 			statusTextField.setBorder(null);
 			statusTextField.setEditable(false);
-			statusTextField.setText(event.getEventStatus().get(0));
+			statusTextField.setText(event.getArray_EventStatus().get(0));
 		}
 		return statusTextField;
 	}
@@ -186,7 +186,7 @@ public class EventDetails {
 			dateTextField.setBorder(null);
 			dateTextField.setEditable(false);
 			AdministrateEventController controller = new AdministrateEventController();
-			dateTextField.setText(controller.calendarToString(event.getEventDate().get(0)));
+			dateTextField.setText(controller.calendarToString(event.getArray_EventDate().get(0)));
 		}
 		return dateTextField;
 	}
@@ -203,7 +203,7 @@ public class EventDetails {
 			timeTextField.setBackground(null);
 			timeTextField.setBorder(null);
 			timeTextField.setEditable(false);
-			timeTextField.setText(event.getEventTime().get(0));
+			timeTextField.setText(event.getArray_EventTime().get(0));
 		}
 		return timeTextField;
 	}
@@ -220,7 +220,7 @@ public class EventDetails {
 			nameTextField.setBackground(null);
 			nameTextField.setBorder(null);
 			nameTextField.setEditable(false);
-			nameTextField.setText(event.getEventName().get(0));
+			nameTextField.setText(event.getArray_EventName().get(0));
 		}
 		return nameTextField;
 	}
@@ -238,7 +238,7 @@ public class EventDetails {
 			descTextArea.setWrapStyleWord(true);
 			descTextArea.setEditable(false);
 			descTextArea.setBorder(tf.getBorder());
-			descTextArea.setText(event.getEventDescription().get(0));
+			descTextArea.setText(event.getArray_EventDescription().get(0));
 		}
 		return descTextArea;
 	}

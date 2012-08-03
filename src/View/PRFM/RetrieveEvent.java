@@ -118,14 +118,14 @@ public class RetrieveEvent {
 			
 			int colWidth = 100;
 	        Object[] colNames = {"Event ID", "Event Date", "Event Time", "Event Name", "Status"};
-	        Object[][] data = new Object[event.getEventID().size()][colSize];
+	        Object[][] data = new Object[event.getArray_EventID().size()][colSize];
 
-	        for (int i = 0; i < event.getEventID().size(); i++){
-        		data[i][0] = event.getEventID().get(i);
-        		data[i][1] = controller.calendarToString(event.getEventDate().get(i));
-        		data[i][2] = event.getEventTime().get(i);
-        		data[i][3] = event.getEventName().get(i);
-        		data[i][4] = event.getEventStatus().get(i);
+	        for (int i = 0; i < event.getArray_EventID().size(); i++){
+        		data[i][0] = event.getArray_EventID().get(i);
+        		data[i][1] = controller.calendarToString(event.getArray_EventDate().get(i));
+        		data[i][2] = event.getArray_EventTime().get(i);
+        		data[i][3] = event.getArray_EventName().get(i);
+        		data[i][4] = event.getArray_EventStatus().get(i);
 	        	}
 		
 			model.setDataVector(data, colNames);
@@ -189,10 +189,10 @@ public class RetrieveEvent {
 			AdministrateEventController controller = new AdministrateEventController();
 			event = controller.processRetrieve();
 			
-			Collections.sort(event.getEventID());
+			Collections.sort(event.getArray_EventID());
 			
-			for (int i = 0; i < event.getEventID().size(); i++){
-				eventIDComboBox.addItem(event.getEventID().get(i));
+			for (int i = 0; i < event.getArray_EventID().size(); i++){
+				eventIDComboBox.addItem(event.getArray_EventID().get(i));
 			}
 		}
 		return eventIDComboBox;
@@ -215,8 +215,8 @@ public class RetrieveEvent {
 			
 			ArrayList<String> dateArr = new ArrayList<String>();
 			
-			for (int x = 0; x < event.getEventDate().size(); x++){
-				dateArr.add(controller.calendarToString(event.getEventDate().get(x)));
+			for (int x = 0; x < event.getArray_EventDate().size(); x++){
+				dateArr.add(controller.calendarToString(event.getArray_EventDate().get(x)));
 			}
 			
 			Collections.sort(dateArr);
@@ -255,23 +255,23 @@ public class RetrieveEvent {
 			AdministrateEventController controller = new AdministrateEventController();
 			event = controller.processRetrieve();
 			
-			Collections.sort(event.getEventTime());
+			Collections.sort(event.getArray_EventTime());
 
-			for (int a = 0; a < event.getEventTime().size(); a++){
-				String first = event.getEventTime().get(a);
+			for (int a = 0; a < event.getArray_EventTime().size(); a++){
+				String first = event.getArray_EventTime().get(a);
 				
-				for (int b = a + 1; b < event.getEventTime().size(); b++){
-					String second = event.getEventTime().get(b);
+				for (int b = a + 1; b < event.getArray_EventTime().size(); b++){
+					String second = event.getArray_EventTime().get(b);
 					
 					if (first.equals(second)){
-						event.getEventTime().remove(b);
+						event.getArray_EventTime().remove(b);
 						b -= 1;
 					}
 				}
 			}
 			
-			for (int i = 0; i < event.getEventTime().size(); i++){
-				timeComboBox.addItem(event.getEventTime().get(i));
+			for (int i = 0; i < event.getArray_EventTime().size(); i++){
+				timeComboBox.addItem(event.getArray_EventTime().get(i));
 			}
 		}
 		return timeComboBox;
@@ -322,14 +322,14 @@ public class RetrieveEvent {
 					}
 					else{
 				        Object[] colNames = {"Event ID", "Event Date", "Event Time", "Event Name", "Status"};
-				        Object[][] data = new Object[event.getEventID().size()][colSize];
+				        Object[][] data = new Object[event.getArray_EventID().size()][colSize];
 
-				        for (int i = 0; i < event.getEventID().size(); i++){
-			        		data[i][0] = event.getEventID().get(i);
-			        		data[i][1] = controller.calendarToString(event.getEventDate().get(i));
-			        		data[i][2] = event.getEventTime().get(i);
-			        		data[i][3] = event.getEventName().get(i);
-			        		data[i][4] = event.getEventStatus().get(i);
+				        for (int i = 0; i < event.getArray_EventID().size(); i++){
+			        		data[i][0] = event.getArray_EventID().get(i);
+			        		data[i][1] = controller.calendarToString(event.getArray_EventDate().get(i));
+			        		data[i][2] = event.getArray_EventTime().get(i);
+			        		data[i][3] = event.getArray_EventName().get(i);
+			        		data[i][4] = event.getArray_EventStatus().get(i);
 				        }
 					
 						final DefaultTableModel model = new DefaultTableModel(data, colNames);
@@ -373,10 +373,10 @@ public class RetrieveEvent {
 			AdministrateEventController controller = new AdministrateEventController();
 			event = controller.processRetrieve();
 			
-			Collections.sort(event.getEventName());
+			Collections.sort(event.getArray_EventName());
 			
-			for (int i = 0; i < event.getEventName().size(); i++){
-				nameComboBox.addItem(event.getEventName().get(i));
+			for (int i = 0; i < event.getArray_EventName().size(); i++){
+				nameComboBox.addItem(event.getArray_EventName().get(i));
 			}
 		}
 			
@@ -398,23 +398,23 @@ public class RetrieveEvent {
 			AdministrateEventController controller = new AdministrateEventController();
 			event = controller.processRetrieve();
 			
-			Collections.sort(event.getEventStatus());
+			Collections.sort(event.getArray_EventStatus());
 
-			for (int a = 0; a < event.getEventStatus().size(); a++){
-				String first = event.getEventStatus().get(a);
+			for (int a = 0; a < event.getArray_EventStatus().size(); a++){
+				String first = event.getArray_EventStatus().get(a);
 				
-				for (int b = a + 1; b < event.getEventStatus().size(); b++){
-					String second = event.getEventStatus().get(b);
+				for (int b = a + 1; b < event.getArray_EventStatus().size(); b++){
+					String second = event.getArray_EventStatus().get(b);
 					
 					if (first.equals(second)){
-						event.getEventStatus().remove(b);
+						event.getArray_EventStatus().remove(b);
 						b -= 1;
 					}
 				}
 			}
 			
-			for (int i = 0; i < event.getEventStatus().size(); i++){
-				statusComboBox.addItem(event.getEventStatus().get(i));
+			for (int i = 0; i < event.getArray_EventStatus().size(); i++){
+				statusComboBox.addItem(event.getArray_EventStatus().get(i));
 			}
 		}
 		return statusComboBox;

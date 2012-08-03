@@ -1,10 +1,10 @@
-package entity;
+package Model.PRFM;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 
-import controller.MySQLController;
+import Controller.MySQLController;
 
 public abstract class FeedbackResult {
 	private static MySQLController db = new MySQLController();

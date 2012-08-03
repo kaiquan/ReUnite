@@ -257,14 +257,14 @@ public class FormDetails {
 					
 					int colSize = 5;
 			        Object[] colNames = {"Event ID", "Event Date", "Event Time", "Event Name", "Status"};
-			        Object[][] data = new Object[event.getEventID().size()][colSize];
+			        Object[][] data = new Object[event.getArray_EventID().size()][colSize];
 
-			        for (int i = 0; i < event.getEventID().size(); i++){
-		        		data[i][0] = event.getEventID().get(i);
-		        		data[i][1] = controller.calendarToString(event.getEventDate().get(i));
-		        		data[i][2] = event.getEventTime().get(i);
-		        		data[i][3] = event.getEventName().get(i);
-		        		data[i][4] = event.getEventStatus().get(i);
+			        for (int i = 0; i < event.getArray_EventID().size(); i++){
+		        		data[i][0] = event.getArray_EventID().get(i);
+		        		data[i][1] = controller.calendarToString(event.getArray_EventDate().get(i));
+		        		data[i][2] = event.getArray_EventTime().get(i);
+		        		data[i][3] = event.getArray_EventName().get(i);
+		        		data[i][4] = event.getArray_EventStatus().get(i);
 			        }
 			        
 					DefaultTableModel model = new DefaultTableModel(data, colNames);

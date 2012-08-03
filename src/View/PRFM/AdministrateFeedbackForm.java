@@ -333,34 +333,34 @@ public class AdministrateFeedbackForm {
 				AdministrateFeedbackFormController ffController = new AdministrateFeedbackFormController();
 				allEvent = eController.processRetrieve();
 				
-				for (int i = 0; i < allEvent.getEventDate().size(); i++){
-					if (ffController.compareCurrentDate(allEvent.getEventDate().get(i)) == 0){
-						event.setEventDate(allEvent.getEventDate().get(i));
-						event.setEventDescription(allEvent.getEventDescription().get(i));
-						event.setEventID(allEvent.getEventID().get(i));
-						event.setEventName(allEvent.getEventName().get(i));
-						event.setEventStatus(allEvent.getEventStatus().get(i));
-						event.setEventTime(allEvent.getEventTime().get(i));
-						event.setPackageID(allEvent.getPackageID().get(i));
-						event.setUserName(allEvent.getUserName().get(i));
+				for (int i = 0; i < allEvent.getArray_EventDate().size(); i++){
+					if (ffController.compareCurrentDate(allEvent.getArray_EventDate().get(i)) == 0){
+						event.setArray_EventDate(allEvent.getArray_EventDate().get(i));
+						event.setArray_EventDescription(allEvent.getArray_EventDescription().get(i));
+						event.setArray_EventID(allEvent.getArray_EventID().get(i));
+						event.setArray_EventName(allEvent.getArray_EventName().get(i));
+						event.setArray_EventStatus(allEvent.getArray_EventStatus().get(i));
+						event.setEventTime(allEvent.getArray_EventTime().get(i));
+						event.setArray_PackageID(allEvent.getArray_PackageID().get(i));
+						event.setArray_UserName(allEvent.getArray_UserName().get(i));
 					}
 				}
 				
-				if (event.getEventID().size() == 0){
+				if (event.getArray_EventID().size() == 0){
 					JOptionPane.showMessageDialog(getJFrame(), "There are no events today.");
 				}
 				else{
 					EventForm ef = new EventForm();
-					ef = ffController.processEventFormSearchTerm(0, event.getEventID().get(0));
+					ef = ffController.processEventFormSearchTerm(0, event.getArray_EventID().get(0));
 					
-					if (event.getEventID().size() > 1){
-						for (int i = 0; i < event.getEventID().size(); i++){
+					if (event.getArray_EventID().size() > 1){
+						for (int i = 0; i < event.getArray_EventID().size(); i++){
 							
 						}
 					}
 					else{
 						if (ef.getEventID().isEmpty()){
-							JOptionPane.showMessageDialog(getJFrame(), "There's no feedback form assigned to Event #" + event.getEventID().get(0));
+							JOptionPane.showMessageDialog(getJFrame(), "There's no feedback form assigned to Event #" + event.getArray_EventID().get(0));
 						}
 						else{
 							CreateFeedbackResult create = new CreateFeedbackResult(ef.getCode().get(0));

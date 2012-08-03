@@ -1,8 +1,8 @@
-package entity;
+package Model.PRFM;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import controller.MySQLController;
+import Controller.MySQLController;
 
 public class YesNoQuestion extends FeedbackQuestion{
 	private static MySQLController db;

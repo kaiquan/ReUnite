@@ -305,8 +305,8 @@ public class UpdateFeedbackForm {
 								for (int a = 0; a < eventIDArr.size(); a++){
 									eventValid[a] = false;
 									
-									for (int b = 0; b < event.getEventID().size(); b++){
-										if (eventIDArr.get(a) == event.getEventID().get(b)){
+									for (int b = 0; b < event.getArray_EventID().size(); b++){
+										if (eventIDArr.get(a) == event.getArray_EventID().get(b)){
 											eventValid[a] = true;
 											break;
 										}
@@ -350,13 +350,13 @@ public class UpdateFeedbackForm {
 										String before = new String();
 										String inProcess = new String();
 										
-										for (int i = 0; i < newEvent.getEventDate().size(); i++){
-											int beforeAfter = ffController.compareCurrentDate(newEvent.getEventDate().get(i));
+										for (int i = 0; i < newEvent.getArray_EventDate().size(); i++){
+											int beforeAfter = ffController.compareCurrentDate(newEvent.getArray_EventDate().get(i));
 											if (beforeAfter < 0){
-												before += ", " + newEvent.getEventID().get(i);
+												before += ", " + newEvent.getArray_EventID().get(i);
 											}
 											else if (beforeAfter == 0){
-												inProcess += ", " + newEvent.getEventID().get(i);
+												inProcess += ", " + newEvent.getArray_EventID().get(i);
 											}
 										}
 										

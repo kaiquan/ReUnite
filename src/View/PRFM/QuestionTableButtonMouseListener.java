@@ -54,7 +54,7 @@ private Object crudFf = null;
 		  ef = ffController.processEventFormSearchTerm(ff.getCode().get(i), 0);
 		  
 		  if (eventController.processEventID(ef.getEventID()) != null){
-			  temp = eventController.processEventID(ef.getEventID()).getEventDate();
+			  temp = eventController.processEventID(ef.getEventID()).getArray_EventDate();
 			  
 			  for (int x = 0; x < temp.size(); x++){
 				  dateArr.add(temp.get(x));

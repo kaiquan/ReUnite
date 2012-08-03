@@ -8,7 +8,7 @@ Last Edited				:	6-13-2012
 =========================================================================================================================================================
 USERS USING THIS CLASS 	: 	Lee Kai Quan (114173S)
 METHODS LIST 			: 	WriteFile(ArrayList<String[]>, String) : void
-						: 	ReadFile(String) : ArrayList<String[]>  
+						: 	ReadFile(String) : ArrayList<String[]>     
 ********************************************************************************************************************************************************/
 package Controller.SOM;
 import java.io.FileReader;

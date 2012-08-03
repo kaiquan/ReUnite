@@ -1,6 +1,5 @@
 package View.RIM;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -22,7 +21,6 @@ import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
-import javax.swing.WindowConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -35,9 +33,8 @@ import Controller.RIM.LookAndFeelController;
 import Controller.RIM.Utils.DateHelper;
 import Images.RIM.ImageHelper;
 import View.RIM.Components.Table.AutoResizeTableColumns;
+import View.RIM.Components.Table.IconRenderer;
 import View.RIM.Components.Table.ProgressBarCellRenderer;
-
-import View.RIM.Components.Table.*;
 
 @SuppressWarnings("serial")
 public class InvitationResponseView extends JFrame {
@@ -229,6 +226,8 @@ public class InvitationResponseView extends JFrame {
 		getContentPane().add(jPanel1, "cell 0 1,alignx center,aligny top");
 
 		pack();
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setVisible(true);
 	}
 
 	private void buttonActionPerformed(ActionEvent evt) {

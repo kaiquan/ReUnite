@@ -45,12 +45,16 @@ public class CreateInvitationView extends JFrame
 	private JPanel mainPanel;
 
 	private JTable table;
+	
+	private int eventID;
 
-	public CreateInvitationView()
+	public CreateInvitationView(int eventID)
 	{
 		initialize();
+		this.eventID = eventID;
 	}
-
+	
+	
 	private void initialize()
 	{
 		setTitle("Create invitation [Step 1 of 2]");
@@ -306,6 +310,6 @@ public class CreateInvitationView extends JFrame
 	public static void main(String args[])
 	{
 		LookAndFeelController.setGlobalLookAndFeel();
-		new CreateInvitationView();
+		new CreateInvitationView(3);
 	}
 }

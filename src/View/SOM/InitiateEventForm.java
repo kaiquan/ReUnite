@@ -138,7 +138,7 @@ public class InitiateEventForm {
 	/********************************************************
 	 *					Start of UI
 	 *******************************************************/
-	protected JFrame getJFrame() {
+	public JFrame getJFrame() {
 		if (jFrame == null) {
 			jFrame = new JFrame();
 			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

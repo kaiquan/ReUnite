@@ -8,6 +8,7 @@ import Model.Entertainment;
 import Model.Event;
 import Model.Facility;
 import Model.Membership.Guest;
+import Model.Membership.RI;
 import Model.Meal;
 import Model.CGL.Purchase_Summary;
 import Model.Package;
@@ -70,6 +71,10 @@ public ArrayList<String> requestSelectedEventDetails(String eventName)
 	ArrayList<Package> pkg  = new ArrayList<Package>();
 	Package p1 = new Package();
 	pkg=p1.GET_PACKAGE_DISCOUNT(eventName);
+	
+	ArrayList<RI> email = new ArrayList<RI>();
+	RI ri = new RI();
+	email=ri.GET_RI_EMAIL(eventName);
 	
 	//If no meal option is selected it add 0 into the arraylist instead
 	try
@@ -158,12 +163,15 @@ public ArrayList<String> requestSelectedEventDetails(String eventName)
 	//Calculates total payable amount
 	double totalPrice=ballroomFinalPrice+entertainmentPrice+mealPrice-packageDiscount;
 	
+	String emailAddress=email.get(0).getEmail();
+	
 	//Create an arrayList to store all the details which will passed to the form
 	ArrayList<String> combined = new ArrayList<String>();
 	
 	
+	
 	for(int i=0;i<1;i++){
-		String combine=ballroomName+","+eventTime+","+eventDate+","+eventStatus+","+eventDescription+","+guestCount+","+totalPrice+","+ballroomFinalPrice+","+entertainmentPrice+","+mealPrice+","+facility+","+packageDiscount;
+		String combine=ballroomName+","+eventTime+","+eventDate+","+eventStatus+","+eventDescription+","+guestCount+","+totalPrice+","+ballroomFinalPrice+","+entertainmentPrice+","+mealPrice+","+facility+","+packageDiscount+","+emailAddress;
 		combined.add(combine);
 	}
 		

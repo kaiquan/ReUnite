@@ -1,5 +1,6 @@
 package Model.Membership;
 
+import Model.Ballroom;
 import Model.Event;
 import Model.CGL.*;
 
@@ -439,13 +440,37 @@ public class RI extends Account   {
 
 	}
 	
-	public static void main(String args[]) throws ParseException {
-
-		ArrayList<Event> list = new ArrayList();
-		
-
-
-	}
 	
+public ArrayList<RI> GET_RI_EMAIL(String eventName){
+		
+		
+		ArrayList<RI> e1 = new ArrayList<RI>();
+		ResultSet rs = null;
+		
+		String dbQuery;
+		
+		
+		dbQuery = "SELECT a.email FROM Account a INNER JOIN Event e ON e.userName=a.userName WHERE e.eventName='"+eventName+"'";
+		try{
+			
+			rs=db.readRequest(dbQuery);
+			while(rs.next()){
+				RI ri = new RI();
+				ri.setEmail(rs.getString("a.email"));
+				e1.add(ri);
+				
+			}
+			
+						
+		}
+		
+		catch(Exception e){
+			e.printStackTrace();
+		}
+			
+						
+			return e1;
+		}
+		
 	
 }

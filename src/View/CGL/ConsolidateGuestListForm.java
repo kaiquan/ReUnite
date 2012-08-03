@@ -85,6 +85,7 @@ public class ConsolidateGuestListForm extends Fonts{
 	private String entertainmentPrice="";
 	private String mealPrice="";
 	private String packageDiscount="";
+	private String riEmail="";
 	private static String FILE = null;
 
 	/**
@@ -165,6 +166,7 @@ public class ConsolidateGuestListForm extends Fonts{
                     	mealPrice=sc.next();
                     	String facilty=sc.next();
                     	packageDiscount=sc.next();
+                    	riEmail=sc.next();
                     	
                     	//Once the items are split using the scanner class it sets them to the
                     	//respective textbox
@@ -401,6 +403,7 @@ public class ConsolidateGuestListForm extends Fonts{
 		entertainmentPrice="";
 		mealPrice="";
 		packageDiscount="";
+		riEmail="";
 		DefaultMutableTreeNode events = new DefaultMutableTreeNode("Events");				
 		generateEvents(events);		
 		DefaultTreeModel model = new DefaultTreeModel(events);

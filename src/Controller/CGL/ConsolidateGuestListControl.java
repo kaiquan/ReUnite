@@ -175,7 +175,7 @@ public ArrayList<String> requestSelectedEventDetails(String eventName)
 	
 	
 	for(int i=0;i<1;i++){
-		String combine=ballroomName+","+eventTime+","+eventDate+","+eventStatus+","+eventDescription+","+guestCount+","+totalPrice+","+ballroomFinalPrice+","+entertainmentPrice+","+mealPrice+","+facility+","+packageDiscount+","+emailAddress;
+		String combine=ballroomName+"~"+eventTime+"~"+eventDate+"~"+eventStatus+"~"+eventDescription+"~"+guestCount+"~"+totalPrice+"~"+ballroomFinalPrice+"~"+entertainmentPrice+"~"+mealPrice+"~"+facility+"~"+packageDiscount+"~"+emailAddress;
 		combined.add(combine);
 	}
 		

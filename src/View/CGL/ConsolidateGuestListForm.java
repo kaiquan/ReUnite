@@ -83,7 +83,7 @@ public class ConsolidateGuestListForm extends Fonts{
 	private JTextArea jTextArea = null;
 	private JTextField textField_5;
 	private String ballroomPrice="";  //  @jve:decl-index=0:
-	private String entertainmentPrice="";
+	private String entertainmentPrice="";  //  @jve:decl-index=0:
 	private String mealPrice="";
 	private String packageDiscount="";
 	private String riEmail="";
@@ -137,7 +137,7 @@ public class ConsolidateGuestListForm extends Fonts{
                     	String eventName=node.getUserObject().toString();
                     	c1.requestSelectedEventDetails((eventName)).get(0);
                     	Scanner sc = new Scanner(c1.requestSelectedEventDetails((eventName)).get(0));
-                    	sc.useDelimiter(",");
+                    	sc.useDelimiter("~");
                     	String ballroomName=sc.next();
                     	String eventTime=sc.next();
                     	String eventDate=sc.next();

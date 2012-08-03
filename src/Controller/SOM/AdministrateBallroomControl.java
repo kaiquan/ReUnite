@@ -145,7 +145,7 @@ public class AdministrateBallroomControl {
 	/********************************************************
 	 * Method Name		: processRetrieveBallroomModel
 	 * Input Parameter 	: String
-	 *  Return 			: DefaultTableModel
+	 * Return 			: DefaultTableModel
 	 * Purpose 			: To retrieve a Ballroom record
 	 * 					  by ballroomID
 	 *******************************************************/
@@ -169,11 +169,10 @@ public class AdministrateBallroomControl {
 	
 	//business logic
 	/********************************************************
-	 * Method Name : processCalculateFinalPrice
-	 * Input Parameter : Int 
-	 * Purpose : To caculate the Final price after discount
-	 * Return :double
-	 * Tested : Success
+	 * Method Name 		: processCalculateFinalPrice
+	 * Input Parameter 	: Int 
+	 * Purpose 			: To caculate the Final price after discount
+	 * Return 			: double
 	 * *******************************************************/
 	public double processCalculateFinalPrice(int i, double p){
 		DecimalFormat fmt = new DecimalFormat("0.00");

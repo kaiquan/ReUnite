@@ -1,3 +1,15 @@
+/********************************************************************************************************************************************************
+Program Name			:	CSVController.java
+Description				:	A CSVController class that is the Controller for read and write CSV files
+Done by					:	Lee Kai Quan
+Admin No				:	114173S
+Module Group			:	IT2297-08
+Last Edited				:	6-13-2012
+=========================================================================================================================================================
+USERS USING THIS CLASS 	: 	Lee Kai Quan (114173S)
+METHODS LIST 			: 	WriteFile(ArrayList<String[]>, String) : void
+						: 	ReadFile(String) : ArrayList<String[]>
+********************************************************************************************************************************************************/
 package Controller.SOM;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -14,7 +26,6 @@ public class CSVController {
 	 * Input Parameter 	: ArrayList<String[]>, String
 	 * Purpose 			: To create a csv file  
 	 * Return			: void
-	 * @throws IOException 
 	 *******************************************************/	
 	public void WriteFile(ArrayList<String[]> data,String filePath) throws IOException{
 		//this method writes the data into csv format
@@ -33,8 +44,6 @@ public class CSVController {
 	 * Input Parameter 	: String
 	 * Purpose 			: To create a csv file  
 	 * Return			: ArrayList<String[]>
-	 * @throws IOException 
-	 * @throws IOException 
 	 *******************************************************/	
 	public ArrayList<String[]> readFile(String filePath) throws IOException{
 		//this method reads from a csv file
@@ -49,24 +58,6 @@ public class CSVController {
 		}
 		return data;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
 

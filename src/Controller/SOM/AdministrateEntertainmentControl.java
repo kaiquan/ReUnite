@@ -203,7 +203,7 @@ public class AdministrateEntertainmentControl {
 	
 	//BUSINESS LOGICS BELOW
 	/********************************************************
-	 * Method Name		: calculatePrice
+	 * Method Name		: processCalculatePrice
 	 * Input Parameter 	: void 
 	 * Return 			: double
 	 * Purpose 			: To caculate the price before discount
@@ -218,7 +218,7 @@ public class AdministrateEntertainmentControl {
 	}
 	
 	/********************************************************
-	 * Method Name		: calculateFinalPrice
+	 * Method Name		: processCalculateFinalPrice
 	 * Input Parameter 	: double 
 	 * Return 			: double
 	 * Purpose 			: To caculate the price after discount

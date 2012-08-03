@@ -62,7 +62,7 @@ public class AdministrateFacilityControl {
 
 	/********************************************************
 	 * Method Name 		: processCreateFacility
-	 * Input Parameter 	: NIL 
+	 * Input Parameter 	: void 
 	 * Purpose 			: To create a new Facility record
 	 * Return			: String 
 	 *******************************************************/
@@ -127,7 +127,7 @@ public class AdministrateFacilityControl {
 	
 	 /********************************************************
 	  * Method Name 	: processRetrieveFacility
-	  * Input Parameter : NIL
+	  * Input Parameter : void
 	  * Purpose 		: To retrieve all facility record
 	  * Return 			: DefaultTableModel
 	  *******************************************************/

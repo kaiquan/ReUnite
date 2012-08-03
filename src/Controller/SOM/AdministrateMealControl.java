@@ -232,11 +232,10 @@ public class AdministrateMealControl {
 	
 	//BUSINESS LOGICS BELOW
 	/********************************************************
-	 * Method Name : processCalculatePrice
-	 * Input Parameter : NIL 
-	 * Purpose : To caculate the price before discount
-	 * Return :double
-	 * Tested : Success
+	 * Method Name 		: processCalculatePrice
+	 * Input Parameter 	: void 
+	 * Purpose 			: To caculate the price before discount
+	 * Return 			: double
 	 *******************************************************/
 	public double processCalculatePrice(){
 		double price=0;
@@ -248,11 +247,10 @@ public class AdministrateMealControl {
 	}
 	
 	/********************************************************
-	 * Method Name : processCalculateFinalPrice
-	 * Input Parameter : NIL 
-	 * Purpose : To caculate the Final price after discount
-	 * Return :double
-	 * Tested : Success
+	 * Method Name 		: processCalculateFinalPrice
+	 * Input Parameter 	: void 
+	 * Purpose 			: To caculate the Final price after discount
+	 * Return 			: double
 	 * *******************************************************/
 	public double processCalculateFinalPrice(double value){
 		DecimalFormat fmt = new DecimalFormat("0.00");

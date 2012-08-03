@@ -32,11 +32,11 @@ public class CollectPaymentControl {
 		return p1.RETRIEVE_PAYMENT_DETAILS(eventName);
 	}
 
-	public boolean processUpdatePurchasePayment(String amount,String paymentMethod,String totalCost,String eventName){
-		Purchase_Payment p1 = new Purchase_Payment();
-		
-		return p1.UPDATES_PURCHASE_PAYMENT(amount, paymentMethod, totalCost, eventName);
-	}
+//	public boolean processUpdatePurchasePayment(String amount,String paymentMethod,String totalCost,String eventName){
+//		Purchase_Payment p1 = new Purchase_Payment();
+//		
+//		return p1.UPDATES_PURCHASE_PAYMENT(amount, paymentMethod, totalCost, eventName);
+//	}
 	
 	public ArrayList<String> requestSelectedEventDetails(String eventName)
 	{	

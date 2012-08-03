@@ -12,9 +12,7 @@ import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
 import View.MM.AdministrateRIDetails;
-import View.MM.AdministrateRIPersonalDetails;
 import View.RIM.InvitationResponseView;
-import View.RIM.InvitationWelcomeView;
 import View.SOM.InitiateEventForm;
 
 @SuppressWarnings("serial")
@@ -75,13 +73,43 @@ public class GRDashboard extends JFrame
 		panel_6.setLayout(new MigLayout("", "[707.00,grow][707.00,grow][707.00,grow]", "[grow]"));
 		
 		JPanel panel_8 = new JPanel();
+		panel_8.setBackground(new Color(255, 215, 0));
 		panel_6.add(panel_8, "cell 0 0,grow");
+		panel_8.setLayout(new MigLayout("", "[234.00]", "[][][][]"));
+		
+		JLabel lblConsolidateGuestList = new JLabel("Consolidate Guest List");
+		lblConsolidateGuestList.setFont(new Font("Segoe UI", Font.PLAIN, 22));
+		panel_8.add(lblConsolidateGuestList, "cell 0 0");
+		
+		JLabel label_5 = new JLabel("");
+		label_5.setIcon(new ImageIcon(GRDashboard.class.getResource("/Images/consolidateGuestList.png")));
+		panel_8.add(label_5, "cell 0 3,alignx center,aligny center");
 		
 		JPanel panel_9 = new JPanel();
+		panel_9.setBackground(new Color(255, 215, 0));
 		panel_6.add(panel_9, "cell 1 0,grow");
+		panel_9.setLayout(new MigLayout("", "[233.00]", "[][][][][][][][]"));
+		
+		JLabel lblCollect = new JLabel("Collect Payment");
+		lblCollect.setFont(new Font("Segoe UI", Font.PLAIN, 22));
+		panel_9.add(lblCollect, "cell 0 0");
+		
+		JLabel label_6 = new JLabel("");
+		label_6.setIcon(new ImageIcon(GRDashboard.class.getResource("/Images/collectPayment.png")));
+		panel_9.add(label_6, "cell 0 7,alignx center,aligny center");
 		
 		JPanel panel_10 = new JPanel();
+		panel_10.setBackground(new Color(255, 215, 0));
 		panel_6.add(panel_10, "cell 2 0,grow");
+		panel_10.setLayout(new MigLayout("", "[228.00]", "[][][][]"));
+		
+		JLabel lblCancelEvent = new JLabel("Cancel Event");
+		lblCancelEvent.setFont(new Font("Segoe UI", Font.PLAIN, 22));
+		panel_10.add(lblCancelEvent, "cell 0 0");
+		
+		JLabel label_7 = new JLabel("");
+		label_7.setIcon(new ImageIcon(GRDashboard.class.getResource("/Images/cancelEvent.png")));
+		panel_10.add(label_7, "cell 0 3,alignx center,aligny center");
 		profilePicture.setIcon(new ImageIcon(GRDashboard.class.getResource("/Images/RIM/userIcon.png")));
 		mainPanel.add(profilePicture, "cell 7 1,alignx left");
 
@@ -94,7 +122,7 @@ public class GRDashboard extends JFrame
 		});
 				
 						JPanel panel_1 = new JPanel();
-						mainPanel.add(panel_1, "cell 1 2 2 1");
+						mainPanel.add(panel_1, "cell 0 2 3 1");
 						panel_1.addMouseListener(new MouseAdapter()
 						{
 							@Override
@@ -224,7 +252,7 @@ public class GRDashboard extends JFrame
 
 		setVisible(true);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setSize(1300, 565);
+		setSize(1300, 600);
 		setResizable(false);
 	}
 

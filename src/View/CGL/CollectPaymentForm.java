@@ -101,7 +101,7 @@ public class CollectPaymentForm extends Fonts {
 	 * 	
 	 * @return javax.swing.JFrame	
 	 */
-	private JFrame getJFrame() {
+	public JFrame getJFrame() {
 		if (jFrame == null) {
 			tree.setBounds(new Rectangle(12, 14, 78, 72));
 			tree.setBounds(new Rectangle(4, 8, 132, 269));

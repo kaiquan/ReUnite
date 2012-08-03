@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
+import View.CGL.CollectPaymentForm;
+import View.CGL.ConsolidateGuestListForm;
 import View.MM.AdministrateRIDetails;
 import View.RIM.InvitationResponseView;
 import View.SOM.InitiateEventForm;
@@ -82,6 +84,12 @@ public class GRDashboard extends JFrame
 		panel_8.add(lblConsolidateGuestList, "cell 0 0");
 		
 		JLabel label_5 = new JLabel("");
+		label_5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				showConsolidateGuestListWindow();
+			}
+		});
 		label_5.setIcon(new ImageIcon(GRDashboard.class.getResource("/Images/consolidateGuestList.png")));
 		panel_8.add(label_5, "cell 0 3,alignx center,aligny center");
 		
@@ -256,10 +264,23 @@ public class GRDashboard extends JFrame
 		setResizable(false);
 	}
 
+	protected void showConsolidateGuestListWindow()
+	{
+		this.setState(JFrame.ICONIFIED);
+		new ConsolidateGuestListForm().getJFrame().setVisible(true);
+		
+	}
+	
+	protected void showCollectPaymentWindow()
+	{
+		this.setState(JFrame.ICONIFIED);
+		new CollectPaymentForm().getJFrame().setVisible(true);
+		
+	}
+
 	protected void disposeWindow()
 	{
 		this.dispose();
-		
 	}
 
 	protected void showAboutWindow()
@@ -270,19 +291,19 @@ public class GRDashboard extends JFrame
 
 	protected void showInitiateEventWindow()
 	{
-		this.dispose();
+		this.setState(JFrame.ICONIFIED);
 		new InitiateEventForm().getJFrame().setVisible(true);
 	}
 
 	protected void showViewEventWindow()
 	{
-		this.dispose();
+		this.setState(JFrame.ICONIFIED);
 		new InvitationResponseView();
 	}
 	
 	protected void showProfile()
 	{
-		this.dispose();
+		this.setState(JFrame.ICONIFIED);
 		new AdministrateRIDetails().getJFrame().setVisible(true);
 	}
 

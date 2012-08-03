@@ -93,7 +93,7 @@ public class ConsolidateGuestListForm extends Fonts{
 	 * 	
 	 * @return javax.swing.JFrame	
 	 */
-	private JFrame getJFrame() {
+	public JFrame getJFrame() {
 		if (jFrame == null) {
 			jFrame = new JFrame();
 			jFrame.setSize(new Dimension(722, 359));

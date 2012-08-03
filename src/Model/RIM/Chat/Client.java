@@ -22,10 +22,10 @@ public class Client
 	private String server, userName;
 	private int port;
 
-	Client(String server, int port, String userName, ClientGUI cg, int eventID)
+	Client(String userName, ClientGUI cg, int eventID)
 	{
-		this.server = server;
-		this.port = port;
+		this.server = "localhost";
+		this.port = 1500;
 		this.userName = userName;
 		this.eventID = eventID;
 		// save if we are in GUI mode or not

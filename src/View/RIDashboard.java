@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 import View.MM.AdministrateRIPersonalDetails;
 import View.RIM.InvitationResponseView;
-import View.RIM.InvitationWelcomeView;
 import View.SOM.InitiateEventForm;
 
 @SuppressWarnings("serial")
@@ -65,8 +64,7 @@ public class RIDashboard extends JFrame
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
-				RIDashboard.getWindows()[0].dispose();
-				new InvitationWelcomeView(4);
+				showViewEventWindow();
 			}
 		});
 		panel_1.setBackground(new Color(220, 20, 60));
@@ -210,7 +208,7 @@ public class RIDashboard extends JFrame
 
 	protected void disposeWindow()
 	{
-		this.dispose();
+		this.setState(JFrame.ICONIFIED);;
 		
 	}
 
@@ -222,19 +220,19 @@ public class RIDashboard extends JFrame
 
 	protected void showInitiateEventWindow()
 	{
-		this.dispose();
+		this.setState(JFrame.ICONIFIED);;
 		new InitiateEventForm().getJFrame().setVisible(true);
 	}
 
 	protected void showViewEventWindow()
 	{
-		this.dispose();
+		this.setState(JFrame.ICONIFIED);;
 		new InvitationResponseView();
 	}
 	
 	protected void showProfile()
 	{
-		this.dispose();
+		this.setState(JFrame.ICONIFIED);;
 		new AdministrateRIPersonalDetails().getJFrame().setVisible(true);
 	}
 

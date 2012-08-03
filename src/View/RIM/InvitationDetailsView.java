@@ -21,10 +21,11 @@ import net.miginfocom.swing.MigLayout;
 import Images.RIM.ImageHelper;
 import Model.Event;
 import Model.Invitation;
+import Model.Membership.Account;
 import Model.Membership.Guest;
 import Model.RIM.GuestCollection;
 import Model.RIM.GuestListModel;
-import View.RIM.Components.ChatClientGUI;
+import Model.RIM.Chat.ClientGUI;
 import View.RIM.Components.JListGuestListRenderer;
 import View.RIM.Components.PieChart;
 
@@ -53,12 +54,12 @@ public class InvitationDetailsView extends JDialog
 	private JLabel lblDatetime;
 	private JLabel dateTimeText;
 	private JLabel initiatedByText;
-
-	private Event event;
 	private JLabel lblPackage;
 	private JEditorPane packageText;
 	private JLabel lblPackageDescription;
 	private JEditorPane packageDescriptionText;
+	
+	private Event event;
 
 	public InvitationDetailsView(Event event)
 	{
@@ -206,8 +207,9 @@ public class InvitationDetailsView extends JDialog
 		list.setCellRenderer(new JListGuestListRenderer());
 		scrollPane.setViewportView(list);
 		panel_5.add(scrollPane, "cell 0 0,grow");
-
-		ChatClientGUI chatBox = new ChatClientGUI();
+//
+//		ClientGUI chatBox = new ClientGUI(Account.currentUser.getUserName(), event.getID());
+		ClientGUI chatBox = new ClientGUI("Adeel", 3);
 		panel_5.add(chatBox, "cell 1 0,grow");
 
 		entertainmentTabPanel = new JPanel();

@@ -4,6 +4,8 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
+import View.RIM.InvitationResponseView;
+
 import Images.RIM.ImageHelper;
 
 import java.awt.event.*;
@@ -36,10 +38,21 @@ public class GuestActionsFooter extends JPanel
 		add(lblSettings, "cell 1 0,alignx left,aligny center");
 		
 		JLabel label_2 = new JLabel("");
+		label_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				showInvitationsWindow();
+			}
+		});
 		label_2.setIcon(new ImageIcon(ImageHelper.loadImage("invitationIcon.png", "Testing").getScaledInstance(-1, 75, 5)));
 		add(label_2, "flowy,cell 4 0,alignx center,aligny center");
 		
 		JLabel lblViewInvitations = new JLabel("View invitations");
 		add(lblViewInvitations, "cell 4 0,alignx center");
+	}
+
+	protected void showInvitationsWindow()
+	{
+		new InvitationResponseView();
 	}
 }

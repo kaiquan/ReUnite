@@ -15,7 +15,7 @@ import View.CGL.CollectPaymentForm;
 import View.CGL.ConsolidateGuestListForm;
 import View.MM.AdministrateRIDetails;
 import View.RIM.InvitationResponseView;
-import View.SOM.InitiateEventForm;
+import View.SOM.AdministrateServiceOptionManagement;
 
 @SuppressWarnings("serial")
 public class GRDashboard extends JFrame
@@ -36,7 +36,7 @@ public class GRDashboard extends JFrame
 			@Override
 			public void mouseClicked(MouseEvent arg0)
 			{
-				showInitiateEventWindow();
+				showAdministrateServiceOptionManagement();
 			}
 		});
 		panel.setBackground(new Color(173, 255, 47));
@@ -55,7 +55,7 @@ public class GRDashboard extends JFrame
 			@Override
 			public void mouseClicked(MouseEvent arg0)
 			{
-				showInitiateEventWindow();
+				showAdministrateServiceOptionManagement();
 			}
 		});
 		lblNewLabel.setIcon(new ImageIcon(GRDashboard.class.getResource("/Images/initiateEvent.png")));
@@ -94,6 +94,12 @@ public class GRDashboard extends JFrame
 		panel_8.add(label_5, "cell 0 3,alignx center,aligny center");
 		
 		JPanel panel_9 = new JPanel();
+		panel_9.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				showCollectPaymentWindow();
+			}
+		});
 		panel_9.setBackground(new Color(255, 215, 0));
 		panel_6.add(panel_9, "cell 1 0,grow");
 		panel_9.setLayout(new MigLayout("", "[233.00]", "[][][][][][][][]"));
@@ -103,6 +109,12 @@ public class GRDashboard extends JFrame
 		panel_9.add(lblCollect, "cell 0 0");
 		
 		JLabel label_6 = new JLabel("");
+		label_6.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				showCollectPaymentWindow();
+			}
+		});
 		label_6.setIcon(new ImageIcon(GRDashboard.class.getResource("/Images/collectPayment.png")));
 		panel_9.add(label_6, "cell 0 7,alignx center,aligny center");
 		
@@ -289,10 +301,10 @@ public class GRDashboard extends JFrame
 		
 	}
 
-	protected void showInitiateEventWindow()
+	protected void showAdministrateServiceOptionManagement()
 	{
 		this.setState(JFrame.ICONIFIED);
-		new InitiateEventForm().getJFrame().setVisible(true);
+		new AdministrateServiceOptionManagement().getJFrame().setVisible(true);
 	}
 
 	protected void showViewEventWindow()

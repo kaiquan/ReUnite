@@ -1556,7 +1556,7 @@ public class InitiateEventForm {
 		//finally create the event
 		InitiateEventControl control= new InitiateEventControl(newPackageID, "kaiquan88@gmail.com","Pending",getJTextField_selectedDate().getText(),getJComboBox_selectTime().getSelectedItem().toString(),getJTextField_eventName().getText(),getJTextArea_eventDescription().getText());
 		String eventID=control.processInitiateEvent();
-		if(success){
+		if(eventID!=null){
 			
 		}
 		else{

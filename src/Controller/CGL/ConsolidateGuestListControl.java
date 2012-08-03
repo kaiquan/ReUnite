@@ -19,6 +19,9 @@ import Model.Package;
 
 public class ConsolidateGuestListControl {
 	
+//get an arrayList of event objects
+//It basically get the expired invitation records
+	
 public ArrayList<Event> processExpiredInvitation(){
 				
 		Event e1 = new Event();

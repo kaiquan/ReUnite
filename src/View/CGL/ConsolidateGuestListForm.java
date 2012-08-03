@@ -345,13 +345,8 @@ public class ConsolidateGuestListForm extends Fonts{
                     	System.out.println("PDF CREATED SUCCESSFULLY");                    	
                     	EmailController email = new EmailController();                    	
                     	File pdf = new File(FILE);
-                    	String[] test={"anniyan123456789@hotmail.com"};                    	
-                    	try {
-							email.sendEmail("TEXT", test, "TEST EMAIL", "TESTING EMAIL", pdf, "Payment");
-						} catch (Exception e) {
-							
-							e.printStackTrace();
-						}
+                    	
+                    	
 						if((c1.processUpdateEventStatus(textField.getText(),eventStatus)==true)){
 							System.out.println("Event Status Changed to Awaiting Payment");
 							refresh();						

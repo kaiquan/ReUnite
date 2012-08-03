@@ -1,8 +1,12 @@
 package Controller.CGL;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
+import Controller.EmailController;
 import Model.Ballroom;
 import Model.Entertainment;
 import Model.Event;
@@ -178,13 +182,42 @@ public ArrayList<String> requestSelectedEventDetails(String eventName)
 	return combined;
 }
 
-public boolean updateTotalPayableAmount(String amount,String eventName){
+
+public boolean processEventConsolidation(String amount,String eventName,String recipient,File pdf,String eventStatus){
 	
-	Purchase_Summary p1 = new Purchase_Summary();
+	boolean success=false;
+	//updates total payable amount
+	try
+	{
+		Purchase_Summary p1 = new Purchase_Summary();
+		p1.UPDATES_TOTAL_PAYABLE_AMOUNT(amount, eventName);
+		success=true;
+	}
+	catch(Exception ex){
+		JOptionPane.showMessageDialog(null, "Failed to update total payable amount");
+		success=false;
+		return success;
+	}
+	
+	try{
+	String content="Dear Sir/Madam"+"\n"+"Kindly make your first payment for the event"+eventName +"\n"+"For more details regarding the payment, kindly refer to the attachment attached with this email Or you can contact us at 67747173."+"\n"+"Shahrikin"+"\n"+"GR Administrator";
+	//prepares email
+	EmailController email = new EmailController();
+	email.sendEmail("TEXT", recipient, "RE : Payment Notification for event "+eventName, content, pdf, "Payment");
+	success=true;
+	}
+	
+	catch(Exception ex){
+		JOptionPane.showMessageDialog(null, "Failed to send email to RI");
+		success=false;
+		return success;
+	}
 	
 	
-	return p1.UPDATES_TOTAL_PAYABLE_AMOUNT(amount, eventName);
 }
+
+
+
 
 public boolean processUpdateEventStatus(String eventName,String eventStatus){
 	Event e1 = new Event();

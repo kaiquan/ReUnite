@@ -95,7 +95,7 @@ public class AdministrateRIPersonalDetails {
 	
 	public JFrame getJFrame(){
 		jframe = new JFrame();
-		jframe.setSize(1211, 452);
+		jframe.setSize(1211, 482);
 		jframe.setVisible(true);
 		jframe.setTitle("View");
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -313,16 +313,16 @@ public class AdministrateRIPersonalDetails {
 	
 	private JPanel getPanel(){
 	riInfo = new JLabel();
-	riInfo.setBounds(new Rectangle(-1, 278, 443, 72));
+	riInfo.setBounds(new Rectangle(0, 1, 443, 104));
 	riInfo.setFont(new Font("Gill Sans MT", Font.BOLD | Font.ITALIC, 24));
-	riInfo.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Info-icon.png")));
+	riInfo.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Personal-information-128.png")));
 	riInfo.setText("RI Personal Information");
 	requestCloseLabel = new JLabel();
-	requestCloseLabel.setBounds(new Rectangle(810, 179, 316, 145));
+	requestCloseLabel.setBounds(new Rectangle(667, 76, 316, 145));
 	requestCloseLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Actions-edit-delete-shred-icon.png")));
 	requestCloseLabel.setText("Request Account Closure");
 	updateLabel = new JLabel();
-	updateLabel.setBounds(new Rectangle(813, 24, 310, 146));
+	updateLabel.setBounds(new Rectangle(741, 212, 310, 146));
 	updateLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Actions-document-edit-icon.png")));
 	updateLabel.setText("Update Account");
 	panel = new JPanel();	
@@ -335,10 +335,10 @@ public class AdministrateRIPersonalDetails {
 	//Labels
 	 
 	title = new JLabel();
-	title.setBounds(new Rectangle(-2, -2, 847, 184));
+	title.setBounds(new Rectangle(1, 243, 750, 113));
 	title.setFont(new Font("Gill Sans MT", Font.BOLD | Font.ITALIC, 30));
-	title.setIcon(new ImageIcon(getClass().getResource("/Images/MM/personal-information-icon.png")));
-	title.setText("Welcome , "+Account.currentUser.getUserName());
+	title.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Personal-information-128.png")));
+	title.setText("Personal details");
 	
 	
 	//TextBox
@@ -507,14 +507,14 @@ public class AdministrateRIPersonalDetails {
 			panel.add(amountBalance);
 		
 			JScrollPane tableScrollPane = new JScrollPane(getTable());
-			tableScrollPane.setBounds(-1, 351, 1196, 61);
+			tableScrollPane.setBounds(-2, 361, 1196, 61);
 			tableScrollPane.setFont(new Font("Dialog", Font.BOLD, 18));
 			tableScrollPane.setEnabled(false);
 			panel.add(tableScrollPane);
 			
 			table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 			JScrollPane tableScrollPaneEvent = new JScrollPane(getTableEvent());
-			tableScrollPaneEvent.setBounds(0, 180, 663, 100);
+			tableScrollPaneEvent.setBounds(1, 109, 663, 100);
 			panel.add(tableScrollPaneEvent);
 			panel.add(updateLabel, null);
 			panel.add(requestCloseLabel, null);
@@ -573,6 +573,10 @@ public class AdministrateRIPersonalDetails {
 		table.setColumnSelectionAllowed(false);
 		table.setCellSelectionEnabled(false);
 		table.setRowSelectionAllowed(true);
+		table.setCellSelectionEnabled(false);
+		table.setColumnSelectionAllowed(false);
+		table.setCellSelectionEnabled(false);
+		table.setRowHeight(50);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		
 		DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();

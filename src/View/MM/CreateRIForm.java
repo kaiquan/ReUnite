@@ -89,6 +89,7 @@ public class CreateRIForm extends JFrame {
 	public CreateRIForm() {
 		super();
 		initialize();
+		  this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
 
 
@@ -108,7 +109,7 @@ public class CreateRIForm extends JFrame {
 
 	JFrame getJFrame(){
 		jFrame = new JFrame();
-		jFrame.setSize(1229, 552);
+		jFrame.setSize(1191, 552);
 		jFrame.setVisible(true);
 		jFrame.setTitle("Registration");
 		jFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -126,8 +127,8 @@ public class CreateRIForm extends JFrame {
 	
 	private JPanel getPanel(){
 		jLabel = new JLabel();
-		jLabel.setBounds(new Rectangle(704, 414, 193, 91));
-		jLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Windows-Close-icon.png")));
+		jLabel.setBounds(new Rectangle(637, 421, 193, 91));
+		jLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Windows-Close-Program-icon.png")));
 		jLabel.setText("Cancel");
 		jLabel.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
@@ -136,9 +137,9 @@ public class CreateRIForm extends JFrame {
 			}
 		});
 		submitLabel = new JLabel();
-		submitLabel.setBounds(new Rectangle(418, 389, 270, 120));
+		submitLabel.setBounds(new Rectangle(418, 427, 141, 82));
 		submitLabel.setDisplayedMnemonic(KeyEvent.VK_UNDEFINED);
-		submitLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/1343837698_Redo.png")));
+		submitLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/App-noatun-icon.png")));
 		submitLabel.setText("Submit");
 		submitLabel.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
@@ -153,7 +154,7 @@ public class CreateRIForm extends JFrame {
 			}
 		});
 		SignIn = new JLabel();
-		SignIn.setBounds(new Rectangle(1113, 3, 94, 16));
+		SignIn.setBounds(new Rectangle(1062, 4, 94, 16));
 		SignIn.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Login-in-icon.png")));
 		SignIn.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 12));
 		SignIn.setText("SignIn");
@@ -166,7 +167,7 @@ public class CreateRIForm extends JFrame {
 		});
 		cPasswordLabel = new JLabel();
 		cPasswordLabel.setText("Confirm Password");
-		cPasswordLabel.setBounds(new Rectangle(200, 152, 129, 16));
+		cPasswordLabel.setBounds(new Rectangle(340, 79, 129, 16));
 		panel = new JPanel();	
 		panel.setLayout(null);
 		panel.setSize(500,500);
@@ -176,7 +177,7 @@ public class CreateRIForm extends JFrame {
 		//Button
 		
 		cancelButton = new JButton();
-		cancelButton.setBounds(new Rectangle(995, 415, 81, 31));
+		cancelButton.setBounds(new Rectangle(972, 500, 81, 31));
 		cancelButton.setText("Cancel");
 		cancelButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -189,7 +190,7 @@ public class CreateRIForm extends JFrame {
 		
 		
 		submitRegistrationButton = new JButton();
-		submitRegistrationButton.setBounds(new Rectangle(970, 376, 113, 42));
+		submitRegistrationButton.setBounds(new Rectangle(871, 503, 113, 42));
 		submitRegistrationButton.setIcon(new ImageIcon(getClass().getResource("/Images/MM/registration_submit_icon.png")));
 		submitRegistrationButton.setText("Submit");
 		submitRegistrationButton
@@ -205,20 +206,22 @@ public class CreateRIForm extends JFrame {
 			}});
 		
 		//combo box
-		monthCombo = new JComboBox(monthArray());
-		monthCombo.setBounds(600, 300, 100, 20);
 		
 		dayCombo = new JComboBox(dayArray());
-		dayCombo.setBounds(550, 300, 40, 20);
+		dayCombo.setBounds(340, 230, 40, 20);
+		
+		monthCombo = new JComboBox(monthArray());
+		monthCombo.setBounds(390, 230, 100, 20);
+
 		
 		yearCombo = new JComboBox(yearArray());
-		yearCombo.setBounds(710, 300, 70, 20);
+		yearCombo.setBounds(500, 230, 70, 20);
 	
 		
 		
 		
 		secretQuestionCombo = new JComboBox(secretQuestion());
-		secretQuestionCombo.setBounds(230,700,180,20);
+		secretQuestionCombo.setBounds(975,110,180,20);
 		
 		
 		//Labels
@@ -234,58 +237,58 @@ public class CreateRIForm extends JFrame {
 		
 		userNameLabel = new JLabel();
 		userNameLabel.setText("User Name");
-		userNameLabel.setBounds(new Rectangle(31, 88, 140, 20));
+		userNameLabel.setBounds(new Rectangle(31, 13, 140, 20));
 		
 		passwordLabel = new JLabel();
 		passwordLabel.setText("Password");
-		passwordLabel.setBounds(new Rectangle(32, 152, 140, 20));
+		passwordLabel.setBounds(new Rectangle(30, 76, 140, 20));
 		
 		firstNameLabel = new JLabel();
 		firstNameLabel.setText("First Name");
-		firstNameLabel.setBounds(new Rectangle(32, 29, 140, 20));
+		firstNameLabel.setBounds(new Rectangle(31, 137, 140, 20));
 		
 		
 		lastNameLabel = new JLabel();
 		lastNameLabel.setText("Last Name");
-		lastNameLabel.setBounds(new Rectangle(196, 29, 140, 20));
+		lastNameLabel.setBounds(new Rectangle(30, 197, 140, 20));
 		
 		dateOfBirthLabel = new JLabel();//
 		dateOfBirthLabel.setText("Date Of Birth");
 
-		dateOfBirthLabel.setBounds(new Rectangle(406, 154, 140, 20));
+		dateOfBirthLabel.setBounds(new Rectangle(341, 196, 140, 20));
 		
 		nricLabel = new JLabel();
 		nricLabel.setText("NRIC");
-		nricLabel.setBounds(new Rectangle(405, 88, 140, 20));
+		nricLabel.setBounds(new Rectangle(339, 137, 140, 20));
 		
 		schoolLabel = new JLabel();
 		schoolLabel.setText("School");
-		schoolLabel.setBounds(new Rectangle(405, 30, 140, 20));
+		schoolLabel.setBounds(new Rectangle(974, 27, 140, 20));
 		
 		emailLabel = new JLabel();
 		emailLabel.setText("Email");
-		emailLabel.setBounds(new Rectangle(195, 89, 140, 20));
+		emailLabel.setBounds(new Rectangle(340, 15, 140, 20));
 		
 		addressLabel = new JLabel();
 		addressLabel.setText("Address");
-		addressLabel.setBounds(new Rectangle(766, 31, 140, 20));
+		addressLabel.setBounds(new Rectangle(650, 160, 140, 20));
 		
 		telephoneNoLabel = new JLabel();
 		telephoneNoLabel.setText("Tel. No");
-		telephoneNoLabel.setBounds(new Rectangle(585, 29, 140, 20));
+		telephoneNoLabel.setBounds(new Rectangle(645, 27, 140, 20));
 		
 		handphoneNoLabel = new JLabel();
 		handphoneNoLabel.setText("H/p No");
-		handphoneNoLabel.setBounds(new Rectangle(586, 89, 140, 20));
+		handphoneNoLabel.setBounds(new Rectangle(649, 87, 140, 20));
 		
 
 		secretQuestionLabel = new JLabel();
 		secretQuestionLabel.setText("Secret Question");
-		secretQuestionLabel.setBounds(new Rectangle(960, 29, 140, 20));
+		secretQuestionLabel.setBounds(new Rectangle(975, 89, 140, 20));
 		
 		secretAnswerLabel = new JLabel();
 		secretAnswerLabel.setText("Secret Answer");
-		secretAnswerLabel.setBounds(new Rectangle(960, 91, 140, 20));
+		secretAnswerLabel.setBounds(new Rectangle(975, 154, 140, 20));
 		
 		
 		
@@ -294,53 +297,53 @@ public class CreateRIForm extends JFrame {
 		
 		// Text Boxes
 		firstNameTextBox = new JTextField();
-		firstNameTextBox.setBounds(new Rectangle(28, 52, 140, 20));
+		firstNameTextBox.setBounds(new Rectangle(30, 164, 240, 26));
 		firstNameTextBox.setBackground(new Color(219, 225, 224));
 		
 		lastNameTextBox = new JTextField();
-		lastNameTextBox.setBounds(new Rectangle(196, 58, 140, 20));
+		lastNameTextBox.setBounds(new Rectangle(31, 226, 241, 26));
 		lastNameTextBox.setBackground(new Color(219, 225, 224));
 		
 		userNameTextBox = new JTextField();
-		userNameTextBox.setBounds(new Rectangle(32, 120, 140, 20));
+		userNameTextBox.setBounds(new Rectangle(31, 45, 240, 27));
 		userNameTextBox.setBackground(new Color(219, 225, 224));
 		
 		passwordTextBox = new JPasswordField();
-		passwordTextBox.setBounds(new Rectangle(33, 179, 140, 20));
+		passwordTextBox.setBounds(new Rectangle(30, 103, 239, 27));
 		passwordTextBox.setBackground(new Color(219, 225, 224));
 		
 		cPasswordTextBox = new JPasswordField();
-		cPasswordTextBox.setBounds(new Rectangle(198, 180, 140, 20));
+		cPasswordTextBox.setBounds(new Rectangle(338, 107, 234, 25));
 		cPasswordTextBox.setBackground(new Color(219, 225, 224));
 		
 		nricTextBox = new JTextField();
-		nricTextBox.setBounds(new Rectangle(407, 116, 140, 20));
+		nricTextBox.setBounds(new Rectangle(341, 165, 196, 23));
 		nricTextBox.setBackground(new Color(219, 225, 224));
 		
 		schoolTextBox = new JTextField();
-		schoolTextBox.setBounds(new Rectangle(405, 57, 140, 20));
+		schoolTextBox.setBounds(new Rectangle(975, 57, 140, 20));
 		schoolTextBox.setBackground(new Color(219, 225, 224));
 		
 		emailTextBox = new JTextField();
-		emailTextBox.setBounds(new Rectangle(195, 120, 140, 20));
+		emailTextBox.setBounds(new Rectangle(338, 47, 232, 25));
 		emailTextBox.setBackground(new Color(219, 225, 224));
 		
 		addressTextBox = new JTextPane();
-		addressTextBox.setBounds(new Rectangle(767, 68, 142, 67));
+		addressTextBox.setBounds(new Rectangle(648, 181, 209, 67));
 		addressTextBox.setBackground(new Color(219, 225, 224));
 		
 		
 		telephoneNoTextBox = new JTextField();
-		telephoneNoTextBox.setBounds(new Rectangle(585, 57, 140, 20));
+		telephoneNoTextBox.setBounds(new Rectangle(647, 45, 140, 30));
 		telephoneNoTextBox.setBackground(new Color(219, 225, 224));
 		
 		handphoneNoTextBox = new JTextField();
-		handphoneNoTextBox.setBounds(new Rectangle(584, 122, 140, 20));
+		handphoneNoTextBox.setBounds(new Rectangle(649, 108, 140, 27));
 		handphoneNoTextBox.setBackground(new Color(219, 225, 224));
 		
 		
 		secretAnswerTextBox = new JTextField();
-		secretAnswerTextBox.setBounds(new Rectangle(961, 120, 140, 20));
+		secretAnswerTextBox.setBounds(new Rectangle(974, 195, 201, 32));
 		secretAnswerTextBox.setBackground(new Color(219, 225, 224));
 		
 		
@@ -352,10 +355,6 @@ public class CreateRIForm extends JFrame {
 		
 		
 		//comboBox
-		panel.add(monthCombo);
-		panel.add(dayCombo);
-		panel.add(yearCombo);
-		panel.add(secretQuestionCombo);
 		
 		//Label
 		panel.add(headerText);
@@ -518,7 +517,7 @@ public class CreateRIForm extends JFrame {
 				private JComboBox getJComboBox() {
 					if (jComboBox == null) {
 						jComboBox = new JComboBox();
-						jComboBox.setBounds(new Rectangle(960, 55, 197, 25));
+						jComboBox.setBounds(new Rectangle(974, 119, 197, 25));
 					}
 					return jComboBox;
 				}
@@ -532,7 +531,7 @@ public class CreateRIForm extends JFrame {
 		if (jPanel == null) {
 			jPanel = new JPanel();
 			jPanel.setLayout(null);
-			jPanel.setBounds(new Rectangle(-23, 145, 1263, 230));
+			jPanel.setBounds(new Rectangle(-26, 141, 1263, 269));
 			jPanel.setBackground(Color.white);
 			jPanel.add(lastNameLabel, null);
 			jPanel.add(firstNameTextBox, null);
@@ -557,10 +556,15 @@ public class CreateRIForm extends JFrame {
 			jPanel.add(secretAnswerLabel, null);
 			jPanel.add(secretAnswerTextBox, null);
 			jPanel.add(secretQuestionLabel, null);
-			jPanel.add(getJComboBox(), null);
+			jPanel.add(secretQuestionCombo, null);
 			jPanel.add(telephoneNoLabel, null);
 			jPanel.add(telephoneNoTextBox, null);
 			jPanel.add(firstNameLabel, null);
+			jPanel.add(monthCombo);
+			jPanel.add(dayCombo);
+			jPanel.add(yearCombo);
+			jPanel.add(secretQuestionCombo);
+			
 		}
 		return jPanel;
 	}

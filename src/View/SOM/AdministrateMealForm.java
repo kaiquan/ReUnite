@@ -205,6 +205,7 @@ public class AdministrateMealForm {
 			jCheckBox_mealAvailability.setText("Not Available");
 			jCheckBox_mealAvailability.setFocusable(false);
 			jCheckBox_mealAvailability.setFocusPainted(false);
+			jCheckBox_mealAvailability.setSelected(true);
 			jCheckBox_mealAvailability.setBounds(new Rectangle(550, 40, 200, 30));
 			jCheckBox_mealAvailability.addItemListener(new java.awt.event.ItemListener() {
 				public void itemStateChanged(java.awt.event.ItemEvent e) {

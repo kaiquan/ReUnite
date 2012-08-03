@@ -197,6 +197,7 @@ public class AdministrateEntertainmentForm {
 	protected JCheckBox getJCheckBox_entertainmentAvailability() {
 		if (jCheckBox_entertainmentAvailability == null) {
 			jCheckBox_entertainmentAvailability = new JCheckBox();
+			jCheckBox_entertainmentAvailability.setSelected(true);
 			jCheckBox_entertainmentAvailability.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jCheckBox_entertainmentAvailability.setBounds(new Rectangle(550, 40, 200, 30));
 			jCheckBox_entertainmentAvailability.setFocusable(false);

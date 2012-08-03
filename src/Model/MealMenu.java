@@ -134,7 +134,7 @@ public class MealMenu {
 					 vegetarian="YES";
 				if(rs.getString("mealMenuVegetarian").equals("0"))
 					 vegetarian="NO";
-				System.out.println(hala);
+
 				model.addRow(new Object[]{rs.getString("mealMenuName"),rs.getString("mealMenuPrice"),hala,vegetarian,rs.getString("mealMeuDescription")});
 		   }
 		}

@@ -293,6 +293,7 @@ public class AdministratePackageForm {
 			jCheckBox_packageAvailability.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jCheckBox_packageAvailability.setFocusable(false);
 			jCheckBox_packageAvailability.setFocusPainted(false);
+			jCheckBox_packageAvailability.setSelected(true);
 			jCheckBox_packageAvailability.setBounds(new Rectangle(550, 40, 200, 30));
 			jCheckBox_packageAvailability.setText("Not Available");
 			jCheckBox_packageAvailability

@@ -189,6 +189,7 @@ public class AdministrateBallroomForm {
 			jCheckBox_ballroomAvailability = new JCheckBox();
 			jCheckBox_ballroomAvailability.setFocusable(false);
 			jCheckBox_ballroomAvailability.setFocusPainted(false);
+			jCheckBox_ballroomAvailability.setSelected(true);
 			jCheckBox_ballroomAvailability.setBounds(new Rectangle(530, 40, 200, 30));
 			jCheckBox_ballroomAvailability.setText("Not Available");
 			jCheckBox_ballroomAvailability

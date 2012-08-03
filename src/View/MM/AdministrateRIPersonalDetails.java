@@ -116,12 +116,14 @@ public class AdministrateRIPersonalDetails {
 		updatePanel = new JPanel();
 		updatePanel.setLayout(null);
 		updatePanel.setFont(new Font("Dialog", Font.PLAIN, 14));
+		updatePanel.setBackground(new Color(102, 153, 255));
 		
 		
 	//Label
 		JLabel welcomeLabel = new JLabel();
-		welcomeLabel.setBounds(10, 10, 530, 50);
-		welcomeLabel.setText("Updating "+Account.currentUser.getFirstName());
+		welcomeLabel.setBounds(18, 18, 530, 64);
+		welcomeLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/addressbook-edit-icon.png")));
+		welcomeLabel.setText("Update personal Information" );
 		updatePanel.add(welcomeLabel);
 		
 		
@@ -219,7 +221,7 @@ public class AdministrateRIPersonalDetails {
 		handphoneTextBox.setVisible(true);
 		
 		submitButton = new JButton("Submit");
-		submitButton.setBounds(385, 303, 150, 30);
+		submitButton.setBounds(448, 302, 150, 30);
 		submitButton.addActionListener(new java.awt.event.ActionListener() {
 
 			public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -275,7 +277,7 @@ public class AdministrateRIPersonalDetails {
 		});
 		
 		cancelButtonUpdate = new JButton("Cancel");
-		cancelButtonUpdate.setBounds(568, 300, 150, 30);
+		cancelButtonUpdate.setBounds(601, 300, 150, 30);
 		
 			
 		
@@ -318,7 +320,7 @@ public class AdministrateRIPersonalDetails {
 	riInfo.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Personal-information-128.png")));
 	riInfo.setText("RI Personal Information");
 	requestCloseLabel = new JLabel();
-	requestCloseLabel.setBounds(new Rectangle(667, 76, 316, 145));
+	requestCloseLabel.setBounds(new Rectangle(740, 68, 316, 145));
 	requestCloseLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Actions-edit-delete-shred-icon.png")));
 	requestCloseLabel.setText("Request Account Closure");
 	updateLabel = new JLabel();

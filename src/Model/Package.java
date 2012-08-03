@@ -4,17 +4,17 @@ Description				:	A Package Model class that is the Model for Package record(s)
 Done by					:	Lee Kai Quan
 Admin No				:	114173S
 Module Group			:	IT2297-08
-Last Edited				:	6-8-2012
+Last Edited				:	4-August-2012
 =========================================================================================================================================================
 USERS USING THIS CLASS	:	Lee Kai Quan (114173S)
 METHODS LIST			:	Pacakge()
 						: 	Package(String, String, String, String, String, String, boolean, int, double, boolean)
-						:	createPackage(String, String, String) ; String
-						:	deletePackage(String) : Boolean
-						:	updatePackage(String, String, String) : Boolean
-						:	retrievePackage() : DefaultTableModel
-						:	retrievePackage(String) : DefaultTableModel
-						: 	retrievePackageByID(String) : Package
+						:	CREATE_PACKAGE(String, String, String) ; String
+						:	DELETE_PACKAGE(String) : Boolean
+						:	UPDATE_PACKAGE(String, String, String) : Boolean
+						:	RETRIEVE_PACKAGE() : DefaultTableModel
+						:	RETRIEVE_PACKAGE(String) : DefaultTableModel
+						: 	RETRIEVE_PACKAGE_BY_ID(String) : Package
 						:	Accessor Methods...
 ********************************************************************************************************************************************************/
 
@@ -74,8 +74,9 @@ public class Package {
 	 *******************************************************/
 	
 	/********************************************************
-	 * Method Name 		: createPackage
-	 * Input Parameter 	: NIL 
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: CREATE_PACKAGE
+	 * Input Parameter 	: String, String, String 
 	 * Purpose 			: To create a new Package record
 	 * Return 			: String
 	 *******************************************************/
@@ -116,7 +117,7 @@ public class Package {
 		finally{
 		}
 
-		//create the meal option
+		//CREATING THE MEAL OPTION RECORD
 		if(!(mealID1.equals("null"))){
 			MealOptions meal= new MealOptions();
 			meal.CREATE_MEAL_OPTION(packageID, mealID1);
@@ -134,10 +135,11 @@ public class Package {
 	
 	
 	/********************************************************
-	  * Method Name 	: deletePackage
-	  * Input Parameter : String
-	  * Purpose 		: To delete an package record
-	  * Return 			: boolean
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: DELETE_PACKAGE
+	 * Input Parameter 	: String
+	 * Purpose 			: To delete an package record
+	 * Return 			: boolean
 	  *******************************************************/
 	public boolean DELETE_PACKAGE(String ID){
 		boolean success=false;
@@ -166,10 +168,11 @@ public class Package {
 	}
 	
 	/********************************************************
-	  * Method Name 	: updatePackage
-	  * Input Parameter : String
-	  * Purpose			: To update an package record
-	  * Return 			: boolean
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: UPDATE_PACKAGE
+	 * Input Parameter 	: String, String, String
+	 * Purpose			: To update an package record
+	 * Return 			: boolean
 	  *******************************************************/
 	public boolean UPDATE_PACKAGE(String mealID1, String mealID2, String mealID3){
 		boolean success=false;
@@ -215,7 +218,8 @@ public class Package {
 	}
 	
 	 /********************************************************
-	  * Method Name 	: retrievePackage
+	  * Author			: Lee Kai Quan(114173S)
+	  * Method Name 	: RETRIEVE_PACKAGE
 	  * Input Parameter : NIL
 	  * Purpose 		: To retrieve all Package record
 						  where isRecord =0
@@ -244,11 +248,12 @@ public class Package {
 	}
 	
 	/********************************************************
-	  * Method Name 	: retrievePackage
-	  * Input Parameter : String paramater
-	  * Purpose 		: To retrieve all Package record 
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: RETRIEVE_PACKAGE
+	 * Input Parameter 	: String
+	 * Purpose 			: To retrieve all Package record 
 						  where isRecord =0 and like parameter
-	  * Return 			: DaultTableModel
+	 * Return 			: DaultTableModel
 	  *******************************************************/
 	public DefaultTableModel RETRIEVE_PACKAGE(String parameter){
 		DefaultTableModel model= new DefaultTableModel();
@@ -281,10 +286,11 @@ public class Package {
 	
 	
 	/********************************************************
-	  * Method Name 	: retrievePackageByID
-	  * Input Parameter : String paramater
-	  * Purpose 		: To retrieve all Package record by IDr
-	  * Return 			: Package
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: RETRIEVE_PACKAGE_BY_ID
+	 * Input Parameter 	: String
+	 * Purpose 			: To retrieve all Package record by IDr
+	 * Return 			: Package
 	  *******************************************************/
 	public Package RETRIEVE_PACKAGE_BY_ID(String ID){
 		String sqlQuery;

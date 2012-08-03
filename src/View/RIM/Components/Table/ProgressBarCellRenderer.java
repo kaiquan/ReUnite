@@ -30,14 +30,15 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.TableCellRenderer;
 
-@SuppressWarnings({"serial", "rawtypes"})
+@SuppressWarnings({"serial"})
 public final class ProgressBarCellRenderer extends JProgressBar
     implements TableCellRenderer {
 
     /**
      * Used to get colours.
      */
-    private Hashtable m_limitColors;
+    @SuppressWarnings("unchecked")
+	private Hashtable m_limitColors;
 
     /**
      * Used to get values.
@@ -48,7 +49,8 @@ public final class ProgressBarCellRenderer extends JProgressBar
     /**
      * Constructor.
      */
-    public ProgressBarCellRenderer()
+    @SuppressWarnings("unchecked")
+	public ProgressBarCellRenderer()
     {
         this(false, true, 0, 100, new Hashtable(), Color.WHITE);
     }
@@ -64,7 +66,8 @@ public final class ProgressBarCellRenderer extends JProgressBar
      * @param limitColors   <code>Hashtable</code> of colors.
      * @param bg            The <code>Color</code>.
      */
-    public ProgressBarCellRenderer(boolean paintNum, boolean paintBorder,
+    @SuppressWarnings("unchecked")
+	public ProgressBarCellRenderer(boolean paintNum, boolean paintBorder,
         int min, int max, Hashtable limitColors, Color bg)
     {
         super(SwingConstants.HORIZONTAL, min, max);
@@ -135,7 +138,8 @@ public final class ProgressBarCellRenderer extends JProgressBar
      * <p>
      * @param limitColors   <code>Hashtable</code>.
      */
-    public void setLimits(Hashtable limitColors)
+    @SuppressWarnings("unchecked")
+	public void setLimits(Hashtable limitColors)
     {
         m_limitColors = limitColors;
 

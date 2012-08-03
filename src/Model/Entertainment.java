@@ -4,19 +4,18 @@ Description				:	A Entertainment Model class that is the Model for Entertainment
 Done by					:	Lee Kai Quan,Ameenudeen (111942S)
 Admin No				:	114173S
 Module Group			:	IT2297-08
-Last Edited				:	6-13-2012
+Last Edited				:	4-August-2012
 ========================================================================================================================================================
 USERS USING THIS CLASS	:	Lee Kai Quan (114173S),A Ameenudeen(111942S)
 METHODS LIST			:	Entertainment()
 						: 	Entertainment(String, boolean, String, String, double, double, double, int, boolean)
-						:	createEntertainment() : String
-						:	deleteEntertainment(String) : Boolean
-						:	updateEntertainment(String) : Boolean
-						: 	retrieveEntertainment() : DefaultTableModel
-						: 	retrieveEntertainment(String) : DefaultTableModel
-						: 	retrieveEntertainmentByID(String) : Entertainment
-						: 	updateHits(String) : Boolean
-						: 	checkRelationship(String) : Boolean
+						:	CREATE_ENTERTAINMENT() : String
+						:	DELETE_ENTERTAINMENT(String) : Boolean
+						:	UPDATE_ENTERTAINMENT(String) : Boolean
+						: 	RETRIEVE_ENTERTAINMENT() : DefaultTableModel
+						: 	RETRIEVE_ENTERTAINMENT(String) : DefaultTableModel
+						: 	RETRIEVE_ENTERTAINMENT_BY_ID(String) : Entertainment
+						: 	CHECK_RELATIONSHIP(String) : Boolean
 						:	GET_ENTERTAINMENT_PRICE(String) : ArrayList<String>
 						:	Accessor Methods..
 *******************************************************************************************************************************************************/
@@ -75,7 +74,8 @@ public class Entertainment {
 	 *******************************************************/
 	
 	/********************************************************
-	 * Method Name 		: createEntertainment()
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: CREATE_ENTERTAINMENT()
 	 * Input Parameter 	: void 
 	 * Return 			: String
 	 * Purpose 			: To create a new Entertainment record
@@ -112,7 +112,8 @@ public class Entertainment {
 	}
 	
 	 /********************************************************
-	  * Method Name 	: deleteEntertainment()
+	  * Author			: Lee Kai Quan(114173S)
+	  * Method Name 	: DELETE_ENTERTAINMENT()
 	  * Input Parameter : String
 	  * Return 			: boolean
 	  * Purpose 		: To delete an Entertainment record
@@ -139,7 +140,8 @@ public class Entertainment {
 	}
 	
 	 /********************************************************
-	  * Method Name 	: updateEntertainment()
+	  * Author			: Lee Kai Quan(114173S)
+	  * Method Name 	: UPDATE_ENTERTAINMENT()
 	  * Input Parameter : String
 	  * Return 			: boolean
 	  * Purpose 		: To update an Entertainment record
@@ -166,7 +168,8 @@ public class Entertainment {
 	}
 	
 	 /********************************************************
-	  * Method Name 	: retrieveEntertainment()
+	  * Author			: Lee Kai Quan(114173S)
+	  * Method Name 	: RETRIEVE_ENTERTAINMENT()
 	  * Input Parameter : void
 	  * Return 			: DefaultTableModel
 	  * Purpose 		: To retrieve all Entertainment record
@@ -197,7 +200,8 @@ public class Entertainment {
 	}
 	
 	/********************************************************
-	  * Method Name 	: retrieveEntertainment()
+	  * Author			: Lee Kai Quan(114173S)
+	  * Method Name 	: RETRIEVE_ENTERTAINMENT()
 	  * Input Parameter : String paramater
 	  * Return 			: DefaultTableModel
 	  * Purpose 		: To retrieve all Entertainment record 
@@ -233,8 +237,9 @@ public class Entertainment {
 	}
 	
 	/********************************************************
-	  * Method Name 	: retrieveEntertainmenByID()
-	  * Input Parameter : String ID
+	  * Author			: Lee Kai Quan(114173S)
+	  * Method Name 	: RETRIEVE_ENTERTAINMENT_BY_ID()
+	  * Input Parameter : String
 	  * Return 			: Entertainment
 	  * Purpose 		: To retrieve a Entertainment record 
 	  * 				  By entertainmentID
@@ -265,52 +270,11 @@ public class Entertainment {
 		}
 		return data;
 	}
-	
-	/********************************************************
-	  * Method Name 	: updateHits()
-	  * Input Parameter : String ID
-	  * Return 			: boolean
-	  * Purpose 		: To update Entertainment record hits
-	  *******************************************************/
-	public boolean UPDATE_HITS(String ID){
-		//RETRIEVE THE RECORD TO UPDATE
-		String sqlQuery;
-		sqlQuery = "SELECT * FROM Entertainment WHERE `entertainmentID`='"+ID+"'";
-		int hits=0;
-		
-		try{
-			rs = DB.readRequest(sqlQuery);
-			while (rs.next()){
-				hits=(rs.getInt("entertainmentHits"));
-			}
-		}
-		catch (Exception e) {
-			System.out.println("Failed to retrieve data");
-		}
-		finally{
-		}
-		hits++;
-		
-		//UPDATES THE ENTERTAINMENT HITS
-		boolean success=false;
-		sqlQuery = "UPDATE Entertainment SET  `entertainmentHits`="+hits+" WHERE `entertainmentID`='"+ID+"';";
-		int i = 0;
 
-		try{
-			i=DB.updateRequest(sqlQuery);
-		}
-		catch (Exception e) {
-		   System.out.println("Failed to Update Entertainment Record");
-		}
-		finally{
-		}
-		if(i==1)
-			success=true;
-		return success;
-	}
 	
 	/********************************************************
-	  * Method Name 	: checkRelationship()
+	  * Author			: Lee Kai Quan(114173S)
+	  * Method Name 	: CHECK_RELATIONSHIP()
 	  * Input Parameter : String
 	  * Return 			: boolean
 	  * Purpose 		: To check if the entertainment is 
@@ -336,6 +300,7 @@ public class Entertainment {
 	}
 
 	/********************************************************
+	  * Author			: A Ameenudeen(111942S)
 	  * Method Name 	: GET_ENTERTAINMENT_PRICE
 	  * Input Parameter : String eventName
 	  * Return 			: ArrayList<String>

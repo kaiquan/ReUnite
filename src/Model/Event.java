@@ -4,13 +4,15 @@ Description				:	A Package Model class that is the Model for Package record(s)
 Done by					:	Lee Kai Quan,A Ameenudeen
 Admin No				:	114173S,111942S
 Module Group			:	IT2297-08
-Last Edited				:	6-8-2012
+Last Edited				:	4-August-2012
 =========================================================================================================================================================
 USERS USING THIS CLASS	:	Lee Kai Quan (114173S),A Ameenudeen(111942S)
 METHODS LIST			:	Event()
+						:	Event(int)
 						: 	Event(String, String, String, String, String, String)
-						:	InitiateEvent() : Boolean
-						:	retrieveTimings(String, String) : ArrayList<String>
+						:	Event(String, String)
+						:	INITIATE_EVENT() : String
+						:	RETRIEVE_TIMINGS(String, String) : ArrayList<String>
 						:	RETRIEVE_EVENT_RECORDS (): ArrayList<String>	
 						:	GET_EVENT_RECORDS_DUE_FOR_PAYMENT ():ArrayList<String>
 						:	GET_EVENT_DETAILS(String) : ArrayList<String>
@@ -100,7 +102,8 @@ public class Event {
 	
 	
 	/********************************************************
-	 * Method Name 		: InitiateEvent()
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: INITIATE_EVENT()
 	 * Input Parameter 	: void
 	 * Return 			: String
 	 * Purpose 			: To create a new event and purchase 
@@ -156,7 +159,8 @@ public class Event {
 		return this.eventID;
 	}
 	/********************************************************
-	 * Method Name 		: retrieveTimings()
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: RETRIEVE_TIMINGS()
 	 * Input Parameter 	: String, String
 	 * Return 			: ArrayList<String>
 	 * Purpose 			: To retrieve the timings by 

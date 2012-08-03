@@ -4,19 +4,19 @@ Description				:	A Facility Model class that is the Model for Facility record(s)
 Done by					:	Lee Kai Quan
 Admin No				:	114173S
 Module Group			:	IT2297-08
-Last Edited				:	6-30-2012
+Last Edited				:	4-August-2012
 =========================================================================================================================================================
 USERS USING THIS CLASS	:	Lee Kai Quan (114173S)
 METHODS LIST			:	Facility()
 						:	Facility(String, String, String, String, String, boolean, double)
-						:	createFacility() : String
-						:	deleteFacility(String) : Boolean
-						:	updateFacility(String)	: Boolean
-						: 	retrieveFacility() : DefaultTableModel
-						:	retrieveFacility(String) : DefaultTableModel
-						:	retrieveFacilityByID(String) : Facility
-						:	retrieveFacilityNames() : DefaultTableModel
-						:	retrieveFacilityByName(String) :  DefaultTableModel
+						:	CREATE_FACILITY() : String
+						:	DELETE_FACILITY(String) : Boolean
+						:	UPDATE_FACILITY(String)	: Boolean
+						: 	RETRIEVE_FACILITY() : DefaultTableModel
+						:	RETRIEVE_FACILITY(String) : DefaultTableModel
+						:	RETRIEVE_FACILITY_BY_ID(String) : Facility
+						:	RETRIEVE_FACILITY_NAMES() : DefaultTableModel<String>
+						:	RETRIEVE_FACILITY_BY_NAME(String) :  DefaultTableModel
 						: 	Accessor Methods...
 ********************************************************************************************************************************************************/
 package Model;
@@ -67,7 +67,8 @@ public class Facility {
 	 *******************************************************/
 	
 	/********************************************************
-	 * Method Name 		: createFacility()
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: CREATE_FACILITY()
 	 * Input Parameter 	: void 
 	 * Purpose 			: To create a Facility record
 	 * Return 			: String
@@ -105,11 +106,12 @@ public class Facility {
 	}
 	
 	/********************************************************
-	  * Method Name 	: deleteFacility()
-	  * Input Parameter : String
-	  * Return 			: boolean
-	  * Purpose 		: To delete an Facility record
-	  *******************************************************/
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: DELETE_FACILITY()
+	 * Input Parameter 	: String
+	 * Return 			: boolean
+	 * Purpose 			: To delete an Facility record
+	 *******************************************************/
 	public boolean DELETE_FACILITY(String ID){
 		boolean success=true;
 		String sqlQuery;
@@ -132,11 +134,12 @@ public class Facility {
 	}
 	
 	/********************************************************
-	  * Method Name 	: updateFacility()
-	  * Input Parameter : String
-	  * Return 			: boolean
-	  * Purpose 		: To update an Facility record
-	  *******************************************************/
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: UPDATE_FACILITY()
+	 * Input Parameter 	: String
+	 * Return 			: boolean
+	 * Purpose 			: To update an Facility record
+	 *******************************************************/
 	public boolean UPDATE_FACILITY(String ID){
 		boolean success=false;
 		String sqlQuery;
@@ -159,11 +162,12 @@ public class Facility {
 	}
 	
 	/********************************************************
-	  * Method Name 	: retrieveFacility()
-	  * Input Parameter : void
-	  * Return 			: DefaultTableModel
-	  * Purpose 		: To retrieve all Facility record
-	  *******************************************************/
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: RETRIEVE_FACILITY()
+	 * Input Parameter 	: void
+	 * Return 			: DefaultTableModel
+	 * Purpose 			: To retrieve all Facility record
+	 *******************************************************/
 	public DefaultTableModel RETRIEVE_FACILITY(){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
@@ -192,11 +196,12 @@ public class Facility {
 	}
 	
 	/********************************************************
-	  * Method Name 	: retrieveFacility()
-	  * Input Parameter : String
-	  * Return 			: DefaultTableModel
-	  * Purpose 		: To retrieve all facility record 
-	  * 				  like parameter
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: RETRIEVE_FACILITY()
+	 * Input Parameter 	: String
+	 * Return 			: DefaultTableModel
+	 * Purpose 			: To retrieve all facility record 
+	 * 				 	  like parameter
 	  *******************************************************/
 	public DefaultTableModel RETRIEVE_FACILITY(String parameter){
 		DefaultTableModel model= new DefaultTableModel();
@@ -232,11 +237,12 @@ public class Facility {
 	}
 	
 	/********************************************************
-	  * Method Name 	: retrieveFacilityByID()
-	  * Input Parameter : String
-	  * Return 			: Meal
-	  * Purpose 		: To retrieve a facility record by ID
-	  *******************************************************/
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: RETRIEVE_FACILITY_BY_ID()
+	 * Input Parameter 	: String
+	 * Return 			: Meal
+	 * Purpose 			: To retrieve a facility record by ID
+	 *******************************************************/
 	public Facility RETRIEVE_FACILITY_BY_ID(String ID){
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM Facility WHERE `facilityID`='"+ID+"'";
@@ -262,11 +268,12 @@ public class Facility {
 	}
 	
 	/********************************************************
-	  * Method Name 	: retrieveFacilityNames()
-	  * Input Parameter : String
-	  * Return 			: DefaultComboBoxModel 
-	  * Purpose 		: To retrieve all facility record names
-	  *******************************************************/
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: RETRIEVE_FACILITY_NAMES()
+	 * Input Parameter 	: String
+	 * Return 			: DefaultComboBoxModel<String> 
+	 * Purpose 			: To retrieve all facility record names
+	 *******************************************************/
 	public DefaultComboBoxModel<String> RETRIEVE_FACILITY_NAMES(){
 		DefaultComboBoxModel<String>  cModel = new DefaultComboBoxModel<String>();
 		String sqlQuery;
@@ -287,11 +294,12 @@ public class Facility {
 	}
 	
 	/********************************************************
-	  * Method Name 	: retrieveFacilityByName()
-	  * Input Parameter : String
-	  * Return 			: Facility 
-	  * Purpose 		: To retrieve all facility record by name
-	  *******************************************************/
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: RETRIEVE_FACILITY_BY_NAME()
+	 * Input Parameter 	: String
+	 * Return 			: Facility 
+	 * Purpose 			: To retrieve all facility record by name
+	 *******************************************************/
 	public Facility RETRIEVE_FACILITY_BY_NAME(String name){
 		String sqlQuery;
 		sqlQuery = "SELECT * FROM Facility WHERE `facilityName`='"+name+"'";

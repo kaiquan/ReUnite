@@ -4,19 +4,20 @@ Description				:	A Meal Model class that is the Model for Meal record(s)
 Done by					:	Lee Kai Quan,A Ameenudeen
 Admin No				:	114173S,111942S
 Module Group			:	IT2297-08
-Last Edited				:	6-30-2012
+Last Edited				:	4-August-2012
 =========================================================================================================================================================
 USERS USING THIS CLASS	:	Lee Kai Quan (114173S),A Ameenudeen(111942S)
 METHODS LIST			:	Meal()
+						:	Meal(int)
 						:	Meal(String, String, String, String, double, double, double, boolean, int, boolean)
-						:	createMeal() : String
-						:	deleteMeal(String) : Boolean
-						:	updateMeal(String) : Boolean
-						:	retrieveMeal() : DefaultTableModel 
-						:	retrieveMeal(String) : DefaultTableModel
-						:	retrieveMealByID(String) : Meal
+						:	CREATE_MEAL() : String
+						:	DELETE_MEAL(String) : Boolean
+						:	UPDATE_MEAL(String) : Boolean
+						:	RETRIEVE_MEAL() : DefaultTableModel 
+						:	RETRIEVE_MEAL(String) : DefaultTableModel
+						:	RETRIEVE_MEAL_BY_ID(String) : Meal
 						:	updateHits(String) : Boolean
-						:	checkRelationship(String) : Boolean
+						:	CHECK_RELATIONSHIP(String) : Boolean
 						:	GET_MEAL_PRICE(String) : ArrayList<String>
 						:	Accessor Methods...
 ********************************************************************************************************************************************************/
@@ -78,8 +79,9 @@ public class Meal {
 	 *******************************************************/
 	
 	/********************************************************
-	 * Method Name 		: createMeal()
-	 * Input Parameter 	: NIL 
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: CREATE_MEAL()
+	 * Input Parameter 	: void 
 	 * Return 			: String
 	 * Purpose 			: To create a new Meal record
 	 *******************************************************/
@@ -116,11 +118,12 @@ public class Meal {
 	}
 	
 	/********************************************************
-	  * Method Name 	: deleteMeal()
-	  * Input Parameter : String
-	  * Return 			: boolean
-	  * Purpose 		: To delete an Meal record
-	  *******************************************************/
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: DELETE_MEAL()
+	 * Input Parameter 	: String
+	 * Return 			: boolean
+	 * Purpose 			: To delete an Meal record
+	 *******************************************************/
 	public boolean DELETE_MEAL(String ID){
 		boolean success=false;
 		String sqlQuery;
@@ -142,10 +145,11 @@ public class Meal {
 	}
 	
 	/********************************************************
-	  * Method Name 	: updateMeal()
-	  * Input Parameter : String
-	  * Return 			: boolean
-	  * Purpose 		: To update an Meal record
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: UPDATE_MEAL()
+	 * Input Parameter 	: String
+	 * Return 			: boolean
+	 * Purpose 			: To update an Meal record
 	  *******************************************************/
 	public boolean UPDATE_MEAL(String ID){
 		boolean success=false;
@@ -169,12 +173,13 @@ public class Meal {
 	}
 	
 	/********************************************************
-	  * Method Name 	: retrieveMeal()
-	  * Input Parameter : void
-	  * Return 			: DefaultTableModel
-	  * Purpose 		: To retrieve all meal record where
-	  * 				  is not a purchase record
-	  *******************************************************/
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: RETRIEVE_MEAL()
+	 * Input Parameter 	: void
+	 * Return 			: DefaultTableModel
+	 * Purpose 			: To retrieve all meal record where
+	 * 				  	  is not a purchase record
+	 *******************************************************/
 	public DefaultTableModel RETRIEVE_MEAL(){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
@@ -196,13 +201,14 @@ public class Meal {
 	}
 	
 	/********************************************************
-	  * Method Name 	: retrieveMeal()
-	  * Input Parameter : String
-	  * Return 			: DefaultTableModel
-	  * Purpose 		: To retrieve all meal record where 
-	  * 				  is not a purchase record & like 
-	  * 				  input parameter
-	  *******************************************************/
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: RETRIEVE_MEAL()
+	 * Input Parameter 	: String
+	 * Return 			: DefaultTableModel
+	 * Purpose 			: To retrieve all meal record where 
+	 * 				 	  is not a purchase record & like 
+	 * 				 	  input parameter
+	 *******************************************************/
 	public DefaultTableModel RETRIEVE_MEAL(String parameter){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
@@ -232,10 +238,11 @@ public class Meal {
 	}
 	
 	/********************************************************
-	  * Method Name 	: retrieveMealByID()
-	  * Input Parameter : String 
-	  * Return 			: Meal
-	  * Purpose 		: To retrieve a Meal record by ID
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: RETRIEVE_MEAL_BY_ID()
+	 * Input Parameter 	: String 
+	 * Return 			: Meal
+	 * Purpose 			: To retrieve a Meal record by ID
 	  *******************************************************/
 	public Meal RETRIEVE_MEAL_BY_ID(String ID){
 		String sqlQuery;
@@ -263,55 +270,13 @@ public class Meal {
 	}
 	
 	/********************************************************
-	  * Method Name 	: updateHits()
-	  * Input Parameter : String 
-	  * Return 			: boolean
-	  * Purpose 		: To update meal record hits
-	  *******************************************************/
-	public boolean UPDATE_HITS(String ID){
-		String sqlQuery;
-		sqlQuery = "SELECT * FROM Meal WHERE `mealID`='"+ID+"'";
-		int hits=0;
-		try{
-			rs = DB.readRequest(sqlQuery);
-			while (rs.next()){
-				hits=rs.getInt("mealHits");
-			}
-		}
-		catch (Exception e) {
-			System.out.println("Failed to retrieve Meal record");
-		}
-		finally{
-		}
-		hits++;
-		
-		//UPDATES THE MEAL HITS
-		boolean success=false;
-
-		sqlQuery = "UPDATE Meal SET  `mealHits`="+hits+" WHERE `mealID`='"+ID+"'";
-		int i = 0;
-
-		try{
-			i=DB.updateRequest(sqlQuery);
-		}
-		catch (Exception e) {
-		   System.out.println("Failed to Update Meal recordS");
-		}
-		finally{
-		}
-		if(i==1)
-			success=true;
-		
-		return success;
-	}
-	
-	/********************************************************
-	  * Method Name 	: checkRelationship()
-	  * Input Parameter : String
-	  * Return 			: boolean
-	  * Purpose 		: To check if the meal is tied to a 
-	  * 				  package
-	  *******************************************************/
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: CHECK_RELATIONSHIP()
+	 * Input Parameter 	: String
+	 * Return 			: boolean
+	 * Purpose 			: To check if the meal is tied to a 
+	 * 				  	  package
+	 *******************************************************/
 	public boolean CHECK_RELATIONSHIP(String ID){
 		boolean ties=false;
 		String sqlQuery;

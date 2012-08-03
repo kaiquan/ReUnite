@@ -4,13 +4,13 @@ Description				:	A MealOptions Model class that is the Model for MealOptions rec
 Done by					:	Lee Kai Quan
 Admin No				:	114173S
 Module Group			:	IT2297-08
-Last Edited				:	6-30-2012
+Last Edited				:	4-August-2012
 =========================================================================================================================================================
 USERS USING THIS CLASS	:	Lee Kai Quan (114173S)
 METHODS LIST			:	MealOptions()
-						: 	createMealOption(String, String) : Boolean
-						:	deleteMealOptions(String) : Boolean
-						:	retrieveMealOptions(String) :ArrayList<String>
+						: 	CREATE_MEAL_OPTION(String, String) : Boolean
+						:	DELETE_MEAL_OPTION(String) : Boolean
+						:	RETRIEVE_MEAL_OPTIONS(String) :ArrayList<String>
 						:	Accessor Methods...
 ********************************************************************************************************************************************************/
 
@@ -27,7 +27,7 @@ public class MealOptions {
 	 *******************************************************/
 	
 	private MealOptions mealOptions;							//stores data from the controler;
-	private ResultSet rs;								//result set to ertrive items directly from d
+	private ResultSet rs;										//result set to ertrive items directly from d
 	private static MySQLController DB = new MySQLController();
 	
 	private String MealOptionID;
@@ -44,7 +44,8 @@ public class MealOptions {
 	 *******************************************************/
 	
 	/********************************************************
-	 * Method Name 		: createMealOption
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: CREATE_MEAL_OPTION
 	 * Input Parameter 	: String , String
 	 * Purpose 			: To create a new MealOption record
 	 * Return 			: boolean
@@ -72,8 +73,9 @@ public class MealOptions {
 	}
 	
 	/********************************************************
-	 * Method Name 		: deleteMealOption
-	 * Input Parameter 	: String , String
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: DELETE_MEAL_OPTION
+	 * Input Parameter 	: String
 	 * Purpose 			: To create a new MealOption record
 	 * Return 			: boolean
 	 *******************************************************/
@@ -98,10 +100,11 @@ public class MealOptions {
 	}
 	
 	/********************************************************
-	  * Method Name 	: retrieveMealOptions
-	  * Input Parameter : String
-	  * Purpose 		: To retrieve all mealoption record by packageID
-	  * Return 			: ArrayList<String>
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: RETRIEVE_MEAL_OPTIONS
+	 * Input Parameter 	: String
+	 * Purpose 			: To retrieve all mealoption record by packageID
+	 * Return 			: ArrayList<String>
 	  *******************************************************/
 	public ArrayList<String> RETRIEVE_MEAL_OPTIONS(String ID){
 		ArrayList<String> mealID = new ArrayList<String>();

@@ -4,15 +4,16 @@ Description				:	A EntertainmentMenu Model class that is the Model for Entertain
 Done by					:	Lee Kai Quan
 Admin No				:	114173S
 Module Group			:	IT2297-08
-Last Edited				:	6-24-2012
+Last Edited				:	4-August-2012
 =========================================================================================================================================================
 USERS USING THIS CLASS	:	Lee Kai Quan (114173S)
 METHODS LIST			:	EntertainmentMenu()
 						: 	EntertainmentMenu(String, String, String, double)
-						:	createEntertainmentMenu() : Boolean
-						:	deleteEntertainmentMenu(String) : Boolean
-						:	retrieveEntertainmentMenuByID(String) : DefaultTableModel
-						:	retrieveEntertainmentMenu(String) : DefaultTableModel
+						:	CREATE_ENTERTAINMENT_MENU() : Boolean
+						:	DELETE_ENTERTAINMENT_MENU(String) : Boolean
+						:	RETRIEVE_ENTERTAINMENT_MENU_BY_ID(String) : DefaultTableModel
+						:	RETRIEVE_ENTERTAINMENT_MENU(String) : DefaultTableModel
+						:	GET_ENTERTAINMENT_OPTIONS(int)	:  ArrayList<EntertainmentMenu>
 						:	Accessor Methods..
 ********************************************************************************************************************************************************/
 package Model;
@@ -58,7 +59,8 @@ public class EntertainmentMenu {
 	 *******************************************************/
 	
 	/********************************************************
-	 * Method Name 		: createEntertainmentMenu()
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: CREATE_ENTERTAINMENT_MENU()
 	 * Input Parameter 	: void 
 	 * Return 			: boolean
 	 * Purpose 			: To create a new EntertainmentMenu record
@@ -83,11 +85,12 @@ public class EntertainmentMenu {
 	}
 	
 	/********************************************************
-	  * Method Name 	: deleteEntertainmentMenu()
-	  * Input Parameter : String
-	  * Return 			: boolean
-	  * Purpose 		: To delete an EntertainmentMenu record
-	  *******************************************************/
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: DELETE_ENTERTAINMENT_MENU()
+	 * Input Parameter 	: String
+	 * Return 			: boolean
+	 * Purpose 			: To delete an EntertainmentMenu record
+	 *******************************************************/
 	public boolean DELETE_ENTERTAINMENT_MENU(String ID){
 		boolean success=true;
 		String sqlQuery;
@@ -110,12 +113,13 @@ public class EntertainmentMenu {
 	}
 	
 	/********************************************************
-	  * Method Name 	: retrieveEntertainmenMenuByID()
-	  * Input Parameter : String
-	  * Return 			: DefaultTableModel
-	  * Purpose 		: To retrieve EntertainmentMenu record(s)
-	  * 				  By entertainmentID
-	  *******************************************************/
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: RETRIEVE_ENTERTAINMENT_MENU_BY_ID()
+	 * Input Parameter 	: String
+	 * Return 			: DefaultTableModel
+	 * Purpose 			: To retrieve EntertainmentMenu record(s)
+	 * 				  	  By entertainmentID
+	 *******************************************************/
 	public DefaultTableModel RETRIEVE_ENTERTAINMENT_MENU_BY_ID(String ID){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
@@ -138,12 +142,13 @@ public class EntertainmentMenu {
 	}
 	
 	/********************************************************
-	  * Method Name 	: retrieveEntertainmentMenu()
-	  * Input Parameter : String
-	  * Return 			: DefaultTableModel
-	  * Purpose 		: To retrieve an EntertainmentMenu record 
-	  * 				  By parameter
-	  *******************************************************/
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: RETRIEVE_ENTERTAINMENT_MENU()
+	 * Input Parameter 	: String
+	 * Return 			: DefaultTableModel
+	 * Purpose 			: To retrieve an EntertainmentMenu record 
+	 * 				 	  By parameter
+	 *******************************************************/
 	public DefaultTableModel RETRIEVE_ENTERTAINMENT_MENU(String parameter){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;
@@ -170,12 +175,13 @@ public class EntertainmentMenu {
 	}
 	
 	/********************************************************
-	  * Method Name 	: GET_ENTERTAINMENT_OPTIONS()
-	  * Input Parameter : int entertainmentID
-	  * Return 			: ArrayList<EntertainmentMenu>
-	  * Purpose 		: To retrieve an EntertainmentMenu record 
-	  * 				  By parameter
-	  *******************************************************/
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: GET_ENTERTAINMENT_OPTIONS()
+	 * Input Parameter 	: int
+	 * Return 			: ArrayList<EntertainmentMenu>
+	 * Purpose 			: To retrieve an EntertainmentMenu record 
+	 * 				 	  By parameter
+	 *******************************************************/
 	public ArrayList<EntertainmentMenu> GET_ENTERTAINMENT_OPTIONS(int entertainmentID)
 	{
 		ArrayList<EntertainmentMenu> optionList = new ArrayList<EntertainmentMenu>();

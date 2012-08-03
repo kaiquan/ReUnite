@@ -4,15 +4,15 @@ Description				:	A MealMenu Model class that is the Model for MealMenu record(s)
 Done by					:	Lee Kai Quan
 Admin No				:	114173S
 Module Group			:	IT2297-08
-Last Edited				:	6-30-2012
+Last Edited				:	4-August-2012
 =========================================================================================================================================================
 USERS USING THIS CLASS	:	Lee Kai Quan (114173S)
 METHODS LIST			:	MealMenu()
 						: 	MealMenu(String, String, String, double, boolean, boolean)
-						:	createMealMenu() : Boolean
-						:	deleteMealMenu(String) : Boolean
-						:	retrieveMealMenuByID(String) : DefaultTableModel
-						:	retrieveMealMenu(String) : DefaultTableModel
+						:	CREATE_MEAL_MENU() : Boolean
+						:	DELETE_MEAL_MENU(String) : Boolean
+						:	RETRIEVE_MEAL_MENU_BY_ID(String) : DefaultTableModel
+						:	RETRIEVE_MEAL_MENU(String) : DefaultTableModel
 						:	Accessor Methods...
 ********************************************************************************************************************************************************/
 package Model;
@@ -57,7 +57,8 @@ public class MealMenu {
 	 *******************************************************/
 	
 	/********************************************************
-	 * Method Name 		: createMealMenu()
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: CREATE_MEAL_MENU()
 	 * Input Parameter 	: void 
 	 * Return 			: Boolean
 	 * Purpose 			: To create a new MealMenu record
@@ -83,10 +84,11 @@ public class MealMenu {
 	}
 
 	/********************************************************
-	  * Method Name 	: deleteMealMenu()
-	  * Input Parameter : String
-	  * Return 			: boolean
-	  * Purpose 		: To delete an MealMenu record
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: DELETE_MEAL_MENU()
+	 * Input Parameter 	: String
+	 * Return 			: boolean
+	 * Purpose 			: To delete an MealMenu record
 	  *******************************************************/
 	public boolean DELETE_MEAL_MENU(String ID){
 		boolean success=true;
@@ -110,10 +112,11 @@ public class MealMenu {
 	}
 	
 	/********************************************************
-	  * Method Name 	: retrieveMealMenuByID()
-	  * Input Parameter : String
-	  * Purpose 		: To retrieve EntertainmentMenu record 
-	  * Return 			: DefaultTableModel
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: RETRIEVE_MEAL_MENU_BY_ID()
+	 * Input Parameter 	: String
+	 * Purpose 			: To retrieve EntertainmentMenu record 
+	 * Return 			: DefaultTableModel
 	  *******************************************************/
 	public DefaultTableModel RETRIEVE_MEAL_MENU_BY_ID(String ID){
 		DefaultTableModel model= new DefaultTableModel();
@@ -147,11 +150,12 @@ public class MealMenu {
 	}
 	
 	/********************************************************
-	  * Method Name 	: retrieveMealMenu()
-	  * Input Parameter : String
-	  * Purpose 		: To retrieve EntertainmentMenu record 
-	  * Return 			: DefaultTableModel
-	  *******************************************************/
+	 * Author			: Lee Kai Quan(114173S)
+	 * Method Name 		: RETRIEVE_MEAL_MENU()
+	 * Input Parameter 	: String
+	 * Purpose 			: To retrieve EntertainmentMenu record 
+	 * Return 			: DefaultTableModel
+	 *******************************************************/
 	public DefaultTableModel RETRIEVE_MEAL_MENU(String parameter){
 		DefaultTableModel model= new DefaultTableModel();
 		String sqlQuery;

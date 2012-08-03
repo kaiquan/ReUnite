@@ -973,6 +973,7 @@ public class AdministrateMealForm {
 		getJTextArea_mealMenuDescription().setText("\n\n\n                                                         Enter a Short Description of the Meal");
 		getJTextArea_mealMenuDescription().setForeground(SystemColor.scrollbar);
 		getJTextArea_mealMenuDescription().requestFocus(false);
+		displaySummary();
 		
 	}
 	
@@ -1354,7 +1355,7 @@ public class AdministrateMealForm {
 				progress.interrupt();
 				progress.stop();
 				AdministrateServiceOptionManagement.getJProgressBar().setValue(100);
-				AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
+				//AdministrateServiceOptionManagement.getJProgressBar().setIndeterminate(false);
 				JOptionPane.showMessageDialog(null, "Record has been uploaded successfully", "Success", JOptionPane.PLAIN_MESSAGE);
 				
 			}

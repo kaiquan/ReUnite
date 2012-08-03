@@ -73,7 +73,7 @@ public class InitiateEventControl {
 	 * Return 			: String
 	 * Purpose 			: To create a new Event record
 	 *******************************************************/
-	public boolean processInitiateEvent(){
+	public String processInitiateEvent(){
 		return this.event.INITIATE_EVENT();
 	}
 	

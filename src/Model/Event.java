@@ -106,7 +106,7 @@ public class Event {
 	 * Purpose 			: To create a new event and purchase 
 	 * 					  record
 	 *******************************************************/
-	public boolean INITIATE_EVENT(){
+	public String INITIATE_EVENT(){
 		boolean success=false;
 		String sqlQuery;
 
@@ -153,7 +153,7 @@ public class Event {
 		if(i==1)
 			success=true;
 		
-		return success;
+		return this.eventID;
 	}
 	/********************************************************
 	 * Method Name 		: retrieveTimings()

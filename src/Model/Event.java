@@ -31,7 +31,7 @@ import Controller.MySQLController;
 import Model.Event;
 import Model.Membership.Account;
 import Model.RIM.TableNames;
-
+import Model.Membership.Account;
 
 @SuppressWarnings("unused")
 public class Event {
@@ -110,7 +110,7 @@ public class Event {
 		boolean success=false;
 		String sqlQuery;
 
-		sqlQuery = "INSERT INTO `saharp5_adeel_school`.`Event` (`packageID`, `userName`, `eventStatus`, `eventDate`, `eventTime`, `eventName`, `eventDescription`)";
+		sqlQuery = "INSERT INTO `saharp5_adeel_school`.`Event` (`packageID`, "+Account.currentUser+", `eventStatus`, `eventDate`, `eventTime`, `eventName`, `eventDescription`)";
 		sqlQuery +="VALUES ("+this.packageID+", '"+this.userName+"', 'Pending', '"+this.eventDate+"', '"+this.eventTime+"', '"+this.eventName+"','"+this.eventDescription+"')";
 		int i = 0;
 		try{

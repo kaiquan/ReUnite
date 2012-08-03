@@ -68,7 +68,7 @@ public class InitiateEventControl {
 	 *******************************************************/
 	
 	/********************************************************
-	 * Method Name 		: processCreateEvent()
+	 * Method Name 		: processInitiateEvent()
 	 * Input Parameter 	: void
 	 * Return 			: String
 	 * Purpose 			: To create a new Event record

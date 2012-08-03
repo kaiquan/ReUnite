@@ -217,9 +217,9 @@ public class AdministrateEntertainmentForm {
 	protected JTextField getJTextField_entertainmentTitle() {
 		if (jTextField_entertainmentTitle == null) {
 			jTextField_entertainmentTitle = new JTextField();
-			jTextField_entertainmentTitle.setHorizontalAlignment(JTextField.CENTER);
+
 			jTextField_entertainmentTitle.setToolTipText("Enter a title for this entertainment set");
-			jTextField_entertainmentTitle.setText("Enter a Title Here...");
+			jTextField_entertainmentTitle.setText("                                                                                     Enter a Title Here");
 			jTextField_entertainmentTitle.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_entertainmentTitle.setForeground(SystemColor.scrollbar);
 			jTextField_entertainmentTitle.setBounds(new Rectangle(130, 80, 620, 30));
@@ -227,12 +227,12 @@ public class AdministrateEntertainmentForm {
 					.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					if(jTextField_entertainmentTitle.getText().equals("")){
-						jTextField_entertainmentTitle.setText("Enter a Title Here...");
+						jTextField_entertainmentTitle.setText("                                                                                     Enter a Title Here");
 						jTextField_entertainmentTitle.setForeground(SystemColor.scrollbar);
 					}
 				}
 						public void focusGained(java.awt.event.FocusEvent e) {
-							if(jTextField_entertainmentTitle.getText().equals("Enter a Title Here...")){
+							if(jTextField_entertainmentTitle.getText().equals("                                                                                     Enter a Title Here")){
 								jTextField_entertainmentTitle.setText("");
 								jTextField_entertainmentTitle.setForeground(SystemColor.black);
 							}
@@ -254,7 +254,7 @@ public class AdministrateEntertainmentForm {
 			jTextArea_entertainmentDescription = new JTextArea();
 			jTextArea_entertainmentDescription.setWrapStyleWord(true);
 			jTextArea_entertainmentDescription.setLineWrap(true);
-			jTextArea_entertainmentDescription.setText("\n\n                                                                                Enter a Description Here...");
+			jTextArea_entertainmentDescription.setText("\n\n                                                                                Enter a Description Here");
 			jTextArea_entertainmentDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextArea_entertainmentDescription.setForeground(SystemColor.scrollbar);
 			jTextArea_entertainmentDescription.setToolTipText("Enter a Description here");
@@ -262,12 +262,12 @@ public class AdministrateEntertainmentForm {
 					.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					if(jTextArea_entertainmentDescription.getText().equals("")){
-						jTextArea_entertainmentDescription.setText("\n\n                                                                                Enter a Description Here...");
+						jTextArea_entertainmentDescription.setText("\n\n                                                                                Enter a Description Here");
 						jTextArea_entertainmentDescription.setForeground(SystemColor.scrollbar);
 					}
 				}
 						public void focusGained(java.awt.event.FocusEvent e) {
-							if(jTextArea_entertainmentDescription.getText().equals("\n\n                                                                                Enter a Description Here...")){
+							if(jTextArea_entertainmentDescription.getText().equals("\n\n                                                                                Enter a Description Here")){
 								jTextArea_entertainmentDescription.setText("");
 								jTextArea_entertainmentDescription.setForeground(SystemColor.black);
 							}
@@ -359,20 +359,19 @@ public class AdministrateEntertainmentForm {
 		if (jTextField_entertainmentMenu == null) {
 			jTextField_entertainmentMenu = new JTextField();
 			jTextField_entertainmentMenu.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-			jTextField_entertainmentMenu.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_entertainmentMenu.setBounds(new Rectangle(50, 240, 370, 30));
 			jTextField_entertainmentMenu.setForeground(SystemColor.scrollbar);
-			jTextField_entertainmentMenu.setText("Enter Entertainment Name Here...");
+			jTextField_entertainmentMenu.setText("                                     Enter Entertainment Name");
 			jTextField_entertainmentMenu
 					.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					if(jTextField_entertainmentMenu.getText().equals("")){
-						jTextField_entertainmentMenu.setText("Enter Entertainment Name Here...");
+						jTextField_entertainmentMenu.setText("                                     Enter Entertainment Name");
 						jTextField_entertainmentMenu.setForeground(SystemColor.scrollbar);
 					}
 				}
 						public void focusGained(java.awt.event.FocusEvent e) {
-							if(jTextField_entertainmentMenu.getText().equals("Enter Entertainment Name Here...")){
+							if(jTextField_entertainmentMenu.getText().equals("                                     Enter Entertainment Name")){
 								jTextField_entertainmentMenu.setText("");
 								jTextField_entertainmentMenu.setForeground(SystemColor.black);
 							}
@@ -890,7 +889,7 @@ public class AdministrateEntertainmentForm {
 		model.addRow(new Object[]{entertainmentName,entertainmentPrice,entertainmentDescription});
 		getJTable_entertainmentMenu().setModel(model);
 		//CLEAR THE TEXTBOX
-		getJTextField_entertainmentMenu().setText("Enter Entertainment Name Here...");
+		getJTextField_entertainmentMenu().setText("                                     Enter Entertainment Name");
 		getJTextField_entertainmentMenu().setForeground(SystemColor.scrollbar);
 		getJTextField_entertainmentPrice().setText("0.00");
 		getJTextField_entertainmentPrice().setForeground(SystemColor.scrollbar);

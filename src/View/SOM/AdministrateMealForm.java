@@ -223,19 +223,18 @@ public class AdministrateMealForm {
 		if (jTextField_mealTitle == null) {
 			jTextField_mealTitle = new JTextField();
 			jTextField_mealTitle.setBounds(new Rectangle(130, 80, 620, 30));
-			jTextField_mealTitle.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_mealTitle.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-			jTextField_mealTitle.setText("Enter Meal TItle Here");
+			jTextField_mealTitle.setText("                                                                                  Enter A Meal Title");
 			jTextField_mealTitle.setForeground(SystemColor.scrollbar);
 			jTextField_mealTitle.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					if(jTextField_mealTitle.getText().equals("")){
-						jTextField_mealTitle.setText("Enter Meal TItle Here");
+						jTextField_mealTitle.setText("                                                                                  Enter A Meal Title");
 						jTextField_mealTitle.setForeground(SystemColor.scrollbar);
 					}
 				}
 				public void focusGained(java.awt.event.FocusEvent e) {
-					if(jTextField_mealTitle.getText().equals("Enter Meal TItle Here")){
+					if(jTextField_mealTitle.getText().equals("                                                                                  Enter A Meal Title")){
 						jTextField_mealTitle.setText("");
 						jTextField_mealTitle.setForeground(SystemColor.black);
 					}
@@ -258,17 +257,17 @@ public class AdministrateMealForm {
 			jTextArea_mealDescription.setLineWrap(true);
 			jTextArea_mealDescription.setWrapStyleWord(true);
 			jTextArea_mealDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-			jTextArea_mealDescription.setText("\n\n                                                                                Enter a Description Here");
+			jTextArea_mealDescription.setText("\n\n                                                                                Enter A Description");
 			jTextArea_mealDescription.setForeground(SystemColor.scrollbar);
 			jTextArea_mealDescription.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					if(jTextArea_mealDescription.getText().equals("")){
-						jTextArea_mealDescription.setText("\n\n                                                                                Enter a Description Here");
+						jTextArea_mealDescription.setText("\n\n                                                                                Enter A Description");
 						jTextArea_mealDescription.setForeground(SystemColor.scrollbar);
 					}
 				}
 				public void focusGained(java.awt.event.FocusEvent e) {
-					if(jTextArea_mealDescription.getText().equals("\n\n                                                                                Enter a Description Here")){
+					if(jTextArea_mealDescription.getText().equals("\n\n                                                                                Enter A Description")){
 						jTextArea_mealDescription.setForeground(SystemColor.black);
 						jTextArea_mealDescription.setText("");
 					}
@@ -389,19 +388,18 @@ public class AdministrateMealForm {
 		if (jTextField_mealMenu == null) {
 			jTextField_mealMenu = new JTextField();
 			jTextField_mealMenu.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-			jTextField_mealMenu.setHorizontalAlignment(JTextField.CENTER);
-			jTextField_mealMenu.setText("Enter a Meal Name");
+			jTextField_mealMenu.setText("                                                                          Enter A Meal Name");
 			jTextField_mealMenu.setForeground(SystemColor.scrollbar);
 			jTextField_mealMenu.setBounds(new Rectangle(50, 280, 527, 30));
 			jTextField_mealMenu.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					if(jTextField_mealMenu.getText().equals("")){
-						jTextField_mealMenu.setText("Enter a Meal Name");
+						jTextField_mealMenu.setText("                                                                          Enter A Meal Name");
 						jTextField_mealMenu.setForeground(SystemColor.scrollbar);
 					}
 				}
 				public void focusGained(java.awt.event.FocusEvent e) {
-					if(jTextField_mealMenu.getText().equals("Enter a Meal Name")){
+					if(jTextField_mealMenu.getText().equals("                                                                          Enter A Meal Name")){
 						jTextField_mealMenu.setForeground(SystemColor.black);
 						jTextField_mealMenu.setText("");
 					}
@@ -963,7 +961,7 @@ public class AdministrateMealForm {
 		getJTable_mealMenu().setModel(model);
 		
 		//CLEAR THE TEXTBOX
-		getJTextField_mealMenu().setText("Enter a Meal Name");
+		getJTextField_mealMenu().setText("                                                                          Enter A Meal Name");
 		getJTextField_mealMenu().setForeground(SystemColor.scrollbar);
 		getJTextField_mealMenu().requestFocus(false);
 		getJTextField_mealPrice().setText("0.00");

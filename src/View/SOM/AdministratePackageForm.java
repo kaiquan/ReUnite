@@ -312,20 +312,19 @@ public class AdministratePackageForm {
 	protected JTextField getJTextField_packageTitle() {
 		if (jTextField_packageTitle == null) {
 			jTextField_packageTitle = new JTextField();
-			jTextField_packageTitle.setHorizontalAlignment(JTextField.CENTER);
-			jTextField_packageTitle.setText("Enter Package Name Here");
+			jTextField_packageTitle.setText("                                                                                  Enter a Package Name");
 			jTextField_packageTitle.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_packageTitle.setForeground(SystemColor.scrollbar);
 			jTextField_packageTitle.setBounds(new Rectangle(130, 80, 620, 30));
 			jTextField_packageTitle.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					if(jTextField_packageTitle.getText().equals("")){
-						jTextField_packageTitle.setText("Enter Package Name Here");
+						jTextField_packageTitle.setText("                                                                                  Enter a Package Name");
 						jTextField_packageTitle.setForeground(SystemColor.scrollbar);
 					}
 				}
 				public void focusGained(java.awt.event.FocusEvent e) {
-					if(jTextField_packageTitle.getText().equals("Enter Package Name Here")){
+					if(jTextField_packageTitle.getText().equals("                                                                                  Enter a Package Name")){
 						jTextField_packageTitle.setText("");
 						jTextField_packageTitle.setForeground(SystemColor.black);
 					}

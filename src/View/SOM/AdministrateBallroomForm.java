@@ -265,7 +265,6 @@ public class AdministrateBallroomForm {
 		if (jTextField_facilityContact == null) {
 			jTextField_facilityContact = new JTextField();
 			jTextField_facilityContact.setForeground(SystemColor.scrollbar);;
-			jTextField_facilityContact.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_facilityContact.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_facilityContact.setEnabled(false);
 			jTextField_facilityContact.setBounds(new Rectangle(130, 120, 600, 31));
@@ -337,23 +336,22 @@ public class AdministrateBallroomForm {
 	protected JTextField getJTextField_ballroomTitle() {
 		if (jTextField_ballroomTitle == null) {
 			jTextField_ballroomTitle = new JTextField();
-			jTextField_ballroomTitle.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_ballroomTitle.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_ballroomTitle.setForeground(SystemColor.scrollbar);
-			jTextField_ballroomTitle.setText("Enter a Ballroom Name");
+			jTextField_ballroomTitle.setText("                                                                            Enter a Ballroom Name");
 			jTextField_ballroomTitle.setBounds(new Rectangle(129, 60, 600, 30));
 			jTextField_ballroomTitle.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					if(jTextField_ballroomTitle.getText().equals("")){
 						jTextField_ballroomTitle.setForeground(SystemColor.scrollbar);
-						jTextField_ballroomTitle.setText("Enter a Ballroom Name");
+						jTextField_ballroomTitle.setText("                                                                            Enter a Ballroom Name");
 					}
 					else{
 						displaySummary();
 					}
 				}
 				public void focusGained(java.awt.event.FocusEvent e) {
-					if(jTextField_ballroomTitle.getText().equals("Enter a Ballroom Name")){
+					if(jTextField_ballroomTitle.getText().equals("                                                                            Enter a Ballroom Name")){
 						jTextField_ballroomTitle.setForeground(SystemColor.black);
 						jTextField_ballroomTitle.setText("");
 					}

@@ -73,7 +73,7 @@ public class AdministrateFacilityForm {
 	/********************************************************
 	 *					The Attributes
 	 *******************************************************/
-	private JScrollPane jScrollPane = null;  //  @jve:decl-index=0:visual-constraint="250,12"
+	private JScrollPane jScrollPane = null;  //  @jve:decl-index=0:visual-constraint="258,329"
 	private JPanel jPanel = null;
 	private JPanel jPanel_header = null;
 	private JLabel jLabel_facilityName = null;
@@ -213,19 +213,18 @@ public class AdministrateFacilityForm {
 		if (jTextField_facilityName == null) {
 			jTextField_facilityName = new JTextField();
 			jTextField_facilityName.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-			jTextField_facilityName.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_facilityName.setForeground(SystemColor.scrollbar);
-			jTextField_facilityName.setText("Enter Facility Name Here");
+			jTextField_facilityName.setText("                                                                             Enter Facility Name");
 			jTextField_facilityName.setBounds(new Rectangle(130, 80, 600, 30));
 			jTextField_facilityName.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					if(jTextField_facilityName.getText().equals("")){
 						jTextField_facilityName.setForeground(SystemColor.scrollbar);
-						jTextField_facilityName.setText("Enter Facility Name Here");
+						jTextField_facilityName.setText("                                                                             Enter Facility Name");
 					}
 				}
 				public void focusGained(java.awt.event.FocusEvent e) {
-					if(jTextField_facilityName.getText().equals("Enter Facility Name Here")){
+					if(jTextField_facilityName.getText().equals("                                                                             Enter Facility Name")){
 						jTextField_facilityName.setText("");
 						jTextField_facilityName.setForeground(SystemColor.black);
 					}
@@ -237,20 +236,19 @@ public class AdministrateFacilityForm {
 	protected JTextField getJTextField_facilityContact() {
 		if (jTextField_facilityContact == null) {
 			jTextField_facilityContact = new JTextField();
-			jTextField_facilityContact.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_facilityContact.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_facilityContact.setForeground(SystemColor.scrollbar);
-			jTextField_facilityContact.setText("Enter Contact No");
+			jTextField_facilityContact.setText("               Enter Contact No");
 			jTextField_facilityContact.setBounds(new Rectangle(530, 40, 200, 30));
 			jTextField_facilityContact.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					if(jTextField_facilityContact.getText().equals("")){
 						jTextField_facilityContact.setForeground(SystemColor.scrollbar);
-						jTextField_facilityContact.setText("Enter Contact No");
+						jTextField_facilityContact.setText("               Enter Contact No");
 					}
 				}
 				public void focusGained(java.awt.event.FocusEvent e) {
-					if(jTextField_facilityContact.getText().equals("Enter Contact No")){
+					if(jTextField_facilityContact.getText().equals("               Enter Contact No")){
 						jTextField_facilityContact.setText("");
 						jTextField_facilityContact.setForeground(SystemColor.black);
 						
@@ -263,20 +261,19 @@ public class AdministrateFacilityForm {
 	protected JTextField getJTextField_facilityAddress() {
 		if (jTextField_facilityAddress == null) {
 			jTextField_facilityAddress = new JTextField();
-			jTextField_facilityAddress.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_facilityAddress.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_facilityAddress.setForeground(SystemColor.scrollbar);
-			jTextField_facilityAddress.setText("Enter Facility Adress Here");
+			jTextField_facilityAddress.setText("                                                                           Enter Facility Address");
 			jTextField_facilityAddress.setBounds(new Rectangle(130, 120, 600, 31));
 			jTextField_facilityAddress.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					if(jTextField_facilityAddress.getText().equals("")){
 						jTextField_facilityAddress.setForeground(SystemColor.scrollbar);
-						jTextField_facilityAddress.setText("Enter Facility Adress Here");
+						jTextField_facilityAddress.setText("                                                                           Enter Facility Address");
 					}
 				}
 				public void focusGained(java.awt.event.FocusEvent e) {
-					if(jTextField_facilityAddress.getText().equals("Enter Facility Adress Here")){
+					if(jTextField_facilityAddress.getText().equals("                                                                           Enter Facility Address")){
 						jTextField_facilityAddress.setForeground(SystemColor.black);
 						jTextField_facilityAddress.setText("");
 					}
@@ -299,7 +296,7 @@ public class AdministrateFacilityForm {
 			jTextArea_facilityDescription.setWrapStyleWord(true);
 			jTextArea_facilityDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextArea_facilityDescription.setForeground(SystemColor.scrollbar);
-			jTextArea_facilityDescription.setText("\n\n                                                                             Enter a Description Here");
+			jTextArea_facilityDescription.setText("\n\n                                                                             Enter Description");
 			jTextArea_facilityDescription.setAutoscrolls(true);
 			jTextArea_facilityDescription.setLineWrap(true);
 			jTextArea_facilityDescription
@@ -307,11 +304,11 @@ public class AdministrateFacilityForm {
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					if(jTextArea_facilityDescription.getText().equals("")){
 						jTextArea_facilityDescription.setForeground(SystemColor.scrollbar);
-						jTextArea_facilityDescription.setText("\n\n                                                                             Enter a Description Here");
+						jTextArea_facilityDescription.setText("\n\n                                                                             Enter Description");
 					}
 				}
 						public void focusGained(java.awt.event.FocusEvent e) {
-							if(jTextArea_facilityDescription.getText().equals("\n\n                                                                             Enter a Description Here")){
+							if(jTextArea_facilityDescription.getText().equals("\n\n                                                                             Enter Description")){
 								jTextArea_facilityDescription.setText("");
 								jTextArea_facilityDescription.setForeground(SystemColor.black);
 							}
@@ -423,20 +420,19 @@ public class AdministrateFacilityForm {
 	protected JTextField getJTextField_ballroomTitle() {
 		if (jTextField_ballroomTitle == null) {
 			jTextField_ballroomTitle = new JTextField();
-			jTextField_ballroomTitle.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_ballroomTitle.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_ballroomTitle.setForeground(SystemColor.scrollbar);
-			jTextField_ballroomTitle.setText("Enter a Ballroom Name");
+			jTextField_ballroomTitle.setText("                                                                Enter Ballroom Name");
 			jTextField_ballroomTitle.setBounds(new Rectangle(50, 240, 500, 30));
 			jTextField_ballroomTitle.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					if(jTextField_ballroomTitle.getText().equals("")){
 						jTextField_ballroomTitle.setForeground(SystemColor.scrollbar);
-						jTextField_ballroomTitle.setText("Enter a Ballroom Name");
+						jTextField_ballroomTitle.setText("                                                                Enter Ballroom Name");
 					}
 				}
 				public void focusGained(java.awt.event.FocusEvent e) {
-					if(jTextField_ballroomTitle.getText().equals("Enter a Ballroom Name")){
+					if(jTextField_ballroomTitle.getText().equals("                                                                Enter Ballroom Name")){
 						jTextField_ballroomTitle.setForeground(SystemColor.black);
 						jTextField_ballroomTitle.setText("");
 					}
@@ -462,20 +458,19 @@ public class AdministrateFacilityForm {
 	protected JTextField getJTextField_ballroomPrice() {
 		if (jTextField_ballroomPrice == null) {
 			jTextField_ballroomPrice = new JTextField();
-			jTextField_ballroomPrice.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_ballroomPrice.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_ballroomPrice.setForeground(SystemColor.scrollbar);
-			jTextField_ballroomPrice.setText("Enter Price");
+			jTextField_ballroomPrice.setText("                   Enter A Price");
 			jTextField_ballroomPrice.setBounds(new Rectangle(563, 290, 187, 30));
 			jTextField_ballroomPrice.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					if(jTextField_ballroomPrice.getText().equals("")){
 						jTextField_ballroomPrice.setForeground(SystemColor.scrollbar);
-						jTextField_ballroomPrice.setText("Enter Price");
+						jTextField_ballroomPrice.setText("                   Enter A Price");
 					}
 				}
 				public void focusGained(java.awt.event.FocusEvent e) {
-					if(jTextField_ballroomPrice.getText().equals("Enter Price")){
+					if(jTextField_ballroomPrice.getText().equals("                   Enter A Price")){
 						jTextField_ballroomPrice.setForeground(SystemColor.black);
 						jTextField_ballroomPrice.setText("");
 					}
@@ -499,17 +494,17 @@ public class AdministrateFacilityForm {
 			jTextArea_ballroomDescription.setWrapStyleWord(true);
 			jTextArea_ballroomDescription.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextArea_ballroomDescription.setForeground(SystemColor.scrollbar);
-			jTextArea_ballroomDescription.setText("\n\n                                              Enter a Short Description of the Ballroom");
+			jTextArea_ballroomDescription.setText("\n\n\n                                              Enter a Short Description of the Ballroom");
 			jTextArea_ballroomDescription
 					.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					if(jTextArea_ballroomDescription.getText().equals("")){
 						jTextArea_ballroomDescription.setForeground(SystemColor.scrollbar);
-						jTextArea_ballroomDescription.setText("\n\n                                              Enter a Short Description of the Ballroom");
+						jTextArea_ballroomDescription.setText("\n\n\n                                              Enter a Short Description of the Ballroom");
 					}
 				}
 						public void focusGained(java.awt.event.FocusEvent e) {
-							if(jTextArea_ballroomDescription.getText().equals("\n\n                                              Enter a Short Description of the Ballroom")){
+							if(jTextArea_ballroomDescription.getText().equals("\n\n\n                                              Enter a Short Description of the Ballroom")){
 								jTextArea_ballroomDescription.setForeground(SystemColor.black);
 								jTextArea_ballroomDescription.setText("");
 							}
@@ -521,20 +516,19 @@ public class AdministrateFacilityForm {
 	protected JTextField getJTextField_ballroomDiscount() {
 		if (jTextField_ballroomDiscount == null) {
 			jTextField_ballroomDiscount = new JTextField();
-			jTextField_ballroomDiscount.setHorizontalAlignment(JTextField.CENTER);
 			jTextField_ballroomDiscount.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 			jTextField_ballroomDiscount.setForeground(SystemColor.scrollbar);
-			jTextField_ballroomDiscount.setText("Enter Entitled Discount");
+			jTextField_ballroomDiscount.setText("           Enter Entitled Discount");
 			jTextField_ballroomDiscount.setBounds(new Rectangle(563, 335, 187, 30));
 			jTextField_ballroomDiscount.addFocusListener(new java.awt.event.FocusAdapter() {   
 				public void focusLost(java.awt.event.FocusEvent e) {    
 					if(jTextField_ballroomDiscount.getText().equals("")){
 						jTextField_ballroomDiscount.setForeground(SystemColor.scrollbar);
-						jTextField_ballroomDiscount.setText("Enter Entitled Discount");
+						jTextField_ballroomDiscount.setText("           Enter Entitled Discount");
 					}
 				}
 				public void focusGained(java.awt.event.FocusEvent e) {
-					if(jTextField_ballroomDiscount.getText().equals("Enter Entitled Discount")){
+					if(jTextField_ballroomDiscount.getText().equals("           Enter Entitled Discount")){
 						jTextField_ballroomDiscount.setForeground(SystemColor.black);
 						jTextField_ballroomDiscount.setText("");
 					}
@@ -1009,13 +1003,13 @@ public class AdministrateFacilityForm {
 		getJTable_ballroomList().setModel(model);
 		//reset the fields
 		getJTextField_ballroomTitle().setForeground(SystemColor.scrollbar);
-		getJTextField_ballroomTitle().setText("Enter a Ballroom Name");
+		getJTextField_ballroomTitle().setText("                                                                Enter Ballroom Name");
 		getJTextField_ballroomPrice().setForeground(SystemColor.scrollbar);
-		getJTextField_ballroomPrice().setText("Enter Price");
+		getJTextField_ballroomPrice().setText("                   Enter A Price");
 		getJTextField_ballroomDiscount().setForeground(SystemColor.scrollbar);
-		getJTextField_ballroomDiscount().setText("Enter Entitled Discount");
+		getJTextField_ballroomDiscount().setText("           Enter Entitled Discount");
 		getJTextArea_ballroomDescription().setForeground(SystemColor.scrollbar);
-		getJTextArea_ballroomDescription().setText("\n\n                                              Enter a Short Description of the Ballroom");
+		getJTextArea_ballroomDescription().setText("\n\n\n                                              Enter a Short Description of the Ballroom");
 		getJComboBox_ballroomSize().setSelectedIndex(0);
 		
 		displaySummary();

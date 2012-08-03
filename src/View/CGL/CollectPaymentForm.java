@@ -45,6 +45,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import javax.swing.WindowConstants;
 
 public class CollectPaymentForm extends Fonts {
 
@@ -107,7 +108,7 @@ public class CollectPaymentForm extends Fonts {
 			tree.setBounds(new Rectangle(4, 8, 132, 269));
 			jFrame = new JFrame();
 			jFrame.setResizable(true);
-			jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			jFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			jFrame.setSize(new Dimension(722, 359));
 			jFrame.setContentPane(getJContentPane());
 			jFrame.setTitle("Collect Payment");

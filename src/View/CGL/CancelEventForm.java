@@ -27,6 +27,7 @@ import javax.swing.tree.DefaultTreeModel;
 
 import Controller.CGL.CancelEventControl;
 import Model.Event;
+import javax.swing.WindowConstants;
 
 public class CancelEventForm {
 
@@ -71,7 +72,7 @@ public class CancelEventForm {
 			jFrame = new JFrame();
 			jFrame.setSize(new Dimension(722, 359));
 			jFrame.setTitle("Cancel Event");
-			jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			jFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			jFrame.setResizable(false);
 			jFrame.setContentPane(getJContentPane());
 		}

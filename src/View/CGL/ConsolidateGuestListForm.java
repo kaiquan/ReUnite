@@ -60,6 +60,8 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.WindowConstants;
+import javax.swing.ImageIcon;
 public class ConsolidateGuestListForm extends Fonts{
 
 	
@@ -80,14 +82,13 @@ public class ConsolidateGuestListForm extends Fonts{
 	private JLabel jLabel1 = null;
 	private JTextArea jTextArea = null;
 	private JTextField textField_5;
-	private JLabel jLabel2 = null;
 	private String ballroomPrice="";  //  @jve:decl-index=0:
 	private String entertainmentPrice="";
 	private String mealPrice="";
 	private String packageDiscount="";
 	private String riEmail="";
 	private static String FILE = null;
-
+	private JButton jButton3 = null;
 	/**
 	 * This method initializes jFrame	
 	 * 	
@@ -99,7 +100,7 @@ public class ConsolidateGuestListForm extends Fonts{
 			jFrame.setSize(new Dimension(722, 359));
 			jFrame.setTitle("Consolidate Guest List");
 			jFrame.setResizable(true);
-			jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			jFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			jFrame.setContentPane(getJContentPane());
 		}
 		return jFrame;
@@ -112,26 +113,9 @@ public class ConsolidateGuestListForm extends Fonts{
 	 */
 	private JPanel getJContentPane() {
 		if (jContentPane == null) {
-			jLabel2 = new JLabel();
-			jLabel2.setBounds(new Rectangle(150, 162, 12, 15));
-			jLabel2.setFont(new Font("Dialog", Font.BOLD, 14));
-			jLabel2.setText("+");
-			jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-				//+ Label Message Dialog
-				public void mouseClicked(java.awt.event.MouseEvent e) {
-					
-					if(ballroomPrice.equals("")&& entertainmentPrice.equals("")&&(mealPrice.equals("")&& (packageDiscount.equals("")))){
-						JOptionPane.showMessageDialog(null, "To view the breakdown of price,"+"\n"+"Please select an event");
-					}
-					
-					else{
-				JOptionPane.showMessageDialog(null, "Ballroom Price is " +ballroomPrice+"\n"+"Entertainment Price: "+entertainmentPrice+"\n"+"Meal Price: "+mealPrice +"\n"+"Package Discount: "+packageDiscount);
-				}
-				}
-			});
 			jLabel1 = new JLabel();
-			jLabel1.setBounds(new Rectangle(153, 222, 109, 16));
-			jLabel1.setText("Event Description :");
+			jLabel1.setBounds(new Rectangle(138, 224, 109, 16));
+			jLabel1.setText(" Event Description :");
 			jContentPane = new JPanel();
 			jContentPane.setLayout(null);
 			DefaultMutableTreeNode events = new DefaultMutableTreeNode("Events");
@@ -209,30 +193,35 @@ public class ConsolidateGuestListForm extends Fonts{
 			
 			textField = new JTextField();
 			textField.setBounds(244, 46, 137, 20);
+			textField.setEditable(false);
 			jContentPane.add(textField);
 			textField.setColumns(10);
 			
 			textField_1 = new JTextField();
 			textField_1.setBounds(244, 84, 135, 20);
+			textField_1.setEditable(false);
 			jContentPane.add(textField_1);
 			textField_1.setColumns(10);
 			
 			textField_2 = new JTextField();
 			textField_2.setBounds(526, 45, 135, 20);
+			textField_2.setEditable(false);
 			jContentPane.add(textField_2);
 			textField_2.setColumns(10);
 			
 			textField_3 = new JTextField();
 			textField_3.setBounds(526, 83, 135, 20);
+			textField_3.setEditable(false);
 			jContentPane.add(textField_3);
 			textField_3.setColumns(10);
 			
 			JLabel lblTotalPrice = new JLabel("Total Price :");
-			lblTotalPrice.setBounds(161, 163, 69, 14);
+			lblTotalPrice.setBounds(154, 163, 69, 14);
 			jContentPane.add(lblTotalPrice);
 			
 			textField_4 = new JTextField();
-			textField_4.setBounds(245, 160, 135, 20);
+			textField_4.setBounds(245, 160, 92, 20);
+			textField_4.setEditable(false);
 			jContentPane.add(textField_4);
 			textField_4.setColumns(10);
 			
@@ -261,7 +250,7 @@ public class ConsolidateGuestListForm extends Fonts{
 			
 			JScrollPane pne1 = new JScrollPane(getJTextArea(),JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 			pne1.setVisible(true);
-			pne1.setBounds(new Rectangle(281, 213, 388, 35));
+			pne1.setBounds(new Rectangle(247, 213, 422, 35));
 			jContentPane.add(pne1);
 			
 			JLabel lblBallroom = new JLabel("Ballroom :");
@@ -270,8 +259,9 @@ public class ConsolidateGuestListForm extends Fonts{
 			
 			textField_5 = new JTextField();
 			textField_5.setBounds(526, 121, 135, 20);
+			textField_5.setEditable(false);
 			jContentPane.add(textField_5);
-			jContentPane.add(jLabel2, null);
+			jContentPane.add(getJButton3(), null);
 			textField_5.setColumns(10);
 			
 		}
@@ -343,6 +333,7 @@ public class ConsolidateGuestListForm extends Fonts{
 					ConsolidateGuestListControl c1 = new ConsolidateGuestListControl();
 					if(c1.processEventConsolidation(textField_4.getText(), textField.getText(), riEmail, pdf, eventStatus)==true){
 						JOptionPane.showMessageDialog(null, "Payment Notification Successfully send to RI");
+						refresh();
 					}
 					
 					else
@@ -417,6 +408,7 @@ public class ConsolidateGuestListForm extends Fonts{
 		if (jTextField == null) {
 			jTextField = new JTextField();
 			jTextField.setBounds(new Rectangle(244, 122, 137, 20));
+			jTextField.setEditable(false);
 		}
 		return jTextField;
 	}
@@ -430,7 +422,7 @@ public class ConsolidateGuestListForm extends Fonts{
 		if (jTextArea == null) {
 			jTextArea = new JTextArea();
 			jTextArea.setLineWrap(true);
-			
+			jTextArea.setEditable(false);
 			jTextArea.setWrapStyleWord(true);
 			jTextArea.setBounds(new Rectangle(281, 213, 388, 35));
 			 
@@ -557,6 +549,32 @@ public class ConsolidateGuestListForm extends Fonts{
 		}
 	}
 	
+
+	/**
+	 * This method initializes jButton3	
+	 * 	
+	 * @return javax.swing.JButton	
+	 */
+	private JButton getJButton3() {
+		if (jButton3 == null) {
+			jButton3 = new JButton();
+			jButton3.setBounds(new Rectangle(342, 160, 40, 22));
+			jButton3.setFont(new Font("Dialog", Font.BOLD, 10));
+			jButton3.setText("?");
+			jButton3.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					if(ballroomPrice.equals("")&& entertainmentPrice.equals("")&&(mealPrice.equals("")&& (packageDiscount.equals("")))){
+						JOptionPane.showMessageDialog(null, "To view the breakdown of price,"+"\n"+"Please select an event");
+					}
+					
+					else{
+					JOptionPane.showMessageDialog(null, "Ballroom Price is " +ballroomPrice+"\n"+"Entertainment Price: "+entertainmentPrice+"\n"+"Meal Price: "+mealPrice +"\n"+"Package Discount: "+packageDiscount);
+					}
+				}
+			});
+		}
+		return jButton3;
+	}
 
 	public static void main(String args[]){
 				

@@ -200,7 +200,7 @@ public boolean processEventConsolidation(String amount,String eventName,String r
 	}
 	
 	try{
-	String content="Dear Sir/Madam"+"\n"+"Kindly make your first payment for the event"+eventName +"\n"+"For more details regarding the payment, kindly refer to the attachment attached with this email Or you can contact us at 67747173."+"\n"+"Shahrikin"+"\n"+"GR Administrator";
+	String content="Dear Sir/Madam"+"\n"+"\n"+"Kindly make your first payment for the event "+eventName +"\n"+"For more details regarding the payment, kindly refer to the attachment attached with this email or you can contact us at 67747173."+"\n"+"\n"+"Shahrikin"+"\n"+"GR Administrator";
 	//prepares email
 	String[] emailAddress= new String[1];
 	emailAddress[0]=recipient;

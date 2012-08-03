@@ -202,32 +202,33 @@ public boolean processEventConsolidation(String amount,String eventName,String r
 	try{
 	String content="Dear Sir/Madam"+"\n"+"Kindly make your first payment for the event"+eventName +"\n"+"For more details regarding the payment, kindly refer to the attachment attached with this email Or you can contact us at 67747173."+"\n"+"Shahrikin"+"\n"+"GR Administrator";
 	//prepares email
+	String[] emailAddress= new String[1];
+	emailAddress[0]=recipient;
 	EmailController email = new EmailController();
-	email.sendEmail("TEXT", recipient, "RE : Payment Notification for event "+eventName, content, pdf, "Payment");
+	email.sendEmail("TEXT", emailAddress, "RE : Payment Notification for event "+eventName, content, pdf, "Payment");
 	success=true;
 	}
 	
+		
 	catch(Exception ex){
 		JOptionPane.showMessageDialog(null, "Failed to send email to RI");
 		success=false;
 		return success;
 	}
 	
+	try{
+		
+		Event e1 = new Event();
+		e1.UPDATE_EVENT_STATUS(eventName, eventStatus);
+		success=true;
+	}
 	
+	catch(Exception ex){
+		JOptionPane.showMessageDialog(null, "Failed to update event status");
+		success=false;
+	}
+	
+	return success;
 }
-
-
-
-
-public boolean processUpdateEventStatus(String eventName,String eventStatus){
-	Event e1 = new Event();
-	return e1.UPDATE_EVENT_STATUS(eventName, eventStatus);
-}
-
-
-
-	
-	
-
 
 }

@@ -336,22 +336,20 @@ public class ConsolidateGuestListForm extends Fonts{
 					
 					String eventStatus="Awaiting Payment";
 					
+					FILE=textField.getText()+".pdf";                    
+					File pdf = new File(FILE);
+                	ConsolidateGuestListForm g1 = new ConsolidateGuestListForm();
+                	g1.pdfCreator(FILE,textField.getText(),textField_1.getText(),textField_2.getText(),textField_3.getText(),jTextField.getText(),textField_5.getText(),textField_4.getText(),getJTextArea().getText(),ballroomPrice,entertainmentPrice,mealPrice,packageDiscount);           
 					ConsolidateGuestListControl c1 = new ConsolidateGuestListControl();
-					if((c1.updateTotalPayableAmount((textField_4.getText()),textField.getText())==true)){
-						System.out.println("Payment Amount Updated");
-                    	FILE=textField.getText()+".pdf";                    	
-                    	ConsolidateGuestListForm g1 = new ConsolidateGuestListForm();
-                    	g1.pdfCreator(FILE,textField.getText(),textField_1.getText(),textField_2.getText(),textField_3.getText(),jTextField.getText(),textField_5.getText(),textField_4.getText(),getJTextArea().getText(),ballroomPrice,entertainmentPrice,mealPrice,packageDiscount);                    	
-                    	System.out.println("PDF CREATED SUCCESSFULLY");                    	
-                    	EmailController email = new EmailController();                    	
-                    	File pdf = new File(FILE);
-                    	
-                    	
-						if((c1.processUpdateEventStatus(textField.getText(),eventStatus)==true)){
-							System.out.println("Event Status Changed to Awaiting Payment");
-							refresh();						
-						}
+					if(c1.processEventConsolidation(textField_4.getText(), textField.getText(), riEmail, pdf, eventStatus)==true){
+						JOptionPane.showMessageDialog(null, "Payment Notification Successfully send to RI");
 					}
+					
+					else
+					{
+						
+					}
+					
 				}
 			});
 			jButton1.setBounds(new Rectangle(344, 263, 144, 15));

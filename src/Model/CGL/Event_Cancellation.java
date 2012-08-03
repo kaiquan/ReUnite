@@ -3,11 +3,70 @@ package Model.CGL;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import sun.util.calendar.LocalGregorianCalendar.Date;
+
 import Controller.MyCalendar;
 import Controller.MySQLController;
 import Model.Event;
 
 public class Event_Cancellation {
+	private int cancellationID;
+	private int eventID;
+	private String cancellationDate;
+	private String cancellationReason;
+	
+	
+	
+	public int getCancellationID() {
+		return cancellationID;
+	}
+
+
+	public void setCancellationID(int cancellationID) {
+		this.cancellationID = cancellationID;
+	}
+
+
+	public int getEventID() {
+		return eventID;
+	}
+
+
+	public void setEventID(int eventID) {
+		this.eventID = eventID;
+	}
+
+
+	public String getCancellationDate() {
+		return cancellationDate;
+	}
+
+
+	public void setCancellationDate(String cancellationDate) {
+		this.cancellationDate = cancellationDate;
+	}
+
+
+	public String getCancellationReason() {
+		return cancellationReason;
+	}
+
+
+	public void setCancellationReason(String cancellationReason) {
+		this.cancellationReason = cancellationReason;
+	}
+
+
+	public static MySQLController getDB() {
+		return DB;
+	}
+
+
+	public static void setDB(MySQLController dB) {
+		DB = dB;
+	}
+
+
 	private static MySQLController DB = new MySQLController();
 	
 	/********************************************************

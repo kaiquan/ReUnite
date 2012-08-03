@@ -341,10 +341,10 @@ public class Entertainment {
 	  * Return 			: ArrayList<String>
 	  * Purpose 		: To get the final entertainment price
 	  *******************************************************/
-public ArrayList<String> GET_ENTERTAINMENT_PRICE(String eventName){
+public ArrayList<Entertainment> GET_ENTERTAINMENT_PRICE(String eventName){
 		
 		
-		ArrayList<String> e1 = new ArrayList<String>();
+		ArrayList<Entertainment> e1 = new ArrayList<Entertainment>();
 		ResultSet rs = null;
 		
 		String dbQuery;
@@ -355,7 +355,9 @@ public ArrayList<String> GET_ENTERTAINMENT_PRICE(String eventName){
 			
 			rs=DB.readRequest(dbQuery);
 			while(rs.next()){
-				e1.add(rs.getString("entertainmentPrice"));
+				Entertainment e2 = new Entertainment();
+				e2.setEntertainmentPrice(rs.getFloat("entertainmentPrice"));
+				e1.add(e2);
 		}
 		}
 			catch(Exception e){

@@ -21,6 +21,59 @@ import Controller.MySQLController;
 import Controller.MyCalendar;
 
 public class Purchase_Payment {
+	private int paymentID;
+	private int purchaseID;
+	private String paymentMethod;
+	private String paymentDate;
+	private String amountPaid;
+	public int getPaymentID() {
+		return paymentID;
+	}
+
+	public void setPaymentID(int paymentID) {
+		this.paymentID = paymentID;
+	}
+
+	public int getPurchaseID() {
+		return purchaseID;
+	}
+
+	public void setPurchaseID(int purchaseID) {
+		this.purchaseID = purchaseID;
+	}
+
+	public String getPaymentMethod() {
+		return paymentMethod;
+	}
+
+	public void setPaymentMethod(String paymentMethod) {
+		this.paymentMethod = paymentMethod;
+	}
+
+	public String getPaymentDate() {
+		return paymentDate;
+	}
+
+	public void setPaymentDate(String paymentDate) {
+		this.paymentDate = paymentDate;
+	}
+
+	public String getAmountPaid() {
+		return amountPaid;
+	}
+
+	public void setAmountPaid(String amountPaid) {
+		this.amountPaid = amountPaid;
+	}
+
+	public static MySQLController getDB() {
+		return DB;
+	}
+
+	public static void setDB(MySQLController dB) {
+		DB = dB;
+	}
+
 	private static MySQLController DB = new MySQLController();
 	
 	/********************************************************

@@ -58,7 +58,7 @@ public class CollectPaymentControl {
 		//Creates event Object
 		//Creates ArrayList of String 
 		//get the event details and adds it to the arrayList
-		ArrayList<String> event = new ArrayList<String>();
+		ArrayList<Event> event = new ArrayList<Event>();
 		Event ev1 = new Event();
 		event=ev1.GET_EVENT_DETAILS(eventName);
 		
@@ -124,7 +124,7 @@ public class CollectPaymentControl {
 		
 		//get the EventTime,EventDate,EventStatus,EventDescription based on the arraylist 
 		//we create earlier
-		Scanner sc2 = new Scanner(event.get(0));
+		Scanner sc2 = new Scanner(event.get(0).getEventTime());
 		sc2.useDelimiter(",");
 		String eventTime=sc2.next();
 		String eventDate=sc2.next();

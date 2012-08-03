@@ -25,7 +25,52 @@ import Controller.MySQLController;
 import Controller.MyCalendar;
 
 public class Purchase_Summary {
+	private int purchaseID;
+	private int eventID;
+	private String totalCost;
+	private String amountPending;
+	private String dateOfPurchase;
 	
+	public int getPurchaseID() {
+		return purchaseID;
+	}
+
+
+	public void setPurchaseID(int purchaseID) {
+		this.purchaseID = purchaseID;
+	}
+
+
+	public int getEventID() {
+		return eventID;
+	}
+
+
+	public void setEventID(int eventID) {
+		this.eventID = eventID;
+	}
+
+
+	public String getDateOfPurchase() {
+		return dateOfPurchase;
+	}
+
+
+	public void setDateOfPurchase(String dateOfPurchase) {
+		this.dateOfPurchase = dateOfPurchase;
+	}
+
+
+	public static MySQLController getDB() {
+		return DB;
+	}
+
+
+	public static void setDB(MySQLController dB) {
+		DB = dB;
+	}
+
+
 	private static MySQLController DB = new MySQLController();
 	
 	

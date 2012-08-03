@@ -472,10 +472,10 @@ public class Ballroom {
 	 * @param eventName the event name
 	 * @return the array list
 	 */
-	public ArrayList<String> GET_BALLROOM_DETAILS(String eventName){
+	public ArrayList<Ballroom> GET_BALLROOM_DETAILS(String eventName){
 		
 		
-		ArrayList<String> e1 = new ArrayList<String>();
+		ArrayList<Ballroom> e1 = new ArrayList<Ballroom>();
 		ResultSet rs = null;
 		
 		String dbQuery;
@@ -486,7 +486,10 @@ public class Ballroom {
 			
 			rs=DB.readRequest(dbQuery);
 			while(rs.next()){
-				e1.add(rs.getString("ballroomName")+","+ rs.getString("ballroomFinalPrice"));
+				Ballroom b= new Ballroom();
+				b.setBallroomName(rs.getString("ballroomName"));
+				b.setBallroomFinalPrice(rs.getFloat("ballroomFinalPrice"));
+				e1.add(b);
 			}
 		}
 		

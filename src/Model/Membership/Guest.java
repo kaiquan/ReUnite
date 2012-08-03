@@ -9,6 +9,15 @@ public class Guest extends Account
 {
 	boolean onlineStatus;
 	String profilePicture;
+	private String noOfGuests;
+
+	public String getNoOfGuests() {
+		return noOfGuests;
+	}
+
+	public void setNoOfGuests(String noOfGuests) {
+		this.noOfGuests = noOfGuests;
+	}
 
 	private MySQLController DB = new MySQLController();
 
@@ -56,10 +65,10 @@ public class Guest extends Account
 	}
 
 	// ameen method
-	public ArrayList<String> getNumberOfGuests(String eventName)
+	public ArrayList<Guest> getNumberOfGuests(String eventName)
 	{
 
-		ArrayList<String> e1 = new ArrayList<String>();
+		ArrayList<Guest> e1 = new ArrayList<Guest>();
 		ResultSet rs = null;
 
 		String dbQuery;
@@ -72,13 +81,10 @@ public class Guest extends Account
 			rs = DB.readRequest(dbQuery);
 			while (rs.next())
 			{
-
-				e1.add(rs.getString("Count(*)"));
-
-				for (int i = 0; i < e1.size(); i++)
-				{
-					System.out.println(e1.get(i));
-				}
+				Guest g = new Guest();
+				g.setNoOfGuests(rs.getString("Count(*)"));
+				e1.add(g);
+			
 
 			}
 

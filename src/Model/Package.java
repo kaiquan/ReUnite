@@ -314,9 +314,9 @@ public class Package {
 	}
 	
 	
-	public ArrayList<String> GET_PACKAGE_DISCOUNT(String eventName){
+	public ArrayList<Package> GET_PACKAGE_DISCOUNT(String eventName){
 
-		ArrayList<String> e1 = new ArrayList<String>();
+		ArrayList<Package> e1 = new ArrayList<Package>();
 		ResultSet rs = null;
 
 		String dbQuery;
@@ -327,8 +327,9 @@ public class Package {
 			
 			rs=DB.readRequest(dbQuery);
 			while(rs.next()){
-				
-			e1.add(rs.getString("p.packageDiscount"));
+				Package p1 = new Package();
+				p1.setPackageDiscount(rs.getFloat("p.packageDiscount"));
+				e1.add(p1);
 				
 				for(int i=0;i<e1.size();i++){
 					System.out.println(e1.get(i));

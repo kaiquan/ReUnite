@@ -347,11 +347,9 @@ public class Meal {
 	  * Purpose 		: TO GET THE MEAL PRICE
 	  *******************************************************/
 
-public ArrayList<String> GET_MEAL_PRICE(String eventName){
+public ArrayList<Meal> GET_MEAL_PRICE(String eventName){
 		
-		ArrayList<String> e1 = new ArrayList<String>();
-		@SuppressWarnings("unused")
-		ArrayList<String> e2 = new ArrayList<String>();
+		ArrayList<Meal> e1 = new ArrayList<Meal>();
 		
 		ResultSet rs = null;
 		
@@ -363,8 +361,9 @@ public ArrayList<String> GET_MEAL_PRICE(String eventName){
 			
 			rs=DB.readRequest(dbQuery);
 			while(rs.next()){
-				
-			e1.add(rs.getString("sum"));
+				Meal m1 = new Meal();
+				m1.setMealFinalPrice(rs.getFloat("sum"));
+				e1.add(m1);
 			
 			
 			

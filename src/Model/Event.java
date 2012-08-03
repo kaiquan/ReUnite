@@ -552,9 +552,9 @@ public ArrayList<Event> GET_EVENT_RECORDS_DUE_FOR_PAYMENT(){
  * Purpose 			: TO GET EVENT DETAILS BASED ON EVENT RECORD
  *******************************************************/
 
-public ArrayList<String> GET_EVENT_DETAILS(String eventName){
+public ArrayList<Event> GET_EVENT_DETAILS(String eventName){
 
-	ArrayList<String> e1 = new ArrayList<String>();
+	ArrayList<Event> e1 = new ArrayList<Event>();
 	ResultSet rs = null;
 
 	String dbQuery;
@@ -565,9 +565,12 @@ public ArrayList<String> GET_EVENT_DETAILS(String eventName){
 		
 		rs=DB.readRequest(dbQuery);
 		while(rs.next()){
-			
-		e1.add(rs.getString("eventTime")+","+rs.getString("eventDate")+","+rs.getString("eventStatus")+","+rs.getString("eventDescription"));
-			
+			Event e= new Event();
+			e.setEventTime(rs.getString("eventTime"));
+			e.setEventDate(rs.getString("eventDate"));
+			e.setEventStatus(rs.getString("eventStatus"));
+			e.setEventDescription(rs.getString("eventDescription"));
+			e1.add(e);	
 			for(int i=0;i<e1.size();i++){
 				System.out.println(e1.get(i));
 			}

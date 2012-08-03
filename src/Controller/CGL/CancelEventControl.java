@@ -34,36 +34,50 @@ public class CancelEventControl {
 		//Creates ArrayList of String 
 		//get the ballroom details and adds it to the arrayList
 		Ballroom b1 = new Ballroom();
-		ArrayList<String> ballroom= new ArrayList<String>();
+		ArrayList<Ballroom> ballroom= new ArrayList<Ballroom>();
 		ballroom=b1.GET_BALLROOM_DETAILS(eventName);
 		
 		
 		//Creates Entertainment Object
 		//Creates ArrayList of String 
 		//get the entertainment details and adds it to the arrayList
-		ArrayList<String> entertainment = new ArrayList<String>();
+		ArrayList<Entertainment> entertainment = new ArrayList<Entertainment>();
 		Entertainment e1 = new Entertainment();
 		entertainment=e1.GET_ENTERTAINMENT_PRICE(eventName);
 		
 		//Creates event Object
 		//Creates ArrayList of String 
 		//get the event details and adds it to the arrayList
-		ArrayList<String> event = new ArrayList<String>();
+		ArrayList<Event> event = new ArrayList<Event>();
 		Event ev1 = new Event();
 		event=ev1.GET_EVENT_DETAILS(eventName);
 		
 		//Creates guest Object
 		//Creates ArrayList of String 
 		//get the number of guests and adds it to the arrayList
-		ArrayList<String> guest = new ArrayList<String>();
+		ArrayList<Guest> guest = new ArrayList<Guest>();
 		Guest g1= new Guest();
 		guest=g1.getNumberOfGuests(eventName);
 		
 		//Creates meal Object
 		//Creates ArrayList of String 
 		//get the meal details and adds it to the arrayList
-		ArrayList<String> meal = new ArrayList<String>();
+		ArrayList<Meal> meal = new ArrayList<Meal>();
 		Meal m1 = new Meal();
+		
+		//Creates facility Object
+		//Creates ArrayList of String 
+		//get the facilty name
+		ArrayList<Facility> facilty = new ArrayList<Facility>();
+		Facility f1 = new Facility();
+		facilty=f1.GET_FACILITY(eventName);
+		
+		//Creates meal Object
+		//Creates ArrayList of String 
+		//get the meal details and adds it to the arrayList
+		ArrayList<Package> pkg  = new ArrayList<Package>();
+		Package p1 = new Package();
+		pkg=p1.GET_PACKAGE_DISCOUNT(eventName);
 		
 		//If no meal option is selected it add 0 into the arraylist instead
 		try
@@ -73,7 +87,7 @@ public class CancelEventControl {
 		
 		catch(Exception ex)
 		{
-			meal.add("0");
+			meal.get(0).setMealFinalPrice(0);
 		}
 		
 		
@@ -84,10 +98,8 @@ public class CancelEventControl {
 		
 		try 
 		{
-			Scanner sc = new Scanner(ballroom.get(0));
-			sc.useDelimiter(",");
-			ballroomName=sc.next();
-			ballroomFinalPrice=sc.nextDouble();
+			ballroomName=ballroom.get(0).getBallroomName();
+			ballroomFinalPrice=(ballroom.get(0).getBallroomFinalPrice());
 		}
 		catch (Exception ex)
 		{
@@ -102,8 +114,8 @@ public class CancelEventControl {
 		
 		try
 		{
-			Scanner sc1 = new Scanner(entertainment.get(0));
-			entertainmentPrice=sc1.nextDouble();
+			
+			entertainmentPrice=entertainment.get(0).getEntertainmentFinalPrice();
 		}
 		
 		catch(Exception ex)
@@ -114,27 +126,24 @@ public class CancelEventControl {
 		
 		//get the EventTime,EventDate,EventStatus,EventDescription based on the arraylist 
 		//we create earlier
-		Scanner sc2 = new Scanner(event.get(0));
-		sc2.useDelimiter(",");
-		String eventTime=sc2.next();
-		String eventDate=sc2.next();
-		String eventStatus=sc2.next();
-		String eventDescription=sc2.next();
+		String eventTime=event.get(0).getEventTime();
+		String eventDate=event.get(0).getEventDate();
+		String eventStatus=event.get(0).getEventStatus();
+		String eventDescription=event.get(0).getEventDescription();
 		
 		
 		//get the number of guests based on the arraylist 
 		//we create earlier
-		Scanner sc3 = new Scanner(guest.get(0));
-		String guestCount=sc3.next();
+		
+		String guestCount=guest.get(0).getNoOfGuests();
 		
 		//get the total meal price based on the different options selected by guests based on the arraylist 
 		//we create earlier
 		double mealPrice;
 		try
 		{
-			Scanner sc4 = new Scanner(meal.get(0));
-			sc4.useDelimiter(",");
-			mealPrice =sc4.nextDouble();
+			
+			mealPrice =meal.get(0).getMealFinalPrice();
 		}
 		
 		catch(Exception ex)
@@ -145,14 +154,13 @@ public class CancelEventControl {
 		
 		//get the facility name based on the arraylist 
 		//we create earlier
-		Facility f1 = new Facility();
-		String facility=f1.GET_FACILITY(eventName).get(0);
+		String facility=facilty.get(0).getFacilityName();
 		
 		//get the package discount based on the arraylist 
 		//we create earlier
 		Package p = new Package();
-		String pkgDiscount=p.GET_PACKAGE_DISCOUNT(eventName).get(0);
-		double packageDiscount=Double.parseDouble(pkgDiscount);
+		
+		double packageDiscount=pkg.get(0).getPackageDiscount();
 		
 		//Calculates total payable amount
 		double totalPrice=ballroomFinalPrice+entertainmentPrice+mealPrice-packageDiscount;
@@ -162,7 +170,7 @@ public class CancelEventControl {
 		
 		
 		for(int i=0;i<1;i++){
-			String combine=ballroomName+","+eventTime+","+eventDate+","+eventStatus+","+eventDescription+","+guestCount+","+totalPrice+","+ballroomFinalPrice+","+entertainmentPrice+","+mealPrice+","+facility+","+pkgDiscount;
+			String combine=ballroomName+","+eventTime+","+eventDate+","+eventStatus+","+eventDescription+","+guestCount+","+totalPrice+","+ballroomFinalPrice+","+entertainmentPrice+","+mealPrice+","+facility+","+packageDiscount;
 			combined.add(combine);
 		}
 			

@@ -317,10 +317,10 @@ public class Facility {
 	}
 	
 	
-	public ArrayList<String> GET_FACILITY(String eventName){
+	public ArrayList<Facility> GET_FACILITY(String eventName){
 		
 		
-		ArrayList<String> e1 = new ArrayList<String>();
+		ArrayList<Facility> e1 = new ArrayList<Facility>();
 		ResultSet rs = null;
 		
 		String dbQuery;
@@ -331,7 +331,9 @@ public class Facility {
 			
 			rs=DB.readRequest(dbQuery);
 			while(rs.next()){
-				e1.add(rs.getString("f.facilityName"));
+				Facility f1 = new Facility();
+				f1.setFacilityName(rs.getString("f.facilityName"));
+				e1.add(f1);
 			}
 		}
 		

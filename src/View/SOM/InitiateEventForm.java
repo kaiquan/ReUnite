@@ -1625,18 +1625,19 @@ public class InitiateEventForm {
 		else if(isCustom){
 			//create the ballroom
 			int i=0;
+			if(cEntertainmentID!=null){
+				//retrieve the entertainment
+				AdministrateEntertainmentControl eControl= new AdministrateEntertainmentControl();
+				eControl.processRetrieveEntertainmentByID(cEntertainmentID);
+				DefaultTableModel entertainmentMenu=eControl.getModel();
+				//re-create the entertainment
+				AdministrateEntertainmentControl newEControl= new AdministrateEntertainmentControl(eControl.getEntertainment().getEntertainmentTitle(), eControl.getEntertainment().getEntertainmentDescription(), true, eControl.getEntertainment().getEntertainmentDiscount(), eControl.getEntertainment().getEntertainmentPrice(),eControl.getEntertainment().getEntertainmentFinalPrice(),eControl.getEntertainment().getEntertainmentHits(), true);
+				newEControl.setModel(entertainmentMenu);
+				newEntertainmentID=newEControl.processCreateEntertainment();
+			}
 			for(i=0; i<2; i++){
 				//create the entertainment
-				if(cEntertainmentID!=null){
-					//retrieve the entertainment
-					AdministrateEntertainmentControl eControl= new AdministrateEntertainmentControl();
-					eControl.processRetrieveEntertainmentByID(cEntertainmentID);
-					DefaultTableModel entertainmentMenu=eControl.getModel();
-					//re-create the entertainment
-					AdministrateEntertainmentControl newEControl= new AdministrateEntertainmentControl(eControl.getEntertainment().getEntertainmentTitle(), eControl.getEntertainment().getEntertainmentDescription(), true, eControl.getEntertainment().getEntertainmentDiscount(), eControl.getEntertainment().getEntertainmentPrice(),eControl.getEntertainment().getEntertainmentFinalPrice(),eControl.getEntertainment().getEntertainmentHits(), true);
-					newEControl.setModel(entertainmentMenu);
-					newEntertainmentID=newEControl.processCreateEntertainment();
-				}
+				
 				newMeals[0]="null";
 				newMeals[1]="null";
 				newMeals[2]="null";

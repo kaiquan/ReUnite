@@ -1,5 +1,16 @@
 package Controller.CGL;
 
+//**********************************************************
+//Project : OOADPJ (IT2297)
+//Admin No: 111942S
+//
+//Author: A Ameenudeen
+//Class Name:CollectPaymentControl.java
+//
+//Honor Code: I pledge that this program represents my own
+//program code.
+//*********************************************************
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -21,17 +32,19 @@ import Model.CGL.Purchase_Summary;
 
 public class CollectPaymentControl {
 	
+	//get events which are consolidated and ready to make payment
+	//the details this method retrieves are event date and event name
 	public ArrayList<Event> processSelection()
 	{
-		
 		Event e1 = new Event();
 		return e1.GET_EVENT_RECORDS_DUE_FOR_PAYMENT();
 	}
-
+	
+	//gets the payment details for that particular event
+	//such as the total payable amount and the amount pending
 	public ArrayList<Purchase_Summary> processPaymentDetails(String eventName)
 	{
 		Purchase_Summary p1 = new Purchase_Summary();
-		
 		return p1.RETRIEVE_PAYMENT_DETAILS(eventName);
 	}
 
@@ -186,6 +199,8 @@ public class CollectPaymentControl {
 		return combined;
 	}
 	
+	//based on the amount entered by the GR Administrator its updates the purchase summary followed by sending out an email
+	//to the guests and updates the event status to "Confirmed"
 	public boolean processAmountEntered(String amount,String paymentMethod,String totalCost,String eventName,String eventDate,String location,String eventStatus,File pdf,String content,String subject,String type){
 		
 		boolean success=false;
@@ -205,10 +220,12 @@ public class CollectPaymentControl {
 		
 		if(!(content.equals("")))
 		{
-		
+		//Gets the number of guests attending the specific event
 		Invitation invitation = new Invitation();
 		String[] guestEmail= new String[invitation.GET_ALL_ATTENDING_GUESTS(eventName, eventDate).size()];
 		
+		
+		//adds the guests email into the string array
 		for(int i=0;i<invitation.GET_ALL_ATTENDING_GUESTS(eventName, eventDate).size();i++){
 			guestEmail[i]=invitation.GET_ALL_ATTENDING_GUESTS(eventName, eventDate).get(i).getEmail();
 		}
@@ -216,7 +233,7 @@ public class CollectPaymentControl {
 		
 		
 		
-		//send email to registered guest regarding the cancellation
+		//sends email to the  registered guests regarding the Confirmation of the event
 		
 		EmailController email = new EmailController();
 		try 
@@ -235,6 +252,7 @@ public class CollectPaymentControl {
 		
 		}
 		
+		//updates the event status once the email is sent.Status changed to "Confirmed"
 		try
 		{
 			Event e1 = new Event();

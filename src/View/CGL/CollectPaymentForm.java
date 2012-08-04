@@ -94,7 +94,7 @@ public class CollectPaymentForm extends Fonts {
 	private String packageDiscount="";  //  @jve:decl-index=0:
 	private JScrollPane pne,pne1;
 	private String eventStatus;
-	private String status;
+	private String status;  //  @jve:decl-index=0:
 	private static String FILE = null;
 	private JButton jButton1 = null;
 	/**

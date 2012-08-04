@@ -23,7 +23,7 @@ public class ClientGUI extends JPanel implements ActionListener
 	// to hold the Username and later on the messages
 	private JTextField messageField;
 	// to Logout and get the list of the users
-	private JButton login, logout, whoIsIn;
+	private JButton logout, whoIsIn;
 	// for the chat room
 	private JTextArea messageArea;
 	// if it is for connection
@@ -37,15 +37,19 @@ public class ClientGUI extends JPanel implements ActionListener
 	{
 		this.userName = userName;
 		this.eventID = eventID;
+		
+		new Client(this.userName, this, this.eventID);
+		if (!client.start()) return;
+		messageField.setText("");
+		connected = true;
+		
 		JPanel mainPanel = new JPanel();
 
 		
 		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		mainPanel.setLayout(new MigLayout("", "[217px][32.00px]", "[33px][][]"));
+		mainPanel.setLayout(new MigLayout("", "[217px]", "[19.00px][][]"));
 
-		// the 3 buttons
-		login = new JButton("Login");
-		login.addActionListener(this);
+
 		logout = new JButton("Logout");
 		logout.addActionListener(this);
 		logout.setEnabled(false); // you have to login before being able to logout
@@ -54,24 +58,25 @@ public class ClientGUI extends JPanel implements ActionListener
 		whoIsIn.setEnabled(false); // you have to login before being able to Who is in
 
 		JPanel southPanel = new JPanel();
-		southPanel.add(login);
 		southPanel.add(logout);
 		southPanel.add(whoIsIn);
-		mainPanel.add(southPanel, "cell 0 0 2 1,growx,aligny top");
+		mainPanel.add(southPanel, "cell 0 0,growx,aligny top");
 
 		add(mainPanel);
 								
-								scrollPane = new JScrollPane();
-								mainPanel.add(scrollPane, "cell 0 1 2 1,grow");
-						
-								// The CenterPanel which is the chat room
-								messageArea = new JTextArea("Welcome to the Chat room\n", 12, 20);
-								scrollPane.setViewportView(messageArea);
-								messageArea.setEditable(false);
-								messageField = new JTextField(userName);
-								mainPanel.add(messageField, "cell 0 2 2 1,growx");
-								messageField.setBackground(Color.WHITE);
-						messageField.requestFocus();
+		scrollPane = new JScrollPane();
+		mainPanel.add(scrollPane, "cell 0 1,grow");
+
+		// The CenterPanel which is the chat room
+		messageArea = new JTextArea("Welcome to the Chat room\n", 12, 20);
+		messageArea.setLineWrap(true);
+		scrollPane.setViewportView(messageArea);
+		messageArea.setEditable(false);
+		messageField = new JTextField(userName);
+		messageField.addActionListener(this);
+		mainPanel.add(messageField, "cell 0 2,growx");
+		messageField.setBackground(Color.WHITE);
+		messageField.requestFocus();
 		setSize(385, 307);
 
 	}
@@ -87,7 +92,6 @@ public class ClientGUI extends JPanel implements ActionListener
 	// we reset our buttons, label, textfield
 	void connectionFailed()
 	{
-		login.setEnabled(true);
 		logout.setEnabled(false);
 		whoIsIn.setEnabled(false);
 		// let the user change them
@@ -102,12 +106,6 @@ public class ClientGUI extends JPanel implements ActionListener
 	public void actionPerformed(ActionEvent e)
 	{
 		Object o = e.getSource();
-		// if it is the Logout button
-		if (o == logout)
-		{
-			client.sendMessage(new ChatMessage(ChatMessage.LOGOUT, ""));
-			return;
-		}
 		// if it the who is in button
 		if (o == whoIsIn)
 		{
@@ -123,25 +121,11 @@ public class ClientGUI extends JPanel implements ActionListener
 			messageField.setText("");
 			return;
 		}
-
-		if (o == login)
-		{
-			// try creating a new Client with GUI
-			client = new Client(this.userName, this, this.eventID);
-			// test if we can start the Client
-			if (!client.start()) return;
-			messageField.setText("");
-			connected = true;
-
-			// disable login button
-			login.setEnabled(false);
-			// enable the 2 buttons
-			logout.setEnabled(true);
-			whoIsIn.setEnabled(true);
-			// disable the Server and Port JTextField
-			// Action listener for when the user enter a message
-			messageField.addActionListener(this);
-		}
+	}
+	
+	public void logout()
+	{
+		client.sendMessage(new ChatMessage(ChatMessage.LOGOUT, ""));
 	}
 
 	// to start the whole thing the server

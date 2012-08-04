@@ -3,6 +3,8 @@ package View.RIM;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.Iterator;
 
 import javax.swing.JButton;
@@ -30,7 +32,6 @@ import Model.RIM.Chat.ClientGUI;
 import View.RIM.Components.JListGuestListRenderer;
 import View.RIM.Components.PieChart;
 
-
 @SuppressWarnings("serial")
 public class InvitationDetailsView extends JDialog
 {
@@ -41,7 +42,6 @@ public class InvitationDetailsView extends JDialog
 	private JPanel panel_3;
 	private JPanel panel_4;
 	private JPanel guestTabPanel;
-	private JLabel lblNewLabel;
 	private JLabel lblGuestResponse;
 	private JPanel guestResponsePanel;
 	private JButton btnGoing;
@@ -60,6 +60,7 @@ public class InvitationDetailsView extends JDialog
 	private JEditorPane packageText;
 	private JLabel lblPackageDescription;
 	private JEditorPane packageDescriptionText;
+	ClientGUI chatBox;
 
 	private Event event;
 
@@ -71,6 +72,56 @@ public class InvitationDetailsView extends JDialog
 		setTitle(event.getEventName());
 		setSize(857, 707);
 		setVisible(true);
+		addWindowListener(new WindowListener()
+		{
+
+			@Override
+			public void windowActivated(WindowEvent arg0)
+			{
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void windowClosed(WindowEvent arg0)
+			{
+				if (chatBox != null)
+				{
+					chatBox.logout();
+				}
+
+			}
+			@Override
+			public void windowClosing(WindowEvent arg0)
+			{
+
+			}
+
+			@Override
+			public void windowDeactivated(WindowEvent arg0)
+			{
+
+			}
+
+			@Override
+			public void windowDeiconified(WindowEvent arg0)
+			{
+
+			}
+
+			@Override
+			public void windowIconified(WindowEvent arg0)
+			{
+
+			}
+
+			@Override
+			public void windowOpened(WindowEvent arg0)
+			{
+
+			}
+
+		});
 
 	}
 
@@ -211,7 +262,7 @@ public class InvitationDetailsView extends JDialog
 		panel_5.add(scrollPane, "cell 0 0,grow");
 		//
 		// ClientGUI chatBox = new ClientGUI(Account.currentUser.getUserName(), event.getID());
-		ClientGUI chatBox = new ClientGUI("Adeel", 3);
+		chatBox = new ClientGUI("Adeel", 3);
 		panel_5.add(chatBox, "cell 1 0,grow");
 
 		entertainmentTabPanel = new JPanel();
@@ -225,11 +276,11 @@ public class InvitationDetailsView extends JDialog
 
 		mealSubTabs = new JTabbedPane();
 		mealSubTabs.setTabPlacement(JTabbedPane.BOTTOM);
-		
-		if(event.getEventPackage().getMeals().size()>0)
+
+		if (event.getEventPackage().getMeals().size() > 0)
 		{
 			Iterator<Meal> mealIterator = event.getEventPackage().getMeals().iterator();
-			while(mealIterator.hasNext())
+			while (mealIterator.hasNext())
 			{
 				Meal meal = mealIterator.next();
 				mealSubTabs.addTab(meal.getMealID(), getMealChoicePanel(meal));
@@ -238,13 +289,14 @@ public class InvitationDetailsView extends JDialog
 		tabbedPane.addTab("Meal", null, mealSubTabs, null);
 		return tabbedPane;
 	}
-	
+
 	public JPanel getMealChoicePanel(Meal meal)
 	{
 		JPanel mealPanel = new JPanel();
-		
+
 		mealPanel.setLayout(new MigLayout("", "[][]", "[][]"));
-		
+
 		return mealPanel;
 	}
+
 }

@@ -1,5 +1,17 @@
 package View.CGL;
 
+//**********************************************************
+//Project : OOADPJ (IT2297)
+//Admin No: 111942S
+//
+//Author: A Ameenudeen
+//Class Name:CollectPaymentForm.java
+//
+//Honor Code: I pledge that this program represents my own
+//program code.
+//*********************************************************
+
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -200,7 +212,7 @@ public class CollectPaymentForm extends Fonts {
                     		
                     		
                     	}
-                    	
+                    	//based on the event status retrieved earlier
                     	if(eventStatus.equals("Confirmed")){
                     		jRadioButton1.setSelected(true);
                     		jRadioButton.setEnabled(false);
@@ -278,6 +290,7 @@ public class CollectPaymentForm extends Fonts {
 		return jButton2;
 	}
 	
+	//Refreshes the UI
 	private void refresh(){	
 		jContentPane.remove(pne1);
 		jTextField.setText("");
@@ -335,7 +348,10 @@ public class CollectPaymentForm extends Fonts {
 	 * 	class
 	 * @return javax.swing.JPanel	
 	 */
-	
+	//This method basically checks whether their are any events to display
+	//If there are events its basically checks for event dates which are the same
+	//if they are the same,the respective event names are put in to the 1 Tree Folder
+	//This prevents duplicate event date folders being displayed
 	private void generateEvents(DefaultMutableTreeNode tn)
 	{
 			CollectPaymentControl c2 = new CollectPaymentControl();
@@ -646,19 +662,21 @@ public class CollectPaymentForm extends Fonts {
 		return jButton;
 	}
 	
-	private void submitDetails() {
-		
+	private void submitDetails()
+	{
 		CollectPaymentControl c2 = new CollectPaymentControl();
-		
-		if(jTextField3.getText().equals("")){
+		if(jTextField3.getText().equals(""))
+		{
 			JOptionPane.showMessageDialog(null, "Please Select an event");
 			return;
 		}
-		if(jTextField8.getText().equals("")){
+		if(jTextField8.getText().equals(""))
+		{
 			JOptionPane.showMessageDialog(null, "Please enter the amount paid");
 			return;
 		}		
-		if(!(jTextField8.getText().equals(jTextField7.getText()))){
+		if(!(jTextField8.getText().equals(jTextField7.getText())))
+		{
 			JOptionPane.showMessageDialog(null,"The amount paid does not match the "+"Amount to be paid");
 			return;
 		}		
@@ -666,7 +684,8 @@ public class CollectPaymentForm extends Fonts {
 		else
 		{
 			
-			if(eventStatus.equals("Awaiting Payment")){
+			if(eventStatus.equals("Awaiting Payment"))
+			{
 				FILE=jTextField.getText()+" details"+".pdf"; 
 				File pdf = new File(FILE);
 				String content="Dear Sir/Madam"+"\n"+"\n"+"The following event : "+jTextField.getText() +" which is confirmed and will be held on "+jTextField1.getText() +" at "+jTextField2.getText()+"."+"+\n"+"Please be punctual for the event.We hope to see you present on that day+"+"\n"+"For any enquiries please do not hesitate to call as us 67747173"+"\n"+"Shahrikin"+"\n"+"GR Administrator";
@@ -684,7 +703,8 @@ public class CollectPaymentForm extends Fonts {
 				}
 			}
 			
-			else if (eventStatus.equals("Confirmed")){
+			else if (eventStatus.equals("Confirmed"))
+			{
 				String content="";
 				if(c2.processAmountEntered(jTextField8.getText(), jComboBox.getSelectedItem().toString(), jTextField6.getText(), jTextField.getText(), jTextField1.getText(), jTextField2.getText(), "Confirmed",null,content,"RE: Full Payment for Event "+jTextField.getText(),"Full Payment")==true)
 				{
@@ -702,63 +722,6 @@ public class CollectPaymentForm extends Fonts {
 			}
 			
 		}
-			
-//			
-//		else if(c2.processUpdatePurchasePayment(jTextField8.getText(), jComboBox.getSelectedItem().toString(), jTextField6.getText(),jTextField.getText())){
-//			JOptionPane.showMessageDialog(null, "Successfully Updated Purchase Summary");				
-//		}
-//		else {
-//			JOptionPane.showMessageDialog(null, "Failure");
-//			return;
-//		}			
-//		
-//		
-//			
-//		//update eventStatus
-//		if(status.equals("Awaiting Payment")){
-//			String eventStatus="Confirmed";
-//			if(c2.processUpdateEventStatus(jTextField.getText(), eventStatus)==true){
-//				JOptionPane.showMessageDialog(null, "Successfully Changed Status to confirmed");
-//				CollectPaymentForm g1 = new CollectPaymentForm();
-//				FILE=jTextField.getText()+" details"+".pdf"; 
-//				g1.pdfCreator(FILE,jTextField.getText(),jTextField3.getText(),jTextField1.getText(),jTextField4.getText(),jTextField2.getText(),jTextField5.getText(),jTextField6.getText(),getJTextArea().getText(),ballroomPrice,entertainmentPrice,mealPrice,packageDiscount);
-//				//send email
-//				
-//				JOptionPane.showMessageDialog(null, "Successfully Created Pdf and sent an email to guests");
-//				refresh();
-//			}
-//			
-//			else{
-//				JOptionPane.showMessageDialog(null, "Failure");
-//				return;
-//			}
-//			
-//			
-//		}
-//		
-//		
-//		if(status.equals("Confirmed")){
-//			String eventStatus="Confirmed";
-//			if(c2.processUpdateEventStatus(jTextField.getText(), eventStatus)==true){
-//				JOptionPane.showMessageDialog(null, "Successfully Changed Status to confirmed");
-//				//CollectPaymentForm g1 = new CollectPaymentForm();
-//				//FILE=jTextField.getText()+" payment_receipt"+".pdf"; 
-//				//g1.pdfCreator(FILE,jTextField.getText(),jTextField3.getText(),jTextField1.getText(),jTextField4.getText(),jTextField2.getText(),jTextField5.getText(),jTextField6.getText(),getJTextArea().getText(),ballroomPrice,entertainmentPrice,mealPrice,packageDiscount);
-//				//send email
-//				JOptionPane.showMessageDialog(null, "Successfully sent an email* for payment 2");
-//				refresh();
-//			}
-//			
-//			else{
-//				JOptionPane.showMessageDialog(null, "Failure");
-//				return;
-//			}
-//			
-//			
-//		}
-//				
-//		
-	
 
 	/**
 	 * This method initializes jComboBox	
@@ -774,9 +737,10 @@ public class CollectPaymentForm extends Fonts {
 		}
 		return jComboBox;
 	}
-	
+	//Creates a Pdf file based on the event details		
 	public void pdfCreator(String file,String eventName, String eventDate, String noOfGuests, String eventTime, String location, String ballroom, String totalPrice, String eventDesc, String ballroomPrice, String entertainmentPrice, String mealPrice, String packageDiscount) {
-		try {
+		try 
+		{
 			Document document = new Document();
 			PdfWriter.getInstance(document, new FileOutputStream(FILE));
 			document.open();
@@ -785,13 +749,16 @@ public class CollectPaymentForm extends Fonts {
 			
 			
 			document.close();
-		} catch (Exception e) {
+		} 
+		catch (Exception e) 
+		{
 			e.printStackTrace();
 		}
 	
 	}
 	
-	private void addMetaData(Document document, String eventName, String noOfGuests, String eventDate, String eventTime, String location, String ballroom, String totalPrice, String eventDesc, String ballroomPrice2, String entertainmentPrice2, String mealPrice2, String packageDiscount2) {
+	private void addMetaData(Document document, String eventName, String noOfGuests, String eventDate, String eventTime, String location, String ballroom, String totalPrice, String eventDesc, String ballroomPrice2, String entertainmentPrice2, String mealPrice2, String packageDiscount2) 
+	{
 		document.addTitle(eventName);
 		document.addSubject("Event Confirmation");
 		document.addKeywords("Event Confirmation,GR Administrator");
@@ -800,7 +767,8 @@ public class CollectPaymentForm extends Fonts {
 	}
 
 	private void addTitlePage(Document document, String eventName, String noOfGuests, String eventDate, String eventTime, String location, String ballroom, String totalPrice, String eventDesc, String ballroomPrice2, String entertainmentPrice2, String mealPrice2, String packageDiscount2)
-			throws DocumentException, MalformedURLException, IOException {
+			throws DocumentException, MalformedURLException, IOException 
+		{
 		
 		Image image = Image.getInstance("src\\images\\CGL\\Reunion.jpg");
 		image.setAbsolutePosition(80f, 700f);
@@ -878,8 +846,8 @@ public class CollectPaymentForm extends Fonts {
 		}
 		catch (Exception ex) 
 		{           
-		ex.printStackTrace();           
-		System.out.print("Error");
+			ex.printStackTrace();           
+			System.out.print("Error");
 		}
 		
 		CollectPaymentForm c1 = new CollectPaymentForm();

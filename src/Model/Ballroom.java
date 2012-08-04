@@ -34,7 +34,7 @@ public class Ballroom
 {
 
 	/********************************************************
-	 * The Attributes
+	 *					The Attributes
 	 *******************************************************/
 
 	private Ballroom data = null; // stores data from the controler;
@@ -53,7 +53,7 @@ public class Ballroom
 	private boolean ballroomAvailability = false;
 
 	/********************************************************
-	 * The Constructor(s)
+	 *				The Constructor(s)
 	 *******************************************************/
 
 	public Ballroom()
@@ -74,12 +74,15 @@ public class Ballroom
 	}
 
 	/********************************************************
-	 * The Method(s)
+	 *				The Method(s)
 	 *******************************************************/
 
 	/********************************************************
-	 * Author : Lee Kai Quan(114173S) Method Name : CREATE_BALLROOM() Input Parameter : void Return : String Purpose : To create a new Ballroom record
-	 * Returns the Created BallroomID
+	 * Author 			: Lee Kai Quan(114173S) 
+	 * Method Name 		: CREATE_BALLROOM() 
+	 * Input Parameter 	: void 
+	 * Return 			: String 
+	 * Purpose 			: To create a new Ballroom record
 	 *******************************************************/
 	public String CREATE_BALLROOM()
 	{
@@ -123,7 +126,11 @@ public class Ballroom
 	}
 
 	/*******************************************************
-	 * Author : Lee Kai Quan(114173S) Method Name : DELETE_BALLROOM() Input Parameter : String Return : boolean Purpose : To delete an Ballroom record
+	 * Author 			: Lee Kai Quan(114173S) 
+	 * Method Name 		: DELETE_BALLROOM() 
+	 * Input Parameter 	: String 
+	 * Return 			: boolean 
+	 * Purpose 			: To delete an Ballroom record
 	 * *****************************************************/
 	public boolean DELETE_BALLROOM(String ID)
 	{
@@ -150,8 +157,12 @@ public class Ballroom
 	}
 
 	/*******************************************************
-	 * Author : Lee Kai Quan(114173S) Method Name : DELETE_BALLROOM_BY_FID() Input Parameter : String Return : boolean Purpose : To delete an Ballroom
-	 * record by facility ID
+	 * Author 			: Lee Kai Quan(114173S) 
+	 * Method Name 		: DELETE_BALLROOM_BY_FID() 
+	 * Input Parameter 	: String 
+	 * Return 			: boolean 
+	 * Purpose 			: To delete an Ballroom
+	 * 					  record by facility ID
 	 * *****************************************************/
 	public boolean DELETE_BALLROOM_BY_FID(String ID)
 	{
@@ -178,7 +189,11 @@ public class Ballroom
 	}
 
 	/*******************************************************
-	 * Author : Lee Kai Quan(114173S) Method Name : UPDATE_BALLROOM Input Parameter : String Return : boolean Purpose : To update an Ballroom record
+	 * Author 			: Lee Kai Quan(114173S) 
+	 * Method Name 		: UPDATE_BALLROOM 
+	 * Input Parameter 	: String 
+	 * Return 			: boolean 
+	 * Purpose 			: To update an Ballroom record
 	 * *****************************************************/
 	public boolean UPDATE_BALLROOM(String ID)
 	{
@@ -207,8 +222,13 @@ public class Ballroom
 	}
 
 	/*******************************************************
-	 * Author : Lee Kai Quan(114173S) Method Name : RETRIEVE_BALLROOM Input Parameter : void Return : DefaultTableModel Purpose : To retrieve all
-	 * Ballroom record where is not purchase record
+	 * Author 			: Lee Kai Quan(114173S) 
+	 * Method Name 		: RETRIEVE_BALLROOM 
+	 * Input Parameter 	: void 
+	 * Return 			: DefaultTableModel 
+	 * Purpose 			: To retrieve all
+	 * 					  Ballroom record 
+	 * 					  where is not purchase record
 	 * *****************************************************/
 	public DefaultTableModel RETRIEVE_BALLROOM()
 	{
@@ -237,8 +257,14 @@ public class Ballroom
 	}
 
 	/*******************************************************
-	 * Author : Lee Kai Quan(114173S) Method Name : RETRIEVE_BALLROOM Input Parameter : String Return : DefaultTableModel Purpose : To retrieve all
-	 * Ballroom record where is not purchase record & by input paramater
+	 * Author 			: Lee Kai Quan(114173S) 
+	 * Method Name 		: RETRIEVE_BALLROOM 
+	 * Input Parameter 	: String 
+	 * Return 			: DefaultTableModel 
+	 * Purpose 			: To retrieve all
+	 * 					  Ballroom record where is
+	 * 					  not purchase record & 
+	 * 					  by input paramater
 	 * *****************************************************/
 	public DefaultTableModel RETRIEVE_BALLROOM(String parameter)
 	{
@@ -273,8 +299,12 @@ public class Ballroom
 	}
 
 	/*******************************************************
-	 * Author : Lee Kai Quan(114173S) Method Name : RETRIEVE_BALLROOM_BY_ID Input Parameter : String Return : Ballroom Purpose : To retrieve a
-	 * Ballroom record by ballroomID
+	 * Author 			: Lee Kai Quan(114173S) 
+	 * Method Name 		: RETRIEVE_BALLROOM_BY_ID 
+	 * Input Parameter 	: String 
+	 * Return 			: Ballroom 
+	 * Purpose 			: To retrieve a
+	 * 					  Ballroom record by ballroomID
 	 * *****************************************************/
 	public Ballroom RETRIEVE_BALLROOM_BY_ID(String ID)
 	{
@@ -309,8 +339,12 @@ public class Ballroom
 	}
 
 	/*******************************************************
-	 * Author : Lee Kai Quan(114173S) Method Name : RETRIEVE_BALLROOM_MODEL() Input Parameter : String Return : DefaultTableModel Purpose : To
-	 * retrieve a Ballroom record by ballroomID
+	 * Author 			: Lee Kai Quan(114173S) 
+	 * Method Name 		: RETRIEVE_BALLROOM_MODEL() 
+	 * Input Parameter 	: String 
+	 * Return 			: DefaultTableModel 
+	 * Purpose 			: To retrieve a Ballroom 
+	 * 					  record by ballroomID
 	 * *****************************************************/
 	public DefaultTableModel RETRIEVE_BALLROOM_MODEL(String ID)
 	{
@@ -338,8 +372,12 @@ public class Ballroom
 	}
 
 	/*******************************************************
-	 * Author : Lee Kai Quan(114173S) Method Name : RETRIEVE_BALLROOM_BY_FACILITY() Input Parameter : String Return : DefaultTableModel Purpose : To
-	 * retrieve a Ballroom record by ballroomID
+	 * Author 			: Lee Kai Quan(114173S) 
+	 * Method Name 		: RETRIEVE_BALLROOM_BY_FACILITY() 
+	 * Input Parameter 	: String 
+	 * Return 			: DefaultTableModel 
+	 * Purpose 			: To retrieve a Ballroom 
+	 * 					  record by ballroomID
 	 * *****************************************************/
 	public DefaultTableModel RETRIEVE_BALLROOM_BY_FACILITY(String ID)
 	{
@@ -367,8 +405,12 @@ public class Ballroom
 	}
 
 	/*******************************************************
-	 * Author : Lee Kai Quan(114173S) Method Name : CHECK_RELATIONSHIP() Input Parameter : String Return : boolean Purpose : To check if the ballroom
-	 * is tied to a package
+	 * Author 			: Lee Kai Quan(114173S) 
+	 * Method Name 		: CHECK_RELATIONSHIP() 
+	 * Input Parameter 	: String 
+	 * Return 			: boolean 
+	 * Purpose 			: To check if the ballroom
+	 * 				  	  is tied to a package
 	 * *****************************************************/
 	public boolean CHECK_RELATIONSHIP(String ID)
 	{
@@ -433,9 +475,9 @@ public class Ballroom
 
 		return e1;
 	}
-
+	
 	/********************************************************
-	 * The Accessor Methods
+	 *				The Accessor Methods
 	 *******************************************************/
 	public Ballroom getData()
 	{

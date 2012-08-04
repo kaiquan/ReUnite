@@ -1,5 +1,14 @@
 package View.CGL;
-
+//**********************************************************
+//Project : OOADPJ (IT2297)
+//Admin No: 111942S
+//
+//Author: A Ameenudeen
+//Class Name:CancelEventForm.java
+//
+//Honor Code: I pledge that this program represents my own
+//program code.
+//*********************************************************
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -57,11 +66,11 @@ public class CancelEventForm {
 	private JTextArea jTextArea = null;
 	private JLabel lblBallroom = null;
 	private JTextField textField_5 = null;
-	private JLabel jLabel2 = null;
 	private String ballroomPrice="";  //  @jve:decl-index=0:
 	private String entertainmentPrice="";
 	private String mealPrice="";
 	private String packageDiscount="";  //  @jve:decl-index=0:
+	private JButton jButton = null;
 	/**
 	 * This method initializes jFrame	
 	 * 	
@@ -93,22 +102,6 @@ public class CancelEventForm {
 	 */
 	private JPanel getJContentPane() {
 		if (jContentPane == null) {
-			jLabel2 = new JLabel();
-			jLabel2.setBounds(new Rectangle(150, 162, 12, 15));
-			jLabel2.setText("+");
-			jLabel2.setFont(new Font("Dialog", Font.BOLD, 14));
-			//Price BreakDown
-			jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-				public void mouseClicked(java.awt.event.MouseEvent e) {
-					if(ballroomPrice.equals("")&& entertainmentPrice.equals("")&&(mealPrice.equals("")&& (packageDiscount.equals("")))){
-						JOptionPane.showMessageDialog(null, "To view the breakdown of price,"+"\n"+"Please select an event");
-					}
-					
-					else{
-				JOptionPane.showMessageDialog(null, "Ballroom Price is " +ballroomPrice+"\n"+"Entertainment Price: "+entertainmentPrice+"\n"+"Meal Price: "+mealPrice +"\n"+"Package Discount: "+packageDiscount);
-				}
-			}
-			});
 			lblBallroom = new JLabel("Ballroom :");
 			lblBallroom.setBounds(new java.awt.Rectangle(437,124,78,14));
 			jLabel1 = new JLabel();
@@ -121,7 +114,7 @@ public class CancelEventForm {
 			lblEventDetails.setBounds(new java.awt.Rectangle(356,11,96,20));
 			lblEventDetails.setFont(new Font("SansSerif", Font.BOLD, 13));
 			lblTotalPrice = new JLabel("Total Price :");
-			lblTotalPrice.setBounds(new java.awt.Rectangle(161,163,69,14));
+			lblTotalPrice.setBounds(new Rectangle(154, 164, 69, 14));
 			lblEventTime = new JLabel("Event Time :");
 			lblEventTime.setBounds(new java.awt.Rectangle(435,86,74,14));
 			lblNoOfGuests = new JLabel("No Of Guests :");
@@ -155,7 +148,7 @@ public class CancelEventForm {
 			jContentPane.add(getPne1(), getPne1().getName());
 			jContentPane.add(lblBallroom, lblBallroom.getName());
 			jContentPane.add(getTextField_5(), getTextField_5().getName());
-			jContentPane.add(jLabel2, null);
+			jContentPane.add(getJButton(), null);
 		}
 		return jContentPane;
 	}
@@ -174,20 +167,20 @@ public class CancelEventForm {
 			tree.setModel(model);
 			tree.setBounds(10, 14, 119, 264);
 			tree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
-				//Once the event is selected,It retreives the event details for that respective event from the database.
+				//Once the event is selected,It retrieves the event details for that respective event from the database.
 				public void valueChanged(javax.swing.event.TreeSelectionEvent e) {
 					DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
                     if(node !=null ){
                     if (node.isLeaf() == true)
                     {	
-                    	//Set the event name into a text box and retreive the details from the controller and splits them up
+                    	//Set the event name into a text box and retrieve the details from the controller and splits them up
                     	//using the Scanner class
                     	textField.setText(node.getUserObject().toString());
                     	CancelEventControl c1 = new CancelEventControl();         
                     	String eventName=node.getUserObject().toString();
                     	c1.requestSelectedEventDetails((eventName)).get(0);
                     	Scanner sc = new Scanner(c1.requestSelectedEventDetails((eventName)).get(0));
-                    	sc.useDelimiter(",");
+                    	sc.useDelimiter("~");
                     	String ballroomName=sc.next();
                     	String eventTime=sc.next();
                     	String eventDate=sc.next();
@@ -228,11 +221,12 @@ public class CancelEventForm {
 	 * 	
 	 * @return javax.swing.JScrollPane	
 	 */
-	private JScrollPane getPne() {
+	private JScrollPane getPne()
+	{
 		if (pne == null) {
 			pne = new JScrollPane(getTree(),
-					JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-					JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+			JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+			JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 			pne.setBounds(new java.awt.Rectangle(10,14,119,264));
 			pne.setVisible(true);
 		}
@@ -244,7 +238,8 @@ public class CancelEventForm {
 	 * 	
 	 * @return javax.swing.JTextField	
 	 */
-	private JTextField getTextField() {
+	private JTextField getTextField() 
+	{
 		if (textField == null) {
 			textField = new JTextField();
 			textField.setBounds(new java.awt.Rectangle(244,46,137,20));
@@ -260,7 +255,8 @@ public class CancelEventForm {
 	 * 	
 	 * @return javax.swing.JTextField	
 	 */
-	private JTextField getTextField_1() {
+	private JTextField getTextField_1() 
+	{
 		if (textField_1 == null) {
 			textField_1 = new JTextField();
 			textField_1.setBounds(new java.awt.Rectangle(244,84,135,20));
@@ -276,7 +272,8 @@ public class CancelEventForm {
 	 * 	
 	 * @return javax.swing.JTextField	
 	 */
-	private JTextField getTextField_2() {
+	private JTextField getTextField_2() 
+	{
 		if (textField_2 == null) {
 			textField_2 = new JTextField();
 			textField_2.setBounds(new java.awt.Rectangle(526,45,135,20));
@@ -292,7 +289,8 @@ public class CancelEventForm {
 	 * 	
 	 * @return javax.swing.JTextField	
 	 */
-	private JTextField getTextField_3() {
+	private JTextField getTextField_3() 
+	{
 		if (textField_3 == null) {
 			textField_3 = new JTextField();
 			textField_3.setBounds(new java.awt.Rectangle(526,83,135,20));
@@ -308,10 +306,11 @@ public class CancelEventForm {
 	 * 	
 	 * @return javax.swing.JTextField	
 	 */
-	private JTextField getTextField_4() {
+	private JTextField getTextField_4() 
+	{
 		if (textField_4 == null) {
 			textField_4 = new JTextField();
-			textField_4.setBounds(new java.awt.Rectangle(245,160,135,20));
+			textField_4.setBounds(new Rectangle(245, 160, 93, 20));
 			textField_4.setEnabled(true);
 			textField_4.setEditable(false);
 			textField_4.setColumns(10);
@@ -358,7 +357,14 @@ public class CancelEventForm {
 			jButton1.setText("Cancel Event");
 			jButton1.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					promptsConfirmation();
+					if(jTextField.getText().equals("")){
+						JOptionPane.showMessageDialog(null, "Please select an event");
+						return;
+					}
+					else
+					{
+						promptsConfirmation();
+					}
 				}
 			});
 		}
@@ -571,12 +577,38 @@ public class CancelEventForm {
 			
 		}
 	
+	/**
+	 * This method initializes jButton	
+	 * 	
+	 * @return javax.swing.JButton	
+	 */
+	private JButton getJButton() {
+		if (jButton == null) {
+			jButton = new JButton();
+			jButton.setBounds(new Rectangle(339, 160, 44, 21));
+			jButton.setText("?");
+			jButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					if(ballroomPrice.equals("")&& entertainmentPrice.equals("")&&(mealPrice.equals("")&& (packageDiscount.equals("")))){
+						JOptionPane.showMessageDialog(null, "To view the breakdown of price,"+"\n"+"Please select an event");
+					}
+					
+					else{
+					JOptionPane.showMessageDialog(null, "Ballroom Price is " +ballroomPrice+"\n"+"Entertainment Price: "+entertainmentPrice+"\n"+"Meal Price: "+mealPrice +"\n"+"Package Discount: "+packageDiscount);
+					}
+
+				}
+			});
+		}
+		return jButton;
+	}
+
 	public static void main(String args[]){
 		
 		//JTATTOO SET LOOK AND FEEL
 		try 
 		{
-			 UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");   
+			 UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");   
 		}        
 		catch (Exception ex) 
 		{           

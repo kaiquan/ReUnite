@@ -1,5 +1,14 @@
 package View.CGL;
-
+//**********************************************************
+//Project : OOADPJ (IT2297)
+//Admin No: 111942S
+//
+//Author: A Ameenudeen
+//Class Name:ConsolidateGuestListForm.java
+//
+//Honor Code: I pledge that this program represents my own
+//program code.
+//*********************************************************
 
 
 import java.io.File;
@@ -67,7 +76,7 @@ public class ConsolidateGuestListForm extends Fonts{
 	
 	private JTree tree = new JTree();
 	JScrollPane pne;
-	private JFrame jFrame = null;  //  @jve:decl-index=0:visual-constraint="167,6"
+	private JFrame jFrame = null;  
 	private JPanel jContentPane = null;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -82,8 +91,8 @@ public class ConsolidateGuestListForm extends Fonts{
 	private JLabel jLabel1 = null;
 	private JTextArea jTextArea = null;
 	private JTextField textField_5;
-	private String ballroomPrice="";  //  @jve:decl-index=0:
-	private String entertainmentPrice="";  //  @jve:decl-index=0:
+	private String ballroomPrice="";
+	private String entertainmentPrice="";  
 	private String mealPrice="";
 	private String packageDiscount="";
 	private String riEmail="";
@@ -115,7 +124,7 @@ public class ConsolidateGuestListForm extends Fonts{
 		if (jContentPane == null) {
 			jLabel1 = new JLabel();
 			jLabel1.setBounds(new Rectangle(138, 224, 109, 16));
-			jLabel1.setText(" Event Description :");
+			jLabel1.setText("Event Description :");
 			jContentPane = new JPanel();
 			jContentPane.setLayout(null);
 			DefaultMutableTreeNode events = new DefaultMutableTreeNode("Events");
@@ -124,13 +133,14 @@ public class ConsolidateGuestListForm extends Fonts{
 			tree.setModel(model);
 			tree.setBounds(10, 14, 119, 264);
 			tree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
-				//Once the event is selected,It retreives the event details for that respective event from the database.
+				//Once the event is selected,It retrieves the event details for that respective event from the database.
+				//The details which its receives are EventDate & EventTime
 				public void valueChanged(javax.swing.event.TreeSelectionEvent e) {
 					DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
                     if(node !=null ){
                     if (node.isLeaf() == true)
                     {	
-                    	//Set the event name into a text box and retreive the details from the controller and splits them up
+                    	//Set the event name into a text box and retrieve the details from the controller and splits them up
                     	//using the Scanner class
                     	textField.setText(node.getUserObject().toString());
                     	ConsolidateGuestListControl c1 = new ConsolidateGuestListControl();         
@@ -152,7 +162,7 @@ public class ConsolidateGuestListForm extends Fonts{
                     	packageDiscount=sc.next();
                     	riEmail=sc.next();
                     	
-                    	//Once the items are split using the scanner class it sets them to the
+                    	//Once the items are split using the scanner class it sets them to their
                     	//respective textbox
                  	        	
                     	textField_1.setText(eventDate);
@@ -267,17 +277,18 @@ public class ConsolidateGuestListForm extends Fonts{
 		}
 		return jContentPane;
 	}
+	
+	//This method basically checks whether their are any events to display
+	//If there are events its basically checks for event dates which are the same
+	//if they are the same,the respective event names are put in to the 1 Tree Folder
+	//This prevents duplicate event date folders being displayed
 	private void generateEvents(DefaultMutableTreeNode tn)
 	{
-	
-
 		ConsolidateGuestListControl c1 = new ConsolidateGuestListControl();
-	
 		ArrayList<Event> eventList = c1.processExpiredInvitation();
-		
 		DefaultMutableTreeNode[] nodes = new DefaultMutableTreeNode[eventList.size()];
-		
-		if(eventList.size()==0){
+		if(eventList.size()==0)
+		{
 			JOptionPane.showMessageDialog(null, "No events to display");
 		}
 		
@@ -317,15 +328,22 @@ public class ConsolidateGuestListForm extends Fonts{
 		if (jButton1 == null) {
 			jButton1 = new JButton();
 			jButton1.addActionListener(new ActionListener() {
+				//This action listener is for the "Send Email to RI"
+				//Firstly its checks whether an event is selected
+				//If selected it creates a pdf based on the event details
+				//Updates total payable amount in purchase summary
+				//Sends email to RI
+				//Updates Notification Table
+				//Updates eventStatus to "Awaiting Payment"				
 				public void actionPerformed(ActionEvent arg0) {
 					
-					if(jTextField.getText().equals("")){
+					if(jTextField.getText().equals(""))
+					{
 						JOptionPane.showMessageDialog(null, "Please Select an event");
 						return;
 					}
 					
 					String eventStatus="Awaiting Payment";
-					
 					FILE=textField.getText()+".pdf";                    
 					File pdf = new File(FILE);
                 	ConsolidateGuestListForm g1 = new ConsolidateGuestListForm();
@@ -338,7 +356,8 @@ public class ConsolidateGuestListForm extends Fonts{
 					
 					else
 					{
-						
+						JOptionPane.showMessageDialog(null, "Failed to Send Payment Notification To RI");
+						refresh();
 					}
 					
 				}
@@ -371,7 +390,7 @@ public class ConsolidateGuestListForm extends Fonts{
 		}
 		return jButton2;
 	}
-	
+	//Refresh the UI
 	private void refresh(){	
 		jContentPane.remove(pne);
 		textField.setText("");
@@ -394,7 +413,6 @@ public class ConsolidateGuestListForm extends Fonts{
 		tree.setModel(model);		
 		pne.setViewportView(tree);		
 		jContentPane.add(pne);
-		
 		pne.updateUI();
 		
 	}
@@ -425,44 +443,12 @@ public class ConsolidateGuestListForm extends Fonts{
 			jTextArea.setEditable(false);
 			jTextArea.setWrapStyleWord(true);
 			jTextArea.setBounds(new Rectangle(281, 213, 388, 35));
-			 
+			
 		}
 		return jTextArea;
 	}
 
-	/**
-	 * This method initializes jButton	
-	 * @param packageDiscount 
-	 * @param mealPrice 
-	 * @param entertainmentPrice 
-	 * @param ballroomPrice 
-	 * @param eventDesc 
-	 * @param totalPrice 
-	 * @param ballroom 
-	 * @param location 
-	 * @param eventTime 
-	 * @param noOfGuests 
-	 * @param eventDate 
-	 * @param eventName 
-	 * @param packageDiscount2 
-	 * @param File 
-	 * @param packageDiscount2 
-	 * @param mealPrice2 
-	 * @param entertainmentPrice2 
-	 * @param ballroomPrice2 
-	 * @param string7 
-	 * @param string6 
-	 * @param string5 
-	 * @param string4 
-	 * @param string3 
-	 * @param string2 
-	 * @param string 
-	 * @param packageDiscount3 
-	 * 	
-	 * @return javax.swing.JButton	
-	 */
-	
-	
+	//Creates a Pdf file based on the event details			
 	public void pdfCreator(String file,String eventName, String eventDate, String noOfGuests, String eventTime, String location, String ballroom, String totalPrice, String eventDesc, String ballroomPrice, String entertainmentPrice, String mealPrice, String packageDiscount) {
 		try {
 			Document document = new Document();

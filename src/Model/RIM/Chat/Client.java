@@ -152,7 +152,7 @@ public class Client
 					if(msg instanceof ArrayList<?>)
 					{
 						@SuppressWarnings("unused")
-						ArrayList<String> mgg = (ArrayList) msg;
+						ArrayList<String> mgg = (ArrayList<String>) msg;
 					}
 					else{
 						String text = (String) msg;

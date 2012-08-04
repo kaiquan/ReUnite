@@ -3,6 +3,7 @@ package View.RIM;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.util.Iterator;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -21,7 +22,7 @@ import net.miginfocom.swing.MigLayout;
 import Images.RIM.ImageHelper;
 import Model.Event;
 import Model.Invitation;
-import Model.Membership.Account;
+import Model.Meal;
 import Model.Membership.Guest;
 import Model.RIM.GuestCollection;
 import Model.RIM.GuestListModel;
@@ -29,12 +30,13 @@ import Model.RIM.Chat.ClientGUI;
 import View.RIM.Components.JListGuestListRenderer;
 import View.RIM.Components.PieChart;
 
+
 @SuppressWarnings("serial")
 public class InvitationDetailsView extends JDialog
 {
 	private JPanel mainPanel;
 	private JTabbedPane tabbedPane;
-	private JPanel panel_1;
+	private JTabbedPane mealSubTabs;
 	private JPanel entertainmentTabPanel;
 	private JPanel panel_3;
 	private JPanel panel_4;
@@ -58,7 +60,7 @@ public class InvitationDetailsView extends JDialog
 	private JEditorPane packageText;
 	private JLabel lblPackageDescription;
 	private JEditorPane packageDescriptionText;
-	
+
 	private Event event;
 
 	public InvitationDetailsView(Event event)
@@ -78,9 +80,9 @@ public class InvitationDetailsView extends JDialog
 		mainPanel.setLayout(new MigLayout("", "[55px][872.00px,grow][613.00px][690px,grow]", "[][213.00px,grow][][37.00,grow][223.00,grow]"));
 		mainPanel.add(getGuestResponsePanel(), "cell 1 2,alignx left,aligny center");
 		mainPanel.add(getTabbedPane(), "cell 1 3 3 2,grow");
-		
-				lblInitiatedBy = new JLabel("Initiated by: ");
-				mainPanel.add(lblInitiatedBy, "flowx,cell 1 0,gapx 8 0");
+
+		lblInitiatedBy = new JLabel("Initiated by: ");
+		mainPanel.add(lblInitiatedBy, "flowx,cell 1 0,gapx 8 0");
 
 		initiatedByText = new JLabel(event.getEventInitiator().getUserName());
 		initiatedByText.setFont(new Font("Segoe UI", Font.PLAIN, 18));
@@ -207,8 +209,8 @@ public class InvitationDetailsView extends JDialog
 		list.setCellRenderer(new JListGuestListRenderer());
 		scrollPane.setViewportView(list);
 		panel_5.add(scrollPane, "cell 0 0,grow");
-//
-//		ClientGUI chatBox = new ClientGUI(Account.currentUser.getUserName(), event.getID());
+		//
+		// ClientGUI chatBox = new ClientGUI(Account.currentUser.getUserName(), event.getID());
 		ClientGUI chatBox = new ClientGUI("Adeel", 3);
 		panel_5.add(chatBox, "cell 1 0,grow");
 
@@ -221,13 +223,28 @@ public class InvitationDetailsView extends JDialog
 		panel_4 = new JPanel();
 		tabbedPane.addTab("Facility", null, panel_4, null);
 
-		panel_1 = new JPanel();
-		tabbedPane.addTab("Meal", null, panel_1, null);
-		panel_1.setLayout(new MigLayout("", "[][]", "[][]"));
-
-		lblNewLabel = new JLabel(event.getEventDescription());
-		panel_1.add(lblNewLabel, "cell 1 1");
-
+		mealSubTabs = new JTabbedPane();
+		mealSubTabs.setTabPlacement(JTabbedPane.BOTTOM);
+		
+		if(event.getEventPackage().getMeals().size()>0)
+		{
+			Iterator<Meal> mealIterator = event.getEventPackage().getMeals().iterator();
+			while(mealIterator.hasNext())
+			{
+				Meal meal = mealIterator.next();
+				mealSubTabs.addTab(meal.getMealID(), getMealChoicePanel(meal));
+			}
+		}
+		tabbedPane.addTab("Meal", null, mealSubTabs, null);
 		return tabbedPane;
+	}
+	
+	public JPanel getMealChoicePanel(Meal meal)
+	{
+		JPanel mealPanel = new JPanel();
+		
+		mealPanel.setLayout(new MigLayout("", "[][]", "[][]"));
+		
+		return mealPanel;
 	}
 }

@@ -9,7 +9,7 @@ import javax.swing.table.AbstractTableModel;
 import Images.RIM.ImageHelper;
 import Model.Membership.Guest;
 
-public class GuestImportTableModel extends AbstractTableModel
+public class UserDirectoryTableModel extends AbstractTableModel
 {
 
 	private static final long serialVersionUID = 1L;
@@ -18,7 +18,7 @@ public class GuestImportTableModel extends AbstractTableModel
 	private String[] columnNames = { "", "First name*", "Last name*", "School", "Date of birth", "Email*", "Contact", "Address" };
 	private static ArrayList<Object[]> al;
 
-	public GuestImportTableModel(ArrayList<Guest> guestList)
+	public UserDirectoryTableModel(ArrayList<Guest> guestList)
 	{
 		rowCount = guestList.size();
 		al = new ArrayList<Object[]>(rowCount);
@@ -88,11 +88,9 @@ public class GuestImportTableModel extends AbstractTableModel
 
 	public void addRecords(ArrayList<Object[]> g)
 	{
-		for(Object[] o : g)
-		{
-			al.add(o);
-			fireTableDataChanged();
-		}		
+		al.addAll(g);
+
+		fireTableDataChanged();
 	}
 
 	public void addRows(ArrayList<Guest> guestList)

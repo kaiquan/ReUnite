@@ -461,6 +461,11 @@ public class Package {
 		this.meals.addAll(meals);
 	}
 	
+	public HashSet<Meal> getMeals()
+	{
+		return this.meals;
+	}
+	
 	public void addMeal(Meal meal)
 	{
 		this.meals.add(meal);

@@ -118,13 +118,5 @@ public class CreateInvitationController
 		
 		return invalidRows;
 	}
-	
-	public void test()
-	{
-		for(Integer row : validateData())
-		{
-			System.out.println(row);
-		}
-	}
 }
 

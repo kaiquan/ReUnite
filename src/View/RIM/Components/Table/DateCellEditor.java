@@ -43,12 +43,11 @@ public class DateCellEditor extends DefaultCellEditor
 	class DatePickerComponent extends EditorDelegate
 	{
 
-		CellEditor cellEditor; // reference to our cell editor so we can tell it when we're finished.
+		CellEditor cellEditor; // reference to cell editor so we can tell it when we're finished.
 
-		// My fake DatePicker.
+		
 		DateDialog datePicker;
-
-		// The component constructor - stores the cell editor and creates the date picker.
+		
 		DatePickerComponent(CellEditor cellEditor)
 		{
 			this.cellEditor = cellEditor;
@@ -73,6 +72,7 @@ public class DateCellEditor extends DefaultCellEditor
 		{
 			return datePicker.getValue();
 		}
+		
 
 		// Call this when the date picker edit has finished.
 		private void stopEditing()
@@ -83,7 +83,8 @@ public class DateCellEditor extends DefaultCellEditor
 		class DateDialog
 		{
 			DatePicker picker;
-
+			String date;
+			
 			DateDialog()
 			{
 				picker = (new DatePicker());
@@ -100,12 +101,13 @@ public class DateCellEditor extends DefaultCellEditor
 			public void startEditing()
 			{
 				picker.setVisible(true);
+				date = picker.getPickedDate();
+				stopEditing();
 			}
 
 			public Object getValue()
 			{
-				stopEditing(); // editing is finished, so tell the parent component
-				return picker.getPickedDate();
+				return date;
 			}
 		}
 	}

@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -48,6 +49,7 @@ public class CreateInvitationView extends JFrame
 
 	private JTable table;
 	
+	@SuppressWarnings("unused")
 	private int eventID;
 
 	public CreateInvitationView(int eventID)
@@ -115,7 +117,7 @@ public class CreateInvitationView extends JFrame
 				controller.addRow();
 			}
 		});
-
+	
 		actionPanel.add(plusButton, "flowx,cell 0 0,alignx center,aligny bottom");
 
 		JButton minusButton = new JButton("");
@@ -142,7 +144,7 @@ public class CreateInvitationView extends JFrame
 		actionPanel.add(button, "cell 0 0");
 
 		JLabel lblOrImportFrom = new JLabel("   or import from:   ");
-		lblOrImportFrom.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblOrImportFrom.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		actionPanel.add(lblOrImportFrom, "cell 0 0,alignx left,aligny center");
 
 		JButton hotmailImportButton = new JButton("Hotmail");
@@ -216,6 +218,7 @@ public class CreateInvitationView extends JFrame
 		table.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
 		table.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
 		table.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+		table.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
 		table.getColumnModel().getColumn(7).setCellRenderer(new TextAreaRenderer());
 		table.getColumnModel().getColumn(7).setCellEditor(new TextAreaEditor());
 
@@ -224,14 +227,7 @@ public class CreateInvitationView extends JFrame
 		table.getColumnModel().getColumn(0).setCellRenderer(new IconRenderer());
 		table.getColumnModel().getColumn(0).setCellEditor(new IconEditor());
 
-		// Create our cell editor
-		DateCellEditor datePickerCellEditor = new DateCellEditor();
-
-		// Set the number of mouse clicks needed to activate it.
-		datePickerCellEditor.setClickCountToStart(1);
-
-		// Set it for the appropriate table column.
-		table.getColumnModel().getColumn(4).setCellEditor(datePickerCellEditor);
+		table.getColumnModel().getColumn(4).setCellEditor(new DateCellEditor());
 	}
 
 	public JPanel getStep2()
@@ -275,10 +271,15 @@ public class CreateInvitationView extends JFrame
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBorder(new TitledBorder(null, "Your message", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		JEditorPane dtrpnYourMessageHere = new JEditorPane();
+		dtrpnYourMessageHere.setPreferredSize(new Dimension(200, 20));
+		dtrpnYourMessageHere.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		dtrpnYourMessageHere.setMargin(new Insets(10, 10, 3, 3));
+		dtrpnYourMessageHere.setFont(new Font("Segoe Script", Font.PLAIN, 16));
+		dtrpnYourMessageHere.setText("I look forward to seeing you at the event, I hope you attend...");
+		scrollPane_1.setViewportView(dtrpnYourMessageHere);
 		step2.add(scrollPane_1, "cell 1 2,grow");
 
-		JEditorPane dtrpnYourMessageHere = new JEditorPane();
-		scrollPane_1.setViewportView(dtrpnYourMessageHere);
 
 		NavigationFooter navigationFooter = new NavigationFooter("step2")
 		{

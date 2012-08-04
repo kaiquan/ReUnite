@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
 
@@ -19,7 +20,7 @@ public class DatePicker
 {
 	int month = java.util.Calendar.getInstance().get(java.util.Calendar.MONTH);
 	int year = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR);
-	JComboBox<Integer> yearComboBox = new JComboBox<Integer>();
+	JComboBox<Integer> yearComboBox;
 	String day = "";
 	JDialog d;
 	JButton[] button = new JButton[49];
@@ -33,6 +34,15 @@ public class DatePicker
 		p1.setOpaque(false);
 		p1.setPreferredSize(new Dimension(430, 200));
 
+		ArrayList<Integer> tempList = new ArrayList<Integer>();
+		for (int i = 1940; i <=Calendar.YEAR; i++)
+		{
+			tempList.add(i);
+		}
+		Integer[] years = new Integer[tempList.size()];
+		tempList.toArray(years);
+		yearComboBox = new JComboBox<Integer>(years);
+		
 		for (int x = 0; x < button.length; x++)
 		{
 			final int selection = x;
@@ -111,7 +121,6 @@ public class DatePicker
 	{
 		for (int x = 7; x < button.length; x++)
 			button[x].setText("");
-		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("MMMM yyyy");
 		java.util.Calendar cal = java.util.Calendar.getInstance();
 		cal.set(year, month, 1);
 		int dayOfWeek = cal.get(java.util.Calendar.DAY_OF_WEEK);
@@ -119,14 +128,10 @@ public class DatePicker
 		for (int x = 6 + dayOfWeek, day = 1; day <= daysInMonth; x++, day++)
 			button[x].setText("" + day);
 		// yearComboBox.setText(sdf.format(cal.getTime()));
-		for (int i = 1940; i < Calendar.YEAR; i++)
-		{
-			yearComboBox.addItem(i);
-		}
+
 		yearComboBox.setForeground(Color.BLACK);
 		yearComboBox.addActionListener(new ActionListener()
 		{
-
 			@Override
 			public void actionPerformed(ActionEvent arg0)
 			{

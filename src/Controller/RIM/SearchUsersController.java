@@ -24,7 +24,7 @@ import Controller.RIM.Utils.DateHelper;
 
 import Model.Membership.Guest;
 import Model.RIM.GuestCollection;
-import Model.RIM.TableModels.GuestImportTableModel;
+import Model.RIM.TableModels.*;
 
 public class SearchUsersController
 {
@@ -36,14 +36,14 @@ public class SearchUsersController
 	
 	private static GuestCollection guests;
 	
-	private static GuestImportTableModel tableModel;
+	private static UserDirectoryTableModel tableModel;
 	
 	
 	@SuppressWarnings("serial")
 	public SearchUsersController()
 	{
 		guests = new GuestCollection(new Guest().GET_ALL_GUESTS());
-		tableModel = new GuestImportTableModel(guests.getProfiles())
+		tableModel = new UserDirectoryTableModel(guests.getProfiles())
 		{
 			@Override
 			public boolean isCellEditable(int row, int column)
@@ -55,7 +55,7 @@ public class SearchUsersController
 
 
 	//Table methods
-	public GuestImportTableModel getTableModel()
+	public UserDirectoryTableModel getTableModel()
 	{
 		return tableModel;
 	}
@@ -71,10 +71,10 @@ public class SearchUsersController
 	}
 
 
-	public void addToList()
+	public void addToList(int[] rows)
 	{
 		CreateInvitationController controller = new CreateInvitationController();
-		controller.getTableModel().addRecords(getSelectedRows(new int[]{4, 3 ,6}));
+		controller.getTableModel().addRecords(getSelectedRows(rows));
 	}
 
 	

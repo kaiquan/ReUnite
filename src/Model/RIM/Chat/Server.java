@@ -49,8 +49,7 @@ public class Server
 				Socket socket = serverSocket.accept(); // accept connections
 				int eventID = socket.getInputStream().read();// get the user's event id
 
-				if (!keepGoing)
-					break;
+				if (!keepGoing) break;
 
 				ClientThread t = new ClientThread(socket, eventID);
 
@@ -64,7 +63,7 @@ public class Server
 					ArrayList<ClientThread> clients = new ArrayList<ClientThread>();
 					clients.add(t);
 					chatRooms.put(eventID, clients);
-					System.out.println("Created chat room" + eventID);
+					System.out.println("Created chat room " + eventID);
 				}
 				t.start();
 			}
@@ -140,7 +139,7 @@ public class Server
 		else
 			sg.appendToRoom(messageLf); // append in the room window
 
-		// we loop in reverse order in case we would have to remove a Client
+		// looping in reverse order in case I would have to remove a Client
 		// because it has disconnected
 		ArrayList<ClientThread> al = chatRooms.get(eventID);
 		for (int i = al.size(); --i >= 0;)
@@ -177,12 +176,6 @@ public class Server
 
 	public static void main(String[] args)
 	{
-		// // start server on port 1500 unless a portNumber is specified
-		// int portNumber = 1500;
-		//
-		// // create a server object and start it
-		// Server server = new Server(portNumber);
-		// server.start();
 	}
 
 	/** One instance of this thread will run for each client */
@@ -209,7 +202,7 @@ public class Server
 			this.eventID = eventID;
 			this.socket = socket;
 			/* Creating both Data Stream */
-			System.out.println("Thread trying to create Object Input/Output Streams");
+			System.out.println("Trying to create Object Input/Output Streams in Thread");
 			try
 			{
 				// create output first
@@ -271,11 +264,14 @@ public class Server
 						writeMsg("List of the users connected at " + sdf.format(new Date()) + "\n");
 						// scan al the users connected in the chatroom
 						ArrayList<ClientThread> al = chatRooms.get(eventID);
+						HashSet<String> onlineUsers = new HashSet<String>();
 						for (int i = 0; i < al.size(); ++i)
 						{
 							ClientThread ct = al.get(i);
 							writeMsg((i + 1) + ") " + ct.username + " since " + ct.date);
+							onlineUsers.add(ct.username);display("ADDING TO HASHSET");
 						}
+						writeMsg(onlineUsers);
 						break;
 				}
 			}
@@ -291,25 +287,21 @@ public class Server
 			// try to close the connection
 			try
 			{
-				if (sOutput != null)
-					sOutput.close();
+				if (sOutput != null) sOutput.close();
 			}
 			catch (Exception e)
 			{
 			}
 			try
 			{
-				if (sInput != null)
-					sInput.close();
+				if (sInput != null) sInput.close();
 			}
 			catch (Exception e)
 			{
-			}
-			;
+			};
 			try
 			{
-				if (socket != null)
-					socket.close();
+				if (socket != null) socket.close();
 			}
 			catch (Exception e)
 			{
@@ -317,7 +309,7 @@ public class Server
 		}
 
 		/* Write a String to the Client output stream */
-		private boolean writeMsg(String msg)
+		private boolean writeMsg(Object msg)
 		{
 			// if Client is still connected send the message to it
 			if (!socket.isConnected())

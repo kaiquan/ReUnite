@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Client
 {
@@ -83,8 +83,8 @@ public class Client
 	/* To send a message to the console or the GUI */
 	private void display(String msg)
 	{
-			System.out.println(msg);
-			cg.append(msg + "\n"); // append to the ClientGUI JTextArea (or whatever)
+		System.out.println(msg);
+		cg.append(msg + "\n"); // append to the ClientGUI JTextArea (or whatever)
 	}
 
 	/* To send a message to the server */
@@ -105,32 +105,28 @@ public class Client
 	{
 		try
 		{
-			if (sInput != null)
-				sInput.close();
+			if (sInput != null) sInput.close();
 		}
 		catch (Exception e)
 		{
 		} // not much else I can do
 		try
 		{
-			if (sOutput != null)
-				sOutput.close();
+			if (sOutput != null) sOutput.close();
 		}
 		catch (Exception e)
 		{
 		} // not much else I can do
 		try
 		{
-			if (socket != null)
-				socket.close();
+			if (socket != null) socket.close();
 		}
 		catch (Exception e)
 		{
 		} // not much else I can do
 
 		// inform the GUI
-		if (cg != null)
-			cg.connectionFailed();
+		if (cg != null) cg.connectionFailed();
 
 	}
 
@@ -140,8 +136,6 @@ public class Client
 
 	class ListenFromServer extends Thread
 	{
-
-		@SuppressWarnings("unchecked")
 		public void run()
 		{
 			while (true)
@@ -149,24 +143,25 @@ public class Client
 				try
 				{
 					Object msg = (Object) sInput.readObject();
-					if(msg instanceof ArrayList<?>)
+					if (msg instanceof HashSet<?>)
 					{
-						@SuppressWarnings("unused")
-						ArrayList<String> mgg = (ArrayList<String>) msg;
+						@SuppressWarnings("unchecked")
+						HashSet<String> onlineUsers = (HashSet<String>) msg;
+						cg.refreshOnlineUsers(onlineUsers);
 					}
-					else{
+					else
+					{
 						String text = (String) msg;
 						System.out.println(text);
 						System.out.print("> ");
 						cg.append(text);
 					}
-					
+
 				}
 				catch (IOException e)
 				{
 					display("Server has closed the connection: " + e);
-					if (cg != null)
-						cg.connectionFailed();
+					if (cg != null) cg.connectionFailed();
 					break;
 				}
 				// can't happen with a String object but need the catch anyhow

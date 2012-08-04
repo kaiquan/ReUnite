@@ -11,12 +11,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.ListModel;
-import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.TitledBorder;
 
@@ -25,11 +22,7 @@ import Images.RIM.ImageHelper;
 import Model.Event;
 import Model.Invitation;
 import Model.Meal;
-import Model.Membership.Guest;
-import Model.RIM.GuestCollection;
-import Model.RIM.GuestListModel;
 import Model.RIM.Chat.ClientGUI;
-import View.RIM.Components.JListGuestListRenderer;
 import View.RIM.Components.PieChart;
 
 @SuppressWarnings("serial")
@@ -38,10 +31,9 @@ public class InvitationDetailsView extends JDialog
 	private JPanel mainPanel;
 	private JTabbedPane tabbedPane;
 	private JTabbedPane mealSubTabs;
-	private JPanel entertainmentTabPanel;
+	private JPanel entertainmentTab;
 	private JPanel panel_3;
 	private JPanel panel_4;
-	private JPanel guestTabPanel;
 	private JLabel lblGuestResponse;
 	private JPanel guestResponsePanel;
 	private JButton btnGoing;
@@ -50,9 +42,6 @@ public class InvitationDetailsView extends JDialog
 	private JPanel generalInfoPanel;
 	private JLabel lblInitiatedBy;
 	private JEditorPane descriptionText;
-	private JScrollPane scrollPane;
-	private JList<Guest> list;
-	private JPanel panel_5;
 	private JLabel lblDatetime;
 	private JLabel dateTimeText;
 	private JLabel initiatedByText;
@@ -131,6 +120,10 @@ public class InvitationDetailsView extends JDialog
 		mainPanel.setLayout(new MigLayout("", "[55px][872.00px,grow][613.00px][690px,grow]", "[][213.00px,grow][][37.00,grow][223.00,grow]"));
 		mainPanel.add(getGuestResponsePanel(), "cell 1 2,alignx left,aligny center");
 		mainPanel.add(getTabbedPane(), "cell 1 3 3 2,grow");
+		
+				// ClientGUI chatBox = new ClientGUI(Account.currentUser.getUserName(), event.getID());
+				chatBox = new ClientGUI("Adeel", 3);
+				tabbedPane.addTab("Guests", chatBox);
 
 		lblInitiatedBy = new JLabel("Initiated by: ");
 		mainPanel.add(lblInitiatedBy, "flowx,cell 1 0,gapx 8 0");
@@ -240,33 +233,10 @@ public class InvitationDetailsView extends JDialog
 	private JTabbedPane getTabbedPane()
 	{
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		
 
-		guestTabPanel = new JPanel();
-		tabbedPane.addTab("Guests", null, guestTabPanel, null);
-		guestTabPanel.setLayout(new MigLayout("", "[grow]", "[grow]"));
-
-		panel_5 = new JPanel(new MigLayout("", "[1060.00][804px]", "[353px]"));
-		guestTabPanel.add(panel_5, "cell 0 0,grow");
-
-		scrollPane = new JScrollPane();
-		GuestCollection collection = new GuestCollection();
-		ListModel<Guest> listModel = new GuestListModel(collection);
-		list = new JList<Guest>(listModel);
-		list.setFixedCellWidth(100);
-		list.setFixedCellHeight(100);
-		list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-		list.setVisibleRowCount(-1);
-		list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
-		list.setCellRenderer(new JListGuestListRenderer());
-		scrollPane.setViewportView(list);
-		panel_5.add(scrollPane, "cell 0 0,grow");
-		//
-		// ClientGUI chatBox = new ClientGUI(Account.currentUser.getUserName(), event.getID());
-		chatBox = new ClientGUI("Adeel", 3);
-		panel_5.add(chatBox, "cell 1 0,grow");
-
-		entertainmentTabPanel = new JPanel();
-		tabbedPane.addTab("Entertainment", null, entertainmentTabPanel, null);
+		entertainmentTab = new JPanel();
+		tabbedPane.addTab("Entertainment", null, entertainmentTab, null);
 
 		panel_3 = new JPanel();
 		tabbedPane.addTab("Ballroom", null, panel_3, null);

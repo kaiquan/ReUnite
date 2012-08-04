@@ -1,18 +1,25 @@
 package Model.RIM.Chat;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashSet;
+import java.util.Iterator;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ListModel;
+import javax.swing.ListSelectionModel;
 
 import net.miginfocom.swing.MigLayout;
+import Model.Membership.Guest;
+import Model.RIM.GuestCollection;
+import Model.RIM.GuestListModel;
+import View.RIM.Components.JListGuestListRenderer;
 
 public class ClientGUI extends JPanel implements ActionListener
 {
@@ -22,63 +29,57 @@ public class ClientGUI extends JPanel implements ActionListener
 	private static final long serialVersionUID = 1L;
 	// to hold the Username and later on the messages
 	private JTextField messageField;
-	// to Logout and get the list of the users
-	private JButton logout, whoIsIn;
 	// for the chat room
 	private JTextArea messageArea;
 	// if it is for connection
 	private boolean connected;
 	// the Client object
 	private Client client;
+	private JScrollPane chatBoxScrollPane;
 	private JScrollPane scrollPane;
+	JList<Guest> list;
 
 	// Constructor connection receiving a socket number
 	public ClientGUI(String userName, int eventID)
 	{
 		this.userName = userName;
 		this.eventID = eventID;
-		
-		new Client(this.userName, this, this.eventID);
-		if (!client.start()) return;
-		messageField.setText("");
-		connected = true;
-		
-		JPanel mainPanel = new JPanel();
 
-		
-		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		mainPanel.setLayout(new MigLayout("", "[217px]", "[19.00px][][]"));
-
-
-		logout = new JButton("Logout");
-		logout.addActionListener(this);
-		logout.setEnabled(false); // you have to login before being able to logout
-		whoIsIn = new JButton("Who is in");
-		whoIsIn.addActionListener(this);
-		whoIsIn.setEnabled(false); // you have to login before being able to Who is in
-
-		JPanel southPanel = new JPanel();
-		southPanel.add(logout);
-		southPanel.add(whoIsIn);
-		mainPanel.add(southPanel, "cell 0 0,growx,aligny top");
-
-		add(mainPanel);
-								
+		// The online users grid
+		GuestCollection collection = new GuestCollection();
+		ListModel<Guest> listModel = new GuestListModel(collection);
+		JPanel onlineUserPanel = new JPanel(new MigLayout("", "[1060.00]", "[353px]"));
 		scrollPane = new JScrollPane();
-		mainPanel.add(scrollPane, "cell 0 1,grow");
+		list = new JList<Guest>(listModel);
+		list.setFixedCellWidth(100);
+		list.setFixedCellHeight(100);
+		list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		list.setVisibleRowCount(-1);
+		list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+		list.setCellRenderer(new JListGuestListRenderer());
+		scrollPane.setViewportView(list);
+		onlineUserPanel.add(scrollPane, "cell 0 0,grow");
+		add(onlineUserPanel, "cell 0 0");
 
-		// The CenterPanel which is the chat room
-		messageArea = new JTextArea("Welcome to the Chat room\n", 12, 20);
+		JPanel chatBoxPanel = new JPanel();
+		chatBoxPanel.setLayout(new MigLayout("", "[217px]", "[][]"));
+		chatBoxScrollPane = new JScrollPane();
+		chatBoxPanel.add(chatBoxScrollPane, "cell 0 0,grow");
+		messageArea = new JTextArea("Welcome to the Chat room\n", 17, 22);
 		messageArea.setLineWrap(true);
-		scrollPane.setViewportView(messageArea);
+		chatBoxScrollPane.setViewportView(messageArea);
 		messageArea.setEditable(false);
 		messageField = new JTextField(userName);
 		messageField.addActionListener(this);
-		mainPanel.add(messageField, "cell 0 2,growx");
+		chatBoxPanel.add(messageField, "cell 0 1,grow");
 		messageField.setBackground(Color.WHITE);
 		messageField.requestFocus();
-		setSize(385, 307);
+		add(chatBoxPanel, "grow");
 
+		setLayout(new MigLayout("", "[535.00px,left][left]", "[367px]"));
+		setSize(779, 372);
+
+		login();
 	}
 
 	// called by the Client to append text in the TextArea
@@ -92,10 +93,6 @@ public class ClientGUI extends JPanel implements ActionListener
 	// we reset our buttons, label, textfield
 	void connectionFailed()
 	{
-		logout.setEnabled(false);
-		whoIsIn.setEnabled(false);
-		// let the user change them
-		// don't react to a <CR> after the username
 		messageField.removeActionListener(this);
 		connected = false;
 	}
@@ -105,15 +102,6 @@ public class ClientGUI extends JPanel implements ActionListener
 	 */
 	public void actionPerformed(ActionEvent e)
 	{
-		Object o = e.getSource();
-		// if it the who is in button
-		if (o == whoIsIn)
-		{
-			client.sendMessage(new ChatMessage(ChatMessage.WHOISIN, ""));
-			return;
-		}
-
-		// ok it is coming from the JTextField
 		if (connected)
 		{
 			// just have to send the message
@@ -122,10 +110,48 @@ public class ClientGUI extends JPanel implements ActionListener
 			return;
 		}
 	}
-	
+
+	public void login()
+	{
+		client = new Client(this.userName, this, this.eventID);
+
+		if (!client.start())
+		{
+			return;
+		}
+
+		messageField.setText("");
+		connected = true;
+		client.sendMessage(new ChatMessage(ChatMessage.WHOISIN, ""));
+	}
+
 	public void logout()
 	{
 		client.sendMessage(new ChatMessage(ChatMessage.LOGOUT, ""));
+	}
+
+	public void refreshOnlineUsers(HashSet<String> onlineUsers)
+	{
+		System.out.println("Refreshing JList");
+		Iterator<String> iterator = onlineUsers.iterator();
+		while (iterator.hasNext())
+		{
+			String onlineUser = iterator.next();
+
+			for (int i = 0; i < list.getModel().getSize(); i++)
+			{
+				System.out.println(onlineUser);
+				if(list.getModel().getElementAt(i).getUserName()!=null){
+					if (list.getModel().getElementAt(i).getUserName().equals(onlineUser))
+					{
+						list.getModel().getElementAt(i).setOnlineStatus(true);
+					}
+				}
+			}
+		}
+
+		scrollPane.revalidate();
+		scrollPane.repaint();
 	}
 
 	// to start the whole thing the server

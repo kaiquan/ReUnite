@@ -37,7 +37,7 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
 		north.add(stopStart);
 		getContentPane().add(north, BorderLayout.NORTH);
 		
-		// the event and chat room
+		// The event and chat room
 		JPanel center = new JPanel();
 		chatBox = new JTextArea(80,80);
 		chatBox.setEditable(false);

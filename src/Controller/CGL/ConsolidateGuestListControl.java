@@ -200,7 +200,7 @@ public ArrayList<String> requestSelectedEventDetails(String eventName)
 }
 
 
-public boolean processEventConsolidation(String amount,String eventName,String recipient,File pdf,String eventStatus){
+public boolean processConsolidatedEvent(String amount,String eventName,String recipient,File pdf,String eventStatus){
 	
 	boolean success=false;
 	//updates total payable amount

@@ -349,7 +349,7 @@ public class ConsolidateGuestListForm extends Fonts{
                 	ConsolidateGuestListForm g1 = new ConsolidateGuestListForm();
                 	g1.pdfCreator(FILE,textField.getText(),textField_1.getText(),textField_2.getText(),textField_3.getText(),jTextField.getText(),textField_5.getText(),textField_4.getText(),getJTextArea().getText(),ballroomPrice,entertainmentPrice,mealPrice,packageDiscount);           
 					ConsolidateGuestListControl c1 = new ConsolidateGuestListControl();
-					if(c1.processEventConsolidation(textField_4.getText(), textField.getText(), riEmail, pdf, eventStatus)==true){
+					if(c1.processConsolidatedEvent(textField_4.getText(), textField.getText(), riEmail, pdf, eventStatus)==true){
 						JOptionPane.showMessageDialog(null, "Payment Notification Successfully send to RI");
 						refresh();
 					}

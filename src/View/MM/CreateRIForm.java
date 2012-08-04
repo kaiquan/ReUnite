@@ -101,6 +101,7 @@ public class CreateRIForm extends JFrame {
 	 */
 	private void initialize() {
         this.setSize(new Dimension(406, 125));
+        this.setLocationRelativeTo(null);
 			
 	}
 
@@ -532,7 +533,7 @@ public class CreateRIForm extends JFrame {
 			jPanel = new JPanel();
 			jPanel.setLayout(null);
 			jPanel.setBounds(new Rectangle(-26, 141, 1263, 269));
-			jPanel.setBackground(Color.white);
+			jPanel.setBackground(new Color(0, 153, 204));
 			jPanel.add(lastNameLabel, null);
 			jPanel.add(firstNameTextBox, null);
 			jPanel.add(lastNameTextBox, null);

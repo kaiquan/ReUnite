@@ -31,9 +31,11 @@ public class LogInForm extends JFrame {
 		private JLabel passwordLabel = null;
 		private JPanel jPanel = null;
 		private JLabel jLabel = null;
-		private JTextField jTextField = null;  //  @jve:decl-index=0:visual-constraint="760,255"
 		private JLabel forgotPassword = null;
 		private JLabel createMember = null;
+		private JLabel jLabel1 = null;
+		private JLabel jLabel2 = null;
+		private JLabel jLabel3 = null;
 		/**
 		 * This method initializes 
 		 * 
@@ -48,7 +50,7 @@ public class LogInForm extends JFrame {
 		 * 
 		 */
 		void initialize() {
-	        this.setSize(new Dimension(568, 322));
+	        this.setSize(new Dimension(598, 403));
 	        this.setResizable(false);
 	        this.setContentPane(getLoginPanel());
 	        this.setTitle("Login");
@@ -67,11 +69,11 @@ public class LogInForm extends JFrame {
 				passwordLabel = new JLabel();
 				passwordLabel.setText("Password");
 				passwordLabel.setFont(new Font("Gill Sans MT", Font.BOLD | Font.ITALIC, 18));
-				passwordLabel.setBounds(new Rectangle(69, 177, 130, 20));
+				passwordLabel.setBounds(new Rectangle(193, 202, 130, 20));
 				userNameLabel = new JLabel();
 				userNameLabel.setText("User Name");
 				userNameLabel.setFont(new Font("Gill Sans MT", Font.BOLD | Font.ITALIC, 18));
-				userNameLabel.setBounds(new Rectangle(69, 93, 153, 38));
+				userNameLabel.setBounds(new Rectangle(193, 127, 153, 38));
 				loginPanel = new JPanel();
 				loginPanel.setLayout(null);
 				loginPanel.add(getJPanel(), null);
@@ -89,7 +91,7 @@ public class LogInForm extends JFrame {
 				loginButton = new JButton();
 				loginButton.setText("Login");
 				loginButton.setRolloverIcon(new ImageIcon(getClass().getResource("/Images/MM/glossy_black_button_icon_079.png")));
-				loginButton.setBounds(new Rectangle(224, 246, 101, 30));
+				loginButton.setBounds(new Rectangle(262, 272, 101, 30));
 				loginButton.addActionListener(new java.awt.event.ActionListener() {
 					public void actionPerformed(java.awt.event.ActionEvent e) {
 						loginUser();
@@ -118,7 +120,7 @@ public class LogInForm extends JFrame {
 		private JTextField getUserNameTextBox() {
 			if (userNameTextBox == null) {
 				userNameTextBox = new JTextField();
-				userNameTextBox.setBounds(new Rectangle(86, 133, 389, 33));
+				userNameTextBox.setBounds(new Rectangle(192, 163, 216, 29));
 			}
 			return userNameTextBox;
 		}
@@ -131,7 +133,7 @@ public class LogInForm extends JFrame {
 		private JPasswordField getPasswordTextBox() {
 			if (passwordTextBox == null) {
 				passwordTextBox = new JPasswordField();
-				passwordTextBox.setBounds(new Rectangle(88, 204, 390, 31));
+				passwordTextBox.setBounds(new Rectangle(197, 232, 215, 31));
 				passwordTextBox.addKeyListener(new KeyListener(){
 
 					@Override
@@ -168,6 +170,20 @@ public class LogInForm extends JFrame {
 		 */
 		private JPanel getJPanel() {
 			if (jPanel == null) {
+				jLabel3 = new JLabel();
+				jLabel3.setBounds(new Rectangle(1, 306, 592, 72));
+				jLabel3.setText("JLabel");
+				jLabel2 = new JLabel();
+				jLabel2.setBounds(new Rectangle(466, -1, 126, 372));
+				jLabel2.setBackground(new Color(2, 238, 238));
+				jLabel2.setText("");
+				jLabel1 = new JLabel();
+				jLabel1.setBounds(new Rectangle(0, -1, 134, 374));
+				jLabel1.setFont(new Font("Dialog", Font.BOLD, 12));
+				jLabel1.setForeground(new Color(15, 50, 50));
+				jLabel1.setBackground(new Color(77, 238, 238));
+				jLabel1.setDisplayedMnemonic(KeyEvent.VK_UNDEFINED);
+				jLabel1.setText("JLabel");
 				createMember = new JLabel();
 				createMember.setBounds(new Rectangle(336, 9, 268, 16));
 				createMember.setDisplayedMnemonic(KeyEvent.VK_UNDEFINED);
@@ -190,14 +206,14 @@ public class LogInForm extends JFrame {
 					}
 				});
 				jLabel = new JLabel();
-				jLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/folder_black_lock.png")));
-				jLabel.setBounds(new Rectangle(209, 11, 223, 105));
+				jLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Lock-icon.png")));
+				jLabel.setBounds(new Rectangle(219, 15, 223, 118));
 				jLabel.setFont(new Font("KaiTi", Font.BOLD | Font.ITALIC, 24));
-				jLabel.setText("Login");
+				jLabel.setText("");
 				jPanel = new JPanel();
 				jPanel.setLayout(null);
-				jPanel.setBounds(new Rectangle(-1, 2, 596, 319));
-				jPanel.setBackground(new Color(76, 151, 225));
+				jPanel.setBounds(new Rectangle(-1, 2, 596, 375));
+				jPanel.setBackground(Color.white);
 				jPanel.add(getPasswordTextBox(), null);
 				jPanel.add(passwordLabel, null);
 				jPanel.add(getUserNameTextBox(), null);
@@ -206,20 +222,11 @@ public class LogInForm extends JFrame {
 				jPanel.add(jLabel, null);
 				jPanel.add(forgotPassword, null);
 				jPanel.add(createMember, null);
+				jPanel.add(jLabel1, null);
+				jPanel.add(jLabel2, null);
+				jPanel.add(jLabel3, null);
 			}
 			return jPanel;
-		}
-
-		/**
-		 * This method initializes jTextField	
-		 * 	
-		 * @return javax.swing.JTextField	
-		 */
-		private JTextField getJTextField() {
-			if (jTextField == null) {
-				jTextField = new JTextField();
-			}
-			return jTextField;
 		}
 
 		public static void main(String args[]){
@@ -234,4 +241,4 @@ public class LogInForm extends JFrame {
 		}
 		
 
-}  //  @jve:decl-index=0:visual-constraint="10,10"
+}  //  @jve:decl-index=0:visual-constraint="328,8"

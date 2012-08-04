@@ -401,6 +401,8 @@ public class InitiateEventForm {
 					if(jTextArea_eventDescription.getText().equals("\n\n                                            Give Your Event A Description")){
 						jTextArea_eventDescription.setText("");
 						jTextArea_eventDescription.setForeground(SystemColor.BLACK);
+						jTextArea_eventDescription.setWrapStyleWord(true);
+						jTextArea_eventDescription.setLineWrap(true);
 					}
 				}
 			});
@@ -1524,12 +1526,8 @@ public class InitiateEventForm {
 			}
 			//get the dates to delete
 			for(int i=0; i<timings.size();i++){
-				System.out.println(timings.size());
-				System.out.println(timings.get(i));
 				for(int x=0;x<getJComboBox_selectTime().getItemCount();x++){
-					System.out.println(getJComboBox_selectTime().getItemAt(x).toString()+" conpared with "+timings.get(i));
 					if(getJComboBox_selectTime().getItemAt(x).toString().equals(timings.get(i))){
-						System.out.println("true");
 						delete[x]=timings.get(i);
 					}
 					else{
@@ -1537,12 +1535,10 @@ public class InitiateEventForm {
 							delete[x]="";
 					}
 				}
-				System.out.println("****");
 			}
 			//remove the dates
 			for(int i=0;i<delete.length;i++){
 				if(!delete[i].equals("")){
-					System.out.println("row"+i+" : "+delete[i]);
 					getJComboBox_selectTime().removeItem(delete[i]);
 				}
 			}
@@ -1617,7 +1613,6 @@ public class InitiateEventForm {
 				newMeal.setModel(mealMenu.processRetrieveMealMenuByID(pkControl.getMealIDs().get(i)));
 				//create and store the id
 				newMeals[i]=(newMeal.processCreateMeal());
-				System.out.println("============================"+newMeals[i]);
 			}
 			
 			//recreating the package

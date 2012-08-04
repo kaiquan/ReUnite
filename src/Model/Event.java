@@ -113,8 +113,8 @@ public class Event {
 		boolean success=false;
 		String sqlQuery;
 
-		sqlQuery = "INSERT INTO Event (`packageID`, "+Account.currentUser+", `eventStatus`, `eventDate`, `eventTime`, `eventName`, `eventDescription`)";
-		sqlQuery +="VALUES ("+this.packageID+", '"+this.userName+"', 'Pending', '"+this.eventDate+"', '"+this.eventTime+"', '"+this.eventName+"','"+this.eventDescription+"')";
+		sqlQuery = "INSERT INTO Event (`packageID`, `userName`, `eventStatus`, `eventDate`, `eventTime`, `eventName`, `eventDescription`)";
+		sqlQuery +="VALUES ("+this.packageID+", '"+Account.currentUser.getUserName()+"', 'Pending', '"+this.eventDate+"', '"+this.eventTime+"', '"+this.eventName+"','"+this.eventDescription+"')";
 		int i = 0;
 		try{
 			i=DB.updateRequest(sqlQuery);

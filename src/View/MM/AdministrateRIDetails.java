@@ -105,6 +105,7 @@ public class AdministrateRIDetails {
 	private JLabel addressLabel = null;
 	private JLabel jLabel = null;
 	private JLabel cancelLabel = null;
+	private JLabel activateLabel = null;
 	public JFrame getJFrame(){
 		jframe = new JFrame();
 		jframe.setSize(1118, 771);
@@ -165,7 +166,7 @@ public class AdministrateRIDetails {
 	panel.setLayout(null);
 	
 	panel.setFont(new Font("Dialog", Font.PLAIN, 14));
-	panel.setBounds(new Rectangle(0, 542, 1064, 881));
+	panel.setBounds(new Rectangle(0, 542, 1127, 740));
 	panel.setBackground(new Color(102, 153, 255));
 	
 	
@@ -599,11 +600,12 @@ public class AdministrateRIDetails {
 	            	if(table.getValueAt(row, col).toString().equals("Disable"))
 	            	{
 	            		
-	            		makeDisableLabel.setText("Enable Account");
+	            		activateLabel.setVisible(true);
+	            		
 	            	}
 	            	else
 	            	{
-	            		makeDisableLabel.setText("Disable Account");
+	            		makeDisableLabel.setVisible(true);
 	            		
 	            		 
 
@@ -905,6 +907,12 @@ public class AdministrateRIDetails {
 	private JPanel getWankingPanel() {
 		if (wankingPanel == null) {
 			
+			activateLabel = new JLabel();
+			activateLabel.setBounds(new Rectangle(906, 98, 125, 55));
+			activateLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/80_140____button-add-icon_28.png")));
+			activateLabel.setText("Activate ");
+			activateLabel.setVisible(false);
+			
 			updateLabel = new JLabel();
 			updateLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Actions-document-edit-icon.png")));
 			updateLabel.setBounds(new Rectangle(47, 11, 267, 116));
@@ -954,7 +962,7 @@ public class AdministrateRIDetails {
 			makeDisableLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Windows-Close-Program-icon.png")));
 			makeDisableLabel.setBounds(new Rectangle(871, 27, 257, 105));
 			makeDisableLabel.setText("Disable This Account");
-			makeDisableLabel.setVisible(true);
+			makeDisableLabel.setVisible(false);
 			makeDisableLabel.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent e) {
 					
@@ -1070,6 +1078,7 @@ public class AdministrateRIDetails {
 			wankingPanel.add(deleteLabel, null);
 			wankingPanel.add(viewPaymentAndEventLabel, null);
 			wankingPanel.add(makeDisableLabel, null);
+			wankingPanel.add(activateLabel, null);
 		}
 		return wankingPanel;
 	}
@@ -1083,7 +1092,7 @@ public class AdministrateRIDetails {
 		if (refresh == null) {
 			refresh = new JButton("Refresh");
 			refresh.setBounds(new Rectangle(1029, 45, 79, 26));
-			refresh.setVisible(false);
+			refresh.setVisible(true);
 			refresh.addActionListener(new ActionListener()
 			{
 

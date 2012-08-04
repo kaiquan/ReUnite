@@ -6,7 +6,7 @@ Admin No				:	114173S
 Module Group			:	IT2297-08
 Last Edited				:	4-August-2012
 =========================================================================================================================================================
-USERS USING THIS CLASS	:	Lee Kai Quan (114173S)
+USERS USING THIS CLASS	:	Lee Kai Quan (114173S), Adeel M. Ateeque(112013Z)
 METHODS LIST			:	MealOptions()
 						: 	CREATE_MEAL_OPTION(String, String) : Boolean
 						:	DELETE_MEAL_OPTION(String) : Boolean

@@ -1,213 +1,134 @@
-/*
- * ProgressBarCellRenderer.java
- *
- * Copyright (c) 2004-2011 Gregory Kotsaftis
- * gregkotsaftis@yahoo.com
- * http://zeus-jscl.sourceforge.net/
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- */
 package View.RIM.Components.Table;
 
 import java.awt.Color;
 import java.awt.Component;
 import java.util.Enumeration;
 import java.util.Hashtable;
+
 import javax.swing.JProgressBar;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.TableCellRenderer;
 
-@SuppressWarnings({"serial"})
-public final class ProgressBarCellRenderer extends JProgressBar
-    implements TableCellRenderer {
+@SuppressWarnings({ "serial" })
+public final class ProgressBarCellRenderer extends JProgressBar implements TableCellRenderer
+{
+	private Hashtable<?, ?> m_limitColors;
 
-    /**
-     * Used to get colours.
-     */
-    @SuppressWarnings("unchecked")
-	private Hashtable m_limitColors;
+	/**
+	 * Used to get values.
+	 */
+	private int[] m_limitValues;
 
-    /**
-     * Used to get values.
-     */
-    private int[] m_limitValues;
-
-
-    /**
-     * Constructor.
-     */
-    @SuppressWarnings("unchecked")
 	public ProgressBarCellRenderer()
-    {
-        this(false, true, 0, 100, new Hashtable(), Color.WHITE);
-    }
+	{
+		this(false, true, 0, 100, new Hashtable<Object, Object>(), Color.WHITE);
+	}
 
+	public ProgressBarCellRenderer(boolean paintNum, boolean paintBorder, int min, int max, Hashtable<?, ?> limitColors, Color bg)
+	{
+		super(SwingConstants.HORIZONTAL, min, max);
+		setStringPainted(paintNum);
+		setBorderPainted(paintBorder);
+		setBackground(bg);
+		setLimits(limitColors);
+	}
 
-    /**
-     * Constructor.
-     * <p>
-     * @param paintNum      <code>true</code> or <code>false</code>.
-     * @param paintBorder   <code>true</code> or <code>false</code>.
-     * @param min           Minimum value.
-     * @param max           Maximum value.
-     * @param limitColors   <code>Hashtable</code> of colors.
-     * @param bg            The <code>Color</code>.
-     */
-    @SuppressWarnings("unchecked")
-	public ProgressBarCellRenderer(boolean paintNum, boolean paintBorder,
-        int min, int max, Hashtable limitColors, Color bg)
-    {
-        super(SwingConstants.HORIZONTAL, min, max);
-        setStringPainted( paintNum );
-        setBorderPainted( paintBorder );
-        setBackground( bg );
-        setLimits( limitColors );
-    }
+	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
+	{
+		int n = 0;
 
+		if (!(value instanceof Number))
+		{
+			String str;
+			if (value instanceof String)
+			{
+				str = (String) value;
+			}
+			else
+			{
+				str = value.toString();
+			}
 
-    /**
-     * Gets the table cell renderer component.
-     * <p>
-     * @param table         The <code>JTable</code>.
-     * @param value         The <code>Object</code>.
-     * @param isSelected    <code>true</code> if selected.
-     * @param hasFocus      <code>true</code> if has focus.
-     * @param row           The row number.
-     * @param column        The column number.
-     * <p>
-     * @return              The table cell renderer <code>Component</code>.
-     */
-    public Component getTableCellRendererComponent(JTable table, Object value,
-        boolean isSelected, boolean hasFocus, int row, int column)
-    {
-        int n = 0;
+			try
+			{
+				n = Integer.valueOf(str).intValue();
+			}
+			catch (NumberFormatException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		else
+		{
+			n = ((Number) value).intValue();
+		}
 
-        if( !(value instanceof Number) )
-        {
-            String str;
-            if( value instanceof String )
-            {
-                str = (String) value;
-            }
-            else
-            {
-                str = value.toString();
-            }
+		Color color = getColor(n);
+		if (color != null)
+		{
+			setForeground(color);
+		}
 
-            try
-            {
-                n = Integer.valueOf(str).intValue();
-            }
-            catch(NumberFormatException e)
-            {
-                e.printStackTrace();
-            }
-        }
-        else
-        {
-            n = ((Number) value).intValue();
-        }
+		setValue(n);
 
-        Color color = getColor( n );
-        if( color != null )
-        {
-            setForeground( color );
-        }
+		return (this);
+	}
 
-        setValue( n );
+	public void setLimits(Hashtable<?, ?> limitColors)
+	{
+		m_limitColors = limitColors;
 
-        return( this );
-    }
+		if (m_limitColors != null)
+		{
+			int i = 0;
+			int n = m_limitColors.size();
+			m_limitValues = new int[n];
+			Enumeration<?> e = m_limitColors.keys();
+			while (e.hasMoreElements())
+			{
+				m_limitValues[i++] = ((Integer) e.nextElement()).intValue();
+			}
 
+			sort(m_limitValues);
+		}
+	}
 
-    /**
-     * Sets the limits.
-     * <p>
-     * @param limitColors   <code>Hashtable</code>.
-     */
-    @SuppressWarnings("unchecked")
-	public void setLimits(Hashtable limitColors)
-    {
-        m_limitColors = limitColors;
+	private Color getColor(int value)
+	{
+		Color color = null;
+		if (m_limitValues != null)
+		{
+			for (int i = 0; i < m_limitValues.length; i++)
+			{
+				if (m_limitValues[i] < value)
+				{
+					color = (Color) m_limitColors.get(new Integer(m_limitValues[i]));
+				}
+			}
+		}
 
-        if( m_limitColors!=null )
-        {
-            int i=0;
-            int n = m_limitColors.size();
-            m_limitValues = new int[n];
-            Enumeration e = m_limitColors.keys();
-            while( e.hasMoreElements() )
-            {
-                m_limitValues[i++] = ((Integer) e.nextElement()).intValue();
-            }
+		return (color);
+	}
 
-            sort( m_limitValues );
-        }
-    }
+	private static void sort(int[] a)
+	{
+		int n = a.length;
+		for (int i = 0; i < n - 1; i++)
+		{
+			int k = i;
+			for (int j = i + 1; j < n; j++)
+			{
+				if (a[j] < a[k])
+				{
+					k = j;
+				}
+			}
 
-
-    /**
-     * Gets the colour.
-     * <p>
-     * @param value     The value to get the colour from.
-     * <p>
-     * @return          The <code>Color</code>.
-     */
-    private Color getColor(int value)
-    {
-        Color color = null;
-        if( m_limitValues != null )
-        {
-            for(int i=0; i<m_limitValues.length; i++)
-            {
-                if( m_limitValues[i] < value )
-                {
-                    color = (Color) m_limitColors.get(
-                                        new Integer( m_limitValues[i] ) );
-                }
-            }
-        }
-
-        return( color );
-    }
-
-
-    /**
-     * Sort method.
-     * <p>
-     * @param a     Array to sort.
-     */
-    private static void sort(int[] a)
-    {
-        int n = a.length;
-        for(int i=0; i<n-1; i++)
-        {
-            int k = i;
-            for(int j=i+1; j<n; j++)
-            {
-                if( a[j] < a[k] )
-                {
-                    k = j;
-                }
-            }
-
-            int tmp = a[i];
-            a[i] = a[k];
-            a[k] = tmp;
-        }
-    }
+			int tmp = a[i];
+			a[i] = a[k];
+			a[k] = tmp;
+		}
+	}
 
 }

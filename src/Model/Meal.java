@@ -1,12 +1,12 @@
 /********************************************************************************************************************************************************
 Program Name			:	Meal.java
 Description				:	A Meal Model class that is the Model for Meal record(s)
-Done by					:	Lee Kai Quan,A Ameenudeen
+Done by					:	Lee Kai Quan, A Ameenudeen, Adeel M. Ateeque(112013Z)
 Admin No				:	114173S,111942S
 Module Group			:	IT2297-08
 Last Edited				:	4-August-2012
 =========================================================================================================================================================
-USERS USING THIS CLASS	:	Lee Kai Quan (114173S),A Ameenudeen(111942S)
+USERS USING THIS CLASS	:	Lee Kai Quan (114173S),A Ameenudeen(111942S), Adeel M. Ateeque(112013Z)
 METHODS LIST			:	Meal()
 						:	Meal(int)
 						:	Meal(String, String, String, String, double, double, double, boolean, int, boolean)

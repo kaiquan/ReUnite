@@ -34,17 +34,26 @@ public class SearchUsersController
 	
 	
 	
-	private static GuestCollection guests = new GuestCollection(new Guest().GET_ALL_GUESTS());
+	private static GuestCollection guests;
 	
-	private static GuestImportTableModel tableModel = new GuestImportTableModel(guests.getProfiles());
+	private static GuestImportTableModel tableModel;
 	
 	
+	@SuppressWarnings("serial")
 	public SearchUsersController()
 	{
-		
+		guests = new GuestCollection(new Guest().GET_ALL_GUESTS());
+		tableModel = new GuestImportTableModel(guests.getProfiles())
+		{
+			@Override
+			public boolean isCellEditable(int row, int column)
+			{
+				return (false);
+			}
+		};
 	}
 
-	
+
 	//Table methods
 	public GuestImportTableModel getTableModel()
 	{
@@ -66,7 +75,6 @@ public class SearchUsersController
 	{
 		CreateInvitationController controller = new CreateInvitationController();
 		controller.getTableModel().addRecords(getSelectedRows(new int[]{4, 3 ,6}));
-		
 	}
 
 	

@@ -27,7 +27,7 @@ protected static final String EDIT = "edit";
 	{
 		//Set up the editor (from the table's point of view),
 		//which is a button.
-		//This button brings up the color chooser dialog,
+		//This button brings up the file chooser dialog,
 		//which is the editor from the user's point of view.
 		button = new JButton();
 		button.setActionCommand(EDIT);

@@ -1,12 +1,12 @@
 /********************************************************************************************************************************************************
 Program Name			:	Package.java
 Description				:	A Package Model class that is the Model for Package record(s)
-Done by					:	Lee Kai Quan,A Ameenudeen
-Admin No				:	114173S,111942S
+Done by					:	Lee Kai Quan(114173S), A Ameenudeen (111942S), Adeel M. Ateeque(112013Z)
+Admin No				:	
 Module Group			:	IT2297-08
 Last Edited				:	4-August-2012
 =========================================================================================================================================================
-USERS USING THIS CLASS	:	Lee Kai Quan (114173S),A Ameenudeen(111942S)
+USERS USING THIS CLASS	:	Lee Kai Quan (114173S), A Ameenudeen(111942S), Adeel M. Ateeque(112013Z)
 METHODS LIST			:	Event()
 						:	Event(int)
 						: 	Event(String, String, String, String, String, String)
@@ -204,6 +204,13 @@ public class Event {
 		return Timelist;
 	}
 	
+	/********************************************************
+	 * Author			: Adeel M. Ateeque(112013Z)
+	 * Method Name 		: GET_ALL_EVENTS()
+	 * Input Parameter 	: Nil
+	 * Return 			: ArrayList<Event>
+	 * Purpose 			: To retrieve all the events
+	 *******************************************************/
 	public ArrayList<Event> GET_ALL_EVENTS()
 	{
 		ArrayList<Event> eventList = new ArrayList<Event>();
@@ -347,7 +354,14 @@ public class Event {
 		return eventList;
 	}
 	
-
+	/********************************************************
+	 * Author			: Adeel M. Ateeque(112013Z)
+	 * Method Name 		: GET_EVENT_BY_ID(int eventID)
+	 * Input Parameter 	: int
+	 * Return 			: Event
+	 * Purpose 			: To retrieve a specific Event based
+	 * 						on its ID
+	 *******************************************************/
 	public Event GET_EVENT_BY_ID(int eventID)
 	{
 		Event event = new Event();

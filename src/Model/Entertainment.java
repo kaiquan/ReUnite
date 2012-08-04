@@ -1,12 +1,12 @@
 /*******************************************************************************************************************************************************
 Program Name			:	Entertainment.java
 Description				:	A Entertainment Model class that is the Model for Entertainment record(s)
-Done by					:	Lee Kai Quan,Ameenudeen (111942S)
+Done by					:	Lee Kai Quan, Ameenudeen (111942S), Adeel M. Ateeque(112013Z)
 Admin No				:	114173S
 Module Group			:	IT2297-08
 Last Edited				:	4-August-2012
 ========================================================================================================================================================
-USERS USING THIS CLASS	:	Lee Kai Quan (114173S),A Ameenudeen(111942S)
+USERS USING THIS CLASS	:	Lee Kai Quan (114173S),A Ameenudeen(111942S), Adeel M. Ateeque(112013Z)
 METHODS LIST			:	Entertainment()
 						: 	Entertainment(String, boolean, String, String, double, double, double, int, boolean)
 						:	CREATE_ENTERTAINMENT() : String
@@ -487,10 +487,9 @@ public ArrayList<Entertainment> GET_ENTERTAINMENT_PRICE(String eventName){
 				.doubleToLongBits(other.entertainmentPrice))
 			return false;
 		if (entertainmentTitle == null) {
-			if (other.entertainmentTitle != null)
-				return false;
-		} else if (!entertainmentTitle.equals(other.entertainmentTitle))
-			return false;
+			if (other.entertainmentTitle != null) return false;
+		}
+		else if (!entertainmentTitle.equals(other.entertainmentTitle)) return false;
 		return true;
 	}
 }

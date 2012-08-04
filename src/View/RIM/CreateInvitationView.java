@@ -34,6 +34,8 @@ import View.RIM.Components.Table.AutoResizeTableColumns;
 import View.RIM.Components.Table.DateCellEditor;
 import View.RIM.Components.Table.IconEditor;
 import View.RIM.Components.Table.IconRenderer;
+import View.RIM.Components.Table.TextAreaEditor;
+import View.RIM.Components.Table.TextAreaRenderer;
 
 @SuppressWarnings("serial")
 public class CreateInvitationView extends JFrame
@@ -214,6 +216,8 @@ public class CreateInvitationView extends JFrame
 		table.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
 		table.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
 		table.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+		table.getColumnModel().getColumn(7).setCellRenderer(new TextAreaRenderer());
+		table.getColumnModel().getColumn(7).setCellEditor(new TextAreaEditor());
 
 		// The profile picture cells
 		table.getColumnModel().getColumn(0).setMaxWidth(75);

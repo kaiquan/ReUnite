@@ -3,6 +3,7 @@ package Model.RIM.TableModels;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.ImageIcon;
 import javax.swing.table.AbstractTableModel;
 
 import Images.RIM.ImageHelper;
@@ -28,7 +29,10 @@ public class GuestImportTableModel extends AbstractTableModel
 		for (int i = 0; i < rowCount; i++)
 		{
 			Guest guest = guestList.get(i);
-			data[i][0] = ImageHelper.loadImageIcon(guest.getProfilePicture(), "");
+			
+			ImageIcon profilePicture = ImageHelper.loadImageIcon(guest.getProfilePicture()!=null?guest.getProfilePicture():"userIcon.png", "", 75, -1, 5);
+			
+			data[i][0] = profilePicture;
 			data[i][1] = guest.getFirstName();
 			data[i][2] = guest.getLastName();
 			data[i][3] = guest.getSchool();

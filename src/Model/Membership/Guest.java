@@ -111,7 +111,6 @@ public class Guest extends Account
 			rs = DB.readRequest(dbQuery);
 			while (rs.next())
 			{
-
 				Guest guest = new Guest();
 
 				guest.setUserName(rs.getString("userName"));
@@ -129,7 +128,6 @@ public class Guest extends Account
 				guest.setProfilePicture(rs.getString("profilePicture"));
 
 				e1.add(guest);
-
 			}
 
 		}

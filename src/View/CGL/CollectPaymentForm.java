@@ -74,7 +74,6 @@ public class CollectPaymentForm extends Fonts {
 	private JTextField jTextField4 = null;
 	private JTextField jTextField5 = null;
 	private JTextField jTextField6 = null;
-	private JLabel jLabel9 = null;
 	private JTextArea jTextArea1 = null;
 	private JLabel jLabel10 = null;
 	private JLabel jLabel11 = null;
@@ -97,6 +96,7 @@ public class CollectPaymentForm extends Fonts {
 	private String eventStatus;
 	private String status;
 	private static String FILE = null;
+	private JButton jButton1 = null;
 	/**
 	 * This method initializes jFrame	
 	 * 	
@@ -129,7 +129,7 @@ public class CollectPaymentForm extends Fonts {
 			jContentPane.add(getSeparator_1(), getSeparator_1().getName());
 			jContentPane.add(getJButton2(), null);
 			pne = new JScrollPane(getJPanel(),JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-			pne.setBounds(135, 8, 553, 268);
+			pne.setBounds(135, 14, 559, 262);
 			pne.setPreferredSize(new Dimension(553, 268));
 			jContentPane.add(pne);			
 			jContentPane.add(tree, null);
@@ -381,36 +381,20 @@ public class CollectPaymentForm extends Fonts {
 			jLabel13.setBounds(new Rectangle(127, 344, 119, 16));
 			jLabel13.setText("Amount to be Paid :");
 			jLabel12 = new JLabel();
-			jLabel12.setBounds(new Rectangle(230, 319, 104, 16));
+			jLabel12.setBounds(new Rectangle(333, 316, 104, 16));
 			jLabel12.setText("Second Payment ");
 			jLabel11 = new JLabel();
-			jLabel11.setBounds(new Rectangle(231, 295, 92, 17));
+			jLabel11.setBounds(new Rectangle(152, 314, 92, 17));
 			jLabel11.setText("First Payment ");
 			jLabel10 = new JLabel();
-			jLabel10.setBounds(new Rectangle(222, 272, 112, 16));
+			jLabel10.setBounds(new Rectangle(223, 285, 112, 16));
 			jLabel10.setFont(new Font("Dialog", Font.BOLD, 13));
 			jLabel10.setText("Payment Details");
-			jLabel9 = new JLabel();
-			jLabel9.setBounds(new Rectangle(19, 172, 13, 16));
-			jLabel9.setFont(new Font("Dialog", Font.BOLD, 14));
-			jLabel9.setText("+");
-			jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
-				//when the + sign is selected
-				public void mouseClicked(java.awt.event.MouseEvent e) {
-					if(ballroomPrice.equals("")&& entertainmentPrice.equals("")&&(mealPrice.equals("")&& (packageDiscount.equals("")))){
-						JOptionPane.showMessageDialog(null, "To view the breakdown of price,"+"\n"+"Please select an event");
-					}
-					
-					else{
-					JOptionPane.showMessageDialog(null, "Ballroom Price is " +ballroomPrice+"\n"+"Entertainment Price: "+entertainmentPrice+"\n"+"Meal Price: "+mealPrice +"\n"+"Package Discount: "+packageDiscount);
-					}
-				}
-			});
 			jLabel8 = new JLabel();
 			jLabel8.setBounds(new Rectangle(20, 217, 108, 16));
 			jLabel8.setText("Event Description :");
 			jLabel7 = new JLabel();
-			jLabel7.setBounds(new Rectangle(31, 172, 80, 16));
+			jLabel7.setBounds(new Rectangle(27, 172, 80, 16));
 			jLabel7.setText("Total Price :");
 			jLabel6 = new JLabel();
 			jLabel6.setBounds(new Rectangle(315, 129, 73, 16));
@@ -454,10 +438,9 @@ public class CollectPaymentForm extends Fonts {
 			jPanel.add(getJTextField4(), null);
 			jPanel.add(getJTextField5(), null);
 			jPanel.add(getJTextField6(), null);
-			jPanel.add(jLabel9, null);
 			JScrollPane pne1 = new JScrollPane(getJTextArea1(),JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 			pne1.setVisible(true);
-			pne1.setBounds(new Rectangle(139, 209, 371, 36));
+			pne1.setBounds(new Rectangle(139, 209, 385, 36));
 			jPanel.add(pne1);
 			jPanel.add(jLabel10, null);
 			jPanel.add(jLabel11, null);
@@ -471,6 +454,7 @@ public class CollectPaymentForm extends Fonts {
 			jPanel.add(getJButton(), null);
 			jPanel.add(jLabel15, null);
 			jPanel.add(getJComboBox(), null);			
+			jPanel.add(getJButton1(), null);
 		}
 		return jPanel;
 	}
@@ -483,7 +467,8 @@ public class CollectPaymentForm extends Fonts {
 	private JTextField getJTextField() {
 		if (jTextField == null) {
 			jTextField = new JTextField();
-			jTextField.setBounds(new Rectangle(126, 47, 115, 20));
+			jTextField.setBounds(new Rectangle(126, 47, 129, 20));
+			jTextField.setEditable(false);
 		}
 		return jTextField;
 	}
@@ -496,7 +481,8 @@ public class CollectPaymentForm extends Fonts {
 	private JTextField getJTextField1() {
 		if (jTextField1 == null) {
 			jTextField1 = new JTextField();
-			jTextField1.setBounds(new Rectangle(126, 90, 112, 20));
+			jTextField1.setBounds(new Rectangle(126, 90, 129, 20));
+			jTextField1.setEditable(false);
 		}
 		return jTextField1;
 	}
@@ -509,7 +495,8 @@ public class CollectPaymentForm extends Fonts {
 	private JTextField getJTextField2() {
 		if (jTextField2 == null) {
 			jTextField2 = new JTextField();
-			jTextField2.setBounds(new Rectangle(128, 133, 109, 20));
+			jTextField2.setBounds(new Rectangle(128, 133, 129, 20));
+			jTextField2.setEditable(false);
 		}
 		return jTextField2;
 	}
@@ -522,7 +509,8 @@ public class CollectPaymentForm extends Fonts {
 	private JTextField getJTextField3() {
 		if (jTextField3 == null) {
 			jTextField3 = new JTextField();
-			jTextField3.setBounds(new Rectangle(428, 45, 89, 20));
+			jTextField3.setBounds(new Rectangle(405, 47, 129, 20));
+			jTextField3.setEditable(false);
 		}
 		return jTextField3;
 	}
@@ -535,7 +523,8 @@ public class CollectPaymentForm extends Fonts {
 	private JTextField getJTextField4() {
 		if (jTextField4 == null) {
 			jTextField4 = new JTextField();
-			jTextField4.setBounds(new Rectangle(429, 87, 87, 20));
+			jTextField4.setBounds(new Rectangle(406, 88, 128, 20));
+			jTextField4.setEditable(false);
 		}
 		return jTextField4;
 	}
@@ -548,7 +537,8 @@ public class CollectPaymentForm extends Fonts {
 	private JTextField getJTextField5() {
 		if (jTextField5 == null) {
 			jTextField5 = new JTextField();
-			jTextField5.setBounds(new Rectangle(430, 129, 82, 20));
+			jTextField5.setBounds(new Rectangle(406, 129, 129, 20));
+			jTextField5.setEditable(false);
 		}
 		return jTextField5;
 	}
@@ -561,7 +551,8 @@ public class CollectPaymentForm extends Fonts {
 	private JTextField getJTextField6() {
 		if (jTextField6 == null) {
 			jTextField6 = new JTextField();
-			jTextField6.setBounds(new Rectangle(127, 170, 110, 20));
+			jTextField6.setBounds(new Rectangle(127, 170, 83, 20));
+			jTextField6.setEditable(false);
 		}
 		return jTextField6;
 	}
@@ -577,6 +568,7 @@ public class CollectPaymentForm extends Fonts {
 			jTextArea1.setBounds(new Rectangle(139, 209, 371, 36));
 			jTextArea1.setWrapStyleWord(true);
 			jTextArea1.setLineWrap(true);
+			jTextArea1.setEditable(false);
 		}
 		return jTextArea1;
 	}
@@ -589,7 +581,7 @@ public class CollectPaymentForm extends Fonts {
 	private JRadioButton getJRadioButton() {
 		if (jRadioButton == null) {
 			jRadioButton = new JRadioButton();
-			jRadioButton.setBounds(new Rectangle(202, 293, 21, 21));
+			jRadioButton.setBounds(new Rectangle(129, 311, 21, 21));
 		}
 		return jRadioButton;
 	}
@@ -602,7 +594,7 @@ public class CollectPaymentForm extends Fonts {
 	private JRadioButton getJRadioButton1() {
 		if (jRadioButton1 == null) {
 			jRadioButton1 = new JRadioButton();
-			jRadioButton1.setBounds(new Rectangle(203, 316, 21, 21));
+			jRadioButton1.setBounds(new Rectangle(308, 312, 21, 21));
 		}
 		return jRadioButton1;
 	}
@@ -616,6 +608,7 @@ public class CollectPaymentForm extends Fonts {
 		if (jTextField7 == null) {
 			jTextField7 = new JTextField();
 			jTextField7.setBounds(new Rectangle(258, 342, 99, 20));
+			jTextField7.setEditable(false);
 		}
 		return jTextField7;
 	}
@@ -852,11 +845,39 @@ public class CollectPaymentForm extends Fonts {
 		}
 	}
 
+	/**
+	 * This method initializes jButton1	
+	 * 	
+	 * @return javax.swing.JButton	
+	 */
+	private JButton getJButton1() {
+		if (jButton1 == null) {
+			jButton1 = new JButton();
+			jButton1.setBounds(new Rectangle(213, 170, 44, 19));
+			jButton1.setText("?");
+			jButton1.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					if(ballroomPrice.equals("")&& entertainmentPrice.equals("")&&(mealPrice.equals("")&& (packageDiscount.equals("")))){
+						JOptionPane.showMessageDialog(null, "To view the breakdown of price,"+"\n"+"Please select an event");
+					}
+					
+					else{
+					JOptionPane.showMessageDialog(null, "Ballroom Price is " +ballroomPrice+"\n"+"Entertainment Price: "+entertainmentPrice+"\n"+"Meal Price: "+mealPrice +"\n"+"Package Discount: "+packageDiscount);
+					}
+				}
+			});
+		}
+		return jButton1;
+	}
+
 	public static void main(String args[]){
-		try {
-            UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");          // start application       // select Look and Feel
-			}
-		catch (Exception ex) {           
+		try 
+		{
+			UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel"); 
+			
+		}
+		catch (Exception ex) 
+		{           
 		ex.printStackTrace();           
 		System.out.print("Error");
 		}

@@ -21,23 +21,20 @@ import Model.CGL.Purchase_Summary;
 
 public class CollectPaymentControl {
 	
-	public ArrayList<Event> processSelection(){
+	public ArrayList<Event> processSelection()
+	{
 		
 		Event e1 = new Event();
 		return e1.GET_EVENT_RECORDS_DUE_FOR_PAYMENT();
 	}
 
-	public ArrayList<Purchase_Summary> processPaymentDetails(String eventName){
+	public ArrayList<Purchase_Summary> processPaymentDetails(String eventName)
+	{
 		Purchase_Summary p1 = new Purchase_Summary();
 		
 		return p1.RETRIEVE_PAYMENT_DETAILS(eventName);
 	}
 
-//	public boolean processUpdatePurchasePayment(String amount,String paymentMethod,String totalCost,String eventName){
-//		Purchase_Payment p1 = new Purchase_Payment();
-//		
-//		return p1.UPDATES_PURCHASE_PAYMENT(amount, paymentMethod, totalCost, eventName);
-//	}
 	
 	public ArrayList<String> requestSelectedEventDetails(String eventName)
 	{	
@@ -206,7 +203,8 @@ public class CollectPaymentControl {
 		}
 		
 		
-		if(!(content.equals(""))){
+		if(!(content.equals("")))
+		{
 		
 		Invitation invitation = new Invitation();
 		String[] guestEmail= new String[invitation.GET_ALL_ATTENDING_GUESTS(eventName, eventDate).size()];
@@ -221,24 +219,30 @@ public class CollectPaymentControl {
 		//send email to registered guest regarding the cancellation
 		
 		EmailController email = new EmailController();
-		try {
+		try 
+		{
 
 			email.sendEmail("TEXT", guestEmail, subject, content, pdf, type);
 			success=true;
-		} catch (Exception e) {
-			
-			
+		} 
+		
+		catch (Exception e) 
+		{
 			JOptionPane.showMessageDialog(null, "Email Failure");
 			success=false;
 			return success;
 		}
+		
 		}
-		try{
+		
+		try
+		{
 			Event e1 = new Event();
 			success=e1.UPDATE_EVENT_STATUS(eventName, eventStatus);
 		}
 		
-		catch(Exception e){
+		catch(Exception e)
+		{
 			JOptionPane.showMessageDialog(null, "Failed to Update event Status");
 			success=false;
 		}

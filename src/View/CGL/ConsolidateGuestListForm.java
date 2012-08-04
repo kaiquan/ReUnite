@@ -72,7 +72,7 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.WindowConstants;
 import javax.swing.ImageIcon;
 public class ConsolidateGuestListForm extends Fonts{
-
+	
 	
 	private JTree tree = new JTree();
 	JScrollPane pne;
@@ -562,20 +562,24 @@ public class ConsolidateGuestListForm extends Fonts{
 		return jButton3;
 	}
 
-	public static void main(String args[]){
+	public static void main(String args[])
+	{
 				
-	try {
-                     UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");          // start application       // select Look and Feel
+		try 
+		{
+	      UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel"); 
+								
+	    }        
+		catch (Exception ex) 
+		{           
+			ex.printStackTrace();  
+			System.out.print("Error");
+	    }
 			
-				
-        }        catch (Exception ex) {            ex.printStackTrace();            System.out.print("Error");
-        }
-		
 		ConsolidateGuestListForm c1 = new ConsolidateGuestListForm();
 		c1.getJFrame().setVisible(true);
 	       
 			
-		
 			
-		}
+	}
 }

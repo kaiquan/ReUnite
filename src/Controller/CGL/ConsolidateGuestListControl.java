@@ -1,5 +1,17 @@
 package Controller.CGL;
 
+//**********************************************************
+//Project : OOADPJ (IT2297)
+//Admin No: 111942S
+//
+//Author: A Ameenudeen
+//Class Name:ConsolidateGuestListControl.java
+//
+//Honor Code: I pledge that this program represents my own
+//program code.
+//*********************************************************
+
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -21,17 +33,18 @@ public class ConsolidateGuestListControl {
 	
 //get an arrayList of event objects
 //It basically get the expired invitation records
-	
-public ArrayList<Event> processExpiredInvitation(){
-				
-		Event e1 = new Event();
-		return e1.RETRIEVE_EVENT_RECORDS();
-	}
-	
+//The expired invitation records consist of eventDate and eventTime	
+public ArrayList<Event> processExpiredInvitation()
+{
+	Event e1 = new Event();
+	return e1.RETRIEVE_EVENT_RECORDS();
+}
+
+
 public ArrayList<String> requestSelectedEventDetails(String eventName)
 {	
 	//Creates Ballroom Object
-	//Creates ArrayList of String 
+	//Creates ArrayList of ballroom object 
 	//get the ballroom details and adds it to the arrayList
 	Ballroom b1 = new Ballroom();
 	ArrayList<Ballroom> ballroom= new ArrayList<Ballroom>();
@@ -39,46 +52,50 @@ public ArrayList<String> requestSelectedEventDetails(String eventName)
 	
 	
 	//Creates Entertainment Object
-	//Creates ArrayList of String 
+	//Creates ArrayList of entertainment objects 
 	//get the entertainment details and adds it to the arrayList
 	ArrayList<Entertainment> entertainment = new ArrayList<Entertainment>();
 	Entertainment e1 = new Entertainment();
 	entertainment=e1.GET_ENTERTAINMENT_PRICE(eventName);
 	
 	//Creates event Object
-	//Creates ArrayList of String 
+	//Creates ArrayList of event objects
 	//get the event details and adds it to the arrayList
 	ArrayList<Event> event = new ArrayList<Event>();
 	Event ev1 = new Event();
 	event=ev1.GET_EVENT_DETAILS(eventName);
 	
 	//Creates guest Object
-	//Creates ArrayList of String 
+	//Creates ArrayList of guest object
 	//get the number of guests and adds it to the arrayList
 	ArrayList<Guest> guest = new ArrayList<Guest>();
 	Guest g1= new Guest();
 	guest=g1.getNumberOfGuests(eventName);
 	
 	//Creates meal Object
-	//Creates ArrayList of String 
-	//get the meal details and adds it to the arrayList
+	//Creates ArrayList of meal object
+	//get the meal details and adds it to the arrayList Line 89
 	ArrayList<Meal> meal = new ArrayList<Meal>();
 	Meal m1 = new Meal();
 	
 	//Creates facility Object
-	//Creates ArrayList of String 
-	//get the facilty name
+	//Creates ArrayList of facility object 
+	//get the facility name
 	ArrayList<Facility> facilty = new ArrayList<Facility>();
 	Facility f1 = new Facility();
 	facilty=f1.GET_FACILITY(eventName);
 	
 	//Creates meal Object
-	//Creates ArrayList of String 
+	//Creates ArrayList of package objects
 	//get the meal details and adds it to the arrayList
 	ArrayList<Package> pkg  = new ArrayList<Package>();
 	Package p1 = new Package();
 	pkg=p1.GET_PACKAGE_DISCOUNT(eventName);
 	
+	
+	//Creates RI Object
+	//Creates ArrayList of RI objects
+	//get the RI email and adds it into the arrayList
 	ArrayList<RI> email = new ArrayList<RI>();
 	RI ri = new RI();
 	email=ri.GET_RI_EMAIL(eventName);
@@ -112,13 +129,12 @@ public ArrayList<String> requestSelectedEventDetails(String eventName)
 		
 	}
 	
-	//get the entertainment based on the arraylist 
+	//get the entertainment price based on the arraylist 
 	//we create earlier		
 	double entertainmentPrice;
 	
 	try
 	{
-		
 		entertainmentPrice=entertainment.get(0).getEntertainmentFinalPrice();
 	}
 	
@@ -129,7 +145,7 @@ public ArrayList<String> requestSelectedEventDetails(String eventName)
 	
 	
 	//get the EventTime,EventDate,EventStatus,EventDescription based on the arraylist 
-	//we create earlier
+	//which we create earlier
 	String eventTime=event.get(0).getEventTime();
 	System.out.println(event.get(0).getEventTime());
 	String eventDate=event.get(0).getEventDate();
@@ -139,7 +155,6 @@ public ArrayList<String> requestSelectedEventDetails(String eventName)
 	
 	//get the number of guests based on the arraylist 
 	//we create earlier
-	
 	String guestCount=guest.get(0).getNoOfGuests();
 	
 	//get the total meal price based on the different options selected by guests based on the arraylist 
@@ -147,7 +162,6 @@ public ArrayList<String> requestSelectedEventDetails(String eventName)
 	double mealPrice;
 	try
 	{
-		
 		mealPrice =meal.get(0).getMealFinalPrice();
 	}
 	
@@ -176,7 +190,7 @@ public ArrayList<String> requestSelectedEventDetails(String eventName)
 	ArrayList<String> combined = new ArrayList<String>();
 	
 	
-	
+	//Combine all the attributes which will be passed to the form
 	for(int i=0;i<1;i++){
 		String combine=ballroomName+"~"+eventTime+"~"+eventDate+"~"+eventStatus+"~"+eventDescription+"~"+guestCount+"~"+totalPrice+"~"+ballroomFinalPrice+"~"+entertainmentPrice+"~"+mealPrice+"~"+facility+"~"+packageDiscount+"~"+emailAddress;
 		combined.add(combine);
@@ -202,31 +216,35 @@ public boolean processEventConsolidation(String amount,String eventName,String r
 		return success;
 	}
 	
-	try{
-	String content="Dear Sir/Madam"+"\n"+"\n"+"Kindly make your first payment for the event "+eventName +"\n"+"For more details regarding the payment, kindly refer to the attachment attached with this email or you can contact us at 67747173."+"\n"+"\n"+"Shahrikin"+"\n"+"GR Administrator";
-	//prepares email
-	String[] emailAddress= new String[1];
-	emailAddress[0]=recipient;
-	EmailController email = new EmailController();
-	email.sendEmail("TEXT", emailAddress, "RE : Payment Notification for event "+eventName, content, pdf, "Payment");
-	success=true;
+	//sends email to the RI
+	try
+	{
+		String content="Dear Sir/Madam"+"\n"+"\n"+"Kindly make your first payment for the event "+eventName +"\n"+"For more details regarding the payment, kindly refer to the attachment attached with this email or you can contact us at 67747173."+"\n"+"\n"+"Shahrikin"+"\n"+"GR Administrator";
+		//prepares email
+		String[] emailAddress= new String[1];
+		emailAddress[0]=recipient;
+		EmailController email = new EmailController();
+		email.sendEmail("TEXT", emailAddress, "RE : Payment Notification for event "+eventName, content, pdf, "Payment");
+		success=true;
 	}
 	
 		
-	catch(Exception ex){
+	catch(Exception ex)
+	{
 		JOptionPane.showMessageDialog(null, "Failed to send email to RI");
 		success=false;
 		return success;
 	}
 	
-	try{
-		
+	try
+	{
 		Event e1 = new Event();
 		e1.UPDATE_EVENT_STATUS(eventName, eventStatus);
 		success=true;
 	}
 	
-	catch(Exception ex){
+	catch(Exception ex)
+	{
 		JOptionPane.showMessageDialog(null, "Failed to update event status");
 		success=false;
 	}

@@ -149,7 +149,7 @@ public class CollectPaymentControl {
 		double mealPrice;
 		try
 		{
-			mealPrice =meal.get(0).getMealFinalPrice();
+			mealPrice=Math.round(meal.get(0).getMealFinalPrice());
 		}
 		
 		catch(Exception ex)

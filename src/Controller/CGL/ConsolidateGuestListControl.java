@@ -13,6 +13,7 @@ package Controller.CGL;
 
 
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -162,7 +163,8 @@ public ArrayList<String> requestSelectedEventDetails(String eventName)
 	double mealPrice;
 	try
 	{
-		mealPrice =meal.get(0).getMealFinalPrice();
+		mealPrice=Math.round(meal.get(0).getMealFinalPrice());
+		
 	}
 	
 	catch(Exception ex)

@@ -176,6 +176,8 @@ public class MySQLController
 	public int updateRequest(String dbQuery)
 	{
 		int count = 0;
+		int i =1;
+		while (true){
 		try
 		{
 			getConnection();
@@ -188,10 +190,15 @@ public class MySQLController
 				// execute an SQL query and get the result
 				count = stmt.executeUpdate(dbQuery);
 			}
+			break;
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			System.out.println("error in updateRequest");
+			System.out.println("retry atmpt " + i);
+			i++;
+			//e.printStackTrace();
+			
 		}
 		finally
 		{
@@ -209,6 +216,8 @@ public class MySQLController
 
 			}
 		}
+		}
+		
 		return count;
 	}
 

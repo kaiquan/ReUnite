@@ -155,7 +155,7 @@ public class CollectPaymentForm extends Fonts {
                     	c2.requestSelectedEventDetails((eventName)).get(0);
                     	
                     	Scanner sc = new Scanner(c2.requestSelectedEventDetails((eventName)).get(0));
-                    	sc.useDelimiter(",");
+                    	sc.useDelimiter("~");
                     	String ballroomName=sc.next();
                     	String eventTime=sc.next();
                     	String eventDate=sc.next();

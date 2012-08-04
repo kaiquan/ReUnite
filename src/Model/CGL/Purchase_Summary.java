@@ -143,9 +143,7 @@ public ArrayList<Purchase_Summary> RETRIEVE_PAYMENT_DETAILS(String eventName){
 			e1.add(p1);
 	}
 		
-		for(int i=0;i<e1.size();i++){
-			System.out.println(e1.get(i));
-		}
+		
 	}
 		catch(Exception e){
 			e.printStackTrace();
@@ -158,27 +156,29 @@ public ArrayList<Purchase_Summary> RETRIEVE_PAYMENT_DETAILS(String eventName){
 
 
 public void setTotalCost(String string) {
-	// TODO Auto-generated method stub
+	this.totalCost=string;
 	
 }
 
 
 public void setAmountPending(String string) {
 	// TODO Auto-generated method stub
+	this.amountPending=string;
 	
 }
 
 
 public String getTotalCost() {
 	// TODO Auto-generated method stub
-	return null;
+	return totalCost;
 }
 
 
 public String getAmountPending() {
 	// TODO Auto-generated method stub
-	return null;
+	return amountPending;
 }
+
 
 
 }

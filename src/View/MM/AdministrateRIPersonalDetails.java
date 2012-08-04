@@ -545,28 +545,7 @@ public class AdministrateRIPersonalDetails {
 
 		
 
-		tableEvent = new JTable() {
-			public boolean getScrollableTracksViewportHeight() {
-				if (getParent() instanceof JViewport)
-					return (((JViewport) getParent()).getHeight() > getPreferredSize().height);
 
-				return super.getScrollableTracksViewportHeight();
-			}
-
-			protected void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				if (getRowCount() == 0) {
-					Graphics2D g2d = (Graphics2D) g;
-					g2d.setColor(Color.BLACK);
-				//	java.awt.Image image = //load image
-//					g2d.drawImage(image,
-//							this.getWidth() - image.getWidth(null),
-//							this.getHeight() - image.getHeight(null), null);
-//					g2d.drawString("Sorry, no events found...", 0, 0);
-				}
-			}
-
-		};
 
 		tableEvent.setBackground(Color.white);
 		tableEvent.setBorder(null);

@@ -188,10 +188,9 @@ public class CollectPaymentForm extends Fonts {
                     		jRadioButton1.setEnabled(false);
                     		jLabel12.setEnabled(false);
                     		
-                    		Scanner sc1 = new Scanner(c2.processPaymentDetails(jTextField.getText()).get(0));
-                        	sc1.useDelimiter(",");
-                        	String totalCost=sc1.next();
-                        	String amountPending=sc1.next();
+                    		
+                        	String totalCost=c2.processPaymentDetails(jTextField.getText()).get(0).getTotalCost();
+                        	String amountPending=c2.processPaymentDetails(jTextField.getText()).get(0).getAmountPending();
                         	double newAmountPending= (Double.parseDouble(amountPending)/2);
                         	System.out.println(newAmountPending);
                     		jTextField7.setText(String.valueOf(newAmountPending));
@@ -207,10 +206,8 @@ public class CollectPaymentForm extends Fonts {
                     		jRadioButton.setEnabled(false);
                     		jLabel11.setEnabled(false);
                     		jLabel12.setEnabled(true);
-                    		Scanner sc1 = new Scanner(c2.processPaymentDetails(jTextField.getText()).get(0));
-                        	sc1.useDelimiter(",");
-                        	String totalCost=sc1.next();
-                        	String amountPending=sc1.next();
+                    		String totalCost=c2.processPaymentDetails(jTextField.getText()).get(0).getTotalCost();
+                        	String amountPending=c2.processPaymentDetails(jTextField.getText()).get(0).getAmountPending();
                         	jTextField7.setText(String.valueOf(amountPending));
                         	status="Confirmed";
                         	jButton.setText("Submit Payment Details");

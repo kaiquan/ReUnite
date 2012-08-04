@@ -123,10 +123,10 @@ public boolean UPDATES_TOTAL_PAYABLE_AMOUNT(String amount,String eventName){
   * Purpose 		: To RETRIEVE THE PAYMENT DETAILS
   *******************************************************/
 
-public ArrayList<String> RETRIEVE_PAYMENT_DETAILS(String eventName){
+public ArrayList<Purchase_Summary> RETRIEVE_PAYMENT_DETAILS(String eventName){
 	
 	
-	ArrayList<String> e1 = new ArrayList<String>();
+	ArrayList<Purchase_Summary> e1 = new ArrayList<Purchase_Summary>();
 	ResultSet rs = null;
 	
 	String dbQuery;
@@ -137,7 +137,10 @@ public ArrayList<String> RETRIEVE_PAYMENT_DETAILS(String eventName){
 		
 		rs=DB.readRequest(dbQuery);
 		while(rs.next()){
-			e1.add(rs.getString("totalCost")+","+rs.getString("amountPending"));
+			Purchase_Summary p1 = new Purchase_Summary();
+			p1.setTotalCost(rs.getString("totalCost"));
+			p1.setAmountPending(rs.getString("amountPending"));
+			e1.add(p1);
 	}
 		
 		for(int i=0;i<e1.size();i++){

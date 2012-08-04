@@ -13,6 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import net.miginfocom.swing.MigLayout;
 
 public class ClientGUI extends JPanel implements ActionListener
 {
@@ -20,8 +21,6 @@ public class ClientGUI extends JPanel implements ActionListener
 	private int eventID;
 	private String userName;
 	private static final long serialVersionUID = 1L;
-	// will first hold "Username:", later on "Enter message"
-	private JLabel label;
 	// to hold the Username and later on the messages
 	private JTextField messageField;
 	// to Logout and get the list of the users
@@ -32,39 +31,18 @@ public class ClientGUI extends JPanel implements ActionListener
 	private boolean connected;
 	// the Client object
 	private Client client;
+	private JScrollPane scrollPane;
 
 	// Constructor connection receiving a socket number
 	public ClientGUI(String userName, int eventID)
 	{
 		this.userName = userName;
 		this.eventID = eventID;
-		// The NorthPanel with:
-		JPanel northPanel = new JPanel();
+		JPanel mainPanel = new JPanel();
 
 		
 		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		northPanel.setLayout(null);
-
-		// the Label and the TextField
-		label = new JLabel("Enter your username below", SwingConstants.CENTER);
-		label.setBounds(0, 0, 0, 0);
-		northPanel.add(label);
-		messageField = new JTextField(userName);
-		messageField.setBounds(0, 0, 0, 0);
-		messageField.setBackground(Color.WHITE);
-		northPanel.add(messageField);
-		add(northPanel);
-
-		// The CenterPanel which is the chat room
-		messageArea = new JTextArea("Welcome to the Chat room\n", 80, 80);
-		JPanel centerPanel = new JPanel();
-		centerPanel.setLayout(null);
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setViewportView(messageArea);
-		scrollPane.setBounds(-73, 280, 366, -280);
-		centerPanel.add(scrollPane);
-		messageArea.setEditable(false);
-		add(centerPanel);
+		mainPanel.setLayout(new MigLayout("", "[217px][32.00px]", "[33px][][]"));
 
 		// the 3 buttons
 		login = new JButton("Login");
@@ -80,10 +58,22 @@ public class ClientGUI extends JPanel implements ActionListener
 		southPanel.add(login);
 		southPanel.add(logout);
 		southPanel.add(whoIsIn);
-		add(southPanel);
+		mainPanel.add(southPanel, "cell 0 0 2 1,growx,aligny top");
 
+		add(mainPanel);
+								
+								scrollPane = new JScrollPane();
+								mainPanel.add(scrollPane, "cell 0 1 2 1,grow");
+						
+								// The CenterPanel which is the chat room
+								messageArea = new JTextArea("Welcome to the Chat room\n", 12, 20);
+								scrollPane.setViewportView(messageArea);
+								messageArea.setEditable(false);
+								messageField = new JTextField(userName);
+								mainPanel.add(messageField, "cell 0 2 2 1,growx");
+								messageField.setBackground(Color.WHITE);
+						messageField.requestFocus();
 		setSize(385, 307);
-		messageField.requestFocus();
 
 	}
 
@@ -101,8 +91,6 @@ public class ClientGUI extends JPanel implements ActionListener
 		login.setEnabled(true);
 		logout.setEnabled(false);
 		whoIsIn.setEnabled(false);
-		label.setText("Enter your username below");
-		messageField.setText("Anonymous");
 		// let the user change them
 		// don't react to a <CR> after the username
 		messageField.removeActionListener(this);
@@ -144,7 +132,6 @@ public class ClientGUI extends JPanel implements ActionListener
 			// test if we can start the Client
 			if (!client.start()) return;
 			messageField.setText("");
-			label.setText("Enter your message below");
 			connected = true;
 
 			// disable login button
@@ -156,7 +143,6 @@ public class ClientGUI extends JPanel implements ActionListener
 			// Action listener for when the user enter a message
 			messageField.addActionListener(this);
 		}
-
 	}
 
 	// to start the whole thing the server
@@ -165,6 +151,7 @@ public class ClientGUI extends JPanel implements ActionListener
 		JFrame frame = new JFrame();
 		frame.setContentPane(new ClientGUI("Adeel", 3));
 		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
 }

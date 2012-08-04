@@ -1,4 +1,4 @@
-package View.RIM.Components.Splashscreen;
+package Components.Splashscreen;
 
 import java.awt.Color;
 import java.awt.Font;

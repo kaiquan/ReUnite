@@ -5,7 +5,7 @@ package Controller;
  *
  * Class: MySQLController
  *
- * Author: Adeel M. Ateeque (112013Z)
+ * Author: Adeel M. Ateeque (112013Z),A Ameenudeen(111942S),Lee Kai Quan,Shahrikin Alias
  * 
  * Lecturer: Ms Lim Ai Hua
  * 

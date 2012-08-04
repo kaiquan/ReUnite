@@ -1,12 +1,12 @@
 /********************************************************************************************************************************************************
 Program Name			:	Facility.java
 Description				:	A Facility Model class that is the Model for Facility record(s)
-Done by					:	Lee Kai Quan
-Admin No				:	114173S
+Done by					:	Lee Kai Quan,A Ameenudeen
+Admin No				:	114173S,111942S
 Module Group			:	IT2297-08
 Last Edited				:	4-August-2012
 =========================================================================================================================================================
-USERS USING THIS CLASS	:	Lee Kai Quan (114173S), Adeel M. Ateeque(112013Z)
+USERS USING THIS CLASS	:	Lee Kai Quan (114173S), Adeel M. Ateeque(112013Z),A Ameenudeen(111942S)
 METHODS LIST			:	Facility()
 						:	Facility(String, String, String, String, String, boolean, double)
 						:	CREATE_FACILITY() : String

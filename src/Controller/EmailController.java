@@ -5,7 +5,7 @@ package Controller;
  *
  * Class: EmailController
  *
- * Author: Adeel M. Ateeque (112013Z)
+ * Author: Adeel M. Ateeque (112013Z),A Ameenudeen (111942S),Shahrikin Alias
  * 
  * Lecturer: Ms Lim Ai Hua
  * 

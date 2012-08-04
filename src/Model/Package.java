@@ -1,12 +1,12 @@
 /********************************************************************************************************************************************************
 Program Name			:	Package.java
 Description				:	A Package Model class that is the Model for Package record(s)
-Done by					:	Lee Kai Quan (114173S), Adeel M. Ateeque(112013Z)
+Done by					:	Lee Kai Quan (114173S), Adeel M. Ateeque(112013Z),A Ameenudeen(111942S)
 Admin No				:	114173S
 Module Group			:	IT2297-08
 Last Edited				:	4-August-2012
 =========================================================================================================================================================
-USERS USING THIS CLASS	:	Lee Kai Quan (114173S), Adeel M. Ateeque(112013Z)
+USERS USING THIS CLASS	:	Lee Kai Quan (114173S), Adeel M. Ateeque(112013Z),A Ameenudeen(111942S)
 METHODS LIST			:	Pacakge()
 						: 	Package(String, String, String, String, String, String, boolean, int, double, boolean)
 						:	CREATE_PACKAGE(String, String, String) ; String

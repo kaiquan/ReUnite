@@ -1,8 +1,8 @@
 /*******************************************************************************
 Program Name:	MyCalendar.java
 Description:	A MyCalendar class for formatting and setting dates
-Done by:		Lee Kai Quan
-Admin No:		114173S
+Done by:		Lee Kai Quan,A Ameenudeen
+Admin No:		114173S,111942S
 Module Group:	IT2297-08
 *******************************************************************************/
 package Controller;

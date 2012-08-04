@@ -1,5 +1,14 @@
 package Controller.CGL;
-
+//**********************************************************
+//Project : OOADPJ (IT2297)
+//Admin No: 111942S
+//
+//Author: A Ameenudeen
+//Class Name:CancelEventControl.java
+//
+//Honor Code: I pledge that this program represents my own
+//program code.
+//*********************************************************
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -72,9 +81,9 @@ public class CancelEventControl {
 		Facility f1 = new Facility();
 		facilty=f1.GET_FACILITY(eventName);
 		
-		//Creates meal Object
+		//Creates Package Object
 		//Creates ArrayList of package objects
-		//get the meal details and adds it to the arrayList
+		//get the package details and adds it to the arrayList
 		ArrayList<Package> pkg  = new ArrayList<Package>();
 		Package p1 = new Package();
 		pkg=p1.GET_PACKAGE_DISCOUNT(eventName);

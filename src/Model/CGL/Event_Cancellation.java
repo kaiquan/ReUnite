@@ -1,4 +1,14 @@
 package Model.CGL;
+//**********************************************************
+//Project : OOADPJ (IT2297)
+//Admin No: 111942S
+//
+//Author: A Ameenudeen
+//Class Name:Event_Cancellation.java
+//
+//Honor Code: I pledge that this program represents my own
+//program code.
+//*********************************************************
 
 import java.sql.ResultSet;
 import Controller.MyCalendar;

@@ -2190,25 +2190,25 @@ public class AdministrateServiceOptionManagement {
 				form.getJTextField_Ballroom().setText(data.get(1)[5]);
 				form.ballroomID=data.get(1)[4];
 				
-				if(!data.get(1)[6].equals(null)||!data.get(1)[6].equals("")||data.get(1)[6]!=null){
+				if(!(data.get(1)[6].equals(null))||!(data.get(1)[6].equals(""))||(data.get(1)[6]!=null)){
 					form.getJTextField_entertainment().setName(data.get(1)[6]);
 					form.getJTextField_entertainment().setText(data.get(1)[7]);
 					form.entertainmentID=data.get(1)[6];
 					form.getJCheckBox_entertainment().setSelected(true);
 				}
-				if(!data.get(1)[8].equals(null)||!data.get(1)[8].equals("")||data.get(1)[8]!=null){
+				if(!(data.get(1)[8].equals(null))||!(data.get(1)[8].equals(""))||(data.get(1)[8]!=null)){
 					form.getJTextField_mealOption1().setName(data.get(1)[8]);
 					form.getJTextField_mealOption1().setText(data.get(1)[9]);
 					form.mealOption1ID=data.get(1)[8];
 					form.getJCheckBox_mealOption1().setSelected(true);
 				}
-				if(!data.get(1)[10].equals(null)||!data.get(1)[8].equals("")||data.get(1)[10]!=null){
+				if(!(data.get(1)[10].equals(null))||!(data.get(1)[8].equals(""))||(data.get(1)[10]!=null)){
 					form.getJTextField_mealOption2().setName(data.get(1)[10]);
 					form.getJTextField_mealOption2().setText(data.get(1)[11]);
 					form.mealOption2ID=data.get(1)[10];
 					form.getJCheckBox_mealOption2().setSelected(true);
 				}
-				if(!data.get(1)[12].equals(null)||!data.get(1)[8].equals("")||data.get(1)[12]!=null){
+				if(!(data.get(1)[12].equals(null))||!(data.get(1)[8].equals(""))||(data.get(1)[12]!=null)){
 					form.getJTextField_mealOption3().setName(data.get(1)[12]);
 					form.getJTextField_mealOption3().setText(data.get(1)[13]);
 					form.mealOption3ID=data.get(1)[12];

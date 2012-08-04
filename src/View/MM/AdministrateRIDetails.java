@@ -103,11 +103,8 @@ public class AdministrateRIDetails {
 	private JLabel makeDisableLabel = null;
 	private JLabel viewPaymentAndEventLabel = null;
 	private JLabel addressLabel = null;
-	
- 	
-	
-	// ***********************JFrame Method****************
-	
+	private JLabel jLabel = null;
+	private JLabel cancelLabel = null;
 	public JFrame getJFrame(){
 		jframe = new JFrame();
 		jframe.setSize(1118, 771);
@@ -177,7 +174,7 @@ public class AdministrateRIDetails {
 	
 	title = new JLabel();
 	title.setBounds(new Rectangle(-18, 1, 605, 100));
-	title.setFont(new Font("Gill Sans MT", Font.BOLD | Font.ITALIC, 24));
+	title.setFont(new Font("Segoe UI", Font.BOLD | Font.PLAIN, 20));
 	title.setIcon(new ImageIcon(getClass().getResource("/Images/MM/1343842308_kontact_contacts.png")));
 	title.setText("RI ACCOUNTS INFORMATION");
 	
@@ -270,6 +267,7 @@ public class AdministrateRIDetails {
 				lastNameTextBox.setEditable(true);
 				dateOfBirthTextBox.setEditable(true);
 				emailTextBox.setEditable(true);
+		
 				nricTextBox.setEditable(true);
 				schoolTextBox.setEditable(true);
 				addressTextBox.setEditable(true);
@@ -298,90 +296,7 @@ public class AdministrateRIDetails {
 	confirmUpdateButton.addActionListener(new java.awt.event.ActionListener() {
 		public void actionPerformed(java.awt.event.ActionEvent e) {
 			
-			Object[] options = { "OK", "CANCEL" };
-			int confirmUpdateOption = JOptionPane.showOptionDialog(null, "" +userNameTextBox.getText() +" is successfully updated! ", "Account Updated!",
-			JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-			null, options, options[0]);
-			if (confirmUpdateOption == 0){
-				
-				if(userNameTextBox.getText().equals("")
-						
-						|| firstNameTextBox.getText().equals("")								
-						|| lastNameTextBox.getText().equals("")
-							|| nricTextBox.getText().equals("")
-					|| schoolTextBox.getText().equals("")
-							|| emailTextBox.getText().equals("")||
-							addressTextBox.getText().equals("")) {
-
-				JOptionPane.showConfirmDialog(null,"Please Fill up all Field",
-							   "Empty Field", JOptionPane.CLOSED_OPTION);
-				}
-				else{
-					UpdateRIController updateController = new UpdateRIController();
-					updateController.updateRIAccount
-					
-			(userNameTextBox.getText(),
-				
-				firstNameTextBox.getText(),
-				lastNameTextBox.getText(),
-				//parseDate(date()), 
-				nricTextBox.getText(),
-				schoolTextBox.getText(),
-				emailTextBox.getText(),
-				telephoneTextBox.getText(),
-				handphoneTextBox.getText()); //secretQuestion(),
-					
-					userNameTextBox.setText("");
-					firstNameTextBox.setText("");
-					lastNameTextBox.setText("");
-					//parseDate(date()), 
-					dateOfBirthTextBox.setText("");
-					nricTextBox.setText("");
-					schoolTextBox.setText("");
-					emailTextBox.setText("");
-					telephoneTextBox.setText("");
-					addressTextBox.setText("");
-					handphoneTextBox.setText("");
-					statusTextBox.setText("");
-					typeTextBox.setText("");
-					
-					
-					userNameTextBox.setEditable(false);
-					firstNameTextBox.setEditable(false);
-					lastNameTextBox.setEditable(false);
-					dateOfBirthTextBox.setEditable(false);
-					emailTextBox.setEditable(false);
-					nricTextBox.setEditable(false);
-					schoolTextBox.setEditable(false);
-					addressTextBox.setEditable(false);
-					telephoneTextBox.setEditable(false);
-					handphoneTextBox.setEditable(false);
-					
-					updateAccountButton.setVisible(true);
-					confirmUpdateButton.setVisible(false);
-					
-					tableModel = viewRIDetailsController.getRITableModel();
-					table.setModel(tableModel);
-					table.updateUI();
-					
-				
-					String[] emailArray;               
-				      emailArray = new String[1]; 
-				      emailArray[0] = emailTextBox.getText();
-						
-						EmailController updateEmail = new EmailController();
-						try {
-							updateEmail.sendEmail("text",emailArray, "Update Reunion Initiator Account with Great Reunion ", "Please be notified that you have updated an account successfully with Great Reunion.", null, "Account");
-						} catch (Exception e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-						
-					
-				}
-				
-					
-			}}
+			}
 			
 	
 		
@@ -583,6 +498,8 @@ public class AdministrateRIDetails {
 		DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
 		headerRenderer.setBackground(Color.GRAY);
 		
+		table.setSelectionBackground(null);
+		
 		
 		
 		eventTable.getTableHeader().setDefaultRenderer(headerRenderer);
@@ -621,6 +538,8 @@ public class AdministrateRIDetails {
 		
 		DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
 		headerRenderer.setBackground(Color.GRAY);
+		
+		
 		
 		
 		
@@ -680,11 +599,11 @@ public class AdministrateRIDetails {
 	            	if(table.getValueAt(row, col).toString().equals("Disable"))
 	            	{
 	            		
-	            		disableAccountButton.setText("Enable Account");
+	            		makeDisableLabel.setText("Enable Account");
 	            	}
 	            	else
 	            	{
-	            		disableAccountButton.setText("Disable Account");
+	            		makeDisableLabel.setText("Disable Account");
 	            		
 	            		 
 
@@ -700,61 +619,183 @@ public class AdministrateRIDetails {
 		if(infoPanel == null) {
 			
 			
+			cancelLabel = new JLabel();
+			cancelLabel.setBounds(new Rectangle(915, 203, 133, 58));
+			cancelLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/haha.png")));
+			cancelLabel.setText("Cancel");
+			cancelLabel.setVisible(false);
+			cancelLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent e) {
+					userNameTextBox.setText("");
+					firstNameTextBox.setText("");
+					lastNameTextBox.setText("");
+					//parseDate(date()), 
+					dateOfBirthTextBox.setText("");
+					nricTextBox.setText("");
+					schoolTextBox.setText("");
+					emailTextBox.setText("");
+					telephoneTextBox.setText("");
+					addressTextBox.setText("");
+					handphoneTextBox.setText("");
+					statusTextBox.setText("");
+					typeTextBox.setText("");
+					updateLabel.setVisible(true);
+					cancelLabel.setVisible(false);
+					jLabel.setVisible(false);
+					
+				}
+			});
+			jLabel = new JLabel();
+			jLabel.setBounds(new Rectangle(911, 155, 136, 52));
+			jLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Status-mail-task-icon.png")));
+			jLabel.setText("Update now");
+			jLabel.setVisible(false);
+			jLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent e) {
+					Object[] options = { "OK", "CANCEL" };
+					int confirmUpdateOption = JOptionPane.showOptionDialog(null, "" +userNameTextBox.getText() +" is successfully updated! ", "Account Updated!",
+					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+					null, options, options[0]);
+					if (confirmUpdateOption == 0){
+						
+						if(userNameTextBox.getText().equals("")
+								
+								|| firstNameTextBox.getText().equals("")								
+								|| lastNameTextBox.getText().equals("")
+									|| nricTextBox.getText().equals("")
+							|| schoolTextBox.getText().equals("")
+									|| emailTextBox.getText().equals("")||
+									addressTextBox.getText().equals("")) {
+
+						JOptionPane.showConfirmDialog(null,"Please Fill up all Field",
+									   "Empty Field", JOptionPane.CLOSED_OPTION);
+						}
+						else{
+							UpdateRIController updateController = new UpdateRIController();
+							updateController.updateRIAccount
+							
+					(userNameTextBox.getText(),
+						
+						firstNameTextBox.getText(),
+						lastNameTextBox.getText(),
+						//parseDate(date()), 
+						nricTextBox.getText(),
+						schoolTextBox.getText(),
+						emailTextBox.getText(),
+						telephoneTextBox.getText(),
+						handphoneTextBox.getText()); //secretQuestion(),
+							
+							userNameTextBox.setText("");
+							firstNameTextBox.setText("");
+							lastNameTextBox.setText("");
+							//parseDate(date()), 
+							dateOfBirthTextBox.setText("");
+							nricTextBox.setText("");
+							schoolTextBox.setText("");
+							emailTextBox.setText("");
+							telephoneTextBox.setText("");
+							addressTextBox.setText("");
+							handphoneTextBox.setText("");
+							statusTextBox.setText("");
+							typeTextBox.setText("");
+							
+							
+							userNameTextBox.setEditable(false);
+							firstNameTextBox.setEditable(false);
+							lastNameTextBox.setEditable(false);
+							dateOfBirthTextBox.setEditable(false);
+							emailTextBox.setEditable(false);
+							nricTextBox.setEditable(false);
+							schoolTextBox.setEditable(false);
+							addressTextBox.setEditable(false);
+							telephoneTextBox.setEditable(false);
+							handphoneTextBox.setEditable(false);
+							
+							updateAccountButton.setVisible(true);
+							confirmUpdateButton.setVisible(false);
+							
+							tableModel = viewRIDetailsController.getRITableModel();
+							table.setModel(tableModel);
+							table.updateUI();
+							
+						
+							String[] emailArray;               
+						      emailArray = new String[1]; 
+						      emailArray[0] = emailTextBox.getText();
+								
+								EmailController updateEmail = new EmailController();
+								try {
+									updateEmail.sendEmail("text",emailArray, "Update Reunion Initiator Account with Great Reunion ", "Please be notified that you have updated an account successfully with Great Reunion.", null, "Account");
+								} catch (Exception e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+								
+							
+						}
+						
+							
+					}
+					
+				}
+			});
 			addressLabel = new JLabel();
 			addressLabel.setBounds(new Rectangle(493, 77, 87, 29));
 			addressLabel.setText("Address :");
-			addressLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+			addressLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
+			
 			userNameLabel = new JLabel();
-			userNameLabel.setFont(new Font("Dialog", Font.BOLD, 14));
-			userNameLabel.setBounds(new Rectangle(1, 28, 89, 30));
+			userNameLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
+			userNameLabel.setBounds(new Rectangle(1, 28, 104, 30));
 			userNameLabel.setText("UserName :");
 			
 			firstNameLabel = new JLabel();
 			firstNameLabel.setBounds(new Rectangle(2, 74, 91, 30));
-			firstNameLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+			firstNameLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
 			firstNameLabel.setText("First Name :");
 			
 			lastNameLabel = new JLabel();
 			lastNameLabel.setBounds(new Rectangle(2, 121, 90, 30));
-			lastNameLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+			lastNameLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
 			lastNameLabel.setText("Last Name :");
 			
 			
 			
 			dateOfBirthLabel = new JLabel();
 			dateOfBirthLabel.setBounds(new Rectangle(1, 209, 99, 30));
-			dateOfBirthLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+			dateOfBirthLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
 			dateOfBirthLabel.setText("Date of Birth :");
 			
 			nricLabel = new JLabel();
 			nricLabel.setBounds(new Rectangle(2, 164, 65, 30));
-			nricLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+			nricLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
 			nricLabel.setText("Nric :");
 			
 			schoolLabel = new JLabel();
 			schoolLabel.setBounds(new Rectangle(496, 238, 89, 30));
-			schoolLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+			schoolLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
 			schoolLabel.setText("School :");
 			
 			emailLabel = new JLabel();
 			emailLabel.setBounds(new Rectangle(495, 26, 83, 30));
-			emailLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+			emailLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
 			emailLabel.setText("Email  :");
 			
 			telephoneLabel = new JLabel();
 			telephoneLabel.setBounds(new Rectangle(495, 133, 98, 30));
-			telephoneLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+			telephoneLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
 			telephoneLabel.setText("Telephone :");
 			
 			handphoneLabel = new JLabel();
 			handphoneLabel.setBounds(new Rectangle(496, 179, 105, 30));
-			handphoneLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+			handphoneLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
 			handphoneLabel.setText("Handphone :");
 			
 			typeLabel = new JLabel();
 			typeLabel.setFont(new Font("Dialog", Font.BOLD, 14));
 			typeLabel.setBounds(new Rectangle(892, 22, 400, 30));
 			typeLabel.setText("Account Type :");
+			typeLabel.setVisible(false);
 			
 			//TextBox
 			userNameTextBox =new JTextField();
@@ -803,6 +844,7 @@ public class AdministrateRIDetails {
 			typeTextBox=new JTextField();
 			typeTextBox.setEditable(false);
 			typeTextBox.setBounds(new Rectangle(1018, 26, 72, 25));
+			typeTextBox.setVisible(false);
 			
 			statusTextBox=new JTextField();
 			statusTextBox.setBounds(new Rectangle(800, 300, 150, 25));
@@ -846,6 +888,8 @@ public class AdministrateRIDetails {
 			infoPanel.add(addressLabel, null);
 			infoPanel.add(typeLabel, null);
 			infoPanel.add(typeTextBox, null);
+			infoPanel.add(jLabel, null);
+			infoPanel.add(cancelLabel, null);
 			
 			
 			
@@ -865,14 +909,148 @@ public class AdministrateRIDetails {
 			updateLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Actions-document-edit-icon.png")));
 			updateLabel.setBounds(new Rectangle(47, 11, 267, 116));
 			updateLabel.setText("Update This Account");
+			updateLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent e) {
+					
+					updateAccount();
+					
+				}
+				private void updateAccount() {
+					Object[] options = { "OK", "CANCEL" };
+					int confirmUpdateOption = JOptionPane.showOptionDialog(null, "Are You Sure You Want to UPDATE  " +userNameTextBox.getText() +"", "Please Confirm",
+					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+					null, options, options[0]);
+					if (confirmUpdateOption == 0){
+						jLabel.setVisible(true);
+						cancelLabel.setVisible(true);
+						
+						userNameTextBox.setEditable(true);
+						firstNameTextBox.setEditable(true);
+						lastNameTextBox.setEditable(true);
+						dateOfBirthTextBox.setEditable(true);
+						emailTextBox.setEditable(true);
+				
+						nricTextBox.setEditable(true);
+						schoolTextBox.setEditable(true);
+						addressTextBox.setEditable(true);
+						telephoneTextBox.setEditable(true);
+						handphoneTextBox.setEditable(true);
+//						typeTextBox.setEditable(true);
+//						statusTextBox.setEditable(true);
+					}
+				}
+			});
 			viewPaymentAndEventLabel = new JLabel();
 			viewPaymentAndEventLabel.setBounds(new Rectangle(608, 24, 259, 102));
 			viewPaymentAndEventLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/data-management-icon.png")));
 			viewPaymentAndEventLabel.setText("View Payments and Events");
+			viewPaymentAndEventLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent e) {
+					getFrames().setVisible(true);
+					
+				}
+			});
 			makeDisableLabel = new JLabel();
-			makeDisableLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Button-Close-icon.png")));
-			makeDisableLabel.setBounds(new Rectangle(872, 17, 257, 105));
+			makeDisableLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Windows-Close-Program-icon.png")));
+			makeDisableLabel.setBounds(new Rectangle(871, 27, 257, 105));
 			makeDisableLabel.setText("Disable This Account");
+			makeDisableLabel.setVisible(true);
+			makeDisableLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent e) {
+					
+					
+					if(makeDisableLabel.getText()=="Disable This Account"){
+					
+					Object[] options = { "OK", "CANCEL" };
+					int confirmUpdateOption = JOptionPane.showOptionDialog(null, "Are sure you want to disable  "+userNameTextBox.getText()+"?", "Please Confirm",
+					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+					null, options, options[0]);
+					if (confirmUpdateOption == 0){
+					
+					statusTextBox.setText("Disable");
+					UpdateRIController disableAccount = new UpdateRIController();
+					disableAccount.disableRIAccount(userNameTextBox.getText(), statusTextBox.getText());
+					}
+					
+					JOptionPane.showConfirmDialog(null,""+userNameTextBox.getText()+" Has Been Successfully disabled!",
+							   "Disable Confirmed!", JOptionPane.CLOSED_OPTION);
+					}
+
+					String[] emailArray1;               
+				      emailArray1 = new String[1]; 
+				      emailArray1[0] = emailTextBox.getText();
+					
+					EmailController deActiveEmail = new EmailController();
+					try {
+						deActiveEmail.sendEmail("text",emailArray1, "Account Set to Inactive", "Please be notified that your account is currently deactivated.", null, "Account");
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					
+
+					if(makeDisableLabel.getText()=="Enable Account"){
+						Object[] options = { "OK", "CANCEL" };
+						int confirmUpdateOption = JOptionPane.showOptionDialog(null, "Are Sure You want to Enable  "+userNameTextBox.getText()+"?", "Please Confirm",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+						null, options, options[0]);
+						if (confirmUpdateOption == 0){
+						
+						statusTextBox.setText("Active");
+						UpdateRIController disableAccount = new UpdateRIController();
+						disableAccount.disableRIAccount(userNameTextBox.getText(), statusTextBox.getText());
+						}
+						
+						
+						String[] emailArray;               
+					      emailArray = new String[1]; 
+					      emailArray[0] = emailTextBox.getText();
+						
+						EmailController activeEmail = new EmailController();
+						try {
+							activeEmail.sendEmail("text",emailArray, "Account Set to Active", "Please be notified that your account is currently set to active.", null, "Account");
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+					
+					
+					tableModel = viewRIDetailsController.getRITableModel();
+					table.setModel(tableModel);
+					table.updateUI();
+					
+					userNameTextBox.setText("");
+					firstNameTextBox.setText("");
+					lastNameTextBox.setText("");
+					//parseDate(date()), 
+					dateOfBirthTextBox.setText("");
+					nricTextBox.setText("");
+					schoolTextBox.setText("");
+					emailTextBox.setText("");
+					addressTextBox.setText("");
+					telephoneTextBox.setText("");
+					handphoneTextBox.setText("");
+					statusTextBox.setText("");
+					typeTextBox.setText("");
+					//secretQuestion(),
+					
+					userNameTextBox.setEditable(false);
+					firstNameTextBox.setEditable(false);
+					lastNameTextBox.setEditable(false);
+					dateOfBirthTextBox.setEditable(false);
+					emailTextBox.setEditable(false);
+					nricTextBox.setEditable(false);
+					schoolTextBox.setEditable(false);
+					addressTextBox.setEditable(false);
+					telephoneTextBox.setEditable(false);
+					handphoneTextBox.setEditable(false);
+					}
+
+					
+				}
+			});
 			deleteLabel = new JLabel();
 			deleteLabel.setBounds(new Rectangle(345, 13, 254, 115));
 			deleteLabel.setDisplayedMnemonic(KeyEvent.VK_UNDEFINED);

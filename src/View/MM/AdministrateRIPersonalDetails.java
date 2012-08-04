@@ -2,6 +2,8 @@ package View.MM;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 import javax.swing.JButton;
@@ -12,14 +14,17 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.JViewport;
 import javax.swing.table.DefaultTableCellRenderer;
 
 import Controller.EmailController;
 import Controller.MM.UpdateRIController;
 import Controller.MM.ViewRIPersonalController;
+import Images.RIM.ImageHelper;
 import Model.Membership.Account;
 import javax.swing.ImageIcon;
 import java.awt.Dimension;
+import javax.swing.JPasswordField;
 
 public class AdministrateRIPersonalDetails {
 	
@@ -70,7 +75,6 @@ public class AdministrateRIPersonalDetails {
 	//Buttons
 
 	private JButton  updateAccountButton;
-	private JButton requestCloseAccountButton;
 	private JButton submitButton;
 	private JButton cancelButtonUpdate;
 
@@ -78,7 +82,7 @@ public class AdministrateRIPersonalDetails {
 
 	private JLabel requestCloseLabel = null;
 
-	private JLabel riInfo = null;
+	private JLabel jLabel = null;
 
 	private JFrame getUpdateFrame(){
 		updateFrame = new JFrame();
@@ -245,10 +249,16 @@ public class AdministrateRIPersonalDetails {
 							emailTextBox.getText(), telephoneTextBox.getText(),
 							handphoneTextBox.getText());
 
-					updateAccountButton.setVisible(true);
+					JOptionPane.showConfirmDialog(null, ""
+							+ userNameTextBox.getText()
+							+ "Has Been Successfully updated!",
+							"Account Updated!", JOptionPane.CLOSED_OPTION);
+					
+
 					String[] emailArray1;
 					emailArray1 = new String[1];
 					emailArray1[0] = Account.currentUser.getEmail();
+					updateFrame.setVisible(false);
 
 					EmailController updateEmail = new EmailController();
 					try {
@@ -263,11 +273,7 @@ public class AdministrateRIPersonalDetails {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 
-						JOptionPane.showConfirmDialog(null, ""
-								+ userNameTextBox.getText()
-								+ "Has Been Successfully updated!",
-								"Account Updated!", JOptionPane.CLOSED_OPTION);
-
+						
 						getJFrame().setVisible(true);
 
 					}
@@ -314,19 +320,100 @@ public class AdministrateRIPersonalDetails {
 	
 	
 	private JPanel getPanel(){
-	riInfo = new JLabel();
-	riInfo.setBounds(new Rectangle(0, 1, 443, 104));
-	riInfo.setFont(new Font("Gill Sans MT", Font.BOLD | Font.ITALIC, 24));
-	riInfo.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Personal-information-128.png")));
-	riInfo.setText("RI Personal Information");
-	requestCloseLabel = new JLabel();
-	requestCloseLabel.setBounds(new Rectangle(740, 68, 316, 145));
-	requestCloseLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Actions-edit-delete-shred-icon.png")));
-	requestCloseLabel.setText("Request Account Closure");
+	
+		
+		jLabel = new JLabel();
+		jLabel.setBounds(new Rectangle(2, 257, 428, 63));
+		jLabel.setText("Current Events and Payment");
+		jLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 22));
+		requestCloseLabel = new JLabel();
+		requestCloseLabel.setBounds(new Rectangle(824, 229, 233, 111));
+		requestCloseLabel.setIcon(new ImageIcon(getClass().getResource(
+				"/Images/MM/Actions-edit-delete-shred-icon.png")));
+		requestCloseLabel.setText("Request Account Closure");
+		requestCloseLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseClicked(java.awt.event.MouseEvent e) {
+				Object[] options = { "OK", "CANCEL" };
+				int confirmUpdateOption = JOptionPane.showOptionDialog(null,
+						"Are You Sure you want to delete your account?",
+						"Request Account Closure", JOptionPane.DEFAULT_OPTION,
+						JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+				if (confirmUpdateOption == 0) {
+//					if (tableEvent.getModel().getValueAt(0, 0) == null) {
+//
+//						table.setVisible(false);
+//
+//						JLabel noRecordsLabel = new JLabel("No records found.");
+//						noRecordsLabel.setLocation(table.getLocation());
+
+						for (int i = 0; i < tableEvent.getModel().getRowCount(); i++) {
+
+							if (!tableEvent.getModel().getValueAt(i, 1).equals(
+									"Confirmed")
+									|| !tableEvent.getModel().getValueAt(i, 1)
+											.equals("Cancelled")
+									&& !tableEvent.getModel().getValueAt(i, 4)
+											.equals("0")
+									|| !tableEvent.getModel().getValueAt(i, 4)
+											.equals("")) {
+
+								System.out.println("Outstanding payment/event");
+
+								JOptionPane
+										.showConfirmDialog(
+												null,
+												"You have an outstanding event or Payment. Please Contact Great Reunion for further details",
+												"Unable to delete",
+												JOptionPane.CLOSED_OPTION);
+
+							}
+					//	}
+					}
+				}
+
+				else {
+
+					String closureReason = JOptionPane.showInputDialog(null,
+							"Please enter the reason for closure : ",
+							"Closure request sent!", 1);
+
+					UpdateRIController closureReasonUpdate = new UpdateRIController();
+
+					closureReasonUpdate.updateClosure(Account.currentUser
+							.getUserName(), closureReason);
+
+					String[] emailArray;
+					emailArray = new String[1];
+					emailArray[0] = Account.currentUser.getEmail();
+
+					EmailController deActiveEmail = new EmailController();
+					try {
+						deActiveEmail
+								.sendEmail(
+										"text",
+										emailArray,
+										"Request for closure Account",
+										"Please be notified that your request for account closure is currently being reviewed.",
+										null, "Account");
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
+				}
+
+			}
+		});
+
 	updateLabel = new JLabel();
-	updateLabel.setBounds(new Rectangle(741, 212, 310, 146));
+	updateLabel.setBounds(new Rectangle(811, 4, 235, 95));
 	updateLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Actions-document-edit-icon.png")));
 	updateLabel.setText("Update Account");
+	updateLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+		public void mouseClicked(java.awt.event.MouseEvent e) {
+			getUpdateFrame().setVisible(true);
+		}
+	});
 	panel = new JPanel();	
 	panel.setLayout(null);
 	panel.setFont(new Font("Dialog", Font.PLAIN, 14));
@@ -337,7 +424,7 @@ public class AdministrateRIPersonalDetails {
 	//Labels
 	 
 	title = new JLabel();
-	title.setBounds(new Rectangle(1, 243, 750, 113));
+	title.setBounds(new Rectangle(-1, 3, 750, 113));
 	title.setFont(new Font("Gill Sans MT", Font.BOLD | Font.ITALIC, 30));
 	title.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Personal-information-128.png")));
 	title.setText("Personal details");
@@ -409,91 +496,15 @@ public class AdministrateRIPersonalDetails {
 	
 	//Buttons
 	
-	updateAccountButton = new JButton();
-	updateAccountButton.setBounds(1170, 52, 150, 30);
-	updateAccountButton.setText("Update Account");
-	updateAccountButton.addActionListener(new java.awt.event.ActionListener() {
-		public void actionPerformed(java.awt.event.ActionEvent e) {
-			
-			getUpdateFrame().setVisible(true);
-			
-		}
-	});
+
 	
 
 
 	
 	
-				requestCloseAccountButton = new JButton();
-					requestCloseAccountButton.setBounds(1179, 161, 293, 30);
-					requestCloseAccountButton.setText("Request Account Closure");
-					requestCloseAccountButton
-						.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent e) {
-					Object[] options = { "OK", "CANCEL" };
-						int confirmUpdateOption = JOptionPane.showOptionDialog(null, "Are You Sure you want to delete your account?", "Request Account Closure",
-						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,null, options, options[0]);
-					if (confirmUpdateOption==0)
-					{
-						//if(eventStatus.getText().equalsIgnoreCase("Confirmed")|| eventStatus.getText().equals("Cancelled") && amountBalance.getText().isEmpty()|| amountBalance.getText().equalsIgnoreCase("0")){
-							
-						
-							for(int i=0; i<tableEvent.getModel().getRowCount(); i++){
-							
-								if(!tableEvent.getModel().getValueAt(i, 1).equals("Confirmed")|| !tableEvent.getModel().getValueAt(i, 1).equals("Cancelled") && !tableEvent.getModel().getValueAt(i, 4).equals("0")|| !tableEvent.getModel().getValueAt(i, 4).equals("")){
-								
-									System.out.println("Outstanding payment/event");
-									
-								
-									JOptionPane.showConfirmDialog(null,"You have an outstanding event or Payment. Please Contact Great Reunion for further details",
-											   "Unable to delete", JOptionPane.CLOSED_OPTION);
-								
-						}
-								
-						else {
-							
-							
-							
-							
-							String closureReason = JOptionPane.showInputDialog(null, "Please enter the reason for closure : ", 
-									"Closure request sent!", 1);
-
-									UpdateRIController closureReasonUpdate = new UpdateRIController();
-
-									closureReasonUpdate.updateClosure(
-											Account.currentUser.getUserName(),
-											closureReason);
-
-									String[] emailArray;
-									emailArray = new String[1];
-									emailArray[0] = Account.currentUser
-											.getEmail();
-
-									EmailController deActiveEmail = new EmailController();
-									try {
-										deActiveEmail
-												.sendEmail(
-														"text",
-														emailArray,
-														"Request for closure Account",
-														"Please be notified that your request for account closure is currently being reviewed.",
-														null, "Account");
-									} catch (Exception e1) {
-										// TODO Auto-generated catch block
-										e1.printStackTrace();
-									}
-
-								}
-							}
-						}
-					}
-
-				});
-
 			
 			panel.add(title);
-			panel.add(requestCloseAccountButton);
-			panel.add(updateAccountButton);
+		//	panel.add(updateAccountButton);
 			
 			panel.add(userNameTextBox);
 			panel.add(firstNameTextBox);
@@ -509,32 +520,53 @@ public class AdministrateRIPersonalDetails {
 			panel.add(amountBalance);
 		
 			JScrollPane tableScrollPane = new JScrollPane(getTable());
-			tableScrollPane.setBounds(-2, 361, 1196, 61);
+			tableScrollPane.setBounds(0, 120, 1196, 61);
 			tableScrollPane.setFont(new Font("Dialog", Font.BOLD, 18));
 			tableScrollPane.setEnabled(false);
 			panel.add(tableScrollPane);
 			
 			table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 			JScrollPane tableScrollPaneEvent = new JScrollPane(getTableEvent());
-			tableScrollPaneEvent.setBounds(1, 109, 663, 100);
+			tableScrollPaneEvent.setBounds(2, 329, 663, 100);
 			panel.add(tableScrollPaneEvent);
 			panel.add(updateLabel, null);
 			panel.add(requestCloseLabel, null);
-			panel.add(riInfo, null);
+			panel.add(jLabel, null);
 				
 		
 			
 		return panel;
-	}
+	
 		
-
+	}
 	
 	
 	public JTable getTableEvent() {
 
 		
 
-		tableEvent = new JTable();
+		tableEvent = new JTable() {
+			public boolean getScrollableTracksViewportHeight() {
+				if (getParent() instanceof JViewport)
+					return (((JViewport) getParent()).getHeight() > getPreferredSize().height);
+
+				return super.getScrollableTracksViewportHeight();
+			}
+
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				if (getRowCount() == 0) {
+					Graphics2D g2d = (Graphics2D) g;
+					g2d.setColor(Color.BLACK);
+				//	java.awt.Image image = //load image
+//					g2d.drawImage(image,
+//							this.getWidth() - image.getWidth(null),
+//							this.getHeight() - image.getHeight(null), null);
+//					g2d.drawString("Sorry, no events found...", 0, 0);
+				}
+			}
+
+		};
 
 		tableEvent.setBackground(Color.white);
 		tableEvent.setBorder(null);

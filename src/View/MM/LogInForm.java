@@ -68,11 +68,11 @@ public class LogInForm extends JFrame {
 			if (loginPanel == null) {
 				passwordLabel = new JLabel();
 				passwordLabel.setText("Password");
-				passwordLabel.setFont(new Font("Gill Sans MT", Font.BOLD | Font.ITALIC, 18));
+				passwordLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 20));
 				passwordLabel.setBounds(new Rectangle(193, 202, 130, 20));
 				userNameLabel = new JLabel();
 				userNameLabel.setText("User Name");
-				userNameLabel.setFont(new Font("Gill Sans MT", Font.BOLD | Font.ITALIC, 18));
+				userNameLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 20));
 				userNameLabel.setBounds(new Rectangle(193, 127, 153, 38));
 				loginPanel = new JPanel();
 				loginPanel.setLayout(null);
@@ -178,6 +178,7 @@ public class LogInForm extends JFrame {
 				jLabel2.setBackground(new Color(2, 238, 238));
 				jLabel2.setText("");
 				jLabel1 = new JLabel();
+				
 				jLabel1.setBounds(new Rectangle(0, -1, 134, 374));
 				jLabel1.setFont(new Font("Dialog", Font.BOLD, 12));
 				jLabel1.setForeground(new Color(15, 50, 50));

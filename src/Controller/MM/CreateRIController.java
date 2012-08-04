@@ -1,5 +1,6 @@
 package Controller.MM;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import Model.Membership.*;
 
@@ -28,15 +29,11 @@ public class CreateRIController {
 		newRI.setUserName(userName);
 		newRI.setPassword(password);
 		 newRI.setType("RI");
-		 //newRI.setCreationDate(new
-		// SimpleDateFormat("YYYY-MM-DD hh:mm:ss").parse("1993-10-07 11:34:33"));
 		 newRI.setStatus("Active");
-		// newRI.setConfirmed("1");
+		newRI.setConfirmed(true);
 		newRI.setFirstName(firstName);
 		newRI.setLastName(lastName);
-	//	newRI.setDateOfBirth(dateOfBirth);//
-		@SuppressWarnings("unused")
-		Date d= new Date(0, 0, 0);
+		newRI.setDateOfBirth(new SimpleDateFormat("YYYY-MM-DD").parse(dateOfBirth));
 		newRI.setNric(nric);
 		newRI.setSchool(school);
 		newRI.setEmail(email);

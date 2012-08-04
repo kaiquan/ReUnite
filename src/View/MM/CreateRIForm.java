@@ -38,9 +38,6 @@ public class CreateRIForm extends JFrame {
 	
 	private JFrame jFrame ;  //  @jve:decl-index=0:visual-constraint="-21,27"
 	private JPanel panel;
-	private JButton submitRegistrationButton;
-	private JButton cancelButton;
-	
 	private  JComboBox monthCombo;
 	private JComboBox dayCombo;
 	private JComboBox yearCombo;
@@ -82,6 +79,7 @@ public class CreateRIForm extends JFrame {
 	private JLabel SignIn = null;
 	private JLabel submitLabel = null;
 	private JLabel jLabel = null;
+	private JLabel maxCharacter = null;
 	/**
 	 * This method initializes 
 	 * 
@@ -128,7 +126,7 @@ public class CreateRIForm extends JFrame {
 	
 	private JPanel getPanel(){
 		jLabel = new JLabel();
-		jLabel.setBounds(new Rectangle(637, 421, 193, 91));
+		jLabel.setBounds(new Rectangle(354, 422, 193, 91));
 		jLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Windows-Close-Program-icon.png")));
 		jLabel.setText("Cancel");
 		jLabel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -138,9 +136,9 @@ public class CreateRIForm extends JFrame {
 			}
 		});
 		submitLabel = new JLabel();
-		submitLabel.setBounds(new Rectangle(418, 427, 141, 82));
+		submitLabel.setBounds(new Rectangle(627, 424, 141, 82));
 		submitLabel.setDisplayedMnemonic(KeyEvent.VK_UNDEFINED);
-		submitLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/App-noatun-icon.png")));
+		submitLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/80_140____button-add-icon_28.png")));
 		submitLabel.setText("Submit");
 		submitLabel.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
@@ -168,7 +166,9 @@ public class CreateRIForm extends JFrame {
 		});
 		cPasswordLabel = new JLabel();
 		cPasswordLabel.setText("Confirm Password");
-		cPasswordLabel.setBounds(new Rectangle(340, 79, 129, 16));
+		cPasswordLabel.setBounds(new Rectangle(340, 79, 129, 20));
+		cPasswordLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
+		
 		panel = new JPanel();	
 		panel.setLayout(null);
 		panel.setSize(500,500);
@@ -177,59 +177,34 @@ public class CreateRIForm extends JFrame {
 		
 		//Button
 		
-		cancelButton = new JButton();
-		cancelButton.setBounds(new Rectangle(972, 500, 81, 31));
-		cancelButton.setText("Cancel");
-		cancelButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent e) {
-				
-				jFrame.setVisible(false);
-				
-			}
-		});
 		
 		
 		
-		submitRegistrationButton = new JButton();
-		submitRegistrationButton.setBounds(new Rectangle(871, 503, 113, 42));
-		submitRegistrationButton.setIcon(new ImageIcon(getClass().getResource("/Images/MM/registration_submit_icon.png")));
-		submitRegistrationButton.setText("Submit");
-		submitRegistrationButton
-				.addActionListener(new java.awt.event.ActionListener() {
-					public void actionPerformed(java.awt.event.ActionEvent e) {
-						
-			
-				if(validation()){
-					System.out.println("validation ok");
-				}
-				createUser();	
-				
-			}});
 		
 		//combo box
 		
 		dayCombo = new JComboBox(dayArray());
-		dayCombo.setBounds(340, 230, 40, 20);
+		dayCombo.setBounds(340, 230, 60, 24);
 		
 		monthCombo = new JComboBox(monthArray());
-		monthCombo.setBounds(390, 230, 100, 20);
+		monthCombo.setBounds(400, 230, 100, 24);
 
 		
 		yearCombo = new JComboBox(yearArray());
-		yearCombo.setBounds(500, 230, 70, 20);
+		yearCombo.setBounds(500, 230, 70, 24);
 	
 		
 		
 		
 		secretQuestionCombo = new JComboBox(secretQuestion());
-		secretQuestionCombo.setBounds(975,110,180,20);
+		secretQuestionCombo.setBounds(975,110,180,23);
 		
 		
 		//Labels
 		
 		headerText = new JLabel();
 		headerText.setBounds(new Rectangle(-6, -10, 913, 153));
-		headerText.setFont(new Font("Eras Light ITC", Font.BOLD | Font.ITALIC, 18));
+		headerText.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 24));
 		headerText.setBackground(Color.black);
 		headerText.setIcon(new ImageIcon(getClass().getResource("/Images/MM/icon-people.png")));
 		headerText.setForeground(Color.black);
@@ -239,57 +214,78 @@ public class CreateRIForm extends JFrame {
 		userNameLabel = new JLabel();
 		userNameLabel.setText("User Name");
 		userNameLabel.setBounds(new Rectangle(31, 13, 140, 20));
+		userNameLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
 		
 		passwordLabel = new JLabel();
 		passwordLabel.setText("Password");
 		passwordLabel.setBounds(new Rectangle(30, 76, 140, 20));
+		passwordLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
+		
 		
 		firstNameLabel = new JLabel();
 		firstNameLabel.setText("First Name");
 		firstNameLabel.setBounds(new Rectangle(31, 137, 140, 20));
+		firstNameLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
+		
 		
 		
 		lastNameLabel = new JLabel();
 		lastNameLabel.setText("Last Name");
-		lastNameLabel.setBounds(new Rectangle(30, 197, 140, 20));
+		lastNameLabel.setBounds(new Rectangle(30, 197, 140, 16));
+		lastNameLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
+		
 		
 		dateOfBirthLabel = new JLabel();//
 		dateOfBirthLabel.setText("Date Of Birth");
 
 		dateOfBirthLabel.setBounds(new Rectangle(341, 196, 140, 20));
+		dateOfBirthLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
+		
 		
 		nricLabel = new JLabel();
 		nricLabel.setText("NRIC");
 		nricLabel.setBounds(new Rectangle(339, 137, 140, 20));
+		nricLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
+		
 		
 		schoolLabel = new JLabel();
 		schoolLabel.setText("School");
-		schoolLabel.setBounds(new Rectangle(974, 27, 140, 20));
+		schoolLabel.setBounds(new Rectangle(974, 27, 140, 16));
+		schoolLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
 		
 		emailLabel = new JLabel();
 		emailLabel.setText("Email");
 		emailLabel.setBounds(new Rectangle(340, 15, 140, 20));
+		emailLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
+		
 		
 		addressLabel = new JLabel();
 		addressLabel.setText("Address");
 		addressLabel.setBounds(new Rectangle(650, 160, 140, 20));
+		addressLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
 		
 		telephoneNoLabel = new JLabel();
 		telephoneNoLabel.setText("Tel. No");
 		telephoneNoLabel.setBounds(new Rectangle(645, 27, 140, 20));
+		telephoneNoLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
+		
 		
 		handphoneNoLabel = new JLabel();
 		handphoneNoLabel.setText("H/p No");
 		handphoneNoLabel.setBounds(new Rectangle(649, 87, 140, 20));
+		handphoneNoLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
+		
 		
 
 		secretQuestionLabel = new JLabel();
 		secretQuestionLabel.setText("Secret Question");
 		secretQuestionLabel.setBounds(new Rectangle(975, 89, 140, 20));
+		secretQuestionLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
 		
 		secretAnswerLabel = new JLabel();
 		secretAnswerLabel.setText("Secret Answer");
 		secretAnswerLabel.setBounds(new Rectangle(975, 154, 140, 20));
+		secretAnswerLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
 		
 		
 		
@@ -322,7 +318,7 @@ public class CreateRIForm extends JFrame {
 		nricTextBox.setBackground(new Color(219, 225, 224));
 		
 		schoolTextBox = new JTextField();
-		schoolTextBox.setBounds(new Rectangle(975, 57, 140, 20));
+		schoolTextBox.setBounds(new Rectangle(975, 48, 140, 29));
 		schoolTextBox.setBackground(new Color(219, 225, 224));
 		
 		emailTextBox = new JTextField();
@@ -350,9 +346,6 @@ public class CreateRIForm extends JFrame {
 		
 		
 		//button
-		panel.add(submitRegistrationButton);
-		//panel.add(getSubmitRegistrationButton());
-		panel.add(cancelButton);
 		
 		
 		//comboBox
@@ -475,6 +468,8 @@ public class CreateRIForm extends JFrame {
 				}
 				
 				public void createUser(){
+					String dateOfBirth = yearCombo.getSelectedItem()+"-"+monthCombo.getSelectedItem()+"-"+dayCombo.getSelectedItem();
+					
 					CreateRIController registerController = new CreateRIController();
 					try {
 						registerController.createRegistration(
@@ -482,7 +477,7 @@ public class CreateRIForm extends JFrame {
 											passwordTextBox.getText(),
 											firstNameTextBox.getText(),
 											lastNameTextBox.getText(),
-											toString(),
+											dateOfBirth,
 											nricTextBox.getText(),
 											schoolTextBox.getText(),
 											emailTextBox.getText(),
@@ -530,6 +525,10 @@ public class CreateRIForm extends JFrame {
 	 */
 	private JPanel getJPanel() {
 		if (jPanel == null) {
+			maxCharacter = new JLabel();
+			maxCharacter.setBounds(new Rectangle(181, 83, 137, 14));
+			maxCharacter.setFont(new Font("DialogInput", Font.PLAIN, 14));
+			maxCharacter.setText("max 8 characters");
 			jPanel = new JPanel();
 			jPanel.setLayout(null);
 			jPanel.setBounds(new Rectangle(-26, 141, 1263, 269));
@@ -564,6 +563,7 @@ public class CreateRIForm extends JFrame {
 			jPanel.add(monthCombo);
 			jPanel.add(dayCombo);
 			jPanel.add(yearCombo);
+			jPanel.add(maxCharacter, null);
 			jPanel.add(secretQuestionCombo);
 			
 		}

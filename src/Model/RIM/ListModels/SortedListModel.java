@@ -1,4 +1,3 @@
-
 package Model.RIM.ListModels;
 
 import java.text.Collator;

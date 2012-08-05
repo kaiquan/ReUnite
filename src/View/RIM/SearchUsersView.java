@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
 
 import net.miginfocom.swing.MigLayout;
@@ -22,7 +21,6 @@ import View.RIM.Components.Table.*;
 public class SearchUsersView extends JFrame
 {
 	SearchUsersController controller = new SearchUsersController();
-	private JTextField txtSearchOurDirectory;
 	public JTable table;
 	private JButton btnAddToList;
 
@@ -42,12 +40,6 @@ public class SearchUsersView extends JFrame
 	private void setPanel()
 	{
 		getContentPane().setLayout(new MigLayout("", "[198.00,grow][449.00,grow][195.00,grow][21.00]", "[38.00][374.00,grow][]"));
-
-		txtSearchOurDirectory = new JTextField();
-		txtSearchOurDirectory.setText("  Search our directory of users...");
-		getContentPane().add(txtSearchOurDirectory, "cell 1 0,grow");
-		txtSearchOurDirectory.setColumns(10);
-
 		table = new JTable(controller.getTableModel());
 		table.setRowHeight(75);
 		table.getTableHeader().setReorderingAllowed(false);

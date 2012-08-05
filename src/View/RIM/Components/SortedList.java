@@ -10,6 +10,7 @@ import javax.swing.event.ListSelectionListener;
 
 import net.miginfocom.swing.MigLayout;
 
+import Model.Membership.Guest;
 import Model.RIM.ListModels.*;
 
 
@@ -17,12 +18,12 @@ import Model.RIM.ListModels.*;
 public class SortedList extends JFrame {
 	
     private SortedListModel sortedModel;
-    private DefaultListModel<Object> unsortedModel;
+    private DefaultListModel<Guest> unsortedModel;
     
     private ButtonGroup bgSortOrder;
     private JButton btnAddEntry;
     private JButton btnDeleteSelection;
-    private JList<Object> list;
+    private JList<Guest> list;
     private JPanel panelSort;
     private JRadioButton rbAscendingSort;
     private JRadioButton rbDescendingSort;
@@ -32,7 +33,7 @@ public class SortedList extends JFrame {
 
     public SortedList() {
         super("Sorted List");
-        unsortedModel = new DefaultListModel<Object>();
+        unsortedModel = new DefaultListModel<Guest>();
         sortedModel = new SortedListModel(unsortedModel);
         initComponents();
     }
@@ -41,7 +42,7 @@ public class SortedList extends JFrame {
     private void initComponents() {
         bgSortOrder = new ButtonGroup();
         scrollPane = new JScrollPane();
-        list = new JList<Object>();
+        list = new JList<Guest>();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -194,21 +195,10 @@ public class SortedList extends JFrame {
     }//GEN-LAST:event_txtAddEntryKeyPressed
 
     private void btnAddEntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEntryActionPerformed
-        String newText = txtAddEntry.getText();
-        // don't add empty or null strings to model
-        if (newText != null && newText.length() > 0) {
-            unsortedModel.addElement(newText);
+
+            unsortedModel.addElement(new Guest());
         }
-        txtAddEntry.setText(null);
-    }//GEN-LAST:event_btnAddEntryActionPerformed
-    
-    void test1() {
-        String[] list = {"turtle", "frog", "anteater", 
-                         "ant", "rabbit", "dog", "cat" };
-        for (String data : list ) {
-            unsortedModel.addElement(data);
-        }
-    }
+ 
     
     /**
      * @param args the command line arguments
@@ -217,7 +207,6 @@ public class SortedList extends JFrame {
     {
     	SortedList app = new SortedList();
         app.setVisible(true);
-        app.test1();
     }
 
   

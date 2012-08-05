@@ -7,6 +7,8 @@ import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.table.TableCellRenderer;
+
+import Images.RIM.ImageHelper;
 import Model.Membership.*;
 @SuppressWarnings("serial")
 public class ButtonRenderer extends JButton implements TableCellRenderer {
@@ -27,14 +29,14 @@ public class ButtonRenderer extends JButton implements TableCellRenderer {
 	    if(((Boolean)value).booleanValue() == false){
 		    if(Account.currentUser.getType().equalsIgnoreCase("RI")){
 		    	setText("Send now");
+		    	setIcon(ImageHelper.loadImageIcon("sendNow.png", "", 20, -1, 5));
 		    }
-		    else if(Account.currentUser.getType().equalsIgnoreCase("RI")){
-	    	setText("Notify RI");
-		    }
+		   
 	    }else
 	    {
-	    	JCheckBox checkBox = new JCheckBox("", (Boolean) value);
+	    	JCheckBox checkBox = new JCheckBox("", (boolean) value);
 	    	checkBox.setEnabled(false);
+	    	checkBox.setIcon(ImageHelper.loadImageIcon("sentAlready.png", "", 20, -1, 5));
 	    	return checkBox;
 	    }
 	   

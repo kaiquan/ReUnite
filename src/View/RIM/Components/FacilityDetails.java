@@ -1,13 +1,13 @@
 package View.RIM.Components;
 
-import javax.swing.JPanel;
-import java.awt.GridBagLayout;
 import java.awt.Dimension;
-import javax.swing.JLabel;
 import java.awt.Rectangle;
-import javax.swing.JTextField;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import Model.Ballroom;
 import Model.Facility;

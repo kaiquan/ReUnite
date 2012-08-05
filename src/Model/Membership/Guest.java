@@ -101,6 +101,48 @@ public class Guest extends Account
 		return e1;
 	}
 
+	public String GET_RESPONSE(String userName, int invitationID)
+	{
+		ResultSet rs = null;
+		String response = null;
+		String dbQuery = "SELECT response FROM Guest WHERE userName= '"+userName+"' AND invitationID = "+invitationID;
+		try
+		{
+			rs = DB.readRequest(dbQuery);
+			while (rs.next())
+			{
+				response = rs.getString("response");
+			}
+
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+
+		return response;
+	}
+	
+	public boolean SET_RESPONSE(String userName, int invitationID, String response)
+	{
+		boolean success = false;
+		String dbQuery = "UPDATE Guest SET response = '"+response+"' WHERE userName= '"+userName+"' AND invitationID = "+invitationID;
+		try
+		{
+			int result = DB.updateRequest(dbQuery);
+			if(result>0)
+			{
+				success = true;
+			}	
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+
+		return success;
+	}
+	
 	public ArrayList<Guest> GET_ALL_GUESTS()
 	{
 		ArrayList<Guest> e1 = new ArrayList<Guest>();
@@ -205,11 +247,11 @@ public class Guest extends Account
 		
 		String sql = "INSERT INTO Account(userName, password, type, status, " +
 				"confirmed, firstName, lastName, dateOfBirth, nric, school, email," +
-				"profilePicture, address, telephoneNo, handphoneNo)"+
+				"profilePicture, address, handphoneNo)"+
 				" VALUES ('"+account.getUserName()+"', '"
 							+account.getNric()+"', '"
-							+account.getType()+"', '"
-							+account.getStatus()+"', "
+							+"Guest"+"', '"
+							+"Active"+"', "
 							+1+", '"
 							+account.getFirstName()+"', '"
 							+account.getLastName()+"', '"
@@ -219,7 +261,6 @@ public class Guest extends Account
 							+account.getEmail()+"', '"
 							+account.getProfilePicture()+"', '"
 							+account.getAddress()+"', '"
-							+account.getTelephoneNo()+"', '"
 							+account.getHandphoneNo()+"'"
 				+") " +
 				"ON DUPLICATE " +
@@ -236,7 +277,6 @@ public class Guest extends Account
 				"email = VALUES(email),"+
 				"profilePicture = VALUES(profilePicture), "+ 
 				"address=VALUES(address), "+
-				"telephoneNo = VALUES(telephoneNo), "+
 				"handphoneNo = VALUES(handphoneNo) ";
 		try
 		{

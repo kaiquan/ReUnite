@@ -43,6 +43,10 @@ public class InvitationReportTableModel extends AbstractTableModel
 
 	public boolean isCellEditable(int row, int column)
 	{
+		if(column==6)
+		{
+			return true;
+		}
 		return (false);
 	}
 

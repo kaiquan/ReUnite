@@ -3,10 +3,11 @@ package View.RIM.Components.Table;
 import java.awt.Component;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.table.TableCellRenderer;
-
+import Model.Membership.*;
 @SuppressWarnings("serial")
 public class ButtonRenderer extends JButton implements TableCellRenderer {
 
@@ -23,7 +24,20 @@ public class ButtonRenderer extends JButton implements TableCellRenderer {
 	      setForeground(table.getForeground());
 	      setBackground(UIManager.getColor("Button.background"));
 	    }
-	    setText((value == null) ? "" : value.toString());
+	    if(((Boolean)value).booleanValue() == false){
+		    if(Account.currentUser.getType().equalsIgnoreCase("RI")){
+		    	setText("Send now");
+		    }
+		    else if(Account.currentUser.getType().equalsIgnoreCase("RI")){
+	    	setText("Notify RI");
+		    }
+	    }else
+	    {
+	    	JCheckBox checkBox = new JCheckBox("", (Boolean) value);
+	    	checkBox.setEnabled(false);
+	    	return checkBox;
+	    }
+	   
 	    return this;
 	  }
 	}

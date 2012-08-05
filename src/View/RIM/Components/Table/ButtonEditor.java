@@ -1,67 +1,72 @@
 package View.RIM.Components.Table;
 
 import java.awt.Component;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.DefaultCellEditor;
+import javax.swing.AbstractCellEditor;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.TableCellEditor;
+
+import View.RIM.*;
 
 @SuppressWarnings("serial")
-public
-class ButtonEditor extends DefaultCellEditor {
-	  protected JButton button;
+public class ButtonEditor extends AbstractCellEditor implements TableCellEditor, ActionListener {
+	protected static final String EDIT = "edit";
+	
+	boolean value;
+	JButton button;
+	JTable table;
+	int row;
+	int column;
 
-	  private String label;
-
-	  private boolean isPushed;
-
-	  public ButtonEditor(JCheckBox checkBox) {
-	    super(checkBox);
-	    button = new JButton();
-	    button.setOpaque(true);
-	    button.addActionListener(new ActionListener() {
-	      public void actionPerformed(ActionEvent e) {
-	        fireEditingStopped();
-	      }
-	    });
+	  public ButtonEditor() {
+		  button = new JButton();
+			button.setActionCommand(EDIT);
+			button.addActionListener(this);
+			button.setBorderPainted(false);
 	  }
+	  
+	  public void actionPerformed(ActionEvent e) 
+		{
+			if (EDIT.equals(e.getActionCommand())) 
+			{
+				for(Window view : InvitationResponseView.getFrames())
+				{
+					view.dispose();
+				}
+				
+				for(Window view : InvitationDetailsView.getWindows())
+				{
+					view.dispose();
+				}
+				
+				new CreateInvitationView((int) table.getModel().getValueAt(row, 0));
+				//Make the renderer reappear.
+				fireEditingStopped();
+			} 
+		}
+	public Object getCellEditorValue() 
+	{
+		return value;
+	}
+	
+	//Implement the one method defined by TableCellEditor.
+	public Component getTableCellEditorComponent(JTable table,
+	                        Object value,
+	                        boolean isSelected,
+	                        int row,
+	                        int column) 
+	{
+		this.value = (boolean) value;
+		this.table = table;
+		this.row = row;
+		this.column = column;
+		if(this.value==false){button.setEnabled(false);};
+		return button;
+	}
 
-	  public Component getTableCellEditorComponent(JTable table, Object value,
-	      boolean isSelected, int row, int column) {
-	    if (isSelected) {
-	      button.setForeground(table.getSelectionForeground());
-	      button.setBackground(table.getSelectionBackground());
-	    } else {
-	      button.setForeground(table.getForeground());
-	      button.setBackground(table.getBackground());
-	    }
-	    label = (value == null) ? "" : value.toString();
-	    button.setText(label);
-	    isPushed = true;
-	    return button;
-	  }
 
-	  public Object getCellEditorValue() {
-	    if (isPushed) {
-	      // 
-	      // 
-	      JOptionPane.showMessageDialog(button, label + ": Ouch!");
-	      // System.out.println(label + ": Ouch!");
-	    }
-	    isPushed = false;
-	    return new String(label);
-	  }
-
-	  public boolean stopCellEditing() {
-	    isPushed = false;
-	    return super.stopCellEditing();
-	  }
-
-	  protected void fireEditingStopped() {
-	    super.fireEditingStopped();
-	  }
 	}

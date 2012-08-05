@@ -3,14 +3,16 @@ package View.RIM;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.util.Iterator;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -20,10 +22,10 @@ import javax.swing.border.TitledBorder;
 import net.miginfocom.swing.MigLayout;
 import Images.RIM.ImageHelper;
 import Model.Event;
-import Model.Invitation;
-import Model.Meal;
 import Model.Membership.Account;
+import Model.Membership.Guest;
 import Model.RIM.Chat.ClientGUI;
+import View.RIM.Components.EntertainmentPanel;
 import View.RIM.Components.PieChart;
 
 @SuppressWarnings("serial")
@@ -32,7 +34,7 @@ public class InvitationDetailsView extends JDialog
 	private JPanel mainPanel;
 	private JTabbedPane tabbedPane;
 	private JTabbedPane mealSubTabs;
-	private JPanel entertainmentTab;
+	private EntertainmentPanel entertainmentTab;
 	private JPanel panel_3;
 	private JPanel panel_4;
 	private JLabel lblGuestResponse;
@@ -50,6 +52,7 @@ public class InvitationDetailsView extends JDialog
 	private JEditorPane packageText;
 	private JLabel lblPackageDescription;
 	private JEditorPane packageDescriptionText;
+	
 	ClientGUI chatBox;
 
 	private Event event;
@@ -133,7 +136,7 @@ public class InvitationDetailsView extends JDialog
 		lblInitiatedBy = new JLabel("Initiated by: ");
 		mainPanel.add(lblInitiatedBy, "flowx,cell 1 0,gapx 8 0");
 
-		initiatedByText = new JLabel(event.getEventInitiator().getFirstName() + " " + event.getEventInitiator().getLastName() + " (" + event.getEventInitiator().getUserName() + ")");
+		initiatedByText = new JLabel(event.getEventInitiator().getUserName());
 		initiatedByText.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		mainPanel.add(initiatedByText, "cell 1 0,alignx center");
 
@@ -144,8 +147,7 @@ public class InvitationDetailsView extends JDialog
 		generalInfoPanel = new JPanel();
 		generalInfoPanel.setBorder(null);
 		mainPanel.add(generalInfoPanel, "cell 1 1,grow");
-		generalInfoPanel.setLayout(new MigLayout("", "[104px,grow][9.00][146.00,grow][64.00][27.00][104px,grow][][][-83.00px][][][][][70.00][65.00]",
-				"[18.00][][][][][][][][][][][][][][][][][][][][][][][25.00][][][grow][][12.00,grow][][][][24.00][][16.00][21.00px][26.00,grow]"));
+		generalInfoPanel.setLayout(new MigLayout("", "[104px,grow][9.00][146.00,grow][64.00][27.00][104px,grow][][][-83.00px][][][][][70.00][65.00]", "[18.00][][][][][][][][][][][][][][][][][][][][][][][25.00][][][grow][][12.00,grow][][][][24.00][][16.00][21.00px][26.00,grow]"));
 
 		final JLabel profilePicture = new JLabel("");
 		generalInfoPanel.add(profilePicture, "cell 0 0 1 14,alignx left,aligny top");
@@ -160,9 +162,9 @@ public class InvitationDetailsView extends JDialog
 		packageScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		packageText = new JEditorPane();
 		packageText.setText(event.getEventPackage().getPackageTitle());
-		packageText.setBackground(SystemColor.menu);
+		packageText.setBackground(SystemColor.control);
 		packageScrollPane.setViewportView(packageText);
-		generalInfoPanel.add(packageScrollPane, "flowx,cell 5 2 10 1,growx");
+		generalInfoPanel.add(packageScrollPane, "flowx,cell 5 2 10 2,growx");
 
 		JLabel lblTitle = new JLabel("Title:");
 		generalInfoPanel.add(lblTitle, "flowx,cell 2 4,aligny top");
@@ -175,7 +177,7 @@ public class InvitationDetailsView extends JDialog
 		titleScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		titleScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		JEditorPane titleText = new JEditorPane();
-		titleText.setBackground(SystemColor.menu);
+		titleText.setBackground(SystemColor.control);
 		titleText.setText(event.getEventName());
 		titleScrollPane.setViewportView(titleText);
 		generalInfoPanel.add(titleScrollPane, "cell 2 5 2 9,grow");
@@ -185,7 +187,7 @@ public class InvitationDetailsView extends JDialog
 		packageDescriptionPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		packageDescriptionPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		packageDescriptionText = new JEditorPane();
-		packageDescriptionText.setBackground(SystemColor.menu);
+		packageDescriptionText.setBackground(SystemColor.control);
 		packageDescriptionText.setText(event.getEventPackage().getPackageDescription());
 		packageDescriptionPane.setViewportView(packageDescriptionText);
 		generalInfoPanel.add(packageDescriptionPane, "cell 5 5 10 10,grow");
@@ -198,7 +200,7 @@ public class InvitationDetailsView extends JDialog
 		descriptionTextPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		descriptionTextPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		descriptionText = new JEditorPane();
-		descriptionText.setBackground(SystemColor.menu);
+		descriptionText.setBackground(SystemColor.control);
 		descriptionText.setText(event.getEventDescription());
 		descriptionText.setEditable(false);
 		descriptionTextPane.setViewportView(descriptionText);
@@ -210,28 +212,123 @@ public class InvitationDetailsView extends JDialog
 		dateTimeText = new JLabel(event.getEventDate() + " at " + event.getEventTime());
 		generalInfoPanel.add(dateTimeText, "cell 2 2,aligny top");
 
-		mainPanel.add(new PieChart(null, new Invitation()), "cell 2 1 2 2,grow");
+		int attending = event.getEventInvitation().GET_ATTENDING_GUESTS_COUNT(event.getEventInvitation().getInvitationID());
+		int notAttending = event.getEventInvitation().GET_NOT_ATTENDING_GUESTS_COUNT(event.getEventInvitation().getInvitationID());
+		int notSure = event.getEventInvitation().GET_NOT_SURE_GUESTS_COUNT(event.getEventInvitation().getInvitationID());
+		int totalGuests = event.getEventInvitation().GET_GUESTS_COUNT(event.getEventInvitation().getInvitationID());
+		
+		mainPanel.add(new PieChart(attending, notAttending, notSure, new Double(totalGuests)), "cell 2 1 2 2,grow");
 		getContentPane().add(mainPanel);
 	}
 
 	private JPanel getGuestResponsePanel()
-	{
+	{	
 		guestResponsePanel = new JPanel();
 		guestResponsePanel.setBorder(new TitledBorder(null, "Are you going for this event?", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		guestResponsePanel.setLayout(new MigLayout("", "[96.00px][95.00px][]", "[]"));
 
 		btnGoing = new JButton("Going");
+		btnGoing.addActionListener(new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				if(new Guest().SET_RESPONSE(Account.currentUser.getUserName(), event.getEventInvitation().getInvitationID(), "Attending"))
+				{
+					JOptionPane.showMessageDialog(null, "Your attendance status has been successfully updated");
+				}
+				btnGoing.setEnabled(false);
+				if(btnNotGoing.isEnabled()==false)
+				{
+					btnNotGoing.setEnabled(true);
+				}
+				if(btnNotSure.isEnabled()==false)
+				{
+					btnNotSure.setEnabled(true);
+				}
+			}
+		});
+		
 		btnGoing.setPreferredSize(new Dimension(90, 50));
 		guestResponsePanel.add(btnGoing, "flowx,cell 0 0 2 1,alignx left,aligny top");
 
 		btnNotGoing = new JButton("Not going");
+		btnNotGoing.addActionListener(new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				if(new Guest().SET_RESPONSE(Account.currentUser.getUserName(), event.getEventInvitation().getInvitationID(), "Not Attending"))
+				{
+					JOptionPane.showMessageDialog(null, "Your attendance status has been successfully updated");
+				}
+				btnNotGoing.setEnabled(false);
+				if(btnGoing.isEnabled()==false)
+				{
+					btnGoing.setEnabled(true);
+				}
+				if(btnNotSure.isEnabled()==false)
+				{
+					btnNotSure.setEnabled(true);
+				}
+				
+			}
+		});
 		btnNotGoing.setPreferredSize(new Dimension(90, 50));
 		guestResponsePanel.add(btnNotGoing, "cell 1 0,alignx left,aligny top");
 
 		btnNotSure = new JButton("Not sure");
 		btnNotSure.setPreferredSize(new Dimension(90, 50));
+		btnNotSure.addActionListener(new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				if(new Guest().SET_RESPONSE(Account.currentUser.getUserName(), event.getEventInvitation().getInvitationID(), "Not Sure"))
+				{
+					JOptionPane.showMessageDialog(null, "Your attendance status has been successfully updated");
+				}
+				btnNotSure.setEnabled(false);
+				if(btnGoing.isEnabled()==false)
+				{
+					btnGoing.setEnabled(true);
+				}
+				if(btnNotGoing.isEnabled()==false)
+				{
+					btnNotGoing.setEnabled(true);
+				}
+				
+			}
+		});
 		guestResponsePanel.add(btnNotSure, "cell 2 0,alignx left,aligny top");
 
+		String currentGuestResponse = new Guest().GET_RESPONSE(Account.currentUser.getUserName(), event.getEventInvitation().getInvitationID());
+		
+		if(currentGuestResponse.equalsIgnoreCase("Attending"))
+		{
+			btnGoing.setEnabled(false);
+		}
+		else if(currentGuestResponse.equalsIgnoreCase("Not Attending"))
+		{
+			btnNotGoing.setEnabled(false);
+		}
+		else if(currentGuestResponse.equalsIgnoreCase("Not Sure"))
+		{
+			btnNotSure.setEnabled(false);
+		}
+		
+		if(!event.getEventStatus().equalsIgnoreCase("Pending"))
+		{
+			btnGoing.setEnabled(false);
+			btnNotGoing.setEnabled(false);
+			btnNotSure.setEnabled(false);
+		}
+		
+		
+		
 		return guestResponsePanel;
 	}
 
@@ -239,7 +336,7 @@ public class InvitationDetailsView extends JDialog
 	{
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 
-		entertainmentTab = new JPanel();
+		entertainmentTab = new EntertainmentPanel(event.getEventPackage().getEntertainment());
 		tabbedPane.addTab("Entertainment", null, entertainmentTab, null);
 
 		panel_3 = new JPanel();
@@ -250,27 +347,46 @@ public class InvitationDetailsView extends JDialog
 
 		mealSubTabs = new JTabbedPane();
 		mealSubTabs.setTabPlacement(JTabbedPane.BOTTOM);
-
-		if (event.getEventPackage().getMeals().size() > 0)
-		{
-			Iterator<Meal> mealIterator = event.getEventPackage().getMeals().iterator();
-			while (mealIterator.hasNext())
-			{
-				Meal meal = mealIterator.next();
-				mealSubTabs.addTab(meal.getMealID(), getMealChoicePanel(meal));
-			}
-		}
+//
+//		if (event.getEventPackage().getMeals().size() > 0)
+//		{
+//			Iterator<Meal> mealIterator = event.getEventPackage().getMeals().iterator();
+//			int i = 1;
+//			while (mealIterator.hasNext())
+//			{
+//				Meal meal = mealIterator.next();
+//				mealSubTabs.addTab("Meal Option "+i, null, getMealChoicePanel(meal), null);
+//				i++;
+//			}
+//		}
+		
 		tabbedPane.addTab("Meal", null, mealSubTabs, null);
 		return tabbedPane;
 	}
 
-	public JPanel getMealChoicePanel(Meal meal)
-	{
-		JPanel mealPanel = new JPanel();
-
-		mealPanel.setLayout(new MigLayout("", "[][]", "[][]"));
-
-		return mealPanel;
-	}
-
+//	public JPanel getMealChoicePanel(Meal meal)
+//	{
+//		JPanel mealPanel = new JPanel();
+//
+//		mealPanel.setLayout(new FlowLayout());
+//		
+//		JLabel mealPricePerHead = new JLabel(Double.toString(meal.getMealPricePerHead()));
+//		mainPanel.add(mealPricePerHead);
+//		JLabel mealDescription = new JLabel(meal.getMealDescription());
+//		mainPanel.add(mealDescription);
+//		JLabel mealTitle = new JLabel(meal.getMealTitle());
+//		mainPanel.add(mealTitle);
+//		JLabel mealType = new JLabel(meal.getMealType());
+//		mainPanel.add(mealType);
+//		
+//		for(MealMenu mealItems:meal.getMealItems())
+//		{
+//			System.out.println(mealItems.getMealMenuName());
+//			System.out.println(mealItems.getMealMenuDescription());
+//			System.out.println(mealItems.getMealMenuPrice());
+//		}
+//
+//		return mealPanel;
+//	}
+	
 }

@@ -4,21 +4,16 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Hashtable;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
-import javax.swing.RowFilter;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableRowSorter;
@@ -26,22 +21,18 @@ import javax.swing.table.TableRowSorter;
 import net.miginfocom.swing.MigLayout;
 import Controller.RIM.InvitationResponseController;
 import Controller.RIM.LookAndFeelController;
-import Controller.RIM.Utils.DateHelper;
 import Images.RIM.ImageHelper;
 import Model.Membership.Account;
 import Model.RIM.TableModels.TableSorter;
 import View.RIM.Components.Table.AutoResizeTableColumns;
+import View.RIM.Components.Table.ButtonEditor;
+import View.RIM.Components.Table.ButtonRenderer;
 import View.RIM.Components.Table.IconRenderer;
 import View.RIM.Components.Table.ProgressBarCellRenderer;
 
 @SuppressWarnings("serial")
 public class InvitationResponseView extends JFrame
 {
-	@SuppressWarnings("unused")
-	private static DateHelper dateHelper = new DateHelper();
-
-	private JTextField searchText;
-	private JPanel filterPanel;
 	private JTable table;
 	private TableRowSorter<TableSorter> sorter;
 
@@ -54,12 +45,13 @@ public class InvitationResponseView extends JFrame
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Invitations");
-		setSize(1240, 750);
 		getContentPane().setLayout(new MigLayout("", "[795.00px,grow]", "[427px,grow][60px]"));
 		initComponents();
 		pack();
+		setSize(1024, 750);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setVisible(true);
+		
 	}
 
 	private void initComponents()
@@ -67,37 +59,10 @@ public class InvitationResponseView extends JFrame
 		prepareTable();
 
 		JScrollPane jScrollPane1 = new JScrollPane();
-
-		filterPanel = new JPanel();
+		
 		getContentPane().add(jScrollPane1, "cell 0 0,grow");
 
 		jScrollPane1.setViewportView(table);
-
-		filterPanel.setMinimumSize(new java.awt.Dimension(500, 60));
-		filterPanel.setPreferredSize(new java.awt.Dimension(500, 60));
-		filterPanel.setLayout(new MigLayout("", "[497.00px]", "[20px][21px]"));
-
-		searchText = new JTextField();
-		searchText.getDocument().addDocumentListener(new DocumentListener()
-		{
-			public void changedUpdate(DocumentEvent e)
-			{
-				newFilter();
-			}
-
-			public void insertUpdate(DocumentEvent e)
-			{
-				newFilter();
-			}
-
-			public void removeUpdate(DocumentEvent e)
-			{
-				newFilter();
-			}
-		});
-		filterPanel.add(searchText, "flowx,cell 0 0,grow");
-
-		getContentPane().add(filterPanel, "cell 0 1,alignx center,aligny center");
 	}
 
 	private void prepareTable()
@@ -126,17 +91,16 @@ public class InvitationResponseView extends JFrame
 
 		};
 		table.setModel(controller.getTableModel());
-		table.getSelectionModel().addListSelectionListener(new ListSelectionListener()
-		{
-			@Override
-			public void valueChanged(ListSelectionEvent e)
-			{
-				if (!e.getValueIsAdjusting())
-				{
-					new InvitationDetailsView(controller.getTableModel().getEvent(table.getSelectedRow()));
-				}
-			}
-		});
+		table.addMouseListener(new MouseAdapter() {
+			  public void mouseClicked(MouseEvent e) {
+			    if (e.getClickCount() == 2) {
+			      JTable target = (JTable)e.getSource();
+			      int row = target.getSelectedRow();
+			      new InvitationDetailsView(controller.getTableModel().getEvent(row));
+			    }
+			  }
+			});
+
 		table.getTableHeader().setReorderingAllowed(false);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		sorter = new TableRowSorter<TableSorter>(controller.getTableModel().getTableSorter());
@@ -168,6 +132,11 @@ public class InvitationResponseView extends JFrame
 		table.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
 		table.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
 		table.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+		
+		table.getColumnModel().getColumn(6).setCellEditor(new ButtonEditor());
+		ButtonRenderer buttonRenderer = new ButtonRenderer();
+		buttonRenderer.setHorizontalAlignment(JLabel.CENTER);
+		table.getColumnModel().getColumn(6).setCellRenderer(buttonRenderer);
 
 		// configuration for progress bar...
 		Hashtable<Integer, Color> limitColors = new Hashtable<Integer, Color>();
@@ -184,18 +153,7 @@ public class InvitationResponseView extends JFrame
 			table.removeColumn(table.getColumnModel().getColumn(6));
 		}
 	}
-	
-	 private void newFilter() 
-	 {
-	        RowFilter<TableSorter, Object> rf = null;
-	        //If current expression doesn't parse, don't update.
-	        try {
-	            rf = RowFilter.regexFilter(searchText.getText(), 0);
-	        } catch (java.util.regex.PatternSyntaxException e) {
-	            return;
-	        }
-	        sorter.setRowFilter(rf);
-	    }
+
 
 	public static void main(String args[])
 	{

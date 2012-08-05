@@ -11,20 +11,20 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.JToggleButton;
 import javax.swing.UIManager;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
+import Controller.RIM.LookAndFeelController;
+import Controller.RIM.Utils.IOHelper;
 import Images.RIM.ImageHelper;
 import Model.Membership.Account;
 import Model.Membership.Guest;
-import Controller.RIM.LookAndFeelController;
-import Controller.RIM.Utils.*;
 import View.RIM.Components.GuestActionsFooter;
 @SuppressWarnings("serial")
 public class GuestProfileView extends JFrame
@@ -36,6 +36,7 @@ public class GuestProfileView extends JFrame
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
+	JTextArea textArea;
 	
 	public GuestProfileView()
 	{
@@ -67,6 +68,7 @@ public class GuestProfileView extends JFrame
 		textField = new JTextField();
 		textField.setMinimumSize(new Dimension(100, 20));
 		textField.setPreferredSize(new Dimension(100, 20));
+		textField.setText(Account.currentUser.getFirstName());
 		form.add(textField, "cell 1 0,growx");
 		textField.setColumns(10);
 		
@@ -76,6 +78,7 @@ public class GuestProfileView extends JFrame
 		textField_1 = new JTextField();
 		form.add(textField_1, "cell 1 1,growx");
 		textField_1.setColumns(10);
+		textField_1.setText(Account.currentUser.getLastName());
 		
 		JLabel lblSchool = new JLabel("School:");
 		form.add(lblSchool, "cell 0 2,alignx left");
@@ -83,11 +86,13 @@ public class GuestProfileView extends JFrame
 		textField_4 = new JTextField();
 		form.add(textField_4, "cell 1 2,growx");
 		textField_4.setColumns(10);
+		textField_4.setText(Account.currentUser.getSchool());
 		
 		JLabel lblEmailAdress = new JLabel("Email adress:");
 		form.add(lblEmailAdress, "cell 0 5,alignx left");
 		
 		textField_2 = new JTextField();
+		textField_2.setText(Account.currentUser.getEmail());
 		form.add(textField_2, "cell 1 5,growx");
 		textField_2.setColumns(10);
 		
@@ -95,6 +100,7 @@ public class GuestProfileView extends JFrame
 		form.add(lblHandphoneNumber, "cell 0 6,alignx trailing");
 		
 		textField_5 = new JTextField();
+		textField_5.setText(Account.currentUser.getHandphoneNo());
 		form.add(textField_5, "cell 1 6,growx");
 		textField_5.setColumns(10);
 		
@@ -114,17 +120,40 @@ public class GuestProfileView extends JFrame
 		form.add(lblNric, "cell 0 7,alignx left");
 		
 		textField_3 = new JTextField();
+		textField_3.setText(Account.currentUser.getNric());
 		form.add(textField_3, "cell 1 7,growx");
 		textField_3.setColumns(10);
 		
 		JLabel lblAddress = new JLabel("Address:");
 		form.add(lblAddress, "cell 0 9,aligny top");
 		
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
+		textArea.setText(Account.currentUser.getAddress());
 		textArea.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		form.add(textArea, "cell 1 9 2 1,grow");
 		
-		JToggleButton tglbtnUpdateDetails = new JToggleButton("Update details");
+		JButton tglbtnUpdateDetails = new JButton("Update details");
+		tglbtnUpdateDetails.addActionListener(new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Guest guest = new Guest();
+				guest.setUserName(Account.currentUser.getUserName());
+				guest.setFirstName(textField.getText());
+				guest.setLastName(textField_1.getText());
+				guest.setSchool(textField_4.getText());
+				guest.setEmail(textField_2.getText());
+				guest.setHandphoneNo(textField_5.getText());
+				guest.setNric(textField_3.getText());
+				guest.setAddress(textArea.getText());
+				if(guest.CREATE_GUEST_ACCOUNT(guest))
+				{
+					JOptionPane.showMessageDialog(null, "Your details have been updated successfully");
+				}
+			}
+			
+		});
 		tglbtnUpdateDetails.setPreferredSize(new Dimension(101, 40));
 		form.add(tglbtnUpdateDetails, "cell 0 10 4 1,alignx center,aligny bottom");
 		

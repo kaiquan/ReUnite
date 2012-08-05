@@ -292,6 +292,90 @@ public class Invitation
 		}
 		return guestList;
 	}
+	
+	public int GET_GUESTS_COUNT(int invitationID)
+	{
+		ResultSet rs = null;
+		
+		String dbQuery = "SELECT COUNT(*) AS Total FROM Guest g WHERE g.invitationID = "+invitationID;
+		int count = 0;
+		try
+		{
+			rs = db.readRequest(dbQuery);
+			while (rs.next())
+			{
+				count = rs.getInt("Total");
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return count;
+	}
+	
+	public int GET_ATTENDING_GUESTS_COUNT(int invitationID)
+	{
+		ResultSet rs = null;
+		
+		String dbQuery = "SELECT COUNT(*) AS Total FROM Guest g WHERE g.invitationID = "+invitationID+" AND response='Attending'" ;
+		int count = 0;
+		try
+		{
+			rs = db.readRequest(dbQuery);
+			while (rs.next())
+			{
+				count = rs.getInt("Total");
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return count;
+	}
+	
+	public int GET_NOT_ATTENDING_GUESTS_COUNT(int invitationID)
+	{
+		ResultSet rs = null;
+		
+		String dbQuery = "SELECT COUNT(*) AS Total FROM Guest g WHERE g.invitationID = "+invitationID+" AND response='Not Attending'" ;
+		int count = 0;
+		try
+		{
+			rs = db.readRequest(dbQuery);
+			while (rs.next())
+			{
+				count = rs.getInt("Total");
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return count;
+	}
+	
+	public int GET_NOT_SURE_GUESTS_COUNT(int invitationID)
+	{
+		ResultSet rs = null;
+		
+		String dbQuery = "SELECT COUNT(*) AS Total FROM Guest g WHERE g.invitationID = "+invitationID+" AND response='Not Sure'" ;
+		int count = 0;
+		try
+		{
+			rs = db.readRequest(dbQuery);
+			while (rs.next())
+			{
+				count = rs.getInt("Total");
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return count;
+	}
 
 	public boolean CREATE_INVITATION(Invitation invitation, int eventID, String subject, String message)
 	{

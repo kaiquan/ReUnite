@@ -42,10 +42,8 @@ package View.RIM.Components;
  */
 
 
-import java.awt.Color;
+import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Paint;
 
 import javax.swing.JPanel;
 
@@ -57,56 +55,42 @@ import org.jfree.chart.plot.PiePlot;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
 
-import Model.Invitation;
-import javax.swing.BoxLayout;
-import net.miginfocom.swing.MigLayout;
-import java.awt.BorderLayout;
-
 public class PieChart extends JPanel {
 
-	private Invitation invitation;
 	
     private static final long serialVersionUID = 1L;
 
     {
-        // set a theme using the new shadow generator feature available in
-        // 1.0.14 - for backwards compatibility it is not enabled by default
         ChartFactory.setChartTheme(new StandardChartTheme("JFree/Shadow",
                 true));
     }
-
-    /**
-     * Default constructor.
-     *
-     * @param title  the frame title.
-     */
-    public PieChart(String title, Invitation invitation) {
-    	this.invitation = invitation;
-        setLayout(new BorderLayout(0, 0));
+    int attending;
+    int notAttending;
+    int notSure;
+    double total;
+    
+    public PieChart(int attending, int notAttending, int notSure, double total) {
+        
+    	this.attending = attending;
+        this.notAttending = notAttending;
+        this.notSure = notSure;
+        this.total = total;
+        
+    	setLayout(new BorderLayout(0, 0));
         add(createDemoPanel());
         setVisible(true);
     }
 
-    /**
-     * Creates a sample dataset.
-     *
-     * @return A sample dataset.
-     */
+
     private PieDataset createDataset() {
         DefaultPieDataset dataset = new DefaultPieDataset();
-        dataset.setValue("Attending", new Double(62.5));
-        dataset.setValue("Not Attendng", new Double(10.0));
-        dataset.setValue("Not Sure", new Double(27.5));
+        dataset.setValue("Not Attendng", new Double(notAttending/total*100));
+        dataset.setValue("Not Sure", new Double(notSure/total*100));
+        dataset.setValue("Attending", new Double(attending/total*100));
         return dataset;
     }
 
-    /**
-     * Creates a chart.
-     *
-     * @param dataset  the dataset.
-     *
-     * @return A chart.
-     */
+ 
     private JFreeChart createChart(PieDataset dataset) {
 
         JFreeChart chart = ChartFactory.createPieChart(
@@ -123,11 +107,7 @@ public class PieChart extends JPanel {
 
     }
 
-    /**
-     * Creates a panel for the demo (used by SuperDemo.java).
-     *
-     * @return A panel.
-     */
+ 
     public JPanel createDemoPanel() 
     {
         JFreeChart chart = createChart(createDataset());

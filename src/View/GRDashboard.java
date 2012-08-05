@@ -14,6 +14,7 @@ import net.miginfocom.swing.MigLayout;
 import View.CGL.CollectPaymentForm;
 import View.CGL.ConsolidateGuestListForm;
 import View.MM.AdministrateRIDetails;
+import View.MM.LogInForm;
 import View.RIM.InvitationResponseView;
 import View.SOM.AdministrateServiceOptionManagement;
 
@@ -241,6 +242,12 @@ public class GRDashboard extends JFrame
 										label_4.setIcon(new ImageIcon(GRDashboard.class.getResource("/Images/helpIcon.png")));
 										panel_4.add(label_4, "cell 1 5 3 1,alignx center,aligny center");
 		panel_3.setBackground(new Color(50, 205, 50));
+		panel_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				disposeWindow();
+			}
+		});
 		mainPanel.add(panel_3, "cell 7 2,grow");
 		panel_3.setLayout(new MigLayout("", "[grow]", "[][259.00,grow][]"));
 
@@ -292,6 +299,7 @@ public class GRDashboard extends JFrame
 
 	protected void disposeWindow()
 	{
+		new LogInForm().setVisible(true);
 		this.dispose();
 	}
 

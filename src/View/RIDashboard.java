@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
 import View.MM.AdministrateRIPersonalDetails;
+import View.MM.LogInForm;
 import View.RIM.InvitationResponseView;
 import View.SOM.InitiateEventForm;
 
@@ -171,6 +172,12 @@ public class RIDashboard extends JFrame
 			}
 		});
 		panel_3.setBackground(new Color(50, 205, 50));
+		panel_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				disposeWindow();
+			}
+		});
 		mainPanel.add(panel_3, "cell 3 2,grow");
 		panel_3.setLayout(new MigLayout("", "[grow]", "[][259.00,grow][]"));
 
@@ -208,7 +215,8 @@ public class RIDashboard extends JFrame
 
 	protected void disposeWindow()
 	{
-		this.setState(JFrame.ICONIFIED);;
+		new LogInForm().setVisible(true);
+		this.dispose();
 		
 	}
 

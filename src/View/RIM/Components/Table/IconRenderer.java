@@ -25,8 +25,9 @@ public class IconRenderer extends DefaultTableCellRenderer
 			label.setIcon((ImageHelper.getScaledImageIcon((ImageIcon) value, 75, 75, 5)));
 		}
 		else if(value instanceof Account) 
-		{
-			label.setToolTipText(((Account) value).getUserName());
+		{	Account account = (Account) value;
+			label.setToolTipText(account.getUserName());
+			label.setText(account.getUserName());
 			label.setIcon(ImageHelper.loadImageIcon("userIcon.png", "", 75, 75, 5));
 		}
 		setHorizontalAlignment(JLabel.CENTER);

@@ -146,7 +146,8 @@ public class Invitation
 	{
 		ResultSet rs = null;
 		int response = 0;
-		String dbQuery = "SELECT (SELECT COUNT(*) FROM " + TableNames.GUEST_TABLE + " WHERE invitationID = " + this.invitationID + " AND response != 'ATTENDING')/(SELECT COUNT(*) FROM " + TableNames.GUEST_TABLE + " WHERE invitationID = " + this.invitationID + ") AS Response";
+		
+		String dbQuery = "SELECT ROUND(((SELECT COUNT(*) FROM Guest WHERE invitationID = "+this.invitationID+" AND response = 'ATTENDING')/(SELECT COUNT(*) FROM Guest WHERE invitationID = "+this.invitationID+")*100), 0) AS Response";
 		try
 		{
 			rs = db.readRequest(dbQuery);

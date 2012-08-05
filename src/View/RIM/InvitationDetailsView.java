@@ -22,6 +22,7 @@ import Images.RIM.ImageHelper;
 import Model.Event;
 import Model.Invitation;
 import Model.Meal;
+import Model.Membership.Account;
 import Model.RIM.Chat.ClientGUI;
 import View.RIM.Components.PieChart;
 
@@ -80,6 +81,7 @@ public class InvitationDetailsView extends JDialog
 				}
 
 			}
+
 			@Override
 			public void windowClosing(WindowEvent arg0)
 			{
@@ -118,17 +120,20 @@ public class InvitationDetailsView extends JDialog
 	{
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new MigLayout("", "[55px][872.00px,grow][613.00px][690px,grow]", "[][213.00px,grow][][37.00,grow][223.00,grow]"));
-		mainPanel.add(getGuestResponsePanel(), "cell 1 2,alignx left,aligny center");
+		if (Account.currentUser.getType().equalsIgnoreCase("Guest"))
+		{
+			mainPanel.add(getGuestResponsePanel(), "cell 1 2,alignx left,aligny center");
+		}
 		mainPanel.add(getTabbedPane(), "cell 1 3 3 2,grow");
-		
-				// ClientGUI chatBox = new ClientGUI(Account.currentUser.getUserName(), event.getID());
-				chatBox = new ClientGUI("Adeel", 3);
-				tabbedPane.addTab("Guests", chatBox);
+
+		// ClientGUI chatBox = new ClientGUI(Account.currentUser.getUserName(), event.getID());
+		chatBox = new ClientGUI("Adeel", 3);
+		tabbedPane.addTab("Guests", chatBox);
 
 		lblInitiatedBy = new JLabel("Initiated by: ");
 		mainPanel.add(lblInitiatedBy, "flowx,cell 1 0,gapx 8 0");
 
-		initiatedByText = new JLabel(event.getEventInitiator().getUserName());
+		initiatedByText = new JLabel(event.getEventInitiator().getFirstName() + " " + event.getEventInitiator().getLastName() + " (" + event.getEventInitiator().getUserName() + ")");
 		initiatedByText.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		mainPanel.add(initiatedByText, "cell 1 0,alignx center");
 
@@ -233,7 +238,6 @@ public class InvitationDetailsView extends JDialog
 	private JTabbedPane getTabbedPane()
 	{
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		
 
 		entertainmentTab = new JPanel();
 		tabbedPane.addTab("Entertainment", null, entertainmentTab, null);

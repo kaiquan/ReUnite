@@ -13,12 +13,15 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import Controller.MM.LoginController;
 import Controller.RIM.LookAndFeelController;
+import javax.swing.JCheckBox;
+import java.awt.GridBagLayout;
 
 @SuppressWarnings("serial")
 public class LogInForm extends JFrame {
@@ -33,9 +36,8 @@ public class LogInForm extends JFrame {
 		private JLabel jLabel = null;
 		private JLabel forgotPassword = null;
 		private JLabel createMember = null;
+		private JCheckBox jCheckBox = null;  //  @jve:decl-index=0:visual-constraint="14,178"
 		private JLabel jLabel1 = null;
-		private JLabel jLabel2 = null;
-		private JLabel jLabel3 = null;
 		/**
 		 * This method initializes 
 		 * 
@@ -170,20 +172,10 @@ public class LogInForm extends JFrame {
 		 */
 		private JPanel getJPanel() {
 			if (jPanel == null) {
-				jLabel3 = new JLabel();
-				jLabel3.setBounds(new Rectangle(1, 306, 592, 72));
-				jLabel3.setText("JLabel");
-				jLabel2 = new JLabel();
-				jLabel2.setBounds(new Rectangle(466, -1, 126, 372));
-				jLabel2.setBackground(new Color(2, 238, 238));
-				jLabel2.setText("");
-				jLabel1 = new JLabel();
 				
-				jLabel1.setBounds(new Rectangle(0, -1, 134, 374));
-				jLabel1.setFont(new Font("Dialog", Font.BOLD, 12));
-				jLabel1.setForeground(new Color(15, 50, 50));
-				jLabel1.setBackground(new Color(77, 238, 238));
-				jLabel1.setDisplayedMnemonic(KeyEvent.VK_UNDEFINED);
+				jLabel1 = new JLabel();
+				jLabel1.setBounds(new Rectangle(1, -43, 591, 416));
+				jLabel1.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Abstract Blue backgrounds 40.jpg")));
 				jLabel1.setText("JLabel");
 				createMember = new JLabel();
 				createMember.setBounds(new Rectangle(336, 9, 268, 16));
@@ -203,7 +195,21 @@ public class LogInForm extends JFrame {
 				forgotPassword.setText("Forgot Password");
 				forgotPassword.addMouseListener(new java.awt.event.MouseAdapter() {
 					public void mouseClicked(java.awt.event.MouseEvent e) {
-						System.out.println("mouseClicked()"); // TODO Auto-generated Event stub mouseClicked()
+						if(userNameTextBox.getText().equals("")){
+						
+							JOptionPane.showMessageDialog(null, "Please Enter your UserName");
+							
+						}
+						else{
+
+								//get secret Question
+							
+							
+							String closureReason = JOptionPane.showInputDialog(null,
+													"Please enter the reason for closure : ",
+													"Closure request sent!", 0);
+
+						}
 					}
 				});
 				jLabel = new JLabel();
@@ -224,10 +230,20 @@ public class LogInForm extends JFrame {
 				jPanel.add(forgotPassword, null);
 				jPanel.add(createMember, null);
 				jPanel.add(jLabel1, null);
-				jPanel.add(jLabel2, null);
-				jPanel.add(jLabel3, null);
 			}
 			return jPanel;
+		}
+
+		/**
+		 * This method initializes jCheckBox	
+		 * 	
+		 * @return javax.swing.JCheckBox	
+		 */
+		private JCheckBox getJCheckBox() {
+			if (jCheckBox == null) {
+				jCheckBox = new JCheckBox();
+			}
+			return jCheckBox;
 		}
 
 		public static void main(String args[]){

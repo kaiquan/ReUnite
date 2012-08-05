@@ -131,9 +131,9 @@ public class RI extends Account   {
 
 		boolean success = false;
 	
-		String sql = "INSERT INTO Account (userName, password,type,status, firstName, lastName, nric, school, email, address, telephoneNo, handphoneNo,secretQuestion, secretAnswer)"; 
+		String sql = "INSERT INTO Account (userName, password,type,status, firstName, lastName,dateOfBirth, nric, school, email, address, telephoneNo, handphoneNo,secretQuestion, secretAnswer)"; 
 		sql +="VALUES ('"+ account.getUserName()+ "', '"+ account.getPassword()+"','"+ account.getType()+"','"+ account.getStatus()+"', '"+ account.getFirstName()+ "', '"+ account.getLastName()+ "', '"
-		+ account.getNric()+ "', '"+ account.getSchool()+ "', '"+ account.getEmail()+ "', '"+ account.getAddress()+ "','"+ account.getTelephoneNo()
+		+ account.getDateOfBirth()+ "', '"+ account.getNric()+ "', '"+ account.getSchool()+ "', '"+ account.getEmail()+ "', '"+ account.getAddress()+ "','"+ account.getTelephoneNo()
 				+ "','"+ account.getHandphoneNo()+ "','"+ account.getSecretQuestion()
 	
 					+ "','"+ account.getSecretAnswer()+"')";
@@ -325,7 +325,8 @@ public class RI extends Account   {
 				data[i][8] = tempList.get(i).getAddress();
 				data[i][9] = tempList.get(i).getTelephoneNo();
 				data[i][10] = tempList.get(i).getHandphoneNo();
-				data[i][11] = tempList.get(i).getClosureRequest();
+				data[i][11] = tempList.get(i).getClosureReason();
+				data[i][12] = tempList.get(i).getClosureRequest();
 				
 				
 			}
@@ -337,7 +338,14 @@ public class RI extends Account   {
 	
 
 	public String[] getRITableColumnNames() {
-		String col[] = {"Username", "Type","Status" ,"First Name", "Last Name", "Nric", "School", "Email Address","Residential Address", "Telephone No.","Handphone No.","closure Request"};
+		String col[] = {"Username", "Type","Status" ,"First Name", "Last Name", "Nric", "School", "Email Address","Residential Address", "Telephone No.","Handphone No.","Closure Request Reason","closure Request"};
+		return col;
+
+	}
+	
+
+	public String[] getRITableColumnNames1() {
+		String col[] = {"Username", "Type","Status" ,"First Name", "Last Name", "Nric", "School", "Email Address","Residential Address", "Telephone No.","Handphone No."};
 		return col;
 
 	}
@@ -380,7 +388,7 @@ public class RI extends Account   {
 	
 		boolean success = false;
 		
-		String sql = "UPDATE Account SET userName = '"+Account.currentUser.getUserName()+"', closureReason='"+account.getClosureReason()+"', closureRequest='"+Account.currentUser.getUserName()+"'"+
+		String sql = "UPDATE Account SET userName = '"+Account.currentUser.getUserName()+"', closureReason='"+account.getClosureReason()+"', closureRequest='Request Closure+'"+
 				 " WHERE userName ='"+account.getUserName()+"'";
 		if (db.updateRequest(sql) == 1)
 			success = true;

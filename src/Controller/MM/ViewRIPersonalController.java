@@ -47,7 +47,7 @@ public ViewRIPersonalController(){}
 
 
 	public TableModel getRITableModel1() {
-		DefaultTableModel model = new DefaultTableModel(riModel1.getRITableModel1(), riModel1.getRITableColumnNames());
+		DefaultTableModel model = new DefaultTableModel(riModel1.getRITableModel1(), riModel1.getRITableColumnNames1());
 		return model;
 	}
 	

@@ -43,7 +43,7 @@ public class CreateRIForm extends JFrame {
 	private JComboBox yearCombo;
 	private JComboBox secretQuestionCombo;
 	
-	
+
 	private JLabel headerText;
 	private JLabel userNameLabel;
 	private JLabel passwordLabel;

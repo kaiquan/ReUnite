@@ -94,7 +94,6 @@ public class AdministrateRIDetails {
 	private JButton  createAccountButton;
 	private JButton confirmUpdateButton;
 	private JButton closeButton;
-	private JButton refresh = null;
 	private JButton  viewEventAndPayment;
 	private JLabel refreshLabel = null;
 	private JLabel createAccountLabel = null;
@@ -160,6 +159,13 @@ public class AdministrateRIDetails {
 	refreshLabel.setBounds(new Rectangle(987, 59, 120, 40));
 	refreshLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Refresh-icon.png")));
 	refreshLabel.setText("Refresh Table");
+	refreshLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+		public void mouseClicked(java.awt.event.MouseEvent e) {
+			tableModel = viewRIDetailsController.getRITableModel();
+			table.setModel(tableModel);
+			table.updateUI();
+		}
+	});
 	panel = new JPanel();
 	
 	
@@ -472,7 +478,6 @@ public class AdministrateRIDetails {
 	//panel.add(getInfoPanel(),null);
 	panel.add(getWankingPanel(), null);
 	panel.add(refreshLabel, null);
-	panel.add(getRefresh(), null);
 	panel.add(createAccountLabel, null);
 	panel.add(getInfoPanel(), null);
 		return panel;
@@ -597,15 +602,17 @@ public class AdministrateRIDetails {
 	            textBoxes[col].setText(table.getValueAt(row, col).toString());
 	            if(col == 2)
 	            {
-	            	if(table.getValueAt(row, col).toString().equals("Disable"))
+	            	if(table.getValueAt(row, col).toString().equals("Active"))
 	            	{
-	            		
-	            		activateLabel.setVisible(true);
+	            		makeDisableLabel.setVisible(true);
+	            		activateLabel.setVisible(false);
+	            	
 	            		
 	            	}
 	            	else
 	            	{
-	            		makeDisableLabel.setVisible(true);
+	            		activateLabel.setVisible(true);
+	            		makeDisableLabel.setVisible(false);
 	            		
 	            		 
 
@@ -849,8 +856,10 @@ public class AdministrateRIDetails {
 			typeTextBox.setVisible(false);
 			
 			statusTextBox=new JTextField();
-			statusTextBox.setBounds(new Rectangle(800, 300, 150, 25));
+			statusTextBox.setBounds(new Rectangle(0, 300, 150, 25));
 			statusTextBox.setEditable(false);
+			statusTextBox.setVisible(true);
+			
 			
 			
 			closureRequest = new JTextField();
@@ -871,6 +880,8 @@ public class AdministrateRIDetails {
 			infoPanel.add(telephoneLabel);
 			infoPanel.add(handphoneLabel);
 			infoPanel.add(closureRequest);
+			infoPanel.add(statusLabel);
+			infoPanel.add(statusTextBox);
 			
 			
 			//add textBox
@@ -908,10 +919,40 @@ public class AdministrateRIDetails {
 		if (wankingPanel == null) {
 			
 			activateLabel = new JLabel();
-			activateLabel.setBounds(new Rectangle(906, 98, 125, 55));
+			activateLabel.setBounds(new Rectangle(874, 29, 231, 101));
 			activateLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/80_140____button-add-icon_28.png")));
 			activateLabel.setText("Activate ");
 			activateLabel.setVisible(false);
+			activateLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent e) {	
+					Object[] options = { "OK", "CANCEL" };
+					int confirmUpdateOption = JOptionPane.showOptionDialog(null, "Are Sure You want to Enable  "+userNameTextBox.getText()+"?", "Please Confirm",
+					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+					null, options, options[0]);
+					if (confirmUpdateOption == 0){
+					
+					statusTextBox.setText("Active");
+					UpdateRIController disableAccount = new UpdateRIController();
+					disableAccount.disableRIAccount(userNameTextBox.getText(), statusTextBox.getText());
+					}
+					
+					
+					String[] emailArray;               
+				      emailArray = new String[1]; 
+				      emailArray[0] = emailTextBox.getText();
+					
+					EmailController activeEmail = new EmailController();
+					try {
+						activeEmail.sendEmail("text",emailArray, "Account Set to Active", "Please be notified that your account is currently set to active.", null, "Account");
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+				
+					
+				}
+				});
 			
 			updateLabel = new JLabel();
 			updateLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Actions-document-edit-icon.png")));
@@ -967,7 +1008,7 @@ public class AdministrateRIDetails {
 				public void mouseClicked(java.awt.event.MouseEvent e) {
 					
 					
-					if(makeDisableLabel.getText()=="Disable This Account"){
+				
 					
 					Object[] options = { "OK", "CANCEL" };
 					int confirmUpdateOption = JOptionPane.showOptionDialog(null, "Are sure you want to disable  "+userNameTextBox.getText()+"?", "Please Confirm",
@@ -982,7 +1023,7 @@ public class AdministrateRIDetails {
 					
 					JOptionPane.showConfirmDialog(null,""+userNameTextBox.getText()+" Has Been Successfully disabled!",
 							   "Disable Confirmed!", JOptionPane.CLOSED_OPTION);
-					}
+					
 
 					String[] emailArray1;               
 				      emailArray1 = new String[1]; 
@@ -998,31 +1039,7 @@ public class AdministrateRIDetails {
 					
 					
 
-					if(makeDisableLabel.getText()=="Enable Account"){
-						Object[] options = { "OK", "CANCEL" };
-						int confirmUpdateOption = JOptionPane.showOptionDialog(null, "Are Sure You want to Enable  "+userNameTextBox.getText()+"?", "Please Confirm",
-						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-						null, options, options[0]);
-						if (confirmUpdateOption == 0){
-						
-						statusTextBox.setText("Active");
-						UpdateRIController disableAccount = new UpdateRIController();
-						disableAccount.disableRIAccount(userNameTextBox.getText(), statusTextBox.getText());
-						}
-						
-						
-						String[] emailArray;               
-					      emailArray = new String[1]; 
-					      emailArray[0] = emailTextBox.getText();
-						
-						EmailController activeEmail = new EmailController();
-						try {
-							activeEmail.sendEmail("text",emailArray, "Account Set to Active", "Please be notified that your account is currently set to active.", null, "Account");
-						} catch (Exception e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-						
+				
 					
 					
 					tableModel = viewRIDetailsController.getRITableModel();
@@ -1054,7 +1071,7 @@ public class AdministrateRIDetails {
 					addressTextBox.setEditable(false);
 					telephoneTextBox.setEditable(false);
 					handphoneTextBox.setEditable(false);
-					}
+					
 
 					
 				}
@@ -1081,31 +1098,6 @@ public class AdministrateRIDetails {
 			wankingPanel.add(activateLabel, null);
 		}
 		return wankingPanel;
-	}
-
-	/**
-	 * This method initializes refresh	
-	 * 	
-	 * @return javax.swing.JButton	
-	 */
-	private JButton getRefresh() {
-		if (refresh == null) {
-			refresh = new JButton("Refresh");
-			refresh.setBounds(new Rectangle(1029, 45, 79, 26));
-			refresh.setVisible(true);
-			refresh.addActionListener(new ActionListener()
-			{
-
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					tableModel = viewRIDetailsController.getRITableModel();
-					table.setModel(tableModel);
-					table.updateUI();
-				}
-				
-			});
-		}
-		return refresh;
 	}
 
 	public void checkIfCanDelete(String balanceAmount, String statusEvent ){

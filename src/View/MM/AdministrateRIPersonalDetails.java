@@ -332,20 +332,23 @@ public class AdministrateRIPersonalDetails {
 				"/Images/MM/Actions-edit-delete-shred-icon.png")));
 		requestCloseLabel.setText("Request Account Closure");
 		requestCloseLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+			
+			
 			public void mouseClicked(java.awt.event.MouseEvent e) {
 				Object[] options = { "OK", "CANCEL" };
 				int confirmUpdateOption = JOptionPane.showOptionDialog(null,
 						"Are You Sure you want to delete your account?",
 						"Request Account Closure", JOptionPane.DEFAULT_OPTION,
 						JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+				
+				
 				if (confirmUpdateOption == 0) {
-//					if (tableEvent.getModel().getValueAt(0, 0) == null) {
-//
-//						table.setVisible(false);
-//
-//						JLabel noRecordsLabel = new JLabel("No records found.");
-//						noRecordsLabel.setLocation(table.getLocation());
+					
+						JLabel noRecordsLabel = new JLabel("No records found.");
+						noRecordsLabel.setLocation(table.getLocation());
 
+					
+						
 						for (int i = 0; i < tableEvent.getModel().getRowCount(); i++) {
 
 							if (!tableEvent.getModel().getValueAt(i, 1).equals(
@@ -355,8 +358,10 @@ public class AdministrateRIPersonalDetails {
 									&& !tableEvent.getModel().getValueAt(i, 4)
 											.equals("0")
 									|| !tableEvent.getModel().getValueAt(i, 4)
-											.equals("")) {
+											.equals(null)) {
 
+							
+								
 								System.out.println("Outstanding payment/event");
 
 								JOptionPane
@@ -367,15 +372,31 @@ public class AdministrateRIPersonalDetails {
 												JOptionPane.CLOSED_OPTION);
 
 							}
-					//	}
-					}
+						}
+					
 				}
+				for (int i = 0; i < tableEvent.getModel().getRowCount(); i++) {
+				
+				
+					
+					if(confirmUpdateOption == 1){System.out.println("Cancel");}
+					
+					
+				else if (tableEvent.getModel().getValueAt(i, 1).equals(
+				"Confirmed")
+				|| tableEvent.getModel().getValueAt(i, 1)
+						.equals("Cancelled")
+				&& tableEvent.getModel().getValueAt(i, 4)
+						.equals("0")
+				|| tableEvent.getModel().getValueAt(i, 4)
+						.equals("")) {
+{
 
-				else {
-
-					String closureReason = JOptionPane.showInputDialog(null,
+					
+	
+	String closureReason = JOptionPane.showInputDialog(null,
 							"Please enter the reason for closure : ",
-							"Closure request sent!", 1);
+							"Closure request sent!", 0);
 
 					UpdateRIController closureReasonUpdate = new UpdateRIController();
 
@@ -401,7 +422,7 @@ public class AdministrateRIPersonalDetails {
 					}
 
 				}
-
+				}}
 			}
 		});
 
@@ -544,7 +565,7 @@ public class AdministrateRIPersonalDetails {
 	public JTable getTableEvent() {
 
 		
-
+		tableEvent = new JTable();
 
 
 		tableEvent.setBackground(Color.white);

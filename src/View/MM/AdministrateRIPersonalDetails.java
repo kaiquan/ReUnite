@@ -348,7 +348,7 @@ public class AdministrateRIPersonalDetails {
 						noRecordsLabel.setLocation(table.getLocation());
 
 					
-						
+						boolean hasEvents = false;
 						for (int i = 0; i < tableEvent.getModel().getRowCount(); i++) {
 
 							if (!tableEvent.getModel().getValueAt(i, 1).equals(
@@ -360,18 +360,20 @@ public class AdministrateRIPersonalDetails {
 									|| !tableEvent.getModel().getValueAt(i, 4)
 											.equals(null)) {
 
-							
-								
-								System.out.println("Outstanding payment/event");
-
-								JOptionPane
-										.showConfirmDialog(
-												null,
-												"You have an outstanding event or Payment. Please Contact Great Reunion for further details",
-												"Unable to delete",
-												JOptionPane.CLOSED_OPTION);
-
+							hasEvents = true;
+							break;
 							}
+						}
+						if(hasEvents==true)
+						{
+							System.out.println("Outstanding payment/event");
+
+							JOptionPane
+									.showConfirmDialog(
+											null,
+											"You have an outstanding event or Payment. Please Contact Great Reunion for further details",
+											"Unable to delete",
+											JOptionPane.CLOSED_OPTION);
 						}
 					
 				}

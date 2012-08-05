@@ -489,13 +489,13 @@ public class ConsolidateGuestListForm extends Fonts{
 		preface.add(paragraph);
 		addEmptyLine(preface, 1);
 		preface.add(new Chunk("Event Name:"+eventName));
-        preface.add(new Chunk("                         No Of Guests:"+noOfGuests));        
+        preface.add(new Chunk("                                  No Of Guests:"+noOfGuests));        
         addEmptyLine(preface, 1);
         preface.add(new Chunk("Event Date:"+eventDate));
-        preface.add(new Chunk("                             Event Time: "+eventTime));
+        preface.add(new Chunk("                                                      Event Time: "+eventTime));
         addEmptyLine(preface, 1);
         preface.add(new Chunk("Location:"+location));
-        preface.add(new Chunk("                             Ballroom: "+ballroom));
+        preface.add(new Chunk("                                                 Ballroom: "+ballroom));
         addEmptyLine(preface, 1);
         preface.add(new Paragraph("Event Description: "+eventDesc));
  		addEmptyLine(preface,1);

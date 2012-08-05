@@ -108,7 +108,7 @@ public class CancelEventControl {
 		try 
 		{
 			ballroomName=ballroom.get(0).getBallroomName();
-			ballroomFinalPrice=(ballroom.get(0).getBallroomFinalPrice());
+			ballroomFinalPrice=Math.round(ballroom.get(0).getBallroomFinalPrice());
 		}
 		catch (Exception ex)
 		{
@@ -123,7 +123,7 @@ public class CancelEventControl {
 		
 		try
 		{
-			entertainmentPrice=entertainment.get(0).getEntertainmentFinalPrice();
+			entertainmentPrice=Math.round(entertainment.get(0).getEntertainmentFinalPrice());
 		}
 		
 		catch(Exception ex)

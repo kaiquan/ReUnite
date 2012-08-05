@@ -135,7 +135,7 @@ public class DatePicker
 			@Override
 			public void actionPerformed(ActionEvent arg0)
 			{
-				year = (int) yearComboBox.getSelectedItem();
+				year = Integer.parseInt(yearComboBox.getSelectedItem().toString());
 			}
 			
 		});

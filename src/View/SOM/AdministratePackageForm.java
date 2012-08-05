@@ -2834,7 +2834,7 @@ public class AdministratePackageForm {
 			}
 		
 		content+="________________\n";
-		content+="Discount :"+getJTextField_discount().getText()+"%\n";
+		content+="Discount :"+getJTextField_discount().getText()+"\n";
 		
 		
 		getJTextArea_summary().setText(header+content);

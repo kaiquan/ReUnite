@@ -34,10 +34,12 @@ import java.awt.event.KeyEvent;
 public class AdministrateRIDetails {
 	
 	ViewRIDetailsController viewRIDetailsController = new ViewRIDetailsController(); 
-	ViewRIDetailsController viewRIDetailsController2 = new ViewRIDetailsController();//  @jve:decl-index=0:
+	ViewRIDetailsController viewRIDetailsController2 = new ViewRIDetailsController();
+	//  @jve:decl-index=0:
 	
 	public JTable table;
 	public JTable eventTable;
+	public JTable paymentTable;
 	private JFrame jframe;  //  @jve:decl-index=0:visual-constraint="20,672"
 	private JFrame frames;  //  @jve:decl-index=0:visual-constraint="39,10"
 	private JPanel panel;  //  @jve:decl-index=0:visual-constraint="10,1650"
@@ -142,6 +144,7 @@ public class AdministrateRIDetails {
 		tableScrollPane1.setViewportView(getEventTable());
 		framesPanel.add(tableScrollPane1);
 		
+	
 		framesPanel.add(closeButton);
 		
 		return framesPanel;
@@ -255,65 +258,13 @@ public class AdministrateRIDetails {
 	});
 	
 	
-	
-	updateAccountButton = new JButton();
-	//updateAccountButton.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Wordpad-icon.png")));
-	updateAccountButton.setBounds(0, 29, 150, 30);
-	updateAccountButton.setText("Update Account");
-	updateAccountButton.setVisible(false);
-	
-	
-	updateAccountButton.addActionListener(new java.awt.event.ActionListener() {
-		public void actionPerformed(java.awt.event.ActionEvent e) {
-			updateAccount();
-		}
-
-		private void updateAccount() {
-			Object[] options = { "OK", "CANCEL" };
-			int confirmUpdateOption = JOptionPane.showOptionDialog(null, "Are You Sure You Want to UPDATE  " +userNameTextBox.getText() +"", "Please Confirm",
-			JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-			null, options, options[0]);
-			if (confirmUpdateOption == 0){
-				
-				userNameTextBox.setEditable(true);
-				firstNameTextBox.setEditable(true);
-				lastNameTextBox.setEditable(true);
-				dateOfBirthTextBox.setEditable(true);
-				emailTextBox.setEditable(true);
-		
-				nricTextBox.setEditable(true);
-				schoolTextBox.setEditable(true);
-				addressTextBox.setEditable(true);
-				telephoneTextBox.setEditable(true);
-				handphoneTextBox.setEditable(true);
-//				typeTextBox.setEditable(true);
-//				statusTextBox.setEditable(true);
-				
-				updateAccountButton.setVisible(false);
-				confirmUpdateButton.setVisible(true);
 		
 
 
 				
-			}
-			
-			
-			
-		}
-	});
 	
-	confirmUpdateButton = new JButton();
-	confirmUpdateButton.setVisible(false);
-	confirmUpdateButton.setBounds(new Rectangle(784, 18, 150, 30));
-	confirmUpdateButton.setText("Confirm Update");
-	confirmUpdateButton.addActionListener(new java.awt.event.ActionListener() {
-		public void actionPerformed(java.awt.event.ActionEvent e) {
-			
-			}
-			
 	
-		
-	});
+	
 	
 	disableAccountButton = new JButton();
 	disableAccountButton.setBounds(1, 190, 150, 30);
@@ -472,10 +423,10 @@ public class AdministrateRIDetails {
 	//add Button
 	panel.add(deleteAccountButton);
 	//panel.add(submitButton);
-	panel.add(updateAccountButton);
+
 	panel.add(disableAccountButton);
 	panel.add(createAccountButton);
-	panel.add(confirmUpdateButton, null);
+
 	
 	JScrollPane tableScrollPane = new JScrollPane(getTable());
 	tableScrollPane.setBounds(0, 97, 1100, 200);
@@ -522,7 +473,7 @@ public class AdministrateRIDetails {
 	
 	
 	}
-		
+	
 		
 	public JTable getTable() {
 
@@ -966,6 +917,18 @@ public class AdministrateRIDetails {
 			updateLabel.setText("Update This Account");
 			updateLabel.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent e) {
+					userNameTextBox.setEditable(true);
+					firstNameTextBox.setEditable(true);
+					lastNameTextBox.setEditable(true);
+					dateOfBirthTextBox.setEditable(true);
+					emailTextBox.setEditable(true);
+					jLabel.setVisible(true);
+					cancelLabel.setVisible(true);
+					nricTextBox.setEditable(true);
+					schoolTextBox.setEditable(true);
+					addressTextBox.setEditable(true);
+					telephoneTextBox.setEditable(true);
+					handphoneTextBox.setEditable(true);
 					
 					updateAccount();
 					
@@ -976,20 +939,10 @@ public class AdministrateRIDetails {
 					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 					null, options, options[0]);
 					if (confirmUpdateOption == 0){
-						jLabel.setVisible(true);
-						cancelLabel.setVisible(true);
 						
-						userNameTextBox.setEditable(true);
-						firstNameTextBox.setEditable(true);
-						lastNameTextBox.setEditable(true);
-						dateOfBirthTextBox.setEditable(true);
-						emailTextBox.setEditable(true);
-				
-						nricTextBox.setEditable(true);
-						schoolTextBox.setEditable(true);
-						addressTextBox.setEditable(true);
-						telephoneTextBox.setEditable(true);
-						handphoneTextBox.setEditable(true);
+						
+						jLabel.setVisible(false);
+						cancelLabel.setVisible(false);
 //						typeTextBox.setEditable(true);
 //						statusTextBox.setEditable(true);
 					}
@@ -1091,10 +1044,10 @@ public class AdministrateRIDetails {
 			wankingPanel.setLayout(null);
 			wankingPanel.setBounds(new Rectangle(2, 573, 1161, 166));
 			wankingPanel.setBackground(new Color(102, 153, 255));
-			wankingPanel.add(updateAccountButton);
+		
 			wankingPanel.add(deleteAccountButton);
 			wankingPanel.add(disableAccountButton);
-			wankingPanel.add(confirmUpdateButton );
+			
 			wankingPanel.add(viewEventAndPayment);
 			wankingPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Actions", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			wankingPanel.add(updateLabel, null);
@@ -1106,12 +1059,10 @@ public class AdministrateRIDetails {
 		return wankingPanel;
 	}
 
-	public void checkIfCanDelete(String balanceAmount, String statusEvent ){
-		ViewRIDetailsRIVIEW check =new ViewRIDetailsRIVIEW();
+	
 		
 		
-		
-	}
+	
 	
 	public static void main(String a[]){
 		

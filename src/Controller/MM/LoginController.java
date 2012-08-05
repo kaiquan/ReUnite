@@ -11,6 +11,24 @@ import View.RIM.GuestProfileView;
 public class LoginController {
 		
 	Account account = new Account();
+	//account.getSecretQuestion();
+	
+	public boolean initiateSQuestion(String userName  ){
+		Account secretQn = new Account();
+		secretQn.setUserName(userName);
+		secretQn.getSecretQuestion();
+		
+		Account a = secretQn.getSecretQn(secretQn);
+		
+		
+		
+		
+		
+		
+		
+		return false;
+		
+	}
 	
 	public boolean initiateLogin(String userName, String password){
 		boolean valid = false;

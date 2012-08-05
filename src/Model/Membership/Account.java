@@ -266,7 +266,33 @@ public class Account implements Comparable<Account>
 				+ telephoneNo + ", handphoneNo=" + handphoneNo + ", secretQuestion=" + secretQuestion + ", secretAnswer=" + secretAnswer + ", closureRequestDate=" + closureRequestDate
 				+ ", closureDate=" + closureDate + ", closureReason=" + closureReason + ", closureRequest=" + closureRequest + "]";
 	}
+	public Account getSecretQn(Account secretQn)
+	{
+		ResultSet rs = null;
+		Account account = null;
+		String dbQuery = "Select * FROM Account WHERE userName='" + secretQn.getUserName() +"'";
+		rs = db.readRequest(dbQuery);
 
+		try
+		{
+			if (rs.next())
+			{
+				account = new Account();
+
+				account.setUserName(rs.getString("userName"));
+				account.setSecretQuestion(rs.getString("secretQuestion"));
+				account.setSecretAnswer(rs.getString("secretAnswer"));
+				
+			}
+		}
+		catch (SQLException e)
+		{
+
+			e.printStackTrace();
+		}
+
+		return account;
+	}
 	public Account INITIATE_LOGIN(Account accountSet)
 	{
 		ResultSet rs = null;

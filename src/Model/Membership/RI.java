@@ -157,6 +157,7 @@ public class RI extends Account   {
 	// All RI Account (GR
 	// View)___________________________________________________
 	
+	
 	public Object[][] GET_EVENTS_ALL_FOR_RI() {
 		ArrayList<Object[]> tempList = new ArrayList<Object[]>();
 		Object[][] records = null;
@@ -206,6 +207,16 @@ public class RI extends Account   {
 			}
 
 
+	
+
+	
+	public String[] getPurchaseColumnNames() {
+		String col[] = {"Purchase ID", "Event ID","total Cost" ,"Amount Pending"};
+		return col;
+
+	}
+	
+	
 	public String[] getRIEventNPurchaseColumnNames() {
 		String col[] = {"Event ID", "packageID","userName" ,"eventStatus", "Event Date", "Event Time", "Event Name", "Event Description"};
 		return col;
@@ -265,7 +276,7 @@ public class RI extends Account   {
 
 		try {
 	
-			String dbQuery = "Select userName, type, status, firstName, lastName, dateOfBirth, nric, school, email, address, telephoneNo, handphoneNo, closureRequest FROM Account Where type='RI' OR type = 'GR'  Order by type   ";
+			String dbQuery = "Select userName, type, status, firstName, lastName, dateOfBirth, nric, school, email, address, telephoneNo, handphoneNo,closureReason, closureRequest FROM Account Where type='RI' OR type = 'GR'  Order by type   ";
 			rs = db.readRequest(dbQuery);
 
 			while (rs.next()) {
@@ -283,6 +294,7 @@ public class RI extends Account   {
 				tempRI.setAddress(rs.getString("address"));
 				tempRI.setTelephoneNo(rs.getString("telephoneNo"));
 				tempRI.setHandphoneNo(rs.getString("handphoneNo"));
+				tempRI.setClosureReason(rs.getString("closureReason"));
 				tempRI.setClosureRequest(rs.getString("closureRequest"));
 				// tempRI.setSecretQuestion(rs.getString("secretQuestion"));
 				// tempRI.setSecretAnswer(rs.getString("secretAnswer"));

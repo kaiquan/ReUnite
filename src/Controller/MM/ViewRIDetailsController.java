@@ -10,13 +10,14 @@ public class ViewRIDetailsController {
 
 	RI riModel = new RI();
 	RI eventAndPurchaseModel = new RI();
+	RI purchaseModel = new RI();
 	
 	public ViewRIDetailsController() {}
 
 	public void retrieveRiDetails(String userName, String password,
 			String type, String status,
 			String firstName, String lastName, String nric,
-			String address, String school, String email , String closureRequest) {
+			String address, String school, String email ,String closureReason, String closureRequest) {
 
 		RI retrieveDetails = new RI();
 
@@ -30,6 +31,7 @@ public class ViewRIDetailsController {
 		retrieveDetails.setSchool(school);
 		retrieveDetails.setEmail(email);
 		retrieveDetails.setAddress(address);
+		retrieveDetails.setClosureReason(closureReason);
 		retrieveDetails.setClosureRequest(closureRequest);
 
 		retrieveDetails.RETRIEVE_USER();
@@ -46,7 +48,6 @@ public class ViewRIDetailsController {
 		return modelEvent;
 	}
 
-	
 	
 	
 }

@@ -207,13 +207,25 @@ public class LogInForm extends JFrame {
 							
 						}
 						else{
-
-								//get secret Question
 							
+							LoginController security = new LoginController();
 							
+							boolean valid = security.initiateSQuestion(userNameTextBox.getText());
+							
+							if(valid==true)
+							{
+								
+							}
+							else if(valid==false){
+								JOptionPane.showMessageDialog(null, "Username or password does not exist, please try again!");
+								
+								
+							}
+									
+							JLabel sQuestion = new JLabel();
 							String closureReason = JOptionPane.showInputDialog(null,
-													"Please enter the reason for closure : ",
-													"Closure request sent!", 0);
+							+sQuestion.setText(getSecretQuestion())+,
+							"Please Enter Your Secret Question", 0);
 
 						}
 					}

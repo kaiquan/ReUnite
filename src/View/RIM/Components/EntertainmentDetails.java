@@ -23,7 +23,6 @@ public class EntertainmentDetails {
 		
 		
 		
-		JScrollPane main= new JScrollPane();
 		getJScrollPane().setPreferredSize(new Dimension());
 		getJScrollPane().setViewportView(getJPanel());
 	}

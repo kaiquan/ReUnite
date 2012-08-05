@@ -564,6 +564,27 @@ public ArrayList<Event> RETRIEVE_EVENT_RECORDS(){
 			return e1;
 	}
 
+public int GET_INVITATION_ID_FOR_EVENT(int eventID)
+{	int id = 0;
+	String dbQuery = "SELECT i.invitationID FROM Invitation i WHERE i.eventID = " +eventID;
+	try
+	{
+		rs=DB.readRequest(dbQuery);
+		while(rs.next())
+		{
+			id = rs.getInt("invitationID");
+		}
+			
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	
+	return id;
+	
+}
+
 /********************************************************
  * Method Name 		: GET_EVENT_RECORS_DUE_FOR_PAYMENT
  * Input Parameter 	: void

@@ -143,6 +143,19 @@ public class Guest extends Account
 		return e1;
 	}
 	
+	public void ADD_GUEST_TO_EVENT(String userName, int invitationID)
+	{
+		String dbQuery = "INSERT INTO Guest (userName, invitationID) VALUES ('"+userName+"', "+invitationID+")";
+		try
+		{
+			DB.updateRequest(dbQuery);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
 	public Guest GET_GUEST_ACCOUNT(String userName)
 	{
 		Guest guest = null;

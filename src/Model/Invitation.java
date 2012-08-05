@@ -1,12 +1,15 @@
 package Model;
 
-import java.sql.*;
-import java.util.*;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Date;
 
-import Controller.*;
+import org.apache.commons.lang.StringEscapeUtils;
+
+import Controller.EmailController;
+import Controller.MySQLController;
 import Controller.RIM.Utils.DateHelper;
-import Model.Membership.*;
+import Model.Membership.Guest;
 import Model.RIM.TableNames;
 
 public class Invitation
@@ -307,6 +310,7 @@ public class Invitation
 
 		if (success == 1)
 		{
+			int invitationID = new Event().GET_INVITATION_ID_FOR_EVENT(eventID);
 			System.out.println("Successfully inserted new invitation, sending out emails");
 			ArrayList<String> emailList = new ArrayList<String>();
 			for (Guest guest : invitation.getGuestList())
@@ -321,14 +325,16 @@ public class Invitation
 				guestModel.setLastName(guest.getLastName() != null ? guest.getLastName() : "");
 				guestModel.setDateOfBirth(guest.getDateOfBirth() != null ? guest.getDateOfBirth() : dateHelper.parseDate("1990-10-07", TableNames.DATE_FORMAT_SIMPLE));
 				guestModel.setNric(guest.getNric() != null ? guest.getNric() : "");
-				guestModel.setSchool(guest.getSchool() != null ? guest.getSchool().replaceAll("'", "\'") : "");
+				guestModel.setSchool(guest.getSchool() != null ? StringEscapeUtils.escapeSql(guest.getSchool()) : "");
 				guestModel.setEmail(guest.getEmail() != null ? guest.getEmail() : "");
-				guestModel.setProfilePicture(guest.getProfilePicture() != null ? guest.getProfilePicture().replaceAll("'", "\'") : "");
-				guestModel.setAddress(guest.getAddress() != null ? guest.getAddress().replaceAll("'", "\'") : "");
+				guestModel.setProfilePicture(guest.getProfilePicture() != null ? StringEscapeUtils.escapeSql(guest.getProfilePicture()) : "");
+				guestModel.setAddress(guest.getAddress() != null ? StringEscapeUtils.escapeSql(guest.getAddress()) : "");
 				guestModel.setTelephoneNo(guest.getTelephoneNo() != null ? guest.getTelephoneNo() : "");
 				guestModel.setHandphoneNo(guest.getHandphoneNo() != null ? guest.getHandphoneNo() : "");
 				guestModel.CREATE_GUEST_ACCOUNT(guestModel);
+				guestModel.ADD_GUEST_TO_EVENT(guestModel.getUserName(), invitationID);
 			}
+			
 			String[] emails = new String[emailList.size()];
 			emailList.toArray(emails);
 			EmailController emailController = new EmailController();

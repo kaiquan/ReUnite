@@ -186,7 +186,7 @@ public class Event {
 
 		ArrayList<String> Timelist= new ArrayList<String>();
 		for(int i=0; i<packagelist.size();i++){
-			sqlQuery = "SELECT * FROM Event WHERE (`eventStatus`='Pending' AND `eventDate`='"+Date+"'  AND `packageID`="+packagelist.get(i)+")";
+			sqlQuery = "SELECT * FROM Event WHERE (`eventStatus`='Pending'OR `eventStatus`='Awaiting Payment') AND `eventDate`='"+Date+"'  AND `packageID`="+packagelist.get(i)+")";
 			
 			try{
 				rs = DB.readRequest(sqlQuery);

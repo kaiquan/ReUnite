@@ -79,7 +79,6 @@ public class CreateRIForm extends JFrame {
 	private JLabel SignIn = null;
 	private JLabel submitLabel = null;
 	private JLabel jLabel = null;
-	private JLabel maxCharacter = null;
 	/**
 	 * This method initializes 
 	 * 
@@ -150,6 +149,7 @@ public class CreateRIForm extends JFrame {
 				
 		
 				System.out.println("mouseClicked()"); // TODO Auto-generated Event stub mouseClicked()
+				jFrame.setVisible(false);
 			}
 		});
 		SignIn = new JLabel();
@@ -524,10 +524,6 @@ public class CreateRIForm extends JFrame {
 	 */
 	private JPanel getJPanel() {
 		if (jPanel == null) {
-			maxCharacter = new JLabel();
-			maxCharacter.setBounds(new Rectangle(181, 83, 137, 14));
-			maxCharacter.setFont(new Font("DialogInput", Font.PLAIN, 14));
-			maxCharacter.setText("max 8 characters");
 			jPanel = new JPanel();
 			jPanel.setLayout(null);
 			jPanel.setBounds(new Rectangle(-26, 141, 1263, 269));
@@ -562,7 +558,6 @@ public class CreateRIForm extends JFrame {
 			jPanel.add(monthCombo);
 			jPanel.add(dayCombo);
 			jPanel.add(yearCombo);
-			jPanel.add(maxCharacter, null);
 			jPanel.add(secretQuestionCombo);
 			
 		}

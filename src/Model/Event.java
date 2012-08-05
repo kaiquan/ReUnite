@@ -543,8 +543,8 @@ public ArrayList<Event> RETRIEVE_EVENT_RECORDS(){
 		
 		String dbQuery;
 		
-		
-		dbQuery = "SELECT e.eventName,e.eventDate FROM Notification n INNER JOIN Invitation i On n.notificationID = i.notificationID INNER JOIN Event e On i.eventID = e.eventID INNER JOIN Package p On e.packageID=p.packageID WHERE i.expiryDate <="+"'"+m1.currentDate()+"'"+  "AND (n.type='Invitation') AND(e.eventStatus='Pending') ORDER BY eventDate";
+		dbQuery = "SELECT * FROM Notification n INNER JOIN Event e ON n.eventID = e.eventID INNER JOIN Package p On e.packageID=p.packageID INNER JOIN Invitation i ON i.eventID = e.eventID WHERE i.expiryDate <="+"'"+m1.currentDate()+"' AND (n.type='Invitation') AND(e.eventStatus='Pending') GROUP BY e.eventID ORDER BY eventDate";
+		//dbQuery = "SELECT e.eventName,e.eventDate FROM Notification n INNER JOIN Invitation i On n.notificationID = i.notificationID INNER JOIN Event e On i.eventID = e.eventID INNER JOIN Package p On e.packageID=p.packageID WHERE i.expiryDate <="+"'"+m1.currentDate()+"'"+  "AND (n.type='Invitation') AND(e.eventStatus='Pending') ORDER BY eventDate";
 		try{
 			
 			rs=DB.readRequest(dbQuery);

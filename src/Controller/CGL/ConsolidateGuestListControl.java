@@ -121,7 +121,8 @@ public ArrayList<String> requestSelectedEventDetails(String eventName)
 	try 
 	{
 		ballroomName=ballroom.get(0).getBallroomName();
-		ballroomFinalPrice=(ballroom.get(0).getBallroomFinalPrice());
+		
+		ballroomFinalPrice=Math.round(ballroom.get(0).getBallroomFinalPrice());
 	}
 	catch (Exception ex)
 	{
@@ -136,7 +137,7 @@ public ArrayList<String> requestSelectedEventDetails(String eventName)
 	
 	try
 	{
-		entertainmentPrice=entertainment.get(0).getEntertainmentFinalPrice();
+		entertainmentPrice=Math.round(entertainment.get(0).getEntertainmentFinalPrice());
 	}
 	
 	catch(Exception ex)

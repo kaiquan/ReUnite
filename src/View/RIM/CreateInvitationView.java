@@ -49,7 +49,6 @@ public class CreateInvitationView extends JFrame
 
 	private JTable table;
 	
-	@SuppressWarnings("unused")
 	private int eventID;
 
 	public CreateInvitationView(int eventID)
@@ -292,7 +291,7 @@ public class CreateInvitationView extends JFrame
 			@Override
 			public void sendButtonClicked()
 			{
-				controller.sendInvitation();
+				controller.sendInvitation(eventID);
 			}
 
 		};

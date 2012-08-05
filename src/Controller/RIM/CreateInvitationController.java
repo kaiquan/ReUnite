@@ -42,26 +42,7 @@ public class CreateInvitationController
 		
 	}
 
-	/**
-	 * Directs the appropriate method in the model to create a new Invitation
-	 * record in the database
-	 * 
-	 * @return The success in boolean, true or false
-	 * */
-	public boolean createNewInvitation(ArrayList<Guest> guestList, int eventID)
-	{
-		Invitation newInvitation = new Invitation();
-		
-		newInvitation.setDateCreated(dateHelper.getCurrentDate());
-		newInvitation.setEvent(new Event(eventID));
-		newInvitation.setExpiryDate(dateHelper.addDaysToDate(3, newInvitation.getDateCreated()));
 
-		if(invitationModel.CREATE_INVITATION(newInvitation))
-		{
-			JOptionPane.showMessageDialog(null, "New invitation successfully created!");
-		}
-		return false;
-	}
 	
 	public GuestImportTableModel getTableModel()
 	{
@@ -83,20 +64,25 @@ public class CreateInvitationController
 		tableModel.deleteRow(row);
 	}
 	
-	public boolean sendInvitation()
+	public boolean sendInvitation(int eventID)
 	{
-		
 		Invitation invitation = new Invitation();
 		invitation.setGuestList(tableModel.getAllGuests());
-		invitationModel.CREATE_INVITATION(invitation);
+		invitation.setDateCreated(dateHelper.getCurrentDate());
+		invitation.setEvent(new Event(eventID));
+		invitation.setExpiryDate(dateHelper.addDaysToDate(3, invitation.getDateCreated()));
+
+		if(invitationModel.CREATE_INVITATION(invitation, eventID))
+		{
+			JOptionPane.showMessageDialog(null, "New invitation successfully created!");
+			return true;
+		}
+		
 		return false;
 	}
 	
 	public static void main(String args[])
 	{
-		CreateInvitationController controller = new CreateInvitationController();
-		ArrayList<Guest> guestList = new ArrayList<Guest>();
-		controller.createNewInvitation(guestList , 4);
 	}
 
 	public void searchUsers()

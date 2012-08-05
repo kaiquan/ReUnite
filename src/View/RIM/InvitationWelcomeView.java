@@ -67,8 +67,8 @@ public class InvitationWelcomeView extends JFrame
 
 	private void showCreateInvitationWindow()
 	{
-		this.dispose();
 		new CreateInvitationView(eventID);
+		this.dispose();
 	}
 	public static void main(String args[])
 	{
@@ -76,7 +76,7 @@ public class InvitationWelcomeView extends JFrame
 			public void run()
 			{
 				LookAndFeelController.setGlobalLookAndFeel();
-				new InvitationWelcomeView(3);
+				new InvitationWelcomeView(55);
 			}
 		});
 	}

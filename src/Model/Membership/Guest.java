@@ -4,9 +4,13 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import Controller.MySQLController;
+import Controller.RIM.Utils.DateHelper;
+import Model.RIM.TableNames;
 
 public class Guest extends Account
 {
+	private static DateHelper dateHelper = new DateHelper();
+	
 	boolean onlineStatus;
 	String profilePicture;
 	private String noOfGuests;
@@ -186,17 +190,46 @@ public class Guest extends Account
 	{
 		boolean success = false;
 		
-		String sql = "INSERT INTO Account (userName, password,type, status, firstName, lastName, nric, school, email, address, telephoneNo, handphoneNo,secretQuestion, secretAnswer)";
-		sql += "VALUES ('" + account.getUserName() + "', '" + account.getPassword() + "','" + account.getType() + "','" + account.getStatus() + "', '" + account.getFirstName() + "', '"
-				+ account.getLastName() + "', '" + account.getNric() + "', '" + account.getSchool() + "', '" + account.getEmail() + "', '" + account.getAddress() + "','" + account.getTelephoneNo()
-				+ "','" + account.getHandphoneNo() + "','" + account.getSecretQuestion()
-
-				+ "','" + account.getSecretAnswer() + "')";
+		String sql = "INSERT INTO Account(userName, password, type, status, " +
+				"confirmed, firstName, lastName, dateOfBirth, nric, school, email," +
+				"profilePicture, address, telephoneNo, handphoneNo)"+
+				" VALUES ('"+account.getUserName()+"', '"
+							+account.getNric()+"', '"
+							+account.getType()+"', '"
+							+account.getStatus()+"', "
+							+1+", '"
+							+account.getFirstName()+"', '"
+							+account.getLastName()+"', '"
+							+dateHelper.dateToString(account.getDateOfBirth(), TableNames.DATE_FORMAT_SIMPLE)+"', '" 
+							+account.getNric()+"', '"
+							+account.getSchool()+"', '"
+							+account.getEmail()+"', '"
+							+account.getProfilePicture()+"', '"
+							+account.getAddress()+"', '"
+							+account.getTelephoneNo()+"', '"
+							+account.getHandphoneNo()+"'"
+				+") " +
+				"ON DUPLICATE " +
+				"KEY UPDATE " + 
+				"password = VALUES(password), "+ 
+				"type = VALUES(type), "+
+				"status = VALUES(status), "+
+				"confirmed = VALUES (confirmed), "+
+				"firstName = VALUES(firstName), "+ 
+				"lastName = VALUES(lastName), "+
+				"dateOfBirth = VALUES(dateOfBirth), "+
+				"nric = VALUES(nric), "+
+				"school = VALUES(school), "+ 
+				"email = VALUES(email),"+
+				"profilePicture = VALUES(profilePicture), "+ 
+				"address=VALUES(address), "+
+				"telephoneNo = VALUES(telephoneNo), "+
+				"handphoneNo = VALUES(handphoneNo) ";
 		try
 		{
-			if (DB.updateRequest(sql) == 1)
+			if (DB.updateRequest(sql) > 0)
 			{
-				System.out.println("Successfully created guest account...");
+				System.out.println("Successfully created/updated guest account...");
 				success = true;
 			}
 		}
@@ -217,7 +250,14 @@ public class Guest extends Account
 		guestModel.setStatus("Enabled");
 		guestModel.setFirstName("Adeel");
 		guestModel.setLastName("Ateeque");
+		guestModel.setDateOfBirth(dateHelper.parseDate("1990-10-07", TableNames.DATE_FORMAT_SIMPLE));
 		guestModel.setNric("S9375230I");
+		guestModel.setSchool("Nanyang Polytechnic");
+		guestModel.setEmail("adeelateeque@hotmail.com");
+		guestModel.setProfilePicture("myPic.png");
+		guestModel.setAddress("I live somewhere");
+		guestModel.setTelephoneNo("64974107");
+		guestModel.setHandphoneNo("97761013");
 		guestModel.CREATE_GUEST_ACCOUNT(guestModel);
 	}
 }

@@ -25,30 +25,30 @@ public class GuestCollection
 	public GuestCollection()
 	{
 		guests = new ArrayList<Guest>();
-		Guest me = new Guest("Adeel Ateeque", false, "myPic.jpg", "Nanyang Polytechnic");
-		me.setUserName("Adeel");
-		guests.add(me);
-		Guest you = new Guest("Jhonny Bravo", false, "johnnyBravo.gif", "Nanyang Polytechnic");
-		me.setUserName("Jhonny");
-		guests.add(you);
-		
-		guests.add(new Guest("Shahrikin Alias", false, "userIcon.png", "RP"));
-		guests.add(new Guest("Lee Kai Quan", false, "userIcon.png", "Ngee Ann"));
-		guests.add(new Guest("A.Ameenudeen", false, "userIcon.png", "SP")); 
-		guests.add(new Guest("Jhonny Bravo", false, "johnnyBravo.gif", "National Poly"));
-		guests.add(new Guest("Brad Pitt", false, "bradPitt.jpg", "NYP"));
-		guests.add(new Guest("Adeel Ateeque", false, "myPic.jpg", "Nanyang Polytechnic"));
-		guests.add(new Guest("Shahrikin Alias", false, "userIcon.png", "RP"));
-		guests.add(new Guest("Lee Kai Quan", false, "userIcon.png", "Ngee Ann"));
-		guests.add(new Guest("A.Ameenudeen", false, "userIcon.png", "SP")); 
-		guests.add(new Guest("Jhonny Bravo", false, "johnnyBravo.gif", "National Poly"));
-		guests.add(new Guest("Brad Pitt", false, "bradPitt.jpg", "NYP"));
-		guests.add(new Guest("Adeel Ateeque", false, "myPic.jpg", "Nanyang Polytechnic"));
-		guests.add(new Guest("Shahrikin Alias", false, "userIcon.png", "RP"));
-		guests.add(new Guest("Lee Kai Quan", false, "userIcon.png", "Ngee Ann"));
-		guests.add(new Guest("A.Ameenudeen", false, "userIcon.png", "SP")); 
-		guests.add(new Guest("Jhonny Bravo", false, "johnnyBravo.gif", "National Poly"));
-		guests.add(new Guest("Brad Pitt", false, "bradPitt.jpg", "NYP"));
+//		Guest me = new Guest("Adeel Ateeque", false, "myPic.jpg", "Nanyang Polytechnic");
+//		me.setUserName("Adeel");
+//		guests.add(me);
+//		Guest you = new Guest("Jhonny Bravo", false, "johnnyBravo.gif", "Nanyang Polytechnic");
+//		me.setUserName("Jhonny");
+//		guests.add(you);
+//		
+//		guests.add(new Guest("Shahrikin Alias", false, "userIcon.png", "RP"));
+//		guests.add(new Guest("Lee Kai Quan", false, "userIcon.png", "Ngee Ann"));
+//		guests.add(new Guest("A.Ameenudeen", false, "userIcon.png", "SP")); 
+//		guests.add(new Guest("Jhonny Bravo", false, "johnnyBravo.gif", "National Poly"));
+//		guests.add(new Guest("Brad Pitt", false, "bradPitt.jpg", "NYP"));
+//		guests.add(new Guest("Adeel Ateeque", false, "myPic.jpg", "Nanyang Polytechnic"));
+//		guests.add(new Guest("Shahrikin Alias", false, "userIcon.png", "RP"));
+//		guests.add(new Guest("Lee Kai Quan", false, "userIcon.png", "Ngee Ann"));
+//		guests.add(new Guest("A.Ameenudeen", false, "userIcon.png", "SP")); 
+//		guests.add(new Guest("Jhonny Bravo", false, "johnnyBravo.gif", "National Poly"));
+//		guests.add(new Guest("Brad Pitt", false, "bradPitt.jpg", "NYP"));
+//		guests.add(new Guest("Adeel Ateeque", false, "myPic.jpg", "Nanyang Polytechnic"));
+//		guests.add(new Guest("Shahrikin Alias", false, "userIcon.png", "RP"));
+//		guests.add(new Guest("Lee Kai Quan", false, "userIcon.png", "Ngee Ann"));
+//		guests.add(new Guest("A.Ameenudeen", false, "userIcon.png", "SP")); 
+//		guests.add(new Guest("Jhonny Bravo", false, "johnnyBravo.gif", "National Poly"));
+//		guests.add(new Guest("Brad Pitt", false, "bradPitt.jpg", "NYP"));
 	}
 
 

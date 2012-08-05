@@ -21,12 +21,10 @@ public class Invitation
 	private Date dateCreated;
 	private ArrayList<Guest> guestList;
 
-	
 	@Override
 	public String toString()
 	{
-		return "EventInvitation [invitationID=" + invitationID + ", event=" + event + ", expiryDate=" + expiryDate + ", dateCreated=" + dateCreated
-				+ ", guestList=" + guestList + "]";
+		return "EventInvitation [invitationID=" + invitationID + ", event=" + event + ", expiryDate=" + expiryDate + ", dateCreated=" + dateCreated + ", guestList=" + guestList + "]";
 	}
 
 	/**
@@ -36,7 +34,7 @@ public class Invitation
 	 * */
 	public Invitation()
 	{
-		
+
 	}
 
 	public Invitation(int invitationID)
@@ -128,17 +126,17 @@ public class Invitation
 	public ArrayList<Invitation> GET_ALL_INVITATIONS()
 	{
 		ArrayList<Invitation> invitationList = new ArrayList<Invitation>();
-		
+
 		ArrayList<Event> eventList = eventModel.GET_ALL_EVENTS();
-		
-		for(int i=0; i<eventList.size(); i++)
+
+		for (int i = 0; i < eventList.size(); i++)
 		{
 			Invitation invitation;
 			invitation = eventList.get(i).getEventInvitation();
 			invitation.setEvent(eventList.get(i));
 			invitationList.add(invitation);
 		}
-		
+
 		return invitationList;
 	}
 
@@ -146,8 +144,9 @@ public class Invitation
 	{
 		ResultSet rs = null;
 		int response = 0;
-		
-		String dbQuery = "SELECT ROUND(((SELECT COUNT(*) FROM Guest WHERE invitationID = "+this.invitationID+" AND response = 'ATTENDING')/(SELECT COUNT(*) FROM Guest WHERE invitationID = "+this.invitationID+")*100), 0) AS Response";
+
+		String dbQuery = "SELECT ROUND(((SELECT COUNT(*) FROM Guest WHERE invitationID = " + this.invitationID + " AND response = 'ATTENDING')/(SELECT COUNT(*) FROM Guest WHERE invitationID = "
+				+ this.invitationID + ")*100), 0) AS Response";
 		try
 		{
 			rs = db.readRequest(dbQuery);
@@ -160,11 +159,11 @@ public class Invitation
 		{
 			e.printStackTrace();
 		}
-		
+
 		return response;
-		
+
 	}
-	
+
 	public Event GET_INVITATION_EVENT(int invitationID)
 	{
 		ResultSet rs = null;
@@ -189,13 +188,12 @@ public class Invitation
 	{
 		ResultSet rs = null;
 		Invitation invitation = null;
-		
-		String dbQuery = "SELECT * FROM " + TableNames.INVITATION_TABLE + " i  INNER JOIN "+
-		TableNames.EVENT_TABLE + " e ON i.eventID = e.eventID" + " INNER JOIN " + TableNames.ACCOUNT_TABLE  +
-				" a ON e.userName = a.userName WHERE invitationID = " + invitationID;
-		
+
+		String dbQuery = "SELECT * FROM " + TableNames.INVITATION_TABLE + " i  INNER JOIN " + TableNames.EVENT_TABLE + " e ON i.eventID = e.eventID" + " INNER JOIN " + TableNames.ACCOUNT_TABLE
+				+ " a ON e.userName = a.userName WHERE invitationID = " + invitationID;
+
 		try
-		{	
+		{
 			rs = db.readRequest(dbQuery);
 			if (rs.next())
 			{
@@ -208,7 +206,7 @@ public class Invitation
 		{
 			e.printStackTrace();
 		}
-		
+
 		return invitation;
 	}
 
@@ -219,7 +217,7 @@ public class Invitation
 		String dbQuery = "SELECT COUNT(*) FROM " + TableNames.GUEST_TABLE + " WHERE invitationID = " + this.invitationID;
 		try
 		{
-			
+
 			rs = db.readRequest(dbQuery);
 			while (rs.next())
 			{
@@ -237,7 +235,7 @@ public class Invitation
 	{
 		ResultSet rs = null;
 		ArrayList<Guest> guestList = new ArrayList<Guest>();
-		String dbQuery = "SELECT * FROM " + TableNames.GUEST_TABLE + " i INNER JOIN  "+TableNames.ACCOUNT_TABLE +" a ON i.userName = a.userName WHERE invitationID = " + invitationID;
+		String dbQuery = "SELECT * FROM " + TableNames.GUEST_TABLE + " i INNER JOIN  " + TableNames.ACCOUNT_TABLE + " a ON i.userName = a.userName WHERE invitationID = " + invitationID;
 		try
 		{
 			rs = db.readRequest(dbQuery);
@@ -251,36 +249,7 @@ public class Invitation
 				guest.setHandphoneNo(rs.getString("handPhoneNo"));
 				guest.setTelephoneNo(rs.getString("telephoneNo"));
 				guest.setNric(rs.getString("nric"));
-				
-				guestList.add(guest);
-			}
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		return guestList;
-	}
-	
-	public ArrayList<Guest> GET_ALL_ATTENDING_GUESTS(String eventName,String eventDate)
-	{
-		ResultSet rs = null;
-		ArrayList<Guest> guestList = new ArrayList<Guest>();
-		String dbQuery = "SELECT * FROM Invitation i INNER JOIN Guest g ON g.invitationID=i.invitationID INNER JOIN Account a ON a.userName=g.userName WHERE i.eventID =(SELECT eventID FROM Event WHERE eventName='"+eventName+"'" +" AND eventDate='"+eventDate+"')"+" AND g.response='Attending'";
-		try
-		{
-			rs = db.readRequest(dbQuery);
-			while (rs.next())
-			{
-				Guest guest = new Guest();
-				guest.setUserName(rs.getString("userName"));
-				guest.setFirstName(rs.getString("firstName"));
-				guest.setLastName(rs.getString("lastName"));
-				guest.setEmail(rs.getString("email"));
-				guest.setHandphoneNo(rs.getString("handPhoneNo"));
-				guest.setTelephoneNo(rs.getString("telephoneNo"));
-				guest.setNric(rs.getString("nric"));
-		
+
 				guestList.add(guest);
 			}
 		}
@@ -291,12 +260,42 @@ public class Invitation
 		return guestList;
 	}
 
-	public boolean CREATE_INVITATION(Invitation invitation)
+	public ArrayList<Guest> GET_ALL_ATTENDING_GUESTS(String eventName, String eventDate)
+	{
+		ResultSet rs = null;
+		ArrayList<Guest> guestList = new ArrayList<Guest>();
+		String dbQuery = "SELECT * FROM Invitation i INNER JOIN Guest g ON g.invitationID=i.invitationID INNER JOIN Account a ON a.userName=g.userName WHERE i.eventID =(SELECT eventID FROM Event WHERE eventName='"
+				+ eventName + "'" + " AND eventDate='" + eventDate + "')" + " AND g.response='Attending'";
+		try
+		{
+			rs = db.readRequest(dbQuery);
+			while (rs.next())
+			{
+				Guest guest = new Guest();
+				guest.setUserName(rs.getString("userName"));
+				guest.setFirstName(rs.getString("firstName"));
+				guest.setLastName(rs.getString("lastName"));
+				guest.setEmail(rs.getString("email"));
+				guest.setHandphoneNo(rs.getString("handPhoneNo"));
+				guest.setTelephoneNo(rs.getString("telephoneNo"));
+				guest.setNric(rs.getString("nric"));
+
+				guestList.add(guest);
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return guestList;
+	}
+
+	public boolean CREATE_INVITATION(Invitation invitation, int eventID)
 	{
 		int success = 0;
-		String dbQuery = "INSERT INTO " + TableNames.INVITATION_TABLE + "(`eventID`,`dateCreated`,`expiryDate`,`notificationID`)" + " VALUES ("
-				+ invitation.event.getEventID() + ", " + "'" + dateHelper.dateToString(invitation.getDateCreated(), "yyyy-MM-dd HH:mm:ss") + "'" + ", " + "'"
-				+ dateHelper.dateToString(invitation.getExpiryDate(), "yyyy-MM-dd HH:mm:ss") + "'" + ", " + invitation.event.getEventID() + ")";
+		String dbQuery = "INSERT INTO " + TableNames.INVITATION_TABLE + " (eventID,dateCreated,expiryDate)" + " VALUES (" + invitation.event.getEventID() + ", " + "'"
+				+ dateHelper.dateToString(invitation.getDateCreated(), "yyyy-MM-dd HH:mm:ss") + "'" + ", " + "'" + dateHelper.dateToString(invitation.getExpiryDate(), "yyyy-MM-dd HH:mm:ss") + "'"
+				+ ")";
 		try
 		{
 			success = db.updateRequest(dbQuery);
@@ -308,10 +307,40 @@ public class Invitation
 
 		if (success == 1)
 		{
-			System.out.println("Successfully inserted new invitation...");
-			@SuppressWarnings("unused")
-			Guest guestModel = new Guest();
-//			guestModel.CREATE_GUEST_ACCOUNT(account)
+			System.out.println("Successfully inserted new invitation, sending out emails");
+			ArrayList<String> emailList = new ArrayList<String>();
+			for (Guest guest : invitation.getGuestList())
+			{
+				emailList.add(guest.getEmail());
+				Guest guestModel = new Guest();
+				guestModel.setUserName(guest.getEmail() != null ? guest.getEmail() : "");
+				guestModel.setPassword(guest.getNric() != null ? guest.getNric() : "");
+				guestModel.setType("Guest");
+				guestModel.setStatus("Enabled");
+				guestModel.setFirstName(guest.getFirstName() != null ? guest.getFirstName() : "");
+				guestModel.setLastName(guest.getLastName() != null ? guest.getLastName() : "");
+				guestModel.setDateOfBirth(guest.getDateOfBirth() != null ? guest.getDateOfBirth() : dateHelper.parseDate("1990-10-07", TableNames.DATE_FORMAT_SIMPLE));
+				guestModel.setNric(guest.getNric() != null ? guest.getNric() : "");
+				guestModel.setSchool(guest.getSchool() != null ? guest.getSchool().replaceAll("'", "\'") : "");
+				guestModel.setEmail(guest.getEmail() != null ? guest.getEmail() : "");
+				guestModel.setProfilePicture(guest.getProfilePicture() != null ? guest.getProfilePicture().replaceAll("'", "\'") : "");
+				guestModel.setAddress(guest.getAddress() != null ? guest.getAddress().replaceAll("'", "\'") : "");
+				guestModel.setTelephoneNo(guest.getTelephoneNo() != null ? guest.getTelephoneNo() : "");
+				guestModel.setHandphoneNo(guest.getHandphoneNo() != null ? guest.getHandphoneNo() : "");
+				guestModel.CREATE_GUEST_ACCOUNT(guestModel);
+			}
+			String[] emails = new String[emailList.size()];
+			emailList.toArray(emails);
+			EmailController emailController = new EmailController();
+			try
+			{
+				emailController.sendEmail("text", emails, "You are invited", "I hope you come", null, "Invitation");
+			}
+			catch (Exception e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return true;
 		}
 		return false;
@@ -337,33 +366,31 @@ public class Invitation
 		}
 		return false;
 	}
-	
 
 	public static void main(String args[])
 	{
-//		Invitation invitation = new Invitation();
-//		ArrayList<Invitation> invitationList = invitation.GET_ALL_INVITATIONS();
-//		
-//		for(int i = 0; i < invitationList.size(); i++)
-//		{
-//			System.out.println(invitationList.get(i));
-//		}
-		
-		
-//		Invitation test= new Invitation();
-//		ArrayList<Guest> invitationList = test.GET_ALL_ATTENDING_GUESTS("e1","2012-07-28");
-//		String[] email= new String[invitationList.size()];
-//		
-//		for(int i=0;i<invitationList.size();i++)
-//		{
-//			
-//			email[i]=invitationList.get(i).getEmail();
-//		}	
-//		
-//		for(int i=0;i<email.length;i++){
-//			System.out.println(email[i]);
-//		}
-//	
+		// Invitation invitation = new Invitation();
+		// ArrayList<Invitation> invitationList = invitation.GET_ALL_INVITATIONS();
+		//
+		// for(int i = 0; i < invitationList.size(); i++)
+		// {
+		// System.out.println(invitationList.get(i));
+		// }
+
+		// Invitation test= new Invitation();
+		// ArrayList<Guest> invitationList = test.GET_ALL_ATTENDING_GUESTS("e1","2012-07-28");
+		// String[] email= new String[invitationList.size()];
+		//
+		// for(int i=0;i<invitationList.size();i++)
+		// {
+		//
+		// email[i]=invitationList.get(i).getEmail();
+		// }
+		//
+		// for(int i=0;i<email.length;i++){
+		// System.out.println(email[i]);
+		// }
+		//
 	}
 
 }

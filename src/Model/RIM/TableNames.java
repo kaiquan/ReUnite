@@ -22,4 +22,5 @@ public class TableNames
 	public static final String PURCHASE_SUMMARY_TABLE = "Purchase_Summary";
 	
 	public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+	public static final String DATE_FORMAT_SIMPLE = "yyyy-MM-dd";
 }

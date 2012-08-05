@@ -12,9 +12,16 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
-import Controller.PRFM.*;
-import Model.*;
-import Model.PRFM.*;
+import Controller.PRFM.AdministrateEventController;
+import Controller.PRFM.AdministrateFeedbackFormController;
+import Controller.PRFM.AdministrateFeedbackQuestionController;
+import Controller.PRFM.AdministrateFeedbackResultController;
+
+import Model.Event;
+import Model.PRFM.EventForm;
+import Model.PRFM.FeedbackForm;
+import Model.PRFM.FeedbackQuestion;
+import Model.PRFM.FeedbackResult;
 
 public class QuestionTableButtonMouseListener extends MouseAdapter {
 private JTable table;
@@ -54,7 +61,7 @@ private Object crudFf = null;
 		  ef = ffController.processEventFormSearchTerm(ff.getCode().get(i), 0);
 		  
 		  if (eventController.processEventID(ef.getEventID()) != null){
-			  temp = eventController.processEventID(ef.getEventID()).getArray_EventDate();
+			  temp = eventController.processEventID(ef.getEventID()).getEventDate_list();
 			  
 			  for (int x = 0; x < temp.size(); x++){
 				  dateArr.add(temp.get(x));

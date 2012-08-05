@@ -1,5 +1,6 @@
 package View.PRFM;
 
+import View.PRFM.QuestionTableButtonMouseListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Dimension;
@@ -20,14 +21,17 @@ import javax.swing.JTable;
 import javax.swing.JComboBox;
 import javax.swing.ListSelectionModel;
 
-import Controller.PRFM.*;
-import Model.*;
-import Model.PRFM.*;
+import Controller.PRFM.AdministrateFeedbackFormController;
+import Controller.PRFM.AdministrateFeedbackQuestionController;
+import Model.PRFM.EventForm;
+import Model.PRFM.FeedbackForm;
+import Model.PRFM.FeedbackQuestion;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.JRadioButton;
 
+@SuppressWarnings("unused")
 public class RetrieveFeedbackForm {
 
 	//  @jve:decl-index=0:
@@ -41,11 +45,15 @@ public class RetrieveFeedbackForm {
 	private JLabel filterLabel = null;
 	private JScrollPane jScrollPane = null;
 	private JTable jTable = null;
+	@SuppressWarnings("unchecked")
 	private JComboBox codeComboBox = null;
+	@SuppressWarnings("unchecked")
 	private JComboBox creationDateComboBox = null;
+	@SuppressWarnings("unchecked")
 	private JComboBox fqCodeComboBox = null;
 	private JButton goButton = null;
 	private JButton button = null;
+	@SuppressWarnings("unchecked")
 	private JComboBox eventIDComboBox = null;
 	private JRadioButton detailsRadioButton = null;
 	private JRadioButton resultRadioButton = null;
@@ -105,7 +113,7 @@ public class RetrieveFeedbackForm {
 	private JScrollPane getJScrollPane() {
 		if (jScrollPane == null) {
 			jScrollPane = new JScrollPane();
-			jScrollPane.setBounds(new Rectangle(25, 90, 600, 450));
+			jScrollPane.setBounds(new Rectangle(25, 90, 430, 450));
 			jScrollPane.setViewportView(getJTable());
 		}
 		return jScrollPane;
@@ -306,7 +314,7 @@ public class RetrieveFeedbackForm {
 			goButton.setText("Go");
 			goButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					int code = 0, fqCode = 0;
+					int code = 0, fqCode = 0, eventID = 0;
 					Date creationDate = null, startDate = null, endDate = null;
 					
 					if (getCodeComboBox().getSelectedIndex() != 0){
@@ -320,38 +328,92 @@ public class RetrieveFeedbackForm {
 					if (getFqCodeComboBox().getSelectedIndex() != 0){
 						fqCode = (Integer) getFqCodeComboBox().getSelectedItem();
 					}
+					
+					if (getEventIDComboBox().getSelectedIndex() != 0){
+						eventID = (Integer) getEventIDComboBox().getSelectedItem();
+					}
 								
 					FeedbackForm ff = new FeedbackForm();
+					FeedbackForm newFf = new FeedbackForm();
 					AdministrateFeedbackFormController controller = new AdministrateFeedbackFormController();
 					ff = controller.processSearchTerm(code, creationDate, fqCode);
+					EventForm ef = new EventForm();
+					ef = controller.processEventFormSearchTerm(code, eventID);
 					
-					for (int a = 0; a < ff.getCode().size(); a++){
-						int first = ff.getCode().get(a);
-						for (int b = a + 1; b < ff.getCode().size(); b++){
-							int second = ff.getCode().get(b);
+					if (ff != null){
+						for (int a = 0; a < ff.getCode().size(); a++){
+							int first = ff.getCode().get(a);
+							for (int b = a + 1; b < ff.getCode().size(); b++){
+								int second = ff.getCode().get(b);
+								
+								if (first == second){
+									ff.getCode().remove(b);
+									ff.getCreationDate().remove(b);
+									ff.getFqCode().remove(b);
+									ff.getFqOrder().remove(b);
+									b -= 1;
+								}
+							}
+						}
+						
+						for (int i = 0; i < ff.getCode().size(); i++){
+							newFf.setCode(ff.getCode().get(i));
+							newFf.setCreationDate(ff.getCreationDate().get(i));
+							newFf.setFqCode(ff.getFqCode().get(i));
+							newFf.setFqOrder(ff.getFqOrder().get(i));
+						}
+						
+						if (ef != null){
+							if (!ef.getCode().isEmpty()){
+								for (int x = 0; x < newFf.getCode().size(); x++){
+									if (newFf.getCode().get(x) != ef.getCode().get(0)){
+										newFf.getCode().remove(x);
+										newFf.getCreationDate().remove(x);
+										newFf.getFqCode().remove(x);
+										newFf.getFqOrder().remove(x);
+									}
+								}
+							}
+							else{
+								newFf = new FeedbackForm();
+							}
+						}
+					}
+					else{
+						if (ef != null && !ef.getCode().isEmpty()){
+							newFf = controller.processSearchTerm(ef.getCode().get(0), null, 0);
 							
-							if (first == second){
-								ff.getCode().remove(b);
-								ff.getCreationDate().remove(b);
-								ff.getFqCode().remove(b);
-								ff.getFqOrder().remove(b);
-								b -= 1;
+							for (int a = 0; a < newFf.getCode().size(); a++){
+								int first = newFf.getCode().get(a);
+								for (int b = a + 1; b < newFf.getCode().size(); b++){
+									int second = newFf.getCode().get(b);
+									
+									if (first == second){
+										newFf.getCode().remove(b);
+										newFf.getCreationDate().remove(b);
+										newFf.getFqCode().remove(b);
+										newFf.getFqOrder().remove(b);
+										b -= 1;
+									}
+								}
 							}
 						}
 					}
 					
-					if (ff == null){
+						
+					
+					if (ff == null && ef == null){
 						getJTable().setModel(model);
 					}
 					else{
 				        Object[] colNames = {"Code", "Creation Date", "# of Questions", "# of Events"};
-				        Object[][] data = new Object[ff.getCode().size()][colSize];
+				        Object[][] data = new Object[newFf.getCode().size()][colSize];
 
-				        for (int i = 0; i < ff.getCode().size(); i++){
-			        		data[i][0] = ff.getCode().get(i);
-			        		data[i][1] = ff.getCreationDate().get(i);
-			        		data[i][2] = controller.processSearchTerm(ff.getCode().get(i), null, 0).getCode().size();
-			        		data[i][3] = controller.processEventFormSearchTerm(ff.getCode().get(i), 0).getEventID().size();
+				        for (int i = 0; i < newFf.getCode().size(); i++){
+			        		data[i][0] = newFf.getCode().get(i);
+			        		data[i][1] = newFf.getCreationDate().get(i);
+			        		data[i][2] = controller.processSearchTerm(newFf.getCode().get(i), null, 0).getCode().size();
+			        		data[i][3] = controller.processEventFormSearchTerm(newFf.getCode().get(i), 0).getEventID().size();
 			        		}
 					
 						final DefaultTableModel model = new DefaultTableModel(data, colNames);

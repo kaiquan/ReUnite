@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import Controller.MySQLController;
 
 public class EventForm extends FeedbackForm{
-	private static MySQLController db;
+	private static Controller.MySQLController db;
 	private ArrayList<Integer> eventID;
 	
 	public EventForm(){

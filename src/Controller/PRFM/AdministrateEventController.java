@@ -14,7 +14,7 @@ public class AdministrateEventController {
 	
 	public Event processRetrieve(){
 		Event event = new Event();
-		event.RETRIEVE_EVENTS(null);
+		event.RETRIEVE_EVENT(null);
 		return event;
 	}
 	
@@ -59,7 +59,7 @@ public class AdministrateEventController {
 			}
 		}
 		
-		event.RETRIEVE_EVENTS(condition);
+		event.RETRIEVE_EVENT(condition);
 		return event;
 	}
 	
@@ -83,7 +83,7 @@ public class AdministrateEventController {
 		}
 		
 		condition += ")";
-		event.RETRIEVE_EVENTS(condition);
+		event.RETRIEVE_EVENT(condition);
 		return event;
 	}
 

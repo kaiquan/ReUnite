@@ -13,9 +13,14 @@ import java.util.ArrayList;
 
 import javax.swing.JTextField;
 
-import Controller.PRFM.*;
-import Model.*;
-import Model.PRFM.*;
+import Controller.PRFM.AdministrateEventController;
+import Controller.PRFM.AdministrateFeedbackFormController;
+import Controller.PRFM.AdministrateFeedbackQuestionController;
+
+import Model.Event;
+import Model.PRFM.EventForm;
+import Model.PRFM.FeedbackForm;
+import Model.PRFM.FeedbackQuestion;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -292,14 +297,14 @@ public class DeleteFeedbackForm {
 					
 					int colSize = 5;
 			        Object[] colNames = {"Event ID", "Event Date", "Event Time", "Event Name", "Status"};
-			        Object[][] data = new Object[event.getArray_EventID().size()][colSize];
+			        Object[][] data = new Object[event.getEventID_list().size()][colSize];
 
-			        for (int i = 0; i < event.getArray_EventID().size(); i++){
-		        		data[i][0] = event.getArray_EventID().get(i);
-		        		data[i][1] = controller.calendarToString(event.getArray_EventDate().get(i));
-		        		data[i][2] = event.getArray_EventTime().get(i);
-		        		data[i][3] = event.getArray_EventName().get(i);
-		        		data[i][4] = event.getArray_EventStatus().get(i);
+			        for (int i = 0; i < event.getEventID_list().size(); i++){
+		        		data[i][0] = event.getEventID_list().get(i);
+		        		data[i][1] = controller.calendarToString(event.getEventDate_list().get(i));
+		        		data[i][2] = event.getEventTime_list().get(i);
+		        		data[i][3] = event.getEventName_list().get(i);
+		        		data[i][4] = event.getEventStatus_list().get(i);
 			        }
 			        
 					DefaultTableModel model = new DefaultTableModel(data, colNames);

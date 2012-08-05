@@ -6,29 +6,33 @@ import javax.swing.JTextField;
 
 import java.awt.Dimension;
 import java.awt.Rectangle;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Vector;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.data.general.DefaultPieDataset;
-import org.jfree.data.general.PieDataset;
 import org.jfree.util.Rotation;
-import Controller.PRFM.*;
-import Model.*;
-import Model.PRFM.*;
+
+import Controller.PRFM.AdministrateFeedbackFormController;
+import Controller.PRFM.AdministrateFeedbackQuestionController;
+import Controller.PRFM.AdministrateFeedbackResultController;
+
+import Model.PRFM.FeedbackForm;
+import Model.PRFM.FeedbackQuestion;
+import Model.PRFM.FeedbackResult;
+import Model.PRFM.OpenEndedResult;
+import Model.PRFM.RatingQuestion;
+import Model.PRFM.RatingResult;
+import Model.PRFM.YesNoQuestion;
+import Model.PRFM.YesNoResult;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
@@ -40,6 +44,7 @@ public class RetrieveFeedbackResult {
 	private FeedbackForm ff = new FeedbackForm();  //  @jve:decl-index=0:
 	private FeedbackResult fr;  //  @jve:decl-index=0:
 	private int qnsCount = 0;
+	@SuppressWarnings("unused")
 	private ArrayList<Integer> sumArr = new ArrayList<Integer>();
 	private static final long serialVersionUID = 1L;
 	private JFreeChart chart = null;  //  @jve:decl-index=0:
@@ -61,6 +66,7 @@ public class RetrieveFeedbackResult {
 	private JTable jTable = null;
 	private JButton nextButton = null;
 	private JButton prevButton = null;
+	@SuppressWarnings("unchecked")
 	private JComboBox codeComboBox = null;
 	private JButton goButton = null;
 	/**
@@ -580,6 +586,7 @@ public class RetrieveFeedbackResult {
 	 * 	
 	 * @return javax.swing.JComboBox	
 	 */
+	@SuppressWarnings("unchecked")
 	private JComboBox getCodeComboBox() {
 		if (codeComboBox == null) {
 			codeComboBox = new JComboBox();

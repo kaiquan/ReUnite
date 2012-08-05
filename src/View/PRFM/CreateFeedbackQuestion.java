@@ -12,9 +12,9 @@ import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 
-import Controller.PRFM.*;
-import Model.*;
-import Model.PRFM.*;
+import Controller.PRFM.AdministrateFeedbackFormController;
+import Controller.PRFM.AdministrateFeedbackQuestionController;
+import Model.PRFM.FeedbackQuestion;
 
 public class CreateFeedbackQuestion {
 

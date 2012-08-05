@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.Scanner;
 
 import Model.PRFM.FeedbackQuestion;
+import Model.PRFM.OpenEndedResult;
 import Model.PRFM.RatingQuestion;
 import Model.PRFM.YesNoQuestion;
 

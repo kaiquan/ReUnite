@@ -18,9 +18,13 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import Controller.PRFM.*;
-import Model.*;
-import Model.PRFM.*;
+import Controller.PRFM.AdministrateEventController;
+import Controller.PRFM.AdministrateFeedbackFormController;
+import Controller.PRFM.AdministrateFeedbackQuestionController;
+import Model.Event;
+import Model.PRFM.EventForm;
+import Model.PRFM.FeedbackForm;
+import Model.PRFM.FeedbackQuestion;
 
 public class CreateFeedbackForm {
 
@@ -185,8 +189,8 @@ public class CreateFeedbackForm {
 								for (int a = 0; a < eventIDArr.size(); a++){
 									eventValid[a] = false;
 									
-									for (int b = 0; b < event.getArray_EventID().size(); b++){
-										if (eventIDArr.get(a) == event.getArray_EventID().get(b)){
+									for (int b = 0; b < event.getEventID_list().size(); b++){
+										if (eventIDArr.get(a) == event.getEventID_list().get(b)){
 											eventValid[a] = true;
 											break;
 										}
@@ -230,13 +234,13 @@ public class CreateFeedbackForm {
 										String before = new String();
 										String inProcess = new String();
 										
-										for (int i = 0; i < newEvent.getArray_EventDate().size(); i++){
-											int beforeAfter = ffController.compareCurrentDate(newEvent.getArray_EventDate().get(i));
+										for (int i = 0; i < newEvent.getEventDate_list().size(); i++){
+											int beforeAfter = ffController.compareCurrentDate(newEvent.getEventDate_list().get(i));
 											if (beforeAfter < 0){
-												before += ", " + newEvent.getArray_EventID().get(i);
+												before += ", " + newEvent.getEventID_list().get(i);
 											}
 											else if (beforeAfter == 0){
-												inProcess += ", " + newEvent.getArray_EventID().get(i);
+												inProcess += ", " + newEvent.getEventID_list().get(i);
 											}
 										}
 										

@@ -11,12 +11,17 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 
-import Controller.PRFM.*;
+import Controller.PRFM.AdministrateEventController;
+import Controller.PRFM.AdministrateFeedbackFormController;
 
 import Model.Event;
-import Model.PRFM.*;
+import Model.PRFM.EventForm;
 
 import java.awt.Rectangle;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Scanner;
 public class AdministrateFeedbackForm {
 	
 	private JFrame jFrame = null;  //  @jve:decl-index=0:visual-constraint="147,9"
@@ -333,34 +338,70 @@ public class AdministrateFeedbackForm {
 				AdministrateFeedbackFormController ffController = new AdministrateFeedbackFormController();
 				allEvent = eController.processRetrieve();
 				
-				for (int i = 0; i < allEvent.getArray_EventDate().size(); i++){
-					if (ffController.compareCurrentDate(allEvent.getArray_EventDate().get(i)) == 0){
-						event.setArray_EventDate(allEvent.getArray_EventDate().get(i));
-						event.setArray_EventDescription(allEvent.getArray_EventDescription().get(i));
-						event.setArray_EventID(allEvent.getArray_EventID().get(i));
-						event.setArray_EventName(allEvent.getArray_EventName().get(i));
-						event.setArray_EventStatus(allEvent.getArray_EventStatus().get(i));
-						event.setEventTime(allEvent.getArray_EventTime().get(i));
-						event.setArray_PackageID(allEvent.getArray_PackageID().get(i));
-						event.setArray_UserName(allEvent.getArray_UserName().get(i));
+				for (int i = 0; i < allEvent.getEventDate_list().size(); i++){
+					if (ffController.compareCurrentDate(allEvent.getEventDate_list().get(i)) == 0){
+						event.setEventDate_list(allEvent.getEventDate_list().get(i));
+						event.setEventDescription_list(allEvent.getEventDescription_list().get(i));
+						event.setEventID_list(allEvent.getEventID_list().get(i));
+						event.setEventName_list(allEvent.getEventName_list().get(i));
+						event.setEventStatus_list(allEvent.getEventStatus_list().get(i));
+						event.setEventTime_list(allEvent.getEventTime_list().get(i));
+						event.setPackageID_list(allEvent.getPackageID_list().get(i));
+						event.setUserName_list(allEvent.getUserName_list().get(i));
 					}
 				}
 				
-				if (event.getArray_EventID().size() == 0){
+				if (event.getEventID_list().size() == 0){
 					JOptionPane.showMessageDialog(getJFrame(), "There are no events today.");
 				}
 				else{
 					EventForm ef = new EventForm();
-					ef = ffController.processEventFormSearchTerm(0, event.getArray_EventID().get(0));
 					
-					if (event.getArray_EventID().size() > 1){
-						for (int i = 0; i < event.getArray_EventID().size(); i++){
+					if (event.getEventID_list().size() > 1){
+						DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+						Calendar cal = Calendar.getInstance();
+						String currentTime = dateFormat.format(cal.getTime());
+						int currentHour, tempCurrentHour;
+						
+						Scanner sc = new Scanner(currentTime);
+						sc.useDelimiter(":");
+						currentHour = Integer.valueOf(sc.next());
+						tempCurrentHour = currentHour;
+						
+						boolean valid = true;
+						int i = 0;
+						
+						while (valid && i < event.getEventID_list().size()){
+							String morningOrAfternoon = event.getEventTime_list().get(i).substring(event.getEventTime_list().get(i).length() - 2);
 							
+							if (morningOrAfternoon.equals("PM") && currentHour > 12){
+								tempCurrentHour -= 12;
+							}
+							
+							Scanner tempSc = new Scanner(event.getEventTime_list().get(i));
+							tempSc.useDelimiter(":");
+							int tempEventHour = Integer.valueOf(sc.next());
+							
+							if (tempCurrentHour == tempEventHour){
+								ef = ffController.processEventFormSearchTerm(0, event.getEventID_list().get(i));
+								
+								if (ef.getEventID().isEmpty()){
+									JOptionPane.showMessageDialog(getJFrame(), "There's no feedback form assigned to Event #" + event.getEventID_list().get(0));
+								}
+								else{
+									CreateFeedbackResult create = new CreateFeedbackResult(ef.getCode().get(0));
+									create.getJFrame().setVisible(true);
+								}
+								
+								valid = false;
+							}
 						}
 					}
 					else{
+						ef = ffController.processEventFormSearchTerm(0, event.getEventID_list().get(0));
+						
 						if (ef.getEventID().isEmpty()){
-							JOptionPane.showMessageDialog(getJFrame(), "There's no feedback form assigned to Event #" + event.getArray_EventID().get(0));
+							JOptionPane.showMessageDialog(getJFrame(), "There's no feedback form assigned to Event #" + event.getEventID_list().get(0));
 						}
 						else{
 							CreateFeedbackResult create = new CreateFeedbackResult(ef.getCode().get(0));

@@ -9,9 +9,13 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
-import Controller.PRFM.*;
-import Model.*;
-import Model.PRFM.*;
+import Controller.PRFM.AdministrateEventController;
+import Controller.PRFM.AdministrateFeedbackFormController;
+import Controller.PRFM.AdministrateFeedbackResultController;
+import Model.Event;
+import Model.PRFM.EventForm;
+import Model.PRFM.FeedbackForm;
+import Model.PRFM.FeedbackResult;
 
 public class FormTableButtonMouseListener extends MouseAdapter {
 private JTable table;
@@ -49,8 +53,8 @@ private String source, selection = null;
 		  int i = 0;
 		  
 		  if (event != null){
-			  while (valid && i < event.getArray_EventID().size()){
-				  int option = ffController.compareCurrentDate(event.getArray_EventDate().get(i));
+			  while (valid && i < event.getEventID_list().size()){
+				  int option = ffController.compareCurrentDate(event.getEventDate_list().get(i));
 	
 				  if (option < 0){
 					JOptionPane.showMessageDialog(null, "Feedback Form #" + code + " has already been published and therefore, cannot be updated.");
@@ -80,8 +84,8 @@ private String source, selection = null;
 		  int i = 0;
 		  
 		  if (event != null){
-			  while (valid && i < event.getArray_EventDate().size()){
-				  int option = ffController.compareCurrentDate(event.getArray_EventDate().get(i));
+			  while (valid && i < event.getEventDate_list().size()){
+				  int option = ffController.compareCurrentDate(event.getEventDate_list().get(i));
 				  
 				  if (option < 0){
 					JOptionPane.showMessageDialog(null, "Feedback Form #" + code + " has already been published and therefore, cannot be deleted.");

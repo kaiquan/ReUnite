@@ -3,17 +3,15 @@ package View.PRFM;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.JLabel;
 import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 import javax.swing.JTextField;
-import Controller.PRFM.*;
-import Model.*;
-import Model.PRFM.*;
+
+import Controller.PRFM.AdministrateFeedbackQuestionController;
+
+import Model.PRFM.RatingQuestion;
 import javax.swing.JButton;
 
 public class UpdateRatingQuestion {

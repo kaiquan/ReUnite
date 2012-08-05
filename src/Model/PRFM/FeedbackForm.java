@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import Controller.MySQLController;
 
 public class FeedbackForm {
-	private static Controller.MySQLController db;
+	private static MySQLController db;
 	private ArrayList<Integer> code, fqCode, fqOrder;
 	private ArrayList<Date> creationDate;
 	

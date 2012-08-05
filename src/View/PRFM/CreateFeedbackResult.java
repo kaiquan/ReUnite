@@ -22,9 +22,18 @@ import java.util.Scanner;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 
-import Controller.PRFM.*;
-import Model.*;
-import Model.PRFM.*;
+import Controller.PRFM.AdministrateFeedbackFormController;
+import Controller.PRFM.AdministrateFeedbackQuestionController;
+import Controller.PRFM.AdministrateFeedbackResultController;
+
+import Model.PRFM.FeedbackForm;
+import Model.PRFM.FeedbackQuestion;
+import Model.PRFM.FeedbackResult;
+import Model.PRFM.OpenEndedResult;
+import Model.PRFM.RatingQuestion;
+import Model.PRFM.RatingResult;
+import Model.PRFM.YesNoQuestion;
+import Model.PRFM.YesNoResult;
 
 import javax.swing.JButton;
 import javax.swing.JRadioButton;

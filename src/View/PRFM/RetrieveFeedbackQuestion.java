@@ -1,5 +1,6 @@
 package View.PRFM;
 
+import View.PRFM.QuestionTableButtonMouseListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Dimension;
@@ -19,11 +20,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTable;
 import javax.swing.JComboBox;
-import javax.swing.ListSelectionModel;
 
-import Controller.PRFM.*;
-import Model.*;
-import Model.PRFM.*;
+import Controller.PRFM.AdministrateFeedbackQuestionController;
+import Model.PRFM.FeedbackQuestion;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -47,8 +46,11 @@ public class RetrieveFeedbackQuestion {
 	private JLabel keywordNoteLabel = null;
 	private JScrollPane jScrollPane = null;
 	private JTable jTable = null;
+	@SuppressWarnings("unchecked")
 	private JComboBox codeComboBox = null;
+	@SuppressWarnings("unchecked")
 	private JComboBox dateComboBox = null;
+	@SuppressWarnings("unchecked")
 	private JComboBox typeComboBox = null;
 	private JButton goButton = null;
 	private JButton button = null;
@@ -80,6 +82,7 @@ public class RetrieveFeedbackQuestion {
 		if (jContentPane == null) {
 			AdministrateFeedbackQuestionController fqController = new AdministrateFeedbackQuestionController();
 			ArrayList<String> wordArr = fqController.processRetrieveWords();
+			@SuppressWarnings("unused")
 			Autocomplete ac = new Autocomplete(getKeywordTextArea(), wordArr);
 			bg.add(getDetailsRadioButton());
 			bg.add(getResultRadioButton());
@@ -184,9 +187,10 @@ public class RetrieveFeedbackQuestion {
 	    		jTable.getColumnModel().getColumn(i).setPreferredWidth(colWidth);
 	    		
 	    		if (i == colSize - 1){
-		    		jTable.getColumnModel().getColumn(colSize - 1).setPreferredWidth(437);
+		    		jTable.getColumnModel().getColumn(colSize - 1).setPreferredWidth(422);
 	    		}
 	    	}
+	    	
 	    	
 	    	jTable.setAutoCreateColumnsFromModel(false);
 	    	sortAllRowsBy(model, 0, true);
@@ -211,6 +215,7 @@ public class RetrieveFeedbackQuestion {
 		return jTable;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void sortAllRowsBy(DefaultTableModel model, int colIndex, boolean ascending) {
 	    Vector data = model.getDataVector();
 	    Collections.sort(data, new ColumnSorter(colIndex, ascending));
@@ -222,6 +227,7 @@ public class RetrieveFeedbackQuestion {
 	 * 	
 	 * @return javax.swing.JComboBox	
 	 */
+	@SuppressWarnings("unchecked")
 	private JComboBox getCodeComboBox() {
 		if (codeComboBox == null) {
 			codeComboBox = new JComboBox();
@@ -246,6 +252,7 @@ public class RetrieveFeedbackQuestion {
 	 * 	
 	 * @return javax.swing.JComboBox	
 	 */
+	@SuppressWarnings("unchecked")
 	private JComboBox getDateComboBox() {
 		if (dateComboBox == null) {
 			dateComboBox = new JComboBox();
@@ -282,6 +289,7 @@ public class RetrieveFeedbackQuestion {
 	 * 	
 	 * @return javax.swing.JComboBox	
 	 */
+	@SuppressWarnings("unchecked")
 	private JComboBox getTypeComboBox() {
 		if (typeComboBox == null) {
 			typeComboBox = new JComboBox();

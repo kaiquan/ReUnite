@@ -7,11 +7,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import Controller.PRFM.*;
-import Model.*;
-import Model.PRFM.*;
+import Controller.PRFM.AdministrateFeedbackFormController;
+import Controller.PRFM.AdministrateFeedbackQuestionController;
 
-import java.awt.BorderLayout;
+import Model.PRFM.FeedbackForm;
+import Model.PRFM.FeedbackQuestion;
+
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import javax.swing.JRadioButton;
@@ -20,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class UpdateFeedbackQuestion {
 
+	@SuppressWarnings("unused")
 	private int code;
 	private FeedbackQuestion fq = new FeedbackQuestion();  //  @jve:decl-index=0:
 	private FeedbackForm ff = new FeedbackForm();
@@ -224,10 +226,31 @@ public class UpdateFeedbackQuestion {
 			submitButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					String question = getQuestionTextField().getText();
+					boolean valid = true;
+					
 					if (question.equals("")){
 						JOptionPane.showMessageDialog(getJFrame(), "Please enter a question.");
+						valid = false;
+					}
+					else if (question.length() > 100){
+						JOptionPane.showMessageDialog(getJFrame(), "Question must not be more than 100 characters.");
+						valid = false;
 					}
 					else{
+						FeedbackQuestion temp = new FeedbackQuestion();
+						AdministrateFeedbackQuestionController fqController = new AdministrateFeedbackQuestionController();
+						temp = fqController.processRetrieve();
+						
+						for (int i = 0; i < temp.getQuestion().size(); i++){
+							if (temp.getQuestion().get(i).equals(question)){
+								JOptionPane.showMessageDialog(getJFrame(), "Duplicate question found. Please enter another question.");
+								valid = false;
+								break;
+							}
+						}
+					}
+					
+					if (valid){
 						String type = null;
 						
 						if (getYesNoRadioButton().isSelected()){

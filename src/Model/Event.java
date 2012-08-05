@@ -60,24 +60,13 @@ public class Event {
 	private String eventName;
 	private String eventDescription;
 	
-	private ArrayList<Integer> array_eventID, array_packageID;
-	private ArrayList<String> array_userName, array_eventStatus, array_eventName, array_eventTime, array_eventDescription;
-	private ArrayList<GregorianCalendar> array_eventDate;
+	private ArrayList<Integer> eventID_list, packageID_list;
+	private ArrayList<String> userName_list, eventStatus_list, eventName_list, eventTime_list, eventDescription_list;
+	private ArrayList<GregorianCalendar> eventDate_list;
 	
 	/********************************************************
 	 *				The Constructor(s)
 	 *******************************************************/
-	
-	public Event(){
-		array_eventID = new ArrayList<Integer>();
-		array_packageID = new ArrayList<Integer>();
-		array_userName = new ArrayList<String>();
-		array_eventStatus = new ArrayList<String>();
-		array_eventDate = new ArrayList<GregorianCalendar>();
-		array_eventTime = new ArrayList<String>();
-		array_eventName = new ArrayList<String>();
-		array_eventDescription = new ArrayList<String>();
-	}
 	public Event(int eventID)
 	{
 		this.setID(eventID);
@@ -94,7 +83,18 @@ public class Event {
 		this.eventName = eventTitle; 
 		this.eventDate = eventDate;
 	}
-	
+	public Event(){
+		DB = new MySQLController();
+		eventID_list = new ArrayList<Integer>();
+		packageID_list = new ArrayList<Integer>();
+		userName_list = new ArrayList<String>();
+		eventStatus_list = new ArrayList<String>();
+		eventDate_list = new ArrayList<GregorianCalendar>();
+		eventTime_list = new ArrayList<String>();
+		eventName_list = new ArrayList<String>();
+		eventDescription_list = new ArrayList<String>();
+		
+	}
 
 	/********************************************************
 	 *				The Method(s)
@@ -734,7 +734,8 @@ public ArrayList<Event> GET_EVENT_DETAILS(String eventName){
 			
 		}
 		
-		public boolean RETRIEVE_EVENTS(String condition){
+		
+		public boolean RETRIEVE_EVENT(String condition){
 			boolean success = false;
 			ResultSet rs = null;
 			String dbQuery = "SELECT * FROM saharp5_adeel_school.Event";
@@ -758,15 +759,15 @@ public ArrayList<Event> GET_EVENT_DETAILS(String eventName){
 							dateArr.add(sc.nextInt());
 						}
 						
-						array_eventDate.add(new GregorianCalendar(dateArr.get(0), dateArr.get(1) - 1, dateArr.get(2)));
+						eventDate_list.add(new GregorianCalendar(dateArr.get(0), dateArr.get(1) - 1, dateArr.get(2)));
 					
-						array_eventID.add(rs.getInt("eventID"));
-						array_packageID.add(rs.getInt("packageID"));
-						array_userName.add(rs.getString("userName"));
-						array_eventStatus.add(rs.getString("eventStatus"));
-						array_eventTime.add(rs.getString("eventTime"));
-						array_eventName.add(rs.getString("eventName"));
-						array_eventDescription.add(rs.getString("eventDescription"));
+						eventID_list.add(rs.getInt("eventID"));
+						packageID_list.add(rs.getInt("packageID"));
+						userName_list.add(rs.getString("userName"));
+						eventStatus_list.add(rs.getString("eventStatus"));
+						eventTime_list.add(rs.getString("eventTime"));
+						eventName_list.add(rs.getString("eventName"));
+						eventDescription_list.add(rs.getString("eventDescription"));
 					    success = true;
 					}   
 		
@@ -777,7 +778,6 @@ public ArrayList<Event> GET_EVENT_DETAILS(String eventName){
 
 			return success;
 		}
-		
 		
 	/********************************************************
 	 *				The Accessor Methods
@@ -889,70 +889,70 @@ public ArrayList<Event> GET_EVENT_DETAILS(String eventName){
 	{
 		this.invitation = invitation;
 	}
-	public ArrayList<Integer> getArray_EventID() {
-		return array_eventID;
-	}
-
-	public void setArray_EventID(int eventID) {
-		this.array_eventID.add(eventID);
-	}
-
-	public ArrayList<Integer> getArray_PackageID() {
-		return array_packageID;
-	}
-
-	public void setArray_PackageID(int packageID) {
-		this.array_packageID.add(packageID);
-	}
-
-	public ArrayList<String> getArray_UserName() {
-		return array_userName;
-	}
-
-	public void setArray_UserName(String userName) {
-		this.array_userName.add(userName);
-	}
-
-	public ArrayList<String> getArray_EventStatus() {
-		return array_eventStatus;
-	}
-
-	public void setArray_EventStatus(String eventStatus) {
-		this.array_eventStatus.add(eventStatus);
-	}
-
-	public ArrayList<String> getArray_EventName() {
-		return array_eventName;
-	}
-
-	public void setArray_EventName(String eventName) {
-		this.array_eventName.add(eventName);
-	}
-
-	public ArrayList<String> getArray_EventTime() {
-		return array_eventTime;
-	}
-
-	public void setArray_EventTime(String eventTime) {
-		this.array_eventTime.add(eventTime);
-	}
-
-	public ArrayList<String> getArray_EventDescription() {
-		return array_eventDescription;
-	}
-
-	public void setArray_EventDescription(String eventDescription) {
-		this.array_eventDescription.add(eventDescription);
-	}
-
-	public ArrayList<GregorianCalendar> getArray_EventDate() {
-		return array_eventDate;
-	}
-
-	public void setArray_EventDate(GregorianCalendar eventDate) {
-		this.array_eventDate.add(eventDate);
-	}
 	
+	public ArrayList<Integer> getEventID_list() {
+		return eventID_list;
+	}
+
+	public void setEventID_list(int eventID) {
+		this.eventID_list.add(eventID);
+	}
+
+	public ArrayList<Integer> getPackageID_list() {
+		return packageID_list;
+	}
+
+	public void setPackageID_list(int packageID) {
+		this.packageID_list.add(packageID);
+	}
+
+	public ArrayList<String> getUserName_list() {
+		return userName_list;
+	}
+
+	public void setUserName_list(String userName) {
+		this.userName_list.add(userName);
+	}
+
+	public ArrayList<String> getEventStatus_list() {
+		return eventStatus_list;
+	}
+
+	public void setEventStatus_list(String eventStatus) {
+		this.eventStatus_list.add(eventStatus);
+	}
+
+	public ArrayList<String> getEventName_list() {
+		return eventName_list;
+	}
+
+	public void setEventName_list(String eventName) {
+		this.eventName_list.add(eventName);
+	}
+
+	public ArrayList<String> getEventTime_list() {
+		return eventTime_list;
+	}
+
+	public void setEventTime_list(String eventTime) {
+		this.eventTime_list.add(eventTime);
+	}
+
+	public ArrayList<String> getEventDescription_list() {
+		return eventDescription_list;
+	}
+
+	public void setEventDescription_list(String eventDescription) {
+		this.eventDescription_list.add(eventDescription);
+	}
+
+	public ArrayList<GregorianCalendar> getEventDate_list() {
+		return eventDate_list;
+	}
+
+	public void setEventDate_list(GregorianCalendar eventDate) {
+		this.eventDate_list.add(eventDate);
+	}
 	
 	@Override
 	public int hashCode() {

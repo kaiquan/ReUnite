@@ -3,28 +3,25 @@ package View.PRFM;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.JLabel;
 import java.awt.Rectangle;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 import javax.swing.JTextField;
 
-import Controller.PRFM.*;
-import Model.*;
-import Model.PRFM.*;
+import Controller.PRFM.AdministrateEventController;
+import Controller.PRFM.AdministrateFeedbackFormController;
+import Controller.PRFM.AdministrateFeedbackQuestionController;
+
+import Model.Event;
+import Model.PRFM.EventForm;
+import Model.PRFM.FeedbackForm;
+import Model.PRFM.FeedbackQuestion;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
-import javax.swing.JProgressBar;
 
 public class UpdateFeedbackForm {
 
@@ -42,12 +39,12 @@ public class UpdateFeedbackForm {
 	private JTextField creationDateTextField = null;
 	private JLabel fqCodeLabel = null;
 	private JTextField fqCodeTextField = null;
-	private JButton viewButton = null;
+	private JButton viewFqButton = null;
 	private JButton submitButton = null;
 	private JButton resetButton = null;
-	private JProgressBar jProgressBar = null;
 	private JLabel eventIDLabel = null;
 	private JTextField eventIDTextField = null;
+	private JButton viewEventButton = null;
 
 	/**
 	 * This method initializes jFrame	
@@ -58,7 +55,7 @@ public class UpdateFeedbackForm {
 		if (jFrame == null) {
 			jFrame = new JFrame();
 			jFrame.setTitle("Update Feedback Form #" + ff.getCode().get(0).toString());
-			jFrame.setSize(new Dimension(500, 300));
+			jFrame.setSize(new Dimension(500, 250));
 			jFrame.setContentPane(getJContentPane());
 		}
 		return jFrame;
@@ -91,12 +88,12 @@ public class UpdateFeedbackForm {
 			jContentPane.add(getCreationDateTextField(), null);
 			jContentPane.add(fqCodeLabel, null);
 			jContentPane.add(getFqCodeTextField(), null);
-			jContentPane.add(getViewButton(), null);
+			jContentPane.add(getViewFqButton(), null);
 			jContentPane.add(getSubmitButton(), null);
 			jContentPane.add(getResetButton(), null);
-			jContentPane.add(getJProgressBar(), null);
 			jContentPane.add(eventIDLabel, null);
 			jContentPane.add(getEventIDTextField(), null);
+			jContentPane.add(getViewEventButton(), null);
 		}
 		return jContentPane;
 	}
@@ -150,16 +147,16 @@ public class UpdateFeedbackForm {
 	}
 
 	/**
-	 * This method initializes viewButton	
+	 * This method initializes viewFqButton	
 	 * 	
 	 * @return javax.swing.JButton	
 	 */
-	private JButton getViewButton() {
-		if (viewButton == null) {
-			viewButton = new JButton();
-			viewButton.setBounds(new Rectangle(30, 150, 200, 20));
-			viewButton.setText("View feedback questions");
-			viewButton.addActionListener(new java.awt.event.ActionListener() {
+	private JButton getViewFqButton() {
+		if (viewFqButton == null) {
+			viewFqButton = new JButton();
+			viewFqButton.setBounds(new Rectangle(85, 150, 180, 20));
+			viewFqButton.setText("View feedback questions");
+			viewFqButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 			        ArrayList<FeedbackQuestion> fqArr = new ArrayList<FeedbackQuestion>();
 			        FeedbackQuestion fq = new FeedbackQuestion();
@@ -187,7 +184,7 @@ public class UpdateFeedbackForm {
 				}
 			});
 		}
-		return viewButton;
+		return viewFqButton;
 	}
 
 	/**
@@ -198,15 +195,11 @@ public class UpdateFeedbackForm {
 	private JButton getSubmitButton() {
 		if (submitButton == null) {
 			submitButton = new JButton();
-			submitButton.setBounds(new Rectangle(260, 150, 80, 20));
+			submitButton.setBounds(new Rectangle(185, 180, 80, 20));
 			submitButton.setText("Submit");
 			submitButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					if ( !(getFqCodeTextField().getText().equals(fqCode) && getEventIDTextField().getText().equals(eventID)) ){
-						
-					getJProgressBar().setIndeterminate(true);
-					getJProgressBar().setStringPainted(true);
-					getJProgressBar().setString("Validating...");
 						
 					boolean valid = true, secondValid = true;							
 					ArrayList<Integer> fqCodeArr = new ArrayList<Integer>();
@@ -305,8 +298,8 @@ public class UpdateFeedbackForm {
 								for (int a = 0; a < eventIDArr.size(); a++){
 									eventValid[a] = false;
 									
-									for (int b = 0; b < event.getArray_EventID().size(); b++){
-										if (eventIDArr.get(a) == event.getArray_EventID().get(b)){
+									for (int b = 0; b < event.getEventID_list().size(); b++){
+										if (eventIDArr.get(a) == event.getEventID_list().get(b)){
 											eventValid[a] = true;
 											break;
 										}
@@ -350,13 +343,13 @@ public class UpdateFeedbackForm {
 										String before = new String();
 										String inProcess = new String();
 										
-										for (int i = 0; i < newEvent.getArray_EventDate().size(); i++){
-											int beforeAfter = ffController.compareCurrentDate(newEvent.getArray_EventDate().get(i));
+										for (int i = 0; i < newEvent.getEventDate_list().size(); i++){
+											int beforeAfter = ffController.compareCurrentDate(newEvent.getEventDate_list().get(i));
 											if (beforeAfter < 0){
-												before += ", " + newEvent.getArray_EventID().get(i);
+												before += ", " + newEvent.getEventID_list().get(i);
 											}
 											else if (beforeAfter == 0){
-												inProcess += ", " + newEvent.getArray_EventID().get(i);
+												inProcess += ", " + newEvent.getEventID_list().get(i);
 											}
 										}
 										
@@ -380,14 +373,10 @@ public class UpdateFeedbackForm {
 					}
 					
 					if (valid && secondValid){
-						getJProgressBar().setIndeterminate(false);
-						getJProgressBar().setString("");
 						
 						int option = JOptionPane.showConfirmDialog(getJFrame(), "Do you really want to update this feedback form?", "Message", JOptionPane.YES_NO_OPTION);	
 						
 						if (option == JOptionPane.YES_OPTION){
-							getJProgressBar().setIndeterminate(true);
-							getJProgressBar().setString("Processing...");
 							boolean thirdValid = true, fourthValid = true;
 							AdministrateFeedbackFormController ffController = new AdministrateFeedbackFormController();
 							
@@ -462,17 +451,12 @@ public class UpdateFeedbackForm {
 										}
 									}
 								}
-								
-								getJProgressBar().setIndeterminate(false);
+
 								
 								if (fourthValid && fifthValid){
-									getJProgressBar().setValue(100);
-									getJProgressBar().setString("Updated");
 									JOptionPane.showMessageDialog(getJFrame(), "Successfully updated!");
 								}
 								else{
-									getJProgressBar().setValue(0);
-									getJProgressBar().setString("Not updated");
 									JOptionPane.showMessageDialog(getJFrame(), "Unsuccessful. Please try again.");
 								}
 									
@@ -496,7 +480,7 @@ public class UpdateFeedbackForm {
 	private JButton getResetButton() {
 		if (resetButton == null) {
 			resetButton = new JButton();
-			resetButton.setBounds(new Rectangle(370, 150, 80, 20));
+			resetButton.setBounds(new Rectangle(295, 180, 80, 20));
 			resetButton.setText("Reset");
 			resetButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -512,6 +496,7 @@ public class UpdateFeedbackForm {
 		getEventIDTextField().setText(eventID);
 	}
 	
+	@SuppressWarnings("unused")
 	private long getDifference (GregorianCalendar d1, GregorianCalendar d2){
 		
 		long firstDate = d1.getTimeInMillis();
@@ -601,18 +586,6 @@ public class UpdateFeedbackForm {
 		
 		getEventIDTextField().setText(eventID);
 	}
-	/**
-	 * This method initializes jProgressBar	
-	 * 	
-	 * @return javax.swing.JProgressBar	
-	 */
-	private JProgressBar getJProgressBar() {
-		if (jProgressBar == null) {
-			jProgressBar = new JProgressBar();
-			jProgressBar.setBounds(new Rectangle(175, 220, 150, 15));
-		}
-		return jProgressBar;
-	}
 
 	/**
 	 * This method initializes eventIDTextField	
@@ -626,6 +599,48 @@ public class UpdateFeedbackForm {
 			eventIDTextField.setText(eventID);
 		}
 		return eventIDTextField;
+	}
+
+	/**
+	 * This method initializes viewEventButton	
+	 * 	
+	 * @return javax.swing.JButton	
+	 */
+	private JButton getViewEventButton() {
+		if (viewEventButton == null) {
+			viewEventButton = new JButton();
+			viewEventButton.setBounds(new Rectangle(295, 150, 120, 20));
+			viewEventButton.setText("View Event(s)");
+			
+			if (getEventIDTextField().getText().equals("NIL")){
+				viewEventButton.setEnabled(false);
+			}
+			
+			viewEventButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					Event event = new Event();
+					AdministrateEventController controller = new AdministrateEventController();
+					event = controller.processEventID(ef.getEventID());
+					
+					int colSize = 5;
+			        Object[] colNames = {"Event ID", "Event Date", "Event Time", "Event Name", "Status"};
+			        Object[][] data = new Object[event.getEventID_list().size()][colSize];
+
+			        for (int i = 0; i < event.getEventID_list().size(); i++){
+		        		data[i][0] = event.getEventID_list().get(i);
+		        		data[i][1] = controller.calendarToString(event.getEventDate_list().get(i));
+		        		data[i][2] = event.getEventTime_list().get(i);
+		        		data[i][3] = event.getEventName_list().get(i);
+		        		data[i][4] = event.getEventStatus_list().get(i);
+			        }
+			        
+					DefaultTableModel model = new DefaultTableModel(data, colNames);
+					RetrieveEvent retrieve = new RetrieveEvent(model);
+			        retrieve.getJFrame().setVisible(true);
+				}
+			});
+		}
+		return viewEventButton;
 	}
 
 	public static void main(String[] args){

@@ -779,7 +779,7 @@ public class CollectPaymentForm extends Fonts {
 		addEmptyLine(preface, 6);
 		// Lets write a big header
 		preface.add(new Paragraph("****************************************************************************************************************"));
-		Paragraph paragraph = new Paragraph("Payment Notification",Garamond);
+		Paragraph paragraph = new Paragraph("Event Confirmation",Garamond);
 		paragraph.setIndentationLeft(150f);
 		preface.add(paragraph);
 		addEmptyLine(preface, 1);
@@ -790,7 +790,7 @@ public class CollectPaymentForm extends Fonts {
         preface.add(new Chunk("                                                      Event Time: "+eventTime));
         addEmptyLine(preface, 1);
         preface.add(new Chunk("Location:"+location));
-        preface.add(new Chunk("                             Ballroom: "+ballroom));
+        preface.add(new Chunk("                             					Ballroom: "+ballroom));
         addEmptyLine(preface, 1);
         preface.add(new Paragraph("Event Description: "+eventDesc));
  		addEmptyLine(preface,1);

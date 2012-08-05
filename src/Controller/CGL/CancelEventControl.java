@@ -25,7 +25,7 @@ import Model.Meal;
 import Model.Package;
 import Model.CGL.Event_Cancellation;
 import Model.Membership.Guest;
-import View.CGL.ProgressBar;
+
 
 public class CancelEventControl {
 	

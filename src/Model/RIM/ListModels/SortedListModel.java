@@ -13,6 +13,8 @@ import javax.swing.ListModel;
 import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
 
+import Model.Membership.Guest;
+
 /**
  * SortedListModel decorates an unsorted ListModel to provide
  * a sorted model. You can create a SortedListModel from models you
@@ -21,7 +23,7 @@ import javax.swing.event.ListDataListener;
  *
  */
 @SuppressWarnings("serial")
-public class SortedListModel extends AbstractListModel<Object> {
+public class SortedListModel extends AbstractListModel<Guest> {
     
     public SortedListModel() {}
     
@@ -31,7 +33,7 @@ public class SortedListModel extends AbstractListModel<Object> {
      * in ascending order.
      * @param model the underlying, unsorted ListModel
      */
-    public SortedListModel(ListModel<Object> model) {
+    public SortedListModel(ListModel<Guest> model) {
         this(model, SortOrder.ASCENDING, null);
     }
     
@@ -43,7 +45,7 @@ public class SortedListModel extends AbstractListModel<Object> {
      *@param model the unsorted list model
      *@param sortOrder that should be used
      */
-    public SortedListModel(ListModel<Object> model, SortOrder sortOrder) {
+    public SortedListModel(ListModel<Guest> model, SortOrder sortOrder) {
         this(model, sortOrder, null);
     }
     
@@ -56,7 +58,7 @@ public class SortedListModel extends AbstractListModel<Object> {
      *@param comp
      *
      */
-    public SortedListModel(ListModel<Object> model, SortOrder sortOrder, Comparator<Object> comp) {
+    public SortedListModel(ListModel<Guest> model, SortOrder sortOrder, Comparator<Object> comp) {
         unsortedModel = model;
         unsortedModel.addListDataListener(new ListDataListener() {
             public void intervalAdded(ListDataEvent e) {
@@ -94,9 +96,9 @@ public class SortedListModel extends AbstractListModel<Object> {
      * @param index index of an entry in the sorted model
      * @return element in the original model to which our entry points
      */
-    public Object getElementAt(int index) throws IndexOutOfBoundsException {
+    public Guest getElementAt(int index) throws IndexOutOfBoundsException {
         int modelIndex = toUnsortedModelIndex(index);
-        Object element = unsortedModel.getElementAt(modelIndex);
+        Guest element = unsortedModel.getElementAt(modelIndex);
         return element;
     }
     
@@ -314,7 +316,7 @@ public class SortedListModel extends AbstractListModel<Object> {
     }
     
     private List<SortedListEntry> sortedModel;
-    private ListModel<Object> unsortedModel;
+    private ListModel<Guest> unsortedModel;
     private Comparator<Object> comparator;
     private SortOrder sortOrder;
     

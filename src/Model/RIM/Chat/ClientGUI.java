@@ -18,7 +18,6 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
 import net.miginfocom.swing.MigLayout;
-import Model.Invitation;
 import Model.Membership.Guest;
 import View.RIM.Components.JListGuestListRenderer;
 
@@ -49,11 +48,11 @@ public class ClientGUI extends JPanel implements ActionListener
 
 		// The online users grid
 		listModel = new DefaultListModel<Guest>();
-		for(Guest guest : new Invitation().GET_ALL_GUESTS(eventID))
-		{
-			listModel.addElement(guest);
-		}
-		JPanel onlineUserPanel = new JPanel(new MigLayout("", "[1060.00]", "[353px]"));
+//		for(Guest guest : new Invitation().GET_ALL_GUESTS(eventID))
+//		{
+//			listModel.addElement(guest);
+//		}
+		JPanel onlineUserPanel = new JPanel(new MigLayout("", "[1060.00]", "[400px]"));
 		scrollPane = new JScrollPane();
 		list = new JList<Guest>(listModel);
 		list.setFixedCellWidth(100);
@@ -67,10 +66,10 @@ public class ClientGUI extends JPanel implements ActionListener
 		add(onlineUserPanel, "cell 0 0");
 
 		JPanel chatBoxPanel = new JPanel();
-		chatBoxPanel.setLayout(new MigLayout("", "[217px]", "[][]"));
+		chatBoxPanel.setLayout(new MigLayout("", "[307.00px]", "[][39.00]"));
 		chatBoxScrollPane = new JScrollPane();
 		chatBoxPanel.add(chatBoxScrollPane, "cell 0 0,grow");
-		messageArea = new JTextArea("Welcome to the Chat room\n", 17, 22);
+		messageArea = new JTextArea("", 17, 22);
 		messageArea.setLineWrap(true);
 		chatBoxScrollPane.setViewportView(messageArea);
 		messageArea.setEditable(false);
@@ -79,10 +78,10 @@ public class ClientGUI extends JPanel implements ActionListener
 		chatBoxPanel.add(messageField, "cell 0 1,grow");
 		messageField.setBackground(Color.WHITE);
 		messageField.requestFocus();
-		add(chatBoxPanel, "grow");
+		add(chatBoxPanel, "cell 1 0,growy");
 
-		setLayout(new MigLayout("", "[535.00px,left][left]", "[367px]"));
-		setSize(779, 372);
+		setLayout(new MigLayout("", "[535.00px,left][327.00,fill]", "[367px,fill]"));
+		setSize(879, 372);
 
 		login();
 	}
@@ -125,7 +124,7 @@ public class ClientGUI extends JPanel implements ActionListener
 			return;
 		}
 
-		messageField.setText("");
+		messageField.setText("Type your message here...");
 		connected = true;
 		client.sendMessage(new ChatMessage(ChatMessage.WHOISIN, ""));
 	}
@@ -164,7 +163,7 @@ public class ClientGUI extends JPanel implements ActionListener
 	public static void main(String[] args)
 	{
 		JFrame frame = new JFrame();
-		final ClientGUI client = new ClientGUI("ameenvzn93@gmail.com", 55);
+		final ClientGUI client = new ClientGUI("adeelateeque@hotmail.com", 55);
 		frame.setContentPane(client);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

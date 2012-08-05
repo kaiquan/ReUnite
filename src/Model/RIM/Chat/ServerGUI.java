@@ -21,12 +21,12 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
 	private Server server;
 	
 	
-	// server constructor that receive the port to listen to for connection as parameter
+	// Server constructor that receive the port to listen to for connection as parameter
 	ServerGUI(int port) {
 		super("Chat Server");
 		setResizable(false);
 		server = null;
-		// in the NorthPanel the PortNumber the Start and Stop buttons
+		// In the NorthPanel the PortNumber the Start and Stop buttons
 		JPanel north = new JPanel();
 		north.add(new JLabel("Port number: "));
 		tPortNumber = new JTextField("" + port);
@@ -50,7 +50,6 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
 		appendToEventLog("Events log.\n");
 		getContentPane().add(center);
 		
-		// need to be informed when the user click the close button on the frame
 		addWindowListener(this);
 		setSize(801, 604);
 		setVisible(true);
@@ -102,10 +101,7 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
 		new ServerGUI(1500);
 	}
 
-	/*
-	 * If the user click the X button to close the application
-	 * I need to close the connection with the server to free the port
-	 */
+	
 	public void windowClosing(WindowEvent e) {
 		// if my Server exist
 		if(server != null) {
@@ -120,7 +116,7 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
 		dispose();
 		System.exit(0);
 	}
-	// I can ignore the other WindowListener method
+
 	public void windowClosed(WindowEvent e) {}
 	public void windowOpened(WindowEvent e) {}
 	public void windowIconified(WindowEvent e) {}

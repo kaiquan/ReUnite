@@ -191,7 +191,7 @@ public class Server
 		// my unique id (easier for deconnection)
 		int id;
 		int eventID;
-		// the Username of the Client
+		// the userName of the Client
 		String username;
 		// the only type of message a will receive
 		ChatMessage cm;
@@ -205,7 +205,7 @@ public class Server
 			this.eventID = eventID;
 			this.socket = socket;
 			/* Creating both Data Stream */
-			System.out.println("Trying to create Object Input/Output Streams in Thread");
+			System.out.println("Trying to create Object Input/Output Streams in Client Thread");
 			try
 			{
 				// create output first
@@ -214,10 +214,12 @@ public class Server
 				// read the username
 				username = (String) sInput.readObject();
 				display(username + " just connected.");
+				writeMsg(username + " just connected.");
+				
 			}
 			catch (IOException e)
 			{
-				display("Exception creating new Input/output Streams: " + e);
+				display("Exception creating new Input/Output Streams in Client Thread: " + e);
 				return;
 			}
 			// have to catch ClassNotFoundException
@@ -228,7 +230,7 @@ public class Server
 			date = new Date().toString() + "\n";
 		}
 
-		// what will run forever
+		//run forever
 		public void run()
 		{
 			// to loop until LOGOUT
@@ -265,12 +267,11 @@ public class Server
 						keepGoing = false;
 						break;
 					case ChatMessage.WHOISIN:
-						writeMsg("List of the users connected at " + sdf.format(new Date()) + "\n");
 						refreshOnlineUsers();
 						break;
 				}
 			}
-			// remove myself from the arrayList containing the list of the
+			// remove user from the arrayList inside the hashmap containing the list of the
 			// connected Clients
 			remove(id, eventID);
 			close();
@@ -307,11 +308,11 @@ public class Server
 		
 		private void refreshOnlineUsers()
 		{
-			ArrayList<ClientThread> al = chatRooms.get(eventID);
+			ArrayList<ClientThread> chatRoom = chatRooms.get(eventID);
 			HashSet<String> onlineUsers = new HashSet<String>();
-			for (int i = 0; i < al.size(); ++i)
+			for (int i = 0; i < chatRoom.size(); ++i)
 			{
-				ClientThread ct = al.get(i);
+				ClientThread ct = chatRoom.get(i);
 				onlineUsers.add(ct.username);
 			}
 			writeMsg(onlineUsers);

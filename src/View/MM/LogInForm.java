@@ -20,8 +20,11 @@ import javax.swing.JTextField;
 
 import Controller.MM.LoginController;
 import Controller.RIM.LookAndFeelController;
+import Model.Membership.Account;
+
 import javax.swing.JCheckBox;
 import java.awt.GridBagLayout;
+import java.awt.BorderLayout;
 
 @SuppressWarnings("serial")
 public class LogInForm extends JFrame {
@@ -153,6 +156,7 @@ public class LogInForm extends JFrame {
 					}
 						
 					}
+					
 
 					@Override
 					public void keyReleased(KeyEvent arg0) {
@@ -207,7 +211,7 @@ public class LogInForm extends JFrame {
 							
 						}
 						else{
-							
+							 
 							LoginController security = new LoginController();
 							
 							boolean valid = security.initiateSQuestion(userNameTextBox.getText());
@@ -224,8 +228,8 @@ public class LogInForm extends JFrame {
 									
 							JLabel sQuestion = new JLabel();
 							String closureReason = JOptionPane.showInputDialog(null,
-							+sQuestion.setText(getSecretQuestion())+,
-							"Please Enter Your Secret Question", 0);
+						Account.currentUser.getSecretQuestion(),
+							Account.currentUser.getSecretQuestion(), 0);
 
 						}
 					}

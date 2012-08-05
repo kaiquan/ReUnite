@@ -75,7 +75,6 @@ public class AdministrateRIDetails {
 	private JLabel userNameLabel;
 	private  JLabel	firstNameLabel;
 	private  JLabel	lastNameLabel;
-	private  JLabel	dateOfBirthLabel;
 	private  JLabel	nricLabel;
 	private  JLabel	schoolLabel;
 	private  JLabel	emailLabel;
@@ -124,7 +123,7 @@ public class AdministrateRIDetails {
 	JFrame getFrames(){
 		frames = new JFrame();
 		frames.setSize(1000, 454);
-		frames.setVisible(true);
+	
 		frames.setTitle("View of all Event and Purchase");
 		
 		frames.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -155,8 +154,8 @@ public class AdministrateRIDetails {
 	// ***********************JPanel Method****************	
 	private JPanel getPanel(){
 	createAccountLabel = new JLabel();
-	createAccountLabel.setBounds(new Rectangle(934, 2, 175, 40));
 	createAccountLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Login-in-icon.png")));
+	createAccountLabel.setBounds(new Rectangle(881, 25, 216, 106));
 	createAccountLabel.setText("Create New Account");
 	createAccountLabel.addMouseListener(new java.awt.event.MouseAdapter() {
 		public void mouseClicked(java.awt.event.MouseEvent e) {
@@ -213,12 +212,13 @@ public class AdministrateRIDetails {
 
 	
 	closeButton = new JButton();
-	closeButton.setBounds(346, 347, 150, 30);
+	closeButton.setBounds(398, 343, 150, 30);
 	closeButton.setText("close");
 	closeButton.addActionListener(new java.awt.event.ActionListener() {
 		public void actionPerformed(java.awt.event.ActionEvent e) {
 		
-			getFrames().dispose();	
+			getFrames().setVisible(false);	
+			getJFrame().setVisible(true);
 		}
 		
 	});
@@ -435,8 +435,8 @@ public class AdministrateRIDetails {
 	//panel.add(getInfoPanel(),null);
 	panel.add(getWankingPanel(), null);
 	panel.add(refreshLabel, null);
-	panel.add(createAccountLabel, null);
 	panel.add(getInfoPanel(), null);
+	panel.add(deleteLabel, null);
 		return panel;
 	}
 	
@@ -586,7 +586,7 @@ public class AdministrateRIDetails {
 			
 			
 			cancelLabel = new JLabel();
-			cancelLabel.setBounds(new Rectangle(915, 203, 133, 58));
+			cancelLabel.setBounds(new Rectangle(947, 203, 133, 58));
 			cancelLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/haha.png")));
 			cancelLabel.setText("Cancel");
 			cancelLabel.setVisible(false);
@@ -608,83 +608,80 @@ public class AdministrateRIDetails {
 					updateLabel.setVisible(true);
 					cancelLabel.setVisible(false);
 					jLabel.setVisible(false);
-					
+					userNameTextBox.setEditable(false);
+					firstNameTextBox.setEditable(false);
+					lastNameTextBox.setEditable(false);
+					//parseDate(date()), 
+					dateOfBirthTextBox.setEditable(false);
+					nricTextBox.setEditable(false);
+					schoolTextBox.setEditable(false);
+					emailTextBox.setEditable(false);
+					telephoneTextBox.setEditable(false);
+					addressTextBox.setEditable(false);
+					handphoneTextBox.setEditable(false);
+					statusTextBox.setEditable(false);
+					typeTextBox.setEditable(false);
 				}
 			});
 			jLabel = new JLabel();
-			jLabel.setBounds(new Rectangle(911, 155, 136, 52));
+			jLabel.setBounds(new Rectangle(792, 207, 136, 52));
 			jLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Status-mail-task-icon.png")));
 			jLabel.setText("Update now");
 			jLabel.setVisible(false);
 			jLabel.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent e) {
+					
 					Object[] options = { "OK", "CANCEL" };
-					int confirmUpdateOption = JOptionPane.showOptionDialog(null, "" +userNameTextBox.getText() +" is successfully updated! ", "Account Updated!",
+					int confirmUpdateOption = JOptionPane.showOptionDialog(null, "Are You Sure You Want to UPDATE  " +userNameTextBox.getText() +"", "Please Confirm",
 					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 					null, options, options[0]);
 					if (confirmUpdateOption == 0){
+						jLabel.setVisible(false);
+						cancelLabel.setVisible(false);
+						UpdateRIController updateController = new UpdateRIController();
+						updateController.updateRIAccount
 						
-						if(userNameTextBox.getText().equals("")
-								
-								|| firstNameTextBox.getText().equals("")								
-								|| lastNameTextBox.getText().equals("")
-									|| nricTextBox.getText().equals("")
-							|| schoolTextBox.getText().equals("")
-									|| emailTextBox.getText().equals("")||
-									addressTextBox.getText().equals("")) {
+				(userNameTextBox.getText(),
+					
+					firstNameTextBox.getText(),
+					lastNameTextBox.getText(),
+					//parseDate(date()), 
+					nricTextBox.getText(),
+					schoolTextBox.getText(),
+					emailTextBox.getText(),
+					telephoneTextBox.getText(),
+					handphoneTextBox.getText()); //secretQuestion(),
+						
+						
+						
+						userNameTextBox.setEditable(false);
+						firstNameTextBox.setEditable(false);
+						lastNameTextBox.setEditable(false);
+						dateOfBirthTextBox.setEditable(false);
+						emailTextBox.setEditable(false);
+						nricTextBox.setEditable(false);
+						schoolTextBox.setEditable(false);
+						addressTextBox.setEditable(false);
+						telephoneTextBox.setEditable(false);
+						handphoneTextBox.setEditable(false);
+						
+							
+					
+				
+						
+						
+						
+													
 
-						JOptionPane.showConfirmDialog(null,"Please Fill up all Field",
-									   "Empty Field", JOptionPane.CLOSED_OPTION);
-						}
-						else{
-							UpdateRIController updateController = new UpdateRIController();
-							updateController.updateRIAccount
-							
-					(userNameTextBox.getText(),
-						
-						firstNameTextBox.getText(),
-						lastNameTextBox.getText(),
-						//parseDate(date()), 
-						nricTextBox.getText(),
-						schoolTextBox.getText(),
-						emailTextBox.getText(),
-						telephoneTextBox.getText(),
-						handphoneTextBox.getText()); //secretQuestion(),
-							
-							userNameTextBox.setText("");
-							firstNameTextBox.setText("");
-							lastNameTextBox.setText("");
-							//parseDate(date()), 
-							dateOfBirthTextBox.setText("");
-							nricTextBox.setText("");
-							schoolTextBox.setText("");
-							emailTextBox.setText("");
-							telephoneTextBox.setText("");
-							addressTextBox.setText("");
-							handphoneTextBox.setText("");
-							statusTextBox.setText("");
-							typeTextBox.setText("");
-							
-							
-							userNameTextBox.setEditable(false);
-							firstNameTextBox.setEditable(false);
-							lastNameTextBox.setEditable(false);
-							dateOfBirthTextBox.setEditable(false);
-							emailTextBox.setEditable(false);
-							nricTextBox.setEditable(false);
-							schoolTextBox.setEditable(false);
-							addressTextBox.setEditable(false);
-							telephoneTextBox.setEditable(false);
-							handphoneTextBox.setEditable(false);
-							
-							updateAccountButton.setVisible(true);
-							confirmUpdateButton.setVisible(false);
+						;
 							
 							tableModel = viewRIDetailsController.getRITableModel();
 							table.setModel(tableModel);
 							table.updateUI();
 							
-						
+							JOptionPane.showConfirmDialog(null,"Updated Successfully!",
+									   "Empty Field", JOptionPane.CLOSED_OPTION);
+//							
 							String[] emailArray;               
 						      emailArray = new String[1]; 
 						      emailArray[0] = emailTextBox.getText();
@@ -698,7 +695,7 @@ public class AdministrateRIDetails {
 								}
 								
 							
-						}
+						
 						
 							
 					}
@@ -706,7 +703,7 @@ public class AdministrateRIDetails {
 				}
 			});
 			addressLabel = new JLabel();
-			addressLabel.setBounds(new Rectangle(493, 77, 87, 29));
+			addressLabel.setBounds(new Rectangle(490, 31, 87, 29));
 			addressLabel.setText("Address :");
 			addressLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
 			
@@ -727,10 +724,6 @@ public class AdministrateRIDetails {
 			
 			
 			
-			dateOfBirthLabel = new JLabel();
-			dateOfBirthLabel.setBounds(new Rectangle(1, 209, 99, 30));
-			dateOfBirthLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
-			dateOfBirthLabel.setText("Date of Birth :");
 			
 			nricLabel = new JLabel();
 			nricLabel.setBounds(new Rectangle(2, 164, 65, 30));
@@ -738,22 +731,22 @@ public class AdministrateRIDetails {
 			nricLabel.setText("Nric :");
 			
 			schoolLabel = new JLabel();
-			schoolLabel.setBounds(new Rectangle(496, 238, 89, 30));
+			schoolLabel.setBounds(new Rectangle(495, 163, 89, 30));
 			schoolLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
 			schoolLabel.setText("School :");
 			
 			emailLabel = new JLabel();
-			emailLabel.setBounds(new Rectangle(495, 26, 83, 30));
+			emailLabel.setBounds(new Rectangle(4, 214, 83, 30));
 			emailLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
 			emailLabel.setText("Email  :");
 			
 			telephoneLabel = new JLabel();
-			telephoneLabel.setBounds(new Rectangle(495, 133, 98, 30));
+			telephoneLabel.setBounds(new Rectangle(490, 76, 98, 30));
 			telephoneLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
 			telephoneLabel.setText("Telephone :");
 			
 			handphoneLabel = new JLabel();
-			handphoneLabel.setBounds(new Rectangle(496, 179, 105, 30));
+			handphoneLabel.setBounds(new Rectangle(491, 120, 105, 30));
 			handphoneLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 16));
 			handphoneLabel.setText("Handphone :");
 			
@@ -782,29 +775,30 @@ public class AdministrateRIDetails {
 			dateOfBirthTextBox=new JTextField();
 			dateOfBirthTextBox.setBounds(new Rectangle(103, 210, 150, 25));
 			dateOfBirthTextBox.setEditable(false);
+			dateOfBirthTextBox.setVisible(false);
 			
 			nricTextBox=new JTextField();
 			nricTextBox.setBounds(new Rectangle(104, 166, 150, 25));
 			nricTextBox.setEditable(false);
 			
 			schoolTextBox=new JTextField();
-			schoolTextBox.setBounds(new Rectangle(600, 237, 257, 25));
+			schoolTextBox.setBounds(new Rectangle(600, 160, 257, 25));
 			schoolTextBox.setEditable(false);
 			
 			emailTextBox=new JTextField();
-			emailTextBox.setBounds(new Rectangle(597, 30, 230, 25));
+			emailTextBox.setBounds(new Rectangle(106, 218, 230, 25));
 			emailTextBox.setEditable(false);
 			
 			addressTextBox=new JTextField();
 			addressTextBox.setEditable(false);
-			addressTextBox.setBounds(new Rectangle(597, 76, 362, 29));
+			addressTextBox.setBounds(new Rectangle(594, 30, 362, 29));
 			
 			telephoneTextBox=new JTextField();
-			telephoneTextBox.setBounds(new Rectangle(598, 138, 150, 25));
+			telephoneTextBox.setBounds(new Rectangle(597, 78, 150, 25));
 			telephoneTextBox.setEditable(false);
 			
 			handphoneTextBox=new JTextField();
-			handphoneTextBox.setBounds(new Rectangle(599, 177, 150, 25));
+			handphoneTextBox.setBounds(new Rectangle(599, 118, 150, 25));
 			handphoneTextBox.setEditable(false);
 			
 			typeTextBox=new JTextField();
@@ -830,7 +824,6 @@ public class AdministrateRIDetails {
 			infoPanel.add(userNameLabel);
 			infoPanel.add(firstNameLabel);
 			infoPanel.add( lastNameLabel);
-			infoPanel.add(dateOfBirthLabel);
 			infoPanel.add(nricLabel);
 			infoPanel.add(schoolLabel);
 			infoPanel.add(emailLabel);
@@ -876,7 +869,7 @@ public class AdministrateRIDetails {
 		if (wankingPanel == null) {
 			
 			activateLabel = new JLabel();
-			activateLabel.setBounds(new Rectangle(874, 29, 231, 101));
+			activateLabel.setBounds(new Rectangle(339, 21, 255, 101));
 			activateLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/80_140____button-add-icon_28.png")));
 			activateLabel.setText("Activate ");
 			activateLabel.setVisible(false);
@@ -929,27 +922,17 @@ public class AdministrateRIDetails {
 					addressTextBox.setEditable(true);
 					telephoneTextBox.setEditable(true);
 					handphoneTextBox.setEditable(true);
+					jLabel.setVisible(true);
+					cancelLabel.setVisible(true);
 					
-					updateAccount();
 					
 				}
 				private void updateAccount() {
-					Object[] options = { "OK", "CANCEL" };
-					int confirmUpdateOption = JOptionPane.showOptionDialog(null, "Are You Sure You Want to UPDATE  " +userNameTextBox.getText() +"", "Please Confirm",
-					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-					null, options, options[0]);
-					if (confirmUpdateOption == 0){
-						
-						
-						jLabel.setVisible(false);
-						cancelLabel.setVisible(false);
-//						typeTextBox.setEditable(true);
-//						statusTextBox.setEditable(true);
-					}
+					
 				}
 			});
 			viewPaymentAndEventLabel = new JLabel();
-			viewPaymentAndEventLabel.setBounds(new Rectangle(608, 24, 259, 102));
+			viewPaymentAndEventLabel.setBounds(new Rectangle(609, 27, 259, 102));
 			viewPaymentAndEventLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/data-management-icon.png")));
 			viewPaymentAndEventLabel.setText("View Payments and Events");
 			viewPaymentAndEventLabel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -960,7 +943,7 @@ public class AdministrateRIDetails {
 			});
 			makeDisableLabel = new JLabel();
 			makeDisableLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Windows-Close-Program-icon.png")));
-			makeDisableLabel.setBounds(new Rectangle(871, 27, 257, 105));
+			makeDisableLabel.setBounds(new Rectangle(340, 17, 257, 105));
 			makeDisableLabel.setText("Disable This Account");
 			makeDisableLabel.setVisible(false);
 			makeDisableLabel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1036,10 +1019,15 @@ public class AdministrateRIDetails {
 				}
 			});
 			deleteLabel = new JLabel();
-			deleteLabel.setBounds(new Rectangle(345, 13, 254, 115));
 			deleteLabel.setDisplayedMnemonic(KeyEvent.VK_UNDEFINED);
-			deleteLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Trash-Black-Empty-icon.png")));
-			deleteLabel.setText("Delete This Account");
+			deleteLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Log-Out-icon (1).png")));
+			deleteLabel.setBounds(new Rectangle(976, -42, 254, 132));
+			deleteLabel.setText("Back to Main");
+			deleteLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent e) {
+					jframe.setVisible(false);
+				}
+			});
 			wankingPanel = new JPanel();
 			wankingPanel.setLayout(null);
 			wankingPanel.setBounds(new Rectangle(2, 573, 1161, 166));
@@ -1051,10 +1039,10 @@ public class AdministrateRIDetails {
 			wankingPanel.add(viewEventAndPayment);
 			wankingPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Actions", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			wankingPanel.add(updateLabel, null);
-			wankingPanel.add(deleteLabel, null);
 			wankingPanel.add(viewPaymentAndEventLabel, null);
 			wankingPanel.add(makeDisableLabel, null);
 			wankingPanel.add(activateLabel, null);
+			wankingPanel.add(createAccountLabel, null);
 		}
 		return wankingPanel;
 	}

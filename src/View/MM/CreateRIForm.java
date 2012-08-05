@@ -159,8 +159,7 @@ public class CreateRIForm extends JFrame {
 		SignIn.setText("SignIn");
 		SignIn.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
-//				LogInForm login = new LogInForm();
-//					login.getJFrame().setVisible(true);
+				jFrame.setVisible(false);
 				System.out.println("SignIn");
 			}
 		});

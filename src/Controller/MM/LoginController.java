@@ -19,9 +19,10 @@ public class LoginController {
 		secretQn.getSecretQuestion();
 		
 		Account a = secretQn.getSecretQn(secretQn);
+		Account.currentUser = account;
 		
-		
-		
+		Account.currentUser.getSecretQuestion();
+		Account.currentUser.getSecretAnswer();
 		
 		
 		

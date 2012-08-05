@@ -16,12 +16,16 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JViewport;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import Controller.EmailController;
 import Controller.MM.UpdateRIController;
 import Controller.MM.ViewRIPersonalController;
 import Images.RIM.ImageHelper;
 import Model.Membership.Account;
+import View.RIDashboard;
+
 import javax.swing.ImageIcon;
 import java.awt.Dimension;
 import javax.swing.JPasswordField;
@@ -29,6 +33,7 @@ import javax.swing.JPasswordField;
 public class AdministrateRIPersonalDetails {
 	
 	ViewRIPersonalController viewRIPersonalController = new	ViewRIPersonalController();
+	private TableModel tableModel = viewRIPersonalController.getRITableModel1();
 
 	private JTable table;
 	private JTable tableEvent;
@@ -45,7 +50,6 @@ public class AdministrateRIPersonalDetails {
 	private JLabel userNameLabel;
 	private JLabel firstNameLabel;
 	private JLabel lastNameLabel;
-	private JLabel dateOfBirthLabel;
 	private JLabel schoolLabel;
 	private JLabel emailLabel;
 	private JLabel telephoneLabel;
@@ -83,6 +87,8 @@ public class AdministrateRIPersonalDetails {
 	private JLabel requestCloseLabel = null;
 
 	private JLabel jLabel = null;
+
+	private JLabel backToDashBoard = null;
 
 	private JFrame getUpdateFrame(){
 		updateFrame = new JFrame();
@@ -133,26 +139,22 @@ public class AdministrateRIPersonalDetails {
 		
 		
 		userNameLabel = new JLabel();
-		userNameLabel.setBounds(new Rectangle(50, 100, 400, 30));
+		userNameLabel.setBounds(new Rectangle(50, 100, 131, 30));
 		userNameLabel.setFont(new Font("Dialog", Font.BOLD, 14));
 		userNameLabel.setText("UserName :");
 		
 		firstNameLabel = new JLabel();
-		firstNameLabel.setBounds(new Rectangle(50, 150, 400, 30));
+		firstNameLabel.setBounds(new Rectangle(50, 150, 103, 30));
 		firstNameLabel.setFont(new Font("Dialog", Font.BOLD, 14));
 		firstNameLabel.setText("First Name :");
 		
 		lastNameLabel = new JLabel();
-		lastNameLabel.setBounds(new Rectangle(50, 200, 400, 30));
+		lastNameLabel.setBounds(new Rectangle(50, 200, 127, 30));
 		lastNameLabel.setFont(new Font("Dialog", Font.BOLD, 14));
 		lastNameLabel.setText("Last Name :");
 		
 		
 		
-		dateOfBirthLabel = new JLabel();
-		dateOfBirthLabel.setBounds(new Rectangle(50, 250, 400, 30));
-		dateOfBirthLabel.setFont(new Font("Dialog", Font.BOLD, 14));
-		dateOfBirthLabel.setText("Date of Birth :");
 		
 		nricLabel = new JLabel();
 		nricLabel.setBounds(new Rectangle(50, 300, 400, 30));
@@ -160,22 +162,22 @@ public class AdministrateRIPersonalDetails {
 		nricLabel.setText("Nric :");
 		
 		schoolLabel = new JLabel();
-		schoolLabel.setBounds(new Rectangle(450, 100, 400, 30));
+		schoolLabel.setBounds(new Rectangle(462, 202, 92, 30));
 		schoolLabel.setFont(new Font("Dialog", Font.BOLD, 14));
 		schoolLabel.setText("School :");
 		
 		emailLabel = new JLabel();
-		emailLabel.setBounds(new Rectangle(450, 150, 400, 30));
+		emailLabel.setBounds(new Rectangle(46, 255, 119, 30));
 		emailLabel.setFont(new Font("Dialog", Font.BOLD, 14));
 		emailLabel.setText("Email :");
 		
 		telephoneLabel = new JLabel();
-		telephoneLabel.setBounds(new Rectangle(450, 200, 400, 30));
+		telephoneLabel.setBounds(new Rectangle(462, 102, 112, 30));
 		telephoneLabel.setFont(new Font("Dialog", Font.BOLD, 14));
 		telephoneLabel.setText("Telephone :");
 		
 		handphoneLabel = new JLabel();
-		handphoneLabel.setBounds(new Rectangle(450, 250, 400, 30));
+		handphoneLabel.setBounds(new Rectangle(462, 149, 112, 30));
 		handphoneLabel.setFont(new Font("Dialog", Font.BOLD, 14));
 		handphoneLabel.setText("Handphone :");
 		
@@ -183,24 +185,21 @@ public class AdministrateRIPersonalDetails {
 		
 		
 		userNameTextBox =new JTextField();
-		userNameTextBox.setBounds(new Rectangle(200, 100, 150, 25));
+		userNameTextBox.setBounds(new Rectangle(200, 100, 237, 25));
 		userNameTextBox.setEditable(false);
 		userNameTextBox.setText((table.getModel()).getValueAt(0, 0).toString());
 		
 		
 		firstNameTextBox=new JTextField();
-		firstNameTextBox.setBounds(new Rectangle(200, 150, 150, 25));
+		firstNameTextBox.setBounds(new Rectangle(200, 150, 236, 25));
 		firstNameTextBox.setVisible(true);
 
 
 		lastNameTextBox=new JTextField();
-		lastNameTextBox.setBounds(new Rectangle(200, 200, 150, 25));
+		lastNameTextBox.setBounds(new Rectangle(200, 200, 236, 25));
 		lastNameTextBox.setVisible(true);
 		
 		
-		dateOfBirthTextBox=new JTextField();
-		dateOfBirthTextBox.setBounds(new Rectangle(200, 250, 150, 25));
-		dateOfBirthTextBox.setVisible(true);
 		
 		
 		nricTextBox = new JTextField();
@@ -209,19 +208,19 @@ public class AdministrateRIPersonalDetails {
 		
 		
 		schoolTextBox=new JTextField();
-		schoolTextBox.setBounds(new Rectangle(550, 100, 150, 25));
+		schoolTextBox.setBounds(new Rectangle(583, 202, 150, 25));
 		schoolTextBox.setVisible(true);
 		
 		emailTextBox=new JTextField();
-		emailTextBox.setBounds(new Rectangle(550, 150, 150, 25));
+		emailTextBox.setBounds(new Rectangle(200, 256, 235, 25));
 		emailTextBox.setVisible(true);
 		
 		telephoneTextBox=new JTextField();
-		telephoneTextBox.setBounds(new Rectangle(550, 200, 150, 25));
+		telephoneTextBox.setBounds(new Rectangle(584, 106, 150, 25));
 		telephoneTextBox.setVisible(true);
 		
 		handphoneTextBox=new JTextField();
-		handphoneTextBox.setBounds(new Rectangle(550, 250, 150, 25));
+		handphoneTextBox.setBounds(new Rectangle(586, 149, 150, 25));
 		handphoneTextBox.setVisible(true);
 		
 		submitButton = new JButton("Submit");
@@ -254,10 +253,15 @@ public class AdministrateRIPersonalDetails {
 							+ "Has Been Successfully updated!",
 							"Account Updated!", JOptionPane.CLOSED_OPTION);
 					
+					tableModel = viewRIPersonalController.getRITableModel1();
+					table.setModel(tableModel);
+					table.updateUI();
+					
 
 					String[] emailArray1;
 					emailArray1 = new String[1];
 					emailArray1[0] = Account.currentUser.getEmail();
+					
 					updateFrame.setVisible(false);
 
 					EmailController updateEmail = new EmailController();
@@ -283,7 +287,12 @@ public class AdministrateRIPersonalDetails {
 		});
 		
 		cancelButtonUpdate = new JButton("Cancel");
-		cancelButtonUpdate.setBounds(601, 300, 150, 30);
+		cancelButtonUpdate.setBounds(605, 302, 150, 30);
+		cancelButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				updateFrame.setVisible(false);
+			}
+		});
 		
 			
 		
@@ -292,7 +301,6 @@ public class AdministrateRIPersonalDetails {
 		updatePanel.add(userNameTextBox);
 		updatePanel.add(firstNameTextBox);
 		updatePanel.add(lastNameTextBox);
-		updatePanel.add(dateOfBirthTextBox);
 		updatePanel.add(nricTextBox);
 		updatePanel.add(schoolTextBox);
 		updatePanel.add(emailTextBox);
@@ -304,7 +312,6 @@ public class AdministrateRIPersonalDetails {
 		updatePanel.add(userNameLabel);
 		updatePanel.add(firstNameLabel);
 		updatePanel.add( lastNameLabel);
-		updatePanel.add(dateOfBirthLabel);
 		updatePanel.add(nricLabel);
 		
 		updatePanel.add(schoolLabel);
@@ -322,12 +329,24 @@ public class AdministrateRIPersonalDetails {
 	private JPanel getPanel(){
 	
 		
+		backToDashBoard = new JLabel();
+		backToDashBoard.setBounds(new Rectangle(926, -6, 262, 130));
+		backToDashBoard.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Log-Out-icon.png")));
+		backToDashBoard.setText("Back to Main Screen");
+		backToDashBoard.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseClicked(java.awt.event.MouseEvent e) {
+				jframe.setVisible(false);
+		new RIDashboard();
+			
+				
+			}
+		});
 		jLabel = new JLabel();
 		jLabel.setBounds(new Rectangle(2, 257, 428, 63));
 		jLabel.setText("Current Events and Payment");
 		jLabel.setFont(new Font("Segoe UI", Font.PLAIN | Font.PLAIN, 22));
 		requestCloseLabel = new JLabel();
-		requestCloseLabel.setBounds(new Rectangle(824, 229, 233, 111));
+		requestCloseLabel.setBounds(new Rectangle(886, 309, 239, 111));
 		requestCloseLabel.setIcon(new ImageIcon(getClass().getResource(
 				"/Images/MM/Actions-edit-delete-shred-icon.png")));
 		requestCloseLabel.setText("Request Account Closure");
@@ -347,25 +366,12 @@ public class AdministrateRIPersonalDetails {
 						JLabel noRecordsLabel = new JLabel("No records found.");
 						noRecordsLabel.setLocation(table.getLocation());
 
-					
-						boolean hasEvents = false;
-						for (int i = 0; i < tableEvent.getModel().getRowCount(); i++) {
-
-							if (!tableEvent.getModel().getValueAt(i, 1).equals(
-									"Confirmed")
-									|| !tableEvent.getModel().getValueAt(i, 1)
-											.equals("Cancelled")
-									&& !tableEvent.getModel().getValueAt(i, 4)
-											.equals("0")
-									|| !tableEvent.getModel().getValueAt(i, 4)
-											.equals(null)) {
-
-							hasEvents = true;
-							break;
-							}
-						}
-						if(hasEvents==true)
-						{
+						if(tableEvent.getModel().getValueAt(0, 1).equals(
+						"Pending")
+						|| tableEvent.getModel().getValueAt(0, 1)
+						
+						.equals("Awaiting Confirmation")){
+							
 							System.out.println("Outstanding payment/event");
 
 							JOptionPane
@@ -373,63 +379,59 @@ public class AdministrateRIPersonalDetails {
 											null,
 											"You have an outstanding event or Payment. Please Contact Great Reunion for further details",
 											"Unable to delete",
-											JOptionPane.CLOSED_OPTION);
-						}
+											JOptionPane.CLOSED_OPTION);}
+						
 					
+						String closureReason = null ;
+				if (tableEvent.getModel().getValueAt(0, 1).equals(
+									"Confirmed")
+									|| tableEvent.getModel().getValueAt(0, 1)
+									
+									.equals("Cancelled")&& tableEvent.getModel().getValueAt(0, 4).equals("0"))
+								 closureReason = JOptionPane.showInputDialog(null,
+										"Please enter the reason for closure : ",
+										"Closure request sent!", 0);
+
+								UpdateRIController closureReasonUpdate = new UpdateRIController();
+
+								closureReasonUpdate.updateClosure(Account.currentUser
+										.getUserName(), closureReason);
+
+								String[] emailArray;
+								emailArray = new String[1];
+								emailArray[0] = Account.currentUser.getEmail();
+
+								EmailController deActiveEmail = new EmailController();
+								try {
+									deActiveEmail
+											.sendEmail(
+													"text",
+													emailArray,
+													"Request for closure Account",
+													"Please be notified that your request for account closure is currently being reviewed.",
+													null, "Account");
+								} catch (Exception e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+
+			
+							
+
+									
 				}
-				for (int i = 0; i < tableEvent.getModel().getRowCount(); i++) {
+						
+					
+						
+			
 				
-				
-					
-					if(confirmUpdateOption == 1){System.out.println("Cancel");}
-					
-					
-				else if (tableEvent.getModel().getValueAt(i, 1).equals(
-				"Confirmed")
-				|| tableEvent.getModel().getValueAt(i, 1)
-						.equals("Cancelled")
-				&& tableEvent.getModel().getValueAt(i, 4)
-						.equals("0")
-				|| tableEvent.getModel().getValueAt(i, 4)
-						.equals("")) {
-{
-
-					
-	
-	String closureReason = JOptionPane.showInputDialog(null,
-							"Please enter the reason for closure : ",
-							"Closure request sent!", 0);
-
-					UpdateRIController closureReasonUpdate = new UpdateRIController();
-
-					closureReasonUpdate.updateClosure(Account.currentUser
-							.getUserName(), closureReason);
-
-					String[] emailArray;
-					emailArray = new String[1];
-					emailArray[0] = Account.currentUser.getEmail();
-
-					EmailController deActiveEmail = new EmailController();
-					try {
-						deActiveEmail
-								.sendEmail(
-										"text",
-										emailArray,
-										"Request for closure Account",
-										"Please be notified that your request for account closure is currently being reviewed.",
-										null, "Account");
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-
-				}
-				}}
+			
 			}
+			
 		});
 
 	updateLabel = new JLabel();
-	updateLabel.setBounds(new Rectangle(811, 4, 235, 95));
+	updateLabel.setBounds(new Rectangle(887, 196, 235, 95));
 	updateLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Actions-document-edit-icon.png")));
 	updateLabel.setText("Update Account");
 	updateLabel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -474,7 +476,7 @@ public class AdministrateRIPersonalDetails {
 	lastNameTextBox.setVisible(false);
 	
 	
-	dateOfBirthTextBox=new JTextField();
+	dateOfBirthTextBox = new JTextField();
 	dateOfBirthTextBox.setBounds(new Rectangle(130, 600, 150, 25));
 	dateOfBirthTextBox.setVisible(false);
 	
@@ -555,6 +557,7 @@ public class AdministrateRIPersonalDetails {
 			panel.add(updateLabel, null);
 			panel.add(requestCloseLabel, null);
 			panel.add(jLabel, null);
+			panel.add(backToDashBoard, null);
 				
 		
 			

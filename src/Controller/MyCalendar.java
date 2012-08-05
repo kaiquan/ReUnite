@@ -51,7 +51,7 @@ public class MyCalendar {
 	}
 	public String currentDate(){
 		
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:MM:ss");
 		Calendar cal = Calendar.getInstance();
 		
 	 return dateFormat.format(cal.getTime());

@@ -106,12 +106,18 @@ public class LogInForm extends JFrame {
 		public void loginUser()
 		{
 			LoginController login = new LoginController();
-			this.setVisible(false);
+			
 			boolean valid = login.initiateLogin(userNameTextBox.getText(), passwordTextBox.getText());
 			
 			if(valid==true)
 			{
+				this.setVisible(false);
 				this.dispose();
+			}
+			else if(valid==false){
+				JOptionPane.showMessageDialog(null, "Username or password does not exist, please try again!");
+				
+				
 			}
 		}
 		/**

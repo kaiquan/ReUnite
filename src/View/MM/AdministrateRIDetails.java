@@ -155,6 +155,12 @@ public class AdministrateRIDetails {
 	createAccountLabel.setBounds(new Rectangle(934, 2, 175, 40));
 	createAccountLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Login-in-icon.png")));
 	createAccountLabel.setText("Create New Account");
+	createAccountLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+		public void mouseClicked(java.awt.event.MouseEvent e) {
+			CreateRIForm create = new CreateRIForm();
+			create.getJFrame().setVisible(true);
+		}
+	});
 	refreshLabel = new JLabel();
 	refreshLabel.setBounds(new Rectangle(987, 59, 120, 40));
 	refreshLabel.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Refresh-icon.png")));

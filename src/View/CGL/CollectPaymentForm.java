@@ -688,7 +688,7 @@ public class CollectPaymentForm extends Fonts {
 			{
 				FILE=jTextField.getText()+" details"+".pdf"; 
 				File pdf = new File(FILE);
-				String content="Dear Sir/Madam"+"\n"+"\n"+"The following event : "+jTextField.getText() +" which is confirmed and will be held on "+jTextField1.getText() +" at "+jTextField2.getText()+"."+"+\n"+"Please be punctual for the event.We hope to see you present on that day+"+"\n"+"For any enquiries please do not hesitate to call as us 67747173"+"\n"+"Shahrikin"+"\n"+"GR Administrator";
+				String content="Dear Sir/Madam"+"\n"+"\n"+"The following event : "+jTextField.getText() +" which is confirmed and will be held on "+jTextField1.getText() +" at "+jTextField2.getText()+"."+""+"\n"+"For more information please refer to the details attached to this email"+"\n"+"Please be punctual for the event.We hope to see you present on that day."+"\n"+"For any enquiries please do not hesitate to call as us 67747173"+"\n"+"\n"+"Shahrikin"+"\n"+"GR Administrator";
 				CollectPaymentForm g1 = new CollectPaymentForm();
 				g1.pdfCreator(FILE,jTextField.getText(),jTextField3.getText(),jTextField1.getText(),jTextField4.getText(),jTextField2.getText(),jTextField5.getText(),jTextField6.getText(),getJTextArea().getText(),ballroomPrice,entertainmentPrice,mealPrice,packageDiscount);
 				if(c2.processAmountEntered(jTextField8.getText(), jComboBox.getSelectedItem().toString(), jTextField6.getText(), jTextField.getText(), jTextField1.getText(), jTextField2.getText(), "Confirmed",pdf,content,"RE: Confirmation Of Event "+jTextField.getText(),"Event Confirmation")==true)
@@ -779,15 +779,15 @@ public class CollectPaymentForm extends Fonts {
 		addEmptyLine(preface, 6);
 		// Lets write a big header
 		preface.add(new Paragraph("****************************************************************************************************************"));
-		Paragraph paragraph = new Paragraph("Event Confirmation",Garamond);
+		Paragraph paragraph = new Paragraph("Payment Notification",Garamond);
 		paragraph.setIndentationLeft(150f);
 		preface.add(paragraph);
 		addEmptyLine(preface, 1);
 		preface.add(new Chunk("Event Name:"+eventName));
-        preface.add(new Chunk("                         No Of Guests:"+noOfGuests));        
+        preface.add(new Chunk("                                  No Of Guests:"+noOfGuests));        
         addEmptyLine(preface, 1);
         preface.add(new Chunk("Event Date:"+eventDate));
-        preface.add(new Chunk("                             Event Time: "+eventTime));
+        preface.add(new Chunk("                                                      Event Time: "+eventTime));
         addEmptyLine(preface, 1);
         preface.add(new Chunk("Location:"+location));
         preface.add(new Chunk("                             Ballroom: "+ballroom));

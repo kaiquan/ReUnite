@@ -53,7 +53,7 @@ public class FacilityDetails {
 	 * 	
 	 * @return javax.swing.JPanel	
 	 */
-	private JPanel getJPanel() {
+	public JPanel getJPanel() {
 		if (jPanel == null) {
 			jLabel_ballroomFinalPrice = new JLabel();
 			jLabel_ballroomFinalPrice.setBounds(new Rectangle(15, 600, 150, 30));

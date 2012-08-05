@@ -41,7 +41,7 @@ public class EntertainmentDetails {
 	 * 	
 	 * @return javax.swing.JPanel	
 	 */
-	private JPanel getJPanel() {
+	public JPanel getJPanel() {
 		if (jPanel == null) {
 			jLabel_finalPrice = new JLabel();
 			jLabel_finalPrice.setBounds(new Rectangle(15, 270, 150, 30));

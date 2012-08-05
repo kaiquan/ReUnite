@@ -25,7 +25,9 @@ import Model.Event;
 import Model.Membership.Account;
 import Model.Membership.Guest;
 import Model.RIM.Chat.ClientGUI;
+import View.RIM.Components.EntertainmentDetails;
 import View.RIM.Components.EntertainmentPanel;
+import View.RIM.Components.FacilityDetails;
 import View.RIM.Components.PieChart;
 
 @SuppressWarnings("serial")
@@ -34,7 +36,7 @@ public class InvitationDetailsView extends JDialog
 	private JPanel mainPanel;
 	private JTabbedPane tabbedPane;
 	private JTabbedPane mealSubTabs;
-	private EntertainmentPanel entertainmentTab;
+	private JPanel entertainmentTab;
 	private JPanel panel_3;
 	private JPanel panel_4;
 	private JLabel lblGuestResponse;
@@ -336,13 +338,13 @@ public class InvitationDetailsView extends JDialog
 	{
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 
-		entertainmentTab = new EntertainmentPanel(event.getEventPackage().getEntertainment());
+		entertainmentTab = new EntertainmentDetails(event.getEventPackage().getEntertainment()).getJPanel();
 		tabbedPane.addTab("Entertainment", null, entertainmentTab, null);
 
 		panel_3 = new JPanel();
 		tabbedPane.addTab("Ballroom", null, panel_3, null);
 
-		panel_4 = new JPanel();
+		panel_4 = new FacilityDetails(event.getEventPackage().getBallroom(), event.getEventPackage().getBallroom().getFacility()).getJPanel();
 		tabbedPane.addTab("Facility", null, panel_4, null);
 
 		mealSubTabs = new JTabbedPane();

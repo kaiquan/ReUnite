@@ -26,8 +26,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import net.miginfocom.swing.MigLayout;
 import Controller.RIM.ContactImporter;
 import Controller.RIM.CreateInvitationController;
-import Controller.RIM.LookAndFeelController;
 import Images.RIM.ImageHelper;
+import Model.Event;
 import Model.Membership.Guest;
 import View.RIM.Components.ImageUploader;
 import View.RIM.Components.NavigationFooter;
@@ -43,18 +43,16 @@ public class CreateInvitationView extends JFrame
 {
 	// Controller
 	private CreateInvitationController controller = new CreateInvitationController();
-
 	// The panel that holds the cards
 	private JPanel mainPanel;
-
+	private JEditorPane dtrpnYourMessageHere;
 	private JTable table;
-	
-	private int eventID;
+	private Event event;
 
 	public CreateInvitationView(int eventID)
 	{
 		initialize();
-		this.eventID = eventID;
+		this.event = new Event().GET_EVENT_BY_ID(eventID);
 	}
 	
 	
@@ -270,7 +268,7 @@ public class CreateInvitationView extends JFrame
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBorder(new TitledBorder(null, "Your message", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		JEditorPane dtrpnYourMessageHere = new JEditorPane();
+		dtrpnYourMessageHere = new JEditorPane();
 		dtrpnYourMessageHere.setPreferredSize(new Dimension(200, 20));
 		dtrpnYourMessageHere.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		dtrpnYourMessageHere.setMargin(new Insets(10, 10, 3, 3));
@@ -291,9 +289,20 @@ public class CreateInvitationView extends JFrame
 			@Override
 			public void sendButtonClicked()
 			{
-				controller.sendInvitation(eventID);
-			}
+//				String subject = "You are invited by "+Account.currentUser.getFirstName() + Account.currentUser.getLastName();
+				String subject = "You are invited";
+				String message =  dtrpnYourMessageHere.getText() + "<br/><br/><b>Following are the details for the event:</b> <br/><br/>"
+								+"<b>Title:</b> "+event.getEventName()+"<br/>"
+								+"<b>Description:</b> "+event.getEventDescription()+"<br/>"
+								+"<b>Date and Time:</b> "+event.getEventDate() + " at " +event.getEventTime()+"<br/><br/>"
+								+"<b>Please login to know more about this event.</b><br/>";
+				
+				if(controller.sendInvitation(event.getID(), subject, message))
+				{
+					dispose();
+				}
 
+			}
 		};
 		step2.add(navigationFooter, "south,growx,aligny bottom");
 
@@ -310,10 +319,10 @@ public class CreateInvitationView extends JFrame
 		CardLayout cards = (CardLayout) (mainPanel.getLayout());
 		cards.next(mainPanel);
 	}
-
+	
 	public static void main(String args[])
 	{
-		LookAndFeelController.setGlobalLookAndFeel();
-		new CreateInvitationView(3);
+		new CreateInvitationView(49);
 	}
 }
+

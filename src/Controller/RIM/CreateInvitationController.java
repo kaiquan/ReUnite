@@ -64,7 +64,7 @@ public class CreateInvitationController
 		tableModel.deleteRow(row);
 	}
 	
-	public boolean sendInvitation(int eventID)
+	public boolean sendInvitation(int eventID, String subject, String text)
 	{
 		Invitation invitation = new Invitation();
 		invitation.setGuestList(tableModel.getAllGuests());
@@ -72,9 +72,9 @@ public class CreateInvitationController
 		invitation.setEvent(new Event(eventID));
 		invitation.setExpiryDate(dateHelper.addDaysToDate(3, invitation.getDateCreated()));
 
-		if(invitationModel.CREATE_INVITATION(invitation, eventID))
+		if(invitationModel.CREATE_INVITATION(invitation, eventID, subject, text))
 		{
-			JOptionPane.showMessageDialog(null, "New invitation successfully created!");
+			JOptionPane.showMessageDialog(null, "Your invitation has been successfully sent!");
 			return true;
 		}
 		

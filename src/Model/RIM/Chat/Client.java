@@ -92,7 +92,10 @@ public class Client
 	{
 		try
 		{
-			sOutput.writeObject(msg);
+			if(sOutput!=null)
+			{
+				sOutput.writeObject(msg);
+			}
 		}
 		catch (IOException e)
 		{

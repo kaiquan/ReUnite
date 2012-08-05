@@ -3,22 +3,23 @@ package Model.RIM.Chat;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.HashSet;
 import java.util.Iterator;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 
 import net.miginfocom.swing.MigLayout;
+import Model.Invitation;
 import Model.Membership.Guest;
-import Model.RIM.GuestCollection;
-import Model.RIM.GuestListModel;
 import View.RIM.Components.JListGuestListRenderer;
 
 public class ClientGUI extends JPanel implements ActionListener
@@ -38,6 +39,7 @@ public class ClientGUI extends JPanel implements ActionListener
 	private JScrollPane chatBoxScrollPane;
 	private JScrollPane scrollPane;
 	JList<Guest> list;
+	DefaultListModel<Guest> listModel;
 
 	// Constructor connection receiving a socket number
 	public ClientGUI(String userName, int eventID)
@@ -46,8 +48,11 @@ public class ClientGUI extends JPanel implements ActionListener
 		this.eventID = eventID;
 
 		// The online users grid
-		GuestCollection collection = new GuestCollection();
-		ListModel<Guest> listModel = new GuestListModel(collection);
+		listModel = new DefaultListModel<Guest>();
+		for(Guest guest : new Invitation().GET_ALL_GUESTS(eventID))
+		{
+			listModel.addElement(guest);
+		}
 		JPanel onlineUserPanel = new JPanel(new MigLayout("", "[1060.00]", "[353px]"));
 		scrollPane = new JScrollPane();
 		list = new JList<Guest>(listModel);
@@ -132,24 +137,25 @@ public class ClientGUI extends JPanel implements ActionListener
 
 	public void refreshOnlineUsers(HashSet<String> onlineUsers)
 	{
-		System.out.println("Refreshing JList");
 		Iterator<String> iterator = onlineUsers.iterator();
 		while (iterator.hasNext())
 		{
 			String onlineUser = iterator.next();
-
+			System.out.println(onlineUser);
 			for (int i = 0; i < list.getModel().getSize(); i++)
 			{
-				System.out.println(onlineUser);
 				if(list.getModel().getElementAt(i).getUserName()!=null){
 					if (list.getModel().getElementAt(i).getUserName().equals(onlineUser))
 					{
-						list.getModel().getElementAt(i).setOnlineStatus(true);
+						Guest updatedGuest = list.getModel().getElementAt(i);
+						updatedGuest.setOnlineStatus(true);
+						listModel.set(i, updatedGuest);
+						list.setModel(listModel);
+						list.updateUI();
 					}
 				}
 			}
 		}
-
 		scrollPane.revalidate();
 		scrollPane.repaint();
 	}
@@ -158,9 +164,56 @@ public class ClientGUI extends JPanel implements ActionListener
 	public static void main(String[] args)
 	{
 		JFrame frame = new JFrame();
-		frame.setContentPane(new ClientGUI("Adeel", 3));
+		final ClientGUI client = new ClientGUI("ameenvzn93@gmail.com", 55);
+		frame.setContentPane(client);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.addWindowListener(new WindowListener()
+		{
+
+			@Override
+			public void windowActivated(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowClosed(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+				client.logout();
+				
+			}
+
+			@Override
+			public void windowDeactivated(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowDeiconified(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowIconified(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowOpened(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 	}
 
 }

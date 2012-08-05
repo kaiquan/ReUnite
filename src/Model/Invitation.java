@@ -164,9 +164,9 @@ public class Invitation
 		}
 
 		return response;
-
 	}
 
+	
 	public Event GET_INVITATION_EVENT(int invitationID)
 	{
 		ResultSet rs = null;
@@ -234,11 +234,11 @@ public class Invitation
 		return count;
 	}
 
-	public ArrayList<Guest> GET_ALL_GUESTS()
+	public ArrayList<Guest> GET_ALL_GUESTS(int eventID)
 	{
 		ResultSet rs = null;
 		ArrayList<Guest> guestList = new ArrayList<Guest>();
-		String dbQuery = "SELECT * FROM " + TableNames.GUEST_TABLE + " i INNER JOIN  " + TableNames.ACCOUNT_TABLE + " a ON i.userName = a.userName WHERE invitationID = " + invitationID;
+		String dbQuery = "SELECT * FROM " + TableNames.GUEST_TABLE + " i INNER JOIN  " + TableNames.ACCOUNT_TABLE + " a ON i.userName = a.userName WHERE invitationID = " + new Event().GET_INVITATION_ID_FOR_EVENT(eventID);
 		try
 		{
 			rs = db.readRequest(dbQuery);
@@ -293,7 +293,7 @@ public class Invitation
 		return guestList;
 	}
 
-	public boolean CREATE_INVITATION(Invitation invitation, int eventID)
+	public boolean CREATE_INVITATION(Invitation invitation, int eventID, String subject, String message)
 	{
 		int success = 0;
 		String dbQuery = "INSERT INTO " + TableNames.INVITATION_TABLE + " (eventID,dateCreated,expiryDate)" + " VALUES (" + invitation.event.getEventID() + ", " + "'"
@@ -331,20 +331,20 @@ public class Invitation
 				guestModel.setAddress(guest.getAddress() != null ? StringEscapeUtils.escapeSql(guest.getAddress()) : "");
 				guestModel.setTelephoneNo(guest.getTelephoneNo() != null ? guest.getTelephoneNo() : "");
 				guestModel.setHandphoneNo(guest.getHandphoneNo() != null ? guest.getHandphoneNo() : "");
-				guestModel.CREATE_GUEST_ACCOUNT(guestModel);
-				guestModel.ADD_GUEST_TO_EVENT(guestModel.getUserName(), invitationID);
+				if(guestModel.CREATE_GUEST_ACCOUNT(guestModel))
+				{
+					guestModel.ADD_GUEST_TO_EVENT(guestModel.getUserName(), invitationID);
+				}
 			}
-			
 			String[] emails = new String[emailList.size()];
 			emailList.toArray(emails);
 			EmailController emailController = new EmailController();
 			try
 			{
-				emailController.sendEmail("text", emails, "You are invited", "I hope you come", null, "Invitation");
+				emailController.sendEmail("html", emails, subject, message, null, "Invitation");
 			}
 			catch (Exception e)
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return true;
@@ -375,28 +375,7 @@ public class Invitation
 
 	public static void main(String args[])
 	{
-		// Invitation invitation = new Invitation();
-		// ArrayList<Invitation> invitationList = invitation.GET_ALL_INVITATIONS();
-		//
-		// for(int i = 0; i < invitationList.size(); i++)
-		// {
-		// System.out.println(invitationList.get(i));
-		// }
 
-		// Invitation test= new Invitation();
-		// ArrayList<Guest> invitationList = test.GET_ALL_ATTENDING_GUESTS("e1","2012-07-28");
-		// String[] email= new String[invitationList.size()];
-		//
-		// for(int i=0;i<invitationList.size();i++)
-		// {
-		//
-		// email[i]=invitationList.get(i).getEmail();
-		// }
-		//
-		// for(int i=0;i<email.length;i++){
-		// System.out.println(email[i]);
-		// }
-		//
 	}
 
 }

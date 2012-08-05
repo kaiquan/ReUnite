@@ -63,7 +63,7 @@ public class SearchUsersController
 	public ArrayList<Object[]> getSelectedRows(int[] index)
 	{
 		ArrayList<Object[]> rows = new ArrayList<Object[]>();
-		for(int i=0; i<index.length; i++)
+		for(Integer i : index)
 		{
 			rows.add(tableModel.getRow(i));
 		}

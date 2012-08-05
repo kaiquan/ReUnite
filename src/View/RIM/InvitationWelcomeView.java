@@ -76,7 +76,7 @@ public class InvitationWelcomeView extends JFrame
 			public void run()
 			{
 				LookAndFeelController.setGlobalLookAndFeel();
-				new InvitationWelcomeView(55);
+				new InvitationWelcomeView(50);
 			}
 		});
 	}

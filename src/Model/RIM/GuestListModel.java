@@ -13,6 +13,11 @@ public class GuestListModel implements ListModel<Guest>
 	{
 		this.collection = collection;
 	}
+	
+	public void setElementAt(int index, Guest guest)
+	{
+		collection.getProfiles().set(index, guest);
+	}
 
 	public Guest getElementAt(int index)
 	{

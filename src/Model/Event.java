@@ -278,7 +278,7 @@ public class Event {
 
 				event.setID(rs.getInt("eventID"));
 				event.setEventName(rs.getString("eventName"));
-				event.setEventDate(rs.getString("eventDate").trim() + " 00:00:00");
+				event.setEventDate(rs.getString("eventDate").trim());
 				event.setEventTime(rs.getString("eventTime"));
 				event.setEventStatus(rs.getString("eventStatus"));
 				event.setEventDescription(rs.getString("eventDescription"));
@@ -425,7 +425,7 @@ public class Event {
 					
 					event.setID(rs.getInt("eventID"));
 					event.setEventName(rs.getString("eventName"));
-					event.setEventDate(rs.getString("eventDate").trim() + " 00:00:00");
+					event.setEventDate(rs.getString("eventDate").trim());
 					event.setEventTime(rs.getString("eventTime"));
 					event.setEventStatus(rs.getString("eventStatus"));
 					event.setEventDescription(rs.getString("eventDescription"));

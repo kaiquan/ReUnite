@@ -69,6 +69,7 @@ public class SearchUsersView extends JFrame
 			public void actionPerformed(ActionEvent arg0)
 			{
 				controller.addToList(table.getSelectedRows());
+				dispose();
 			}
 		});
 		getContentPane().add(btnAddToList, "cell 2 2,alignx right,growy");

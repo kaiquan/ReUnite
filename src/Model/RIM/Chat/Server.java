@@ -66,6 +66,7 @@ public class Server
 					System.out.println("Created chat room " + eventID);
 				}
 				t.start();
+				t.refreshOnlineUsers();
 			}
 			// To stop the server
 			try
@@ -150,6 +151,7 @@ public class Server
 			{
 				al.remove(i);
 				display("Disconnected Client " + ct.username + " removed from list.");
+				ct.refreshOnlineUsers();
 			}
 		}
 	}
@@ -168,6 +170,7 @@ public class Server
 				if (ct.id == id)
 				{
 					chatRooms.get(i).remove(ct);
+					ct.refreshOnlineUsers();
 					return;
 				}
 			}
@@ -258,20 +261,12 @@ public class Server
 						break;
 					case ChatMessage.LOGOUT:
 						display(username + " disconnected with a LOGOUT message.");
+						refreshOnlineUsers();
 						keepGoing = false;
 						break;
 					case ChatMessage.WHOISIN:
 						writeMsg("List of the users connected at " + sdf.format(new Date()) + "\n");
-						// scan al the users connected in the chatroom
-						ArrayList<ClientThread> al = chatRooms.get(eventID);
-						HashSet<String> onlineUsers = new HashSet<String>();
-						for (int i = 0; i < al.size(); ++i)
-						{
-							ClientThread ct = al.get(i);
-							writeMsg((i + 1) + ") " + ct.username + " since " + ct.date);
-							onlineUsers.add(ct.username);display("ADDING TO HASHSET");
-						}
-						writeMsg(onlineUsers);
+						refreshOnlineUsers();
 						break;
 				}
 			}
@@ -280,6 +275,7 @@ public class Server
 			remove(id, eventID);
 			close();
 		}
+		
 
 		// try to close everything
 		private void close()
@@ -308,6 +304,19 @@ public class Server
 			}
 		}
 
+		
+		private void refreshOnlineUsers()
+		{
+			ArrayList<ClientThread> al = chatRooms.get(eventID);
+			HashSet<String> onlineUsers = new HashSet<String>();
+			for (int i = 0; i < al.size(); ++i)
+			{
+				ClientThread ct = al.get(i);
+				onlineUsers.add(ct.username);
+			}
+			writeMsg(onlineUsers);
+		}
+		
 		/* Write a String to the Client output stream */
 		private boolean writeMsg(Object msg)
 		{

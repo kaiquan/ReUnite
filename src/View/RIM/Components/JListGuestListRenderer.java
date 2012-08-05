@@ -47,7 +47,13 @@ public class JListGuestListRenderer extends JPanel implements ListCellRenderer<G
 			ImageIcon icon = (ImageIcon) iconTable.get(value);
 			if (icon == null)
 			{
-				icon = ImageHelper.loadImageIcon(guest.getProfilePicture(), "profile picture", 100, 100, 5);
+				if(guest.getProfilePicture()!=null && !guest.getProfilePicture().equals("")){
+					icon = ImageHelper.loadImageIcon(guest.getProfilePicture(), "profile picture", 100, 100, 5);
+				}
+				else
+				{
+					icon = ImageHelper.loadImageIcon("userIcon.png", "profile picture", 100, 100, 5);
+				}
 				iconTable.put(guest, icon);
 			}
 			panel.setImage(icon.getImage());

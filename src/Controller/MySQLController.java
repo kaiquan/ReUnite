@@ -124,8 +124,8 @@ public class MySQLController
 	public ResultSet readRequest(String dbQuery)
 	{
 		ResultSet rs = null;
-		int i=1;
-		while(true){
+		int i=0;
+		while(i<10){
 		try
 		{
 			getConnection();
@@ -143,8 +143,8 @@ public class MySQLController
 		}
 		catch (SQLException e)
 		{
-			System.out.println("error in readRequest");
-			System.out.println("retry atmpt " + i);
+			System.out.println("Error in readRequest");
+			System.out.println("Retrying... " + i);
 			i++;
 			//e.printStackTrace();
 		}
@@ -176,8 +176,8 @@ public class MySQLController
 	public int updateRequest(String dbQuery)
 	{
 		int count = 0;
-		int i =1;
-		while (true){
+		int i=0;
+		while (i<10){
 		try
 		{
 			getConnection();
@@ -194,8 +194,8 @@ public class MySQLController
 		}
 		catch (Exception e)
 		{
-			System.out.println("error in updateRequest");
-			System.out.println("retry atmpt " + i);
+			System.out.println("Error in updateRequest");
+			System.out.println("Retrying... " + i);
 			i++;
 			//e.printStackTrace();
 			

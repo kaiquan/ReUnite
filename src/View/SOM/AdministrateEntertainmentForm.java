@@ -202,7 +202,7 @@ public class AdministrateEntertainmentForm {
 			jCheckBox_entertainmentAvailability.setBounds(new Rectangle(550, 40, 200, 30));
 			jCheckBox_entertainmentAvailability.setFocusable(false);
 			jCheckBox_entertainmentAvailability.setFocusPainted(false);
-			jCheckBox_entertainmentAvailability.setText("Not Available");
+			jCheckBox_entertainmentAvailability.setText("Available");
 			jCheckBox_entertainmentAvailability
 					.addItemListener(new java.awt.event.ItemListener() {
 						public void itemStateChanged(java.awt.event.ItemEvent e) {
@@ -1064,8 +1064,8 @@ public class AdministrateEntertainmentForm {
 		 pdf.add(new Paragraph("Recorded on :"+MyCalendar.formatDate(g)));
 		 pdf.add(new Paragraph("   "));
 		 pdf.add(new Paragraph("   "));
-		 pdf.add(new Paragraph("ID          : "+getJTextField_entertaimentID().getText().toString()));
-		 pdf.add(new Paragraph("Title       : "+getJTextField_entertainmentTitle().getText().toString()));
+		 pdf.add(new Paragraph("ID : "+getJTextField_entertaimentID().getText().toString()));
+		 pdf.add(new Paragraph("Title : "+getJTextField_entertainmentTitle().getText().toString()));
 		 pdf.add(new Paragraph("Description : "));
 		 pdf.add(new Paragraph(getJTextArea_entertainmentDescription().getText().toString()));
 		 pdf.add(new Paragraph("   "));

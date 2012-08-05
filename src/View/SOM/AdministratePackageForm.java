@@ -296,7 +296,7 @@ public class AdministratePackageForm {
 			jCheckBox_packageAvailability.setFocusPainted(false);
 			jCheckBox_packageAvailability.setSelected(true);
 			jCheckBox_packageAvailability.setBounds(new Rectangle(550, 40, 200, 30));
-			jCheckBox_packageAvailability.setText("Not Available");
+			jCheckBox_packageAvailability.setText("Available");
 			jCheckBox_packageAvailability
 					.addItemListener(new java.awt.event.ItemListener() {
 						public void itemStateChanged(java.awt.event.ItemEvent e) {
@@ -2803,9 +2803,9 @@ public class AdministratePackageForm {
 	 * Purpose 			: To display the summary of the form
 	 *******************************************************/
 	public void displaySummary(){
-		String header="=======================================\n";
+		String header="=====================================\n";
 		header+="                                Package Summary List\n";
-		header+="=======================================\n\n";
+		header+="=====================================\n\n";
 		
 		String content="";
 		content+="Package Name : "+getJTextField_packageTitle().getText().toString()+"\n";
@@ -2903,8 +2903,8 @@ public class AdministratePackageForm {
 		 pdf.add(new Paragraph("Recorded on :"+MyCalendar.formatDate(g)));
 		 pdf.add(new Paragraph("   "));
 		 pdf.add(new Paragraph("   "));
-		 pdf.add(new Paragraph("ID          : "+getJTextField_packageID().getText().toString()));
-		 pdf.add(new Paragraph("Title       : "+getJTextField_packageTitle().getText().toString()));
+		 pdf.add(new Paragraph("ID : "+getJTextField_packageID().getText().toString()));
+		 pdf.add(new Paragraph("Title : "+getJTextField_packageTitle().getText().toString()));
 		 pdf.add(new Paragraph("Description : "+getJTextArea_packageDescription().getText().toString()));
 		//etc
 		

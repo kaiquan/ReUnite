@@ -1183,10 +1183,10 @@ public class AdministrateFacilityForm {
 		 pdf.add(new Paragraph("Recorded on :"+MyCalendar.formatDate(g)));
 		 pdf.add(new Paragraph("   "));
 		 pdf.add(new Paragraph("   "));
-		 pdf.add(new Paragraph("ID          : "+getJTextField_facilityID().getText().toString()));
-		 pdf.add(new Paragraph("Title       : "+getJTextField_facilityName().getText().toString()));
-		 pdf.add(new Paragraph("Address     : "+getJTextField_facilityAddress().getText().toString()));
-		 pdf.add(new Paragraph("Contact     : "+getJTextField_facilityContact().getText().toString()));
+		 pdf.add(new Paragraph("ID : "+getJTextField_facilityID().getText().toString()));
+		 pdf.add(new Paragraph("Title : "+getJTextField_facilityName().getText().toString()));
+		 pdf.add(new Paragraph("Address : "+getJTextField_facilityAddress().getText().toString()));
+		 pdf.add(new Paragraph("Contact : "+getJTextField_facilityContact().getText().toString()));
 		 pdf.add(new Paragraph("Description : "));
 		 pdf.add(new Paragraph(getJTextArea_facilityDescription().getText().toString()));
 		 pdf.add(new Paragraph("   "));
@@ -1213,7 +1213,7 @@ public class AdministrateFacilityForm {
 		 pdf.add(new Paragraph("   "));
 		 pdf.add(new Paragraph("   "));
 		 pdf.add(new Paragraph("Parking : "+getJCheckBox_facilityParking().getText().toString()));
-		 pdf.add(new Paragraph("Weekwend Sur Charge   : $"+getJTextField_facilityWeekendCost().getText().toString()));
+		 pdf.add(new Paragraph("Weekwend Sur Charge : $"+getJTextField_facilityWeekendCost().getText().toString()));
 		 pdf.add(new Paragraph("   "));
 		 pdf.add(new Paragraph("****************************************************************************************************************"));
 		 pdf.add(new Paragraph("                                                                         End                                               "));

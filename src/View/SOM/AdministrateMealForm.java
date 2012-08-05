@@ -202,7 +202,7 @@ public class AdministrateMealForm {
 		if (jCheckBox_mealAvailability == null) {
 			jCheckBox_mealAvailability = new JCheckBox();
 			jCheckBox_mealAvailability.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-			jCheckBox_mealAvailability.setText("Not Available");
+			jCheckBox_mealAvailability.setText("Available");
 			jCheckBox_mealAvailability.setFocusable(false);
 			jCheckBox_mealAvailability.setFocusPainted(false);
 			jCheckBox_mealAvailability.setSelected(true);
@@ -1145,8 +1145,8 @@ public class AdministrateMealForm {
 		 pdf.add(new Paragraph("Recorded on :"+MyCalendar.formatDate(g)));
 		 pdf.add(new Paragraph("   "));
 		 pdf.add(new Paragraph("   "));
-		 pdf.add(new Paragraph("ID          : "+getJTextField_mealID().getText().toString()));
-		 pdf.add(new Paragraph("Title       : "+getJTextField_mealTitle().getText().toString()));
+		 pdf.add(new Paragraph("ID : "+getJTextField_mealID().getText().toString()));
+		 pdf.add(new Paragraph("Title : "+getJTextField_mealTitle().getText().toString()));
 		 pdf.add(new Paragraph("Description : "));
 		 pdf.add(new Paragraph(getJTextArea_mealDescription().getText().toString()));
 		 pdf.add(new Paragraph("   "));

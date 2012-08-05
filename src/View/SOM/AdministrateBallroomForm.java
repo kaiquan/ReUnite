@@ -191,7 +191,7 @@ public class AdministrateBallroomForm {
 			jCheckBox_ballroomAvailability.setFocusPainted(false);
 			jCheckBox_ballroomAvailability.setSelected(true);
 			jCheckBox_ballroomAvailability.setBounds(new Rectangle(530, 40, 200, 30));
-			jCheckBox_ballroomAvailability.setText("Not Available");
+			jCheckBox_ballroomAvailability.setText("Available");
 			jCheckBox_ballroomAvailability
 					.addItemListener(new java.awt.event.ItemListener() {
 						public void itemStateChanged(java.awt.event.ItemEvent e) {
@@ -1019,13 +1019,13 @@ public class AdministrateBallroomForm {
 		 pdf.add(new Paragraph("Recorded on :"+MyCalendar.formatDate(g)));
 		 pdf.add(new Paragraph("   "));
 		 pdf.add(new Paragraph("   "));
-		 pdf.add(new Paragraph("ID                      : "+getJTextField_ballroomID().getText().toString()));
-		 pdf.add(new Paragraph("Facility Name    : "+getJComboBox_facilityName().getSelectedItem().toString()));
-		 pdf.add(new Paragraph("Contact                 : "+getJTextField_facilityContact().getText().toString()));
-		 pdf.add(new Paragraph("Address                 : "+getJTextArea_facilityAddress().getText().toString()));
-		 pdf.add(new Paragraph("Title                   : "+getJTextField_ballroomTitle().getText().toString()));
-		 pdf.add(new Paragraph("Size                    : "+getJComboBox_ballroomSize().getSelectedItem().toString()));
-		 pdf.add(new Paragraph("Price                   : $"+getJTextField_ballroomPrice().getText().toString()));
+		 pdf.add(new Paragraph("ID : "+getJTextField_ballroomID().getText().toString()));
+		 pdf.add(new Paragraph("Facility Name : "+getJComboBox_facilityName().getSelectedItem().toString()));
+		 pdf.add(new Paragraph("Contact : "+getJTextField_facilityContact().getText().toString()));
+		 pdf.add(new Paragraph("Address : "+getJTextArea_facilityAddress().getText().toString()));
+		 pdf.add(new Paragraph("Title : "+getJTextField_ballroomTitle().getText().toString()));
+		 pdf.add(new Paragraph("Size : "+getJComboBox_ballroomSize().getSelectedItem().toString()));
+		 pdf.add(new Paragraph("Price : $"+getJTextField_ballroomPrice().getText().toString()));
 		 pdf.add(new Paragraph("Description : "));
 		 pdf.add(new Paragraph(getJTextArea_ballroomDescription().getText().toString()));
 		 pdf.add(new Paragraph("   "));

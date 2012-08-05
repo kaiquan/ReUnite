@@ -1,6 +1,7 @@
 package Controller.MM;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Scanner;
 
 import Model.Membership.*;
 
@@ -25,7 +26,13 @@ public class CreateRIController {
 			String firstName, String lastName,String dateOfBirth, String nric, String email, 
 			String school, String address, String telephoneNo, String handphoneNo,String secretQuestion, String secretAnswer) throws Exception {
 		RI newRI = new RI();
-
+						
+		Scanner sc = new Scanner(dateOfBirth);
+		sc.useDelimiter("-");
+		int year=sc.nextInt();
+		int month=sc.nextInt();
+		int day=sc.nextInt();
+		Date birthDate= new Date(year,month,day);
 		newRI.setUserName(userName);
 		newRI.setPassword(password);
 		 newRI.setType("RI");
@@ -33,7 +40,8 @@ public class CreateRIController {
 		newRI.setConfirmed(true);
 		newRI.setFirstName(firstName);
 		newRI.setLastName(lastName);
-		newRI.setDateOfBirth(new SimpleDateFormat("YYYY-MM-DD").parse(dateOfBirth));
+		newRI.setCreationDate(new SimpleDateFormat("YYYY-MM-DD").parse(dateOfBirth));
+		newRI.setDateOfBirth(birthDate);
 		newRI.setNric(nric);
 		newRI.setSchool(school);
 		newRI.setEmail(email);

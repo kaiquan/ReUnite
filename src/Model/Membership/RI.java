@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import Controller.MyCalendar;
 import Controller.MySQLController;
 
 
@@ -130,10 +131,10 @@ public class RI extends Account   {
 	public boolean CREATE_RI_ACCOUNT(RI account) {
 
 		boolean success = false;
-	
-		String sql = "INSERT INTO Account (userName, password,type,status, firstName, lastName,dateOfBirth, nric, school, email, address, telephoneNo, handphoneNo,secretQuestion, secretAnswer)"; 
-		sql +="VALUES ('"+ account.getUserName()+ "', '"+ account.getPassword()+"','"+ account.getType()+"','"+ account.getStatus()+"', '"+ account.getFirstName()+ "', '"+ account.getLastName()+ "', '"
-		+ account.getDateOfBirth()+ "', '"+ account.getNric()+ "', '"+ account.getSchool()+ "', '"+ account.getEmail()+ "', '"+ account.getAddress()+ "','"+ account.getTelephoneNo()
+		MyCalendar m1 = new MyCalendar();
+		String sql = "INSERT INTO Account (userName, password,creationDate,type,status, firstName, lastName,dateOfBirth, nric, school, email, address, telephoneNo, handphoneNo,secretQuestion, secretAnswer)"; 
+		sql +="VALUES ('"+ account.getUserName()+ "', '"+ account.getPassword()+"','"+m1.currentDateWithTime()+"','"+ account.getType()+"','"+ account.getStatus()+"', '"+ account.getFirstName()+ "', '"+ account.getLastName()+ "', '"
+		+ account.getDateOfBirth().getYear()+"-"+account.getDateOfBirth().getMonth()+"-"+account.getDateOfBirth().getDate()+ "', '"+ account.getNric()+ "', '"+ account.getSchool()+ "', '"+ account.getEmail()+ "', '"+ account.getAddress()+ "','"+ account.getTelephoneNo()
 				+ "','"+ account.getHandphoneNo()+ "','"+ account.getSecretQuestion()
 	
 					+ "','"+ account.getSecretAnswer()+"')";

@@ -374,8 +374,8 @@ public class CreateRIForm extends JFrame {
 	public String[] dayArray(){
 		String [] dayArray = new String[32];
 		dayArray[0]="Day";
-	    dayArray[1] = "1"; dayArray[2] = "2";  dayArray[3] = "3";  dayArray[4] = "4"; dayArray[5] = "5"; dayArray[6] = "6";
-	    dayArray[7] = "7"; dayArray[8] = "8";  dayArray[9] = "9";  dayArray[10] = "10";  dayArray[11] = "11";  dayArray[12] = "12";
+	    dayArray[1] = "01"; dayArray[2] = "02";  dayArray[3] = "03";  dayArray[4] = "04"; dayArray[5] = "05"; dayArray[6] = "06";
+	    dayArray[7] = "07"; dayArray[8] = "08";  dayArray[9] = "09";  dayArray[10] = "10";  dayArray[11] = "11";  dayArray[12] = "12";
 	    dayArray[13] = "13"; dayArray[14] = "14";  dayArray[15] = "15";   dayArray[16] = "16";  dayArray[17] = "17"; dayArray[17] = "18";
 	    dayArray[19] = "19"; dayArray[20] = "20"; dayArray[21] = "21";dayArray[22] = "22";dayArray[23] = "23";dayArray[24] = "24";
 	    dayArray[25] = "25";dayArray[26] = "26";dayArray[27] = "27";dayArray[28] = "28";dayArray[29] = "29";dayArray[30] = "30";dayArray[31] = "31";
@@ -386,8 +386,8 @@ public class CreateRIForm extends JFrame {
 	public String [] monthArray(){
 		String[] monthArray = new String[13];
 		monthArray[0]="Month";
-		monthArray[1]= "1";monthArray[2]= "2";monthArray[3]= "3";monthArray[4]= "4";monthArray[5]="5";
-		monthArray[6]= "6";monthArray[7]= "7";monthArray[8]= "8";monthArray[9]= "9";monthArray[10]= "10";
+		monthArray[1]= "01";monthArray[2]= "02";monthArray[3]= "03";monthArray[4]= "04";monthArray[5]="05";
+		monthArray[6]= "06";monthArray[7]= "07";monthArray[8]= "08";monthArray[9]= "09";monthArray[10]= "10";
 		monthArray[11]= "11";monthArray[12]= "12";
 		
 		
@@ -468,16 +468,16 @@ public class CreateRIForm extends JFrame {
 				}
 				
 				public void createUser(){
-					String dateOfBirth = yearCombo.getSelectedItem()+"-"+monthCombo.getSelectedItem()+"-"+dayCombo.getSelectedItem();
 					
 					CreateRIController registerController = new CreateRIController();
 					try {
+						String dob;
 						registerController.createRegistration(
 											userNameTextBox.getText(),
 											passwordTextBox.getText(),
 											firstNameTextBox.getText(),
 											lastNameTextBox.getText(),
-											dateOfBirth,
+											dob=yearCombo.getSelectedItem().toString()+"-"+monthCombo.getSelectedItem().toString()+"-"+dayCombo.getSelectedItem().toString(),
 											nricTextBox.getText(),
 											schoolTextBox.getText(),
 											emailTextBox.getText(),

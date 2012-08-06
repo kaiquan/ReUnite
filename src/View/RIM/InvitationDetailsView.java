@@ -26,7 +26,6 @@ import Model.Membership.Account;
 import Model.Membership.Guest;
 import Model.RIM.Chat.ClientGUI;
 import View.RIM.Components.EntertainmentDetails;
-import View.RIM.Components.EntertainmentPanel;
 import View.RIM.Components.FacilityDetails;
 import View.RIM.Components.PieChart;
 

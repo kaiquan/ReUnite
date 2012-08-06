@@ -188,10 +188,10 @@ public class LogInForm extends JFrame {
 				jLabel1.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Abstract Blue backgrounds 40.jpg")));
 				jLabel1.setText("JLabel");
 				createMember = new JLabel();
-				createMember.setBounds(new Rectangle(336, 9, 268, 16));
+				createMember.setBounds(new Rectangle(450, 9, 268, 16));
 				createMember.setDisplayedMnemonic(KeyEvent.VK_UNDEFINED);
 				createMember.setIcon(new ImageIcon(getClass().getResource("/Images/MM/Login-in-icon.png")));
-				createMember.setText("SignUp  |");
+				createMember.setText("SignUp  ");
 				createMember.addMouseListener(new java.awt.event.MouseAdapter() {
 					public void mouseClicked(java.awt.event.MouseEvent e) {
 						CreateRIForm create = new CreateRIForm();
@@ -201,6 +201,7 @@ public class LogInForm extends JFrame {
 				forgotPassword = new JLabel();
 				forgotPassword.setBounds(new Rectangle(449, 9, 163, 16));
 				forgotPassword.setComponentOrientation(ComponentOrientation.UNKNOWN);
+				forgotPassword.setVisible(false);
 				forgotPassword.setDisplayedMnemonic(KeyEvent.VK_UNDO);
 				forgotPassword.setText("Forgot Password");
 				forgotPassword.addMouseListener(new java.awt.event.MouseAdapter() {

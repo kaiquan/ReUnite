@@ -3,25 +3,29 @@ package View.PRFM;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.JLabel;
 import java.awt.Rectangle;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 import javax.swing.JTextField;
 
-import Controller.PRFM.AdministrateEventController;
-import Controller.PRFM.AdministrateFeedbackFormController;
-import Controller.PRFM.AdministrateFeedbackQuestionController;
+import Controller.PRFM.*;
 
 import Model.Event;
-import Model.PRFM.EventForm;
-import Model.PRFM.FeedbackForm;
-import Model.PRFM.FeedbackQuestion;
+import Model.PRFM.*;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.JProgressBar;
 
 public class UpdateFeedbackForm {
 
@@ -205,7 +209,7 @@ public class UpdateFeedbackForm {
 					ArrayList<Integer> fqCodeArr = new ArrayList<Integer>();
 					ArrayList<Integer> eventIDArr = new ArrayList<Integer>();
 					
-					if (fqCode.equals("")){
+					if (getFqCodeTextField().getText().equals("")){
 						JOptionPane.showMessageDialog(getJFrame(), "Please select feedback questions for this feedback form.");
 						valid = false;
 					}
@@ -270,7 +274,7 @@ public class UpdateFeedbackForm {
 						}
 					}
 					
-					if (!eventID.equals("") && !getEventIDTextField().getText().equals(eventID)){
+					if (!getEventIDTextField().getText().equals("") && !getEventIDTextField().getText().equals(eventID)){
 						Scanner eventSc = new Scanner(getEventIDTextField().getText());
 						eventSc.useDelimiter(",");
 						
@@ -496,7 +500,6 @@ public class UpdateFeedbackForm {
 		getEventIDTextField().setText(eventID);
 	}
 	
-	@SuppressWarnings("unused")
 	private long getDifference (GregorianCalendar d1, GregorianCalendar d2){
 		
 		long firstDate = d1.getTimeInMillis();
@@ -612,7 +615,7 @@ public class UpdateFeedbackForm {
 			viewEventButton.setBounds(new Rectangle(295, 150, 120, 20));
 			viewEventButton.setText("View Event(s)");
 			
-			if (getEventIDTextField().getText().equals("NIL")){
+			if (eventID.equals("")){
 				viewEventButton.setEnabled(false);
 			}
 			

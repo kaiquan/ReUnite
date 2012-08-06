@@ -11,15 +11,10 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JTextField;
-
-import Controller.PRFM.AdministrateEventController;
-import Controller.PRFM.AdministrateFeedbackFormController;
-import Controller.PRFM.AdministrateFeedbackQuestionController;
-
+import Controller.PRFM.*;
 import Model.Event;
-import Model.PRFM.EventForm;
-import Model.PRFM.FeedbackForm;
-import Model.PRFM.FeedbackQuestion;
+import Model.PRFM.*;
+
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;

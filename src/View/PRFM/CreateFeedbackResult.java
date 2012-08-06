@@ -21,19 +21,9 @@ import java.util.Scanner;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
+import Controller.PRFM.*;
 
-import Controller.PRFM.AdministrateFeedbackFormController;
-import Controller.PRFM.AdministrateFeedbackQuestionController;
-import Controller.PRFM.AdministrateFeedbackResultController;
-
-import Model.PRFM.FeedbackForm;
-import Model.PRFM.FeedbackQuestion;
-import Model.PRFM.FeedbackResult;
-import Model.PRFM.OpenEndedResult;
-import Model.PRFM.RatingQuestion;
-import Model.PRFM.RatingResult;
-import Model.PRFM.YesNoQuestion;
-import Model.PRFM.YesNoResult;
+import Model.PRFM.*;
 
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
@@ -538,7 +528,7 @@ public class CreateFeedbackResult {
 									qnsCount = num - 1;
 								}
 							}
-							catch (InputMismatchException ex){
+							catch (Exception ex){
 								JOptionPane.showMessageDialog(getJFrame(), "Please enter first, last or a legal question number.");
 							}
 						}

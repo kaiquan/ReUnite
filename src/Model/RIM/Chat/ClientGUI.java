@@ -111,7 +111,7 @@ public class ClientGUI extends JPanel implements ActionListener
 		{
 			// just have to send the message
 			client.sendMessage(new ChatMessage(ChatMessage.MESSAGE, messageField.getText()));
-			messageField.setText("");
+			messageField.setText("Type your message here...");
 			return;
 		}
 	}
@@ -124,8 +124,6 @@ public class ClientGUI extends JPanel implements ActionListener
 		{
 			return;
 		}
-
-		messageField.setText("Type your message here...");
 		connected = true;
 		client.sendMessage(new ChatMessage(ChatMessage.WHOISIN, ""));
 	}
@@ -164,7 +162,7 @@ public class ClientGUI extends JPanel implements ActionListener
 	public static void main(String[] args)
 	{
 		JFrame frame = new JFrame();
-		final ClientGUI client = new ClientGUI("adeelateeque@hotmail.com", 55);
+		final ClientGUI client = new ClientGUI("anniyan123456789@hotmail.com", 55);
 		frame.setContentPane(client);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

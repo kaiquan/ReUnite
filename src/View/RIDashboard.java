@@ -15,7 +15,7 @@ import View.MM.AdministrateRIPersonalDetails;
 import View.MM.LogInForm;
 import View.RIM.InvitationResponseView;
 import View.SOM.InitiateEventForm;
-
+import View.PRFM.*;
 @SuppressWarnings("serial")
 public class RIDashboard extends JFrame
 {
@@ -116,7 +116,15 @@ public class RIDashboard extends JFrame
 		lblFeedbackForm.setForeground(Color.BLACK);
 		lblFeedbackForm.setFont(new Font("Segoe UI", Font.PLAIN, 22));
 		feedbackPanel.add(lblFeedbackForm, "cell 0 0,alignx left");
-
+		feedbackPanel.addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mouseClicked(MouseEvent arg0)
+			{
+				CreateFeedbackResult form= new CreateFeedbackResult();
+				form.getJFrame().setVisible(true);
+			}
+		});
 		JLabel label_2 = new JLabel("");
 		label_2.setIcon(new ImageIcon(RIDashboard.class.getResource("/Images/feedbackIcon.png")));
 		feedbackPanel.add(label_2, "cell 0 4,alignx center,aligny center");

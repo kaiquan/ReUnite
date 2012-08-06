@@ -16,6 +16,7 @@ import View.CGL.ConsolidateGuestListForm;
 import View.MM.AdministrateRIDetails;
 import View.MM.LogInForm;
 import View.RIM.InvitationResponseView;
+import View.PRFM.*;
 import View.SOM.AdministrateServiceOptionManagement;
 
 @SuppressWarnings("serial")
@@ -198,6 +199,13 @@ public class GRDashboard extends JFrame
 										JLabel label_2 = new JLabel("");
 										label_2.setIcon(new ImageIcon(GRDashboard.class.getResource("/Images/feedbackIcon.png")));
 										feedbackPanel.add(label_2, "cell 0 4,alignx center,aligny center");
+										feedbackPanel.addMouseListener(new MouseAdapter() {
+											@Override
+											public void mouseClicked(MouseEvent e) {
+												AdministrateFeedbackForm form= new AdministrateFeedbackForm();
+												form.getJFrame().setVisible(true);
+											}
+										});
 		
 				JPanel panel_2 = new JPanel();
 				panel_2.setBackground(new Color(153, 50, 204));

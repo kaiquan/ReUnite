@@ -76,7 +76,7 @@ public class CreateFeedbackResult {
 	 * 	
 	 * @return javax.swing.JFrame	
 	 */
-	JFrame getJFrame() {
+	public JFrame getJFrame() {
 		if (jFrame == null) {
 			jFrame = new JFrame();
 			jFrame.setTitle("Take Survey");

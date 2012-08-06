@@ -51,7 +51,7 @@ public class AdministrateFeedbackForm {
 	 * 	
 	 * @return javax.swing.JFrame	
 	 */
-	private JFrame getJFrame() {
+	public JFrame getJFrame() {
 		if (jFrame == null) {
 			jFrame = new JFrame();
 			jFrame.setSize(new Dimension(450, 250));

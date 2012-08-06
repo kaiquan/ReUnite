@@ -44,7 +44,7 @@ public class MealDetails {
 	 * 	
 	 * @return javax.swing.JPanel	
 	 */
-	private JPanel getJPanel() {
+	public JPanel getJPanel() {
 		if (jPanel == null) {
 			jLabel_type = new JLabel();
 			jLabel_type.setBounds(new Rectangle(15, 265, 150, 30));

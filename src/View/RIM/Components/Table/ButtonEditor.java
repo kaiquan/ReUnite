@@ -32,7 +32,8 @@ public class ButtonEditor extends AbstractCellEditor implements TableCellEditor,
 	  public void actionPerformed(ActionEvent e) 
 		{
 			if (EDIT.equals(e.getActionCommand())) 
-			{
+			{	System.out.println("Send now button clicked");
+				new CreateInvitationView((Integer) table.getModel().getValueAt(row, 0));
 				for(Window view : InvitationResponseView.getFrames())
 				{
 					view.dispose();
@@ -42,8 +43,6 @@ public class ButtonEditor extends AbstractCellEditor implements TableCellEditor,
 				{
 					view.dispose();
 				}
-				
-				new CreateInvitationView((int) table.getModel().getValueAt(row, 0));
 				//Make the renderer reappear.
 				fireEditingStopped();
 			} 

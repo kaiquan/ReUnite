@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
 import net.miginfocom.swing.MigLayout;
+import Model.Invitation;
 import Model.Membership.Guest;
 import View.RIM.Components.JListGuestListRenderer;
 
@@ -48,10 +49,10 @@ public class ClientGUI extends JPanel implements ActionListener
 
 		// The online users grid
 		listModel = new DefaultListModel<Guest>();
-//		for(Guest guest : new Invitation().GET_ALL_GUESTS(eventID))
-//		{
-//			listModel.addElement(guest);
-//		}
+		for(Guest guest : new Invitation().GET_ALL_GUESTS(eventID))
+		{
+			listModel.addElement(guest);
+		}
 		JPanel onlineUserPanel = new JPanel(new MigLayout("", "[1060.00]", "[400px]"));
 		scrollPane = new JScrollPane();
 		list = new JList<Guest>(listModel);

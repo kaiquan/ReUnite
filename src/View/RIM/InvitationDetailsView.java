@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.Iterator;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -27,7 +28,9 @@ import Model.Membership.Guest;
 import Model.RIM.Chat.ClientGUI;
 import View.RIM.Components.EntertainmentDetails;
 import View.RIM.Components.FacilityDetails;
+import View.RIM.Components.MealDetails;
 import View.RIM.Components.PieChart;
+import Model.*;
 
 @SuppressWarnings("serial")
 public class InvitationDetailsView extends JDialog
@@ -35,9 +38,10 @@ public class InvitationDetailsView extends JDialog
 	private JPanel mainPanel;
 	private JTabbedPane tabbedPane;
 	private JTabbedPane mealSubTabs;
-	private JPanel entertainmentTab;
+	private JScrollPane entertainmentTab;
 	private JPanel panel_3;
 	private JPanel panel_4;
+	private JScrollPane mealPanel;
 	private JLabel lblGuestResponse;
 	private JPanel guestResponsePanel;
 	private JButton btnGoing;
@@ -337,29 +341,31 @@ public class InvitationDetailsView extends JDialog
 	{
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 
-		entertainmentTab = new EntertainmentDetails(event.getEventPackage().getEntertainment()).getJPanel();
-		tabbedPane.addTab("Entertainment", null, entertainmentTab, null);
+//		entertainmentTab.setViewportView(new EntertainmentDetails(new Entertainment().RETRIEVE_ENTERTAINMENT_BY_ID(event.getEventPackage().getEntertainmentID())).getJPanel());
+//		tabbedPane.addTab("Entertainment", null, entertainmentTab, null);
 
 		panel_3 = new JPanel();
 		tabbedPane.addTab("Ballroom", null, panel_3, null);
 
 		panel_4 = new FacilityDetails(event.getEventPackage().getBallroom(), event.getEventPackage().getBallroom().getFacility()).getJPanel();
 		tabbedPane.addTab("Facility", null, panel_4, null);
-
+		
 		mealSubTabs = new JTabbedPane();
 		mealSubTabs.setTabPlacement(JTabbedPane.BOTTOM);
-//
-//		if (event.getEventPackage().getMeals().size() > 0)
-//		{
-//			Iterator<Meal> mealIterator = event.getEventPackage().getMeals().iterator();
-//			int i = 1;
-//			while (mealIterator.hasNext())
-//			{
-//				Meal meal = mealIterator.next();
-//				mealSubTabs.addTab("Meal Option "+i, null, getMealChoicePanel(meal), null);
-//				i++;
-//			}
-//		}
+
+		if (event.getEventPackage().getMeals().size() > 0)
+		{
+			Iterator<Meal> mealIterator = event.getEventPackage().getMeals().iterator();
+			int i = 1;
+			while (mealIterator.hasNext())
+			{
+				Meal meal = mealIterator.next();
+				mealPanel = new JScrollPane();
+				mealPanel.setViewportView(new MealDetails(meal).getJPanel());
+				mealSubTabs.insertTab("Meal Option "+i,null,mealPanel, null, 0);
+				i++;
+			}
+		}
 		
 		tabbedPane.addTab("Meal", null, mealSubTabs, null);
 		return tabbedPane;

@@ -29,14 +29,15 @@ public class ButtonRenderer extends JButton implements TableCellRenderer {
 	    if(((Boolean)value).booleanValue() == false){
 		    if(Account.currentUser.getType().equalsIgnoreCase("RI")){
 		    	setText("Send now");
-		    	setIcon(ImageHelper.loadImageIcon("sendNow.png", "", 20, -1, 5));
+		    	setIcon(ImageHelper.loadImageIcon("sendNow.png", "", 30, -1, 5));
 		    }
 		   
 	    }else
 	    {
 	    	JCheckBox checkBox = new JCheckBox("", (boolean) value);
 	    	checkBox.setEnabled(false);
-	    	checkBox.setIcon(ImageHelper.loadImageIcon("sentAlready.png", "", 20, -1, 5));
+	    	checkBox.setIcon(ImageHelper.loadImageIcon("sentAlready.png", "", 30, -1, 5));
+	    	checkBox.setText("Thank you.");
 	    	return checkBox;
 	    }
 	   

@@ -10,25 +10,18 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import Model.Entertainment;
-import Model.EntertainmentMenu;
-
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 public class EntertainmentDetails {
 
 	public EntertainmentDetails(Entertainment entertainment){
-		getJTextField_title().setText(entertainment.getEntertainmentTitle().toString());
+//		getJTextField_title().setText(entertainment.getEntertainmentTitle().toString());
 		getJTextArea_description().setText(entertainment.getEntertainmentDescription().toString());
 		getJTextField_finalPrice().setText("$"+entertainment.getEntertainmentFinalPrice());
 		
 		//need the entertainment menu?
-		EntertainmentMenu menu= new EntertainmentMenu();
-		DefaultTableModel model= menu.RETRIEVE_ENTERTAINMENT_MENU_BY_ID(entertainment.getEntertainmentID());
-		getJTable_entertainmentMenu().setModel(model);
-		getJTable_entertainmentMenu().getColumnModel().getColumn(0).setPreferredWidth(565);
-		getJTable_entertainmentMenu().getColumnModel().getColumn(1).setPreferredWidth(135);
-		getJTable_entertainmentMenu().getColumnModel().getColumn(2).setPreferredWidth(698);
+		
+		
+		
 		
 		getJScrollPane().setPreferredSize(new Dimension());
 		getJScrollPane().setViewportView(getJPanel());
@@ -42,8 +35,6 @@ public class EntertainmentDetails {
 	private JLabel jLabel_finalPrice = null;
 	private JTextField jTextField_finalPrice = null;
 	private JScrollPane jScrollPane = null;  //  @jve:decl-index=0:visual-constraint="26,178"
-	private JScrollPane jScrollPane1 = null;
-	private JTable jTable_entertainmentMenu = null;
 
 	/**
 	 * This method initializes jPanel	
@@ -63,14 +54,13 @@ public class EntertainmentDetails {
 			jLabel_tite.setText("Title :");
 			jPanel = new JPanel();
 			jPanel.setLayout(null);
-			jPanel.setSize(new Dimension(613, 501));
+			jPanel.setSize(new Dimension(666, 343));
 			jPanel.add(jLabel_tite, null);
 			jPanel.add(getJTextField_title(), null);
 			jPanel.add(jLabel_description, null);
 			jPanel.add(getJScrollPane_description(), null);
 			jPanel.add(jLabel_finalPrice, null);
 			jPanel.add(getJTextField_finalPrice(), null);
-			jPanel.add(getJScrollPane1(), null);
 		}
 		return jPanel;
 	}
@@ -138,38 +128,6 @@ public class EntertainmentDetails {
 			jScrollPane.setSize(new Dimension(94, 123));
 		}
 		return jScrollPane;
-	}
-
-	/**
-	 * This method initializes jScrollPane1	
-	 * 	
-	 * @return javax.swing.JScrollPane	
-	 */
-	private JScrollPane getJScrollPane1() {
-		if (jScrollPane1 == null) {
-			jScrollPane1 = new JScrollPane();
-			jScrollPane1.setBounds(new Rectangle(15, 331, 550, 150));
-			jScrollPane1.setViewportView(getJTable_entertainmentMenu());
-		}
-		return jScrollPane1;
-	}
-
-	/**
-	 * This method initializes jTable_entertainmentMenu	
-	 * 	
-	 * @return javax.swing.JTable	
-	 */
-	private JTable getJTable_entertainmentMenu() {
-		if (jTable_entertainmentMenu == null) {
-			String []Header={"Entertainment Name","Price/hr","Description"};
-			DefaultTableModel temp= new DefaultTableModel();
-			temp.setColumnIdentifiers(Header);
-			jTable_entertainmentMenu = new JTable(temp);
-			jTable_entertainmentMenu.getColumnModel().getColumn(0).setPreferredWidth(565);
-			jTable_entertainmentMenu.getColumnModel().getColumn(1).setPreferredWidth(135);
-			jTable_entertainmentMenu.getColumnModel().getColumn(2).setPreferredWidth(698);
-		}
-		return jTable_entertainmentMenu;
 	}
 
 }

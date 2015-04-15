@@ -1,0 +1,5914 @@
+# ReUnite{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.29587724675394,
+            103.840964115641
+          ],
+          [
+            1.29593027936332,
+            103.840744538708
+          ],
+          [
+            1.29592694292722,
+            103.840513343438
+          ]
+        ]
+      },
+      "properties": {
+        "id": "da890fd5-4b4f-4d25-99b3-00019ef42fe2",
+        "created_at": 1429146026000,
+        "link_id": 103076898,
+        "road_name": "RIVER VALLEY ROAD",
+        "road_category": "B ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.34734288624806,
+            103.736062366588
+          ],
+          [
+            1.34810908345382,
+            103.735232335374
+          ],
+          [
+            1.34824407110086,
+            103.734846406984
+          ]
+        ]
+      },
+      "properties": {
+        "id": "ada48955-dc0b-450c-9c39-000286e1ec49",
+        "created_at": 1429145948000,
+        "link_id": 103067337,
+        "road_name": "PAN ISLAND EXPRESSWAY",
+        "road_category": "D ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.37103869606947,
+            103.836571530942
+          ],
+          [
+            1.37096955793815,
+            103.836165853096
+          ],
+          [
+            1.37092775867551,
+            103.835754424448
+          ],
+          [
+            1.37094732965477,
+            103.835152516832
+          ]
+        ]
+      },
+      "properties": {
+        "id": "0357edf4-118e-4ce6-b2e7-00034a3f58a1",
+        "created_at": 1429145768000,
+        "link_id": 103044607,
+        "road_name": "ANG MO KIO STREET",
+        "road_category": "D ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.33538803847775,
+            103.735648289654
+          ],
+          [
+            1.33547591229282,
+            103.735569330033
+          ],
+          [
+            1.33605990484406,
+            103.735118770666
+          ],
+          [
+            1.33665784508186,
+            103.734730264859
+          ],
+          [
+            1.33682052722154,
+            103.734637410487
+          ]
+        ]
+      },
+      "properties": {
+        "id": "8b092cfe-811f-4b83-bdd2-0004db7ca420",
+        "created_at": 1429145599000,
+        "link_id": 103071563,
+        "road_name": "JURONG TOWN HALL ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.42414418577275,
+            103.792069499196
+          ],
+          [
+            1.42399723726707,
+            103.792661376552
+          ],
+          [
+            1.42376435454397,
+            103.793171681263
+          ],
+          [
+            1.42364472137891,
+            103.793463833104
+          ]
+        ]
+      },
+      "properties": {
+        "id": "4bc2aecc-5934-423f-8ba7-000504cf2e90",
+        "created_at": 1429145921000,
+        "link_id": 106004192,
+        "road_name": "SELETAR EXPRESSWAY",
+        "road_category": "A ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.34171615888447,
+            103.761052413669
+          ],
+          [
+            1.34243499894666,
+            103.760967613473
+          ],
+          [
+            1.34271362396505,
+            103.760953722534
+          ],
+          [
+            1.34330995187272,
+            103.760936524527
+          ]
+        ]
+      },
+      "properties": {
+        "id": "a84a0099-a39a-47e0-a3d2-000742f7f089",
+        "created_at": 1429146156000,
+        "link_id": 103097231,
+        "road_name": "BUKIT BATOK STREET",
+        "road_category": "D ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.28268871623577,
+            103.782172896386
+          ],
+          [
+            1.28237793084785,
+            103.782599196163
+          ]
+        ]
+      },
+      "properties": {
+        "id": "e2ca391f-1491-4081-a089-0007fb1846cb",
+        "created_at": 1429145780000,
+        "link_id": 103047095,
+        "road_name": "PASIR PANJANG ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.46349948583555,
+            103.815888084529
+          ],
+          [
+            1.46365796355604,
+            103.815516284877
+          ],
+          [
+            1.46365824390197,
+            103.815515440185
+          ]
+        ]
+      },
+      "properties": {
+        "id": "b2599864-0adf-4276-b3ea-000daa946639",
+        "created_at": 1429146096000,
+        "link_id": 103089454,
+        "road_name": "ADMIRALTY ROAD WEST",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.29612984730492,
+            103.834086663342
+          ],
+          [
+            1.29622218306325,
+            103.833467566774
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2d73272c-ce17-4fcb-8b5a-001531a453ce",
+        "created_at": 1429146004000,
+        "link_id": 103072391,
+        "road_name": "RIVER VALLEY ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.33561696361321,
+            103.718866718757
+          ],
+          [
+            1.33478101815662,
+            103.719495351034
+          ]
+        ]
+      },
+      "properties": {
+        "id": "841d5027-42bf-4a9b-a289-00176261d2a8",
+        "created_at": 1429145654000,
+        "link_id": 103085026,
+        "road_name": "CORPORATION ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.28602212188106,
+            103.779092321463
+          ],
+          [
+            1.28567874027845,
+            103.779354720238
+          ]
+        ]
+      },
+      "properties": {
+        "id": "dfc95451-4cfe-4527-b84a-001b74b04d94",
+        "created_at": 1429145643000,
+        "link_id": 103081587,
+        "road_name": "WEST COAST HIGHWAY",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.30778877049234,
+            103.810713948171
+          ],
+          [
+            1.30735216810945,
+            103.811476405619
+          ]
+        ]
+      },
+      "properties": {
+        "id": "fd10dc12-66aa-4d6e-b9c4-001c7422d0eb",
+        "created_at": 1429145674000,
+        "link_id": 103089926,
+        "road_name": "HOLLAND ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.30497387388793,
+            103.908845313362
+          ],
+          [
+            1.30535106599474,
+            103.909738542348
+          ]
+        ]
+      },
+      "properties": {
+        "id": "774a5b69-58ba-4b5e-8f90-001fd1de3750",
+        "created_at": 1429145650000,
+        "link_id": 103083267,
+        "road_name": "MARINE PARADE ROAD",
+        "road_category": "B ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.28874706308447,
+            103.817901789485
+          ],
+          [
+            1.28866947695024,
+            103.819341917542
+          ]
+        ]
+      },
+      "properties": {
+        "id": "3bff3016-386d-4034-9c42-002b44755d07",
+        "created_at": 1429146215000,
+        "link_id": 103104899,
+        "road_name": "TIONG BAHRU ROAD",
+        "road_category": "B ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.28310057199572,
+            103.852539497947
+          ],
+          [
+            1.28384748491125,
+            103.852806243892
+          ],
+          [
+            1.28461575894529,
+            103.853065873725
+          ],
+          [
+            1.28474018107409,
+            103.853115788555
+          ]
+        ]
+      },
+      "properties": {
+        "id": "4db5a86b-7364-4e1b-9df3-002c15a3c4a2",
+        "created_at": 1429145659000,
+        "link_id": 103086494,
+        "road_name": "COLLYER QUAY",
+        "road_category": "B ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.39000626110271,
+            103.752679565727
+          ],
+          [
+            1.38988175768332,
+            103.752687324671
+          ],
+          [
+            1.38980096217883,
+            103.752696250285
+          ],
+          [
+            1.38959437664704,
+            103.752642747033
+          ],
+          [
+            1.38949558247436,
+            103.752598154017
+          ],
+          [
+            1.38945964123787,
+            103.752544618035
+          ],
+          [
+            1.38945962850789,
+            103.752437561587
+          ],
+          [
+            1.38952238278142,
+            103.751929027858
+          ],
+          [
+            1.38962322922109,
+            103.751434816112
+          ]
+        ]
+      },
+      "properties": {
+        "id": "4501f6bb-c411-49e0-87e8-002d30318fb2",
+        "created_at": 1429145764000,
+        "link_id": 103043818,
+        "road_name": "VERDE VIEW",
+        "road_category": "E ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.30001362154035,
+            103.859663621711
+          ],
+          [
+            1.30022946313054,
+            103.859960566113
+          ]
+        ]
+      },
+      "properties": {
+        "id": "ab84b8b3-02fe-45a4-8bea-002e96e005e4",
+        "created_at": 1429146091000,
+        "link_id": 103088367,
+        "road_name": "BEACH ROAD",
+        "road_category": "B ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.29873509756949,
+            103.802543528155
+          ],
+          [
+            1.29829357467657,
+            103.803039763562
+          ]
+        ]
+      },
+      "properties": {
+        "id": "725fefdf-9279-4e98-be27-0032b0080219",
+        "created_at": 1429145660000,
+        "link_id": 103086879,
+        "road_name": "COMMONWEALTH AVENUE",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.36610127346314,
+            103.836939659042
+          ],
+          [
+            1.36740187522477,
+            103.837389682538
+          ]
+        ]
+      },
+      "properties": {
+        "id": "30dea272-5994-41f8-a73b-00337df747fb",
+        "created_at": 1429145803000,
+        "link_id": 103051575,
+        "road_name": "ANG MO KIO STREET",
+        "road_category": "D ",
+        "band": 1,
+        "min_speed": 0,
+        "max_speed": 19
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.34116926783222,
+            103.775807257258
+          ],
+          [
+            1.34025745671548,
+            103.776014450307
+          ]
+        ]
+      },
+      "properties": {
+        "id": "f1016a0f-8694-45db-8927-00381549452d",
+        "created_at": 1429145616000,
+        "link_id": 103076071,
+        "road_name": "UPPER BUKIT TIMAH ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.34907206069612,
+            103.925394734031
+          ],
+          [
+            1.34899937898621,
+            103.925343081985
+          ],
+          [
+            1.34875900737651,
+            103.925128667218
+          ]
+        ]
+      },
+      "properties": {
+        "id": "5518b6ce-3471-4091-ae76-00386287719a",
+        "created_at": 1429145918000,
+        "link_id": 106003922,
+        "road_name": "TAMPINES AVENUE",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.35107676808603,
+            103.720897665191
+          ],
+          [
+            1.35109094464707,
+            103.721009337786
+          ],
+          [
+            1.35110182103592,
+            103.721722651513
+          ],
+          [
+            1.35105627007485,
+            103.722350011408
+          ],
+          [
+            1.35102772763764,
+            103.722530596651
+          ]
+        ]
+      },
+      "properties": {
+        "id": "8dbcf24d-59cb-49b6-830c-003a5ee54df8",
+        "created_at": 1429145864000,
+        "link_id": 103058486,
+        "road_name": "JURONG WEST AVENUE",
+        "road_category": "C ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.35592367627979,
+            103.688943969185
+          ],
+          [
+            1.35533410769146,
+            103.688088087763
+          ],
+          [
+            1.35523792839555,
+            103.687930791225
+          ]
+        ]
+      },
+      "properties": {
+        "id": "50b3346a-e940-4296-82a7-003abff6316f",
+        "created_at": 1429145790000,
+        "link_id": 103048859,
+        "road_name": "NANYANG AVENUE",
+        "road_category": "E ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.38541537881106,
+            103.875486734218
+          ],
+          [
+            1.38500799979671,
+            103.875947175231
+          ],
+          [
+            1.38455269008483,
+            103.876370593905
+          ]
+        ]
+      },
+      "properties": {
+        "id": "dc3f4d3b-7751-499f-92fc-003d8afc9af6",
+        "created_at": 1429146104000,
+        "link_id": 103091087,
+        "road_name": "YIO CHU KANG ROAD",
+        "road_category": "B ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.32931789702224,
+            103.757925490868
+          ],
+          [
+            1.32919376153792,
+            103.757843878913
+          ]
+        ]
+      },
+      "properties": {
+        "id": "465dde02-0c09-4d9e-add6-003dd0286013",
+        "created_at": 1429145683000,
+        "link_id": 103092850,
+        "road_name": "TOH TUCK AVENUE",
+        "road_category": "C ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.30932222211486,
+            103.880871269371
+          ],
+          [
+            1.31018722964854,
+            103.880816042925
+          ]
+        ]
+      },
+      "properties": {
+        "id": "c3bb623d-12c8-465b-89bf-003f9881541c",
+        "created_at": 1429146273000,
+        "link_id": 103111784,
+        "road_name": "GUILLEMARD LANE",
+        "road_category": "E ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.31072113642771,
+            103.899887077149
+          ],
+          [
+            1.30950953646411,
+            103.900755626385
+          ]
+        ]
+      },
+      "properties": {
+        "id": "ad487450-ae48-484b-9776-0040af85ed42",
+        "created_at": 1429146368000,
+        "link_id": 103009019,
+        "road_name": "CARPMAEL ROAD",
+        "road_category": "E ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.42406299396067,
+            103.839366868443
+          ],
+          [
+            1.42341703603862,
+            103.838527376364
+          ]
+        ]
+      },
+      "properties": {
+        "id": "31435e72-347f-46ed-8391-0041e9a9ae31",
+        "created_at": 1429146222000,
+        "link_id": 103106067,
+        "road_name": "YISHUN CENTRAL",
+        "road_category": "C ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.35745536016913,
+            103.938058491798
+          ],
+          [
+            1.35803635911465,
+            103.938056854455
+          ]
+        ]
+      },
+      "properties": {
+        "id": "5e1ccabe-f25a-4ae4-99e9-0042e41144f4",
+        "created_at": 1429146306000,
+        "link_id": 109001171,
+        "road_name": "TAMPINES AVENUE",
+        "road_category": "C ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.37653851002675,
+            103.858508918123
+          ],
+          [
+            1.37666398596127,
+            103.858937358962
+          ]
+        ]
+      },
+      "properties": {
+        "id": "a8edfac2-2c40-47bd-8c44-00430209b840",
+        "created_at": 1429145668000,
+        "link_id": 103088491,
+        "road_name": "ANG MO KIO AVENUE",
+        "road_category": "B ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.30599288886955,
+            103.854253918321
+          ],
+          [
+            1.30543383964025,
+            103.855090667507
+          ],
+          [
+            1.30527765472326,
+            103.855220479223
+          ]
+        ]
+      },
+      "properties": {
+        "id": "34227fe6-ca01-44df-8dad-0043414bc71f",
+        "created_at": 1429146323000,
+        "link_id": 103001120,
+        "road_name": "UPPER WELD ROAD",
+        "road_category": "D ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.29152307564004,
+            103.815373221687
+          ],
+          [
+            1.29201260911138,
+            103.815485446165
+          ]
+        ]
+      },
+      "properties": {
+        "id": "8bbbb0ed-4a56-4e0c-8d35-004556f1198d",
+        "created_at": 1429145819000,
+        "link_id": 103054590,
+        "road_name": "TANGLIN ROAD",
+        "road_category": "B ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.34240133780373,
+            103.848491694095
+          ],
+          [
+            1.34233975428664,
+            103.849325036404
+          ]
+        ]
+      },
+      "properties": {
+        "id": "fa415fe3-44ab-4322-b4bb-0049793af727",
+        "created_at": 1429146281000,
+        "link_id": 103113191,
+        "road_name": "TOA PAYOH NORTH",
+        "road_category": "D ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.33153685555772,
+            103.741324155515
+          ],
+          [
+            1.33139379106037,
+            103.741237620985
+          ]
+        ]
+      },
+      "properties": {
+        "id": "6f1b084c-60d3-4b3b-b16c-004a80cb3485",
+        "created_at": 1429145794000,
+        "link_id": 103049467,
+        "road_name": "JURONG EAST STREET",
+        "road_category": "D ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.43225098680293,
+            103.777802443416
+          ],
+          [
+            1.43225023666667,
+            103.776720087308
+          ]
+        ]
+      },
+      "properties": {
+        "id": "1d223926-f9a6-4abf-806f-004f9a981ef3",
+        "created_at": 1429145610000,
+        "link_id": 103074574,
+        "road_name": "WOODLANDS AVENUE",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.34841099277071,
+            103.963513569291
+          ],
+          [
+            1.34803714486868,
+            103.963395541551
+          ]
+        ]
+      },
+      "properties": {
+        "id": "8645092a-2667-44f5-9160-00511a4471d2",
+        "created_at": 1429145711000,
+        "link_id": 108003451,
+        "road_name": "UPPER CHANGI ROAD EAST",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.31690047917637,
+            103.892237727637
+          ],
+          [
+            1.31638535167145,
+            103.892307335229
+          ]
+        ]
+      },
+      "properties": {
+        "id": "6390fa8e-b431-4126-bc95-0053db014eb2",
+        "created_at": 1429145670000,
+        "link_id": 103088950,
+        "road_name": "PAYA LEBAR ROAD",
+        "road_category": "B ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.32647210614153,
+            103.747904045018
+          ],
+          [
+            1.32633094417027,
+            103.747908156248
+          ],
+          [
+            1.32617437869907,
+            103.747849297386
+          ],
+          [
+            1.32607372891723,
+            103.747758502027
+          ],
+          [
+            1.32598933603758,
+            103.747565756265
+          ]
+        ]
+      },
+      "properties": {
+        "id": "af983e24-e318-415a-9c87-0053e2848ede",
+        "created_at": 1429145910000,
+        "link_id": 103063348,
+        "road_name": "INTERNATIONAL BUSINESS PARK",
+        "road_category": "E ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.28309761062825,
+            103.799786235042
+          ],
+          [
+            1.28317882554655,
+            103.800708674075
+          ]
+        ]
+      },
+      "properties": {
+        "id": "f88da4d7-560a-4069-bba2-005f53614b03",
+        "created_at": 1429146325000,
+        "link_id": 103001479,
+        "road_name": "ROYAL ROAD",
+        "road_category": "E ",
+        "band": 1,
+        "min_speed": 0,
+        "max_speed": 19
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.29162129452286,
+            103.814794748633
+          ],
+          [
+            1.29152307564004,
+            103.815373221687
+          ]
+        ]
+      },
+      "properties": {
+        "id": "e7dfa7f0-2fef-4657-9d95-00627cdbe2f8",
+        "created_at": 1429146083000,
+        "link_id": 103086199,
+        "road_name": "ALEXANDRA ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.29126682963602,
+            103.794255298282
+          ],
+          [
+            1.29108517401405,
+            103.794521682717
+          ]
+        ]
+      },
+      "properties": {
+        "id": "49dc1c62-711b-4adc-b44a-0063a53306d9",
+        "created_at": 1429145639000,
+        "link_id": 107001203,
+        "road_name": "PORTSDOWN ROAD",
+        "road_category": "E ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.29135998509505,
+            103.801794170362
+          ],
+          [
+            1.29115338139138,
+            103.801667730112
+          ]
+        ]
+      },
+      "properties": {
+        "id": "0c0cbb93-5bfd-483a-9c0f-006825e96b59",
+        "created_at": 1429145821000,
+        "link_id": 103055070,
+        "road_name": "MEI CHIN ROAD",
+        "road_category": "D ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.39415896606286,
+            103.752032394112
+          ],
+          [
+            1.39422447461351,
+            103.752452755931
+          ]
+        ]
+      },
+      "properties": {
+        "id": "a94b2c4b-03cf-4cf4-95b4-006fb4abd612",
+        "created_at": 1429145773000,
+        "link_id": 103045966,
+        "road_name": "CHOA CHU KANG LINK",
+        "road_category": "E ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.32725668995083,
+            103.867865598975
+          ],
+          [
+            1.32758122298785,
+            103.868373089201
+          ]
+        ]
+      },
+      "properties": {
+        "id": "da4cefa1-13e3-4131-980c-00759315f213",
+        "created_at": 1429146339000,
+        "link_id": 103004308,
+        "road_name": "SERANGOON ROAD",
+        "road_category": "D ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.33890472449935,
+            103.842332715902
+          ],
+          [
+            1.33890985202062,
+            103.842393539377
+          ],
+          [
+            1.33891297722999,
+            103.843385737181
+          ],
+          [
+            1.33880303154928,
+            103.843879701529
+          ]
+        ]
+      },
+      "properties": {
+        "id": "bd3613fd-306e-4ffd-8c9a-007717b016fe",
+        "created_at": 1429145808000,
+        "link_id": 103052243,
+        "road_name": "TOA PAYOH RISE",
+        "road_category": "E ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.35900671223664,
+            103.990882392454
+          ],
+          [
+            1.35897057826553,
+            103.990816992703
+          ],
+          [
+            1.35904000764282,
+            103.990654860502
+          ]
+        ]
+      },
+      "properties": {
+        "id": "b84d1866-88d3-4185-98db-00775066ad0a",
+        "created_at": 1429146366000,
+        "link_id": 103008696,
+        "road_name": "T",
+        "road_category": "B ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.35763336780724,
+            103.969422070317
+          ],
+          [
+            1.35739936771437,
+            103.969359786804
+          ]
+        ]
+      },
+      "properties": {
+        "id": "38e62aab-18cb-47fe-8c6f-0077e6447624",
+        "created_at": 1429146368000,
+        "link_id": 103009091,
+        "road_name": "UPPER CHANGI ROAD NORTH",
+        "road_category": "D ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.33068928395164,
+            103.819721692822
+          ],
+          [
+            1.33052201246671,
+            103.819682615543
+          ],
+          [
+            1.33036090896856,
+            103.819683236432
+          ],
+          [
+            1.33012648902799,
+            103.819754529134
+          ]
+        ]
+      },
+      "properties": {
+        "id": "9264e614-6ab0-471f-968c-0078bcd240a4",
+        "created_at": 1429145775000,
+        "link_id": 103046203,
+        "road_name": "KHEAM HOCK ROAD",
+        "road_category": "E ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.31049862266194,
+            103.920257880555
+          ],
+          [
+            1.31114769461825,
+            103.919967042966
+          ]
+        ]
+      },
+      "properties": {
+        "id": "e3ff4e35-cb39-4917-8335-007970dde5d7",
+        "created_at": 1429145860000,
+        "link_id": 103057955,
+        "road_name": "JALAN BULOH PERINDU",
+        "road_category": "E ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.32071520474787,
+            103.776744103192
+          ],
+          [
+            1.32071725624299,
+            103.776682525385
+          ]
+        ]
+      },
+      "properties": {
+        "id": "c8c1d021-e931-4ef2-b8de-007b333dc08a",
+        "created_at": 1429146001000,
+        "link_id": 103071631,
+        "road_name": "ULU PANDAN ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.31500622588915,
+            103.882207709265
+          ],
+          [
+            1.31504953153689,
+            103.882428573745
+          ]
+        ]
+      },
+      "properties": {
+        "id": "c29c74d8-1a70-44cf-ae08-007c248e2cc7",
+        "created_at": 1429145628000,
+        "link_id": 103079252,
+        "road_name": "SIMS AVENUE",
+        "road_category": "B ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.28215634050705,
+            103.825717121245
+          ],
+          [
+            1.28201731202262,
+            103.825563372696
+          ],
+          [
+            1.28188844850508,
+            103.825382209722
+          ],
+          [
+            1.28129958819785,
+            103.825014996848
+          ]
+        ]
+      },
+      "properties": {
+        "id": "404d0a7a-70fb-4ad5-89f4-007d2e404dab",
+        "created_at": 1429146348000,
+        "link_id": 103005767,
+        "road_name": "JALAN MEMBINA",
+        "road_category": "D ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.34061766845271,
+            103.836719716912
+          ],
+          [
+            1.34014802254539,
+            103.836980289514
+          ]
+        ]
+      },
+      "properties": {
+        "id": "4c1dffd8-8035-435e-b517-007e7623e8e9",
+        "created_at": 1429145665000,
+        "link_id": 103087728,
+        "road_name": "THOMSON ROAD",
+        "road_category": "B ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.31185718175417,
+            103.768885856351
+          ],
+          [
+            1.31187193529145,
+            103.768666852715
+          ],
+          [
+            1.31196609462137,
+            103.768203010476
+          ]
+        ]
+      },
+      "properties": {
+        "id": "d98c40c2-d9dc-46f5-b2b8-00810a93699c",
+        "created_at": 1429145660000,
+        "link_id": 103086866,
+        "road_name": "COMMONWEALTH AVENUE WEST",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.30876037839912,
+            103.857483889008
+          ],
+          [
+            1.30819999219869,
+            103.857134276655
+          ]
+        ]
+      },
+      "properties": {
+        "id": "8845e21e-00f7-4bd5-b7fa-0081b90efbc3",
+        "created_at": 1429145576000,
+        "link_id": 103054560,
+        "road_name": "JALAN BESAR",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.33190416365482,
+            103.796271890745
+          ],
+          [
+            1.33164275854251,
+            103.796365308542
+          ]
+        ]
+      },
+      "properties": {
+        "id": "f51818bf-0a8a-420f-883e-00852467b920",
+        "created_at": 1429145820000,
+        "link_id": 103054724,
+        "road_name": "TURF CLUB ROAD",
+        "road_category": "E ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.42289623669947,
+            103.834180111118
+          ],
+          [
+            1.42287597006028,
+            103.833263288203
+          ]
+        ]
+      },
+      "properties": {
+        "id": "6713b800-8131-4210-9109-0085c1429954",
+        "created_at": 1429146222000,
+        "link_id": 103106046,
+        "road_name": "YISHUN AVENUE",
+        "road_category": "C ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.33159154959815,
+            103.862551669855
+          ],
+          [
+            1.33148922976395,
+            103.862555020264
+          ],
+          [
+            1.33116813427101,
+            103.862629830265
+          ],
+          [
+            1.33087869092245,
+            103.862755418008
+          ],
+          [
+            1.33074847959376,
+            103.862833141555
+          ],
+          [
+            1.33052877990479,
+            103.863034514283
+          ]
+        ]
+      },
+      "properties": {
+        "id": "5c35dd77-d9d7-4d34-a16f-0085d26629d6",
+        "created_at": 1429145934000,
+        "link_id": 103065404,
+        "road_name": "CENTRAL EXPRESSWAY",
+        "road_category": "D ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.33282844078617,
+            103.764453160298
+          ],
+          [
+            1.33346295213915,
+            103.763200950505
+          ]
+        ]
+      },
+      "properties": {
+        "id": "ee03e7db-2722-4ebb-87b4-0086c0b26f5f",
+        "created_at": 1429145954000,
+        "link_id": 103068270,
+        "road_name": "PAN ISLAND EXPRESSWAY",
+        "road_category": "A ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.34970141594035,
+            103.839605859608
+          ],
+          [
+            1.34903256642715,
+            103.839475440509
+          ]
+        ]
+      },
+      "properties": {
+        "id": "67afdd6d-9851-4a84-9154-00876d5b1311",
+        "created_at": 1429146100000,
+        "link_id": 103090186,
+        "road_name": "MARYMOUNT ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.28812875813932,
+            103.848722004085
+          ],
+          [
+            1.28803708303535,
+            103.848662412311
+          ]
+        ]
+      },
+      "properties": {
+        "id": "789629b7-7839-4b8c-9865-00883c3ba063",
+        "created_at": 1429145939000,
+        "link_id": 103066064,
+        "road_name": "SOUTH BRIDGE ROAD",
+        "road_category": "B ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.36797430860229,
+            103.852607275026
+          ],
+          [
+            1.36966068915501,
+            103.852168849109
+          ]
+        ]
+      },
+      "properties": {
+        "id": "5e846342-9976-4e31-9c13-008c3bd30033",
+        "created_at": 1429145868000,
+        "link_id": 103058982,
+        "road_name": "ANG MO KIO STREET",
+        "road_category": "D ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.45494969955221,
+            103.796677699675
+          ],
+          [
+            1.45536963322722,
+            103.797331821994
+          ]
+        ]
+      },
+      "properties": {
+        "id": "d6dc1879-e992-4163-a8e9-008efeb5fc4e",
+        "created_at": 1429146085000,
+        "link_id": 103086679,
+        "road_name": "ADMIRALTY ROAD WEST",
+        "road_category": "B ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.28784031042004,
+            103.840839203489
+          ],
+          [
+            1.28791638541465,
+            103.840899459854
+          ]
+        ]
+      },
+      "properties": {
+        "id": "c7744d78-4386-448b-b631-0090e7c42e81",
+        "created_at": 1429145787000,
+        "link_id": 103048252,
+        "road_name": "CENTRAL EXPRESSWAY",
+        "road_category": "D ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.36479973362702,
+            103.774912652415
+          ],
+          [
+            1.36490453690635,
+            103.775142045326
+          ],
+          [
+            1.36494048732497,
+            103.775222412391
+          ],
+          [
+            1.36500639063298,
+            103.775317650043
+          ],
+          [
+            1.36508727852517,
+            103.775383135755
+          ],
+          [
+            1.36532692777873,
+            103.775460514708
+          ]
+        ]
+      },
+      "properties": {
+        "id": "61c61858-ad85-4e43-8524-0091ba681504",
+        "created_at": 1429145886000,
+        "link_id": 106001032,
+        "road_name": "DAIRY FARM ROAD",
+        "road_category": "C ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.33514471141895,
+            103.909079740463
+          ],
+          [
+            1.33546968113358,
+            103.910375613258
+          ]
+        ]
+      },
+      "properties": {
+        "id": "dec4f242-e977-46cc-807c-009322871ac8",
+        "created_at": 1429145960000,
+        "link_id": 103068962,
+        "road_name": "KAKI BUKIT AVENUE",
+        "road_category": "C ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.37256342192075,
+            103.946099574519
+          ],
+          [
+            1.37243901156001,
+            103.946040775284
+          ],
+          [
+            1.37237445930492,
+            103.946016717555
+          ],
+          [
+            1.37227358804115,
+            103.945988650508
+          ],
+          [
+            1.37217674947394,
+            103.945976614132
+          ],
+          [
+            1.37207991938015,
+            103.945976609602
+          ],
+          [
+            1.37199518870682,
+            103.945996652723
+          ],
+          [
+            1.37184993676428,
+            103.946044755333
+          ],
+          [
+            1.37170467501729,
+            103.946108888413
+          ],
+          [
+            1.37159334475162,
+            103.946177210408
+          ]
+        ]
+      },
+      "properties": {
+        "id": "37069559-e401-4bcc-a285-0097d069fc07",
+        "created_at": 1429146306000,
+        "link_id": 109001143,
+        "road_name": "PASIR RIS GROVE",
+        "road_category": "T ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.31381030624513,
+            103.794323231815
+          ],
+          [
+            1.31374163342343,
+            103.794618271665
+          ],
+          [
+            1.31345334061419,
+            103.795235732425
+          ],
+          [
+            1.31343961373667,
+            103.795325515708
+          ],
+          [
+            1.31352627243284,
+            103.795488511345
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2cf0b4d0-1c39-42e1-b124-0097efb3b008",
+        "created_at": 1429146278000,
+        "link_id": 103112634,
+        "road_name": "FORD AVENUE",
+        "road_category": "E ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.30990455901152,
+            103.817836399525
+          ],
+          [
+            1.30980749362065,
+            103.817848000377
+          ],
+          [
+            1.30970024515267,
+            103.817870815179
+          ],
+          [
+            1.30954572563598,
+            103.817908878635
+          ],
+          [
+            1.30926167440945,
+            103.818019545576
+          ],
+          [
+            1.30875486136946,
+            103.818346027113
+          ],
+          [
+            1.30873577028625,
+            103.818355300242
+          ]
+        ]
+      },
+      "properties": {
+        "id": "c643f091-3d88-4877-90e9-00986666c471",
+        "created_at": 1429145918000,
+        "link_id": 103063906,
+        "road_name": "CLUNY ROAD",
+        "road_category": "D ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.32893036581153,
+            103.720781611414
+          ],
+          [
+            1.32921341884975,
+            103.720902867415
+          ],
+          [
+            1.32982822097827,
+            103.721060706545
+          ],
+          [
+            1.33026721945679,
+            103.721119047795
+          ]
+        ]
+      },
+      "properties": {
+        "id": "f61ef7a2-b323-4d27-98d0-0098f9f5770f",
+        "created_at": 1429145663000,
+        "link_id": 103087318,
+        "road_name": "CORPORATION ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.45345162143882,
+            103.824088708913
+          ],
+          [
+            1.45300558324419,
+            103.822719546385
+          ],
+          [
+            1.45289536711353,
+            103.822440593815
+          ],
+          [
+            1.45287713490916,
+            103.822392518678
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2d958322-81b2-4244-aae2-00990c355e57",
+        "created_at": 1429145781000,
+        "link_id": 103047107,
+        "road_name": "WELLINGTON CIRCLE",
+        "road_category": "D ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.31890196001445,
+            103.842732831492
+          ],
+          [
+            1.31844244537256,
+            103.842167497064
+          ]
+        ]
+      },
+      "properties": {
+        "id": "8004ad76-2dc4-4d14-82f9-009c25fff2a6",
+        "created_at": 1429145604000,
+        "link_id": 103072742,
+        "road_name": "NEWTON ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.38847926498065,
+            103.900364286378
+          ],
+          [
+            1.38921682959303,
+            103.900614012725
+          ],
+          [
+            1.38934028374812,
+            103.900631727171
+          ],
+          [
+            1.38946618903453,
+            103.900638748621
+          ],
+          [
+            1.38958648835632,
+            103.900607769086
+          ],
+          [
+            1.38972459611642,
+            103.900523666167
+          ],
+          [
+            1.38981816473035,
+            103.900413000038
+          ],
+          [
+            1.38988054171575,
+            103.900306754022
+          ],
+          [
+            1.38992330350503,
+            103.900184602635
+          ]
+        ]
+      },
+      "properties": {
+        "id": "b3d82ef6-7a85-47ff-84fc-009d1067d422",
+        "created_at": 1429146193000,
+        "link_id": 103102579,
+        "road_name": "COMPASSVALE WALK",
+        "road_category": "D ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.41163840860818,
+            103.757153637221
+          ],
+          [
+            1.41141162450564,
+            103.756155109683
+          ]
+        ]
+      },
+      "properties": {
+        "id": "5236a025-dd17-4294-882a-009d4629377e",
+        "created_at": 1429146099000,
+        "link_id": 103090100,
+        "road_name": "MANDAI ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.30711128749236,
+            103.916415758631
+          ],
+          [
+            1.30672852915208,
+            103.914905406256
+          ]
+        ]
+      },
+      "properties": {
+        "id": "27478f66-6e3f-44a3-b8d9-009f6ef92001",
+        "created_at": 1429145722000,
+        "link_id": 103110610,
+        "road_name": "MARINE PARADE ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.35517174897977,
+            103.837511139093
+          ],
+          [
+            1.35543480134181,
+            103.837573356186
+          ],
+          [
+            1.35565005817857,
+            103.837559428801
+          ]
+        ]
+      },
+      "properties": {
+        "id": "dd85049f-b78f-4018-8964-00a1c3f3b67a",
+        "created_at": 1429145882000,
+        "link_id": 103060487,
+        "road_name": "SIN MING IND EST SECTOR A",
+        "road_category": "E ",
+        "band": 1,
+        "min_speed": 0,
+        "max_speed": 19
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.33687359828223,
+            103.776814991113
+          ],
+          [
+            1.33694038699545,
+            103.776876549781
+          ],
+          [
+            1.33730912085081,
+            103.777159353488
+          ],
+          [
+            1.33809575655617,
+            103.777629020981
+          ]
+        ]
+      },
+      "properties": {
+        "id": "1b6879b5-ed18-4c51-89aa-00a30e212b2c",
+        "created_at": 1429145947000,
+        "link_id": 103067211,
+        "road_name": "PAN ISLAND EXPRESSWAY",
+        "road_category": "A ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.31083549786249,
+            103.803403687537
+          ],
+          [
+            1.31100141311093,
+            103.803446860837
+          ]
+        ]
+      },
+      "properties": {
+        "id": "93bcc87b-a850-4330-8378-00a3fc77caad",
+        "created_at": 1429145595000,
+        "link_id": 103067752,
+        "road_name": "FARRER ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.33801898950245,
+            103.839564612921
+          ],
+          [
+            1.33799184405374,
+            103.837959256978
+          ]
+        ]
+      },
+      "properties": {
+        "id": "fd5100be-b53e-4578-9f5a-00a412917019",
+        "created_at": 1429145807000,
+        "link_id": 103052178,
+        "road_name": "TOA PAYOH RISE",
+        "road_category": "E ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.35203337910545,
+            103.716962378014
+          ],
+          [
+            1.35215072540549,
+            103.717071475819
+          ],
+          [
+            1.35225726730011,
+            103.717237309353
+          ],
+          [
+            1.35253382959049,
+            103.717974090191
+          ],
+          [
+            1.35268742267835,
+            103.718461768583
+          ]
+        ]
+      },
+      "properties": {
+        "id": "caae2f1b-b1eb-4af0-8b43-00a76ccabd7d",
+        "created_at": 1429146162000,
+        "link_id": 103098783,
+        "road_name": "JURONG WEST STREET",
+        "road_category": "D ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.39471000404914,
+            103.857836747755
+          ],
+          [
+            1.39452493477318,
+            103.857858158992
+          ],
+          [
+            1.39384018597997,
+            103.857909146282
+          ]
+        ]
+      },
+      "properties": {
+        "id": "e4c9368d-3b89-4cb6-8714-00a8ec0035a0",
+        "created_at": 1429146061000,
+        "link_id": 107002422,
+        "road_name": "SELETAR EXPRESSWAY",
+        "road_category": "A ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.33424069297828,
+            103.891139130535
+          ],
+          [
+            1.33453347546364,
+            103.891746184448
+          ],
+          [
+            1.33472025330197,
+            103.892143063501
+          ],
+          [
+            1.33488978609479,
+            103.892488553723
+          ],
+          [
+            1.33501047677374,
+            103.892725533064
+          ],
+          [
+            1.33501467283119,
+            103.892733422496
+          ]
+        ]
+      },
+      "properties": {
+        "id": "19500e35-64e2-4520-a6f2-00aabe53d763",
+        "created_at": 1429146197000,
+        "link_id": 108003015,
+        "road_name": "KALLANG PAYA LEBAR EXPRESSWAY TUNNEL",
+        "road_category": "A ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.37068586898948,
+            103.766082423081
+          ],
+          [
+            1.37033356823448,
+            103.765555745133
+          ]
+        ]
+      },
+      "properties": {
+        "id": "75c53ddd-ef36-40eb-baf7-00ab38b29d13",
+        "created_at": 1429145783000,
+        "link_id": 103047571,
+        "road_name": "CASHEW ROAD",
+        "road_category": "D ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.44997112568145,
+            103.802157825789
+          ],
+          [
+            1.45008654387885,
+            103.802398658264
+          ]
+        ]
+      },
+      "properties": {
+        "id": "f73655d9-ae67-43bd-9c6b-00abfbb44be1",
+        "created_at": 1429145887000,
+        "link_id": 103061107,
+        "road_name": "WOODLANDS AVENUE",
+        "road_category": "C ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.38033848134853,
+            103.903526668562
+          ],
+          [
+            1.37998050653586,
+            103.903546831041
+          ]
+        ]
+      },
+      "properties": {
+        "id": "38437cfe-205a-4558-a9bd-00ae54dfd161",
+        "created_at": 1429145745000,
+        "link_id": 104002839,
+        "road_name": "UPPER SERANGOON ROAD",
+        "road_category": "B ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.31466524055691,
+            103.861473867628
+          ],
+          [
+            1.31497910450366,
+            103.861099624971
+          ]
+        ]
+      },
+      "properties": {
+        "id": "e11750e8-2077-4e93-bdad-00b018d067b7",
+        "created_at": 1429146050000,
+        "link_id": 107000891,
+        "road_name": "BENDEMEER ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.33701587853755,
+            103.896965911253
+          ],
+          [
+            1.33776761465703,
+            103.896204681255
+          ]
+        ]
+      },
+      "properties": {
+        "id": "d5069ebc-d1cf-49a1-89eb-00b054436723",
+        "created_at": 1429145726000,
+        "link_id": 103114727,
+        "road_name": "EUNOS LINK",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.33946984589558,
+            103.718263194907
+          ],
+          [
+            1.33932004701301,
+            103.718066687413
+          ],
+          [
+            1.33904820243845,
+            103.717638762251
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2cca865e-57e4-4ab1-8f61-00b6f0407275",
+        "created_at": 1429145908000,
+        "link_id": 103063126,
+        "road_name": "CORPORATION RISE",
+        "road_category": "E ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.28595274886859,
+            103.832004491402
+          ],
+          [
+            1.28594071154253,
+            103.831622009857
+          ]
+        ]
+      },
+      "properties": {
+        "id": "64cd7187-c6f9-4480-bd9a-00b8dcbdd016",
+        "created_at": 1429146056000,
+        "link_id": 103081774,
+        "road_name": "TIONG BAHRU ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.45599007745029,
+            103.800653139834
+          ],
+          [
+            1.45608656365222,
+            103.800630098254
+          ]
+        ]
+      },
+      "properties": {
+        "id": "22049020-2be9-4c41-969e-00ba7e1f4aac",
+        "created_at": 1429146103000,
+        "link_id": 103090858,
+        "road_name": "WOODLANDS AVENUE",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.44433913060297,
+            103.811518237713
+          ],
+          [
+            1.44427700232617,
+            103.811674666381
+          ]
+        ]
+      },
+      "properties": {
+        "id": "1126b3cc-7525-4e21-879b-00bb8673b307",
+        "created_at": 1429146030000,
+        "link_id": 103077738,
+        "road_name": "GAMBAS AVENUE",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.27926495101874,
+            103.836076479205
+          ],
+          [
+            1.27879998009885,
+            103.836682587235
+          ]
+        ]
+      },
+      "properties": {
+        "id": "4e99dc1b-4a5b-4a5c-8925-00bced822225",
+        "created_at": 1429146360000,
+        "link_id": 103007671,
+        "road_name": "HOSPITAL DRIVE",
+        "road_category": "E ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.35993925056021,
+            103.855566900887
+          ],
+          [
+            1.36027352947745,
+            103.855701904614
+          ],
+          [
+            1.36048155987985,
+            103.855756997661
+          ]
+        ]
+      },
+      "properties": {
+        "id": "244e0b93-837d-4cac-932b-00bcf6a24f83",
+        "created_at": 1429145864000,
+        "link_id": 103058471,
+        "road_name": "ANG MO KIO AVENUE",
+        "road_category": "D ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.29991908786421,
+            103.862171171958
+          ],
+          [
+            1.30045729393271,
+            103.862900176656
+          ]
+        ]
+      },
+      "properties": {
+        "id": "d0b30b3a-45c8-442f-bb14-00c1779971cf",
+        "created_at": 1429145712000,
+        "link_id": 103104034,
+        "road_name": "NICOLL HIGHWAY",
+        "road_category": "B ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.33686004163591,
+            103.722088884738
+          ],
+          [
+            1.33673785348038,
+            103.721897353938
+          ]
+        ]
+      },
+      "properties": {
+        "id": "878f1d42-b9c8-4799-b10d-00c566306b06",
+        "created_at": 1429145876000,
+        "link_id": 103059915,
+        "road_name": "TAH CHING ROAD",
+        "road_category": "E ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.33485833272057,
+            103.693698777764
+          ],
+          [
+            1.33496923622944,
+            103.692466430509
+          ]
+        ]
+      },
+      "properties": {
+        "id": "74b0da60-fd31-413f-ac6a-00c773f82938",
+        "created_at": 1429145753000,
+        "link_id": 104010666,
+        "road_name": "UPPER JURONG ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.43175323232163,
+            103.762998847939
+          ],
+          [
+            1.43250028605585,
+            103.763736615415
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2b67b311-1402-4e1c-9adb-00c7bffba83a",
+        "created_at": 1429146174000,
+        "link_id": 103100678,
+        "road_name": "WOODLANDS IND PARK D",
+        "road_category": "E ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.34866195613154,
+            103.951106862367
+          ],
+          [
+            1.34903757465615,
+            103.951094651013
+          ],
+          [
+            1.34987431337829,
+            103.950817763716
+          ]
+        ]
+      },
+      "properties": {
+        "id": "aea8986d-2bfb-4e8b-9023-00cdaf18b990",
+        "created_at": 1429146148000,
+        "link_id": 103095422,
+        "road_name": "TAMPINES STREET",
+        "road_category": "D ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.31214614795111,
+            103.772259063994
+          ],
+          [
+            1.31170528828197,
+            103.772250556443
+          ],
+          [
+            1.31132132066387,
+            103.772181018097
+          ]
+        ]
+      },
+      "properties": {
+        "id": "c00b911a-7380-46ac-8ac5-00d2d8e5767d",
+        "created_at": 1429145667000,
+        "link_id": 103088063,
+        "road_name": "CLEMENTI ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.33840517085993,
+            103.806839552977
+          ],
+          [
+            1.33798314595209,
+            103.807378279294
+          ],
+          [
+            1.33794326459381,
+            103.807483051638
+          ],
+          [
+            1.33796909601841,
+            103.807746248155
+          ]
+        ]
+      },
+      "properties": {
+        "id": "4d33df32-90c4-4896-b465-00d30d16fb8b",
+        "created_at": 1429146213000,
+        "link_id": 103104597,
+        "road_name": "PAN ISLAND EXPRESSWAY",
+        "road_category": "D ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.35067673534799,
+            103.850896399283
+          ],
+          [
+            1.35048654959458,
+            103.850608345523
+          ],
+          [
+            1.35031885440145,
+            103.850454492364
+          ],
+          [
+            1.35015491182017,
+            103.850370152095
+          ],
+          [
+            1.35009181442683,
+            103.850354489697
+          ]
+        ]
+      },
+      "properties": {
+        "id": "8fb6e9b4-a894-4ff9-bea8-00d3ee9fd021",
+        "created_at": 1429145878000,
+        "link_id": 103060055,
+        "road_name": "BISHAN STREET",
+        "road_category": "D ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.29939193634845,
+            103.788625306952
+          ],
+          [
+            1.29872117330593,
+            103.788350184482
+          ],
+          [
+            1.29820345706655,
+            103.788142953422
+          ]
+        ]
+      },
+      "properties": {
+        "id": "e024a2b2-0fc8-4fd3-8a67-00d8a4fe8123",
+        "created_at": 1429146304000,
+        "link_id": 109000795,
+        "road_name": "FUSIONOPOLIS WAY",
+        "road_category": "D ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.36193500646079,
+            103.873304853187
+          ],
+          [
+            1.36154530481571,
+            103.873430520357
+          ],
+          [
+            1.36115363231553,
+            103.873516524712
+          ]
+        ]
+      },
+      "properties": {
+        "id": "33ab6c04-7a57-43f0-8158-00d8eb23037f",
+        "created_at": 1429146040000,
+        "link_id": 103079939,
+        "road_name": "YIO CHU KANG ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.30961148364933,
+            103.840365921395
+          ],
+          [
+            1.31065484087296,
+            103.840118589765
+          ]
+        ]
+      },
+      "properties": {
+        "id": "0b5a560d-2a2c-407b-aa56-00dbf48bad79",
+        "created_at": 1429146031000,
+        "link_id": 103077846,
+        "road_name": "MONK",
+        "road_category": "E ",
+        "band": 1,
+        "min_speed": 0,
+        "max_speed": 19
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.37240688547249,
+            103.742521938519
+          ],
+          [
+            1.37226850654718,
+            103.743173649707
+          ],
+          [
+            1.37209739519474,
+            103.743976968796
+          ],
+          [
+            1.37206686029953,
+            103.744122062043
+          ]
+        ]
+      },
+      "properties": {
+        "id": "8075b2f2-0392-4601-a7d0-00dd5e3d8477",
+        "created_at": 1429146302000,
+        "link_id": 109000435,
+        "road_name": "BRICKLAND ROAD",
+        "road_category": "B ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.27460362639869,
+            103.822953282355
+          ],
+          [
+            1.27460900856385,
+            103.823251838927
+          ],
+          [
+            1.27456028263522,
+            103.823575887173
+          ],
+          [
+            1.27430884532219,
+            103.824478072185
+          ],
+          [
+            1.27429067696921,
+            103.824576722515
+          ]
+        ]
+      },
+      "properties": {
+        "id": "bed04aa4-11a8-494e-a6d1-00dd7f01586b",
+        "created_at": 1429145786000,
+        "link_id": 103048066,
+        "road_name": "BUKIT PURMEI AVENUE",
+        "road_category": "E ",
+        "band": 1,
+        "min_speed": 0,
+        "max_speed": 19
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.32791971425818,
+            103.744903975305
+          ],
+          [
+            1.32820067353187,
+            103.744671464469
+          ]
+        ]
+      },
+      "properties": {
+        "id": "444af611-247f-425c-90e1-00dfb770f6a1",
+        "created_at": 1429145639000,
+        "link_id": 103081135,
+        "road_name": "JURONG TOWN HALL ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.31644186359311,
+            103.853192475114
+          ],
+          [
+            1.31627154410766,
+            103.853254114348
+          ]
+        ]
+      },
+      "properties": {
+        "id": "c393794c-ddb0-4a5f-b9f1-00e08a9ca222",
+        "created_at": 1429146003000,
+        "link_id": 103072203,
+        "road_name": "RANGOON ROAD",
+        "road_category": "B ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.30092315858715,
+            103.829318417107
+          ],
+          [
+            1.30012884641778,
+            103.829627311196
+          ]
+        ]
+      },
+      "properties": {
+        "id": "890b8c3a-197a-43ad-a428-00e1961bb7f5",
+        "created_at": 1429145745000,
+        "link_id": 104003187,
+        "road_name": "PATERSON HILL",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.30663150578125,
+            103.779694691111
+          ],
+          [
+            1.30677692193741,
+            103.779433219835
+          ],
+          [
+            1.30712459347955,
+            103.778497941665
+          ],
+          [
+            1.30715839698595,
+            103.778423702967
+          ]
+        ]
+      },
+      "properties": {
+        "id": "ab3327ea-6d29-499c-ab89-00e21aff1688",
+        "created_at": 1429146240000,
+        "link_id": 103109871,
+        "road_name": "DOVER ROAD",
+        "road_category": "D ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.28349564979353,
+            103.801272808832
+          ],
+          [
+            1.28324065461418,
+            103.801234282656
+          ],
+          [
+            1.28323968694511,
+            103.801234381507
+          ]
+        ]
+      },
+      "properties": {
+        "id": "5f8f2d4d-173d-4c15-889f-00e5c506e896",
+        "created_at": 1429145661000,
+        "link_id": 103086995,
+        "road_name": "ALEXANDRA ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.43866795338535,
+            103.783336500398
+          ],
+          [
+            1.43894219674254,
+            103.783527230503
+          ]
+        ]
+      },
+      "properties": {
+        "id": "bf4270f6-9b39-4b2a-82a0-00e7fa1d1baf",
+        "created_at": 1429146205000,
+        "link_id": 108003599,
+        "road_name": "WOODLANDS AVENUE",
+        "road_category": "B ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.30961148364933,
+            103.840365921395
+          ],
+          [
+            1.30945994103901,
+            103.839701543298
+          ]
+        ]
+      },
+      "properties": {
+        "id": "4aeb7d70-74ee-4cb6-a953-00e8473ac729",
+        "created_at": 1429146335000,
+        "link_id": 103003616,
+        "road_name": "WINSTEDT ROAD",
+        "road_category": "E ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.29532987334536,
+            103.872107678014
+          ],
+          [
+            1.29553617494795,
+            103.872821879249
+          ],
+          [
+            1.29557601522096,
+            103.873204623343
+          ],
+          [
+            1.29562364960765,
+            103.873678003627
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2b910ce7-35be-48e4-88cc-00e84f30f1f1",
+        "created_at": 1429146062000,
+        "link_id": 107002524,
+        "road_name": "EAST COAST PARKWAY",
+        "road_category": "A ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.30590381621119,
+            103.911397446245
+          ],
+          [
+            1.30582478477259,
+            103.911077830864
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2bed8774-fbb5-4134-a20d-00ec8890f5b4",
+        "created_at": 1429145620000,
+        "link_id": 103077147,
+        "road_name": "MARINE PARADE ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.36611066350715,
+            103.975504770459
+          ],
+          [
+            1.36607287180028,
+            103.975630396775
+          ],
+          [
+            1.36595016908485,
+            103.975915971843
+          ],
+          [
+            1.36565571217115,
+            103.976316472314
+          ],
+          [
+            1.36541733444579,
+            103.976720453457
+          ],
+          [
+            1.36537222657608,
+            103.976843087055
+          ]
+        ]
+      },
+      "properties": {
+        "id": "f9d5a929-9e3e-498a-8a71-00f2ef965175",
+        "created_at": 1429146143000,
+        "link_id": 103094515,
+        "road_name": "COSFORD ROAD",
+        "road_category": "E ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.31221790796359,
+            103.934160267663
+          ],
+          [
+            1.31238448447075,
+            103.934115149252
+          ]
+        ]
+      },
+      "properties": {
+        "id": "b25f02af-8a1e-4851-bf56-00f8021d7e0d",
+        "created_at": 1429145673000,
+        "link_id": 103089547,
+        "road_name": "BEDOK SOUTH AVENUE",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.33349584407891,
+            103.882726709345
+          ],
+          [
+            1.33413084347616,
+            103.882273867296
+          ],
+          [
+            1.33422000838075,
+            103.882091884321
+          ],
+          [
+            1.33448087003959,
+            103.881747616313
+          ]
+        ]
+      },
+      "properties": {
+        "id": "c00f5607-6a42-4844-8ec4-00fcd99eb7c7",
+        "created_at": 1429146333000,
+        "link_id": 103003210,
+        "road_name": "UPPER ALJUNIED LINK",
+        "road_category": "E ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.41264260134696,
+            103.806459548687
+          ],
+          [
+            1.41271701207085,
+            103.806430837994
+          ],
+          [
+            1.41352191905993,
+            103.806092250214
+          ],
+          [
+            1.41353276231712,
+            103.806086714793
+          ]
+        ]
+      },
+      "properties": {
+        "id": "cc9e94bb-fb48-41b1-9b17-00fd124d7805",
+        "created_at": 1429145826000,
+        "link_id": 103055798,
+        "road_name": "SELETAR EXPRESSWAY",
+        "road_category": "A ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.32766337122892,
+            103.980006327766
+          ],
+          [
+            1.32761653605476,
+            103.980129058212
+          ],
+          [
+            1.32733782178578,
+            103.980566915056
+          ],
+          [
+            1.32712116142912,
+            103.980758635207
+          ],
+          [
+            1.32699949293435,
+            103.980837475912
+          ],
+          [
+            1.32673560207326,
+            103.980957309089
+          ],
+          [
+            1.32659598434377,
+            103.980997070704
+          ],
+          [
+            1.32646769965207,
+            103.981013731229
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2ff49e2c-5ad5-4d67-9d67-00fef8e1dcfa",
+        "created_at": 1429146233000,
+        "link_id": 103108335,
+        "road_name": "CHANGI COAST ROAD",
+        "road_category": "B ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.32347008790363,
+            103.892246768936
+          ],
+          [
+            1.32470388112528,
+            103.892020937692
+          ],
+          [
+            1.32475560591362,
+            103.892223688492
+          ]
+        ]
+      },
+      "properties": {
+        "id": "05cc6f3d-106d-4d2d-a7ca-00ffef52f9c8",
+        "created_at": 1429146311000,
+        "link_id": 109002004,
+        "road_name": "UBI AVENUE",
+        "road_category": "D ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.36859316737289,
+            103.883061650098
+          ],
+          [
+            1.36834482178347,
+            103.884261729427
+          ]
+        ]
+      },
+      "properties": {
+        "id": "9bfeb71a-4008-4894-a60d-0101418dceb0",
+        "created_at": 1429146017000,
+        "link_id": 103074830,
+        "road_name": "HOUGANG AVENUE",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.30393808017521,
+            103.877879054522
+          ],
+          [
+            1.30383895209928,
+            103.877917402727
+          ],
+          [
+            1.30338217281431,
+            103.878077803114
+          ],
+          [
+            1.30313409539808,
+            103.878144309099
+          ],
+          [
+            1.30290655654039,
+            103.878186123398
+          ],
+          [
+            1.30267338358764,
+            103.878222546317
+          ],
+          [
+            1.30257634508655,
+            103.878233129467
+          ]
+        ]
+      },
+      "properties": {
+        "id": "6268d9e7-ef58-4364-9c03-0106e9731596",
+        "created_at": 1429146062000,
+        "link_id": 107002486,
+        "road_name": "KALLANG PAYA LEBAR EXPRESSWAY",
+        "road_category": "A ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.30698181583545,
+            103.857775468612
+          ],
+          [
+            1.30774782971844,
+            103.856948488676
+          ],
+          [
+            1.30784939025229,
+            103.856908162803
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2c9e8316-37fb-4ac2-b639-010765644c47",
+        "created_at": 1429146363000,
+        "link_id": 103008175,
+        "road_name": "JALAN BERSEH",
+        "road_category": "E ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.28459097797928,
+            103.841983439236
+          ],
+          [
+            1.28450735150508,
+            103.841939769932
+          ],
+          [
+            1.28382037781877,
+            103.841944682645
+          ],
+          [
+            1.28336367157656,
+            103.842505737953
+          ]
+        ]
+      },
+      "properties": {
+        "id": "057f8915-51a9-4d9f-90cb-010800126d12",
+        "created_at": 1429146128000,
+        "link_id": 103092134,
+        "road_name": "PARK CRESCENT",
+        "road_category": "D ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.30851458173021,
+            103.877298475575
+          ],
+          [
+            1.30862372410768,
+            103.877601935045
+          ],
+          [
+            1.30870607364984,
+            103.877708019045
+          ]
+        ]
+      },
+      "properties": {
+        "id": "663a3e43-bb03-4571-9935-010affa7da9f",
+        "created_at": 1429145823000,
+        "link_id": 103055240,
+        "road_name": "MOUNTBATTEN ROAD",
+        "road_category": "D ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.29986742225947,
+            103.791672290659
+          ],
+          [
+            1.29977441142559,
+            103.791857122827
+          ],
+          [
+            1.29967736031182,
+            103.792178569779
+          ],
+          [
+            1.29968949184773,
+            103.792423665612
+          ],
+          [
+            1.29974176751149,
+            103.792632252936
+          ]
+        ]
+      },
+      "properties": {
+        "id": "a400fab5-72c4-42cc-98aa-010cebb4bfc8",
+        "created_at": 1429146304000,
+        "link_id": 109000783,
+        "road_name": "PORTSDOWN ROAD",
+        "road_category": "E ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.35772873346494,
+            103.874024301455
+          ],
+          [
+            1.35839805270571,
+            103.874063400265
+          ]
+        ]
+      },
+      "properties": {
+        "id": "5dff8481-9fdf-4497-ba30-010d5178f91f",
+        "created_at": 1429145999000,
+        "link_id": 103071174,
+        "road_name": "YIO CHU KANG LINK",
+        "road_category": "B ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.36616932566159,
+            103.930904670418
+          ],
+          [
+            1.36663595002672,
+            103.930900187425
+          ]
+        ]
+      },
+      "properties": {
+        "id": "cf0f2eff-ef10-48db-a84f-010d9f22394a",
+        "created_at": 1429146174000,
+        "link_id": 108000847,
+        "road_name": "TAMPINES AVENUE",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.37804695140366,
+            103.925175666627
+          ],
+          [
+            1.37827250895104,
+            103.924229334792
+          ],
+          [
+            1.37846427745718,
+            103.923564398442
+          ]
+        ]
+      },
+      "properties": {
+        "id": "ab35167f-6888-4673-98ef-010f18a9a53b",
+        "created_at": 1429146208000,
+        "link_id": 103103842,
+        "road_name": "TAMPINES EXPRESSWAY",
+        "road_category": "A ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.33837480278744,
+            103.677498301461
+          ],
+          [
+            1.33846563994389,
+            103.677405717558
+          ],
+          [
+            1.33882329890732,
+            103.676735210765
+          ],
+          [
+            1.33898908744125,
+            103.676470440826
+          ],
+          [
+            1.33914035990758,
+            103.676329816233
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2d1b6659-565c-452f-9ac9-011130e88683",
+        "created_at": 1429146178000,
+        "link_id": 103101222,
+        "road_name": "PENG KANG AVENUE",
+        "road_category": "E ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.34563377147438,
+            103.946531071808
+          ],
+          [
+            1.34563732637999,
+            103.946514790075
+          ],
+          [
+            1.34574217278331,
+            103.946242899725
+          ],
+          [
+            1.34594478342645,
+            103.945913775571
+          ],
+          [
+            1.34651976970466,
+            103.945295700479
+          ]
+        ]
+      },
+      "properties": {
+        "id": "6d0385ea-82b0-42f2-923d-01114c560c78",
+        "created_at": 1429146185000,
+        "link_id": 103101894,
+        "road_name": "TAMPINES STREET",
+        "road_category": "D ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.43987537909259,
+            103.798341702956
+          ],
+          [
+            1.43970882554865,
+            103.797958624656
+          ]
+        ]
+      },
+      "properties": {
+        "id": "24af351b-d4e2-41be-bf93-01206e795047",
+        "created_at": 1429146065000,
+        "link_id": 103082738,
+        "road_name": "WOODLANDS AVENUE",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.38373267452326,
+            103.899483369737
+          ],
+          [
+            1.38403285043671,
+            103.899820541393
+          ]
+        ]
+      },
+      "properties": {
+        "id": "7dcd6499-0f49-4b29-91c9-01207f540628",
+        "created_at": 1429146313000,
+        "link_id": 109002374,
+        "road_name": "PUNGGOL ROAD",
+        "road_category": "C ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.31358127694991,
+            103.871108024395
+          ],
+          [
+            1.31352913078897,
+            103.871141108209
+          ]
+        ]
+      },
+      "properties": {
+        "id": "468cbdc4-aaf3-461e-941a-0120ed79a23b",
+        "created_at": 1429146346000,
+        "link_id": 103005519,
+        "road_name": "LORONG",
+        "road_category": "D ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.27310388971727,
+            103.828776023652
+          ],
+          [
+            1.27304016813745,
+            103.828763354412
+          ],
+          [
+            1.27238027878278,
+            103.828060431369
+          ]
+        ]
+      },
+      "properties": {
+        "id": "97d8a658-ef19-4e74-88a5-0122570eb7e2",
+        "created_at": 1429146024000,
+        "link_id": 103076242,
+        "road_name": "KAMPONG BAHRU ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.42904854271597,
+            103.846191847164
+          ],
+          [
+            1.42750387993973,
+            103.846252394712
+          ]
+        ]
+      },
+      "properties": {
+        "id": "12a32b0e-5e09-458d-903d-0123123e5511",
+        "created_at": 1429146180000,
+        "link_id": 103101462,
+        "road_name": "YISHUN RING ROAD",
+        "road_category": "D ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.33662893093515,
+            103.941169960086
+          ],
+          [
+            1.33567866659676,
+            103.940048322815
+          ],
+          [
+            1.33567747291107,
+            103.940046642458
+          ]
+        ]
+      },
+      "properties": {
+        "id": "e3e666f3-5d4b-4831-b6f6-012403a05e9b",
+        "created_at": 1429146205000,
+        "link_id": 103103450,
+        "road_name": "PAN ISLAND EXPRESSWAY",
+        "road_category": "A ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.36770208634079,
+            103.712479967618
+          ],
+          [
+            1.36781977189466,
+            103.713393310787
+          ]
+        ]
+      },
+      "properties": {
+        "id": "148a7db9-2112-4186-a599-0126124aa546",
+        "created_at": 1429146312000,
+        "link_id": 109002108,
+        "road_name": "PAN ISLAND EXPRESSWAY",
+        "road_category": "D ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.42856485241207,
+            103.794217973066
+          ],
+          [
+            1.42725364376643,
+            103.794279072528
+          ]
+        ]
+      },
+      "properties": {
+        "id": "7dd8c868-1bc7-45b2-9034-0127c64f3e8d",
+        "created_at": 1429145918000,
+        "link_id": 103063879,
+        "road_name": "WOODLANDS DRIVE",
+        "road_category": "D ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.33641160554398,
+            103.899834459592
+          ],
+          [
+            1.33596504916438,
+            103.900479315193
+          ]
+        ]
+      },
+      "properties": {
+        "id": "4c3fe640-a3e3-4a0d-9779-0128ee67cbd3",
+        "created_at": 1429146354000,
+        "link_id": 103006819,
+        "road_name": "KAKI BUKIT ROAD",
+        "road_category": "D ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.34387331301707,
+            103.849203021822
+          ],
+          [
+            1.34377058965735,
+            103.850044370515
+          ],
+          [
+            1.34368818853363,
+            103.850682896153
+          ]
+        ]
+      },
+      "properties": {
+        "id": "c7ef9e5a-8ce8-4f8e-bba4-012ee5a25131",
+        "created_at": 1429145640000,
+        "link_id": 107001339,
+        "road_name": "BRADDELL ROAD",
+        "road_category": "B ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.40023621473578,
+            103.748497859972
+          ],
+          [
+            1.40005437269558,
+            103.748449522864
+          ]
+        ]
+      },
+      "properties": {
+        "id": "f529bb75-ed55-47ef-baac-01305047dd58",
+        "created_at": 1429145772000,
+        "link_id": 103045782,
+        "road_name": "CHOA CHU KANG DRIVE",
+        "road_category": "C ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.44296411970704,
+            103.814742286648
+          ],
+          [
+            1.44298295731686,
+            103.814707609587
+          ],
+          [
+            1.44299651349868,
+            103.814679761916
+          ]
+        ]
+      },
+      "properties": {
+        "id": "56a6a009-9d94-4819-9cad-0137b0231c9c",
+        "created_at": 1429145827000,
+        "link_id": 103055943,
+        "road_name": "GAMBAS AVENUE",
+        "road_category": "B ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.31547329588282,
+            103.845010203875
+          ],
+          [
+            1.31555054700331,
+            103.844948410914
+          ],
+          [
+            1.31597964163725,
+            103.844791804501
+          ]
+        ]
+      },
+      "properties": {
+        "id": "3208cfc2-d622-4140-b04d-0137d2c75b80",
+        "created_at": 1429145594000,
+        "link_id": 103065991,
+        "road_name": "THOMSON ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.30672726761991,
+            103.883556833961
+          ],
+          [
+            1.30728734348009,
+            103.884742442235
+          ]
+        ]
+      },
+      "properties": {
+        "id": "f238b29d-d758-4aec-83d0-0138254ba772",
+        "created_at": 1429145605000,
+        "link_id": 103073027,
+        "road_name": "OLD AIRPORT ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.33149204483955,
+            103.795680943513
+          ],
+          [
+            1.33155094329299,
+            103.795499317473
+          ]
+        ]
+      },
+      "properties": {
+        "id": "b6f690b0-ad99-4882-bd0d-013cf319c5c1",
+        "created_at": 1429145618000,
+        "link_id": 103076768,
+        "road_name": "BUKIT TIMAH ROAD",
+        "road_category": "B ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.39846853848267,
+            103.828788256005
+          ],
+          [
+            1.39793080424824,
+            103.829129043859
+          ]
+        ]
+      },
+      "properties": {
+        "id": "a4a98476-56f9-43a6-8262-013e5b931ac6",
+        "created_at": 1429146008000,
+        "link_id": 103073174,
+        "road_name": "LENTOR AVENUE",
+        "road_category": "B ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.37059188946626,
+            103.908097175346
+          ],
+          [
+            1.36988520889354,
+            103.907868781968
+          ],
+          [
+            1.36901946153506,
+            103.907584304127
+          ]
+        ]
+      },
+      "properties": {
+        "id": "bd40cfe7-5a70-4fa1-b3ef-0140da5170bf",
+        "created_at": 1429146170000,
+        "link_id": 108000458,
+        "road_name": "KALLANG PAYA LEBAR EXPRESSWAY",
+        "road_category": "A ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.37001379328641,
+            103.888543711488
+          ],
+          [
+            1.37031417270276,
+            103.888760597255
+          ]
+        ]
+      },
+      "properties": {
+        "id": "a6bf716e-2efb-4cb0-9224-0142c023f5cf",
+        "created_at": 1429145969000,
+        "link_id": 103070070,
+        "road_name": "HOUGANG AVENUE",
+        "road_category": "D ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.44296411970704,
+            103.814742286648
+          ],
+          [
+            1.44298295731686,
+            103.814707609587
+          ],
+          [
+            1.44299651349868,
+            103.814679761916
+          ]
+        ]
+      },
+      "properties": {
+        "id": "56a6a009-9d94-4819-9cad-0137b0231c9c",
+        "created_at": 1429145827000,
+        "link_id": 103055943,
+        "road_name": "GAMBAS AVENUE",
+        "road_category": "B ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.31547329588282,
+            103.845010203875
+          ],
+          [
+            1.31555054700331,
+            103.844948410914
+          ],
+          [
+            1.31597964163725,
+            103.844791804501
+          ]
+        ]
+      },
+      "properties": {
+        "id": "3208cfc2-d622-4140-b04d-0137d2c75b80",
+        "created_at": 1429145594000,
+        "link_id": 103065991,
+        "road_name": "THOMSON ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.30672726761991,
+            103.883556833961
+          ],
+          [
+            1.30728734348009,
+            103.884742442235
+          ]
+        ]
+      },
+      "properties": {
+        "id": "f238b29d-d758-4aec-83d0-0138254ba772",
+        "created_at": 1429145605000,
+        "link_id": 103073027,
+        "road_name": "OLD AIRPORT ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.33149204483955,
+            103.795680943513
+          ],
+          [
+            1.33155094329299,
+            103.795499317473
+          ]
+        ]
+      },
+      "properties": {
+        "id": "b6f690b0-ad99-4882-bd0d-013cf319c5c1",
+        "created_at": 1429145618000,
+        "link_id": 103076768,
+        "road_name": "BUKIT TIMAH ROAD",
+        "road_category": "B ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.39846853848267,
+            103.828788256005
+          ],
+          [
+            1.39793080424824,
+            103.829129043859
+          ]
+        ]
+      },
+      "properties": {
+        "id": "a4a98476-56f9-43a6-8262-013e5b931ac6",
+        "created_at": 1429146008000,
+        "link_id": 103073174,
+        "road_name": "LENTOR AVENUE",
+        "road_category": "B ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.37059188946626,
+            103.908097175346
+          ],
+          [
+            1.36988520889354,
+            103.907868781968
+          ],
+          [
+            1.36901946153506,
+            103.907584304127
+          ]
+        ]
+      },
+      "properties": {
+        "id": "bd40cfe7-5a70-4fa1-b3ef-0140da5170bf",
+        "created_at": 1429146170000,
+        "link_id": 108000458,
+        "road_name": "KALLANG PAYA LEBAR EXPRESSWAY",
+        "road_category": "A ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.37001379328641,
+            103.888543711488
+          ],
+          [
+            1.37031417270276,
+            103.888760597255
+          ]
+        ]
+      },
+      "properties": {
+        "id": "a6bf716e-2efb-4cb0-9224-0142c023f5cf",
+        "created_at": 1429145969000,
+        "link_id": 103070070,
+        "road_name": "HOUGANG AVENUE",
+        "road_category": "D ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.34500625559777,
+            103.688568315187
+          ],
+          [
+            1.34484341478445,
+            103.688392270263
+          ]
+        ]
+      },
+      "properties": {
+        "id": "d353a399-3e2d-49e5-98eb-0145ca874e00",
+        "created_at": 1429145793000,
+        "link_id": 103049399,
+        "road_name": "PIONEER ROAD NORTH",
+        "road_category": "B ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.29683949685138,
+            103.896831216077
+          ],
+          [
+            1.29737666143082,
+            103.898273463698
+          ]
+        ]
+      },
+      "properties": {
+        "id": "33ca6eb9-03ec-4ffc-8087-01469c6ccb30",
+        "created_at": 1429145932000,
+        "link_id": 103065115,
+        "road_name": "EAST COAST PARKWAY",
+        "road_category": "A ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.39321713902751,
+            103.887250176943
+          ],
+          [
+            1.39304123220857,
+            103.887208236277
+          ],
+          [
+            1.39244594928791,
+            103.886970863259
+          ],
+          [
+            1.39228552633873,
+            103.886877730968
+          ]
+        ]
+      },
+      "properties": {
+        "id": "e428942b-dbf5-4195-babc-014b99e7c20d",
+        "created_at": 1429145916000,
+        "link_id": 106003803,
+        "road_name": "ANCHORVALE ROAD",
+        "road_category": "D ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.31434174302575,
+            103.760448332405
+          ],
+          [
+            1.31501991493212,
+            103.759781885446
+          ],
+          [
+            1.31508388791454,
+            103.759723648572
+          ]
+        ]
+      },
+      "properties": {
+        "id": "d30ea654-5d35-447b-9a5c-014ce8934bdc",
+        "created_at": 1429146206000,
+        "link_id": 103103582,
+        "road_name": "AYER RAJAH EXPRESSWAY",
+        "road_category": "A ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.32894552614773,
+            103.868577403926
+          ],
+          [
+            1.32942549777033,
+            103.868695858298
+          ]
+        ]
+      },
+      "properties": {
+        "id": "e6c3e22d-b764-440f-81a2-01503e20dedd",
+        "created_at": 1429145600000,
+        "link_id": 103071751,
+        "road_name": "UPPER SERANGOON ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.35490170939342,
+            103.833214192622
+          ],
+          [
+            1.35480074615455,
+            103.833379555506
+          ],
+          [
+            1.35436338647951,
+            103.833139602798
+          ]
+        ]
+      },
+      "properties": {
+        "id": "92aec3a7-540d-4fae-9d46-0151ea36cf9d",
+        "created_at": 1429145871000,
+        "link_id": 103059387,
+        "road_name": "UPPER THOMSON ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.37779531661661,
+            103.730798784194
+          ],
+          [
+            1.37894090675394,
+            103.732003540985
+          ]
+        ]
+      },
+      "properties": {
+        "id": "6fb2a855-43de-43f8-b16d-0153eb9de3ef",
+        "created_at": 1429146214000,
+        "link_id": 103104752,
+        "road_name": "KRANJI EXPRESSWAY",
+        "road_category": "D ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.32678369172195,
+            103.668290364407
+          ],
+          [
+            1.32695338659233,
+            103.668434121303
+          ],
+          [
+            1.32708567030147,
+            103.668611495486
+          ],
+          [
+            1.32717441069795,
+            103.668813861269
+          ],
+          [
+            1.32721484100727,
+            103.669029465914
+          ]
+        ]
+      },
+      "properties": {
+        "id": "216dcf74-faa1-430a-ab0d-01541199de81",
+        "created_at": 1429145796000,
+        "link_id": 103049946,
+        "road_name": "JOO KOON CIRCLE",
+        "road_category": "D ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.31896806176658,
+            103.854252345848
+          ],
+          [
+            1.31939486439566,
+            103.853550131132
+          ]
+        ]
+      },
+      "properties": {
+        "id": "e5fd8e7c-0f32-4bac-8bae-01573f433574",
+        "created_at": 1429145658000,
+        "link_id": 103086415,
+        "road_name": "BALESTIER ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.32827388123446,
+            103.668317563587
+          ],
+          [
+            1.32788747233252,
+            103.667606466799
+          ],
+          [
+            1.32761130684671,
+            103.667192441834
+          ],
+          [
+            1.32749868595925,
+            103.667046326982
+          ]
+        ]
+      },
+      "properties": {
+        "id": "b385ad23-e70f-41f4-9b30-015942bfb66e",
+        "created_at": 1429146219000,
+        "link_id": 103105718,
+        "road_name": "PAN ISLAND EXPRESSWAY",
+        "road_category": "A ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.35660734417377,
+            103.863272203236
+          ],
+          [
+            1.35620000307749,
+            103.863781154536
+          ]
+        ]
+      },
+      "properties": {
+        "id": "034eb412-1863-49fd-af31-015a3ed4a4c7",
+        "created_at": 1429146337000,
+        "link_id": 103003930,
+        "road_name": "LI HWAN CLOSE",
+        "road_category": "E ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.44849328275748,
+            103.796478404243
+          ],
+          [
+            1.44820969454488,
+            103.796606351523
+          ]
+        ]
+      },
+      "properties": {
+        "id": "edb6df65-b36c-414a-b913-015c58282f0b",
+        "created_at": 1429145998000,
+        "link_id": 103070967,
+        "road_name": "WOODLANDS AVENUE",
+        "road_category": "D ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.34235822430428,
+            103.945941017354
+          ],
+          [
+            1.34238955176875,
+            103.945933695536
+          ],
+          [
+            1.34281594822466,
+            103.945771462307
+          ],
+          [
+            1.34376791517747,
+            103.945018917715
+          ]
+        ]
+      },
+      "properties": {
+        "id": "15e55cac-f20d-4e71-8707-0163fc1a7ce4",
+        "created_at": 1429146191000,
+        "link_id": 103102424,
+        "road_name": "PAN ISLAND EXPRESSWAY",
+        "road_category": "D ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.35197583772014,
+            103.936726173915
+          ],
+          [
+            1.35270179320333,
+            103.937024761026
+          ],
+          [
+            1.35315980850445,
+            103.937218591462
+          ],
+          [
+            1.35326339081847,
+            103.937297786203
+          ],
+          [
+            1.35333032699582,
+            103.937408213431
+          ],
+          [
+            1.35334398944645,
+            103.937465470433
+          ]
+        ]
+      },
+      "properties": {
+        "id": "76061898-8570-4bfb-94fa-0164f809e9c4",
+        "created_at": 1429145865000,
+        "link_id": 103058634,
+        "road_name": "TAMPINES STREET",
+        "road_category": "D ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.34247332886565,
+            103.770502120898
+          ],
+          [
+            1.34217639517065,
+            103.770702138864
+          ]
+        ]
+      },
+      "properties": {
+        "id": "0fa72351-c218-4acc-9255-016b6585f403",
+        "created_at": 1429145970000,
+        "link_id": 103070214,
+        "road_name": "JALAN JURONG KECHIL",
+        "road_category": "D ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.33437866624449,
+            103.965018500343
+          ],
+          [
+            1.33442663126903,
+            103.964894071003
+          ],
+          [
+            1.33448441643241,
+            103.964792483446
+          ]
+        ]
+      },
+      "properties": {
+        "id": "55dffbad-742a-4e35-8cc2-016c80fa0cb3",
+        "created_at": 1429145898000,
+        "link_id": 106002019,
+        "road_name": "CHANGI BUSINESS PARK CENTRAL",
+        "road_category": "D ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.31804965278185,
+            103.771384756252
+          ],
+          [
+            1.31884828234008,
+            103.771170800457
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2c8accbc-855c-48af-a2f3-0170d9443bd6",
+        "created_at": 1429146095000,
+        "link_id": 103089131,
+        "road_name": "CLEMENTI ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.43352612760348,
+            103.794734760538
+          ],
+          [
+            1.43348976277516,
+            103.794713042119
+          ]
+        ]
+      },
+      "properties": {
+        "id": "70df649f-3a4e-49fb-b2cd-0172fa850b13",
+        "created_at": 1429145765000,
+        "link_id": 103044131,
+        "road_name": "WOODLANDS AVENUE",
+        "road_category": "D ",
+        "band": 1,
+        "min_speed": 0,
+        "max_speed": 19
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.31626505305545,
+            103.846037233126
+          ],
+          [
+            1.31556590971909,
+            103.845458104788
+          ],
+          [
+            1.31546521003751,
+            103.845184136256
+          ],
+          [
+            1.31547329588282,
+            103.845010203875
+          ]
+        ]
+      },
+      "properties": {
+        "id": "5b97c334-cc32-45e5-81db-0173cebc2aa6",
+        "created_at": 1429146264000,
+        "link_id": 103110120,
+        "road_name": "DERBYSHIRE ROAD",
+        "road_category": "E ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.32658246463872,
+            103.826019755613
+          ],
+          [
+            1.32667321717616,
+            103.825869939349
+          ],
+          [
+            1.32689994053585,
+            103.825596544443
+          ],
+          [
+            1.32714341292189,
+            103.825392544813
+          ],
+          [
+            1.32732933214484,
+            103.825376972266
+          ]
+        ]
+      },
+      "properties": {
+        "id": "8e75d62d-c2f7-43d4-b66b-0174f3165c76",
+        "created_at": 1429146143000,
+        "link_id": 103094604,
+        "road_name": "MOUNT PLEASANT ROAD",
+        "road_category": "D ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.32408467674903,
+            103.927209499435
+          ],
+          [
+            1.32449233862876,
+            103.927157326836
+          ]
+        ]
+      },
+      "properties": {
+        "id": "43c936d0-5b84-4c24-8b4d-0176a2421408",
+        "created_at": 1429145734000,
+        "link_id": 103000350,
+        "road_name": "BEDOK NORTH AVENUE",
+        "road_category": "C ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.31871076348604,
+            103.843920185926
+          ],
+          [
+            1.31894116991834,
+            103.843575807959
+          ],
+          [
+            1.31894149549441,
+            103.843574648828
+          ]
+        ]
+      },
+      "properties": {
+        "id": "02e09d0e-d3a5-4efb-b05a-0177143627b5",
+        "created_at": 1429145745000,
+        "link_id": 104003150,
+        "road_name": "NEWTON ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.33371836495259,
+            103.772040753354
+          ],
+          [
+            1.33308529960965,
+            103.770555742939
+          ]
+        ]
+      },
+      "properties": {
+        "id": "40a5d3cb-0426-41c7-9177-01799854ccbc",
+        "created_at": 1429145779000,
+        "link_id": 103046834,
+        "road_name": "PAN ISLAND EXPRESSWAY",
+        "road_category": "A ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.31919891395672,
+            103.837193359327
+          ],
+          [
+            1.31951246616772,
+            103.837231880733
+          ],
+          [
+            1.31978371234493,
+            103.837177464842
+          ],
+          [
+            1.31989424379545,
+            103.837176090228
+          ]
+        ]
+      },
+      "properties": {
+        "id": "1f780b71-033a-42e1-9d90-017dc26041e7",
+        "created_at": 1429146226000,
+        "link_id": 103106839,
+        "road_name": "CHANCERY LANE",
+        "road_category": "E ",
+        "band": 1,
+        "min_speed": 0,
+        "max_speed": 19
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.30382245719801,
+            103.860113060156
+          ],
+          [
+            1.30351445549014,
+            103.860320621064
+          ],
+          [
+            1.30296127011422,
+            103.860651558639
+          ]
+        ]
+      },
+      "properties": {
+        "id": "c02dd380-0348-4bfa-8ae2-017f5c7b5520",
+        "created_at": 1429146325000,
+        "link_id": 103001404,
+        "road_name": "ALIWAL STREET",
+        "road_category": "E ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.28709743309954,
+            103.848117010625
+          ],
+          [
+            1.28792906795462,
+            103.846665054444
+          ]
+        ]
+      },
+      "properties": {
+        "id": "f25abcdc-358c-4493-8d75-01825b17ce40",
+        "created_at": 1429146413000,
+        "link_id": 103013352,
+        "road_name": "HONGKONG STREET",
+        "road_category": "D ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.38117483468316,
+            103.743582148109
+          ],
+          [
+            1.38092965194451,
+            103.743797725067
+          ]
+        ]
+      },
+      "properties": {
+        "id": "14e55255-6c5b-4dc6-8dfc-018406a6bb6e",
+        "created_at": 1429146068000,
+        "link_id": 103083066,
+        "road_name": "CHOA CHU KANG WAY",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.35253288997903,
+            103.888577135817
+          ],
+          [
+            1.35254326647001,
+            103.888821410551
+          ]
+        ]
+      },
+      "properties": {
+        "id": "4f5512a1-7b56-4b6a-a71b-01851b4844dd",
+        "created_at": 1429145960000,
+        "link_id": 103069002,
+        "road_name": "LORONG AH SOO",
+        "road_category": "C ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.34777806788028,
+            103.850716387506
+          ],
+          [
+            1.34774922676956,
+            103.850845357929
+          ]
+        ]
+      },
+      "properties": {
+        "id": "6d7c384c-b9eb-43bc-b3bf-01857bc34438",
+        "created_at": 1429145966000,
+        "link_id": 103069690,
+        "road_name": "BISHAN STREET",
+        "road_category": "D ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.38933725626798,
+            103.751312673437
+          ],
+          [
+            1.38950445733726,
+            103.749587517032
+          ]
+        ]
+      },
+      "properties": {
+        "id": "39e3cfd8-c7ac-45fa-8b9f-0186cfc02b55",
+        "created_at": 1429145855000,
+        "link_id": 103056904,
+        "road_name": "KRANJI EXPRESSWAY",
+        "road_category": "D ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.29276480763497,
+            103.711592674658
+          ],
+          [
+            1.29299840275306,
+            103.711555517867
+          ],
+          [
+            1.29442825537745,
+            103.711571776184
+          ],
+          [
+            1.29456339459083,
+            103.711577619245
+          ]
+        ]
+      },
+      "properties": {
+        "id": "b614b225-1458-4f5a-9b19-018e759b5c0b",
+        "created_at": 1429146240000,
+        "link_id": 103109971,
+        "road_name": "JURONG ISLAND HIGHWAY",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.37750529757303,
+            103.956875958765
+          ],
+          [
+            1.37747937277499,
+            103.956813380937
+          ],
+          [
+            1.37742382615362,
+            103.956305415835
+          ]
+        ]
+      },
+      "properties": {
+        "id": "25b6ec08-c43b-49d8-b60d-019426aa0364",
+        "created_at": 1429146313000,
+        "link_id": 109002323,
+        "road_name": "JALAN LOYANG BESAR",
+        "road_category": "T ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.35206946793492,
+            103.868786668565
+          ],
+          [
+            1.35215074474678,
+            103.868677817744
+          ],
+          [
+            1.35242074606755,
+            103.868446702067
+          ],
+          [
+            1.35263017132743,
+            103.868334456484
+          ],
+          [
+            1.35285562139553,
+            103.868258207581
+          ],
+          [
+            1.35311082480687,
+            103.868198411796
+          ]
+        ]
+      },
+      "properties": {
+        "id": "f495a85c-2d41-4631-85d9-01950383dc36",
+        "created_at": 1429145808000,
+        "link_id": 103052238,
+        "road_name": "SERANGOON AVENUE",
+        "road_category": "D ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.32264916262272,
+            103.800915192924
+          ],
+          [
+            1.32214461698304,
+            103.800862795872
+          ],
+          [
+            1.32211492621868,
+            103.800826494727
+          ],
+          [
+            1.32213101280918,
+            103.800670981992
+          ]
+        ]
+      },
+      "properties": {
+        "id": "7dde8656-aafb-4ac7-b8dd-0198ca3eaf67",
+        "created_at": 1429145794000,
+        "link_id": 103049590,
+        "road_name": "CORONATION ROAD WEST",
+        "road_category": "E ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.27845669418406,
+            103.823667828809
+          ],
+          [
+            1.27860046860804,
+            103.823275985054
+          ],
+          [
+            1.27872257340125,
+            103.822646100779
+          ],
+          [
+            1.27872221165511,
+            103.822646073824
+          ]
+        ]
+      },
+      "properties": {
+        "id": "001e8925-6eee-4cdf-998b-0198d394da10",
+        "created_at": 1429145896000,
+        "link_id": 103061780,
+        "road_name": "AYER RAJAH EXPRESSWAY",
+        "road_category": "A ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.33352828843547,
+            103.961212581774
+          ],
+          [
+            1.33282469138232,
+            103.960753527885
+          ]
+        ]
+      },
+      "properties": {
+        "id": "5161f69b-76ce-4f87-aa3c-019a22a07137",
+        "created_at": 1429145967000,
+        "link_id": 103069807,
+        "road_name": "CHANGI SOUTH AVENUE",
+        "road_category": "D ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.31175141417637,
+            103.803652386054
+          ],
+          [
+            1.31198600714893,
+            103.803719190419
+          ]
+        ]
+      },
+      "properties": {
+        "id": "bdf11280-36e3-4e23-b4c6-019af67e831c",
+        "created_at": 1429145666000,
+        "link_id": 103087952,
+        "road_name": "FARRER ROAD",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.26923036041425,
+            103.813735627494
+          ],
+          [
+            1.26932313962435,
+            103.813789206393
+          ]
+        ]
+      },
+      "properties": {
+        "id": "26d60ce4-b359-4c85-a34a-019c321fda4c",
+        "created_at": 1429146307000,
+        "link_id": 109001403,
+        "road_name": "MORSE ROAD",
+        "road_category": "E ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.30155011121138,
+            103.897264477345
+          ],
+          [
+            1.30198246412496,
+            103.897126813101
+          ]
+        ]
+      },
+      "properties": {
+        "id": "5e7c4258-2ee4-4a4b-9fa8-019d5bf65139",
+        "created_at": 1429145750000,
+        "link_id": 103026671,
+        "road_name": "TANJONG KATONG ROAD SOUTH",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.33315084785248,
+            103.921100938518
+          ],
+          [
+            1.33250175406019,
+            103.919715450625
+          ]
+        ]
+      },
+      "properties": {
+        "id": "626857eb-97db-4784-ab2c-01a0eeb4dae1",
+        "created_at": 1429145927000,
+        "link_id": 103064678,
+        "road_name": "PAN ISLAND EXPRESSWAY",
+        "road_category": "A ",
+        "band": 4,
+        "min_speed": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.32584408353583,
+            103.944278115106
+          ],
+          [
+            1.32592876169629,
+            103.944219083972
+          ],
+          [
+            1.32606928837052,
+            103.944068897152
+          ],
+          [
+            1.32616267206515,
+            103.943886072791
+          ],
+          [
+            1.32619722548098,
+            103.943735737473
+          ]
+        ]
+      },
+      "properties": {
+        "id": "e2ff1c3d-6d72-4822-b4a3-01a130cc2163",
+        "created_at": 1429146339000,
+        "link_id": 103004192,
+        "road_name": "BEDOK SOUTH AVENUE",
+        "road_category": "D ",
+        "band": 2,
+        "min_speed": 20,
+        "max_speed": 39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.32963377965875,
+            103.794816291817
+          ],
+          [
+            1.32932851839155,
+            103.794681845719
+          ],
+          [
+            1.32899114231813,
+            103.794495553521
+          ]
+        ]
+      },
+      "properties": {
+        "id": "98c2f3b4-b601-4747-bbe2-01a3b1c8821f",
+        "created_at": 1429145652000,
+        "link_id": 103083879,
+        "road_name": "SIXTH AVENUE",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.34656738121702,
+            103.860178053938
+          ],
+          [
+            1.34510844843026,
+            103.860460967931
+          ]
+        ]
+      },
+      "properties": {
+        "id": "333687b3-a161-4eb1-af1c-01a4852cbebe",
+        "created_at": 1429146025000,
+        "link_id": 103076443,
+        "road_name": "LORONG CHUAN",
+        "road_category": "B ",
+        "band": 3,
+        "min_speed": 40,
+        "max_speed": 59
+      }
+    }
+  ]
+}
